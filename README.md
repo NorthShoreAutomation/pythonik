@@ -57,6 +57,7 @@ The CI/CD pipeline will automatically build and add a new version as a PyPI pack
 To manually build and publish a new PyPI package:
 
 1. Create and push a tag on the default branch (main):
+
    ```bash
    git tag {tag}
    git push
@@ -80,6 +81,7 @@ To install the package in another project using Poetry:
    ```
 
 3. Install the package:
+
    ```bash
    poetry add --source gitlab pythonik
    ```

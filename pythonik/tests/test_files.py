@@ -8,6 +8,7 @@ from pythonik.client import PythonikClient
 from pythonik.exceptions import UnexpectedStorageMethodForProxy
 from pythonik.models.files.keyframe import Keyframe, Keyframes, Resolution
 from pythonik.models.files.file import (
+    FileSetsFilesResponse,
     Files,
     FileSets,
     FileSet,
@@ -16,23 +17,25 @@ from pythonik.models.files.file import (
     UploadUrlResponse,
     S3MultipartUploadResponse,
 )
-from pythonik.models.files.format import Formats, Format, FormatCreate
+from pythonik.models.files.format import Component, Formats, Format, FormatCreate
 from pythonik.models.files.proxy import Proxies, Proxy
 from pythonik.models.files.storage import Storage
 from pythonik.specs.files import (
-    GET_ASSET_KEYFRAMES,
     FilesSpec,
     GET_STORAGE_PATH,
-    DELETE_ASSETS_FILE_SET_PATH,
     GET_STORAGES_PATH,
     GET_ASSET_KEYFRAME,
+    GET_ASSET_KEYFRAMES,
     GET_ASSET_PROXY_PATH,
     GET_ASSETS_FILES_PATH,
     GET_ASSET_PROXIES_PATH,
     GET_ASSETS_FORMAT_PATH,
+    DELETE_ASSETS_FILE_PATH,
     GET_ASSETS_FORMATS_PATH,
     GET_ASSETS_FILE_SET_PATH,
-    DELETE_ASSETS_FILE_PATH,
+    DELETE_ASSETS_FILE_SET_PATH,
+    GET_ASSETS_FILE_SET_FILES_PATH,
+    GET_ASSETS_FORMAT_COMPONENTS_PATH,
     GET_ASSET_PROXIES_MULTIPART_URL_PATH,
 )
 from pythonik.tests.utils import (
@@ -47,6 +50,41 @@ class StorageMethod(str, Enum):
     S3 = "S3"
     GCS = "GCS"
     NOT_REAL = "I_MADE_IT_UP"
+
+
+def test_create_asset_format_component():
+    with requests_mock.Mocker() as m:
+        app_id = str(uuid.uuid4())
+        auth_token = str(uuid.uuid4())
+        asset_id = str(uuid.uuid4())
+        format_id = str(uuid.uuid4())
+
+        model = Component(id=str(uuid.uuid4()), type="assets", metadata={})
+        data = model.model_dump()
+        mock_address = FilesSpec.gen_url(
+            GET_ASSETS_FORMAT_COMPONENTS_PATH.format(asset_id, format_id)
+        )
+        m.post(mock_address, json=data)
+
+        client = PythonikClient(app_id=app_id, auth_token=auth_token, timeout=3)
+        client.files().create_asset_format_component(asset_id, format_id, body=model)
+
+
+def test_get_asset_file_sets():
+    with requests_mock.Mocker() as m:
+        app_id = str(uuid.uuid4())
+        auth_token = str(uuid.uuid4())
+        asset_id = str(uuid.uuid4())
+        file_sets_id = str(uuid.uuid4())
+
+        data = FileSetsFilesResponse().model_dump()
+        mock_address = FilesSpec.gen_url(
+            GET_ASSETS_FILE_SET_FILES_PATH.format(asset_id, file_sets_id)
+        )
+        m.get(mock_address, json=data)
+
+        client = PythonikClient(app_id=app_id, auth_token=auth_token, timeout=3)
+        client.files().get_asset_file_sets(asset_id, file_sets_id)
 
 
 def test_get_proxy_by_proxy_id():
@@ -532,6 +570,7 @@ def test_delete_asset_file():
         client = PythonikClient(app_id=app_id, auth_token=auth_token, timeout=3)
         client.files().delete_asset_file(asset_id, file_id)
 
+
 def test_delete_asset_file_set_immediate():
     with requests_mock.Mocker() as m:
         app_id = str(uuid.uuid4())
@@ -545,9 +584,10 @@ def test_delete_asset_file_set_immediate():
 
         # Mock 204 response for immediate deletion
         m.delete(mock_address, status_code=204)
-        
+
         client = PythonikClient(app_id=app_id, auth_token=auth_token, timeout=3)
         client.files().delete_asset_file_set(asset_id, file_set_id)
+
 
 def test_delete_asset_file_set_marked():
     with requests_mock.Mocker() as m:
@@ -564,9 +604,10 @@ def test_delete_asset_file_set_marked():
 
         # Mock 200 response with FileSet data
         m.delete(mock_address, json=data, status_code=200)
-        
+
         client = PythonikClient(app_id=app_id, auth_token=auth_token, timeout=3)
         client.files().delete_asset_file_set(asset_id, file_set_id)
+
 
 def test_delete_asset_file_set_keep_source():
     with requests_mock.Mocker() as m:
@@ -581,4 +622,3 @@ def test_delete_asset_file_set_keep_source():
 
         # Mock 204 response
         m.delete(mock_address, status_code=204)
-        

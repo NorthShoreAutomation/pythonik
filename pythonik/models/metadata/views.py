@@ -6,7 +6,7 @@ from pydantic import BaseModel, RootModel
 
 
 class FieldValue(BaseModel):
-    value: Optional[str] = ""
+    value: Any
 
 
 class FieldValues(BaseModel):

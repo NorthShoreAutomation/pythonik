@@ -1,4 +1,4 @@
-from pythonik.models.assets.assets import Asset, AssetCreate
+from pythonik.models.assets.assets import Asset, AssetCreate, BulkDelete
 from pythonik.models.assets.segments import SegmentBody, SegmentResponse
 from pythonik.models.assets.versions import (
     AssetVersionCreate,
@@ -10,11 +10,14 @@ from pythonik.specs.base import Spec
 from pythonik.specs.collection import CollectionSpec
 
 BASE = "assets"
+DELETE_QUEUE = "delete_queue"
 GET_URL = BASE + "/{}/"
 SEGMENT_URL = BASE + "/{}/segments/"
 SEGMENT_URL_UPDATE = SEGMENT_URL + "{}/"
 VERSIONS_URL = BASE + "/{}/versions/"
 VERSIONS_FROM_ASSET_URL = BASE + "/{}/versions/from/assets/{}/"
+BULK_DELETE_URL = DELETE_QUEUE + "/bulk/"
+PURGE_ALL_URL = DELETE_QUEUE + "/purge/all/"
 
 
 class AssetSpec(Spec):
@@ -33,6 +36,67 @@ class AssetSpec(Spec):
             CollectionSpec: An instance of CollectionSpec for working with collections
         """
         return self._collection_spec
+
+    def permanently_delete(self):
+        """
+        Purge all assets and collections from the delete queue (Permanently delete)
+
+        Returns:
+            Response with no data model (202 status code)
+
+        Required roles:
+            - can_purge_assets
+            - can_purge_collections
+
+        Raises:
+            401 Invalid token
+            403 User does not have permission
+        """
+        response = self._post(PURGE_ALL_URL)
+        return self.parse_response(response, model=None)
+
+    def bulk_delete(
+        self,
+        body: BulkDelete,
+        permanently_delete=False,
+        exclude_defaults=True,
+        **kwargs
+    ) -> Response:
+        """
+        Bulk delete objects. If `permanently_delete` is True, the objects are
+        first added to the delete queue then the queue is purged,
+        permanently deleting.
+
+        Args:
+            body: bulk delete parameters
+            permanently_delete: If True, Purge all assets and collections from
+            delete queue (Permanently delete)
+            exclude_defaults: If True, exclude default values from request
+            kwargs: additional kwargs passed to the request
+
+        Returns:
+            Response with no data model (202 status code)
+
+        Required roles:
+            - To bulk delete objects:
+                - can_delete_assets
+            - To permanently delete objects:
+                - can_purge_assets
+                - can_purge_collections
+
+        Raises:
+            400 Bad request
+            401 Invalid token
+            403 User does not have permission
+        """
+        response = self._post(
+            BULK_DELETE_URL,
+            json=body.model_dump(exclude_defaults=exclude_defaults),
+            **kwargs
+        )
+        if permanently_delete:
+            response  = self.permanently_delete().response
+        return self.parse_response(response, model=None)
 
     def partial_update_asset(
         self, asset_id: str, body: Asset, exclude_defaults=True, **kwargs

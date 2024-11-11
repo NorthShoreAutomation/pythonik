@@ -9,6 +9,12 @@ from pydantic import BaseModel, field_serializer, Field
 from pythonik.models.base import ArchiveStatus, Status, UserInfo
 
 
+class BulkDeleteObjectType(str, Enum):
+    ASSETS = "assets"
+    COLLECTIONS = "collections"
+    SAVE_SEARCHES = "saved_searches"
+
+
 class AnalyzeStatus(str, Enum):
     N_A = "N/A"
     REQUESTED = "REQUESTED"
@@ -110,3 +116,9 @@ class AssetCreate(BaseModel):
     @classmethod
     def date_to_string(cls, dt: datetime) -> str:
         return dt.isoformat()
+
+
+class BulkDelete(BaseModel):
+    object_ids: List[str]
+    content_only: bool = True
+    object_type: BulkDeleteObjectType

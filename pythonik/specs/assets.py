@@ -1,8 +1,13 @@
 from pythonik.models.assets.assets import Asset, AssetCreate
 from pythonik.models.assets.segments import SegmentBody, SegmentResponse
-from pythonik.models.assets.versions import AssetVersionCreate, AssetVersionResponse, AssetVersionFromAssetCreate
+from pythonik.models.assets.versions import (
+    AssetVersionCreate,
+    AssetVersionResponse,
+    AssetVersionFromAssetCreate,
+)
 from pythonik.models.base import Response
 from pythonik.specs.base import Spec
+from pythonik.specs.collection import CollectionSpec
 
 BASE = "assets"
 GET_URL = BASE + "/{}/"
@@ -14,6 +19,20 @@ VERSIONS_FROM_ASSET_URL = BASE + "/{}/versions/from/assets/{}/"
 
 class AssetSpec(Spec):
     server = "API/assets/"
+
+    def __init__(self, session, timeout=3):
+        super().__init__(session, timeout)
+        self._collection_spec = CollectionSpec(session=session, timeout=timeout)
+
+    @property
+    def collections(self) -> CollectionSpec:
+        """
+        Access the collections API
+
+        Returns:
+            CollectionSpec: An instance of CollectionSpec for working with collections
+        """
+        return self._collection_spec
 
     def partial_update_asset(
         self, asset_id: str, body: Asset, exclude_defaults=True, **kwargs
@@ -127,24 +146,20 @@ class AssetSpec(Spec):
         return self.parse_response(resp, SegmentResponse)
 
     def create_version(
-        self, 
-        asset_id: str, 
-        body: AssetVersionCreate, 
-        exclude_defaults=True, 
-        **kwargs
+        self, asset_id: str, body: AssetVersionCreate, exclude_defaults=True, **kwargs
     ) -> Response:
         """
         Create a new version of an asset
-        
+
         Args:
             asset_id: The ID of the asset to create a version for
             body: Version creation parameters
             exclude_defaults: If True, exclude default values from request
             **kwargs: Additional arguments to pass to the request
-            
+
         Returns:
             Response(model=AssetVersionResponse)
-            
+
         Required roles:
             - can_write_versions
         """
@@ -165,20 +180,20 @@ class AssetSpec(Spec):
     ) -> Response:
         """
         Create a new version of an asset from another asset
-        
+
         Args:
             asset_id: The ID of the asset to create a version for
             source_asset_id: The ID of the source asset to create version from
             body: Version creation parameters
             exclude_defaults: If True, exclude default values from request
             **kwargs: Additional arguments to pass to the request
-            
+
         Returns:
             Response with no data model (202 status code)
-            
+
         Required roles:
             - can_write_versions
-            
+
         Raises:
             - 400: Bad request
             - 401: Token is invalid

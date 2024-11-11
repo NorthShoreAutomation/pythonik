@@ -1,9 +1,5 @@
-import json
-from pydantic import BaseModel
 from urllib3.util import Retry
-from typing import Type, Optional, Union, List
-from urllib.parse import urljoin
-from requests import Session, Request, Response, PreparedRequest
+from requests import Session
 from requests.adapters import HTTPAdapter
 
 from pythonik.specs.assets import AssetSpec
@@ -11,6 +7,7 @@ from pythonik.specs.files import FilesSpec
 from pythonik.specs.jobs import JobSpec
 from pythonik.specs.metadata import MetadataSpec
 from pythonik.specs.search import SearchSpec
+from pythonik.specs.collection import CollectionSpec
 
 
 # Iconik APIs
@@ -34,6 +31,9 @@ class PythonikClient:
             "Accept": "application/json",
         }
         self.timeout = timeout
+
+    def collections(self):
+        return CollectionSpec(self.session, self.timeout)
 
     def assets(self):
         return AssetSpec(self.session, self.timeout)

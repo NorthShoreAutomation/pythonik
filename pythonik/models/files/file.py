@@ -37,7 +37,7 @@ class File(BaseModel):
     checksum: Optional[str] = ""
     date_created: Optional[str] = ""
     date_modified: Optional[str] = ""
-    directory_path: Optional[str] = ""
+    directory_path: Optional[str] = None
     file_date_created: Optional[str] = ""
     file_date_modified: Optional[str] = ""
     file_set_id: Optional[str] = ""
@@ -61,6 +61,12 @@ class File(BaseModel):
     url: Optional[str] = ""
     user_id: Optional[str] = ""
     version_id: Optional[str] = ""
+    system_domain_id: Optional[str] = ""
+
+
+class FileSetsFilesResponse(BaseModel):
+    per_page: int = 1000
+    objects: List[File] = []
 
 
 class FileCreate(File):

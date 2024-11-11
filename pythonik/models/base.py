@@ -15,6 +15,7 @@ class Response(BaseModel):
 
 class Status(str, Enum):
     ACTIVE = "ACTIVE"
+    HIDDEN = "HIDDEN"
     DELETED = "DELETED"
 
 

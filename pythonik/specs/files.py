@@ -1,4 +1,3 @@
-from urllib import response
 from urllib.parse import urlparse
 from xml.dom.minidom import parseString
 
@@ -13,6 +12,7 @@ from pythonik.exceptions import UnexpectedStorageMethodForProxy
 from pythonik.models.base import Response, StorageMethod
 from pythonik.models.files.file import (
     File,
+    FileSetsFilesResponse,
     Files,
     FileSet,
     FileSets,
@@ -21,14 +21,14 @@ from pythonik.models.files.file import (
     S3MultipartUploadResponse,
 )
 from pythonik.models.files.keyframe import (
-    GCSKeyframeUploadResponse,
     Keyframe,
     Keyframes,
+    GCSKeyframeUploadResponse,
 )
 from pythonik.models.files.proxy import Proxies, Proxy
 from pythonik.specs.base import Spec, PythonikResponse
 from pythonik.models.files.storage import Storage, Storages
-from pythonik.models.files.format import Formats, Format, FormatCreate
+from pythonik.models.files.format import Component, Formats, Format, FormatCreate
 
 GET_ASSET_PROXY_PATH = "assets/{}/proxies/{}/"
 GET_ASSET_PROXIES_PATH = "assets/{}/proxies/"
@@ -36,8 +36,10 @@ GET_ASSET_PROXIES_MULTIPART_URL_PATH = GET_ASSET_PROXY_PATH + "multipart_url/par
 GET_ASSET_PROXIES_MULTIPART_COMPLETE_URL_PATH = GET_ASSET_PROXY_PATH + "multipart_url/"
 GET_ASSETS_FORMATS_PATH = "assets/{}/formats/"
 GET_ASSETS_FORMAT_PATH = "assets/{}/formats/{}/"
+GET_ASSETS_FORMAT_COMPONENTS_PATH = "assets/{}/formats/{}/components"
 GET_ASSETS_FILES_PATH = "assets/{}/files/"
 GET_ASSETS_FILE_SET_PATH = "assets/{}/file_sets/"
+GET_ASSETS_FILE_SET_FILES_PATH = "assets/{}/file_sets/{}/files/"
 GET_STORAGE_PATH = "storages/{}/"
 GET_STORAGES_PATH = "storages/"
 GET_ASSET_KEYFRAME = "assets/{}/keyframes/{}/"
@@ -50,6 +52,66 @@ DELETE_ASSETS_FILE_PATH = "assets/{}/files/{}/"
 class FilesSpec(Spec):
     server = "API/files/"
 
+    def get_asset_file_sets(self, asset_id: str, file_sets_id: str, **kwargs) -> Response:
+        """
+        Retrieve file sets for a specific asset
+
+        Args:
+            asset_id: ID of the asset
+            file_sets_id: ID of the file set to retrieve
+            kwargs: additional kwargs passed to the request
+        
+        Returns:
+            Response(model=FileSetsFilesResponse)
+        
+        Required roles:
+            - can_read_files
+        
+        Raises:
+            - 401 Token is invalid
+            - 404 FileSets for this asset don't exist
+        """
+        response = self._get(
+            GET_ASSETS_FILE_SET_FILES_PATH.format(asset_id, file_sets_id),
+            **kwargs
+        )
+        return self.parse_response(response, FileSetsFilesResponse)
+
+    def create_asset_format_component(
+        self,
+        asset_id: str,
+        format_id: str,
+        body: Component,
+        exclude_defaults=True,
+        **kwargs,
+    ) -> Response:
+        """
+        Create a new format component
+
+        Args:
+            asset_id: ID of the asset
+            format_id: ID for the format
+            body: component creation parameters
+            exclude_defaults: If True, exclude default values from request
+            kwargs: additional kwargs passed to the request
+
+        Returns:
+            Response(model=Formats)
+
+        Required roles:
+            - can_write_formats
+
+        Raises:
+            400 Bad request
+            401 Token is invalid
+            404 Formats for this asset don't exist
+        """
+        response = self._post(
+            GET_ASSETS_FORMAT_COMPONENTS_PATH.format(asset_id, format_id),
+            json=body.model_dump(exclude_defaults=exclude_defaults),
+            **kwargs,
+        )
+        return self.parse_response(response, Formats)
     
 
     def delete_asset_file(self, asset_id: str, file_id: str) -> Response:

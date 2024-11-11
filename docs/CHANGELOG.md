@@ -1,5 +1,21 @@
 # Changelog
 
+## 2024-11-11 - version 0.8.0
+### Added
+- Collection endpoints
+  - Retrieve a collection by ID
+  - Retrieve collection info
+  - Create and delete collection
+  - Collection spec is also available via the asset spec (e.g. `client.assets().collections.get("....")`& `client.collections().get(...)` are perfectly fine usage.)
+- Two new endpoints were added to the files spec
+  - Get asset file sets
+  - Create asset format component
+- Add bulk delete and permanently delete objects in Iconik. Specifically,
+  - `v1/delete_queue/bulk`
+  - `v1/delete_queue/purge/all`
+### Changed
+  - `FieldValue` changed from optional string to `Any`
+
 ## 2024-11-08 "Croissant" - version 0.7.0
 
 ### Added

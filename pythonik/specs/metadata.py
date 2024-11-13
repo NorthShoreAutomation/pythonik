@@ -10,7 +10,7 @@ from typing import Literal
 
 ASSET_METADATA_FROM_VIEW_PATH = "assets/{}/views/{}"
 UPDATE_ASSET_METADATA = "assets/{}/views/{}/"
-ASSET_OBJECT_VIEW_PATH = "v1/assets/{}/{}/{}/views/{}/"
+ASSET_OBJECT_VIEW_PATH = "assets/{}/{}/{}/views/{}/"
 
 ObjectType = Literal["segments"]
 

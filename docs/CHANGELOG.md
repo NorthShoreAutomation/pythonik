@@ -8,7 +8,7 @@
 - Add collection endpoints and models
 
 ### Fixed
-- Fix incorrect path name for object view mutations (missing 'v1/' prefix)
+- Fix incorrect path name for object metadata view mutations 
 - Fix metadata field type to support multiple formats (changed to Any type)
 
 ### Changed

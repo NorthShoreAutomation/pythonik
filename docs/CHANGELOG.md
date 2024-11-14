@@ -1,5 +1,24 @@
 # Changelog
 
+## 2024-11-14 "You want some, you lose some" - version 0.9.0
+
+### Added
+- Add collections API endpoints to asset spec
+- Add bulk & permanent delete operations
+- Add collection endpoints and models
+
+### Fixed
+- Fix incorrect path name for object view mutations (missing 'v1/' prefix)
+- Fix metadata field type to support multiple formats (changed to Any type)
+
+### Changed
+- Update metadata field types to be more flexible, supporting boolean, integer, and list values
+
+## 2024-11-11 "Accidents Happen" - version 0.8.0
+
+### Changed
+- No substantial changes, just a version bump
+
 ## 2024-11-08 "Croissant" - version 0.7.0
 
 ### Added

@@ -1,5 +1,7 @@
 # Pythonik
 
+![Logo](./docs/logo.webp)
+
 Pythonik is a comprehensive Python SDK designed for seamless interaction with
 the Iconik API. It offers a user-friendly interface to access various
 functionalities of Iconik, making it easier for developers to integrate and

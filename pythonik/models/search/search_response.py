@@ -6,6 +6,7 @@ from pydantic import BaseModel
 
 from pythonik.models.base import PaginatedResponse
 from pythonik.models.files.file import File
+from pythonik.models.files.format import Format
 from pythonik.models.files.keyframe import Keyframe
 from pythonik.models.files.proxy import Proxy
 
@@ -21,6 +22,11 @@ class Object(BaseModel):
     files: Optional[List[File]] = []
     proxies: Optional[List[Proxy]] = []
     keyframes: Optional[List[Keyframe]] = []
+    formats: Optional[List[Format]] = []
+    in_collections: Optional[List[str]] = []
+    permissions: Optional[List[str]] = []
+    external_id: Optional[str] = ""
+    external_link: Optional[str] = ""
 
 
 class SearchResponse(PaginatedResponse):

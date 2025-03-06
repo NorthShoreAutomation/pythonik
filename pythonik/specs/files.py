@@ -1,8 +1,9 @@
+import hashlib
+import warnings
+from pathlib import Path
+from typing import Union, Dict, Any, Optional
 from urllib.parse import urlparse
 from xml.dom.minidom import parseString
-from functools import wraps
-import warnings
-from typing import Union, Dict, Any
 
 import requests
 
@@ -23,15 +24,16 @@ from pythonik.models.files.file import (
     FileSetCreate,
     S3MultipartUploadResponse,
 )
+from pythonik.models.files.format import Component, Formats, Format, \
+    FormatCreate
 from pythonik.models.files.keyframe import (
     Keyframe,
     Keyframes,
     GCSKeyframeUploadResponse,
 )
 from pythonik.models.files.proxy import Proxies, Proxy
-from pythonik.specs.base import Spec, PythonikResponse
 from pythonik.models.files.storage import Storage, Storages
-from pythonik.models.files.format import Component, Formats, Format, FormatCreate
+from pythonik.specs.base import Spec, PythonikResponse
 
 GET_ASSET_PROXY_PATH = "assets/{}/proxies/{}/"
 GET_ASSET_PROXIES_PATH = "assets/{}/proxies/"
@@ -53,6 +55,41 @@ DELETE_ASSETS_FILE_PATH = "assets/{}/files/{}/"
 GET_ASSETS_VERSION_FILE_SETS_PATH = "assets/{}/versions/{}/file_sets/"
 GET_ASSETS_VERSION_FILES_PATH = "assets/{}/versions/{}/files/"
 GET_ASSETS_VERSION_FORMATS_PATH = "assets/{}/versions/{}/formats/"
+
+
+def calculate_md5(file_path: Union[str, Path], chunk_size: int = 8192) -> str:
+    """
+    Calculate MD5 checksum of a file by reading it in chunks.
+
+    Args:
+        file_path: Path to the file (string or Path object)
+        chunk_size: Size of chunks to read (default 8192 bytes / 8KB)
+
+    Returns:
+        str: MD5 checksum as a hexadecimal string
+    """
+    if isinstance(file_path, str):
+        file_path = Path(file_path)
+
+    if not file_path.exists():
+        raise FileNotFoundError(f"File not found: {file_path}")
+
+    if not file_path.is_file():
+        raise ValueError(f"Path is not a file: {file_path}")
+
+    md5_hash = hashlib.md5()
+
+    try:
+        with open(file_path, "rb") as f:
+            for chunk in iter(lambda: f.read(chunk_size), b""):
+                md5_hash.update(chunk)
+    except PermissionError as e:
+        raise PermissionError(
+            f"Permission denied when reading file: {file_path}") from e
+    except IOError as e:
+        raise IOError(f"Error reading file {file_path}: {str(e)}") from e
+
+    return md5_hash.hexdigest()
 
 
 class FilesSpec(Spec):
@@ -87,7 +124,8 @@ class FilesSpec(Spec):
             401 Token is invalid
             404 Formats for this asset don't exist
         """
-        json_data = self._prepare_model_data(body, exclude_defaults=exclude_defaults)
+        json_data = self._prepare_model_data(body,
+                                             exclude_defaults=exclude_defaults)
         response = self._post(
             GET_ASSETS_FORMAT_COMPONENTS_PATH.format(asset_id, format_id),
             json=json_data,
@@ -95,7 +133,8 @@ class FilesSpec(Spec):
         )
         return self.parse_response(response, Formats)
 
-    def delete_asset_file(self, asset_id: str, file_id: str, **kwargs) -> Response:
+    def delete_asset_file(self, asset_id: str, file_id: str,
+                          **kwargs) -> Response:
         """Delete a specific file from an asset
         
         Args:
@@ -106,12 +145,15 @@ class FilesSpec(Spec):
         Returns:
             Response with no data model
         """
-        response = self._delete(DELETE_ASSETS_FILE_PATH.format(asset_id, file_id), **kwargs)
+        response = self._delete(
+            DELETE_ASSETS_FILE_PATH.format(asset_id, file_id), **kwargs)
         return self.parse_response(response, model=None)
 
-    def delete_asset_file_set(
-        self, asset_id: str, file_set_id: str, keep_source: bool = False, **kwargs
-    ) -> Response:
+    def delete_asset_file_set(self,
+                              asset_id: str,
+                              file_set_id: str,
+                              keep_source: bool = False,
+                              **kwargs) -> Response:
         """Delete asset's file set, file entries, and actual files
         
         Args:
@@ -124,25 +166,25 @@ class FilesSpec(Spec):
             Response with no data model if status code is 204 (immediate deletion)
         """
         params = {"keep_source": keep_source} if keep_source else None
-        response = self._delete(
-            DELETE_ASSETS_FILE_SET_PATH.format(asset_id, file_set_id),
-            params=params,
-            **kwargs
-        )
-        
+        response = self._delete(DELETE_ASSETS_FILE_SET_PATH.format(
+            asset_id, file_set_id),
+                                params=params,
+                                **kwargs)
+
         # If status is 204, return response with no model
         if response.status_code == 204:
             return self.parse_response(response, model=None)
-            
+
         # If status is possibly 200, return response with FileSet model
         return self.parse_response(response, FileSet)
 
     def delete_asset_keyframe(self, asset_id: str, keyframe_id: str, **kwargs):
-        response = self._delete(GET_ASSET_KEYFRAME.format(asset_id, keyframe_id), **kwargs)
+        response = self._delete(
+            GET_ASSET_KEYFRAME.format(asset_id, keyframe_id), **kwargs)
         return self.parse_response(response, model=None)
 
-
-    def get_asset_file(self, asset_id: str, file_id: str, **kwargs) -> Response:
+    def get_asset_file(self, asset_id: str, file_id: str,
+                       **kwargs) -> Response:
         """Get metadata for a specific file associated with an asset
         
         Args:
@@ -153,17 +195,22 @@ class FilesSpec(Spec):
         Returns:
             Response with File model
         """
-        resp = self._get(GET_ASSETS_FILE_PATH.format(asset_id, file_id), **kwargs)
+        resp = self._get(GET_ASSETS_FILE_PATH.format(asset_id, file_id),
+                         **kwargs)
         return self.parse_response(resp, File)
 
-    def get_asset_file_set_files(self, asset_id: str, file_sets_id: str, **kwargs) -> Response:
+    def get_asset_file_set_files(self, asset_id: str, file_sets_id: str,
+                                 **kwargs) -> Response:
         """
         Retrieve files for a specific file set
         """
-        response = self._get(GET_ASSETS_FILE_SET_FILES_PATH.format(asset_id, file_sets_id), **kwargs)
+        response = self._get(
+            GET_ASSETS_FILE_SET_FILES_PATH.format(asset_id, file_sets_id),
+            **kwargs)
         return self.parse_response(response, FileSetsFilesResponse)
 
-    def get_asset_keyframe(self, asset_id: str, keyframe_id: str, **kwargs) -> Response:
+    def get_asset_keyframe(self, asset_id: str, keyframe_id: str,
+                           **kwargs) -> Response:
         """Get a specific keyframe for an asset
         
         Args:
@@ -173,7 +220,8 @@ class FilesSpec(Spec):
         Returns:
             Response with Keyframe model
         """
-        response = self._get(GET_ASSET_KEYFRAME.format(asset_id, keyframe_id), **kwargs)
+        response = self._get(GET_ASSET_KEYFRAME.format(asset_id, keyframe_id),
+                             **kwargs)
         return self.parse_response(response, Keyframe)
 
     def get_asset_keyframes(self, asset_id: str, **kwargs) -> Keyframes:
@@ -188,9 +236,11 @@ class FilesSpec(Spec):
         response = self._get(GET_ASSET_KEYFRAMES.format(asset_id), **kwargs)
         return self.parse_response(response, Keyframes)
 
-    def create_asset_keyframe(
-        self, asset_id: str, body: Union[Keyframe, Dict[str, Any]], exclude_defaults: bool = True, **kwargs
-    ) -> Response:
+    def create_asset_keyframe(self,
+                              asset_id: str,
+                              body: Union[Keyframe, Dict[str, Any]],
+                              exclude_defaults: bool = True,
+                              **kwargs) -> Response:
         """Create a new keyframe for an asset
         
         Args:
@@ -202,7 +252,8 @@ class FilesSpec(Spec):
         Returns:
             Response with created Keyframe model
         """
-        json_data = self._prepare_model_data(body, exclude_defaults=exclude_defaults)
+        json_data = self._prepare_model_data(body,
+                                             exclude_defaults=exclude_defaults)
         response = self._post(
             GET_ASSET_KEYFRAMES.format(asset_id),
             json=json_data,
@@ -210,22 +261,28 @@ class FilesSpec(Spec):
         )
         return self.parse_response(response, Keyframe)
 
-    def get_asset_proxy(self, asset_id: str, proxy_id: str, **kwargs) -> Response:
+    def get_asset_proxy(self, asset_id: str, proxy_id: str,
+                        **kwargs) -> Response:
         """Get asset's proxy
         Returns: Response(model=Proxy)
         """
 
-        resp = self._get(GET_ASSET_PROXY_PATH.format(asset_id, proxy_id), **kwargs)
+        resp = self._get(GET_ASSET_PROXY_PATH.format(asset_id, proxy_id),
+                         **kwargs)
 
         return self.parse_response(resp, Proxy)
 
-    def update_asset_proxy(
-        self, asset_id: str, proxy_id: str, body: Union[Proxy, Dict[str, Any]], exclude_defaults: bool = True, **kwargs
-    ) -> Response:
+    def update_asset_proxy(self,
+                           asset_id: str,
+                           proxy_id: str,
+                           body: Union[Proxy, Dict[str, Any]],
+                           exclude_defaults: bool = True,
+                           **kwargs) -> Response:
         """
         Update asset's proxy
         """
-        json_data = self._prepare_model_data(body, exclude_defaults=exclude_defaults)
+        json_data = self._prepare_model_data(body,
+                                             exclude_defaults=exclude_defaults)
         response = self._patch(
             GET_ASSET_PROXY_PATH.format(asset_id, proxy_id),
             json=json_data,
@@ -233,14 +290,17 @@ class FilesSpec(Spec):
         )
         return self.parse_response(response, Proxy)
 
-    def create_asset_proxy(
-        self, asset_id: str, body: Union[Proxy, Dict[str, Any]], exclude_defaults: bool = True, **kwargs
-    ) -> Response:
+    def create_asset_proxy(self,
+                           asset_id: str,
+                           body: Union[Proxy, Dict[str, Any]],
+                           exclude_defaults: bool = True,
+                           **kwargs) -> Response:
         """
         Create proxy and associate to asset
         Returns: Response(model=Proxy)
         """
-        json_data = self._prepare_model_data(body, exclude_defaults=exclude_defaults)
+        json_data = self._prepare_model_data(body,
+                                             exclude_defaults=exclude_defaults)
         response = self._post(
             GET_ASSET_PROXIES_PATH.format(asset_id),
             json=json_data,
@@ -256,8 +316,9 @@ class FilesSpec(Spec):
         exclude_defaults: bool = True,
         **kwargs,
     ) -> Response:
-        "Partially update an asset keyframe using PATCH"
-        json_data = self._prepare_model_data(body, exclude_defaults=exclude_defaults)
+        """Partially update an asset keyframe using PATCH"""
+        json_data = self._prepare_model_data(body,
+                                             exclude_defaults=exclude_defaults)
         response = self._patch(
             GET_ASSET_KEYFRAME.format(asset_id, keyframe_id),
             json=json_data,
@@ -273,8 +334,9 @@ class FilesSpec(Spec):
         exclude_defaults: bool = True,
         **kwargs,
     ) -> Response:
-        "Update an asset keyframe using POST"
-        json_data = self._prepare_model_data(body, exclude_defaults=exclude_defaults)
+        """Update an asset keyframe using POST"""
+        json_data = self._prepare_model_data(body,
+                                             exclude_defaults=exclude_defaults)
         response = self._post(
             GET_ASSET_KEYFRAME.format(asset_id, keyframe_id),
             json=json_data,
@@ -282,7 +344,8 @@ class FilesSpec(Spec):
         )
         return self.parse_response(response, Keyframe)
 
-    def get_upload_id_for_keyframe(self, keyframe: Keyframe) -> PythonikResponse:
+    def get_upload_id_for_keyframe(self,
+                                   keyframe: Keyframe) -> PythonikResponse:
         """
         Get upload ID for keyframe. This ID is required to upload keyframe files.
 
@@ -302,38 +365,38 @@ class FilesSpec(Spec):
             supported_methods = [StorageMethod.S3, StorageMethod.GCS]
             raise UnexpectedStorageMethodForProxy(
                 f"Unexpected storage method: {keyframe.storage_method}."
-                f" Pythonik supports {supported_methods}."
-            )
+                f" Pythonik supports {supported_methods}.")
 
-        upload_url_response = requests.post(upload_url, headers=headers)
+        upload_url_response = requests.post(upload_url,
+                                            headers=headers,
+                                            timeout=180)
         if not upload_url_response.ok:
             return PythonikResponse(response=upload_url_response, data=None)
 
         if keyframe.storage_method == StorageMethod.S3:
             raise NotImplementedError(
-                "Pythonik does not currently support creating keyframes on S3"
-            )
-            xml = parseString(upload_url_response.text)
-            key = xml.getElementsByTagName("Key")[0].firstChild.nodeValue
-            bucket = xml.getElementsByTagName("Bucket")[0].firstChild.nodeValue
-            upload_id = xml.getElementsByTagName(S3_UPLOADID_KEY)[
-                0
-            ].firstChild.nodeValue
-            data = upload_id
-        elif keyframe.storage_method == StorageMethod.GCS:
+                "Pythonik does not currently support creating keyframes on S3")
+            # xml = parseString(upload_url_response.text)
+            # key = xml.getElementsByTagName("Key")[0].firstChild.nodeValue
+            # bucket = xml.getElementsByTagName("Bucket")[0].firstChild.nodeValue
+            # upload_id = xml.getElementsByTagName(
+            #     S3_UPLOADID_KEY)[0].firstChild.nodeValue
+            # data = upload_id
+        if keyframe.storage_method == StorageMethod.GCS:
             upload_id = upload_url_response.headers[GCS_UPLOADID_KEY]
             location = upload_url_response.headers[GCS_KEYFRAME_LOCATION_KEY]
-            data = GCSKeyframeUploadResponse(upload_id=upload_id, location=location)
+            data = GCSKeyframeUploadResponse(upload_id=upload_id,
+                                             location=location)
         else:
             supported_methods = [StorageMethod.S3, StorageMethod.GCS]
             raise UnexpectedStorageMethodForProxy(
                 f"Unexpected storage method: {keyframe.storage_method}."
-                f" Pythonik supports {supported_methods}."
-            )
+                f" Pythonik supports {supported_methods}.")
 
         return PythonikResponse(response=upload_url_response, data=data)
 
-    def get_upload_id_for_proxy(self, asset_id: str, proxy_id: str) -> PythonikResponse:
+    def get_upload_id_for_proxy(self, asset_id: str,
+                                proxy_id: str) -> PythonikResponse:
         """
         Get upload ID for proxy. This ID is required to upload proxy files.
         :param asset_id: Asset ID
@@ -360,10 +423,11 @@ class FilesSpec(Spec):
             supported_methods = [StorageMethod.S3, StorageMethod.GCS]
             raise UnexpectedStorageMethodForProxy(
                 f"Unexpected storage method: {proxy.storage_method}."
-                f" pythonik supports {supported_methods}."
-            )
+                f" pythonik supports {supported_methods}.")
 
-        upload_url_response = requests.post(upload_url, headers=headers)
+        upload_url_response = requests.post(upload_url,
+                                            headers=headers,
+                                            timeout=180)
         if not upload_url_response.ok:
             return PythonikResponse(response=upload_url_response, data=None)
 
@@ -371,24 +435,21 @@ class FilesSpec(Spec):
             xml = parseString(upload_url_response.text)
             # key = xml.getElementsByTagName("Key")[0].firstChild.nodeValue
             # bucket = xml.getElementsByTagName("Bucket")[0].firstChild.nodeValue
-            upload_id = xml.getElementsByTagName(S3_UPLOADID_KEY)[
-                0
-            ].firstChild.nodeValue
+            upload_id = xml.getElementsByTagName(
+                S3_UPLOADID_KEY)[0].firstChild.nodeValue
         elif proxy.storage_method == StorageMethod.GCS:
             upload_id = upload_url_response.headers[GCS_UPLOADID_KEY]
         else:
             supported_methods = [StorageMethod.S3, StorageMethod.GCS]
             raise UnexpectedStorageMethodForProxy(
                 f"Unexpected storage method: {proxy.storage_method}."
-                f" pythonik supports {supported_methods}."
-            )
+                f" pythonik supports {supported_methods}.")
 
         return PythonikResponse(response=upload_url_response, data=upload_id)
 
-    def get_s3_presigned_url(
-        self, asset_id: str, proxy_id: str, upload_id: str, part_number: int,
-        **kwargs
-    ) -> PythonikResponse:
+    def get_s3_presigned_url(self, asset_id: str, proxy_id: str,
+                             upload_id: str, part_number: int,
+                             **kwargs) -> PythonikResponse:
         """
         Get a singed part URL to upload a proxy.
         :param asset_id: Asset ID
@@ -397,42 +458,50 @@ class FilesSpec(Spec):
         :param part_number: Upload part number
         :return: PythonikResponse
         """
-        response = self._get(
-            path=GET_ASSET_PROXIES_MULTIPART_URL_PATH.format(asset_id, proxy_id),
-            params={"upload_id": upload_id, "parts_num": part_number},
-            **kwargs
-        )
+        response = self._get(path=GET_ASSET_PROXIES_MULTIPART_URL_PATH.format(
+            asset_id, proxy_id),
+                             params={
+                                 "upload_id": upload_id,
+                                 "parts_num": part_number
+                             },
+                             **kwargs)
 
         if not response.ok:
             return PythonikResponse(response=response, data=None)
 
         return self.parse_response(response, S3MultipartUploadResponse)
 
-    def get_s3_complete_url(
-        self, asset_id: str, proxy_id: str, upload_id: str, **kwargs
-    ) -> PythonikResponse:
+    def get_s3_complete_url(self, asset_id: str, proxy_id: str, upload_id: str,
+                            **kwargs) -> PythonikResponse:
         response = self._get(
-            GET_ASSET_PROXIES_MULTIPART_COMPLETE_URL_PATH.format(asset_id, proxy_id),
-            params={"upload_id": upload_id, "type": "complete_url"},
-            **kwargs
-        )
+            GET_ASSET_PROXIES_MULTIPART_COMPLETE_URL_PATH.format(
+                asset_id, proxy_id),
+            params={
+                "upload_id": upload_id,
+                "type": "complete_url"
+            },
+            **kwargs)
         if not response.ok:
             return PythonikResponse(response=response, data=None)
-        return PythonikResponse(response=response, data=response.json()["complete_url"])
+        return PythonikResponse(response=response,
+                                data=response.json()["complete_url"])
 
     def get_asset_proxies(self, asset_id: str, **kwargs) -> PythonikResponse:
         resp = self._get(GET_ASSET_PROXIES_PATH.format(asset_id), **kwargs)
 
         return self.parse_response(resp, Proxies)
 
-    def create_asset_format(
-        self, asset_id: str, body: Union[FormatCreate, Dict[str, Any]], exclude_defaults: bool = True, **kwargs
-    ) -> Response:
+    def create_asset_format(self,
+                            asset_id: str,
+                            body: Union[FormatCreate, Dict[str, Any]],
+                            exclude_defaults: bool = True,
+                            **kwargs) -> Response:
         """
         Create format and associate it to asset
         Returns: Response(model=Format)
         """
-        json_data = self._prepare_model_data(body, exclude_defaults=exclude_defaults)
+        json_data = self._prepare_model_data(body,
+                                             exclude_defaults=exclude_defaults)
         response = self._post(
             GET_ASSETS_FORMATS_PATH.format(asset_id),
             json=json_data,
@@ -440,14 +509,17 @@ class FilesSpec(Spec):
         )
         return self.parse_response(response, Format)
 
-    def create_asset_file(
-        self, asset_id: str, body: Union[FileCreate, Dict[str, Any]], exclude_defaults: bool = True, **kwargs
-    ) -> Response:
+    def create_asset_file(self,
+                          asset_id: str,
+                          body: Union[FileCreate, Dict[str, Any]],
+                          exclude_defaults: bool = True,
+                          **kwargs) -> Response:
         """
         Create file and associate to asset
         Returns: Response(model=File)
         """
-        json_data = self._prepare_model_data(body, exclude_defaults=exclude_defaults)
+        json_data = self._prepare_model_data(body,
+                                             exclude_defaults=exclude_defaults)
         response = self._post(
             GET_ASSETS_FILES_PATH.format(asset_id),
             json=json_data,
@@ -455,24 +527,29 @@ class FilesSpec(Spec):
         )
         return self.parse_response(response, File)
 
-    def create_asset_filesets(
-        self, asset_id: str, body: Union[FileSetCreate, Dict[str, Any]], exclude_defaults: bool = True, **kwargs
-    ) -> Response:
+    def create_asset_filesets(self,
+                              asset_id: str,
+                              body: Union[FileSetCreate, Dict[str, Any]],
+                              exclude_defaults: bool = True,
+                              **kwargs) -> Response:
         warnings.warn(
             "'create_asset_filesets' is deprecated. Use 'create_asset_file_sets' instead.",
             DeprecationWarning,
-            stacklevel=2
-        )
-        return self.create_asset_file_sets(asset_id, body, exclude_defaults, **kwargs)
+            stacklevel=2)
+        return self.create_asset_file_sets(asset_id, body, exclude_defaults,
+                                           **kwargs)
 
-    def create_asset_file_sets(
-        self, asset_id: str, body: Union[FileSetCreate, Dict[str, Any]], exclude_defaults: bool = True, **kwargs
-    ) -> Response:
+    def create_asset_file_sets(self,
+                               asset_id: str,
+                               body: Union[FileSetCreate, Dict[str, Any]],
+                               exclude_defaults: bool = True,
+                               **kwargs) -> Response:
         """
         Create file sets and associate it to asset
         Returns: Response(model=FileSet)
         """
-        json_data = self._prepare_model_data(body, exclude_defaults=exclude_defaults)
+        json_data = self._prepare_model_data(body,
+                                             exclude_defaults=exclude_defaults)
         response = self._post(
             GET_ASSETS_FILE_SETS_PATH.format(asset_id),
             json=json_data,
@@ -480,9 +557,13 @@ class FilesSpec(Spec):
         )
         return self.parse_response(response, FileSet)
 
-    def get_asset_file_sets_by_version(
-        self, asset_id: str, version_id: str, per_page: int = None, last_id: str = None, file_count: bool = None, **kwargs
-    ) -> Response:
+    def get_asset_file_sets_by_version(self,
+                                       asset_id: str,
+                                       version_id: str,
+                                       per_page: int = None,
+                                       last_id: str = None,
+                                       file_count: bool = None,
+                                       **kwargs) -> Response:
         """
         Get all asset's file sets by version
         
@@ -545,7 +626,8 @@ class FilesSpec(Spec):
         resp = self._get(GET_ASSETS_FORMATS_PATH.format(asset_id), **kwargs)
         return self.parse_response(resp, Formats)
 
-    def get_asset_format(self, asset_id: str, format_id: str, **kwargs) -> Response:
+    def get_asset_format(self, asset_id: str, format_id: str,
+                         **kwargs) -> Response:
         """Get a specific format for an asset
         
         Args:
@@ -556,7 +638,8 @@ class FilesSpec(Spec):
         Returns:
             Response with Format model
         """
-        resp = self._get(GET_ASSETS_FORMAT_PATH.format(asset_id, format_id), **kwargs)
+        resp = self._get(GET_ASSETS_FORMAT_PATH.format(asset_id, format_id),
+                         **kwargs)
         return self.parse_response(resp, Format)
 
     def get_asset_files(self, asset_id: str, **kwargs) -> Response:
@@ -597,9 +680,12 @@ class FilesSpec(Spec):
         resp = self._get(GET_STORAGES_PATH, **kwargs)
         return self.parse_response(resp, Storages)
 
-    def update_asset_format(
-        self, asset_id: str, format_id: str, body: Union[FormatCreate, Dict[str, Any]], exclude_defaults: bool = True, **kwargs
-    ) -> Response:
+    def update_asset_format(self,
+                            asset_id: str,
+                            format_id: str,
+                            body: Union[FormatCreate, Dict[str, Any]],
+                            exclude_defaults: bool = True,
+                            **kwargs) -> Response:
         """
         Update format information for an asset using PUT
         
@@ -621,7 +707,8 @@ class FilesSpec(Spec):
             401 Token is invalid
             404 Format for this asset doesn't exist
         """
-        json_data = self._prepare_model_data(body, exclude_defaults=exclude_defaults)
+        json_data = self._prepare_model_data(body,
+                                             exclude_defaults=exclude_defaults)
         response = self._put(
             GET_ASSETS_FORMAT_PATH.format(asset_id, format_id),
             json=json_data,
@@ -629,9 +716,12 @@ class FilesSpec(Spec):
         )
         return self.parse_response(response, Format)
 
-    def partial_update_asset_format(
-        self, asset_id: str, format_id: str, body: Union[FormatCreate, Dict[str, Any]], exclude_defaults: bool = True, **kwargs
-    ) -> Response:
+    def partial_update_asset_format(self,
+                                    asset_id: str,
+                                    format_id: str,
+                                    body: Union[FormatCreate, Dict[str, Any]],
+                                    exclude_defaults: bool = True,
+                                    **kwargs) -> Response:
         """
         Partially update format information for an asset using PATCH
         
@@ -653,7 +743,8 @@ class FilesSpec(Spec):
             401 Token is invalid
             404 Format for this asset doesn't exist
         """
-        json_data = self._prepare_model_data(body, exclude_defaults=exclude_defaults)
+        json_data = self._prepare_model_data(body,
+                                             exclude_defaults=exclude_defaults)
         response = self._patch(
             GET_ASSETS_FORMAT_PATH.format(asset_id, format_id),
             json=json_data,
@@ -661,9 +752,12 @@ class FilesSpec(Spec):
         )
         return self.parse_response(response, Format)
 
-    def update_asset_file_set(
-        self, asset_id: str, file_set_id: str, body: Union[FileSetCreate, Dict[str, Any]], exclude_defaults: bool = True, **kwargs
-    ) -> Response:
+    def update_asset_file_set(self,
+                              asset_id: str,
+                              file_set_id: str,
+                              body: Union[FileSetCreate, Dict[str, Any]],
+                              exclude_defaults: bool = True,
+                              **kwargs) -> Response:
         """
         Update file set information for an asset using PUT
         
@@ -685,7 +779,8 @@ class FilesSpec(Spec):
             401 Token is invalid
             404 File set for this asset doesn't exist
         """
-        json_data = self._prepare_model_data(body, exclude_defaults=exclude_defaults)
+        json_data = self._prepare_model_data(body,
+                                             exclude_defaults=exclude_defaults)
         response = self._put(
             GET_ASSETS_FILE_SETS_PATH.format(asset_id, file_set_id),
             json=json_data,
@@ -693,9 +788,13 @@ class FilesSpec(Spec):
         )
         return self.parse_response(response, FileSet)
 
-    def partial_update_asset_file_set(
-        self, asset_id: str, file_set_id: str, body: Union[FileSetCreate, Dict[str, Any]], exclude_defaults: bool = True, **kwargs
-    ) -> Response:
+    def partial_update_asset_file_set(self,
+                                      asset_id: str,
+                                      file_set_id: str,
+                                      body: Union[FileSetCreate, Dict[str,
+                                                                      Any]],
+                                      exclude_defaults: bool = True,
+                                      **kwargs) -> Response:
         """
         Partially update file set information for an asset using PATCH
         
@@ -717,7 +816,8 @@ class FilesSpec(Spec):
             401 Token is invalid
             404 File set for this asset doesn't exist
         """
-        json_data = self._prepare_model_data(body, exclude_defaults=exclude_defaults)
+        json_data = self._prepare_model_data(body,
+                                             exclude_defaults=exclude_defaults)
         response = self._patch(
             GET_ASSETS_FILE_SETS_PATH.format(asset_id, file_set_id),
             json=json_data,
@@ -725,9 +825,12 @@ class FilesSpec(Spec):
         )
         return self.parse_response(response, FileSet)
 
-    def update_asset_file(
-        self, asset_id: str, file_id: str, body: Union[FileCreate, Dict[str, Any]], exclude_defaults: bool = True, **kwargs
-    ) -> Response:
+    def update_asset_file(self,
+                          asset_id: str,
+                          file_id: str,
+                          body: Union[FileCreate, Dict[str, Any]],
+                          exclude_defaults: bool = True,
+                          **kwargs) -> Response:
         """
         Update file information for an asset using PUT
         
@@ -749,7 +852,8 @@ class FilesSpec(Spec):
             401 Token is invalid
             404 File for this asset doesn't exist
         """
-        json_data = self._prepare_model_data(body, exclude_defaults=exclude_defaults)
+        json_data = self._prepare_model_data(body,
+                                             exclude_defaults=exclude_defaults)
         response = self._put(
             GET_ASSETS_FILE_PATH.format(asset_id, file_id),
             json=json_data,
@@ -757,9 +861,12 @@ class FilesSpec(Spec):
         )
         return self.parse_response(response, File)
 
-    def partial_update_asset_file(
-        self, asset_id: str, file_id: str, body: Union[FileCreate, Dict[str, Any]], exclude_defaults: bool = True, **kwargs
-    ) -> Response:
+    def partial_update_asset_file(self,
+                                  asset_id: str,
+                                  file_id: str,
+                                  body: Union[FileCreate, Dict[str, Any]],
+                                  exclude_defaults: bool = True,
+                                  **kwargs) -> Response:
         """
         Partially update file information for an asset using PATCH
         
@@ -781,7 +888,8 @@ class FilesSpec(Spec):
             401 Token is invalid
             404 File for this asset doesn't exist
         """
-        json_data = self._prepare_model_data(body, exclude_defaults=exclude_defaults)
+        json_data = self._prepare_model_data(body,
+                                             exclude_defaults=exclude_defaults)
         response = self._patch(
             GET_ASSETS_FILE_PATH.format(asset_id, file_id),
             json=json_data,
@@ -789,9 +897,12 @@ class FilesSpec(Spec):
         )
         return self.parse_response(response, File)
 
-    def get_asset_formats_by_version(
-        self, asset_id: str, version_id: str, per_page: int = None, last_id: str = None, **kwargs
-    ) -> Response:
+    def get_asset_formats_by_version(self,
+                                     asset_id: str,
+                                     version_id: str,
+                                     per_page: int = None,
+                                     last_id: str = None,
+                                     **kwargs) -> Response:
         """
         Get all asset's formats by version
         
@@ -825,10 +936,14 @@ class FilesSpec(Spec):
         )
         return self.parse_response(response, Formats)
 
-    def get_asset_files_by_version(
-        self, asset_id: str, version_id: str, per_page: int = None, last_id: str = None, 
-        generate_signed_url: bool = None, content_disposition: str = None, **kwargs
-    ) -> Response:
+    def get_asset_files_by_version(self,
+                                   asset_id: str,
+                                   version_id: str,
+                                   per_page: int = None,
+                                   last_id: str = None,
+                                   generate_signed_url: bool = None,
+                                   content_disposition: str = None,
+                                   **kwargs) -> Response:
         """
         Get all asset's files by version
         
@@ -866,4 +981,84 @@ class FilesSpec(Spec):
             params=params,
             **kwargs,
         )
+        return self.parse_response(response, Files)
+
+    def get_files_by_checksum(self,
+                              checksum_or_file: Union[str, Path],
+                              per_page: Optional[int] = None,
+                              page: Optional[int] = None,
+                              chunk_size: int = 8192,
+                              **kwargs) -> Response:
+        """
+        Get files by their checksum. Accepts either a checksum string or a file
+        path. If a file path is provided, calculates the MD5 checksum
+        automatically.
+
+        Args:
+            checksum_or_file: Either an MD5 checksum string or a path to a file
+            per_page: Optional number of items per page
+            page: Optional page number
+            chunk_size: Size of chunks when reading file (default 8192)
+            **kwargs: Additional kwargs to pass to the request
+
+        Returns:
+            Response with Files model
+
+        Raises:
+            FileNotFoundError: If a file path is provided and the file doesn't
+                exist
+            PermissionError: If there's no read permission for the provided file
+            IOError: For other IO-related errors
+            ValueError: If the path is not a file or the checksum format is
+                invalid
+
+        Examples:
+            # Using a checksum string directly
+            >>> from pythonik.client import PythonikClient
+            >>> client = PythonikClient(app_id="...", auth_token="...", timeout=10)
+            >>> files = FilesSpec(client.session, timeout=client.timeout)
+            >>> response = files.get_files_by_checksum("d41d8cd98f00b204e9800998ecf8427e")
+
+            # Using a file path
+            >>> response = files.get_files_by_checksum("path/to/your/file.txt")
+        """
+        # Determine if input is a checksum or file path
+        if isinstance(checksum_or_file, (str, Path)):
+            try:
+                # Try to convert to Path and check if it exists
+                path = Path(checksum_or_file)
+                if path.exists():
+                    # If it's a file, calculate its checksum
+                    checksum = calculate_md5(path, chunk_size=chunk_size)
+                else:
+                    # If it doesn't exist, assume it's a checksum string
+                    checksum = str(checksum_or_file)
+            except (TypeError, ValueError):
+                # If conversion to Path fails, assume it's a checksum string
+                checksum = str(checksum_or_file)
+        else:
+            raise TypeError("checksum_or_file must be a string or Path object")
+
+        # Validate checksum format (32 hexadecimal characters)
+        if not all(c in '0123456789abcdefABCDEF'
+                   for c in checksum) or len(checksum) != 32:
+            raise ValueError("Invalid MD5 checksum format")
+
+        # Build query parameters if provided
+        params = {}
+        if per_page is not None:
+            params['per_page'] = per_page
+        if page is not None:
+            params['page'] = page
+
+        # If kwargs contains params, merge them
+        if 'params' in kwargs:
+            params.update(kwargs.pop('params'))
+
+        # Update kwargs with our params
+        kwargs['params'] = params
+
+        # Make the request
+        response = self._get(f"files/checksum/{checksum}/", **kwargs)
+
         return self.parse_response(response, Files)

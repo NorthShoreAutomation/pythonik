@@ -1,10 +1,17 @@
-from urllib.parse import urljoin
+import logging
 from typing import Union, Type, Dict, Any, Optional
+from urllib.parse import urljoin
 
 from pydantic import BaseModel
 from requests import Request, Response, Session
 
 from pythonik.models.base import Response as PythonikResponse
+
+# Configure logging
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
 
 class Spec:
     server: str = ""
@@ -15,14 +22,17 @@ class Spec:
     def set_class_attribute(cls, name, value):
         setattr(cls, name, value)
 
-    def __init__(self, session: Session, timeout: int = 3, base_url: str = "https://app.iconik.io"):
+    def __init__(self,
+                 session: Session,
+                 timeout: int = 3,
+                 base_url: str = "https://app.iconik.io"):
         self.session = session
         self.timeout = timeout
         self.set_class_attribute("base_url", base_url)
-    
-        
+
     @staticmethod
-    def _prepare_model_data(data: Union[BaseModel, Dict[str, Any]], exclude_defaults: bool = True) -> Dict[str, Any]:
+    def _prepare_model_data(data: Union[BaseModel, Dict[str, Any]],
+                            exclude_defaults: bool = True) -> Dict[str, Any]:
         """
         Prepare data for request, handling both Pydantic models and dicts.
         
@@ -38,7 +48,9 @@ class Spec:
         return data
 
     @staticmethod
-    def parse_response(response: Response, model: Optional[Type[BaseModel]] = None) -> PythonikResponse:
+    def parse_response(
+            response: Response,
+            model: Optional[Type[BaseModel]] = None) -> PythonikResponse:
         """
         Return an ErrorResponse object if the response error code is >=400, an instance of "model", or the status code
 
@@ -48,7 +60,7 @@ class Spec:
         """
         # try to populate the model
         if response.ok:
-            print(response.text)
+            logger.debug(response.text)
             if model:
                 data = response.json()
                 model_instance = model.model_validate(data)
@@ -68,10 +80,11 @@ class Spec:
         """
 
         url = self.gen_url(path)
-        print(url)
-        request = Request(
-            method=method, url=url, headers=self.session.headers, **kwargs
-        )
+        logger.debug(url)
+        request = Request(method=method,
+                          url=url,
+                          headers=self.session.headers,
+                          **kwargs)
         prepped_request = self.session.prepare_request(request)
         response = self.session.send(prepped_request, timeout=self.timeout)
 

@@ -61,3 +61,10 @@ class SegmentBody(BaseModel):
 
 class SegmentResponse(SegmentBody):
     id: Optional[str] = ""
+
+
+class BulkDeleteSegmentsBody(BaseModel):
+    """Request body for bulk deleting segments."""
+    segment_ids: Optional[List[str]] = None
+    segment_type: Optional[str] = None
+    version_id: Optional[str] = None

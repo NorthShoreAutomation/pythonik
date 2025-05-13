@@ -25,14 +25,16 @@ class MetadataValues(RootModel):
 
 class ViewOption(BaseModel):
     """Option for a view field."""
+
     label: str
     value: str
 
 
 class ViewField(BaseModel):
     """Field configuration for a view."""
+
     name: str
-    label: str
+    label: Optional[str] = None
     auto_set: Optional[bool] = False
     date_created: Optional[str] = None
     date_modified: Optional[str] = None
@@ -57,6 +59,7 @@ class ViewField(BaseModel):
 
 class CreateViewRequest(BaseModel):
     """Request model for creating a view."""
+
     name: str
     description: Optional[str] = None
     view_fields: List[ViewField]
@@ -64,6 +67,7 @@ class CreateViewRequest(BaseModel):
 
 class UpdateViewRequest(BaseModel):
     """Request model for updating a view."""
+
     name: Optional[str] = None
     description: Optional[str] = None
     view_fields: Optional[List[ViewField]] = None

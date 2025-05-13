@@ -1,5 +1,78 @@
 # Changelog
 
+## 2025-05-09 "IconikFieldType Update" - version 1.12.2
+
+### Fixed
+- Updated `IconikFieldType` enum with the exact field types supported by the Iconik API
+- Added missing `string_exact` type and removed unsupported types
+
+### Technical Details
+This release updates the `IconikFieldType` enum to match the exact field types accepted by the Iconik API. The update ensures accurate field type validation when creating or updating metadata fields, preventing errors with field type validation.
+
+## 2025-05-09 "ViewField Label Bugfix" - version 1.12.1
+
+### Fixed
+- Made `label` field optional in `ViewField` model to prevent errors when processing views with unlabeled fields
+- Added test coverage to ensure views with missing labels are handled correctly
+
+### Technical Details
+This bugfix addresses an issue where the `ViewField` model in the metadata views module required a label for each field. In the Iconik API, the label field is actually optional, and this update ensures the SDK correctly handles fields without labels, preventing potential errors when processing API responses.
+
+## 2025-05-08 "Metadata Field API Improvements & Bugfixes" - version 1.12.0
+
+### Fixed
+- Fixed validation errors in field creation and updating by changing the return type from `Field` to `FieldResponse` model
+
+### Changed
+- **Improved Metadata Field API (in `pythonik.specs.metadata.MetadataSpec`):**
+  - Renamed `create_metadata_field()` to `create_field()` for more consistent naming
+  - Renamed `update_metadata_field()` to `update_field()` for more consistent naming
+  - Renamed `delete_metadata_field()` to `delete_field()` for more consistent naming
+  - Return type now uses `FieldResponse` model instead of `Field` for more comprehensive metadata field information
+  - Added backward compatibility aliases for the old method names (will be removed in a future version)
+- **Testing:**
+  - Updated all tests to use the new method names and return types
+  - Added tests to verify backward compatibility aliases work correctly
+
+### Technical Details
+This update fixes validation errors that occurred when creating and updating metadata fields by correctly using the `FieldResponse` model instead of `Field`, making the API work as expected. It also improves the metadata field management API with more consistent method naming while maintaining backward compatibility through aliases. The `FieldResponse` model provides the proper structure for the API responses, and the backward compatibility aliases ensure existing code continues to work correctly.
+
+## 2025-05-08 "Metadata Field Management & Type Safety" - version 1.11.0
+
+### Added
+- **Metadata Field Management (in `pythonik.specs.metadata.MetadataSpec`):**
+  - `create_metadata_field()`: Added method to create new metadata fields.
+  - `update_metadata_field()`: Added method to update existing metadata fields by name.
+  - `delete_metadata_field()`: Added method to delete metadata fields by name.
+- **Type Safety & Modeling (in `pythonik.models.metadata.fields`):**
+  - Defined `IconikFieldType` Enum to represent all known metadata field types from the Iconik API.
+  - Integrated `IconikFieldType` into `FieldCreate`, `FieldUpdate`, and `Field` Pydantic models for robust type validation and clarity.
+- **Testing:**
+  - Added comprehensive test coverage for metadata field type handling and new CRUD operations:
+    - Parameterized test (`test_create_metadata_field_for_all_types`) for every defined `IconikFieldType`.
+    - Test (`test_create_metadata_field_with_unknown_type_raises_validation_error`) for API returning unrecognized `field_type`.
+
+### Technical Details
+This update introduces full programmatic management of metadata fields, including creation, update, and deletion capabilities. A dedicated Enum (`IconikFieldType`) enhances type safety and developer experience when working with these fields. This Enum is integrated throughout the relevant Pydantic models and the new `MetadataSpec` methods. Comprehensive tests ensure correct handling of all defined field types, robust behavior against unknown types from the API, and functionality of the new CRUD operations.
+
+## 2025-05-02 "Segment Deletion" - version 1.10.0
+
+### Added
+- Add segment deletion endpoints to `AssetSpec`:
+  - `bulk_delete_segments()`: Delete multiple segments by ID or type using `DELETE /v1/assets/{asset_id}/segments/bulk/`.
+  - `delete_segment()`: Delete a single segment by ID using `DELETE /v1/assets/{asset_id}/segments/{segment_id}/`.
+- Add `BulkDeleteSegmentsBody` model for bulk deletion requests.
+- Add test coverage for segment deletion operations.
+
+### Technical Details
+This update adds methods for deleting asset segments, both individually and in bulk. The implementation includes necessary Pydantic models for request bodies and corresponding unit tests to ensure functionality.
+
+## 2025-04-11 "FileSet Archive Field & SDK Fixes" - version 1.9.5
+
+### Added
+- Added `is_archive` boolean field to `FileSet` model.
+- Updated `FileSet` tests to cover `is_archive` field during creation, retrieval, and updates.
+
 ## 2025-01-29 "URL Formation Fix" - version 1.9.4
 
 ### Fixed

@@ -15,7 +15,7 @@ from pythonik.models.assets.versions import (
     AssetVersionFromAssetCreate,
     AssetVersion
 )
-from pythonik.models.assets.segments import SegmentBody, SegmentResponse
+from pythonik.models.assets.segments import SegmentBody, SegmentResponse, BulkDeleteSegmentsBody
 from pythonik.specs.assets import (
     BASE,
     GET_URL,
@@ -29,6 +29,7 @@ from pythonik.specs.assets import (
     BULK_DELETE_URL,
     SEGMENT_URL_UPDATE,
     VERSIONS_FROM_ASSET_URL,
+    BULK_DELETE_SEGMENTS_URL,
 )
 
 
@@ -377,3 +378,75 @@ def test_delete_version_hard():
             version_id=version_id,
             hard_delete=True
         )
+
+
+def test_bulk_delete_segments():
+    with requests_mock.Mocker() as m:
+        app_id = str(uuid.uuid4())
+        auth_token = str(uuid.uuid4())
+        asset_id = str(uuid.uuid4())
+        segment_ids = [str(uuid.uuid4()), str(uuid.uuid4())]
+        
+        model = BulkDeleteSegmentsBody(segment_ids=segment_ids)
+        data = model.model_dump(exclude_defaults=True) # Match method behaviour
+        mock_address = AssetSpec.gen_url(BULK_DELETE_SEGMENTS_URL.format(asset_id))
+        expected_params = {
+            "immediately": ["true"],
+            "ignore_reindexing": ["false"]
+        }
+
+        m.delete(mock_address, status_code=204)
+        client = PythonikClient(app_id=app_id, auth_token=auth_token, timeout=3)
+
+        # Call the method with default parameters
+        client.assets().bulk_delete_segments(
+            asset_id=asset_id,
+            body=model,
+            immediately=True, # Default, testing explicit pass
+            ignore_reindexing=False # Default, testing explicit pass
+        )
+
+        # Verify request details
+        assert m.called
+        last_request = m.last_request
+        assert last_request.method == 'DELETE'
+        # Compare URLs ignoring query params first
+        assert last_request.url.split('?')[0] == mock_address
+        # Compare query params
+        assert last_request.qs == expected_params
+        # Compare request body
+        assert last_request.json() == data
+
+
+def test_delete_segment():
+    with requests_mock.Mocker() as m:
+        app_id = str(uuid.uuid4())
+        auth_token = str(uuid.uuid4())
+        asset_id = str(uuid.uuid4())
+        segment_id = str(uuid.uuid4())
+        
+        mock_address = AssetSpec.gen_url(SEGMENT_URL_UPDATE.format(asset_id, segment_id))
+        expected_params_soft = {"soft_delete": ["true"]}
+        expected_params_hard = {"soft_delete": ["false"]}
+
+        # Mock both scenarios
+        m.delete(mock_address, status_code=204)
+        client = PythonikClient(app_id=app_id, auth_token=auth_token, timeout=3)
+
+        # Test soft delete (default)
+        client.assets().delete_segment(asset_id=asset_id, segment_id=segment_id)
+        last_request_soft = m.last_request
+        assert last_request_soft.method == 'DELETE'
+        assert last_request_soft.url.split('?')[0] == mock_address
+        assert last_request_soft.qs == expected_params_soft
+
+        # Reset history for the next call verification if needed or use call_count
+        call_count_before_hard = m.call_count
+
+        # Test hard delete
+        client.assets().delete_segment(asset_id=asset_id, segment_id=segment_id, soft_delete=False)
+        assert m.call_count == call_count_before_hard + 1 # Ensure a new call was made
+        last_request_hard = m.last_request
+        assert last_request_hard.method == 'DELETE'
+        assert last_request_hard.url.split('?')[0] == mock_address
+        assert last_request_hard.qs == expected_params_hard

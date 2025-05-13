@@ -4,16 +4,17 @@ from enum import Enum
 import pytest
 import requests_mock
 
-from pythonik.models.files.file import FileCreate, FileType, FileStatus
 from pythonik.client import PythonikClient
 from pythonik.exceptions import UnexpectedStorageMethodForProxy
-from pythonik.models.files.keyframe import Keyframe, Keyframes, Resolution
+from pythonik.models.files.keyframe import Keyframe, Keyframes
 from pythonik.models.files.file import (
     FileSetsFilesResponse,
     Files,
     FileSets,
-    FileSet,
     FileCreate,
+    FileType,
+    FileStatus,
+    FileSet,
     FileSetCreate,
     UploadUrlResponse,
     S3MultipartUploadResponse,
@@ -496,6 +497,7 @@ def test_create_asset_file_sets():
             name=str(uuid.uuid4()),
             format_id=str(uuid.uuid4()),
             storage_id=str(uuid.uuid4()),
+            is_archive=False,
         )
         data = model.model_dump()
 
@@ -516,6 +518,7 @@ def test_create_asset_filesets_deprecated():
             name=str(uuid.uuid4()),
             format_id=str(uuid.uuid4()),
             storage_id=str(uuid.uuid4()),
+            is_archive=False,
         )
         data = model.model_dump()
 
@@ -532,7 +535,15 @@ def test_get_asset_filesets():
         auth_token = str(uuid.uuid4())
         asset_id = str(uuid.uuid4())
 
-        model = FileSets()
+        mock_file_set = FileSet(
+            id=str(uuid.uuid4()),
+            name="test_fileset",
+            status="ACTIVE",
+            format_id=str(uuid.uuid4()),
+            storage_id=str(uuid.uuid4()),
+            is_archive=False,
+        )
+        model = FileSets(file_sets=[mock_file_set])
         data = model.model_dump()
         mock_address = FilesSpec.gen_url(GET_ASSETS_FILE_SETS_PATH.format(asset_id))
         m.get(mock_address, json=data)
@@ -699,7 +710,7 @@ def test_update_asset_file_set():
             name="test_file_set",
             status="ACTIVE",
             storage_id="test_storage",
-            format_id="test_format"
+            format_id="test_format",
         )
         data = model.model_dump()
         mock_address = FilesSpec.gen_url(
@@ -722,7 +733,7 @@ def test_partial_update_asset_file_set():
             name="test_file_set",
             status="ACTIVE",
             storage_id="test_storage",
-            format_id="test_format"
+            format_id="test_format",
         )
         data = model.model_dump()
         mock_address = FilesSpec.gen_url(
@@ -749,12 +760,10 @@ def test_update_asset_file():
             format_id="test_format",
             size=1024,
             type=FileType.FILE,
-            status=FileStatus.CLOSED
+            status=FileStatus.CLOSED,
         )
         data = model.model_dump()
-        mock_address = FilesSpec.gen_url(
-            GET_ASSETS_FILE_PATH.format(asset_id, file_id)
-        )
+        mock_address = FilesSpec.gen_url(GET_ASSETS_FILE_PATH.format(asset_id, file_id))
 
         m.put(mock_address, json=data)
         client = PythonikClient(app_id=app_id, auth_token=auth_token, timeout=3)
@@ -776,12 +785,10 @@ def test_partial_update_asset_file():
             format_id="test_format",
             size=1024,
             type=FileType.FILE,
-            status=FileStatus.CLOSED
+            status=FileStatus.CLOSED,
         )
         data = model.model_dump()
-        mock_address = FilesSpec.gen_url(
-            GET_ASSETS_FILE_PATH.format(asset_id, file_id)
-        )
+        mock_address = FilesSpec.gen_url(GET_ASSETS_FILE_PATH.format(asset_id, file_id))
 
         m.patch(mock_address, json=data)
         client = PythonikClient(app_id=app_id, auth_token=auth_token, timeout=3)
@@ -795,13 +802,7 @@ def test_get_asset_file_sets_by_version():
         asset_id = str(uuid.uuid4())
         version_id = str(uuid.uuid4())
 
-        data = {
-            "objects": [],
-            "total": 0,
-            "page": 1,
-            "pages": 1,
-            "per_page": 50
-        }
+        data = {"objects": [], "total": 0, "page": 1, "pages": 1, "per_page": 50}
         mock_address = FilesSpec.gen_url(
             GET_ASSETS_VERSION_FILE_SETS_PATH.format(asset_id, version_id)
         )
@@ -820,13 +821,7 @@ def test_get_asset_formats_by_version():
         asset_id = str(uuid.uuid4())
         version_id = str(uuid.uuid4())
 
-        data = {
-            "objects": [],
-            "total": 0,
-            "page": 1,
-            "pages": 1,
-            "per_page": 50
-        }
+        data = {"objects": [], "total": 0, "page": 1, "pages": 1, "per_page": 50}
         mock_address = FilesSpec.gen_url(
             GET_ASSETS_VERSION_FORMATS_PATH.format(asset_id, version_id)
         )
@@ -845,13 +840,7 @@ def test_get_asset_files_by_version():
         asset_id = str(uuid.uuid4())
         version_id = str(uuid.uuid4())
 
-        data = {
-            "objects": [],
-            "total": 0,
-            "page": 1,
-            "pages": 1,
-            "per_page": 50
-        }
+        data = {"objects": [], "total": 0, "page": 1, "pages": 1, "per_page": 50}
         mock_address = FilesSpec.gen_url(
             GET_ASSETS_VERSION_FILES_PATH.format(asset_id, version_id)
         )
@@ -859,6 +848,10 @@ def test_get_asset_files_by_version():
         m.get(mock_address, json=data)
         client = PythonikClient(app_id=app_id, auth_token=auth_token, timeout=3)
         client.files().get_asset_files_by_version(
-            asset_id, version_id, per_page=50, last_id="last",
-            generate_signed_url=False, content_disposition="attachment"
+            asset_id,
+            version_id,
+            per_page=50,
+            last_id="last",
+            generate_signed_url=False,
+            content_disposition="attachment",
         )

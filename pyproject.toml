@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nsa-pythonik"
-version = "1.9.4"
+version = "1.12.2"
 description = "Python SDK for Iconik's API"
 authors = ["brant <brant@northshoreautomation.com>"]
 readme = "README.md"

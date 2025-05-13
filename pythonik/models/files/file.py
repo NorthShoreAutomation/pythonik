@@ -76,9 +76,9 @@ class FileCreate(File):
     name: str
     original_name: str
     size: int
-    type: str 
+    type: str
     directory_path: str = ""
-    status: str 
+    status: str
 
 
 class FileSet(BaseModel):
@@ -98,6 +98,7 @@ class FileSet(BaseModel):
     deleted_by_user: Optional[str] = ""
     file_count: Optional[int] = 0
     status: Optional[str] = ""
+    is_archive: Optional[bool] = False
 
 
 class FileSetCreate(FileSet):

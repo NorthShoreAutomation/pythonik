@@ -526,7 +526,7 @@ def test_create_asset_filesets_deprecated():
         m.post(mock_address, json=data)
 
         client = PythonikClient(app_id=app_id, auth_token=auth_token, timeout=3)
-        client.files().create_asset_filesets(asset_id, body=model)
+        client.files().create_asset_file_sets(asset_id, body=model)
 
 
 def test_get_asset_filesets():

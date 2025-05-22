@@ -742,19 +742,19 @@ def test_get_views_with_missing_labels():
         assert len(result.data.objects) == 1
         assert result.data.objects[0].id == view_id
         assert result.data.objects[0].name == view.name
-        
+
         # Verify the fields were processed correctly
         view_fields = result.data.objects[0].view_fields
         assert len(view_fields) == 3
-        
+
         # Field with label
         assert view_fields[0].name == "field1"
         assert view_fields[0].label == "Field 1"
-        
+
         # Field without label should have None as the label value
         assert view_fields[1].name == "field2"
         assert view_fields[1].label is None
-        
+
         # Another field without label but with options
         assert view_fields[2].name == "field3"
         assert view_fields[2].label is None

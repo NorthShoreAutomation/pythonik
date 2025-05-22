@@ -23,7 +23,7 @@ def test_default_base_url():
     app_id = str(uuid.uuid4())
     auth_token = str(uuid.uuid4())
     client = PythonikClient(app_id=app_id, auth_token=auth_token, timeout=3)
-    
+
     for spec_class in SPECS:
         spec = spec_class(client.session, timeout=3)
         assert spec.base_url == "https://app.iconik.io"
@@ -39,7 +39,7 @@ def test_alternative_base_url():
     auth_token = str(uuid.uuid4())
     alt_base_url = "https://alt.iconik.io"
     client = PythonikClient(app_id=app_id, auth_token=auth_token, timeout=3)
-    
+
     for spec_class in SPECS:
         spec = spec_class(client.session, timeout=3, base_url=alt_base_url)
         assert spec.base_url == alt_base_url

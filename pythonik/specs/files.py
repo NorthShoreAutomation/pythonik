@@ -2,7 +2,7 @@ from urllib.parse import urlparse
 from xml.dom.minidom import parseString
 from functools import wraps
 import warnings
-from typing import Union, Dict, Any
+from typing import Union, Dict, Any, Optional, Literal
 
 import requests
 
@@ -12,7 +12,7 @@ from pythonik.constants import (
     S3_UPLOADID_KEY,
 )
 from pythonik.exceptions import UnexpectedStorageMethodForProxy
-from pythonik.models.base import Response, StorageMethod
+from pythonik.models.base import Response, StorageMethod, PaginatedResponse
 from pythonik.models.files.file import (
     File,
     FileSetsFilesResponse,
@@ -256,7 +256,7 @@ class FilesSpec(Spec):
         exclude_defaults: bool = True,
         **kwargs,
     ) -> Response:
-        "Partially update an asset keyframe using PATCH"
+        """Partially update an asset keyframe using PATCH"""
         json_data = self._prepare_model_data(body, exclude_defaults=exclude_defaults)
         response = self._patch(
             GET_ASSET_KEYFRAME.format(asset_id, keyframe_id),
@@ -273,7 +273,7 @@ class FilesSpec(Spec):
         exclude_defaults: bool = True,
         **kwargs,
     ) -> Response:
-        "Update an asset keyframe using POST"
+        """Update an asset keyframe using POST"""
         json_data = self._prepare_model_data(body, exclude_defaults=exclude_defaults)
         response = self._post(
             GET_ASSET_KEYFRAME.format(asset_id, keyframe_id),
@@ -867,3 +867,171 @@ class FilesSpec(Spec):
             **kwargs,
         )
         return self.parse_response(response, Files)
+
+    def create_storage_file(
+            self,
+            storage_id: str,
+            body: Union[File, Dict[str, Any]],
+            exclude_defaults: bool = True,
+            **kwargs
+    ) -> Response:
+        """
+        Create file without associating it to an asset.
+
+        Args:
+            storage_id: The ID of the storage to retrieve
+            body: Storage file creation parameters, either as File model or dict
+            exclude_defaults: Whether to exclude default values when dumping
+                Pydantic models
+            **kwargs: Additional arguments to pass to the request
+
+        Returns:
+            Response(model=PaginatedResponse) with created file information
+        """
+        json_data = self._prepare_model_data(
+            body, exclude_defaults=exclude_defaults
+        )
+        resp = self._post(
+            self.gen_url(f"storages/{storage_id}/files/"),
+            json=json_data,
+            **kwargs
+        )
+        return self.parse_response(resp, PaginatedResponse)
+
+    def list_asset_format_components(
+            self, asset_id: str, format_id: str, **kwargs
+    ) -> Response:
+        """
+        Get all components for a format in an asset.
+
+        Args:
+            asset_id: The ID of the asset
+            format_id: The ID of the format to retrieve
+            **kwargs: Additional arguments to pass to the request
+
+        Returns:
+            Response(model=PaginatedResponse) containing format components
+        """
+        resp = self._get(
+            self.gen_url(f"assets/{asset_id}/formats/{format_id}/components/"),
+            **kwargs
+        )
+        return self.parse_response(resp, PaginatedResponse)
+
+    def list_storage_files(self, storage_id: str, **kwargs) -> Response:
+        """
+        Get all files on a storage, or files in a storage folder.
+
+        Args:
+            storage_id: The ID of the storage to retrieve
+            **kwargs: Additional arguments to pass to the request
+
+        Returns:
+            Response(model=PaginatedResponse) containing storage files
+        """
+        resp = self._get(
+            self.gen_url(f"storages/{storage_id}/files/"), **kwargs
+        )
+        return self.parse_response(resp, PaginatedResponse)
+
+    def _get_deleted_object_type(
+            self, object_type: Literal["file_sets", "formats"], **kwargs
+    ) -> Response:
+        """
+        Get deleted object type.
+
+        Args:
+            object_type: The type of object to retrieve
+            **kwargs: Additional arguments to pass to the request
+
+        Returns:
+            Response(model=None) containing deleted objects
+
+        Raises:
+            ValueError: If object_type is not 'file_sets' or 'formats'
+        """
+        if object_type not in ["file_sets", "formats"]:
+            raise ValueError("object_type must be one of file_sets or formats")
+        resp = self._get(self.gen_url(f"delete_queue/{object_type}/"), **kwargs)
+        return self.parse_response(resp, None)
+
+    def get_deleted_file_sets(self, **kwargs) -> Response:
+        """
+        Get deleted file sets.
+
+        Args:
+            **kwargs: Additional arguments to pass to the request
+
+        Returns:
+            Response(model=None) containing deleted file sets
+        """
+        return self._get_deleted_object_type("file_sets", **kwargs)
+
+    # Create method alias
+    get_deleted_filesets = get_deleted_file_sets
+
+    def get_deleted_formats(self, **kwargs) -> Response:
+        """
+        Get deleted formats.
+
+        Args:
+            **kwargs: Additional arguments to pass to the request
+
+        Returns:
+            Response(model=None) containing deleted formats
+        """
+        return self._get_deleted_object_type("formats", **kwargs)
+
+    def create_mediainfo_job(
+            self,
+            asset_id: str,
+            file_id: str,
+            priority: Optional[int] = 5,
+            **kwargs
+    ) -> Response:
+        """
+        Create a job for extracting mediainfo.
+
+        Args:
+            asset_id: ID of the asset
+            file_id: ID of the file
+            priority: Job priority 1-10. Default is 5
+            **kwargs: Additional kwargs to pass to the request
+
+        Returns:
+            Response(model=None) with job creation status
+        """
+        body = {"priority": priority}
+        resp = self._post(
+            self.gen_url(f"assets/{asset_id}/files/{file_id}/mediainfo"),
+            json=body,
+            **kwargs
+        )
+        return self.parse_response(resp, None)
+
+    def create_transcode_job(
+            self,
+            asset_id: str,
+            file_id: str,
+            priority: Optional[int] = 5,
+            **kwargs
+    ) -> Response:
+        """
+        Create a transcode job for proxy and keyframes.
+
+        Args:
+            asset_id: ID of the asset
+            file_id: ID of the file
+            priority: Job priority 1-10. Default is 5
+            **kwargs: Additional kwargs to pass to the request
+
+        Returns:
+            Response(model=None) with job creation status
+        """
+        body = {"priority": priority}
+        resp = self._post(
+            self.gen_url(f"assets/{asset_id}/files/{file_id}/keyframes"),
+            json=body,
+            **kwargs
+        )
+        return self.parse_response(resp, None)

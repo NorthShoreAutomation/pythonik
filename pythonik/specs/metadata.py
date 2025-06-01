@@ -1,4 +1,4 @@
-from loguru import logger
+from pythonik._logger import logger
 from pythonik.models.base import Response
 from pythonik.models.metadata.views import (
     ViewMetadata,

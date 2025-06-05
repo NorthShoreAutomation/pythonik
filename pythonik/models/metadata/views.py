@@ -85,7 +85,51 @@ class View(BaseModel):
 class ViewMetadata(BaseModel):
     date_created: Optional[str] = ""
     date_modified: Optional[str] = ""
-    metadata_values: Optional[MetadataValues] = MetadataValues({})
+    metadata_values: Optional[MetadataValues] = None
     object_id: Optional[str] = ""
     object_type: Optional[str] = ""
     version_id: Optional[str] = ""
+
+    def __init__(self, **data: Any) -> None:
+        """Initialize with fallback for metadata_values.
+
+        This method transforms the input data structure when 'metadata_values'
+        is not provided by moving 'values' fields to 'field_values' within a
+        nested structure.
+
+        Args:
+            **data: Input data for initialization
+        """
+        if "metadata_values" not in data or data["metadata_values"] is None:
+            metadata_values = {}
+
+            # Check if any dictionary in values contains a 'values' key
+            has_values = any(
+                "values" in item
+                for item in data.values()
+                if isinstance(item, dict)
+            )
+
+            if has_values:
+                # Transform each field
+                for key, value in list(data.items()):
+                    if isinstance(value, dict) and "values" in value:
+                        # Get the values list, ensuring it's not None
+                        values_list = value.get("values", [])
+                        if values_list is None:
+                            # If values is None, create an empty FieldValues with None
+                            metadata_values[key] = {
+                                "field_values": None
+                            }
+                        else:
+                            # Otherwise, use the values list
+                            metadata_values[key] = {
+                                "field_values": values_list
+                            }
+                        # Don't remove the key from the original data to preserve it
+
+                # Set metadata_values in the data dictionary
+                data["metadata_values"] = MetadataValues(root=metadata_values)
+
+        # Initialize with all data fields
+        super().__init__(**data)

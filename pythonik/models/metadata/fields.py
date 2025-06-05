@@ -86,28 +86,48 @@ class Field(_FieldConfigurable):
 
 
 class FieldResponse(BaseModel):
-    auto_set: bool
-    date_created: datetime
-    date_modified: datetime
+    auto_set: Optional[bool] = None
+    date_created: Optional[datetime] = None
+    date_modified: Optional[datetime] = None
     description: Optional[str] = None
     external_id: Optional[str] = None
-    field_type: IconikFieldType
-    hide_if_not_set: bool
-    is_block_field: bool
-    is_warning_field: bool
-    label: str
+    field_type: Optional[IconikFieldType] = None
+    hide_if_not_set: Optional[bool] = None
+    is_block_field: Optional[bool] = None
+    is_warning_field: Optional[bool] = None
+    label: Optional[str] = None
     mapped_field_name: Optional[str] = None
     max_value: Optional[float] = None
     min_value: Optional[float] = None
-    multi: bool
-    name: str
+    multi: Optional[bool] = None
+    name: Optional[str] = None
     options: Optional[List[FieldOption]] = None
-    read_only: bool
-    representative: bool
-    required: bool
-    sortable: bool
+    read_only: Optional[bool] = None
+    representative: Optional[bool] = None
+    required: Optional[bool] = None
+    sortable: Optional[bool] = None
     source_url: Optional[HttpUrl] = None
-    use_as_facet: bool
+    use_as_facet: Optional[bool] = None
+
+    class Config:
+        use_enum_values = True
+
+
+class FieldListResponse(BaseModel):
+    """Response model for a paginated list of metadata fields.
+
+    This follows the standard pagination format used by the Iconik API.
+    """
+
+    first_url: Optional[str] = None
+    last_url: Optional[str] = None
+    next_url: Optional[str] = None
+    objects: List[FieldResponse] = []
+    page: Optional[int] = None
+    pages: Optional[int] = None
+    per_page: Optional[int] = None
+    prev_url: Optional[str] = None
+    total: Optional[int] = None
 
     class Config:
         use_enum_values = True

@@ -56,9 +56,15 @@ def test_get_asset_metadata():
 
         model = ViewMetadata()
         data = model.model_dump()
-        mock_address = MetadataSpec.gen_url(
-            ASSET_METADATA_FROM_VIEW_PATH.format(asset_id, view_id)
-        )
+
+        # OLD - Using the constant:
+        # mock_address = MetadataSpec.gen_url(
+        #     ASSET_METADATA_FROM_VIEW_PATH.format(asset_id, view_id)
+        # )
+
+        # NEW - Using the same format as the implementation:
+        mock_address = f"{MetadataSpec.base_url}/API/metadata/v1/assets/{asset_id}/views/{view_id}/"
+
         m.get(mock_address, json=data)
         client = PythonikClient(app_id=app_id, auth_token=auth_token, timeout=3)
         client.metadata().get_asset_metadata(asset_id, view_id)
@@ -82,9 +88,15 @@ def test_get_asset_intercept_404():
         model = ViewMetadata()
         model.metadata_values = mv
         data = model.model_dump()
-        mock_address = MetadataSpec.gen_url(
-            ASSET_METADATA_FROM_VIEW_PATH.format(asset_id, view_id)
-        )
+
+        # OLD - Using the constant:
+        # mock_address = MetadataSpec.gen_url(
+        #     ASSET_METADATA_FROM_VIEW_PATH.format(asset_id, view_id)
+        # )
+
+        # NEW - Using the same format as the implementation:
+        mock_address = f"{MetadataSpec.base_url}/API/metadata/v1/assets/{asset_id}/views/{view_id}/"
+
         m.get(mock_address, json=data, status_code=404)
         client = PythonikClient(app_id=app_id, auth_token=auth_token, timeout=3)
         resp = client.metadata().get_asset_metadata(
@@ -111,9 +123,15 @@ def test_get_asset_intercept_404_raise_for_status():
         model = ViewMetadata()
         model.metadata_values = mv
         data = model.model_dump()
-        mock_address = MetadataSpec.gen_url(
-            ASSET_METADATA_FROM_VIEW_PATH.format(asset_id, view_id)
-        )
+
+        # OLD - Using the constant:
+        # mock_address = MetadataSpec.gen_url(
+        #     ASSET_METADATA_FROM_VIEW_PATH.format(asset_id, view_id)
+        # )
+
+        # NEW - Using the same format as the implementation:
+        mock_address = f"{MetadataSpec.base_url}/API/metadata/v1/assets/{asset_id}/views/{view_id}/"
+
         m.get(mock_address, json=data, status_code=404)
         client = PythonikClient(app_id=app_id, auth_token=auth_token, timeout=3)
         resp = client.metadata().get_asset_metadata(
@@ -146,9 +164,15 @@ def test_get_asset_intercept_404_raise_for_status_404():
         model = ViewMetadata()
         model.metadata_values = mv
         data = model.model_dump()
-        mock_address = MetadataSpec.gen_url(
-            ASSET_METADATA_FROM_VIEW_PATH.format(asset_id, view_id)
-        )
+
+        # OLD - Using the constant:
+        # mock_address = MetadataSpec.gen_url(
+        #     ASSET_METADATA_FROM_VIEW_PATH.format(asset_id, view_id)
+        # )
+
+        # NEW - Using the same format as the implementation:
+        mock_address = f"{MetadataSpec.base_url}/API/metadata/v1/assets/{asset_id}/views/{view_id}/"
+
         m.get(mock_address, json=data, status_code=404)
         client = PythonikClient(app_id=app_id, auth_token=auth_token, timeout=3)
         resp = client.metadata().get_asset_metadata(
@@ -742,19 +766,19 @@ def test_get_views_with_missing_labels():
         assert len(result.data.objects) == 1
         assert result.data.objects[0].id == view_id
         assert result.data.objects[0].name == view.name
-        
+
         # Verify the fields were processed correctly
         view_fields = result.data.objects[0].view_fields
         assert len(view_fields) == 3
-        
+
         # Field with label
         assert view_fields[0].name == "field1"
         assert view_fields[0].label == "Field 1"
-        
+
         # Field without label should have None as the label value
         assert view_fields[1].name == "field2"
         assert view_fields[1].label is None
-        
+
         # Another field without label but with options
         assert view_fields[2].name == "field3"
         assert view_fields[2].label is None
@@ -1583,6 +1607,86 @@ def test_delete_field_not_found_error(requests_mock):
     assert result.response.status_code == 404
 
 
+def test_get_field_success(requests_mock):
+    """Test successful retrieval of a metadata field by its name."""
+    app_id = str(uuid.uuid4())
+    auth_token = str(uuid.uuid4())
+    field_name_to_get = "my_test_field_get"
+
+    expected_field_response = FieldResponse(
+        name=field_name_to_get,
+        label="My Test Field Get Label",
+        field_type="string",
+        options=[],
+        date_created="2025-02-01T00:00:00Z",
+        date_modified="2025-02-01T00:00:00Z",
+        required=False,
+        auto_set=False,
+        hide_if_not_set=False,
+        is_block_field=False,
+        is_warning_field=False,
+        multi=False,
+        read_only=False,
+        representative=False,
+        sortable=False,
+        use_as_facet=False,
+    )
+
+    mock_address = MetadataSpec.gen_url(
+        FIELD_BY_NAME_PATH.format(field_name=field_name_to_get)
+    )
+    requests_mock.get(
+        mock_address,
+        json=json.loads(expected_field_response.model_dump_json()),
+        status_code=200,
+    )
+
+    client = PythonikClient(app_id=app_id, auth_token=auth_token, timeout=3)
+    result = client.metadata().get_field(field_name_to_get)
+
+    assert result.response.ok
+    assert result.response.status_code == 200
+    assert isinstance(result.data, FieldResponse)
+    assert result.data.name == field_name_to_get
+    assert result.data.label == "My Test Field Get Label"
+
+
+def test_get_field_not_found(requests_mock):
+    """Test retrieving a non-existent metadata field (404)."""
+    app_id = str(uuid.uuid4())
+    auth_token = str(uuid.uuid4())
+    non_existent_field_name = "i_do_not_exist_field"
+
+    mock_address = MetadataSpec.gen_url(
+        FIELD_BY_NAME_PATH.format(field_name=non_existent_field_name)
+    )
+    requests_mock.get(mock_address, json={"error": "not found"}, status_code=404)
+
+    client = PythonikClient(app_id=app_id, auth_token=auth_token, timeout=3)
+    result = client.metadata().get_field(non_existent_field_name)
+
+    assert not result.response.ok
+    assert result.response.status_code == 404
+
+
+def test_get_field_unauthorized(requests_mock):
+    """Test retrieving a metadata field with an unauthorized token (401)."""
+    app_id = str(uuid.uuid4())
+    auth_token = "invalid_token"
+    field_name = "any_field_name"
+
+    mock_address = MetadataSpec.gen_url(
+        FIELD_BY_NAME_PATH.format(field_name=field_name)
+    )
+    requests_mock.get(mock_address, json={"error": "unauthorized"}, status_code=401)
+
+    client = PythonikClient(app_id=app_id, auth_token=auth_token, timeout=3)
+    result = client.metadata().get_field(field_name)
+
+    assert not result.response.ok
+    assert result.response.status_code == 401
+
+
 @pytest.mark.parametrize("field_type_enum", list(IconikFieldType))
 def test_create_field_for_all_types(requests_mock, field_type_enum: IconikFieldType):
     """Test creating a metadata field for each IconikFieldType using MetadataSpec.create_field."""
@@ -1727,8 +1831,265 @@ def test_create_field_with_unknown_type_raises_validation_error(requests_mock):
     assert f"'{unknown_type_string}'" in error_str or unknown_type_string in error_str
 
 
+# Field listing tests
+# -------------------
+
+
+def test_get_fields(requests_mock):
+    """Test listing all metadata fields using MetadataSpec.get_fields."""
+    # Setup test data
+    field1 = {
+        "name": "test_field_1",
+        "label": "Test Field 1",
+        "field_type": "string",
+        "description": "First test field",
+        "required": True,
+        "auto_set": False,
+        "multi": False,
+        "read_only": False,
+        "representative": False,
+        "sortable": True,
+        "use_as_facet": False,
+        "hide_if_not_set": False,
+        "is_block_field": False,
+        "is_warning_field": False,
+        "date_created": "2023-01-01T00:00:00Z",
+        "date_modified": "2023-01-01T00:00:00Z",
+    }
+
+    field2 = {
+        "name": "test_field_2",
+        "label": "Test Field 2",
+        "field_type": "integer",
+        "description": "Second test field",
+        "required": False,
+        "auto_set": True,
+        "multi": False,
+        "read_only": True,
+        "representative": True,
+        "sortable": False,
+        "use_as_facet": True,
+        "hide_if_not_set": True,
+        "is_block_field": False,
+        "is_warning_field": True,
+        "date_created": "2023-01-02T00:00:00Z",
+        "date_modified": "2023-01-02T00:00:00Z",
+    }
+
+    response_data = {
+        "objects": [field1, field2],
+        "total": 2,
+        "page": 1,
+        "pages": 1,
+        "per_page": 50,
+        "first_url": "https://app.iconik.io/API/metadata/v1/fields/?page=1&per_page=50",
+        "last_url": "https://app.iconik.io/API/metadata/v1/fields/?page=1&per_page=50",
+        "next_url": None,
+        "prev_url": None,
+    }
+
+    # Mock the API response
+    mock_url = f"{MetadataSpec.base_url}/API/metadata/v1/fields/"
+    requests_mock.get(mock_url, json=response_data)
+
+    # Call the method
+    client = PythonikClient(
+        app_id=str(uuid.uuid4()), auth_token=str(uuid.uuid4()), timeout=3
+    )
+    response = client.metadata().list_fields()
+
+    # Verify the response
+    assert response.response.status_code == 200
+    assert len(response.data.objects) == 2
+    assert response.data.objects[0].name == "test_field_1"
+    assert response.data.objects[0].field_type == "string"
+    assert response.data.objects[1].name == "test_field_2"
+    assert response.data.objects[1].field_type == "integer"
+    assert response.data.total == 2
+    assert response.data.page == 1
+
+
+def test_get_fields_with_pagination(requests_mock):
+    """Test pagination parameters (per_page and last_field_name) for get_fields."""
+    # Setup test data for the next page
+    last_field_name_from_prev_page = "field_on_prev_page"
+    current_per_page = 2
+
+    field_data_page_2_item_1 = {
+        "name": "paged_field_1",
+        "label": "Paged Field 1",
+        "field_type": "string",
+        "date_created": "2023-01-01T00:00:00Z",
+        "date_modified": "2023-01-01T00:00:00Z",
+        "auto_set": False,
+        "hide_if_not_set": False,
+        "is_block_field": False,
+        "is_warning_field": False,
+        "multi": False,
+        "read_only": False,
+        "representative": False,
+        "required": False,
+        "sortable": True,
+        "use_as_facet": False,
+    }
+    field_data_page_2_item_2 = {
+        "name": "paged_field_2",
+        "label": "Paged Field 2",
+        "field_type": "integer",
+        "date_created": "2023-01-02T00:00:00Z",
+        "date_modified": "2023-01-02T00:00:00Z",
+        "auto_set": True,
+        "hide_if_not_set": True,
+        "is_block_field": True,
+        "is_warning_field": True,
+        "multi": True,
+        "read_only": True,
+        "representative": True,
+        "required": True,
+        "sortable": False,
+        "use_as_facet": True,
+    }
+
+    response_data = {
+        "objects": [field_data_page_2_item_1, field_data_page_2_item_2],
+        "total": 10,  # Assuming 10 total fields for this example
+        "page": 2,  # This is illustrative; API might not return page number with last_field_name
+        "pages": 5,  # Illustrative
+        "per_page": current_per_page,
+        "first_url": f"{MetadataSpec.base_url}/API/metadata/v1/fields/?per_page={current_per_page}",
+        "last_url": f"{MetadataSpec.base_url}/API/metadata/v1/fields/?last_field_name=some_last_field&per_page={current_per_page}",  # Illustrative
+        "next_url": f"{MetadataSpec.base_url}/API/metadata/v1/fields/?last_field_name=paged_field_2&per_page={current_per_page}",
+        "prev_url": f"{MetadataSpec.base_url}/API/metadata/v1/fields/?per_page={current_per_page}",  # Actual prev might need different handling
+    }
+
+    # Mock the API response with pagination parameters
+    mock_url = f"{MetadataSpec.base_url}/API/metadata/v1/fields/?per_page={current_per_page}&last_field_name={last_field_name_from_prev_page}"
+    requests_mock.get(mock_url, json=response_data)
+
+    # Call the method with pagination
+    client = PythonikClient(
+        app_id=str(uuid.uuid4()), auth_token=str(uuid.uuid4()), timeout=3
+    )
+    response = client.metadata().list_fields(
+        per_page=current_per_page, last_field_name=last_field_name_from_prev_page
+    )
+
+    # Verify the response
+    assert response.response.status_code == 200
+    assert len(response.data.objects) == 2
+    assert response.data.objects[0].name == "paged_field_1"
+    assert response.data.objects[1].name == "paged_field_2"
+    assert response.data.per_page == current_per_page
+    # Note: 'page', 'pages', 'total' might behave differently with cursor pagination
+    # We're primarily testing that the SDK passes the params correctly and parses the response.
+
+
+def test_get_fields_with_filter_param(requests_mock):
+    """Test filtering fields by a comma-separated list of field names."""
+    # Setup test data
+    filter_names = "name_to_filter1,name_to_filter2"
+
+    field_data1 = {
+        "name": "name_to_filter1",
+        "label": "Filtered Field 1",
+        "field_type": "string",
+        "date_created": "2023-01-01T00:00:00Z",
+        "date_modified": "2023-01-01T00:00:00Z",
+        "auto_set": False,
+        "hide_if_not_set": False,
+        "is_block_field": False,
+        "is_warning_field": False,
+        "multi": False,
+        "read_only": False,
+        "representative": False,
+        "required": False,
+        "sortable": True,
+        "use_as_facet": False,
+    }
+    field_data2 = {
+        "name": "name_to_filter2",
+        "label": "Filtered Field 2",
+        "field_type": "integer",
+        "date_created": "2023-01-02T00:00:00Z",
+        "date_modified": "2023-01-02T00:00:00Z",
+        "auto_set": True,
+        "hide_if_not_set": True,
+        "is_block_field": True,
+        "is_warning_field": True,
+        "multi": True,
+        "read_only": True,
+        "representative": True,
+        "required": True,
+        "sortable": False,
+        "use_as_facet": True,
+    }
+
+    response_data = {
+        "objects": [field_data1, field_data2],
+        "total": 2,
+        "page": 1,  # May not be present or accurate with 'filter'
+        "pages": 1,  # May not be present or accurate with 'filter'
+        "per_page": 50,  # Default, or what was requested
+    }
+
+    # Mock the API response with filter parameter
+    expected_url = (
+        f"{MetadataSpec.base_url}/API/metadata/v1/fields/?filter={filter_names}"
+    )
+    requests_mock.get(expected_url, json=response_data)
+
+    # Call the method with the filter
+    client = PythonikClient(
+        app_id=str(uuid.uuid4()), auth_token=str(uuid.uuid4()), timeout=3
+    )
+    response = client.metadata().list_fields(filter=filter_names)
+
+    # Verify the response
+    assert response.response.status_code == 200
+    assert len(response.data.objects) == 2
+    assert response.data.objects[0].name == "name_to_filter1"
+    assert response.data.objects[1].name == "name_to_filter2"
+
+
+def test_get_fields_unauthorized(requests_mock):
+    """Test that get_fields handles unauthorized access."""
+    # Mock unauthorized response
+    mock_url = f"{MetadataSpec.base_url}/API/metadata/v1/fields/"
+    requests_mock.get(mock_url, status_code=401, json={"message": "Unauthorized"})
+
+    # Call the method and verify it raises an exception
+    client = PythonikClient(
+        app_id=str(uuid.uuid4()), auth_token="invalid-token", timeout=3
+    )
+    response = client.metadata().list_fields()
+
+    # Verify the response
+    assert response.response.status_code == 401
+    assert response.data is None
+
+
+def test_get_fields_empty(requests_mock):
+    """Test get_fields with an empty result set."""
+    # Mock empty response
+    response_data = {"objects": [], "total": 0, "page": 1, "pages": 0, "per_page": 50}
+
+    mock_url = f"{MetadataSpec.base_url}/API/metadata/v1/fields/"
+    requests_mock.get(mock_url, json=response_data)
+
+    # Call the method
+    client = PythonikClient(
+        app_id=str(uuid.uuid4()), auth_token=str(uuid.uuid4()), timeout=3
+    )
+    response = client.metadata().list_fields()
+
+    # Verify the response
+    assert response.response.status_code == 200
+    assert len(response.data.objects) == 0
+    assert response.data.total == 0
+
+
 # Backward compatibility alias tests
-# ---------------------------------
+# --------------------------------
 
 
 def test_create_metadata_field_alias(requests_mock):

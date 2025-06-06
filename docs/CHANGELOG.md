@@ -1,5 +1,12 @@
 # Changelog
 
+## 2025-06-06 "Search Response Model Improvements" - version 1.14.1
+
+### Fixed
+- Enhanced SearchResponse `Object` model to properly handle more fields returned by the Iconik API, including complex nested structures
+### Technical Details
+This patch improves the SDK's handling of search responses by gathering more fields from the Iconik API and properly deserializing them, especially the critical `_sort` field needed for pagination and consistent ordering. 
+
 ## 2025-06-04 "Search Enhancements & Field Model Fixes" - version 1.14.0
 
 ### Added

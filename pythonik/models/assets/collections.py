@@ -55,7 +55,7 @@ class Collection(BaseModel):
         return None
 
 class Content(BaseModel):
-    object_id: str 
+    object_id: str
     object_type: ObjectType
 
 class AddContentResponse(BaseModel):

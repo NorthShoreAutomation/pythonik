@@ -98,7 +98,7 @@ class CollectionSpec(Spec):
 
         Required roles:
             - can_read_collections
-        
+
         Raises:
             - 400 Bad request
             - 401 Token is invalid
@@ -120,13 +120,13 @@ class CollectionSpec(Spec):
             body: Collection creation parameters, either as Collection model or dict
             exclude_defaults: Whether to exclude default values when dumping Pydantic models
             **kwargs: Additional kwargs to pass to the request
-        
+
         Returns:
             Response(model=Collection)
-        
+
         Required roles:
             - can_create_collections
-        
+
         Raises:
             - 400 Bad request
             - 401 Token is invalid
@@ -134,7 +134,7 @@ class CollectionSpec(Spec):
         json_data = self._prepare_model_data(body, exclude_defaults=exclude_defaults)
         response = self._post(BASE, json=json_data, **kwargs)
         return self.parse_response(response, Collection)
-    
+
     def add_content(
         self,
         collection_id: str,

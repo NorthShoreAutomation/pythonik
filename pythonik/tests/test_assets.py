@@ -62,7 +62,7 @@ def test_bulk_delete():
 
         m.post(mock_address)
         m.post(AssetSpec.gen_url(PURGE_ALL_URL))
-        
+
         client = PythonikClient(app_id=app_id, auth_token=auth_token, timeout=3)
         client.assets().bulk_delete(body=model, permanently_delete=True)
 
@@ -386,7 +386,7 @@ def test_bulk_delete_segments():
         auth_token = str(uuid.uuid4())
         asset_id = str(uuid.uuid4())
         segment_ids = [str(uuid.uuid4()), str(uuid.uuid4())]
-        
+
         model = BulkDeleteSegmentsBody(segment_ids=segment_ids)
         data = model.model_dump(exclude_defaults=True) # Match method behaviour
         mock_address = AssetSpec.gen_url(BULK_DELETE_SEGMENTS_URL.format(asset_id))
@@ -424,7 +424,7 @@ def test_delete_segment():
         auth_token = str(uuid.uuid4())
         asset_id = str(uuid.uuid4())
         segment_id = str(uuid.uuid4())
-        
+
         mock_address = AssetSpec.gen_url(SEGMENT_URL_UPDATE.format(asset_id, segment_id))
         expected_params_soft = {"soft_delete": ["true"]}
         expected_params_hard = {"soft_delete": ["false"]}

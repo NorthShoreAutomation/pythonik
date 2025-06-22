@@ -1,8 +1,9 @@
 # pythonik/models/metadata/fields.py
-from typing import List, Optional
 from datetime import datetime
 from enum import Enum
-from pydantic import BaseModel, HttpUrl
+from typing import List, Optional
+
+from pydantic import BaseModel, ConfigDict, HttpUrl
 
 
 class IconikFieldType(str, Enum):
@@ -129,5 +130,4 @@ class FieldListResponse(BaseModel):
     prev_url: Optional[str] = None
     total: Optional[int] = None
 
-    class Config:
-        use_enum_values = True
+    model_config = ConfigDict(use_enum_values=True)

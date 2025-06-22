@@ -97,12 +97,12 @@ class FilesSpec(Spec):
 
     def delete_asset_file(self, asset_id: str, file_id: str, **kwargs) -> Response:
         """Delete a specific file from an asset
-        
+
         Args:
             asset_id: The ID of the asset
             file_id: The ID of the file to delete
             **kwargs: Additional kwargs to pass to the request
-            
+
         Returns:
             Response with no data model
         """
@@ -113,12 +113,12 @@ class FilesSpec(Spec):
         self, asset_id: str, file_set_id: str, keep_source: bool = False, **kwargs
     ) -> Response:
         """Delete asset's file set, file entries, and actual files
-        
+
         Args:
             asset_id: The ID of the asset
             file_set_id: The ID of the file set to delete
             keep_source: If true, keep source objects
-            
+
         Returns:
             Response with FileSet model if status code is 200 (file set marked as deleted)
             Response with no data model if status code is 204 (immediate deletion)
@@ -129,11 +129,11 @@ class FilesSpec(Spec):
             params=params,
             **kwargs
         )
-        
+
         # If status is 204, return response with no model
         if response.status_code == 204:
             return self.parse_response(response, model=None)
-            
+
         # If status is possibly 200, return response with FileSet model
         return self.parse_response(response, FileSet)
 
@@ -144,12 +144,12 @@ class FilesSpec(Spec):
 
     def get_asset_file(self, asset_id: str, file_id: str, **kwargs) -> Response:
         """Get metadata for a specific file associated with an asset
-        
+
         Args:
             asset_id: The ID of the asset
             file_id: The ID of the file to retrieve
             **kwargs: Additional arguments to pass to the request
-            
+
         Returns:
             Response with File model
         """
@@ -165,11 +165,11 @@ class FilesSpec(Spec):
 
     def get_asset_keyframe(self, asset_id: str, keyframe_id: str, **kwargs) -> Response:
         """Get a specific keyframe for an asset
-        
+
         Args:
             asset_id: The ID of the asset
             keyframe_id: The ID of the keyframe to retrieve
-            
+
         Returns:
             Response with Keyframe model
         """
@@ -178,10 +178,10 @@ class FilesSpec(Spec):
 
     def get_asset_keyframes(self, asset_id: str, **kwargs) -> Keyframes:
         """Get all keyframes for an asset
-        
+
         Args:
             asset_id: The ID of the asset
-            
+
         Returns:
             Response containing list of Keyframes
         """
@@ -192,13 +192,13 @@ class FilesSpec(Spec):
         self, asset_id: str, body: Union[Keyframe, Dict[str, Any]], exclude_defaults: bool = True, **kwargs
     ) -> Response:
         """Create a new keyframe for an asset
-        
+
         Args:
             asset_id: The ID of the asset
             body: Keyframe object containing the keyframe data, either as Keyframe model or dict
             exclude_defaults: Whether to exclude default values when dumping Pydantic models
             **kwargs: Additional arguments to pass to the request
-            
+
         Returns:
             Response with created Keyframe model
         """
@@ -456,14 +456,24 @@ class FilesSpec(Spec):
         return self.parse_response(response, File)
 
     def create_asset_filesets(
-        self, asset_id: str, body: Union[FileSetCreate, Dict[str, Any]], exclude_defaults: bool = True, **kwargs
+            self, asset_id: str, body: Union[FileSetCreate, Dict[str, Any]],
+            exclude_defaults: bool = True, **kwargs
     ) -> Response:
+        """
+        DEPRECATED: This method is deprecated and will be removed in a future version.
+        Please use create_asset_file_sets instead.
+
+        Create file sets and associate it to asset
+        Returns: Response(model=FileSet)
+        """
+        import warnings
         warnings.warn(
             "'create_asset_filesets' is deprecated. Use 'create_asset_file_sets' instead.",
             DeprecationWarning,
             stacklevel=2
         )
-        return self.create_asset_file_sets(asset_id, body, exclude_defaults, **kwargs)
+        return self.create_asset_file_sets(asset_id, body, exclude_defaults,
+                                           **kwargs)
 
     def create_asset_file_sets(
         self, asset_id: str, body: Union[FileSetCreate, Dict[str, Any]], exclude_defaults: bool = True, **kwargs
@@ -485,7 +495,7 @@ class FilesSpec(Spec):
     ) -> Response:
         """
         Get all asset's file sets by version
-        
+
         Args:
             asset_id: ID of the asset
             version_id: ID of the version
@@ -493,13 +503,13 @@ class FilesSpec(Spec):
             last_id: ID of a last file set on previous page
             file_count: Set to true if you need a total amount of files in a file set
             **kwargs: Additional kwargs to pass to the request
-            
+
         Returns:
             Response(model=FileSets)
-            
+
         Required roles:
             - can_read_files
-            
+
         Raises:
             401 Token is invalid
             404 FileSets for this asset don't exist
@@ -521,11 +531,11 @@ class FilesSpec(Spec):
 
     def get_asset_filesets(self, asset_id: str, **kwargs) -> Response:
         """Get all file sets associated with an asset
-        
+
         Args:
             asset_id: The ID of the asset
             **kwargs: Additional arguments to pass to the request
-            
+
         Returns:
             Response containing list of FileSets
         """
@@ -534,11 +544,11 @@ class FilesSpec(Spec):
 
     def get_asset_formats(self, asset_id: str, **kwargs) -> Response:
         """Get all formats associated with an asset
-        
+
         Args:
             asset_id: The ID of the asset
             **kwargs: Additional arguments to pass to the request
-            
+
         Returns:
             Response containing list of Formats
         """
@@ -547,12 +557,12 @@ class FilesSpec(Spec):
 
     def get_asset_format(self, asset_id: str, format_id: str, **kwargs) -> Response:
         """Get a specific format for an asset
-        
+
         Args:
             asset_id: The ID of the asset
             format_id: The ID of the format to retrieve
             **kwargs: Additional arguments to pass to the request
-            
+
         Returns:
             Response with Format model
         """
@@ -561,11 +571,11 @@ class FilesSpec(Spec):
 
     def get_asset_files(self, asset_id: str, **kwargs) -> Response:
         """Get all files associated with an asset
-        
+
         Args:
             asset_id: The ID of the asset
             **kwargs: Additional arguments to pass to the request
-            
+
         Returns:
             Response containing list of Files
         """
@@ -574,11 +584,11 @@ class FilesSpec(Spec):
 
     def get_storage(self, storage_id: str, **kwargs):
         """Get metadata for a specific storage
-        
+
         Args:
             storage_id: The ID of the storage to retrieve
             **kwargs: Additional arguments to pass to the request
-            
+
         Returns:
             Response with Storage model
         """
@@ -587,10 +597,10 @@ class FilesSpec(Spec):
 
     def get_storages(self, **kwargs):
         """Get metadata for all available storages
-        
+
         Args:
             **kwargs: Additional arguments to pass to the request
-            
+
         Returns:
             Response containing list of Storages
         """
@@ -602,20 +612,20 @@ class FilesSpec(Spec):
     ) -> Response:
         """
         Update format information for an asset using PUT
-        
+
         Args:
             asset_id: ID of the asset
             format_id: ID of the format to update
             body: Format update parameters, either as FormatCreate model or dict
             exclude_defaults: Whether to exclude default values when dumping Pydantic models
             **kwargs: Additional kwargs to pass to the request
-            
+
         Returns:
             Response(model=Format)
-            
+
         Required roles:
             - can_write_formats
-            
+
         Raises:
             400 Bad request
             401 Token is invalid
@@ -634,20 +644,20 @@ class FilesSpec(Spec):
     ) -> Response:
         """
         Partially update format information for an asset using PATCH
-        
+
         Args:
             asset_id: ID of the asset
             format_id: ID of the format to update
             body: Format update parameters, either as FormatCreate model or dict
             exclude_defaults: Whether to exclude default values when dumping Pydantic models
             **kwargs: Additional kwargs to pass to the request
-            
+
         Returns:
             Response(model=Format)
-            
+
         Required roles:
             - can_write_formats
-            
+
         Raises:
             400 Bad request
             401 Token is invalid
@@ -666,20 +676,20 @@ class FilesSpec(Spec):
     ) -> Response:
         """
         Update file set information for an asset using PUT
-        
+
         Args:
             asset_id: ID of the asset
             file_set_id: ID of the file set to update
             body: File set update parameters, either as FileSetCreate model or dict
             exclude_defaults: Whether to exclude default values when dumping Pydantic models
             **kwargs: Additional kwargs to pass to the request
-            
+
         Returns:
             Response(model=FileSet)
-            
+
         Required roles:
             - can_write_files
-            
+
         Raises:
             400 Bad request
             401 Token is invalid
@@ -698,20 +708,20 @@ class FilesSpec(Spec):
     ) -> Response:
         """
         Partially update file set information for an asset using PATCH
-        
+
         Args:
             asset_id: ID of the asset
             file_set_id: ID of the file set to update
             body: File set update parameters, either as FileSetCreate model or dict
             exclude_defaults: Whether to exclude default values when dumping Pydantic models
             **kwargs: Additional kwargs to pass to the request
-            
+
         Returns:
             Response(model=FileSet)
-            
+
         Required roles:
             - can_write_files
-            
+
         Raises:
             400 Bad request
             401 Token is invalid
@@ -730,20 +740,20 @@ class FilesSpec(Spec):
     ) -> Response:
         """
         Update file information for an asset using PUT
-        
+
         Args:
             asset_id: ID of the asset
             file_id: ID of the file to update
             body: File update parameters, either as FileCreate model or dict
             exclude_defaults: Whether to exclude default values when dumping Pydantic models
             **kwargs: Additional kwargs to pass to the request
-            
+
         Returns:
             Response(model=File)
-            
+
         Required roles:
             - can_write_files
-            
+
         Raises:
             400 Bad request
             401 Token is invalid
@@ -762,20 +772,20 @@ class FilesSpec(Spec):
     ) -> Response:
         """
         Partially update file information for an asset using PATCH
-        
+
         Args:
             asset_id: ID of the asset
             file_id: ID of the file to update
             body: File update parameters, either as FileCreate model or dict
             exclude_defaults: Whether to exclude default values when dumping Pydantic models
             **kwargs: Additional kwargs to pass to the request
-            
+
         Returns:
             Response(model=File)
-            
+
         Required roles:
             - can_write_files
-            
+
         Raises:
             400 Bad request
             401 Token is invalid
@@ -794,20 +804,20 @@ class FilesSpec(Spec):
     ) -> Response:
         """
         Get all asset's formats by version
-        
+
         Args:
             asset_id: ID of the asset
             version_id: ID of the version
             per_page: The number of items for each page
             last_id: ID of a last format on previous page
             **kwargs: Additional kwargs to pass to the request
-            
+
         Returns:
             Response(model=Formats)
-            
+
         Required roles:
             - can_read_formats
-            
+
         Raises:
             401 Token is invalid
             404 Formats for this asset don't exist
@@ -826,12 +836,12 @@ class FilesSpec(Spec):
         return self.parse_response(response, Formats)
 
     def get_asset_files_by_version(
-        self, asset_id: str, version_id: str, per_page: int = None, last_id: str = None, 
+        self, asset_id: str, version_id: str, per_page: int = None, last_id: str = None,
         generate_signed_url: bool = None, content_disposition: str = None, **kwargs
     ) -> Response:
         """
         Get all asset's files by version
-        
+
         Args:
             asset_id: ID of the asset
             version_id: ID of the version
@@ -840,13 +850,13 @@ class FilesSpec(Spec):
             generate_signed_url: Set to False if you do not need a URL, will slow things down otherwise
             content_disposition: Set to attachment if you want a download link. Note that this will not create a download in asset history
             **kwargs: Additional kwargs to pass to the request
-            
+
         Returns:
             Response(model=Files)
-            
+
         Required roles:
             - can_read_files
-            
+
         Raises:
             401 Token is invalid
             404 Files for this asset don't exist

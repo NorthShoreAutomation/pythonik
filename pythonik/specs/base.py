@@ -19,17 +19,17 @@ class Spec:
         self.session = session
         self.timeout = timeout
         self.set_class_attribute("base_url", base_url)
-    
-        
+
+
     @staticmethod
     def _prepare_model_data(data: Union[BaseModel, Dict[str, Any]], exclude_defaults: bool = True) -> Dict[str, Any]:
         """
         Prepare data for request, handling both Pydantic models and dicts.
-        
+
         Args:
             data: Either a Pydantic model instance or a dict
             exclude_defaults: Whether to exclude default values when dumping Pydantic models
-            
+
         Returns:
             Dict ready to be sent in request
         """

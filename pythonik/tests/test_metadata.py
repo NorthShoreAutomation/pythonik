@@ -3,7 +3,7 @@ import requests_mock
 from pythonik.client import PythonikClient
 from requests import HTTPError
 from pythonik.models.base import ObjectType
-from loguru import logger
+from pythonik._logger import logger
 import json
 
 from pythonik.models.metadata.views import (

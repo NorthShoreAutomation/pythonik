@@ -1,3 +1,4 @@
+from pythonik._logger import logger
 from urllib.parse import urljoin
 from typing import Union, Type, Dict, Any, Optional
 
@@ -48,7 +49,7 @@ class Spec:
         """
         # try to populate the model
         if response.ok:
-            print(response.text)
+            logger.debug(response.text)
             if model:
                 data = response.json()
                 model_instance = model.model_validate(data)
@@ -68,7 +69,7 @@ class Spec:
         """
 
         url = self.gen_url(path)
-        print(url)
+        logger.debug("Sending {} request to {}", method, url)
         request = Request(
             method=method, url=url, headers=self.session.headers, **kwargs
         )

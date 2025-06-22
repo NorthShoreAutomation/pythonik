@@ -12,7 +12,7 @@ from pythonik.models.assets.versions import (
     AssetVersionFromAssetCreate,
     AssetVersion,
 )
-from pythonik.models.base import Response
+from pythonik.models.base import Response, PaginatedResponse
 from pythonik.specs.base import Spec
 from pythonik.specs.collection import CollectionSpec
 
@@ -511,3 +511,72 @@ class AssetSpec(Spec):
             VERSION_URL.format(asset_id, version_id), params=params, **kwargs
         )
         return self.parse_response(response, None)
+
+    def list_all(self, **kwargs) -> Response:
+        """
+        Get list of assets.
+
+        Args:
+            **kwargs: Additional kwargs to pass to the request
+
+        Returns:
+            Response(model=PaginatedResponse) containing paginated asset list
+        """
+        resp = self._get(self.gen_url("assets/"), **kwargs)
+        return self.parse_response(resp, PaginatedResponse)
+
+    def list_asset_history_entities(self, asset_id: str, **kwargs) -> Response:
+        """
+        Get list of history entities for asset.
+
+        Args:
+            asset_id: ID of the asset
+            **kwargs: Additional kwargs to pass to the request
+
+        Returns:
+            Response(model=PaginatedResponse) containing history entities
+        """
+        resp = self._get(self.gen_url(f"assets/{asset_id}/history/"), **kwargs)
+        return self.parse_response(resp, PaginatedResponse)
+
+    def create_history_entity(
+            self, asset_id: str, operation_description: str,
+            operation_type: str,
+            **kwargs
+    ) -> Response:
+        """
+        Create an asset history entity.
+
+        Args:
+            asset_id: ID of the asset
+            operation_description: Description of the operation
+            operation_type: Type of operation (e.g., VERSION_CREATE, ADD_FORMAT)
+            **kwargs: Additional kwargs to pass to the request
+
+        Returns:
+            Response with history entry creation status
+
+        Raises:
+            ValueError: If operation_type is not a valid operation type
+        """
+        operation_types = [
+            "EXPORT", "TRANSCODE", "ANALYZE", "ADD_FORMAT", "DELETE_FORMAT",
+            "RESTORE_FORMAT", "DELETE_FILESET", "DELETE_FILE",
+            "RESTORE_FILESET", "MODIFY_FILESET", "APPROVE", "REJECT",
+            "DOWNLOAD", "METADATA", "CUSTOM", "TRANSCRIPTION", "VERSION_CREATE",
+            "VERSION_DELETE", "VERSION_UPDATE", "VERSION_PROMOTE", "RESTORE",
+            "RESTORE_FROM_GLACIER", "ARCHIVE", "RESTORE_ARCHIVE", "DELETE",
+            "TRANSFER", "UNLINK_SUBCLIP", "FACE_RECOGNITION"
+        ]
+        if operation_type not in operation_types:
+            raise ValueError(
+                f"operation_type must be one of: {'|'.join(operation_types)}"
+            )
+        body = {
+            "operation_description": operation_description,
+            "operation_type": operation_type
+        }
+        resp = self._post(
+            self.gen_url(f"assets/{asset_id}/history/"), json=body, **kwargs
+        )
+        return self.parse_response(resp, None)

@@ -2,6 +2,7 @@ from urllib3.util import Retry
 from requests import Session
 from requests.adapters import HTTPAdapter
 
+from pythonik.specs.acls import AclsSpec
 from pythonik.specs.assets import AssetSpec
 from pythonik.specs.files import FilesSpec
 from pythonik.specs.jobs import JobSpec
@@ -50,3 +51,6 @@ class PythonikClient:
 
     def jobs(self):
         return JobSpec(self.session, self.timeout, self.base_url)
+
+    def acls(self) -> AclsSpec:
+        return AclsSpec(self.session, self.timeout, self.base_url)

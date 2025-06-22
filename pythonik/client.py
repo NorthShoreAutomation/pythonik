@@ -8,6 +8,7 @@ from pythonik.specs.jobs import JobSpec
 from pythonik.specs.metadata import MetadataSpec
 from pythonik.specs.search import SearchSpec
 from pythonik.specs.collection import CollectionSpec
+from pythonik.specs.transcode import TranscodeSpec
 
 
 # Iconik APIs
@@ -50,3 +51,6 @@ class PythonikClient:
 
     def jobs(self):
         return JobSpec(self.session, self.timeout, self.base_url)
+
+    def transcode(self) -> TranscodeSpec:
+        return TranscodeSpec(self.session, self.timeout, self.base_url)

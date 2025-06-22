@@ -1,13 +1,14 @@
-from urllib3.util import Retry
 from requests import Session
 from requests.adapters import HTTPAdapter
+from urllib3.util import Retry
 
 from pythonik.specs.assets import AssetSpec
+from pythonik.specs.auth import AuthSpec
+from pythonik.specs.collection import CollectionSpec
 from pythonik.specs.files import FilesSpec
 from pythonik.specs.jobs import JobSpec
 from pythonik.specs.metadata import MetadataSpec
 from pythonik.specs.search import SearchSpec
-from pythonik.specs.collection import CollectionSpec
 
 
 # Iconik APIs
@@ -16,7 +17,13 @@ class PythonikClient:
     Iconik Client
     """
 
-    def __init__(self, app_id: str, auth_token: str, timeout: int, base_url: str  = "https://app.iconik.io" ):
+    def __init__(
+        self,
+        app_id: str,
+        auth_token: str,
+        timeout: int,
+        base_url: str = "https://app.iconik.io",
+    ):
         self.session = Session()
         self.base_url = base_url
         retry_strategy = Retry(
@@ -50,3 +57,6 @@ class PythonikClient:
 
     def jobs(self):
         return JobSpec(self.session, self.timeout, self.base_url)
+
+    def auth(self):
+        return AuthSpec(self.session, self.timeout, self.base_url)

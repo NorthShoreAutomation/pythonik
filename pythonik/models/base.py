@@ -41,6 +41,44 @@ class StorageMethod(str, Enum):
     GCS = "GCS"
 
 
+class HistoryOperationType(str, Enum):
+    """Known asset history operation types.
+
+    This enum is provided for convenience and discoverability. The Iconik API
+    may add new operation types over time, so ``create_history_entity`` also
+    accepts arbitrary strings rather than restricting callers to these values.
+    """
+
+    EXPORT = "EXPORT"
+    TRANSCODE = "TRANSCODE"
+    ANALYZE = "ANALYZE"
+    ADD_FORMAT = "ADD_FORMAT"
+    DELETE_FORMAT = "DELETE_FORMAT"
+    RESTORE_FORMAT = "RESTORE_FORMAT"
+    DELETE_FILESET = "DELETE_FILESET"
+    DELETE_FILE = "DELETE_FILE"
+    RESTORE_FILESET = "RESTORE_FILESET"
+    MODIFY_FILESET = "MODIFY_FILESET"
+    APPROVE = "APPROVE"
+    REJECT = "REJECT"
+    DOWNLOAD = "DOWNLOAD"
+    METADATA = "METADATA"
+    CUSTOM = "CUSTOM"
+    TRANSCRIPTION = "TRANSCRIPTION"
+    VERSION_CREATE = "VERSION_CREATE"
+    VERSION_DELETE = "VERSION_DELETE"
+    VERSION_UPDATE = "VERSION_UPDATE"
+    VERSION_PROMOTE = "VERSION_PROMOTE"
+    RESTORE = "RESTORE"
+    RESTORE_FROM_GLACIER = "RESTORE_FROM_GLACIER"
+    ARCHIVE = "ARCHIVE"
+    RESTORE_ARCHIVE = "RESTORE_ARCHIVE"
+    DELETE = "DELETE"
+    TRANSFER = "TRANSFER"
+    UNLINK_SUBCLIP = "UNLINK_SUBCLIP"
+    FACE_RECOGNITION = "FACE_RECOGNITION"
+
+
 class PaginatedResponse(BaseModel):
     first_url: Optional[str] = ""
     last_url: Optional[str] = ""

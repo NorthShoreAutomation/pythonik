@@ -14,13 +14,19 @@ from pythonik.models.assets.versions import (
     AssetVersionFromAssetCreate,
     AssetVersion,
 )
-from pythonik.models.base import Response
+from pythonik.models.base import (
+    Response,
+    PaginatedResponse,
+    HistoryOperationType,
+)
 from pythonik.specs.base import Spec
 from pythonik.specs.collection import CollectionSpec
 
 BASE = "assets"
 DELETE_QUEUE = "delete_queue"
+LIST_URL = BASE + "/"
 GET_URL = BASE + "/{}/"
+HISTORY_URL = BASE + "/{}/history/"
 SEGMENT_URL = BASE + "/{}/segments/"
 GET_SEGMENTS_URL = BASE + "/{}/segments/"
 SEGMENT_URL_UPDATE = SEGMENT_URL + "{}/"
@@ -610,3 +616,61 @@ class AssetSpec(Spec):
 
         response = self._get(GET_SEGMENTS_URL.format(asset_id), params=params, **kwargs)
         return self.parse_response(response, SegmentListResponse)
+
+    def list_all(self, **kwargs) -> Response:
+        """
+        Get list of assets.
+
+        Args:
+            **kwargs: Additional kwargs to pass to the request
+
+        Returns:
+            Response(model=PaginatedResponse) containing paginated asset list
+        """
+        resp = self._get(LIST_URL, **kwargs)
+        return self.parse_response(resp, PaginatedResponse)
+
+    def list_asset_history_entities(self, asset_id: str, **kwargs) -> Response:
+        """
+        Get list of history entities for asset.
+
+        Args:
+            asset_id: ID of the asset
+            **kwargs: Additional kwargs to pass to the request
+
+        Returns:
+            Response(model=PaginatedResponse) containing history entities
+        """
+        resp = self._get(HISTORY_URL.format(asset_id), **kwargs)
+        return self.parse_response(resp, PaginatedResponse)
+
+    def create_history_entity(
+            self, asset_id: str,
+            operation_description: str,
+            operation_type: Union[HistoryOperationType, str],
+            **kwargs
+    ) -> Response:
+        """
+        Create an asset history entity.
+
+        Args:
+            asset_id: ID of the asset
+            operation_description: Description of the operation
+            operation_type: Type of operation. Prefer a
+                :class:`~pythonik.models.base.HistoryOperationType` member for
+                the known values (e.g. ``HistoryOperationType.VERSION_CREATE``),
+                but any string is accepted so newly added API operation types
+                keep working without an SDK upgrade.
+            **kwargs: Additional kwargs to pass to the request
+
+        Returns:
+            Response with history entry creation status
+        """
+        if isinstance(operation_type, HistoryOperationType):
+            operation_type = operation_type.value
+        body = {
+            "operation_description": operation_description,
+            "operation_type": operation_type
+        }
+        resp = self._post(HISTORY_URL.format(asset_id), json=body, **kwargs)
+        return self.parse_response(resp, None)

@@ -1,0 +1,112 @@
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
+from uuid import UUID
+
+from attrs import define as _attrs_define
+from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
+
+T = TypeVar("T", bound="StorageUsagesElasticSchema")
+
+
+@_attrs_define
+class StorageUsagesElasticSchema:
+    """
+    Attributes:
+        bucket_name (str | Unset):
+        bytes_stored (int | Unset):
+        date (str | Unset):
+        id (UUID | Unset):
+        system_domain_id (UUID | Unset):
+    """
+
+    bucket_name: str | Unset = UNSET
+    bytes_stored: int | Unset = UNSET
+    date: str | Unset = UNSET
+    id: UUID | Unset = UNSET
+    system_domain_id: UUID | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+    def to_dict(self) -> dict[str, Any]:
+        bucket_name = self.bucket_name
+
+        bytes_stored = self.bytes_stored
+
+        date = self.date
+
+        id: str | Unset = UNSET
+        if not isinstance(self.id, Unset):
+            id = str(self.id)
+
+        system_domain_id: str | Unset = UNSET
+        if not isinstance(self.system_domain_id, Unset):
+            system_domain_id = str(self.system_domain_id)
+
+        field_dict: dict[str, Any] = {}
+        field_dict.update(self.additional_properties)
+        field_dict.update({})
+        if bucket_name is not UNSET:
+            field_dict["bucket_name"] = bucket_name
+        if bytes_stored is not UNSET:
+            field_dict["bytes_stored"] = bytes_stored
+        if date is not UNSET:
+            field_dict["date"] = date
+        if id is not UNSET:
+            field_dict["id"] = id
+        if system_domain_id is not UNSET:
+            field_dict["system_domain_id"] = system_domain_id
+
+        return field_dict
+
+    @classmethod
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
+        bucket_name = d.pop("bucket_name", UNSET)
+
+        bytes_stored = d.pop("bytes_stored", UNSET)
+
+        date = d.pop("date", UNSET)
+
+        _id = d.pop("id", UNSET)
+        id: UUID | Unset
+        if isinstance(_id, Unset):
+            id = UNSET
+        else:
+            id = UUID(_id)
+
+        _system_domain_id = d.pop("system_domain_id", UNSET)
+        system_domain_id: UUID | Unset
+        if isinstance(_system_domain_id, Unset):
+            system_domain_id = UNSET
+        else:
+            system_domain_id = UUID(_system_domain_id)
+
+        storage_usages_elastic_schema = cls(
+            bucket_name=bucket_name,
+            bytes_stored=bytes_stored,
+            date=date,
+            id=id,
+            system_domain_id=system_domain_id,
+        )
+
+        storage_usages_elastic_schema.additional_properties = d
+        return storage_usages_elastic_schema
+
+    @property
+    def additional_keys(self) -> list[str]:
+        return list(self.additional_properties.keys())
+
+    def __getitem__(self, key: str) -> Any:
+        return self.additional_properties[key]
+
+    def __setitem__(self, key: str, value: Any) -> None:
+        self.additional_properties[key] = value
+
+    def __delitem__(self, key: str) -> None:
+        del self.additional_properties[key]
+
+    def __contains__(self, key: str) -> bool:
+        return key in self.additional_properties

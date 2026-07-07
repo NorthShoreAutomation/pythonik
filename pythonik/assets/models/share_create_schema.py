@@ -1,0 +1,490 @@
+from __future__ import annotations
+
+import datetime
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
+from uuid import UUID
+
+from attrs import define as _attrs_define
+from attrs import field as _attrs_field
+
+from ..models.share_create_schema_drm import ShareCreateSchemaDrm
+from ..models.share_create_schema_watermark import ShareCreateSchemaWatermark
+from ..types import UNSET, Unset
+
+T = TypeVar("T", bound="ShareCreateSchema")
+
+
+@_attrs_define
+class ShareCreateSchema:
+    """
+    Attributes:
+        allow_approving_comments (bool):
+        allow_comments (bool):
+        allow_download (bool):
+        allow_setting_approve_status (bool):
+        emails (list[str]):
+        allow_custom_actions (bool | Unset):
+        allow_download_proxy (bool | Unset):
+        allow_sync (bool | None | Unset):
+        allow_upload (bool | Unset):
+        allow_user_search_for_mentions (bool | Unset):
+        allow_view_transcriptions (bool | Unset):
+        allow_view_versions (bool | Unset):
+        automatic_approval_share (bool | Unset):  Default: False.
+        drm (ShareCreateSchemaDrm | Unset): DRM settings for the share
+        expires (datetime.datetime | Unset):
+        id (str | Unset):
+        is_approval (bool | None | Unset):
+        message (str | Unset):
+        metadata_views (list[str] | None | Unset):
+        object_id (str | Unset):
+        object_type (str | Unset):
+        owner_id (str | Unset):
+        password (None | str | Unset):
+        project_id (None | Unset | UUID): Project ID if the share is created from a project
+        review_experience_public_beta (bool | None | Unset):
+        show_existing_comments (bool | None | Unset):
+        show_watermark (bool | None | Unset):
+        system_domain_id (str | Unset):
+        title (str | Unset):
+        upload_storage_id (None | Unset | UUID):
+        watermark (ShareCreateSchemaWatermark | Unset): Watermark settings for the share
+    """
+
+    allow_approving_comments: bool
+    allow_comments: bool
+    allow_download: bool
+    allow_setting_approve_status: bool
+    emails: list[str]
+    allow_custom_actions: bool | Unset = UNSET
+    allow_download_proxy: bool | Unset = UNSET
+    allow_sync: bool | None | Unset = UNSET
+    allow_upload: bool | Unset = UNSET
+    allow_user_search_for_mentions: bool | Unset = UNSET
+    allow_view_transcriptions: bool | Unset = UNSET
+    allow_view_versions: bool | Unset = UNSET
+    automatic_approval_share: bool | Unset = False
+    drm: ShareCreateSchemaDrm | Unset = UNSET
+    expires: datetime.datetime | Unset = UNSET
+    id: str | Unset = UNSET
+    is_approval: bool | None | Unset = UNSET
+    message: str | Unset = UNSET
+    metadata_views: list[str] | None | Unset = UNSET
+    object_id: str | Unset = UNSET
+    object_type: str | Unset = UNSET
+    owner_id: str | Unset = UNSET
+    password: None | str | Unset = UNSET
+    project_id: None | Unset | UUID = UNSET
+    review_experience_public_beta: bool | None | Unset = UNSET
+    show_existing_comments: bool | None | Unset = UNSET
+    show_watermark: bool | None | Unset = UNSET
+    system_domain_id: str | Unset = UNSET
+    title: str | Unset = UNSET
+    upload_storage_id: None | Unset | UUID = UNSET
+    watermark: ShareCreateSchemaWatermark | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+    def to_dict(self) -> dict[str, Any]:
+        allow_approving_comments = self.allow_approving_comments
+
+        allow_comments = self.allow_comments
+
+        allow_download = self.allow_download
+
+        allow_setting_approve_status = self.allow_setting_approve_status
+
+        emails = self.emails
+
+        allow_custom_actions = self.allow_custom_actions
+
+        allow_download_proxy = self.allow_download_proxy
+
+        allow_sync: bool | None | Unset
+        if isinstance(self.allow_sync, Unset):
+            allow_sync = UNSET
+        else:
+            allow_sync = self.allow_sync
+
+        allow_upload = self.allow_upload
+
+        allow_user_search_for_mentions = self.allow_user_search_for_mentions
+
+        allow_view_transcriptions = self.allow_view_transcriptions
+
+        allow_view_versions = self.allow_view_versions
+
+        automatic_approval_share = self.automatic_approval_share
+
+        drm: str | Unset = UNSET
+        if not isinstance(self.drm, Unset):
+            drm = self.drm.value
+
+        expires: str | Unset = UNSET
+        if not isinstance(self.expires, Unset):
+            expires = self.expires.isoformat()
+
+        id = self.id
+
+        is_approval: bool | None | Unset
+        if isinstance(self.is_approval, Unset):
+            is_approval = UNSET
+        else:
+            is_approval = self.is_approval
+
+        message = self.message
+
+        metadata_views: list[str] | None | Unset
+        if isinstance(self.metadata_views, Unset):
+            metadata_views = UNSET
+        elif isinstance(self.metadata_views, list):
+            metadata_views = self.metadata_views
+
+        else:
+            metadata_views = self.metadata_views
+
+        object_id = self.object_id
+
+        object_type = self.object_type
+
+        owner_id = self.owner_id
+
+        password: None | str | Unset
+        if isinstance(self.password, Unset):
+            password = UNSET
+        else:
+            password = self.password
+
+        project_id: None | str | Unset
+        if isinstance(self.project_id, Unset):
+            project_id = UNSET
+        elif isinstance(self.project_id, UUID):
+            project_id = str(self.project_id)
+        else:
+            project_id = self.project_id
+
+        review_experience_public_beta: bool | None | Unset
+        if isinstance(self.review_experience_public_beta, Unset):
+            review_experience_public_beta = UNSET
+        else:
+            review_experience_public_beta = self.review_experience_public_beta
+
+        show_existing_comments: bool | None | Unset
+        if isinstance(self.show_existing_comments, Unset):
+            show_existing_comments = UNSET
+        else:
+            show_existing_comments = self.show_existing_comments
+
+        show_watermark: bool | None | Unset
+        if isinstance(self.show_watermark, Unset):
+            show_watermark = UNSET
+        else:
+            show_watermark = self.show_watermark
+
+        system_domain_id = self.system_domain_id
+
+        title = self.title
+
+        upload_storage_id: None | str | Unset
+        if isinstance(self.upload_storage_id, Unset):
+            upload_storage_id = UNSET
+        elif isinstance(self.upload_storage_id, UUID):
+            upload_storage_id = str(self.upload_storage_id)
+        else:
+            upload_storage_id = self.upload_storage_id
+
+        watermark: str | Unset = UNSET
+        if not isinstance(self.watermark, Unset):
+            watermark = self.watermark.value
+
+        field_dict: dict[str, Any] = {}
+        field_dict.update(self.additional_properties)
+        field_dict.update(
+            {
+                "allow_approving_comments": allow_approving_comments,
+                "allow_comments": allow_comments,
+                "allow_download": allow_download,
+                "allow_setting_approve_status": allow_setting_approve_status,
+                "emails": emails,
+            }
+        )
+        if allow_custom_actions is not UNSET:
+            field_dict["allow_custom_actions"] = allow_custom_actions
+        if allow_download_proxy is not UNSET:
+            field_dict["allow_download_proxy"] = allow_download_proxy
+        if allow_sync is not UNSET:
+            field_dict["allow_sync"] = allow_sync
+        if allow_upload is not UNSET:
+            field_dict["allow_upload"] = allow_upload
+        if allow_user_search_for_mentions is not UNSET:
+            field_dict["allow_user_search_for_mentions"] = (
+                allow_user_search_for_mentions
+            )
+        if allow_view_transcriptions is not UNSET:
+            field_dict["allow_view_transcriptions"] = allow_view_transcriptions
+        if allow_view_versions is not UNSET:
+            field_dict["allow_view_versions"] = allow_view_versions
+        if automatic_approval_share is not UNSET:
+            field_dict["automatic_approval_share"] = automatic_approval_share
+        if drm is not UNSET:
+            field_dict["drm"] = drm
+        if expires is not UNSET:
+            field_dict["expires"] = expires
+        if id is not UNSET:
+            field_dict["id"] = id
+        if is_approval is not UNSET:
+            field_dict["is_approval"] = is_approval
+        if message is not UNSET:
+            field_dict["message"] = message
+        if metadata_views is not UNSET:
+            field_dict["metadata_views"] = metadata_views
+        if object_id is not UNSET:
+            field_dict["object_id"] = object_id
+        if object_type is not UNSET:
+            field_dict["object_type"] = object_type
+        if owner_id is not UNSET:
+            field_dict["owner_id"] = owner_id
+        if password is not UNSET:
+            field_dict["password"] = password
+        if project_id is not UNSET:
+            field_dict["project_id"] = project_id
+        if review_experience_public_beta is not UNSET:
+            field_dict["review_experience_public_beta"] = review_experience_public_beta
+        if show_existing_comments is not UNSET:
+            field_dict["show_existing_comments"] = show_existing_comments
+        if show_watermark is not UNSET:
+            field_dict["show_watermark"] = show_watermark
+        if system_domain_id is not UNSET:
+            field_dict["system_domain_id"] = system_domain_id
+        if title is not UNSET:
+            field_dict["title"] = title
+        if upload_storage_id is not UNSET:
+            field_dict["upload_storage_id"] = upload_storage_id
+        if watermark is not UNSET:
+            field_dict["watermark"] = watermark
+
+        return field_dict
+
+    @classmethod
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
+        allow_approving_comments = d.pop("allow_approving_comments")
+
+        allow_comments = d.pop("allow_comments")
+
+        allow_download = d.pop("allow_download")
+
+        allow_setting_approve_status = d.pop("allow_setting_approve_status")
+
+        emails = cast(list[str], d.pop("emails"))
+
+        allow_custom_actions = d.pop("allow_custom_actions", UNSET)
+
+        allow_download_proxy = d.pop("allow_download_proxy", UNSET)
+
+        def _parse_allow_sync(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        allow_sync = _parse_allow_sync(d.pop("allow_sync", UNSET))
+
+        allow_upload = d.pop("allow_upload", UNSET)
+
+        allow_user_search_for_mentions = d.pop("allow_user_search_for_mentions", UNSET)
+
+        allow_view_transcriptions = d.pop("allow_view_transcriptions", UNSET)
+
+        allow_view_versions = d.pop("allow_view_versions", UNSET)
+
+        automatic_approval_share = d.pop("automatic_approval_share", UNSET)
+
+        _drm = d.pop("drm", UNSET)
+        drm: ShareCreateSchemaDrm | Unset
+        if isinstance(_drm, Unset):
+            drm = UNSET
+        else:
+            drm = ShareCreateSchemaDrm(_drm)
+
+        _expires = d.pop("expires", UNSET)
+        expires: datetime.datetime | Unset
+        if isinstance(_expires, Unset):
+            expires = UNSET
+        else:
+            expires = datetime.datetime.fromisoformat(_expires)
+
+        id = d.pop("id", UNSET)
+
+        def _parse_is_approval(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        is_approval = _parse_is_approval(d.pop("is_approval", UNSET))
+
+        message = d.pop("message", UNSET)
+
+        def _parse_metadata_views(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                metadata_views_type_0 = cast(list[str], data)
+
+                return metadata_views_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        metadata_views = _parse_metadata_views(d.pop("metadata_views", UNSET))
+
+        object_id = d.pop("object_id", UNSET)
+
+        object_type = d.pop("object_type", UNSET)
+
+        owner_id = d.pop("owner_id", UNSET)
+
+        def _parse_password(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        password = _parse_password(d.pop("password", UNSET))
+
+        def _parse_project_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                project_id_type_0 = UUID(data)
+
+                return project_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        project_id = _parse_project_id(d.pop("project_id", UNSET))
+
+        def _parse_review_experience_public_beta(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        review_experience_public_beta = _parse_review_experience_public_beta(
+            d.pop("review_experience_public_beta", UNSET)
+        )
+
+        def _parse_show_existing_comments(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        show_existing_comments = _parse_show_existing_comments(
+            d.pop("show_existing_comments", UNSET)
+        )
+
+        def _parse_show_watermark(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        show_watermark = _parse_show_watermark(d.pop("show_watermark", UNSET))
+
+        system_domain_id = d.pop("system_domain_id", UNSET)
+
+        title = d.pop("title", UNSET)
+
+        def _parse_upload_storage_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                upload_storage_id_type_0 = UUID(data)
+
+                return upload_storage_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        upload_storage_id = _parse_upload_storage_id(d.pop("upload_storage_id", UNSET))
+
+        _watermark = d.pop("watermark", UNSET)
+        watermark: ShareCreateSchemaWatermark | Unset
+        if isinstance(_watermark, Unset):
+            watermark = UNSET
+        else:
+            watermark = ShareCreateSchemaWatermark(_watermark)
+
+        share_create_schema = cls(
+            allow_approving_comments=allow_approving_comments,
+            allow_comments=allow_comments,
+            allow_download=allow_download,
+            allow_setting_approve_status=allow_setting_approve_status,
+            emails=emails,
+            allow_custom_actions=allow_custom_actions,
+            allow_download_proxy=allow_download_proxy,
+            allow_sync=allow_sync,
+            allow_upload=allow_upload,
+            allow_user_search_for_mentions=allow_user_search_for_mentions,
+            allow_view_transcriptions=allow_view_transcriptions,
+            allow_view_versions=allow_view_versions,
+            automatic_approval_share=automatic_approval_share,
+            drm=drm,
+            expires=expires,
+            id=id,
+            is_approval=is_approval,
+            message=message,
+            metadata_views=metadata_views,
+            object_id=object_id,
+            object_type=object_type,
+            owner_id=owner_id,
+            password=password,
+            project_id=project_id,
+            review_experience_public_beta=review_experience_public_beta,
+            show_existing_comments=show_existing_comments,
+            show_watermark=show_watermark,
+            system_domain_id=system_domain_id,
+            title=title,
+            upload_storage_id=upload_storage_id,
+            watermark=watermark,
+        )
+
+        share_create_schema.additional_properties = d
+        return share_create_schema
+
+    @property
+    def additional_keys(self) -> list[str]:
+        return list(self.additional_properties.keys())
+
+    def __getitem__(self, key: str) -> Any:
+        return self.additional_properties[key]
+
+    def __setitem__(self, key: str, value: Any) -> None:
+        self.additional_properties[key] = value
+
+    def __delitem__(self, key: str) -> None:
+        del self.additional_properties[key]
+
+    def __contains__(self, key: str) -> bool:
+        return key in self.additional_properties

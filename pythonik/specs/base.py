@@ -48,7 +48,6 @@ class Spec:
         """
         # try to populate the model
         if response.ok:
-            print(response.text)
             if model:
                 data = response.json()
                 model_instance = model.model_validate(data)
@@ -68,7 +67,6 @@ class Spec:
         """
 
         url = self.gen_url(path)
-        print(url)
         request = Request(
             method=method, url=url, headers=self.session.headers, **kwargs
         )

@@ -16,15 +16,12 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.9"
-
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
+          python-version: "3.11"
 
       - name: Check versions match
         run: |
-          VERSION_TOML=$(poetry version -s)
-          VERSION_INIT=$(python -c "import pythonik; print(pythonik.__version__)")
+          VERSION_TOML=$(python -c "import tomllib; print(tomllib.load(open('pyproject.toml','rb'))['project']['version'])")
+          VERSION_INIT=$(python -c "import re; print(re.search(r'__version__ = \"(.+?)\"', open('pythonik/__init__.py').read()).group(1))")
           if [ "$VERSION_TOML" != "$VERSION_INIT" ]; then
             echo "Version mismatch: pyproject.toml ($VERSION_TOML) != __init__.py ($VERSION_INIT)"
             exit 1

@@ -1,0 +1,393 @@
+from __future__ import annotations
+
+import datetime
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
+from uuid import UUID
+
+from attrs import define as _attrs_define
+from attrs import field as _attrs_field
+
+from ..models.storage_file_update_schema_status import StorageFileUpdateSchemaStatus
+from ..models.storage_file_update_schema_template_engine import (
+    StorageFileUpdateSchemaTemplateEngine,
+)
+from ..models.storage_file_update_schema_type import StorageFileUpdateSchemaType
+from ..types import UNSET, Unset
+
+T = TypeVar("T", bound="StorageFileUpdateSchema")
+
+
+@_attrs_define
+class StorageFileUpdateSchema:
+    """
+    Attributes:
+        directory_path (str):
+        name (str):
+        asset_id (UUID | Unset):
+        checksum (None | str | Unset):
+        date_created (datetime.datetime | Unset):
+        date_modified (datetime.datetime | Unset):
+        file_date_created (datetime.datetime | Unset):
+        file_date_modified (datetime.datetime | Unset):
+        file_set_id (UUID | Unset):
+        format_id (UUID | Unset):
+        id (UUID | Unset):
+        original_name (str | Unset):
+        parent_id (None | Unset | UUID):
+        size (int | Unset):
+        status (StorageFileUpdateSchemaStatus | Unset):
+        storage_id (UUID | Unset):
+        template (str | Unset):
+        template_engine (StorageFileUpdateSchemaTemplateEngine | Unset):
+        type_ (StorageFileUpdateSchemaType | Unset):
+        user_id (None | Unset | UUID):
+        version_id (UUID | Unset):
+    """
+
+    directory_path: str
+    name: str
+    asset_id: UUID | Unset = UNSET
+    checksum: None | str | Unset = UNSET
+    date_created: datetime.datetime | Unset = UNSET
+    date_modified: datetime.datetime | Unset = UNSET
+    file_date_created: datetime.datetime | Unset = UNSET
+    file_date_modified: datetime.datetime | Unset = UNSET
+    file_set_id: UUID | Unset = UNSET
+    format_id: UUID | Unset = UNSET
+    id: UUID | Unset = UNSET
+    original_name: str | Unset = UNSET
+    parent_id: None | Unset | UUID = UNSET
+    size: int | Unset = UNSET
+    status: StorageFileUpdateSchemaStatus | Unset = UNSET
+    storage_id: UUID | Unset = UNSET
+    template: str | Unset = UNSET
+    template_engine: StorageFileUpdateSchemaTemplateEngine | Unset = UNSET
+    type_: StorageFileUpdateSchemaType | Unset = UNSET
+    user_id: None | Unset | UUID = UNSET
+    version_id: UUID | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+    def to_dict(self) -> dict[str, Any]:
+        directory_path = self.directory_path
+
+        name = self.name
+
+        asset_id: str | Unset = UNSET
+        if not isinstance(self.asset_id, Unset):
+            asset_id = str(self.asset_id)
+
+        checksum: None | str | Unset
+        if isinstance(self.checksum, Unset):
+            checksum = UNSET
+        else:
+            checksum = self.checksum
+
+        date_created: str | Unset = UNSET
+        if not isinstance(self.date_created, Unset):
+            date_created = self.date_created.isoformat()
+
+        date_modified: str | Unset = UNSET
+        if not isinstance(self.date_modified, Unset):
+            date_modified = self.date_modified.isoformat()
+
+        file_date_created: str | Unset = UNSET
+        if not isinstance(self.file_date_created, Unset):
+            file_date_created = self.file_date_created.isoformat()
+
+        file_date_modified: str | Unset = UNSET
+        if not isinstance(self.file_date_modified, Unset):
+            file_date_modified = self.file_date_modified.isoformat()
+
+        file_set_id: str | Unset = UNSET
+        if not isinstance(self.file_set_id, Unset):
+            file_set_id = str(self.file_set_id)
+
+        format_id: str | Unset = UNSET
+        if not isinstance(self.format_id, Unset):
+            format_id = str(self.format_id)
+
+        id: str | Unset = UNSET
+        if not isinstance(self.id, Unset):
+            id = str(self.id)
+
+        original_name = self.original_name
+
+        parent_id: None | str | Unset
+        if isinstance(self.parent_id, Unset):
+            parent_id = UNSET
+        elif isinstance(self.parent_id, UUID):
+            parent_id = str(self.parent_id)
+        else:
+            parent_id = self.parent_id
+
+        size = self.size
+
+        status: str | Unset = UNSET
+        if not isinstance(self.status, Unset):
+            status = self.status.value
+
+        storage_id: str | Unset = UNSET
+        if not isinstance(self.storage_id, Unset):
+            storage_id = str(self.storage_id)
+
+        template = self.template
+
+        template_engine: str | Unset = UNSET
+        if not isinstance(self.template_engine, Unset):
+            template_engine = self.template_engine.value
+
+        type_: str | Unset = UNSET
+        if not isinstance(self.type_, Unset):
+            type_ = self.type_.value
+
+        user_id: None | str | Unset
+        if isinstance(self.user_id, Unset):
+            user_id = UNSET
+        elif isinstance(self.user_id, UUID):
+            user_id = str(self.user_id)
+        else:
+            user_id = self.user_id
+
+        version_id: str | Unset = UNSET
+        if not isinstance(self.version_id, Unset):
+            version_id = str(self.version_id)
+
+        field_dict: dict[str, Any] = {}
+        field_dict.update(self.additional_properties)
+        field_dict.update(
+            {
+                "directory_path": directory_path,
+                "name": name,
+            }
+        )
+        if asset_id is not UNSET:
+            field_dict["asset_id"] = asset_id
+        if checksum is not UNSET:
+            field_dict["checksum"] = checksum
+        if date_created is not UNSET:
+            field_dict["date_created"] = date_created
+        if date_modified is not UNSET:
+            field_dict["date_modified"] = date_modified
+        if file_date_created is not UNSET:
+            field_dict["file_date_created"] = file_date_created
+        if file_date_modified is not UNSET:
+            field_dict["file_date_modified"] = file_date_modified
+        if file_set_id is not UNSET:
+            field_dict["file_set_id"] = file_set_id
+        if format_id is not UNSET:
+            field_dict["format_id"] = format_id
+        if id is not UNSET:
+            field_dict["id"] = id
+        if original_name is not UNSET:
+            field_dict["original_name"] = original_name
+        if parent_id is not UNSET:
+            field_dict["parent_id"] = parent_id
+        if size is not UNSET:
+            field_dict["size"] = size
+        if status is not UNSET:
+            field_dict["status"] = status
+        if storage_id is not UNSET:
+            field_dict["storage_id"] = storage_id
+        if template is not UNSET:
+            field_dict["template"] = template
+        if template_engine is not UNSET:
+            field_dict["template_engine"] = template_engine
+        if type_ is not UNSET:
+            field_dict["type"] = type_
+        if user_id is not UNSET:
+            field_dict["user_id"] = user_id
+        if version_id is not UNSET:
+            field_dict["version_id"] = version_id
+
+        return field_dict
+
+    @classmethod
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
+        directory_path = d.pop("directory_path")
+
+        name = d.pop("name")
+
+        _asset_id = d.pop("asset_id", UNSET)
+        asset_id: UUID | Unset
+        if isinstance(_asset_id, Unset):
+            asset_id = UNSET
+        else:
+            asset_id = UUID(_asset_id)
+
+        def _parse_checksum(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        checksum = _parse_checksum(d.pop("checksum", UNSET))
+
+        _date_created = d.pop("date_created", UNSET)
+        date_created: datetime.datetime | Unset
+        if isinstance(_date_created, Unset):
+            date_created = UNSET
+        else:
+            date_created = datetime.datetime.fromisoformat(_date_created)
+
+        _date_modified = d.pop("date_modified", UNSET)
+        date_modified: datetime.datetime | Unset
+        if isinstance(_date_modified, Unset):
+            date_modified = UNSET
+        else:
+            date_modified = datetime.datetime.fromisoformat(_date_modified)
+
+        _file_date_created = d.pop("file_date_created", UNSET)
+        file_date_created: datetime.datetime | Unset
+        if isinstance(_file_date_created, Unset):
+            file_date_created = UNSET
+        else:
+            file_date_created = datetime.datetime.fromisoformat(_file_date_created)
+
+        _file_date_modified = d.pop("file_date_modified", UNSET)
+        file_date_modified: datetime.datetime | Unset
+        if isinstance(_file_date_modified, Unset):
+            file_date_modified = UNSET
+        else:
+            file_date_modified = datetime.datetime.fromisoformat(_file_date_modified)
+
+        _file_set_id = d.pop("file_set_id", UNSET)
+        file_set_id: UUID | Unset
+        if isinstance(_file_set_id, Unset):
+            file_set_id = UNSET
+        else:
+            file_set_id = UUID(_file_set_id)
+
+        _format_id = d.pop("format_id", UNSET)
+        format_id: UUID | Unset
+        if isinstance(_format_id, Unset):
+            format_id = UNSET
+        else:
+            format_id = UUID(_format_id)
+
+        _id = d.pop("id", UNSET)
+        id: UUID | Unset
+        if isinstance(_id, Unset):
+            id = UNSET
+        else:
+            id = UUID(_id)
+
+        original_name = d.pop("original_name", UNSET)
+
+        def _parse_parent_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                parent_id_type_0 = UUID(data)
+
+                return parent_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        parent_id = _parse_parent_id(d.pop("parent_id", UNSET))
+
+        size = d.pop("size", UNSET)
+
+        _status = d.pop("status", UNSET)
+        status: StorageFileUpdateSchemaStatus | Unset
+        if isinstance(_status, Unset):
+            status = UNSET
+        else:
+            status = StorageFileUpdateSchemaStatus(_status)
+
+        _storage_id = d.pop("storage_id", UNSET)
+        storage_id: UUID | Unset
+        if isinstance(_storage_id, Unset):
+            storage_id = UNSET
+        else:
+            storage_id = UUID(_storage_id)
+
+        template = d.pop("template", UNSET)
+
+        _template_engine = d.pop("template_engine", UNSET)
+        template_engine: StorageFileUpdateSchemaTemplateEngine | Unset
+        if isinstance(_template_engine, Unset):
+            template_engine = UNSET
+        else:
+            template_engine = StorageFileUpdateSchemaTemplateEngine(_template_engine)
+
+        _type_ = d.pop("type", UNSET)
+        type_: StorageFileUpdateSchemaType | Unset
+        if isinstance(_type_, Unset):
+            type_ = UNSET
+        else:
+            type_ = StorageFileUpdateSchemaType(_type_)
+
+        def _parse_user_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                user_id_type_0 = UUID(data)
+
+                return user_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        user_id = _parse_user_id(d.pop("user_id", UNSET))
+
+        _version_id = d.pop("version_id", UNSET)
+        version_id: UUID | Unset
+        if isinstance(_version_id, Unset):
+            version_id = UNSET
+        else:
+            version_id = UUID(_version_id)
+
+        storage_file_update_schema = cls(
+            directory_path=directory_path,
+            name=name,
+            asset_id=asset_id,
+            checksum=checksum,
+            date_created=date_created,
+            date_modified=date_modified,
+            file_date_created=file_date_created,
+            file_date_modified=file_date_modified,
+            file_set_id=file_set_id,
+            format_id=format_id,
+            id=id,
+            original_name=original_name,
+            parent_id=parent_id,
+            size=size,
+            status=status,
+            storage_id=storage_id,
+            template=template,
+            template_engine=template_engine,
+            type_=type_,
+            user_id=user_id,
+            version_id=version_id,
+        )
+
+        storage_file_update_schema.additional_properties = d
+        return storage_file_update_schema
+
+    @property
+    def additional_keys(self) -> list[str]:
+        return list(self.additional_properties.keys())
+
+    def __getitem__(self, key: str) -> Any:
+        return self.additional_properties[key]
+
+    def __setitem__(self, key: str, value: Any) -> None:
+        self.additional_properties[key] = value
+
+    def __delitem__(self, key: str) -> None:
+        del self.additional_properties[key]
+
+    def __contains__(self, key: str) -> bool:
+        return key in self.additional_properties

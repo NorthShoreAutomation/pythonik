@@ -1,172 +1,60 @@
-# Pythonik
+# pythonik
 
-Pythonik is a comprehensive Python SDK designed for seamless interaction with
-the Iconik API. It offers a user-friendly interface to access various
-functionalities of Iconik, making it easier for developers to integrate and
-manage Iconik assets and metadata within their applications.
+A complete, generated Python SDK for the [iconik](https://app.iconik.io) media management API.
 
-## Features
+- **15 services**, one subpackage each: `pythonik.acls`, `pythonik.assets`, `pythonik.auth`, `pythonik.automations`, `pythonik.files`, `pythonik.jobs`, `pythonik.metadata`, `pythonik.ml`, `pythonik.notifications`, `pythonik.search`, `pythonik.settings`, `pythonik.stats`, `pythonik.transcode`, `pythonik.users`, `pythonik.usersnotifications`
+- **Every operation in every service** — generated from iconik's published OpenAPI specs with [openapi-python-client](https://github.com/openapi-generators/openapi-python-client). Fully typed (attrs models, `py.typed`), sync and async for every endpoint (httpx).
+- **2.0 is a rewrite with a 1.x compatibility layer**: 1.x was hand-written and covered a subset of the API; 2.0 is generated and covers the complete API surface (953 endpoints). The full 1.x interface (`pythonik.client.PythonikClient`, `pythonik.specs.*`, `pythonik.models.*`) still ships and works unchanged — see [COMPAT.md](COMPAT.md) for the short list of deviations.
 
-- Easy-to-use methods for accessing Iconik assets and metadata.
-- Robust handling of API authentication and requests.
-- Configurable timeout settings for API interactions.
+## Install
 
-## Installation
-
-You can install Pythonik directly from PyPI:
-
-```bash
-pip install nsa-pythonik
+```sh
+pip install pythonik
 ```
 
-If you're using Poetry:
-```bash
-poetry add nsa-pythonik
-```
+Requires Python >= 3.10.
 
 ## Usage
 
-### Get an Asset from Iconik
-
-To retrieve an asset from Iconik, use the following code:
+Set your `App-ID` / `Auth-Token` credentials **once, on the client**; every call through that client is authenticated. Each service has its own base URL, `https://app.iconik.io/API/<service>`:
 
 ```python
-from pythonik.client import PythonikClient
-from pythonik.models.assets.assets import Asset
-from pythonik.models.base import Response
+import os
 
-app_id = secrets.get_secret("app_id")
-auth_token = secrets.get_secret("auth_token")
-asset_id = secrets.get_secret("asset_id")
+from pythonik.assets import Client
+from pythonik.assets.api.assets import get_assets_by_asset_id
 
-client: PythonikClient = PythonikClient(app_id=app_id, auth_token=auth_token, timeout=10)
-
-
-res: Response = client.assets().get(asset_id)
-data: Asset = res.data
-data_as_dict = data.model_dump()
-data_as_json = data.model_dump_json()
-
-```
-
-### Get Metadata from a View
-
-To get metadata for an asset from a specific view, use the following code:
-
-```python
-from pythonik.client import PythonikClient
-from pythonik.models.assets.metadata import ViewMetadata
-from pythonik.models.base import Response
-
-app_id = secrets.get_secret("app_id")
-auth_token = secrets.get_secret("auth_token")
-
-asset_id = 'a31sd2asdf123jasdfq134'
-view_id = 'a12sl34s56asdf123jhas2'
-
-client: PythonikClient = PythonikClient(app_id=app_id, auth_token=auth_token, timeout=5)
-
-default_model = ViewMetadata()
-# intercept_404 intercepts 404 errors if no metadata is found in view and returns a ViewMetadata model you provide so you can handle the error gracefully
-res: Response = client.metadata().get_asset_metadata(asset_id, view_id, intercept_404=default_model)
-data: ViewMetadata = res.data
-data_as_dict = data.model_dump()
-data_as_json = data.model_dump_json()
-```
-
-### Connecting to Different Iconik Environments
-
-By default, Pythonik connects to the standard Iconik environment (`https://app.iconik.io`). To connect to a different Iconik environment, you can specify the base URL when initializing the client:
-
-```python
-from pythonik.client import PythonikClient
-
-client = PythonikClient(
-    app_id=app_id,
-    auth_token=auth_token,
-    timeout=10,
-    base_url="https://your-custom-iconik-instance.com"
+client = Client(
+    base_url="https://app.iconik.io/API/assets",
+    headers={
+        "App-ID": os.environ["ICONIK_APP_ID"],
+        "Auth-Token": os.environ["ICONIK_AUTH_TOKEN"],
+    },
 )
+
+asset = get_assets_by_asset_id.sync(asset_id="some-asset-uuid", client=client)
+print(asset)
 ```
 
-This is useful when working with:
-- AWS Iconik deployments
-- Custom Iconik deployments (assuming this is possible)
+Every endpoint module offers `sync`, `sync_detailed`, `asyncio`, and `asyncio_detailed`. The `*_detailed` variants return a `Response` with status code, headers, and the parsed body.
 
-Checkout the [API reference](./docs/API_REFERENCE.md) and [advanced usage guide](./docs/ADVANCED_USAGE.md) to see all you can do with Pythonik.
+API function paths mirror the REST API: `GET /v1/assets/{asset_id}/versions/` on the assets service is `pythonik.assets.api.assets.get_assets_by_asset_id_versions`. If you know the endpoint, you know the function.
 
-## Publishing to PyPI (for maintainers) 
+All subpackages share one client implementation (`pythonik._base`) — a `Client` built for one service works for another by swapping `base_url`, and cross-service `isinstance` checks on errors/types behave as expected.
 
-To publish a new version to PyPI please see the [release how-to guide](./docs/RELEASE_HOW_TO.md).
+## Upgrading from 1.x
 
+Nothing to change: 2.0 vendors the 1.x implementation, so existing code keeps working —
 
-## Using Poetry
+```python
+from pythonik.client import PythonikClient
 
-This project uses Poetry for dependency management and packaging. Below are instructions on how to work with Poetry, create a Poetry shell, and run tests using pytest.
-
-### Setting Up Poetry
-
-First, install Poetry if you haven't already:
-
-### Creating a Poetry Shell
-
-To create and activate a Poetry shell, which sets up an isolated virtual environment for your project:
-
-1. Navigate to your project directory.
-2. Run the following command:
-
-   ```sh
-   poetry shell
-   ```
-
-This command will activate a virtual environment managed by Poetry. You can now run Python commands and scripts within this environment.
-
-### Install all dependencies including pytest
-
-```sh
-    poetry install
+client = PythonikClient(app_id=app_id, auth_token=auth_token, timeout=10)
+asset = client.assets().get(asset_id)   # pythonik.models.base.Response(.response, .data)
 ```
 
-### Running Tests with pytest
+The 1.x test suite runs against this package on every regeneration. The compat layer is frozen at the 1.x surface (~100 methods across 6 spec classes); use the generated subpackages for everything 1.x didn't cover. Deviations from 1.x (debug prints removed, loguru dropped): [COMPAT.md](COMPAT.md).
 
-To run tests using pytest, follow these steps:
+## How it's built
 
-1. Inside the Poetry shell, run the tests with the following command:
-
-   ```sh
-   pytest
-   ```
-
-This will discover and execute all the tests in your project.
-
----
-
-By following these steps, you can efficiently manage dependencies, create a virtual environment, and run tests in your Python project using Poetry.
-
-## Support
-
-For support, please contact NSA.
-
-## Roadmap
-
-Details about upcoming features and enhancements will be added here.
-
-## Contributing
-
-Please see the [contribution guide](./CONTRIBUTING.md) for information on how to contribute.
-
-## Authors and Acknowledgment
-
-This SDK is developed and maintained by North Shore Automation developers,
-including Brant Goddard, Prince Duepa, Giovann Wah, and Brandon Dedolph.
-
-## Contributors
-
-## License
-
-License information will be available soon.
-
-## Project Status
-
-Current project status and updates will be posted here.
-
+**This package is generated — don't edit it by hand.** It is emitted by [NorthShoreAutomation/iconik-sdk-generator](https://github.com/NorthShoreAutomation/iconik-sdk-generator), which fetches iconik's live OpenAPI specs, applies lossless overlay fixes (deterministic operationIds, client-level auth via injected security schemes, enum/oneOf/content-type repairs — all bigint-safe), runs openapi-python-client per service, and merges the 15 clients into this one package. The full pipeline and the iconik spec quirks knowledge base live in that repo.

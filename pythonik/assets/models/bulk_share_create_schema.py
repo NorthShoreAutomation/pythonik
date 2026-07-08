@@ -2,18 +2,25 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.bulk_share_create_schema_drm import BulkShareCreateSchemaDrm
-from ..models.bulk_share_create_schema_object_type import (
-    BulkShareCreateSchemaObjectType,
-)
-from ..models.bulk_share_create_schema_watermark import BulkShareCreateSchemaWatermark
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.bulk_share_create_schema_drm_type_1 import (
+        BulkShareCreateSchemaDrmType1,
+    )
+    from ..models.bulk_share_create_schema_object_type_type_1 import (
+        BulkShareCreateSchemaObjectTypeType1,
+    )
+    from ..models.bulk_share_create_schema_watermark_type_1 import (
+        BulkShareCreateSchemaWatermarkType1,
+    )
+
 
 T = TypeVar("T", bound="BulkShareCreateSchema")
 
@@ -28,31 +35,31 @@ class BulkShareCreateSchema:
         allow_setting_approve_status (bool):
         object_ids (list[UUID]):
         title (str):
-        allow_custom_actions (bool | Unset):
-        allow_download_proxy (bool | Unset):
+        allow_custom_actions (bool | None | Unset):
+        allow_download_proxy (bool | None | Unset):
         allow_sync (bool | None | Unset):
-        allow_upload (bool | Unset):
-        allow_user_search_for_mentions (bool | Unset):
-        allow_view_transcriptions (bool | Unset):
-        allow_view_versions (bool | Unset):
-        automatic_approval_share (bool | Unset):
-        drm (BulkShareCreateSchemaDrm | Unset): DRM settings for the share
-        emails (list[str] | Unset):
-        expires (datetime.datetime | Unset):
-        id (str | Unset):
+        allow_upload (bool | None | Unset):
+        allow_user_search_for_mentions (bool | None | Unset):
+        allow_view_transcriptions (bool | None | Unset):
+        allow_view_versions (bool | None | Unset):
+        automatic_approval_share (bool | None | Unset):
+        drm (BulkShareCreateSchemaDrmType1 | None | Unset):
+        emails (list[str] | None | Unset):
+        expires (datetime.datetime | None | Unset):
+        id (None | str | Unset):
         is_approval (bool | None | Unset):
-        message (str | Unset):
+        message (None | str | Unset):
         metadata_views (list[str] | None | Unset):
-        object_type (BulkShareCreateSchemaObjectType | Unset):
-        owner_id (str | Unset):
-        password (str | Unset):
+        object_type (BulkShareCreateSchemaObjectTypeType1 | None | Unset):
+        owner_id (None | str | Unset):
+        password (None | str | Unset):
         review_experience_public_beta (bool | None | Unset):
-        share_by_url (bool | Unset):
+        share_by_url (bool | None | Unset):
         show_existing_comments (bool | None | Unset):
         show_watermark (bool | None | Unset):
-        system_domain_id (str | Unset):
+        system_domain_id (None | str | Unset):
         upload_storage_id (None | Unset | UUID):
-        watermark (BulkShareCreateSchemaWatermark | Unset): Watermark settings for the share
+        watermark (BulkShareCreateSchemaWatermarkType1 | None | Unset):
     """
 
     allow_approving_comments: bool
@@ -61,34 +68,44 @@ class BulkShareCreateSchema:
     allow_setting_approve_status: bool
     object_ids: list[UUID]
     title: str
-    allow_custom_actions: bool | Unset = UNSET
-    allow_download_proxy: bool | Unset = UNSET
+    allow_custom_actions: bool | None | Unset = UNSET
+    allow_download_proxy: bool | None | Unset = UNSET
     allow_sync: bool | None | Unset = UNSET
-    allow_upload: bool | Unset = UNSET
-    allow_user_search_for_mentions: bool | Unset = UNSET
-    allow_view_transcriptions: bool | Unset = UNSET
-    allow_view_versions: bool | Unset = UNSET
-    automatic_approval_share: bool | Unset = UNSET
-    drm: BulkShareCreateSchemaDrm | Unset = UNSET
-    emails: list[str] | Unset = UNSET
-    expires: datetime.datetime | Unset = UNSET
-    id: str | Unset = UNSET
+    allow_upload: bool | None | Unset = UNSET
+    allow_user_search_for_mentions: bool | None | Unset = UNSET
+    allow_view_transcriptions: bool | None | Unset = UNSET
+    allow_view_versions: bool | None | Unset = UNSET
+    automatic_approval_share: bool | None | Unset = UNSET
+    drm: BulkShareCreateSchemaDrmType1 | None | Unset = UNSET
+    emails: list[str] | None | Unset = UNSET
+    expires: datetime.datetime | None | Unset = UNSET
+    id: None | str | Unset = UNSET
     is_approval: bool | None | Unset = UNSET
-    message: str | Unset = UNSET
+    message: None | str | Unset = UNSET
     metadata_views: list[str] | None | Unset = UNSET
-    object_type: BulkShareCreateSchemaObjectType | Unset = UNSET
-    owner_id: str | Unset = UNSET
-    password: str | Unset = UNSET
+    object_type: BulkShareCreateSchemaObjectTypeType1 | None | Unset = UNSET
+    owner_id: None | str | Unset = UNSET
+    password: None | str | Unset = UNSET
     review_experience_public_beta: bool | None | Unset = UNSET
-    share_by_url: bool | Unset = UNSET
+    share_by_url: bool | None | Unset = UNSET
     show_existing_comments: bool | None | Unset = UNSET
     show_watermark: bool | None | Unset = UNSET
-    system_domain_id: str | Unset = UNSET
+    system_domain_id: None | str | Unset = UNSET
     upload_storage_id: None | Unset | UUID = UNSET
-    watermark: BulkShareCreateSchemaWatermark | Unset = UNSET
+    watermark: BulkShareCreateSchemaWatermarkType1 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.bulk_share_create_schema_drm_type_1 import (
+            BulkShareCreateSchemaDrmType1,
+        )
+        from ..models.bulk_share_create_schema_object_type_type_1 import (
+            BulkShareCreateSchemaObjectTypeType1,
+        )
+        from ..models.bulk_share_create_schema_watermark_type_1 import (
+            BulkShareCreateSchemaWatermarkType1,
+        )
+
         allow_approving_comments = self.allow_approving_comments
 
         allow_comments = self.allow_comments
@@ -104,9 +121,17 @@ class BulkShareCreateSchema:
 
         title = self.title
 
-        allow_custom_actions = self.allow_custom_actions
+        allow_custom_actions: bool | None | Unset
+        if isinstance(self.allow_custom_actions, Unset):
+            allow_custom_actions = UNSET
+        else:
+            allow_custom_actions = self.allow_custom_actions
 
-        allow_download_proxy = self.allow_download_proxy
+        allow_download_proxy: bool | None | Unset
+        if isinstance(self.allow_download_proxy, Unset):
+            allow_download_proxy = UNSET
+        else:
+            allow_download_proxy = self.allow_download_proxy
 
         allow_sync: bool | None | Unset
         if isinstance(self.allow_sync, Unset):
@@ -114,29 +139,66 @@ class BulkShareCreateSchema:
         else:
             allow_sync = self.allow_sync
 
-        allow_upload = self.allow_upload
+        allow_upload: bool | None | Unset
+        if isinstance(self.allow_upload, Unset):
+            allow_upload = UNSET
+        else:
+            allow_upload = self.allow_upload
 
-        allow_user_search_for_mentions = self.allow_user_search_for_mentions
+        allow_user_search_for_mentions: bool | None | Unset
+        if isinstance(self.allow_user_search_for_mentions, Unset):
+            allow_user_search_for_mentions = UNSET
+        else:
+            allow_user_search_for_mentions = self.allow_user_search_for_mentions
 
-        allow_view_transcriptions = self.allow_view_transcriptions
+        allow_view_transcriptions: bool | None | Unset
+        if isinstance(self.allow_view_transcriptions, Unset):
+            allow_view_transcriptions = UNSET
+        else:
+            allow_view_transcriptions = self.allow_view_transcriptions
 
-        allow_view_versions = self.allow_view_versions
+        allow_view_versions: bool | None | Unset
+        if isinstance(self.allow_view_versions, Unset):
+            allow_view_versions = UNSET
+        else:
+            allow_view_versions = self.allow_view_versions
 
-        automatic_approval_share = self.automatic_approval_share
+        automatic_approval_share: bool | None | Unset
+        if isinstance(self.automatic_approval_share, Unset):
+            automatic_approval_share = UNSET
+        else:
+            automatic_approval_share = self.automatic_approval_share
 
-        drm: str | Unset = UNSET
-        if not isinstance(self.drm, Unset):
-            drm = self.drm.value
+        drm: dict[str, Any] | None | Unset
+        if isinstance(self.drm, Unset):
+            drm = UNSET
+        elif isinstance(self.drm, BulkShareCreateSchemaDrmType1):
+            drm = self.drm.to_dict()
+        else:
+            drm = self.drm
 
-        emails: list[str] | Unset = UNSET
-        if not isinstance(self.emails, Unset):
+        emails: list[str] | None | Unset
+        if isinstance(self.emails, Unset):
+            emails = UNSET
+        elif isinstance(self.emails, list):
             emails = self.emails
 
-        expires: str | Unset = UNSET
-        if not isinstance(self.expires, Unset):
-            expires = self.expires.isoformat()
+        else:
+            emails = self.emails
 
-        id = self.id
+        expires: None | str | Unset
+        if isinstance(self.expires, Unset):
+            expires = UNSET
+        elif isinstance(self.expires, datetime.datetime):
+            expires = self.expires.isoformat()
+        else:
+            expires = self.expires
+
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        else:
+            id = self.id
 
         is_approval: bool | None | Unset
         if isinstance(self.is_approval, Unset):
@@ -144,7 +206,11 @@ class BulkShareCreateSchema:
         else:
             is_approval = self.is_approval
 
-        message = self.message
+        message: None | str | Unset
+        if isinstance(self.message, Unset):
+            message = UNSET
+        else:
+            message = self.message
 
         metadata_views: list[str] | None | Unset
         if isinstance(self.metadata_views, Unset):
@@ -155,13 +221,25 @@ class BulkShareCreateSchema:
         else:
             metadata_views = self.metadata_views
 
-        object_type: str | Unset = UNSET
-        if not isinstance(self.object_type, Unset):
-            object_type = self.object_type.value
+        object_type: dict[str, Any] | None | Unset
+        if isinstance(self.object_type, Unset):
+            object_type = UNSET
+        elif isinstance(self.object_type, BulkShareCreateSchemaObjectTypeType1):
+            object_type = self.object_type.to_dict()
+        else:
+            object_type = self.object_type
 
-        owner_id = self.owner_id
+        owner_id: None | str | Unset
+        if isinstance(self.owner_id, Unset):
+            owner_id = UNSET
+        else:
+            owner_id = self.owner_id
 
-        password = self.password
+        password: None | str | Unset
+        if isinstance(self.password, Unset):
+            password = UNSET
+        else:
+            password = self.password
 
         review_experience_public_beta: bool | None | Unset
         if isinstance(self.review_experience_public_beta, Unset):
@@ -169,7 +247,11 @@ class BulkShareCreateSchema:
         else:
             review_experience_public_beta = self.review_experience_public_beta
 
-        share_by_url = self.share_by_url
+        share_by_url: bool | None | Unset
+        if isinstance(self.share_by_url, Unset):
+            share_by_url = UNSET
+        else:
+            share_by_url = self.share_by_url
 
         show_existing_comments: bool | None | Unset
         if isinstance(self.show_existing_comments, Unset):
@@ -183,7 +265,11 @@ class BulkShareCreateSchema:
         else:
             show_watermark = self.show_watermark
 
-        system_domain_id = self.system_domain_id
+        system_domain_id: None | str | Unset
+        if isinstance(self.system_domain_id, Unset):
+            system_domain_id = UNSET
+        else:
+            system_domain_id = self.system_domain_id
 
         upload_storage_id: None | str | Unset
         if isinstance(self.upload_storage_id, Unset):
@@ -193,9 +279,13 @@ class BulkShareCreateSchema:
         else:
             upload_storage_id = self.upload_storage_id
 
-        watermark: str | Unset = UNSET
-        if not isinstance(self.watermark, Unset):
-            watermark = self.watermark.value
+        watermark: dict[str, Any] | None | Unset
+        if isinstance(self.watermark, Unset):
+            watermark = UNSET
+        elif isinstance(self.watermark, BulkShareCreateSchemaWatermarkType1):
+            watermark = self.watermark.to_dict()
+        else:
+            watermark = self.watermark
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -266,6 +356,16 @@ class BulkShareCreateSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.bulk_share_create_schema_drm_type_1 import (
+            BulkShareCreateSchemaDrmType1,
+        )
+        from ..models.bulk_share_create_schema_object_type_type_1 import (
+            BulkShareCreateSchemaObjectTypeType1,
+        )
+        from ..models.bulk_share_create_schema_watermark_type_1 import (
+            BulkShareCreateSchemaWatermarkType1,
+        )
+
         d = dict(src_dict)
         allow_approving_comments = d.pop("allow_approving_comments")
 
@@ -284,9 +384,27 @@ class BulkShareCreateSchema:
 
         title = d.pop("title")
 
-        allow_custom_actions = d.pop("allow_custom_actions", UNSET)
+        def _parse_allow_custom_actions(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        allow_download_proxy = d.pop("allow_download_proxy", UNSET)
+        allow_custom_actions = _parse_allow_custom_actions(
+            d.pop("allow_custom_actions", UNSET)
+        )
+
+        def _parse_allow_download_proxy(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        allow_download_proxy = _parse_allow_download_proxy(
+            d.pop("allow_download_proxy", UNSET)
+        )
 
         def _parse_allow_sync(data: object) -> bool | None | Unset:
             if data is None:
@@ -297,33 +415,118 @@ class BulkShareCreateSchema:
 
         allow_sync = _parse_allow_sync(d.pop("allow_sync", UNSET))
 
-        allow_upload = d.pop("allow_upload", UNSET)
+        def _parse_allow_upload(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        allow_user_search_for_mentions = d.pop("allow_user_search_for_mentions", UNSET)
+        allow_upload = _parse_allow_upload(d.pop("allow_upload", UNSET))
 
-        allow_view_transcriptions = d.pop("allow_view_transcriptions", UNSET)
+        def _parse_allow_user_search_for_mentions(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        allow_view_versions = d.pop("allow_view_versions", UNSET)
+        allow_user_search_for_mentions = _parse_allow_user_search_for_mentions(
+            d.pop("allow_user_search_for_mentions", UNSET)
+        )
 
-        automatic_approval_share = d.pop("automatic_approval_share", UNSET)
+        def _parse_allow_view_transcriptions(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        _drm = d.pop("drm", UNSET)
-        drm: BulkShareCreateSchemaDrm | Unset
-        if isinstance(_drm, Unset):
-            drm = UNSET
-        else:
-            drm = BulkShareCreateSchemaDrm(_drm)
+        allow_view_transcriptions = _parse_allow_view_transcriptions(
+            d.pop("allow_view_transcriptions", UNSET)
+        )
 
-        emails = cast(list[str], d.pop("emails", UNSET))
+        def _parse_allow_view_versions(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        _expires = d.pop("expires", UNSET)
-        expires: datetime.datetime | Unset
-        if isinstance(_expires, Unset):
-            expires = UNSET
-        else:
-            expires = datetime.datetime.fromisoformat(_expires)
+        allow_view_versions = _parse_allow_view_versions(
+            d.pop("allow_view_versions", UNSET)
+        )
 
-        id = d.pop("id", UNSET)
+        def _parse_automatic_approval_share(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        automatic_approval_share = _parse_automatic_approval_share(
+            d.pop("automatic_approval_share", UNSET)
+        )
+
+        def _parse_drm(data: object) -> BulkShareCreateSchemaDrmType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                drm_type_1 = BulkShareCreateSchemaDrmType1.from_dict(data)
+
+                return drm_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(BulkShareCreateSchemaDrmType1 | None | Unset, data)
+
+        drm = _parse_drm(d.pop("drm", UNSET))
+
+        def _parse_emails(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                emails_type_0 = cast(list[str], data)
+
+                return emails_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        emails = _parse_emails(d.pop("emails", UNSET))
+
+        def _parse_expires(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                expires_type_0 = datetime.datetime.fromisoformat(data)
+
+                return expires_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        expires = _parse_expires(d.pop("expires", UNSET))
+
+        def _parse_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        id = _parse_id(d.pop("id", UNSET))
 
         def _parse_is_approval(data: object) -> bool | None | Unset:
             if data is None:
@@ -334,7 +537,14 @@ class BulkShareCreateSchema:
 
         is_approval = _parse_is_approval(d.pop("is_approval", UNSET))
 
-        message = d.pop("message", UNSET)
+        def _parse_message(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        message = _parse_message(d.pop("message", UNSET))
 
         def _parse_metadata_views(data: object) -> list[str] | None | Unset:
             if data is None:
@@ -353,16 +563,44 @@ class BulkShareCreateSchema:
 
         metadata_views = _parse_metadata_views(d.pop("metadata_views", UNSET))
 
-        _object_type = d.pop("object_type", UNSET)
-        object_type: BulkShareCreateSchemaObjectType | Unset
-        if isinstance(_object_type, Unset):
-            object_type = UNSET
-        else:
-            object_type = BulkShareCreateSchemaObjectType(_object_type)
+        def _parse_object_type(
+            data: object,
+        ) -> BulkShareCreateSchemaObjectTypeType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                object_type_type_1 = BulkShareCreateSchemaObjectTypeType1.from_dict(
+                    data
+                )
 
-        owner_id = d.pop("owner_id", UNSET)
+                return object_type_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(BulkShareCreateSchemaObjectTypeType1 | None | Unset, data)
 
-        password = d.pop("password", UNSET)
+        object_type = _parse_object_type(d.pop("object_type", UNSET))
+
+        def _parse_owner_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        owner_id = _parse_owner_id(d.pop("owner_id", UNSET))
+
+        def _parse_password(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        password = _parse_password(d.pop("password", UNSET))
 
         def _parse_review_experience_public_beta(data: object) -> bool | None | Unset:
             if data is None:
@@ -375,7 +613,14 @@ class BulkShareCreateSchema:
             d.pop("review_experience_public_beta", UNSET)
         )
 
-        share_by_url = d.pop("share_by_url", UNSET)
+        def _parse_share_by_url(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        share_by_url = _parse_share_by_url(d.pop("share_by_url", UNSET))
 
         def _parse_show_existing_comments(data: object) -> bool | None | Unset:
             if data is None:
@@ -397,7 +642,14 @@ class BulkShareCreateSchema:
 
         show_watermark = _parse_show_watermark(d.pop("show_watermark", UNSET))
 
-        system_domain_id = d.pop("system_domain_id", UNSET)
+        def _parse_system_domain_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
 
         def _parse_upload_storage_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -416,12 +668,24 @@ class BulkShareCreateSchema:
 
         upload_storage_id = _parse_upload_storage_id(d.pop("upload_storage_id", UNSET))
 
-        _watermark = d.pop("watermark", UNSET)
-        watermark: BulkShareCreateSchemaWatermark | Unset
-        if isinstance(_watermark, Unset):
-            watermark = UNSET
-        else:
-            watermark = BulkShareCreateSchemaWatermark(_watermark)
+        def _parse_watermark(
+            data: object,
+        ) -> BulkShareCreateSchemaWatermarkType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                watermark_type_1 = BulkShareCreateSchemaWatermarkType1.from_dict(data)
+
+                return watermark_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(BulkShareCreateSchemaWatermarkType1 | None | Unset, data)
+
+        watermark = _parse_watermark(d.pop("watermark", UNSET))
 
         bulk_share_create_schema = cls(
             allow_approving_comments=allow_approving_comments,

@@ -17,9 +17,9 @@ class TranscodeQueueRecordSchema:
     """
     Attributes:
         bytes_params (Any | Unset):
-        date_created (str | Unset):
-        date_updated (str | Unset):
-        id (UUID | Unset):
+        date_created (None | str | Unset):
+        date_updated (None | str | Unset):
+        id (None | Unset | UUID):
         job_id (None | Unset | UUID):
         media_info (None | str | Unset):
         object_id (None | Unset | UUID):
@@ -30,7 +30,7 @@ class TranscodeQueueRecordSchema:
         spec (None | str | Unset):
         status (None | str | Unset):
         system_domain_id (None | Unset | UUID):
-        system_name (str | Unset):
+        system_name (None | str | Unset):
         transcoder_id (None | Unset | UUID):
         type_ (None | str | Unset):
         user_id (None | Unset | UUID):
@@ -38,9 +38,9 @@ class TranscodeQueueRecordSchema:
     """
 
     bytes_params: Any | Unset = UNSET
-    date_created: str | Unset = UNSET
-    date_updated: str | Unset = UNSET
-    id: UUID | Unset = UNSET
+    date_created: None | str | Unset = UNSET
+    date_updated: None | str | Unset = UNSET
+    id: None | Unset | UUID = UNSET
     job_id: None | Unset | UUID = UNSET
     media_info: None | str | Unset = UNSET
     object_id: None | Unset | UUID = UNSET
@@ -51,7 +51,7 @@ class TranscodeQueueRecordSchema:
     spec: None | str | Unset = UNSET
     status: None | str | Unset = UNSET
     system_domain_id: None | Unset | UUID = UNSET
-    system_name: str | Unset = UNSET
+    system_name: None | str | Unset = UNSET
     transcoder_id: None | Unset | UUID = UNSET
     type_: None | str | Unset = UNSET
     user_id: None | Unset | UUID = UNSET
@@ -61,13 +61,25 @@ class TranscodeQueueRecordSchema:
     def to_dict(self) -> dict[str, Any]:
         bytes_params = self.bytes_params
 
-        date_created = self.date_created
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        else:
+            date_created = self.date_created
 
-        date_updated = self.date_updated
+        date_updated: None | str | Unset
+        if isinstance(self.date_updated, Unset):
+            date_updated = UNSET
+        else:
+            date_updated = self.date_updated
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
         job_id: None | str | Unset
         if isinstance(self.job_id, Unset):
@@ -135,7 +147,11 @@ class TranscodeQueueRecordSchema:
         else:
             system_domain_id = self.system_domain_id
 
-        system_name = self.system_name
+        system_name: None | str | Unset
+        if isinstance(self.system_name, Unset):
+            system_name = UNSET
+        else:
+            system_name = self.system_name
 
         transcoder_id: None | str | Unset
         if isinstance(self.transcoder_id, Unset):
@@ -216,16 +232,40 @@ class TranscodeQueueRecordSchema:
         d = dict(src_dict)
         bytes_params = d.pop("bytes_params", UNSET)
 
-        date_created = d.pop("date_created", UNSET)
+        def _parse_date_created(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        date_updated = d.pop("date_updated", UNSET)
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        def _parse_date_updated(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        date_updated = _parse_date_updated(d.pop("date_updated", UNSET))
+
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
 
         def _parse_job_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -341,7 +381,14 @@ class TranscodeQueueRecordSchema:
 
         system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
 
-        system_name = d.pop("system_name", UNSET)
+        def _parse_system_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        system_name = _parse_system_name(d.pop("system_name", UNSET))
 
         def _parse_transcoder_id(data: object) -> None | Unset | UUID:
             if data is None:

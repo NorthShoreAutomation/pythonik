@@ -18,24 +18,24 @@ class ExportCollectionRequestSchema:
     Attributes:
         id (UUID): ID of the object to export.
         export_metadata (bool | None | Unset): Whether to export metadata.
-        export_to_asset_folder (bool | Unset): Whether to export to asset folder. Default: False.
-        formats (list[str] | Unset): List containing a single format name to transfer. If not specified, ORIGINAL will
-            be transferred.
-        keep_collection_structure (bool | Unset): Whether to keep the collection structure when exporting collections.
-            Default: False.
-        keep_parent_collection_structure (bool | Unset): Whether to keep the parent collection structure when
+        export_to_asset_folder (bool | None | Unset): Whether to export to asset folder. Default: False.
+        formats (list[str] | None | Unset): List containing a single format name to transfer. If not specified, ORIGINAL
+            will be transferred.
+        keep_collection_structure (bool | None | Unset): Whether to keep the collection structure when exporting
+            collections. Default: False.
+        keep_parent_collection_structure (bool | None | Unset): Whether to keep the parent collection structure when
             transferring collections. Default: False.
-        overwrite (bool | Unset): Whether to overwrite existing files. Default: False.
+        overwrite (bool | None | Unset): Whether to overwrite existing files. Default: False.
         preferred_original_storage_id (None | Unset | UUID):
     """
 
     id: UUID
     export_metadata: bool | None | Unset = UNSET
-    export_to_asset_folder: bool | Unset = False
-    formats: list[str] | Unset = UNSET
-    keep_collection_structure: bool | Unset = False
-    keep_parent_collection_structure: bool | Unset = False
-    overwrite: bool | Unset = False
+    export_to_asset_folder: bool | None | Unset = False
+    formats: list[str] | None | Unset = UNSET
+    keep_collection_structure: bool | None | Unset = False
+    keep_parent_collection_structure: bool | None | Unset = False
+    overwrite: bool | None | Unset = False
     preferred_original_storage_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -48,17 +48,38 @@ class ExportCollectionRequestSchema:
         else:
             export_metadata = self.export_metadata
 
-        export_to_asset_folder = self.export_to_asset_folder
+        export_to_asset_folder: bool | None | Unset
+        if isinstance(self.export_to_asset_folder, Unset):
+            export_to_asset_folder = UNSET
+        else:
+            export_to_asset_folder = self.export_to_asset_folder
 
-        formats: list[str] | Unset = UNSET
-        if not isinstance(self.formats, Unset):
+        formats: list[str] | None | Unset
+        if isinstance(self.formats, Unset):
+            formats = UNSET
+        elif isinstance(self.formats, list):
             formats = self.formats
 
-        keep_collection_structure = self.keep_collection_structure
+        else:
+            formats = self.formats
 
-        keep_parent_collection_structure = self.keep_parent_collection_structure
+        keep_collection_structure: bool | None | Unset
+        if isinstance(self.keep_collection_structure, Unset):
+            keep_collection_structure = UNSET
+        else:
+            keep_collection_structure = self.keep_collection_structure
 
-        overwrite = self.overwrite
+        keep_parent_collection_structure: bool | None | Unset
+        if isinstance(self.keep_parent_collection_structure, Unset):
+            keep_parent_collection_structure = UNSET
+        else:
+            keep_parent_collection_structure = self.keep_parent_collection_structure
+
+        overwrite: bool | None | Unset
+        if isinstance(self.overwrite, Unset):
+            overwrite = UNSET
+        else:
+            overwrite = self.overwrite
 
         preferred_original_storage_id: None | str | Unset
         if isinstance(self.preferred_original_storage_id, Unset):
@@ -108,17 +129,66 @@ class ExportCollectionRequestSchema:
 
         export_metadata = _parse_export_metadata(d.pop("export_metadata", UNSET))
 
-        export_to_asset_folder = d.pop("export_to_asset_folder", UNSET)
+        def _parse_export_to_asset_folder(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        formats = cast(list[str], d.pop("formats", UNSET))
-
-        keep_collection_structure = d.pop("keep_collection_structure", UNSET)
-
-        keep_parent_collection_structure = d.pop(
-            "keep_parent_collection_structure", UNSET
+        export_to_asset_folder = _parse_export_to_asset_folder(
+            d.pop("export_to_asset_folder", UNSET)
         )
 
-        overwrite = d.pop("overwrite", UNSET)
+        def _parse_formats(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                formats_type_0 = cast(list[str], data)
+
+                return formats_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        formats = _parse_formats(d.pop("formats", UNSET))
+
+        def _parse_keep_collection_structure(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        keep_collection_structure = _parse_keep_collection_structure(
+            d.pop("keep_collection_structure", UNSET)
+        )
+
+        def _parse_keep_parent_collection_structure(
+            data: object,
+        ) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        keep_parent_collection_structure = _parse_keep_parent_collection_structure(
+            d.pop("keep_parent_collection_structure", UNSET)
+        )
+
+        def _parse_overwrite(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        overwrite = _parse_overwrite(d.pop("overwrite", UNSET))
 
         def _parse_preferred_original_storage_id(data: object) -> None | Unset | UUID:
             if data is None:

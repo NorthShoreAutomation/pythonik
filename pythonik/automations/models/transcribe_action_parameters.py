@@ -16,20 +16,20 @@ class TranscribeActionParameters:
     """
     Attributes:
         engine (None | str | Unset):
-        force (bool | Unset):  Default: False.
+        force (bool | None | Unset):  Default: False.
         language (None | str | Unset):
         speakers (int | None | Unset):
         summary (bool | None | Unset):
-        topics_extraction (bool | Unset):  Default: True.
+        topics_extraction (bool | None | Unset):  Default: True.
         translate_languages (list[str] | None | Unset):
     """
 
     engine: None | str | Unset = UNSET
-    force: bool | Unset = False
+    force: bool | None | Unset = False
     language: None | str | Unset = UNSET
     speakers: int | None | Unset = UNSET
     summary: bool | None | Unset = UNSET
-    topics_extraction: bool | Unset = True
+    topics_extraction: bool | None | Unset = True
     translate_languages: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -40,7 +40,11 @@ class TranscribeActionParameters:
         else:
             engine = self.engine
 
-        force = self.force
+        force: bool | None | Unset
+        if isinstance(self.force, Unset):
+            force = UNSET
+        else:
+            force = self.force
 
         language: None | str | Unset
         if isinstance(self.language, Unset):
@@ -60,7 +64,11 @@ class TranscribeActionParameters:
         else:
             summary = self.summary
 
-        topics_extraction = self.topics_extraction
+        topics_extraction: bool | None | Unset
+        if isinstance(self.topics_extraction, Unset):
+            topics_extraction = UNSET
+        else:
+            topics_extraction = self.topics_extraction
 
         translate_languages: list[str] | None | Unset
         if isinstance(self.translate_languages, Unset):
@@ -104,7 +112,14 @@ class TranscribeActionParameters:
 
         engine = _parse_engine(d.pop("engine", UNSET))
 
-        force = d.pop("force", UNSET)
+        def _parse_force(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        force = _parse_force(d.pop("force", UNSET))
 
         def _parse_language(data: object) -> None | str | Unset:
             if data is None:
@@ -133,7 +148,14 @@ class TranscribeActionParameters:
 
         summary = _parse_summary(d.pop("summary", UNSET))
 
-        topics_extraction = d.pop("topics_extraction", UNSET)
+        def _parse_topics_extraction(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        topics_extraction = _parse_topics_extraction(d.pop("topics_extraction", UNSET))
 
         def _parse_translate_languages(data: object) -> list[str] | None | Unset:
             if data is None:

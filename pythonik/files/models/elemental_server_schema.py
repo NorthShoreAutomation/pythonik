@@ -20,13 +20,13 @@ class ElementalServerSchema:
         mount_point (str):
         profile (int):
         username (str):
-        exclude_patterns (list[str] | Unset):
-        include_patterns (list[str] | Unset):
-        keyframe_map_output_group_order (int | Unset):
-        keyframe_output_group_order (int | Unset):
-        local (bool | Unset):
+        exclude_patterns (list[str] | None | Unset):
+        include_patterns (list[str] | None | Unset):
+        keyframe_map_output_group_order (int | None | Unset):
+        keyframe_output_group_order (int | None | Unset):
+        local (bool | None | Unset):
         priority (int | None | Unset):
-        proxy_output_group_order (int | Unset):
+        proxy_output_group_order (int | None | Unset):
     """
 
     api_key: str
@@ -34,13 +34,13 @@ class ElementalServerSchema:
     mount_point: str
     profile: int
     username: str
-    exclude_patterns: list[str] | Unset = UNSET
-    include_patterns: list[str] | Unset = UNSET
-    keyframe_map_output_group_order: int | Unset = UNSET
-    keyframe_output_group_order: int | Unset = UNSET
-    local: bool | Unset = UNSET
+    exclude_patterns: list[str] | None | Unset = UNSET
+    include_patterns: list[str] | None | Unset = UNSET
+    keyframe_map_output_group_order: int | None | Unset = UNSET
+    keyframe_output_group_order: int | None | Unset = UNSET
+    local: bool | None | Unset = UNSET
     priority: int | None | Unset = UNSET
-    proxy_output_group_order: int | Unset = UNSET
+    proxy_output_group_order: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -54,19 +54,41 @@ class ElementalServerSchema:
 
         username = self.username
 
-        exclude_patterns: list[str] | Unset = UNSET
-        if not isinstance(self.exclude_patterns, Unset):
+        exclude_patterns: list[str] | None | Unset
+        if isinstance(self.exclude_patterns, Unset):
+            exclude_patterns = UNSET
+        elif isinstance(self.exclude_patterns, list):
             exclude_patterns = self.exclude_patterns
 
-        include_patterns: list[str] | Unset = UNSET
-        if not isinstance(self.include_patterns, Unset):
+        else:
+            exclude_patterns = self.exclude_patterns
+
+        include_patterns: list[str] | None | Unset
+        if isinstance(self.include_patterns, Unset):
+            include_patterns = UNSET
+        elif isinstance(self.include_patterns, list):
             include_patterns = self.include_patterns
 
-        keyframe_map_output_group_order = self.keyframe_map_output_group_order
+        else:
+            include_patterns = self.include_patterns
 
-        keyframe_output_group_order = self.keyframe_output_group_order
+        keyframe_map_output_group_order: int | None | Unset
+        if isinstance(self.keyframe_map_output_group_order, Unset):
+            keyframe_map_output_group_order = UNSET
+        else:
+            keyframe_map_output_group_order = self.keyframe_map_output_group_order
 
-        local = self.local
+        keyframe_output_group_order: int | None | Unset
+        if isinstance(self.keyframe_output_group_order, Unset):
+            keyframe_output_group_order = UNSET
+        else:
+            keyframe_output_group_order = self.keyframe_output_group_order
+
+        local: bool | None | Unset
+        if isinstance(self.local, Unset):
+            local = UNSET
+        else:
+            local = self.local
 
         priority: int | None | Unset
         if isinstance(self.priority, Unset):
@@ -74,7 +96,11 @@ class ElementalServerSchema:
         else:
             priority = self.priority
 
-        proxy_output_group_order = self.proxy_output_group_order
+        proxy_output_group_order: int | None | Unset
+        if isinstance(self.proxy_output_group_order, Unset):
+            proxy_output_group_order = UNSET
+        else:
+            proxy_output_group_order = self.proxy_output_group_order
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -119,17 +145,70 @@ class ElementalServerSchema:
 
         username = d.pop("username")
 
-        exclude_patterns = cast(list[str], d.pop("exclude_patterns", UNSET))
+        def _parse_exclude_patterns(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                exclude_patterns_type_0 = cast(list[str], data)
 
-        include_patterns = cast(list[str], d.pop("include_patterns", UNSET))
+                return exclude_patterns_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
 
-        keyframe_map_output_group_order = d.pop(
-            "keyframe_map_output_group_order", UNSET
+        exclude_patterns = _parse_exclude_patterns(d.pop("exclude_patterns", UNSET))
+
+        def _parse_include_patterns(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                include_patterns_type_0 = cast(list[str], data)
+
+                return include_patterns_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        include_patterns = _parse_include_patterns(d.pop("include_patterns", UNSET))
+
+        def _parse_keyframe_map_output_group_order(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        keyframe_map_output_group_order = _parse_keyframe_map_output_group_order(
+            d.pop("keyframe_map_output_group_order", UNSET)
         )
 
-        keyframe_output_group_order = d.pop("keyframe_output_group_order", UNSET)
+        def _parse_keyframe_output_group_order(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        local = d.pop("local", UNSET)
+        keyframe_output_group_order = _parse_keyframe_output_group_order(
+            d.pop("keyframe_output_group_order", UNSET)
+        )
+
+        def _parse_local(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        local = _parse_local(d.pop("local", UNSET))
 
         def _parse_priority(data: object) -> int | None | Unset:
             if data is None:
@@ -140,7 +219,16 @@ class ElementalServerSchema:
 
         priority = _parse_priority(d.pop("priority", UNSET))
 
-        proxy_output_group_order = d.pop("proxy_output_group_order", UNSET)
+        def _parse_proxy_output_group_order(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        proxy_output_group_order = _parse_proxy_output_group_order(
+            d.pop("proxy_output_group_order", UNSET)
+        )
 
         elemental_server_schema = cls(
             api_key=api_key,

@@ -1,15 +1,18 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.analyze_action_parameters_force_type import (
-    AnalyzeActionParametersForceType,
-)
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.analyze_action_parameters_force_type_type_1 import (
+        AnalyzeActionParametersForceTypeType1,
+    )
+
 
 T = TypeVar("T", bound="AnalyzeActionParameters")
 
@@ -18,22 +21,32 @@ T = TypeVar("T", bound="AnalyzeActionParameters")
 class AnalyzeActionParameters:
     """
     Attributes:
-        force (bool | Unset):  Default: False.
-        force_type (AnalyzeActionParametersForceType | Unset):  Default: AnalyzeActionParametersForceType.OVERWRITE.
+        force (bool | None | Unset):  Default: False.
+        force_type (AnalyzeActionParametersForceTypeType1 | None | Unset):
     """
 
-    force: bool | Unset = False
-    force_type: AnalyzeActionParametersForceType | Unset = (
-        AnalyzeActionParametersForceType.OVERWRITE
-    )
+    force: bool | None | Unset = False
+    force_type: AnalyzeActionParametersForceTypeType1 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        force = self.force
+        from ..models.analyze_action_parameters_force_type_type_1 import (
+            AnalyzeActionParametersForceTypeType1,
+        )
 
-        force_type: str | Unset = UNSET
-        if not isinstance(self.force_type, Unset):
-            force_type = self.force_type.value
+        force: bool | None | Unset
+        if isinstance(self.force, Unset):
+            force = UNSET
+        else:
+            force = self.force
+
+        force_type: dict[str, Any] | None | Unset
+        if isinstance(self.force_type, Unset):
+            force_type = UNSET
+        elif isinstance(self.force_type, AnalyzeActionParametersForceTypeType1):
+            force_type = self.force_type.to_dict()
+        else:
+            force_type = self.force_type
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -47,15 +60,41 @@ class AnalyzeActionParameters:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        d = dict(src_dict)
-        force = d.pop("force", UNSET)
+        from ..models.analyze_action_parameters_force_type_type_1 import (
+            AnalyzeActionParametersForceTypeType1,
+        )
 
-        _force_type = d.pop("force_type", UNSET)
-        force_type: AnalyzeActionParametersForceType | Unset
-        if isinstance(_force_type, Unset):
-            force_type = UNSET
-        else:
-            force_type = AnalyzeActionParametersForceType(_force_type)
+        d = dict(src_dict)
+
+        def _parse_force(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        force = _parse_force(d.pop("force", UNSET))
+
+        def _parse_force_type(
+            data: object,
+        ) -> AnalyzeActionParametersForceTypeType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                force_type_type_1 = AnalyzeActionParametersForceTypeType1.from_dict(
+                    data
+                )
+
+                return force_type_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(AnalyzeActionParametersForceTypeType1 | None | Unset, data)
+
+        force_type = _parse_force_type(d.pop("force_type", UNSET))
 
         analyze_action_parameters = cls(
             force=force,

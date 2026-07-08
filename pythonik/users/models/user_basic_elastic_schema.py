@@ -16,28 +16,32 @@ T = TypeVar("T", bound="UserBasicElasticSchema")
 class UserBasicElasticSchema:
     """
     Attributes:
-        email (str | Unset):
+        email (None | str | Unset):
         first_name (None | str | Unset):
-        id (UUID | Unset):
+        id (None | Unset | UUID):
         last_name (None | str | Unset):
-        photo (str | Unset):
-        photo_big (str | Unset):
-        photo_small (str | Unset):
-        photo_storage_id (UUID | Unset):
+        photo (None | str | Unset):
+        photo_big (None | str | Unset):
+        photo_small (None | str | Unset):
+        photo_storage_id (None | Unset | UUID):
     """
 
-    email: str | Unset = UNSET
+    email: None | str | Unset = UNSET
     first_name: None | str | Unset = UNSET
-    id: UUID | Unset = UNSET
+    id: None | Unset | UUID = UNSET
     last_name: None | str | Unset = UNSET
-    photo: str | Unset = UNSET
-    photo_big: str | Unset = UNSET
-    photo_small: str | Unset = UNSET
-    photo_storage_id: UUID | Unset = UNSET
+    photo: None | str | Unset = UNSET
+    photo_big: None | str | Unset = UNSET
+    photo_small: None | str | Unset = UNSET
+    photo_storage_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        email = self.email
+        email: None | str | Unset
+        if isinstance(self.email, Unset):
+            email = UNSET
+        else:
+            email = self.email
 
         first_name: None | str | Unset
         if isinstance(self.first_name, Unset):
@@ -45,9 +49,13 @@ class UserBasicElasticSchema:
         else:
             first_name = self.first_name
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
         last_name: None | str | Unset
         if isinstance(self.last_name, Unset):
@@ -55,15 +63,31 @@ class UserBasicElasticSchema:
         else:
             last_name = self.last_name
 
-        photo = self.photo
+        photo: None | str | Unset
+        if isinstance(self.photo, Unset):
+            photo = UNSET
+        else:
+            photo = self.photo
 
-        photo_big = self.photo_big
+        photo_big: None | str | Unset
+        if isinstance(self.photo_big, Unset):
+            photo_big = UNSET
+        else:
+            photo_big = self.photo_big
 
-        photo_small = self.photo_small
+        photo_small: None | str | Unset
+        if isinstance(self.photo_small, Unset):
+            photo_small = UNSET
+        else:
+            photo_small = self.photo_small
 
-        photo_storage_id: str | Unset = UNSET
-        if not isinstance(self.photo_storage_id, Unset):
+        photo_storage_id: None | str | Unset
+        if isinstance(self.photo_storage_id, Unset):
+            photo_storage_id = UNSET
+        elif isinstance(self.photo_storage_id, UUID):
             photo_storage_id = str(self.photo_storage_id)
+        else:
+            photo_storage_id = self.photo_storage_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -90,7 +114,15 @@ class UserBasicElasticSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        email = d.pop("email", UNSET)
+
+        def _parse_email(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        email = _parse_email(d.pop("email", UNSET))
 
         def _parse_first_name(data: object) -> None | str | Unset:
             if data is None:
@@ -101,12 +133,22 @@ class UserBasicElasticSchema:
 
         first_name = _parse_first_name(d.pop("first_name", UNSET))
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
 
         def _parse_last_name(data: object) -> None | str | Unset:
             if data is None:
@@ -117,18 +159,49 @@ class UserBasicElasticSchema:
 
         last_name = _parse_last_name(d.pop("last_name", UNSET))
 
-        photo = d.pop("photo", UNSET)
+        def _parse_photo(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        photo_big = d.pop("photo_big", UNSET)
+        photo = _parse_photo(d.pop("photo", UNSET))
 
-        photo_small = d.pop("photo_small", UNSET)
+        def _parse_photo_big(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        _photo_storage_id = d.pop("photo_storage_id", UNSET)
-        photo_storage_id: UUID | Unset
-        if isinstance(_photo_storage_id, Unset):
-            photo_storage_id = UNSET
-        else:
-            photo_storage_id = UUID(_photo_storage_id)
+        photo_big = _parse_photo_big(d.pop("photo_big", UNSET))
+
+        def _parse_photo_small(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        photo_small = _parse_photo_small(d.pop("photo_small", UNSET))
+
+        def _parse_photo_storage_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                photo_storage_id_type_0 = UUID(data)
+
+                return photo_storage_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        photo_storage_id = _parse_photo_storage_id(d.pop("photo_storage_id", UNSET))
 
         user_basic_elastic_schema = cls(
             email=email,

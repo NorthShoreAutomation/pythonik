@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,14 +15,18 @@ T = TypeVar("T", bound="GetStoragesIsgLatestVersionResponse200")
 class GetStoragesIsgLatestVersionResponse200:
     """
     Attributes:
-        version (str | Unset):
+        version (None | str | Unset):
     """
 
-    version: str | Unset = UNSET
+    version: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        version = self.version
+        version: None | str | Unset
+        if isinstance(self.version, Unset):
+            version = UNSET
+        else:
+            version = self.version
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -35,7 +39,15 @@ class GetStoragesIsgLatestVersionResponse200:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        version = d.pop("version", UNSET)
+
+        def _parse_version(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        version = _parse_version(d.pop("version", UNSET))
 
         get_storages_isg_latest_version_response_200 = cls(
             version=version,

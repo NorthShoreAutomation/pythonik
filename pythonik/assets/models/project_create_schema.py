@@ -2,14 +2,19 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.project_create_schema_status import ProjectCreateSchemaStatus
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.project_create_schema_status_type_1 import (
+        ProjectCreateSchemaStatusType1,
+    )
+
 
 T = TypeVar("T", bound="ProjectCreateSchema")
 
@@ -19,59 +24,91 @@ class ProjectCreateSchema:
     """
     Attributes:
         name (str):
-        collection_id (UUID | Unset): ID of a collection that will become a project collection
-        collection_parent_id (UUID | Unset): ID of a collection that the project should be a child of
-        created_by_user (UUID | Unset):
-        date_created (datetime.datetime | Unset):
-        date_modified (datetime.datetime | Unset):
-        id (UUID | Unset):
-        status (ProjectCreateSchemaStatus | Unset):
+        collection_id (None | Unset | UUID): ID of a collection that will become a project collection
+        collection_parent_id (None | Unset | UUID): ID of a collection that the project should be a child of
+        created_by_user (None | Unset | UUID):
+        date_created (datetime.datetime | None | Unset):
+        date_modified (datetime.datetime | None | Unset):
+        id (None | Unset | UUID):
+        status (None | ProjectCreateSchemaStatusType1 | Unset):
         storage_id (None | Unset | UUID):
-        system_domain_id (UUID | Unset):
+        system_domain_id (None | Unset | UUID):
     """
 
     name: str
-    collection_id: UUID | Unset = UNSET
-    collection_parent_id: UUID | Unset = UNSET
-    created_by_user: UUID | Unset = UNSET
-    date_created: datetime.datetime | Unset = UNSET
-    date_modified: datetime.datetime | Unset = UNSET
-    id: UUID | Unset = UNSET
-    status: ProjectCreateSchemaStatus | Unset = UNSET
+    collection_id: None | Unset | UUID = UNSET
+    collection_parent_id: None | Unset | UUID = UNSET
+    created_by_user: None | Unset | UUID = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_modified: datetime.datetime | None | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    status: None | ProjectCreateSchemaStatusType1 | Unset = UNSET
     storage_id: None | Unset | UUID = UNSET
-    system_domain_id: UUID | Unset = UNSET
+    system_domain_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.project_create_schema_status_type_1 import (
+            ProjectCreateSchemaStatusType1,
+        )
+
         name = self.name
 
-        collection_id: str | Unset = UNSET
-        if not isinstance(self.collection_id, Unset):
+        collection_id: None | str | Unset
+        if isinstance(self.collection_id, Unset):
+            collection_id = UNSET
+        elif isinstance(self.collection_id, UUID):
             collection_id = str(self.collection_id)
+        else:
+            collection_id = self.collection_id
 
-        collection_parent_id: str | Unset = UNSET
-        if not isinstance(self.collection_parent_id, Unset):
+        collection_parent_id: None | str | Unset
+        if isinstance(self.collection_parent_id, Unset):
+            collection_parent_id = UNSET
+        elif isinstance(self.collection_parent_id, UUID):
             collection_parent_id = str(self.collection_parent_id)
+        else:
+            collection_parent_id = self.collection_parent_id
 
-        created_by_user: str | Unset = UNSET
-        if not isinstance(self.created_by_user, Unset):
+        created_by_user: None | str | Unset
+        if isinstance(self.created_by_user, Unset):
+            created_by_user = UNSET
+        elif isinstance(self.created_by_user, UUID):
             created_by_user = str(self.created_by_user)
+        else:
+            created_by_user = self.created_by_user
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_modified: str | Unset = UNSET
-        if not isinstance(self.date_modified, Unset):
+        date_modified: None | str | Unset
+        if isinstance(self.date_modified, Unset):
+            date_modified = UNSET
+        elif isinstance(self.date_modified, datetime.datetime):
             date_modified = self.date_modified.isoformat()
+        else:
+            date_modified = self.date_modified
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        status: dict[str, Any] | None | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        elif isinstance(self.status, ProjectCreateSchemaStatusType1):
+            status = self.status.to_dict()
+        else:
+            status = self.status
 
         storage_id: None | str | Unset
         if isinstance(self.storage_id, Unset):
@@ -81,9 +118,13 @@ class ProjectCreateSchema:
         else:
             storage_id = self.storage_id
 
-        system_domain_id: str | Unset = UNSET
-        if not isinstance(self.system_domain_id, Unset):
+        system_domain_id: None | str | Unset
+        if isinstance(self.system_domain_id, Unset):
+            system_domain_id = UNSET
+        elif isinstance(self.system_domain_id, UUID):
             system_domain_id = str(self.system_domain_id)
+        else:
+            system_domain_id = self.system_domain_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -115,57 +156,135 @@ class ProjectCreateSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.project_create_schema_status_type_1 import (
+            ProjectCreateSchemaStatusType1,
+        )
+
         d = dict(src_dict)
         name = d.pop("name")
 
-        _collection_id = d.pop("collection_id", UNSET)
-        collection_id: UUID | Unset
-        if isinstance(_collection_id, Unset):
-            collection_id = UNSET
-        else:
-            collection_id = UUID(_collection_id)
+        def _parse_collection_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                collection_id_type_0 = UUID(data)
 
-        _collection_parent_id = d.pop("collection_parent_id", UNSET)
-        collection_parent_id: UUID | Unset
-        if isinstance(_collection_parent_id, Unset):
-            collection_parent_id = UNSET
-        else:
-            collection_parent_id = UUID(_collection_parent_id)
+                return collection_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        _created_by_user = d.pop("created_by_user", UNSET)
-        created_by_user: UUID | Unset
-        if isinstance(_created_by_user, Unset):
-            created_by_user = UNSET
-        else:
-            created_by_user = UUID(_created_by_user)
+        collection_id = _parse_collection_id(d.pop("collection_id", UNSET))
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        def _parse_collection_parent_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                collection_parent_id_type_0 = UUID(data)
 
-        _date_modified = d.pop("date_modified", UNSET)
-        date_modified: datetime.datetime | Unset
-        if isinstance(_date_modified, Unset):
-            date_modified = UNSET
-        else:
-            date_modified = datetime.datetime.fromisoformat(_date_modified)
+                return collection_parent_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        collection_parent_id = _parse_collection_parent_id(
+            d.pop("collection_parent_id", UNSET)
+        )
 
-        _status = d.pop("status", UNSET)
-        status: ProjectCreateSchemaStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = ProjectCreateSchemaStatus(_status)
+        def _parse_created_by_user(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                created_by_user_type_0 = UUID(data)
+
+                return created_by_user_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        created_by_user = _parse_created_by_user(d.pop("created_by_user", UNSET))
+
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
+
+        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_modified_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_modified_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
+
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_status(
+            data: object,
+        ) -> None | ProjectCreateSchemaStatusType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                status_type_1 = ProjectCreateSchemaStatusType1.from_dict(data)
+
+                return status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | ProjectCreateSchemaStatusType1 | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
 
         def _parse_storage_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -184,12 +303,22 @@ class ProjectCreateSchema:
 
         storage_id = _parse_storage_id(d.pop("storage_id", UNSET))
 
-        _system_domain_id = d.pop("system_domain_id", UNSET)
-        system_domain_id: UUID | Unset
-        if isinstance(_system_domain_id, Unset):
-            system_domain_id = UNSET
-        else:
-            system_domain_id = UUID(_system_domain_id)
+        def _parse_system_domain_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                system_domain_id_type_0 = UUID(data)
+
+                return system_domain_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
 
         project_create_schema = cls(
             name=name,

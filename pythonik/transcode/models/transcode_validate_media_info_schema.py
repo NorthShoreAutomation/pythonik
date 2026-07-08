@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,17 +16,21 @@ class TranscodeValidateMediaInfoSchema:
     """
     Attributes:
         media_info (str):
-        filename (str | Unset):
+        filename (None | str | Unset):
     """
 
     media_info: str
-    filename: str | Unset = UNSET
+    filename: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         media_info = self.media_info
 
-        filename = self.filename
+        filename: None | str | Unset
+        if isinstance(self.filename, Unset):
+            filename = UNSET
+        else:
+            filename = self.filename
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -45,7 +49,14 @@ class TranscodeValidateMediaInfoSchema:
         d = dict(src_dict)
         media_info = d.pop("media_info")
 
-        filename = d.pop("filename", UNSET)
+        def _parse_filename(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        filename = _parse_filename(d.pop("filename", UNSET))
 
         transcode_validate_media_info_schema = cls(
             media_info=media_info,

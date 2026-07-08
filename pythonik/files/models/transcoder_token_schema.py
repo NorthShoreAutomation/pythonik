@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,14 +15,18 @@ T = TypeVar("T", bound="TranscoderTokenSchema")
 class TranscoderTokenSchema:
     """
     Attributes:
-        token (str | Unset):
+        token (None | str | Unset):
     """
 
-    token: str | Unset = UNSET
+    token: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        token = self.token
+        token: None | str | Unset
+        if isinstance(self.token, Unset):
+            token = UNSET
+        else:
+            token = self.token
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -35,7 +39,15 @@ class TranscoderTokenSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        token = d.pop("token", UNSET)
+
+        def _parse_token(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        token = _parse_token(d.pop("token", UNSET))
 
         transcoder_token_schema = cls(
             token=token,

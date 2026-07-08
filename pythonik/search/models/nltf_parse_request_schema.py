@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -20,19 +20,25 @@ class NltfParseRequestSchema:
     """
     Attributes:
         query (str):
-        context (NltfContextSchema | Unset):
+        context (NltfContextSchema | None | Unset):
     """
 
     query: str
-    context: NltfContextSchema | Unset = UNSET
+    context: NltfContextSchema | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.nltf_context_schema import NltfContextSchema
+
         query = self.query
 
-        context: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.context, Unset):
+        context: dict[str, Any] | None | Unset
+        if isinstance(self.context, Unset):
+            context = UNSET
+        elif isinstance(self.context, NltfContextSchema):
             context = self.context.to_dict()
+        else:
+            context = self.context
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -53,12 +59,22 @@ class NltfParseRequestSchema:
         d = dict(src_dict)
         query = d.pop("query")
 
-        _context = d.pop("context", UNSET)
-        context: NltfContextSchema | Unset
-        if isinstance(_context, Unset):
-            context = UNSET
-        else:
-            context = NltfContextSchema.from_dict(_context)
+        def _parse_context(data: object) -> NltfContextSchema | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                context_type_1 = NltfContextSchema.from_dict(data)
+
+                return context_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(NltfContextSchema | None | Unset, data)
+
+        context = _parse_context(d.pop("context", UNSET))
 
         nltf_parse_request_schema = cls(
             query=query,

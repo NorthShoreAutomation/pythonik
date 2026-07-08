@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -16,16 +16,20 @@ T = TypeVar("T", bound="AssetRestoredTriggerParameters")
 class AssetRestoredTriggerParameters:
     """
     Attributes:
-        storage_id (UUID | Unset):
+        storage_id (None | Unset | UUID):
     """
 
-    storage_id: UUID | Unset = UNSET
+    storage_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        storage_id: str | Unset = UNSET
-        if not isinstance(self.storage_id, Unset):
+        storage_id: None | str | Unset
+        if isinstance(self.storage_id, Unset):
+            storage_id = UNSET
+        elif isinstance(self.storage_id, UUID):
             storage_id = str(self.storage_id)
+        else:
+            storage_id = self.storage_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -38,12 +42,23 @@ class AssetRestoredTriggerParameters:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        _storage_id = d.pop("storage_id", UNSET)
-        storage_id: UUID | Unset
-        if isinstance(_storage_id, Unset):
-            storage_id = UNSET
-        else:
-            storage_id = UUID(_storage_id)
+
+        def _parse_storage_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                storage_id_type_0 = UUID(data)
+
+                return storage_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        storage_id = _parse_storage_id(d.pop("storage_id", UNSET))
 
         asset_restored_trigger_parameters = cls(
             storage_id=storage_id,

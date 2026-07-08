@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -16,70 +16,122 @@ T = TypeVar("T", bound="EditProxyResponseSchema")
 class EditProxyResponseSchema:
     """
     Attributes:
-        audio_bitrate (int | Unset):
-        audio_codec (str | Unset):
-        bitrate (int | Unset):
-        codec (str | Unset):
-        directory_path (str | Unset):
-        file_set_id (UUID | Unset):
-        format_id (UUID | Unset):
-        height (int | Unset):
-        id (UUID | Unset):
-        name (str | Unset):
-        transcoder_id (UUID | Unset):
-        type_ (str | Unset):
-        width (int | Unset):
+        audio_bitrate (int | None | Unset):
+        audio_codec (None | str | Unset):
+        bitrate (int | None | Unset):
+        codec (None | str | Unset):
+        directory_path (None | str | Unset):
+        file_set_id (None | Unset | UUID):
+        format_id (None | Unset | UUID):
+        height (int | None | Unset):
+        id (None | Unset | UUID):
+        name (None | str | Unset):
+        transcoder_id (None | Unset | UUID):
+        type_ (None | str | Unset):
+        width (int | None | Unset):
     """
 
-    audio_bitrate: int | Unset = UNSET
-    audio_codec: str | Unset = UNSET
-    bitrate: int | Unset = UNSET
-    codec: str | Unset = UNSET
-    directory_path: str | Unset = UNSET
-    file_set_id: UUID | Unset = UNSET
-    format_id: UUID | Unset = UNSET
-    height: int | Unset = UNSET
-    id: UUID | Unset = UNSET
-    name: str | Unset = UNSET
-    transcoder_id: UUID | Unset = UNSET
-    type_: str | Unset = UNSET
-    width: int | Unset = UNSET
+    audio_bitrate: int | None | Unset = UNSET
+    audio_codec: None | str | Unset = UNSET
+    bitrate: int | None | Unset = UNSET
+    codec: None | str | Unset = UNSET
+    directory_path: None | str | Unset = UNSET
+    file_set_id: None | Unset | UUID = UNSET
+    format_id: None | Unset | UUID = UNSET
+    height: int | None | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    name: None | str | Unset = UNSET
+    transcoder_id: None | Unset | UUID = UNSET
+    type_: None | str | Unset = UNSET
+    width: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        audio_bitrate = self.audio_bitrate
+        audio_bitrate: int | None | Unset
+        if isinstance(self.audio_bitrate, Unset):
+            audio_bitrate = UNSET
+        else:
+            audio_bitrate = self.audio_bitrate
 
-        audio_codec = self.audio_codec
+        audio_codec: None | str | Unset
+        if isinstance(self.audio_codec, Unset):
+            audio_codec = UNSET
+        else:
+            audio_codec = self.audio_codec
 
-        bitrate = self.bitrate
+        bitrate: int | None | Unset
+        if isinstance(self.bitrate, Unset):
+            bitrate = UNSET
+        else:
+            bitrate = self.bitrate
 
-        codec = self.codec
+        codec: None | str | Unset
+        if isinstance(self.codec, Unset):
+            codec = UNSET
+        else:
+            codec = self.codec
 
-        directory_path = self.directory_path
+        directory_path: None | str | Unset
+        if isinstance(self.directory_path, Unset):
+            directory_path = UNSET
+        else:
+            directory_path = self.directory_path
 
-        file_set_id: str | Unset = UNSET
-        if not isinstance(self.file_set_id, Unset):
+        file_set_id: None | str | Unset
+        if isinstance(self.file_set_id, Unset):
+            file_set_id = UNSET
+        elif isinstance(self.file_set_id, UUID):
             file_set_id = str(self.file_set_id)
+        else:
+            file_set_id = self.file_set_id
 
-        format_id: str | Unset = UNSET
-        if not isinstance(self.format_id, Unset):
+        format_id: None | str | Unset
+        if isinstance(self.format_id, Unset):
+            format_id = UNSET
+        elif isinstance(self.format_id, UUID):
             format_id = str(self.format_id)
+        else:
+            format_id = self.format_id
 
-        height = self.height
+        height: int | None | Unset
+        if isinstance(self.height, Unset):
+            height = UNSET
+        else:
+            height = self.height
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        name = self.name
+        name: None | str | Unset
+        if isinstance(self.name, Unset):
+            name = UNSET
+        else:
+            name = self.name
 
-        transcoder_id: str | Unset = UNSET
-        if not isinstance(self.transcoder_id, Unset):
+        transcoder_id: None | str | Unset
+        if isinstance(self.transcoder_id, Unset):
+            transcoder_id = UNSET
+        elif isinstance(self.transcoder_id, UUID):
             transcoder_id = str(self.transcoder_id)
+        else:
+            transcoder_id = self.transcoder_id
 
-        type_ = self.type_
+        type_: None | str | Unset
+        if isinstance(self.type_, Unset):
+            type_ = UNSET
+        else:
+            type_ = self.type_
 
-        width = self.width
+        width: int | None | Unset
+        if isinstance(self.width, Unset):
+            width = UNSET
+        else:
+            width = self.width
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -116,51 +168,155 @@ class EditProxyResponseSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        audio_bitrate = d.pop("audio_bitrate", UNSET)
 
-        audio_codec = d.pop("audio_codec", UNSET)
+        def _parse_audio_bitrate(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        bitrate = d.pop("bitrate", UNSET)
+        audio_bitrate = _parse_audio_bitrate(d.pop("audio_bitrate", UNSET))
 
-        codec = d.pop("codec", UNSET)
+        def _parse_audio_codec(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        directory_path = d.pop("directory_path", UNSET)
+        audio_codec = _parse_audio_codec(d.pop("audio_codec", UNSET))
 
-        _file_set_id = d.pop("file_set_id", UNSET)
-        file_set_id: UUID | Unset
-        if isinstance(_file_set_id, Unset):
-            file_set_id = UNSET
-        else:
-            file_set_id = UUID(_file_set_id)
+        def _parse_bitrate(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        _format_id = d.pop("format_id", UNSET)
-        format_id: UUID | Unset
-        if isinstance(_format_id, Unset):
-            format_id = UNSET
-        else:
-            format_id = UUID(_format_id)
+        bitrate = _parse_bitrate(d.pop("bitrate", UNSET))
 
-        height = d.pop("height", UNSET)
+        def _parse_codec(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        codec = _parse_codec(d.pop("codec", UNSET))
 
-        name = d.pop("name", UNSET)
+        def _parse_directory_path(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        _transcoder_id = d.pop("transcoder_id", UNSET)
-        transcoder_id: UUID | Unset
-        if isinstance(_transcoder_id, Unset):
-            transcoder_id = UNSET
-        else:
-            transcoder_id = UUID(_transcoder_id)
+        directory_path = _parse_directory_path(d.pop("directory_path", UNSET))
 
-        type_ = d.pop("type", UNSET)
+        def _parse_file_set_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                file_set_id_type_0 = UUID(data)
 
-        width = d.pop("width", UNSET)
+                return file_set_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        file_set_id = _parse_file_set_id(d.pop("file_set_id", UNSET))
+
+        def _parse_format_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                format_id_type_0 = UUID(data)
+
+                return format_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        format_id = _parse_format_id(d.pop("format_id", UNSET))
+
+        def _parse_height(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        height = _parse_height(d.pop("height", UNSET))
+
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        name = _parse_name(d.pop("name", UNSET))
+
+        def _parse_transcoder_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                transcoder_id_type_0 = UUID(data)
+
+                return transcoder_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        transcoder_id = _parse_transcoder_id(d.pop("transcoder_id", UNSET))
+
+        def _parse_type_(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        type_ = _parse_type_(d.pop("type", UNSET))
+
+        def _parse_width(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        width = _parse_width(d.pop("width", UNSET))
 
         edit_proxy_response_schema = cls(
             audio_bitrate=audio_bitrate,

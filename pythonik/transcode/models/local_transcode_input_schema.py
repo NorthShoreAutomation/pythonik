@@ -30,13 +30,13 @@ class LocalTranscodeInputSchema:
         storage_id (str):
         version_id (str):
         checksum (None | str | Unset):
-        closed_captions (bool | Unset):
+        closed_captions (bool | None | Unset):
         collection_id (None | str | Unset):
-        component_ids (list[str] | Unset):
-        engine (str | Unset):
-        language (str | Unset):
+        component_ids (list[str] | None | Unset):
+        engine (None | str | Unset):
+        language (None | str | Unset):
         original_asset_id (None | str | Unset):
-        original_name (str | Unset):
+        original_name (None | str | Unset):
         proxy_id (None | str | Unset):
         update_proxy_mediainfo (bool | None | Unset):
     """
@@ -52,13 +52,13 @@ class LocalTranscodeInputSchema:
     storage_id: str
     version_id: str
     checksum: None | str | Unset = UNSET
-    closed_captions: bool | Unset = UNSET
+    closed_captions: bool | None | Unset = UNSET
     collection_id: None | str | Unset = UNSET
-    component_ids: list[str] | Unset = UNSET
-    engine: str | Unset = UNSET
-    language: str | Unset = UNSET
+    component_ids: list[str] | None | Unset = UNSET
+    engine: None | str | Unset = UNSET
+    language: None | str | Unset = UNSET
     original_asset_id: None | str | Unset = UNSET
-    original_name: str | Unset = UNSET
+    original_name: None | str | Unset = UNSET
     proxy_id: None | str | Unset = UNSET
     update_proxy_mediainfo: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -90,7 +90,11 @@ class LocalTranscodeInputSchema:
         else:
             checksum = self.checksum
 
-        closed_captions = self.closed_captions
+        closed_captions: bool | None | Unset
+        if isinstance(self.closed_captions, Unset):
+            closed_captions = UNSET
+        else:
+            closed_captions = self.closed_captions
 
         collection_id: None | str | Unset
         if isinstance(self.collection_id, Unset):
@@ -98,13 +102,26 @@ class LocalTranscodeInputSchema:
         else:
             collection_id = self.collection_id
 
-        component_ids: list[str] | Unset = UNSET
-        if not isinstance(self.component_ids, Unset):
+        component_ids: list[str] | None | Unset
+        if isinstance(self.component_ids, Unset):
+            component_ids = UNSET
+        elif isinstance(self.component_ids, list):
             component_ids = self.component_ids
 
-        engine = self.engine
+        else:
+            component_ids = self.component_ids
 
-        language = self.language
+        engine: None | str | Unset
+        if isinstance(self.engine, Unset):
+            engine = UNSET
+        else:
+            engine = self.engine
+
+        language: None | str | Unset
+        if isinstance(self.language, Unset):
+            language = UNSET
+        else:
+            language = self.language
 
         original_asset_id: None | str | Unset
         if isinstance(self.original_asset_id, Unset):
@@ -112,7 +129,11 @@ class LocalTranscodeInputSchema:
         else:
             original_asset_id = self.original_asset_id
 
-        original_name = self.original_name
+        original_name: None | str | Unset
+        if isinstance(self.original_name, Unset):
+            original_name = UNSET
+        else:
+            original_name = self.original_name
 
         proxy_id: None | str | Unset
         if isinstance(self.proxy_id, Unset):
@@ -199,7 +220,14 @@ class LocalTranscodeInputSchema:
 
         checksum = _parse_checksum(d.pop("checksum", UNSET))
 
-        closed_captions = d.pop("closed_captions", UNSET)
+        def _parse_closed_captions(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        closed_captions = _parse_closed_captions(d.pop("closed_captions", UNSET))
 
         def _parse_collection_id(data: object) -> None | str | Unset:
             if data is None:
@@ -210,11 +238,40 @@ class LocalTranscodeInputSchema:
 
         collection_id = _parse_collection_id(d.pop("collection_id", UNSET))
 
-        component_ids = cast(list[str], d.pop("component_ids", UNSET))
+        def _parse_component_ids(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                component_ids_type_0 = cast(list[str], data)
 
-        engine = d.pop("engine", UNSET)
+                return component_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
 
-        language = d.pop("language", UNSET)
+        component_ids = _parse_component_ids(d.pop("component_ids", UNSET))
+
+        def _parse_engine(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        engine = _parse_engine(d.pop("engine", UNSET))
+
+        def _parse_language(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        language = _parse_language(d.pop("language", UNSET))
 
         def _parse_original_asset_id(data: object) -> None | str | Unset:
             if data is None:
@@ -225,7 +282,14 @@ class LocalTranscodeInputSchema:
 
         original_asset_id = _parse_original_asset_id(d.pop("original_asset_id", UNSET))
 
-        original_name = d.pop("original_name", UNSET)
+        def _parse_original_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        original_name = _parse_original_name(d.pop("original_name", UNSET))
 
         def _parse_proxy_id(data: object) -> None | str | Unset:
             if data is None:

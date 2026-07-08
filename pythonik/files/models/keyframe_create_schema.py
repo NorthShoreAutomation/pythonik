@@ -8,13 +8,15 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.keyframe_create_schema_status import KeyframeCreateSchemaStatus
 from ..models.keyframe_create_schema_type import KeyframeCreateSchemaType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.keyframe_create_schema_upload_credentials import (
-        KeyframeCreateSchemaUploadCredentials,
+    from ..models.keyframe_create_schema_status_type_1 import (
+        KeyframeCreateSchemaStatusType1,
+    )
+    from ..models.keyframe_create_schema_upload_credentials_type_0 import (
+        KeyframeCreateSchemaUploadCredentialsType0,
     )
     from ..models.resolution_type import ResolutionType
     from ..models.time_code_type import TimeCodeType
@@ -30,56 +32,67 @@ class KeyframeCreateSchema:
         type_ (KeyframeCreateSchemaType):
         asset_id (None | Unset | UUID):
         collection_id (None | Unset | UUID):
-        content_type (str | Unset):
-        date_created (datetime.datetime | Unset):
-        date_modified (datetime.datetime | Unset):
-        filename (str | Unset):
+        content_type (None | str | Unset):
+        date_created (datetime.datetime | None | Unset):
+        date_modified (datetime.datetime | None | Unset):
+        filename (None | str | Unset):
         format_ (None | str | Unset):
-        id (UUID | Unset):
-        is_custom_keyframe (bool | Unset):
-        is_public (bool | Unset):
-        name (str | Unset):
-        resolution (ResolutionType | Unset):
+        id (None | Unset | UUID):
+        is_custom_keyframe (bool | None | Unset):
+        is_public (bool | None | Unset):
+        name (None | str | Unset):
+        resolution (None | ResolutionType | Unset):
         rotation (int | None | Unset):
         size (int | None | Unset):
-        status (KeyframeCreateSchemaStatus | Unset):
-        storage_id (UUID | Unset):
-        storage_method (str | Unset):
-        time_code (TimeCodeType | Unset):
-        upload_credentials (KeyframeCreateSchemaUploadCredentials | Unset):
-        upload_method (str | Unset):
-        upload_url (str | Unset):
-        url (str | Unset):
+        status (KeyframeCreateSchemaStatusType1 | None | Unset):
+        storage_id (None | Unset | UUID):
+        storage_method (None | str | Unset):
+        time_code (None | TimeCodeType | Unset):
+        upload_credentials (KeyframeCreateSchemaUploadCredentialsType0 | None | Unset):
+        upload_method (None | str | Unset):
+        upload_url (None | str | Unset):
+        url (None | str | Unset):
         version_id (None | Unset | UUID):
     """
 
     type_: KeyframeCreateSchemaType
     asset_id: None | Unset | UUID = UNSET
     collection_id: None | Unset | UUID = UNSET
-    content_type: str | Unset = UNSET
-    date_created: datetime.datetime | Unset = UNSET
-    date_modified: datetime.datetime | Unset = UNSET
-    filename: str | Unset = UNSET
+    content_type: None | str | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_modified: datetime.datetime | None | Unset = UNSET
+    filename: None | str | Unset = UNSET
     format_: None | str | Unset = UNSET
-    id: UUID | Unset = UNSET
-    is_custom_keyframe: bool | Unset = UNSET
-    is_public: bool | Unset = UNSET
-    name: str | Unset = UNSET
-    resolution: ResolutionType | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    is_custom_keyframe: bool | None | Unset = UNSET
+    is_public: bool | None | Unset = UNSET
+    name: None | str | Unset = UNSET
+    resolution: None | ResolutionType | Unset = UNSET
     rotation: int | None | Unset = UNSET
     size: int | None | Unset = UNSET
-    status: KeyframeCreateSchemaStatus | Unset = UNSET
-    storage_id: UUID | Unset = UNSET
-    storage_method: str | Unset = UNSET
-    time_code: TimeCodeType | Unset = UNSET
-    upload_credentials: KeyframeCreateSchemaUploadCredentials | Unset = UNSET
-    upload_method: str | Unset = UNSET
-    upload_url: str | Unset = UNSET
-    url: str | Unset = UNSET
+    status: KeyframeCreateSchemaStatusType1 | None | Unset = UNSET
+    storage_id: None | Unset | UUID = UNSET
+    storage_method: None | str | Unset = UNSET
+    time_code: None | TimeCodeType | Unset = UNSET
+    upload_credentials: KeyframeCreateSchemaUploadCredentialsType0 | None | Unset = (
+        UNSET
+    )
+    upload_method: None | str | Unset = UNSET
+    upload_url: None | str | Unset = UNSET
+    url: None | str | Unset = UNSET
     version_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.keyframe_create_schema_status_type_1 import (
+            KeyframeCreateSchemaStatusType1,
+        )
+        from ..models.keyframe_create_schema_upload_credentials_type_0 import (
+            KeyframeCreateSchemaUploadCredentialsType0,
+        )
+        from ..models.resolution_type import ResolutionType
+        from ..models.time_code_type import TimeCodeType
+
         type_ = self.type_.value
 
         asset_id: None | str | Unset
@@ -98,17 +111,33 @@ class KeyframeCreateSchema:
         else:
             collection_id = self.collection_id
 
-        content_type = self.content_type
+        content_type: None | str | Unset
+        if isinstance(self.content_type, Unset):
+            content_type = UNSET
+        else:
+            content_type = self.content_type
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_modified: str | Unset = UNSET
-        if not isinstance(self.date_modified, Unset):
+        date_modified: None | str | Unset
+        if isinstance(self.date_modified, Unset):
+            date_modified = UNSET
+        elif isinstance(self.date_modified, datetime.datetime):
             date_modified = self.date_modified.isoformat()
+        else:
+            date_modified = self.date_modified
 
-        filename = self.filename
+        filename: None | str | Unset
+        if isinstance(self.filename, Unset):
+            filename = UNSET
+        else:
+            filename = self.filename
 
         format_: None | str | Unset
         if isinstance(self.format_, Unset):
@@ -116,19 +145,39 @@ class KeyframeCreateSchema:
         else:
             format_ = self.format_
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        is_custom_keyframe = self.is_custom_keyframe
+        is_custom_keyframe: bool | None | Unset
+        if isinstance(self.is_custom_keyframe, Unset):
+            is_custom_keyframe = UNSET
+        else:
+            is_custom_keyframe = self.is_custom_keyframe
 
-        is_public = self.is_public
+        is_public: bool | None | Unset
+        if isinstance(self.is_public, Unset):
+            is_public = UNSET
+        else:
+            is_public = self.is_public
 
-        name = self.name
+        name: None | str | Unset
+        if isinstance(self.name, Unset):
+            name = UNSET
+        else:
+            name = self.name
 
-        resolution: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.resolution, Unset):
+        resolution: dict[str, Any] | None | Unset
+        if isinstance(self.resolution, Unset):
+            resolution = UNSET
+        elif isinstance(self.resolution, ResolutionType):
             resolution = self.resolution.to_dict()
+        else:
+            resolution = self.resolution
 
         rotation: int | None | Unset
         if isinstance(self.rotation, Unset):
@@ -142,29 +191,63 @@ class KeyframeCreateSchema:
         else:
             size = self.size
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        status: dict[str, Any] | None | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        elif isinstance(self.status, KeyframeCreateSchemaStatusType1):
+            status = self.status.to_dict()
+        else:
+            status = self.status
 
-        storage_id: str | Unset = UNSET
-        if not isinstance(self.storage_id, Unset):
+        storage_id: None | str | Unset
+        if isinstance(self.storage_id, Unset):
+            storage_id = UNSET
+        elif isinstance(self.storage_id, UUID):
             storage_id = str(self.storage_id)
+        else:
+            storage_id = self.storage_id
 
-        storage_method = self.storage_method
+        storage_method: None | str | Unset
+        if isinstance(self.storage_method, Unset):
+            storage_method = UNSET
+        else:
+            storage_method = self.storage_method
 
-        time_code: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.time_code, Unset):
+        time_code: dict[str, Any] | None | Unset
+        if isinstance(self.time_code, Unset):
+            time_code = UNSET
+        elif isinstance(self.time_code, TimeCodeType):
             time_code = self.time_code.to_dict()
+        else:
+            time_code = self.time_code
 
-        upload_credentials: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.upload_credentials, Unset):
+        upload_credentials: dict[str, Any] | None | Unset
+        if isinstance(self.upload_credentials, Unset):
+            upload_credentials = UNSET
+        elif isinstance(
+            self.upload_credentials, KeyframeCreateSchemaUploadCredentialsType0
+        ):
             upload_credentials = self.upload_credentials.to_dict()
+        else:
+            upload_credentials = self.upload_credentials
 
-        upload_method = self.upload_method
+        upload_method: None | str | Unset
+        if isinstance(self.upload_method, Unset):
+            upload_method = UNSET
+        else:
+            upload_method = self.upload_method
 
-        upload_url = self.upload_url
+        upload_url: None | str | Unset
+        if isinstance(self.upload_url, Unset):
+            upload_url = UNSET
+        else:
+            upload_url = self.upload_url
 
-        url = self.url
+        url: None | str | Unset
+        if isinstance(self.url, Unset):
+            url = UNSET
+        else:
+            url = self.url
 
         version_id: None | str | Unset
         if isinstance(self.version_id, Unset):
@@ -232,8 +315,11 @@ class KeyframeCreateSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.keyframe_create_schema_upload_credentials import (
-            KeyframeCreateSchemaUploadCredentials,
+        from ..models.keyframe_create_schema_status_type_1 import (
+            KeyframeCreateSchemaStatusType1,
+        )
+        from ..models.keyframe_create_schema_upload_credentials_type_0 import (
+            KeyframeCreateSchemaUploadCredentialsType0,
         )
         from ..models.resolution_type import ResolutionType
         from ..models.time_code_type import TimeCodeType
@@ -275,23 +361,57 @@ class KeyframeCreateSchema:
 
         collection_id = _parse_collection_id(d.pop("collection_id", UNSET))
 
-        content_type = d.pop("content_type", UNSET)
+        def _parse_content_type(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        content_type = _parse_content_type(d.pop("content_type", UNSET))
 
-        _date_modified = d.pop("date_modified", UNSET)
-        date_modified: datetime.datetime | Unset
-        if isinstance(_date_modified, Unset):
-            date_modified = UNSET
-        else:
-            date_modified = datetime.datetime.fromisoformat(_date_modified)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        filename = d.pop("filename", UNSET)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
+
+        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_modified_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_modified_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
+
+        def _parse_filename(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        filename = _parse_filename(d.pop("filename", UNSET))
 
         def _parse_format_(data: object) -> None | str | Unset:
             if data is None:
@@ -302,25 +422,68 @@ class KeyframeCreateSchema:
 
         format_ = _parse_format_(d.pop("format", UNSET))
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
 
-        is_custom_keyframe = d.pop("is_custom_keyframe", UNSET)
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        is_public = d.pop("is_public", UNSET)
+        id = _parse_id(d.pop("id", UNSET))
 
-        name = d.pop("name", UNSET)
+        def _parse_is_custom_keyframe(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        _resolution = d.pop("resolution", UNSET)
-        resolution: ResolutionType | Unset
-        if isinstance(_resolution, Unset):
-            resolution = UNSET
-        else:
-            resolution = ResolutionType.from_dict(_resolution)
+        is_custom_keyframe = _parse_is_custom_keyframe(
+            d.pop("is_custom_keyframe", UNSET)
+        )
+
+        def _parse_is_public(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        is_public = _parse_is_public(d.pop("is_public", UNSET))
+
+        def _parse_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        name = _parse_name(d.pop("name", UNSET))
+
+        def _parse_resolution(data: object) -> None | ResolutionType | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                resolution_type_1 = ResolutionType.from_dict(data)
+
+                return resolution_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | ResolutionType | Unset, data)
+
+        resolution = _parse_resolution(d.pop("resolution", UNSET))
 
         def _parse_rotation(data: object) -> int | None | Unset:
             if data is None:
@@ -340,43 +503,117 @@ class KeyframeCreateSchema:
 
         size = _parse_size(d.pop("size", UNSET))
 
-        _status = d.pop("status", UNSET)
-        status: KeyframeCreateSchemaStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = KeyframeCreateSchemaStatus(_status)
+        def _parse_status(
+            data: object,
+        ) -> KeyframeCreateSchemaStatusType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                status_type_1 = KeyframeCreateSchemaStatusType1.from_dict(data)
 
-        _storage_id = d.pop("storage_id", UNSET)
-        storage_id: UUID | Unset
-        if isinstance(_storage_id, Unset):
-            storage_id = UNSET
-        else:
-            storage_id = UUID(_storage_id)
+                return status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(KeyframeCreateSchemaStatusType1 | None | Unset, data)
 
-        storage_method = d.pop("storage_method", UNSET)
+        status = _parse_status(d.pop("status", UNSET))
 
-        _time_code = d.pop("time_code", UNSET)
-        time_code: TimeCodeType | Unset
-        if isinstance(_time_code, Unset):
-            time_code = UNSET
-        else:
-            time_code = TimeCodeType.from_dict(_time_code)
+        def _parse_storage_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                storage_id_type_0 = UUID(data)
 
-        _upload_credentials = d.pop("upload_credentials", UNSET)
-        upload_credentials: KeyframeCreateSchemaUploadCredentials | Unset
-        if isinstance(_upload_credentials, Unset):
-            upload_credentials = UNSET
-        else:
-            upload_credentials = KeyframeCreateSchemaUploadCredentials.from_dict(
-                _upload_credentials
-            )
+                return storage_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        upload_method = d.pop("upload_method", UNSET)
+        storage_id = _parse_storage_id(d.pop("storage_id", UNSET))
 
-        upload_url = d.pop("upload_url", UNSET)
+        def _parse_storage_method(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        url = d.pop("url", UNSET)
+        storage_method = _parse_storage_method(d.pop("storage_method", UNSET))
+
+        def _parse_time_code(data: object) -> None | TimeCodeType | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                time_code_type_1 = TimeCodeType.from_dict(data)
+
+                return time_code_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | TimeCodeType | Unset, data)
+
+        time_code = _parse_time_code(d.pop("time_code", UNSET))
+
+        def _parse_upload_credentials(
+            data: object,
+        ) -> KeyframeCreateSchemaUploadCredentialsType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                upload_credentials_type_0 = (
+                    KeyframeCreateSchemaUploadCredentialsType0.from_dict(data)
+                )
+
+                return upload_credentials_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(KeyframeCreateSchemaUploadCredentialsType0 | None | Unset, data)
+
+        upload_credentials = _parse_upload_credentials(
+            d.pop("upload_credentials", UNSET)
+        )
+
+        def _parse_upload_method(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        upload_method = _parse_upload_method(d.pop("upload_method", UNSET))
+
+        def _parse_upload_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        upload_url = _parse_upload_url(d.pop("upload_url", UNSET))
+
+        def _parse_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        url = _parse_url(d.pop("url", UNSET))
 
         def _parse_version_id(data: object) -> None | Unset | UUID:
             if data is None:

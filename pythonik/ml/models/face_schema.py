@@ -8,11 +8,11 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.face_schema_status import FaceSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.face_landmark_schema import FaceLandmarkSchema
+    from ..models.face_schema_status_type_1 import FaceSchemaStatusType1
 
 
 T = TypeVar("T", bound="FaceSchema")
@@ -22,120 +22,205 @@ T = TypeVar("T", bound="FaceSchema")
 class FaceSchema:
     """
     Attributes:
-        asset_id (UUID | Unset):
-        augmented_embedding_ids (list[UUID] | Unset):
-        bounding_box (list[float] | Unset):
-        created_by_user (UUID | Unset):
-        date_created (datetime.datetime | Unset):
-        date_modified (datetime.datetime | Unset):
-        detection_probability (float | Unset):
-        directory_path (str | Unset):
-        embedding_id (UUID | Unset):
-        filename (str | Unset):
-        id (UUID | Unset):
-        image_url (str | Unset):
-        landmarks (list[FaceLandmarkSchema] | Unset):
-        person_id (UUID | Unset):
-        status (FaceSchemaStatus | Unset):
-        storage_id (UUID | Unset):
-        system_domain_id (UUID | Unset):
-        timestamp_ms (int | Unset):
-        version_id (UUID | Unset):
+        asset_id (None | Unset | UUID):
+        augmented_embedding_ids (list[UUID] | None | Unset):
+        bounding_box (list[float] | None | Unset):
+        created_by_user (None | Unset | UUID):
+        date_created (datetime.datetime | None | Unset):
+        date_modified (datetime.datetime | None | Unset):
+        detection_probability (float | None | Unset):
+        directory_path (None | str | Unset):
+        embedding_id (None | Unset | UUID):
+        filename (None | str | Unset):
+        id (None | Unset | UUID):
+        image_url (None | str | Unset):
+        landmarks (list[FaceLandmarkSchema] | None | Unset):
+        person_id (None | Unset | UUID):
+        status (FaceSchemaStatusType1 | None | Unset):
+        storage_id (None | Unset | UUID):
+        system_domain_id (None | Unset | UUID):
+        timestamp_ms (int | None | Unset):
+        version_id (None | Unset | UUID):
     """
 
-    asset_id: UUID | Unset = UNSET
-    augmented_embedding_ids: list[UUID] | Unset = UNSET
-    bounding_box: list[float] | Unset = UNSET
-    created_by_user: UUID | Unset = UNSET
-    date_created: datetime.datetime | Unset = UNSET
-    date_modified: datetime.datetime | Unset = UNSET
-    detection_probability: float | Unset = UNSET
-    directory_path: str | Unset = UNSET
-    embedding_id: UUID | Unset = UNSET
-    filename: str | Unset = UNSET
-    id: UUID | Unset = UNSET
-    image_url: str | Unset = UNSET
-    landmarks: list[FaceLandmarkSchema] | Unset = UNSET
-    person_id: UUID | Unset = UNSET
-    status: FaceSchemaStatus | Unset = UNSET
-    storage_id: UUID | Unset = UNSET
-    system_domain_id: UUID | Unset = UNSET
-    timestamp_ms: int | Unset = UNSET
-    version_id: UUID | Unset = UNSET
+    asset_id: None | Unset | UUID = UNSET
+    augmented_embedding_ids: list[UUID] | None | Unset = UNSET
+    bounding_box: list[float] | None | Unset = UNSET
+    created_by_user: None | Unset | UUID = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_modified: datetime.datetime | None | Unset = UNSET
+    detection_probability: float | None | Unset = UNSET
+    directory_path: None | str | Unset = UNSET
+    embedding_id: None | Unset | UUID = UNSET
+    filename: None | str | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    image_url: None | str | Unset = UNSET
+    landmarks: list[FaceLandmarkSchema] | None | Unset = UNSET
+    person_id: None | Unset | UUID = UNSET
+    status: FaceSchemaStatusType1 | None | Unset = UNSET
+    storage_id: None | Unset | UUID = UNSET
+    system_domain_id: None | Unset | UUID = UNSET
+    timestamp_ms: int | None | Unset = UNSET
+    version_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        asset_id: str | Unset = UNSET
-        if not isinstance(self.asset_id, Unset):
+        from ..models.face_schema_status_type_1 import FaceSchemaStatusType1
+
+        asset_id: None | str | Unset
+        if isinstance(self.asset_id, Unset):
+            asset_id = UNSET
+        elif isinstance(self.asset_id, UUID):
             asset_id = str(self.asset_id)
+        else:
+            asset_id = self.asset_id
 
-        augmented_embedding_ids: list[str] | Unset = UNSET
-        if not isinstance(self.augmented_embedding_ids, Unset):
+        augmented_embedding_ids: list[str] | None | Unset
+        if isinstance(self.augmented_embedding_ids, Unset):
+            augmented_embedding_ids = UNSET
+        elif isinstance(self.augmented_embedding_ids, list):
             augmented_embedding_ids = []
-            for augmented_embedding_ids_item_data in self.augmented_embedding_ids:
-                augmented_embedding_ids_item = str(augmented_embedding_ids_item_data)
-                augmented_embedding_ids.append(augmented_embedding_ids_item)
+            for (
+                augmented_embedding_ids_type_0_item_data
+            ) in self.augmented_embedding_ids:
+                augmented_embedding_ids_type_0_item = str(
+                    augmented_embedding_ids_type_0_item_data
+                )
+                augmented_embedding_ids.append(augmented_embedding_ids_type_0_item)
 
-        bounding_box: list[float] | Unset = UNSET
-        if not isinstance(self.bounding_box, Unset):
+        else:
+            augmented_embedding_ids = self.augmented_embedding_ids
+
+        bounding_box: list[float] | None | Unset
+        if isinstance(self.bounding_box, Unset):
+            bounding_box = UNSET
+        elif isinstance(self.bounding_box, list):
             bounding_box = self.bounding_box
 
-        created_by_user: str | Unset = UNSET
-        if not isinstance(self.created_by_user, Unset):
+        else:
+            bounding_box = self.bounding_box
+
+        created_by_user: None | str | Unset
+        if isinstance(self.created_by_user, Unset):
+            created_by_user = UNSET
+        elif isinstance(self.created_by_user, UUID):
             created_by_user = str(self.created_by_user)
+        else:
+            created_by_user = self.created_by_user
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_modified: str | Unset = UNSET
-        if not isinstance(self.date_modified, Unset):
+        date_modified: None | str | Unset
+        if isinstance(self.date_modified, Unset):
+            date_modified = UNSET
+        elif isinstance(self.date_modified, datetime.datetime):
             date_modified = self.date_modified.isoformat()
+        else:
+            date_modified = self.date_modified
 
-        detection_probability = self.detection_probability
+        detection_probability: float | None | Unset
+        if isinstance(self.detection_probability, Unset):
+            detection_probability = UNSET
+        else:
+            detection_probability = self.detection_probability
 
-        directory_path = self.directory_path
+        directory_path: None | str | Unset
+        if isinstance(self.directory_path, Unset):
+            directory_path = UNSET
+        else:
+            directory_path = self.directory_path
 
-        embedding_id: str | Unset = UNSET
-        if not isinstance(self.embedding_id, Unset):
+        embedding_id: None | str | Unset
+        if isinstance(self.embedding_id, Unset):
+            embedding_id = UNSET
+        elif isinstance(self.embedding_id, UUID):
             embedding_id = str(self.embedding_id)
+        else:
+            embedding_id = self.embedding_id
 
-        filename = self.filename
+        filename: None | str | Unset
+        if isinstance(self.filename, Unset):
+            filename = UNSET
+        else:
+            filename = self.filename
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        image_url = self.image_url
+        image_url: None | str | Unset
+        if isinstance(self.image_url, Unset):
+            image_url = UNSET
+        else:
+            image_url = self.image_url
 
-        landmarks: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.landmarks, Unset):
+        landmarks: list[dict[str, Any]] | None | Unset
+        if isinstance(self.landmarks, Unset):
+            landmarks = UNSET
+        elif isinstance(self.landmarks, list):
             landmarks = []
-            for landmarks_item_data in self.landmarks:
-                landmarks_item = landmarks_item_data.to_dict()
-                landmarks.append(landmarks_item)
+            for landmarks_type_0_item_data in self.landmarks:
+                landmarks_type_0_item = landmarks_type_0_item_data.to_dict()
+                landmarks.append(landmarks_type_0_item)
 
-        person_id: str | Unset = UNSET
-        if not isinstance(self.person_id, Unset):
+        else:
+            landmarks = self.landmarks
+
+        person_id: None | str | Unset
+        if isinstance(self.person_id, Unset):
+            person_id = UNSET
+        elif isinstance(self.person_id, UUID):
             person_id = str(self.person_id)
+        else:
+            person_id = self.person_id
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        status: dict[str, Any] | None | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        elif isinstance(self.status, FaceSchemaStatusType1):
+            status = self.status.to_dict()
+        else:
+            status = self.status
 
-        storage_id: str | Unset = UNSET
-        if not isinstance(self.storage_id, Unset):
+        storage_id: None | str | Unset
+        if isinstance(self.storage_id, Unset):
+            storage_id = UNSET
+        elif isinstance(self.storage_id, UUID):
             storage_id = str(self.storage_id)
+        else:
+            storage_id = self.storage_id
 
-        system_domain_id: str | Unset = UNSET
-        if not isinstance(self.system_domain_id, Unset):
+        system_domain_id: None | str | Unset
+        if isinstance(self.system_domain_id, Unset):
+            system_domain_id = UNSET
+        elif isinstance(self.system_domain_id, UUID):
             system_domain_id = str(self.system_domain_id)
+        else:
+            system_domain_id = self.system_domain_id
 
-        timestamp_ms = self.timestamp_ms
+        timestamp_ms: int | None | Unset
+        if isinstance(self.timestamp_ms, Unset):
+            timestamp_ms = UNSET
+        else:
+            timestamp_ms = self.timestamp_ms
 
-        version_id: str | Unset = UNSET
-        if not isinstance(self.version_id, Unset):
+        version_id: None | str | Unset
+        if isinstance(self.version_id, Unset):
+            version_id = UNSET
+        elif isinstance(self.version_id, UUID):
             version_id = str(self.version_id)
+        else:
+            version_id = self.version_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -184,114 +269,314 @@ class FaceSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.face_landmark_schema import FaceLandmarkSchema
+        from ..models.face_schema_status_type_1 import FaceSchemaStatusType1
 
         d = dict(src_dict)
-        _asset_id = d.pop("asset_id", UNSET)
-        asset_id: UUID | Unset
-        if isinstance(_asset_id, Unset):
-            asset_id = UNSET
-        else:
-            asset_id = UUID(_asset_id)
 
-        _augmented_embedding_ids = d.pop("augmented_embedding_ids", UNSET)
-        augmented_embedding_ids: list[UUID] | Unset = UNSET
-        if _augmented_embedding_ids is not UNSET:
-            augmented_embedding_ids = []
-            for augmented_embedding_ids_item_data in _augmented_embedding_ids:
-                augmented_embedding_ids_item = UUID(augmented_embedding_ids_item_data)
+        def _parse_asset_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                asset_id_type_0 = UUID(data)
 
-                augmented_embedding_ids.append(augmented_embedding_ids_item)
+                return asset_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        bounding_box = cast(list[float], d.pop("bounding_box", UNSET))
+        asset_id = _parse_asset_id(d.pop("asset_id", UNSET))
 
-        _created_by_user = d.pop("created_by_user", UNSET)
-        created_by_user: UUID | Unset
-        if isinstance(_created_by_user, Unset):
-            created_by_user = UNSET
-        else:
-            created_by_user = UUID(_created_by_user)
+        def _parse_augmented_embedding_ids(data: object) -> list[UUID] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                augmented_embedding_ids_type_0 = []
+                _augmented_embedding_ids_type_0 = data
+                for (
+                    augmented_embedding_ids_type_0_item_data
+                ) in _augmented_embedding_ids_type_0:
+                    augmented_embedding_ids_type_0_item = UUID(
+                        augmented_embedding_ids_type_0_item_data
+                    )
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+                    augmented_embedding_ids_type_0.append(
+                        augmented_embedding_ids_type_0_item
+                    )
 
-        _date_modified = d.pop("date_modified", UNSET)
-        date_modified: datetime.datetime | Unset
-        if isinstance(_date_modified, Unset):
-            date_modified = UNSET
-        else:
-            date_modified = datetime.datetime.fromisoformat(_date_modified)
+                return augmented_embedding_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[UUID] | None | Unset, data)
 
-        detection_probability = d.pop("detection_probability", UNSET)
+        augmented_embedding_ids = _parse_augmented_embedding_ids(
+            d.pop("augmented_embedding_ids", UNSET)
+        )
 
-        directory_path = d.pop("directory_path", UNSET)
+        def _parse_bounding_box(data: object) -> list[float] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                bounding_box_type_0 = cast(list[float], data)
 
-        _embedding_id = d.pop("embedding_id", UNSET)
-        embedding_id: UUID | Unset
-        if isinstance(_embedding_id, Unset):
-            embedding_id = UNSET
-        else:
-            embedding_id = UUID(_embedding_id)
+                return bounding_box_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[float] | None | Unset, data)
 
-        filename = d.pop("filename", UNSET)
+        bounding_box = _parse_bounding_box(d.pop("bounding_box", UNSET))
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        def _parse_created_by_user(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                created_by_user_type_0 = UUID(data)
 
-        image_url = d.pop("image_url", UNSET)
+                return created_by_user_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        _landmarks = d.pop("landmarks", UNSET)
-        landmarks: list[FaceLandmarkSchema] | Unset = UNSET
-        if _landmarks is not UNSET:
-            landmarks = []
-            for landmarks_item_data in _landmarks:
-                landmarks_item = FaceLandmarkSchema.from_dict(landmarks_item_data)
+        created_by_user = _parse_created_by_user(d.pop("created_by_user", UNSET))
 
-                landmarks.append(landmarks_item)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        _person_id = d.pop("person_id", UNSET)
-        person_id: UUID | Unset
-        if isinstance(_person_id, Unset):
-            person_id = UNSET
-        else:
-            person_id = UUID(_person_id)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        _status = d.pop("status", UNSET)
-        status: FaceSchemaStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = FaceSchemaStatus(_status)
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
 
-        _storage_id = d.pop("storage_id", UNSET)
-        storage_id: UUID | Unset
-        if isinstance(_storage_id, Unset):
-            storage_id = UNSET
-        else:
-            storage_id = UUID(_storage_id)
+        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_modified_type_0 = datetime.datetime.fromisoformat(data)
 
-        _system_domain_id = d.pop("system_domain_id", UNSET)
-        system_domain_id: UUID | Unset
-        if isinstance(_system_domain_id, Unset):
-            system_domain_id = UNSET
-        else:
-            system_domain_id = UUID(_system_domain_id)
+                return date_modified_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        timestamp_ms = d.pop("timestamp_ms", UNSET)
+        date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
 
-        _version_id = d.pop("version_id", UNSET)
-        version_id: UUID | Unset
-        if isinstance(_version_id, Unset):
-            version_id = UNSET
-        else:
-            version_id = UUID(_version_id)
+        def _parse_detection_probability(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        detection_probability = _parse_detection_probability(
+            d.pop("detection_probability", UNSET)
+        )
+
+        def _parse_directory_path(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        directory_path = _parse_directory_path(d.pop("directory_path", UNSET))
+
+        def _parse_embedding_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                embedding_id_type_0 = UUID(data)
+
+                return embedding_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        embedding_id = _parse_embedding_id(d.pop("embedding_id", UNSET))
+
+        def _parse_filename(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        filename = _parse_filename(d.pop("filename", UNSET))
+
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_image_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        image_url = _parse_image_url(d.pop("image_url", UNSET))
+
+        def _parse_landmarks(data: object) -> list[FaceLandmarkSchema] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                landmarks_type_0 = []
+                _landmarks_type_0 = data
+                for landmarks_type_0_item_data in _landmarks_type_0:
+                    landmarks_type_0_item = FaceLandmarkSchema.from_dict(
+                        landmarks_type_0_item_data
+                    )
+
+                    landmarks_type_0.append(landmarks_type_0_item)
+
+                return landmarks_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[FaceLandmarkSchema] | None | Unset, data)
+
+        landmarks = _parse_landmarks(d.pop("landmarks", UNSET))
+
+        def _parse_person_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                person_id_type_0 = UUID(data)
+
+                return person_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        person_id = _parse_person_id(d.pop("person_id", UNSET))
+
+        def _parse_status(data: object) -> FaceSchemaStatusType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                status_type_1 = FaceSchemaStatusType1.from_dict(data)
+
+                return status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(FaceSchemaStatusType1 | None | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
+
+        def _parse_storage_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                storage_id_type_0 = UUID(data)
+
+                return storage_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        storage_id = _parse_storage_id(d.pop("storage_id", UNSET))
+
+        def _parse_system_domain_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                system_domain_id_type_0 = UUID(data)
+
+                return system_domain_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
+
+        def _parse_timestamp_ms(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        timestamp_ms = _parse_timestamp_ms(d.pop("timestamp_ms", UNSET))
+
+        def _parse_version_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                version_id_type_0 = UUID(data)
+
+                return version_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        version_id = _parse_version_id(d.pop("version_id", UNSET))
 
         face_schema = cls(
             asset_id=asset_id,

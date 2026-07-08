@@ -17,35 +17,51 @@ class RestoreActionParameters:
     """
     Attributes:
         destination_storage_id (UUID):
-        allow_duplicate_transfers (bool | Unset):  Default: False.
-        allow_host_transfer (bool | Unset):  Default: True.
-        delete_only_from_source_folder (bool | Unset):  Default: False.
-        delete_original (bool | Unset):  Default: False.
+        allow_duplicate_transfers (bool | None | Unset):  Default: False.
+        allow_host_transfer (bool | None | Unset):  Default: True.
+        delete_only_from_source_folder (bool | None | Unset):  Default: False.
+        delete_original (bool | None | Unset):  Default: False.
         destination_directory_path (None | str | Unset):
-        keep_collection_structure (bool | Unset):  Default: False.
+        keep_collection_structure (bool | None | Unset):  Default: False.
         preferred_original_storage_id (None | Unset | UUID):
     """
 
     destination_storage_id: UUID
-    allow_duplicate_transfers: bool | Unset = False
-    allow_host_transfer: bool | Unset = True
-    delete_only_from_source_folder: bool | Unset = False
-    delete_original: bool | Unset = False
+    allow_duplicate_transfers: bool | None | Unset = False
+    allow_host_transfer: bool | None | Unset = True
+    delete_only_from_source_folder: bool | None | Unset = False
+    delete_original: bool | None | Unset = False
     destination_directory_path: None | str | Unset = UNSET
-    keep_collection_structure: bool | Unset = False
+    keep_collection_structure: bool | None | Unset = False
     preferred_original_storage_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         destination_storage_id = str(self.destination_storage_id)
 
-        allow_duplicate_transfers = self.allow_duplicate_transfers
+        allow_duplicate_transfers: bool | None | Unset
+        if isinstance(self.allow_duplicate_transfers, Unset):
+            allow_duplicate_transfers = UNSET
+        else:
+            allow_duplicate_transfers = self.allow_duplicate_transfers
 
-        allow_host_transfer = self.allow_host_transfer
+        allow_host_transfer: bool | None | Unset
+        if isinstance(self.allow_host_transfer, Unset):
+            allow_host_transfer = UNSET
+        else:
+            allow_host_transfer = self.allow_host_transfer
 
-        delete_only_from_source_folder = self.delete_only_from_source_folder
+        delete_only_from_source_folder: bool | None | Unset
+        if isinstance(self.delete_only_from_source_folder, Unset):
+            delete_only_from_source_folder = UNSET
+        else:
+            delete_only_from_source_folder = self.delete_only_from_source_folder
 
-        delete_original = self.delete_original
+        delete_original: bool | None | Unset
+        if isinstance(self.delete_original, Unset):
+            delete_original = UNSET
+        else:
+            delete_original = self.delete_original
 
         destination_directory_path: None | str | Unset
         if isinstance(self.destination_directory_path, Unset):
@@ -53,7 +69,11 @@ class RestoreActionParameters:
         else:
             destination_directory_path = self.destination_directory_path
 
-        keep_collection_structure = self.keep_collection_structure
+        keep_collection_structure: bool | None | Unset
+        if isinstance(self.keep_collection_structure, Unset):
+            keep_collection_structure = UNSET
+        else:
+            keep_collection_structure = self.keep_collection_structure
 
         preferred_original_storage_id: None | str | Unset
         if isinstance(self.preferred_original_storage_id, Unset):
@@ -94,13 +114,47 @@ class RestoreActionParameters:
         d = dict(src_dict)
         destination_storage_id = UUID(d.pop("destination_storage_id"))
 
-        allow_duplicate_transfers = d.pop("allow_duplicate_transfers", UNSET)
+        def _parse_allow_duplicate_transfers(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        allow_host_transfer = d.pop("allow_host_transfer", UNSET)
+        allow_duplicate_transfers = _parse_allow_duplicate_transfers(
+            d.pop("allow_duplicate_transfers", UNSET)
+        )
 
-        delete_only_from_source_folder = d.pop("delete_only_from_source_folder", UNSET)
+        def _parse_allow_host_transfer(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        delete_original = d.pop("delete_original", UNSET)
+        allow_host_transfer = _parse_allow_host_transfer(
+            d.pop("allow_host_transfer", UNSET)
+        )
+
+        def _parse_delete_only_from_source_folder(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        delete_only_from_source_folder = _parse_delete_only_from_source_folder(
+            d.pop("delete_only_from_source_folder", UNSET)
+        )
+
+        def _parse_delete_original(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        delete_original = _parse_delete_original(d.pop("delete_original", UNSET))
 
         def _parse_destination_directory_path(data: object) -> None | str | Unset:
             if data is None:
@@ -113,7 +167,16 @@ class RestoreActionParameters:
             d.pop("destination_directory_path", UNSET)
         )
 
-        keep_collection_structure = d.pop("keep_collection_structure", UNSET)
+        def _parse_keep_collection_structure(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        keep_collection_structure = _parse_keep_collection_structure(
+            d.pop("keep_collection_structure", UNSET)
+        )
 
         def _parse_preferred_original_storage_id(data: object) -> None | Unset | UUID:
             if data is None:

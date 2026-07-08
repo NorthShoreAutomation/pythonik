@@ -8,18 +8,22 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.edit_asset_version_analyze_status import EditAssetVersionAnalyzeStatus
-from ..models.edit_asset_version_archive_status import EditAssetVersionArchiveStatus
-from ..models.edit_asset_version_face_recognition_status import (
-    EditAssetVersionFaceRecognitionStatus,
-)
-from ..models.edit_asset_version_status import EditAssetVersionStatus
-from ..models.edit_asset_version_transcribe_status import (
-    EditAssetVersionTranscribeStatus,
-)
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
+    from ..models.edit_asset_version_analyze_status_type_1 import (
+        EditAssetVersionAnalyzeStatusType1,
+    )
+    from ..models.edit_asset_version_archive_status_type_1 import (
+        EditAssetVersionArchiveStatusType1,
+    )
+    from ..models.edit_asset_version_face_recognition_status_type_1 import (
+        EditAssetVersionFaceRecognitionStatusType1,
+    )
+    from ..models.edit_asset_version_status_type_1 import EditAssetVersionStatusType1
+    from ..models.edit_asset_version_transcribe_status_type_1 import (
+        EditAssetVersionTranscribeStatusType1,
+    )
     from ..models.user import User
 
 
@@ -31,88 +35,163 @@ class EditAssetVersion:
     """
     Attributes:
         id (UUID):
-        analyze_status (EditAssetVersionAnalyzeStatus | Unset):
-        archive_status (EditAssetVersionArchiveStatus | Unset):
-        created_by_user (UUID | Unset):
-        created_by_user_info (User | Unset):
-        date_created (datetime.datetime | Unset):
-        face_recognition_status (EditAssetVersionFaceRecognitionStatus | Unset):
-        has_unconfirmed_persons (bool | Unset):
-        is_online (bool | Unset):
-        person_ids (list[UUID] | Unset):
-        status (EditAssetVersionStatus | Unset):
-        transcribe_status (EditAssetVersionTranscribeStatus | Unset):
-        transcribed_languages (list[str] | Unset):
-        version_number (int | Unset):
+        analyze_status (EditAssetVersionAnalyzeStatusType1 | None | Unset):
+        archive_status (EditAssetVersionArchiveStatusType1 | None | Unset):
+        created_by_user (None | Unset | UUID):
+        created_by_user_info (None | Unset | User):
+        date_created (datetime.datetime | None | Unset):
+        face_recognition_status (EditAssetVersionFaceRecognitionStatusType1 | None | Unset):
+        has_unconfirmed_persons (bool | None | Unset):
+        is_online (bool | None | Unset):
+        person_ids (list[UUID] | None | Unset):
+        status (EditAssetVersionStatusType1 | None | Unset):
+        transcribe_status (EditAssetVersionTranscribeStatusType1 | None | Unset):
+        transcribed_languages (list[str] | None | Unset):
+        version_number (int | None | Unset):
     """
 
     id: UUID
-    analyze_status: EditAssetVersionAnalyzeStatus | Unset = UNSET
-    archive_status: EditAssetVersionArchiveStatus | Unset = UNSET
-    created_by_user: UUID | Unset = UNSET
-    created_by_user_info: User | Unset = UNSET
-    date_created: datetime.datetime | Unset = UNSET
-    face_recognition_status: EditAssetVersionFaceRecognitionStatus | Unset = UNSET
-    has_unconfirmed_persons: bool | Unset = UNSET
-    is_online: bool | Unset = UNSET
-    person_ids: list[UUID] | Unset = UNSET
-    status: EditAssetVersionStatus | Unset = UNSET
-    transcribe_status: EditAssetVersionTranscribeStatus | Unset = UNSET
-    transcribed_languages: list[str] | Unset = UNSET
-    version_number: int | Unset = UNSET
+    analyze_status: EditAssetVersionAnalyzeStatusType1 | None | Unset = UNSET
+    archive_status: EditAssetVersionArchiveStatusType1 | None | Unset = UNSET
+    created_by_user: None | Unset | UUID = UNSET
+    created_by_user_info: None | Unset | User = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    face_recognition_status: (
+        EditAssetVersionFaceRecognitionStatusType1 | None | Unset
+    ) = UNSET
+    has_unconfirmed_persons: bool | None | Unset = UNSET
+    is_online: bool | None | Unset = UNSET
+    person_ids: list[UUID] | None | Unset = UNSET
+    status: EditAssetVersionStatusType1 | None | Unset = UNSET
+    transcribe_status: EditAssetVersionTranscribeStatusType1 | None | Unset = UNSET
+    transcribed_languages: list[str] | None | Unset = UNSET
+    version_number: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.edit_asset_version_analyze_status_type_1 import (
+            EditAssetVersionAnalyzeStatusType1,
+        )
+        from ..models.edit_asset_version_archive_status_type_1 import (
+            EditAssetVersionArchiveStatusType1,
+        )
+        from ..models.edit_asset_version_face_recognition_status_type_1 import (
+            EditAssetVersionFaceRecognitionStatusType1,
+        )
+        from ..models.edit_asset_version_status_type_1 import (
+            EditAssetVersionStatusType1,
+        )
+        from ..models.edit_asset_version_transcribe_status_type_1 import (
+            EditAssetVersionTranscribeStatusType1,
+        )
+        from ..models.user import User
+
         id = str(self.id)
 
-        analyze_status: str | Unset = UNSET
-        if not isinstance(self.analyze_status, Unset):
-            analyze_status = self.analyze_status.value
+        analyze_status: dict[str, Any] | None | Unset
+        if isinstance(self.analyze_status, Unset):
+            analyze_status = UNSET
+        elif isinstance(self.analyze_status, EditAssetVersionAnalyzeStatusType1):
+            analyze_status = self.analyze_status.to_dict()
+        else:
+            analyze_status = self.analyze_status
 
-        archive_status: str | Unset = UNSET
-        if not isinstance(self.archive_status, Unset):
-            archive_status = self.archive_status.value
+        archive_status: dict[str, Any] | None | Unset
+        if isinstance(self.archive_status, Unset):
+            archive_status = UNSET
+        elif isinstance(self.archive_status, EditAssetVersionArchiveStatusType1):
+            archive_status = self.archive_status.to_dict()
+        else:
+            archive_status = self.archive_status
 
-        created_by_user: str | Unset = UNSET
-        if not isinstance(self.created_by_user, Unset):
+        created_by_user: None | str | Unset
+        if isinstance(self.created_by_user, Unset):
+            created_by_user = UNSET
+        elif isinstance(self.created_by_user, UUID):
             created_by_user = str(self.created_by_user)
+        else:
+            created_by_user = self.created_by_user
 
-        created_by_user_info: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.created_by_user_info, Unset):
+        created_by_user_info: dict[str, Any] | None | Unset
+        if isinstance(self.created_by_user_info, Unset):
+            created_by_user_info = UNSET
+        elif isinstance(self.created_by_user_info, User):
             created_by_user_info = self.created_by_user_info.to_dict()
+        else:
+            created_by_user_info = self.created_by_user_info
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        face_recognition_status: str | Unset = UNSET
-        if not isinstance(self.face_recognition_status, Unset):
-            face_recognition_status = self.face_recognition_status.value
+        face_recognition_status: dict[str, Any] | None | Unset
+        if isinstance(self.face_recognition_status, Unset):
+            face_recognition_status = UNSET
+        elif isinstance(
+            self.face_recognition_status, EditAssetVersionFaceRecognitionStatusType1
+        ):
+            face_recognition_status = self.face_recognition_status.to_dict()
+        else:
+            face_recognition_status = self.face_recognition_status
 
-        has_unconfirmed_persons = self.has_unconfirmed_persons
+        has_unconfirmed_persons: bool | None | Unset
+        if isinstance(self.has_unconfirmed_persons, Unset):
+            has_unconfirmed_persons = UNSET
+        else:
+            has_unconfirmed_persons = self.has_unconfirmed_persons
 
-        is_online = self.is_online
+        is_online: bool | None | Unset
+        if isinstance(self.is_online, Unset):
+            is_online = UNSET
+        else:
+            is_online = self.is_online
 
-        person_ids: list[str] | Unset = UNSET
-        if not isinstance(self.person_ids, Unset):
+        person_ids: list[str] | None | Unset
+        if isinstance(self.person_ids, Unset):
+            person_ids = UNSET
+        elif isinstance(self.person_ids, list):
             person_ids = []
-            for person_ids_item_data in self.person_ids:
-                person_ids_item = str(person_ids_item_data)
-                person_ids.append(person_ids_item)
+            for person_ids_type_0_item_data in self.person_ids:
+                person_ids_type_0_item = str(person_ids_type_0_item_data)
+                person_ids.append(person_ids_type_0_item)
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        else:
+            person_ids = self.person_ids
 
-        transcribe_status: str | Unset = UNSET
-        if not isinstance(self.transcribe_status, Unset):
-            transcribe_status = self.transcribe_status.value
+        status: dict[str, Any] | None | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        elif isinstance(self.status, EditAssetVersionStatusType1):
+            status = self.status.to_dict()
+        else:
+            status = self.status
 
-        transcribed_languages: list[str] | Unset = UNSET
-        if not isinstance(self.transcribed_languages, Unset):
+        transcribe_status: dict[str, Any] | None | Unset
+        if isinstance(self.transcribe_status, Unset):
+            transcribe_status = UNSET
+        elif isinstance(self.transcribe_status, EditAssetVersionTranscribeStatusType1):
+            transcribe_status = self.transcribe_status.to_dict()
+        else:
+            transcribe_status = self.transcribe_status
+
+        transcribed_languages: list[str] | None | Unset
+        if isinstance(self.transcribed_languages, Unset):
+            transcribed_languages = UNSET
+        elif isinstance(self.transcribed_languages, list):
             transcribed_languages = self.transcribed_languages
 
-        version_number = self.version_number
+        else:
+            transcribed_languages = self.transcribed_languages
+
+        version_number: int | None | Unset
+        if isinstance(self.version_number, Unset):
+            version_number = UNSET
+        else:
+            version_number = self.version_number
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -152,85 +231,251 @@ class EditAssetVersion:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.edit_asset_version_analyze_status_type_1 import (
+            EditAssetVersionAnalyzeStatusType1,
+        )
+        from ..models.edit_asset_version_archive_status_type_1 import (
+            EditAssetVersionArchiveStatusType1,
+        )
+        from ..models.edit_asset_version_face_recognition_status_type_1 import (
+            EditAssetVersionFaceRecognitionStatusType1,
+        )
+        from ..models.edit_asset_version_status_type_1 import (
+            EditAssetVersionStatusType1,
+        )
+        from ..models.edit_asset_version_transcribe_status_type_1 import (
+            EditAssetVersionTranscribeStatusType1,
+        )
         from ..models.user import User
 
         d = dict(src_dict)
         id = UUID(d.pop("id"))
 
-        _analyze_status = d.pop("analyze_status", UNSET)
-        analyze_status: EditAssetVersionAnalyzeStatus | Unset
-        if isinstance(_analyze_status, Unset):
-            analyze_status = UNSET
-        else:
-            analyze_status = EditAssetVersionAnalyzeStatus(_analyze_status)
+        def _parse_analyze_status(
+            data: object,
+        ) -> EditAssetVersionAnalyzeStatusType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                analyze_status_type_1 = EditAssetVersionAnalyzeStatusType1.from_dict(
+                    data
+                )
 
-        _archive_status = d.pop("archive_status", UNSET)
-        archive_status: EditAssetVersionArchiveStatus | Unset
-        if isinstance(_archive_status, Unset):
-            archive_status = UNSET
-        else:
-            archive_status = EditAssetVersionArchiveStatus(_archive_status)
+                return analyze_status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(EditAssetVersionAnalyzeStatusType1 | None | Unset, data)
 
-        _created_by_user = d.pop("created_by_user", UNSET)
-        created_by_user: UUID | Unset
-        if isinstance(_created_by_user, Unset):
-            created_by_user = UNSET
-        else:
-            created_by_user = UUID(_created_by_user)
+        analyze_status = _parse_analyze_status(d.pop("analyze_status", UNSET))
 
-        _created_by_user_info = d.pop("created_by_user_info", UNSET)
-        created_by_user_info: User | Unset
-        if isinstance(_created_by_user_info, Unset):
-            created_by_user_info = UNSET
-        else:
-            created_by_user_info = User.from_dict(_created_by_user_info)
+        def _parse_archive_status(
+            data: object,
+        ) -> EditAssetVersionArchiveStatusType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                archive_status_type_1 = EditAssetVersionArchiveStatusType1.from_dict(
+                    data
+                )
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+                return archive_status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(EditAssetVersionArchiveStatusType1 | None | Unset, data)
 
-        _face_recognition_status = d.pop("face_recognition_status", UNSET)
-        face_recognition_status: EditAssetVersionFaceRecognitionStatus | Unset
-        if isinstance(_face_recognition_status, Unset):
-            face_recognition_status = UNSET
-        else:
-            face_recognition_status = EditAssetVersionFaceRecognitionStatus(
-                _face_recognition_status
-            )
+        archive_status = _parse_archive_status(d.pop("archive_status", UNSET))
 
-        has_unconfirmed_persons = d.pop("has_unconfirmed_persons", UNSET)
+        def _parse_created_by_user(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                created_by_user_type_0 = UUID(data)
 
-        is_online = d.pop("is_online", UNSET)
+                return created_by_user_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        _person_ids = d.pop("person_ids", UNSET)
-        person_ids: list[UUID] | Unset = UNSET
-        if _person_ids is not UNSET:
-            person_ids = []
-            for person_ids_item_data in _person_ids:
-                person_ids_item = UUID(person_ids_item_data)
+        created_by_user = _parse_created_by_user(d.pop("created_by_user", UNSET))
 
-                person_ids.append(person_ids_item)
+        def _parse_created_by_user_info(data: object) -> None | Unset | User:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                created_by_user_info_type_1 = User.from_dict(data)
 
-        _status = d.pop("status", UNSET)
-        status: EditAssetVersionStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = EditAssetVersionStatus(_status)
+                return created_by_user_info_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | User, data)
 
-        _transcribe_status = d.pop("transcribe_status", UNSET)
-        transcribe_status: EditAssetVersionTranscribeStatus | Unset
-        if isinstance(_transcribe_status, Unset):
-            transcribe_status = UNSET
-        else:
-            transcribe_status = EditAssetVersionTranscribeStatus(_transcribe_status)
+        created_by_user_info = _parse_created_by_user_info(
+            d.pop("created_by_user_info", UNSET)
+        )
 
-        transcribed_languages = cast(list[str], d.pop("transcribed_languages", UNSET))
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        version_number = d.pop("version_number", UNSET)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
+
+        def _parse_face_recognition_status(
+            data: object,
+        ) -> EditAssetVersionFaceRecognitionStatusType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                face_recognition_status_type_1 = (
+                    EditAssetVersionFaceRecognitionStatusType1.from_dict(data)
+                )
+
+                return face_recognition_status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(EditAssetVersionFaceRecognitionStatusType1 | None | Unset, data)
+
+        face_recognition_status = _parse_face_recognition_status(
+            d.pop("face_recognition_status", UNSET)
+        )
+
+        def _parse_has_unconfirmed_persons(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        has_unconfirmed_persons = _parse_has_unconfirmed_persons(
+            d.pop("has_unconfirmed_persons", UNSET)
+        )
+
+        def _parse_is_online(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        is_online = _parse_is_online(d.pop("is_online", UNSET))
+
+        def _parse_person_ids(data: object) -> list[UUID] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                person_ids_type_0 = []
+                _person_ids_type_0 = data
+                for person_ids_type_0_item_data in _person_ids_type_0:
+                    person_ids_type_0_item = UUID(person_ids_type_0_item_data)
+
+                    person_ids_type_0.append(person_ids_type_0_item)
+
+                return person_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[UUID] | None | Unset, data)
+
+        person_ids = _parse_person_ids(d.pop("person_ids", UNSET))
+
+        def _parse_status(data: object) -> EditAssetVersionStatusType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                status_type_1 = EditAssetVersionStatusType1.from_dict(data)
+
+                return status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(EditAssetVersionStatusType1 | None | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
+
+        def _parse_transcribe_status(
+            data: object,
+        ) -> EditAssetVersionTranscribeStatusType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                transcribe_status_type_1 = (
+                    EditAssetVersionTranscribeStatusType1.from_dict(data)
+                )
+
+                return transcribe_status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(EditAssetVersionTranscribeStatusType1 | None | Unset, data)
+
+        transcribe_status = _parse_transcribe_status(d.pop("transcribe_status", UNSET))
+
+        def _parse_transcribed_languages(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                transcribed_languages_type_0 = cast(list[str], data)
+
+                return transcribed_languages_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        transcribed_languages = _parse_transcribed_languages(
+            d.pop("transcribed_languages", UNSET)
+        )
+
+        def _parse_version_number(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        version_number = _parse_version_number(d.pop("version_number", UNSET))
 
         edit_asset_version = cls(
             id=id,

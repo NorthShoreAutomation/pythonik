@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -9,8 +9,12 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.paygo_costs_schema_storage_costs import PaygoCostsSchemaStorageCosts
-    from ..models.paygo_costs_schema_user_costs import PaygoCostsSchemaUserCosts
+    from ..models.paygo_costs_schema_storage_costs_type_0 import (
+        PaygoCostsSchemaStorageCostsType0,
+    )
+    from ..models.paygo_costs_schema_user_costs_type_0 import (
+        PaygoCostsSchemaUserCostsType0,
+    )
 
 
 T = TypeVar("T", bound="PaygoCostsSchema")
@@ -20,54 +24,101 @@ T = TypeVar("T", bound="PaygoCostsSchema")
 class PaygoCostsSchema:
     """
     Attributes:
-        analysis_cost (float | Unset):
-        automation_cost (float | Unset):
-        edge_transcoder_cost (float | Unset):
-        external_storage_cost (float | Unset):
-        face_recognition_cost (float | Unset):
-        shield_cost (float | Unset):
-        storage_costs (PaygoCostsSchemaStorageCosts | Unset):
-        total_spend (float | Unset):
-        transcription_cost (float | Unset):
-        user_costs (PaygoCostsSchemaUserCosts | Unset):
+        analysis_cost (float | None | Unset):
+        automation_cost (float | None | Unset):
+        edge_transcoder_cost (float | None | Unset):
+        external_storage_cost (float | None | Unset):
+        face_recognition_cost (float | None | Unset):
+        shield_cost (float | None | Unset):
+        storage_costs (None | PaygoCostsSchemaStorageCostsType0 | Unset):
+        total_spend (float | None | Unset):
+        transcription_cost (float | None | Unset):
+        user_costs (None | PaygoCostsSchemaUserCostsType0 | Unset):
     """
 
-    analysis_cost: float | Unset = UNSET
-    automation_cost: float | Unset = UNSET
-    edge_transcoder_cost: float | Unset = UNSET
-    external_storage_cost: float | Unset = UNSET
-    face_recognition_cost: float | Unset = UNSET
-    shield_cost: float | Unset = UNSET
-    storage_costs: PaygoCostsSchemaStorageCosts | Unset = UNSET
-    total_spend: float | Unset = UNSET
-    transcription_cost: float | Unset = UNSET
-    user_costs: PaygoCostsSchemaUserCosts | Unset = UNSET
+    analysis_cost: float | None | Unset = UNSET
+    automation_cost: float | None | Unset = UNSET
+    edge_transcoder_cost: float | None | Unset = UNSET
+    external_storage_cost: float | None | Unset = UNSET
+    face_recognition_cost: float | None | Unset = UNSET
+    shield_cost: float | None | Unset = UNSET
+    storage_costs: None | PaygoCostsSchemaStorageCostsType0 | Unset = UNSET
+    total_spend: float | None | Unset = UNSET
+    transcription_cost: float | None | Unset = UNSET
+    user_costs: None | PaygoCostsSchemaUserCostsType0 | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        analysis_cost = self.analysis_cost
+        from ..models.paygo_costs_schema_storage_costs_type_0 import (
+            PaygoCostsSchemaStorageCostsType0,
+        )
+        from ..models.paygo_costs_schema_user_costs_type_0 import (
+            PaygoCostsSchemaUserCostsType0,
+        )
 
-        automation_cost = self.automation_cost
+        analysis_cost: float | None | Unset
+        if isinstance(self.analysis_cost, Unset):
+            analysis_cost = UNSET
+        else:
+            analysis_cost = self.analysis_cost
 
-        edge_transcoder_cost = self.edge_transcoder_cost
+        automation_cost: float | None | Unset
+        if isinstance(self.automation_cost, Unset):
+            automation_cost = UNSET
+        else:
+            automation_cost = self.automation_cost
 
-        external_storage_cost = self.external_storage_cost
+        edge_transcoder_cost: float | None | Unset
+        if isinstance(self.edge_transcoder_cost, Unset):
+            edge_transcoder_cost = UNSET
+        else:
+            edge_transcoder_cost = self.edge_transcoder_cost
 
-        face_recognition_cost = self.face_recognition_cost
+        external_storage_cost: float | None | Unset
+        if isinstance(self.external_storage_cost, Unset):
+            external_storage_cost = UNSET
+        else:
+            external_storage_cost = self.external_storage_cost
 
-        shield_cost = self.shield_cost
+        face_recognition_cost: float | None | Unset
+        if isinstance(self.face_recognition_cost, Unset):
+            face_recognition_cost = UNSET
+        else:
+            face_recognition_cost = self.face_recognition_cost
 
-        storage_costs: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.storage_costs, Unset):
+        shield_cost: float | None | Unset
+        if isinstance(self.shield_cost, Unset):
+            shield_cost = UNSET
+        else:
+            shield_cost = self.shield_cost
+
+        storage_costs: dict[str, Any] | None | Unset
+        if isinstance(self.storage_costs, Unset):
+            storage_costs = UNSET
+        elif isinstance(self.storage_costs, PaygoCostsSchemaStorageCostsType0):
             storage_costs = self.storage_costs.to_dict()
+        else:
+            storage_costs = self.storage_costs
 
-        total_spend = self.total_spend
+        total_spend: float | None | Unset
+        if isinstance(self.total_spend, Unset):
+            total_spend = UNSET
+        else:
+            total_spend = self.total_spend
 
-        transcription_cost = self.transcription_cost
+        transcription_cost: float | None | Unset
+        if isinstance(self.transcription_cost, Unset):
+            transcription_cost = UNSET
+        else:
+            transcription_cost = self.transcription_cost
 
-        user_costs: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.user_costs, Unset):
+        user_costs: dict[str, Any] | None | Unset
+        if isinstance(self.user_costs, Unset):
+            user_costs = UNSET
+        elif isinstance(self.user_costs, PaygoCostsSchemaUserCostsType0):
             user_costs = self.user_costs.to_dict()
+        else:
+            user_costs = self.user_costs
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -97,41 +148,132 @@ class PaygoCostsSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.paygo_costs_schema_storage_costs import (
-            PaygoCostsSchemaStorageCosts,
+        from ..models.paygo_costs_schema_storage_costs_type_0 import (
+            PaygoCostsSchemaStorageCostsType0,
         )
-        from ..models.paygo_costs_schema_user_costs import PaygoCostsSchemaUserCosts
+        from ..models.paygo_costs_schema_user_costs_type_0 import (
+            PaygoCostsSchemaUserCostsType0,
+        )
 
         d = dict(src_dict)
-        analysis_cost = d.pop("analysis_cost", UNSET)
 
-        automation_cost = d.pop("automation_cost", UNSET)
+        def _parse_analysis_cost(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
 
-        edge_transcoder_cost = d.pop("edge_transcoder_cost", UNSET)
+        analysis_cost = _parse_analysis_cost(d.pop("analysis_cost", UNSET))
 
-        external_storage_cost = d.pop("external_storage_cost", UNSET)
+        def _parse_automation_cost(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
 
-        face_recognition_cost = d.pop("face_recognition_cost", UNSET)
+        automation_cost = _parse_automation_cost(d.pop("automation_cost", UNSET))
 
-        shield_cost = d.pop("shield_cost", UNSET)
+        def _parse_edge_transcoder_cost(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
 
-        _storage_costs = d.pop("storage_costs", UNSET)
-        storage_costs: PaygoCostsSchemaStorageCosts | Unset
-        if isinstance(_storage_costs, Unset):
-            storage_costs = UNSET
-        else:
-            storage_costs = PaygoCostsSchemaStorageCosts.from_dict(_storage_costs)
+        edge_transcoder_cost = _parse_edge_transcoder_cost(
+            d.pop("edge_transcoder_cost", UNSET)
+        )
 
-        total_spend = d.pop("total_spend", UNSET)
+        def _parse_external_storage_cost(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
 
-        transcription_cost = d.pop("transcription_cost", UNSET)
+        external_storage_cost = _parse_external_storage_cost(
+            d.pop("external_storage_cost", UNSET)
+        )
 
-        _user_costs = d.pop("user_costs", UNSET)
-        user_costs: PaygoCostsSchemaUserCosts | Unset
-        if isinstance(_user_costs, Unset):
-            user_costs = UNSET
-        else:
-            user_costs = PaygoCostsSchemaUserCosts.from_dict(_user_costs)
+        def _parse_face_recognition_cost(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        face_recognition_cost = _parse_face_recognition_cost(
+            d.pop("face_recognition_cost", UNSET)
+        )
+
+        def _parse_shield_cost(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        shield_cost = _parse_shield_cost(d.pop("shield_cost", UNSET))
+
+        def _parse_storage_costs(
+            data: object,
+        ) -> None | PaygoCostsSchemaStorageCostsType0 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                storage_costs_type_0 = PaygoCostsSchemaStorageCostsType0.from_dict(data)
+
+                return storage_costs_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | PaygoCostsSchemaStorageCostsType0 | Unset, data)
+
+        storage_costs = _parse_storage_costs(d.pop("storage_costs", UNSET))
+
+        def _parse_total_spend(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        total_spend = _parse_total_spend(d.pop("total_spend", UNSET))
+
+        def _parse_transcription_cost(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        transcription_cost = _parse_transcription_cost(
+            d.pop("transcription_cost", UNSET)
+        )
+
+        def _parse_user_costs(
+            data: object,
+        ) -> None | PaygoCostsSchemaUserCostsType0 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                user_costs_type_0 = PaygoCostsSchemaUserCostsType0.from_dict(data)
+
+                return user_costs_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | PaygoCostsSchemaUserCostsType0 | Unset, data)
+
+        user_costs = _parse_user_costs(d.pop("user_costs", UNSET))
 
         paygo_costs_schema = cls(
             analysis_cost=analysis_cost,

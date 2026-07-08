@@ -1,19 +1,22 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.bulk_fileset_export_schema_metadata_format import (
-    BulkFilesetExportSchemaMetadataFormat,
-)
 from ..models.bulk_fileset_export_schema_object_type import (
     BulkFilesetExportSchemaObjectType,
 )
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.bulk_fileset_export_schema_metadata_format_type_1 import (
+        BulkFilesetExportSchemaMetadataFormatType1,
+    )
+
 
 T = TypeVar("T", bound="BulkFilesetExportSchema")
 
@@ -24,13 +27,13 @@ class BulkFilesetExportSchema:
     Attributes:
         object_ids (list[UUID]):
         object_type (BulkFilesetExportSchemaObjectType):
-        allow_duplicate_transfers (bool | Unset):  Default: False.
-        delete_only_from_source_folder (bool | Unset):  Default: False.
-        delete_original (bool | Unset):  Default: False.
+        allow_duplicate_transfers (bool | None | Unset):  Default: False.
+        delete_only_from_source_folder (bool | None | Unset):  Default: False.
+        delete_original (bool | None | Unset):  Default: False.
         export_metadata (bool | None | Unset):
         export_to_asset_folder (bool | None | Unset):
-        keep_collection_structure (bool | Unset):  Default: False.
-        metadata_format (BulkFilesetExportSchemaMetadataFormat | Unset):
+        keep_collection_structure (bool | None | Unset):  Default: False.
+        metadata_format (BulkFilesetExportSchemaMetadataFormatType1 | None | Unset):
         metadata_view (None | Unset | UUID):
         overwrite (bool | None | Unset):
         preferred_original_storage_id (None | Unset | UUID):
@@ -38,19 +41,23 @@ class BulkFilesetExportSchema:
 
     object_ids: list[UUID]
     object_type: BulkFilesetExportSchemaObjectType
-    allow_duplicate_transfers: bool | Unset = False
-    delete_only_from_source_folder: bool | Unset = False
-    delete_original: bool | Unset = False
+    allow_duplicate_transfers: bool | None | Unset = False
+    delete_only_from_source_folder: bool | None | Unset = False
+    delete_original: bool | None | Unset = False
     export_metadata: bool | None | Unset = UNSET
     export_to_asset_folder: bool | None | Unset = UNSET
-    keep_collection_structure: bool | Unset = False
-    metadata_format: BulkFilesetExportSchemaMetadataFormat | Unset = UNSET
+    keep_collection_structure: bool | None | Unset = False
+    metadata_format: BulkFilesetExportSchemaMetadataFormatType1 | None | Unset = UNSET
     metadata_view: None | Unset | UUID = UNSET
     overwrite: bool | None | Unset = UNSET
     preferred_original_storage_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.bulk_fileset_export_schema_metadata_format_type_1 import (
+            BulkFilesetExportSchemaMetadataFormatType1,
+        )
+
         object_ids = []
         for object_ids_item_data in self.object_ids:
             object_ids_item = str(object_ids_item_data)
@@ -58,11 +65,23 @@ class BulkFilesetExportSchema:
 
         object_type = self.object_type.value
 
-        allow_duplicate_transfers = self.allow_duplicate_transfers
+        allow_duplicate_transfers: bool | None | Unset
+        if isinstance(self.allow_duplicate_transfers, Unset):
+            allow_duplicate_transfers = UNSET
+        else:
+            allow_duplicate_transfers = self.allow_duplicate_transfers
 
-        delete_only_from_source_folder = self.delete_only_from_source_folder
+        delete_only_from_source_folder: bool | None | Unset
+        if isinstance(self.delete_only_from_source_folder, Unset):
+            delete_only_from_source_folder = UNSET
+        else:
+            delete_only_from_source_folder = self.delete_only_from_source_folder
 
-        delete_original = self.delete_original
+        delete_original: bool | None | Unset
+        if isinstance(self.delete_original, Unset):
+            delete_original = UNSET
+        else:
+            delete_original = self.delete_original
 
         export_metadata: bool | None | Unset
         if isinstance(self.export_metadata, Unset):
@@ -76,11 +95,21 @@ class BulkFilesetExportSchema:
         else:
             export_to_asset_folder = self.export_to_asset_folder
 
-        keep_collection_structure = self.keep_collection_structure
+        keep_collection_structure: bool | None | Unset
+        if isinstance(self.keep_collection_structure, Unset):
+            keep_collection_structure = UNSET
+        else:
+            keep_collection_structure = self.keep_collection_structure
 
-        metadata_format: str | Unset = UNSET
-        if not isinstance(self.metadata_format, Unset):
-            metadata_format = self.metadata_format.value
+        metadata_format: dict[str, Any] | None | Unset
+        if isinstance(self.metadata_format, Unset):
+            metadata_format = UNSET
+        elif isinstance(
+            self.metadata_format, BulkFilesetExportSchemaMetadataFormatType1
+        ):
+            metadata_format = self.metadata_format.to_dict()
+        else:
+            metadata_format = self.metadata_format
 
         metadata_view: None | str | Unset
         if isinstance(self.metadata_view, Unset):
@@ -139,6 +168,10 @@ class BulkFilesetExportSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.bulk_fileset_export_schema_metadata_format_type_1 import (
+            BulkFilesetExportSchemaMetadataFormatType1,
+        )
+
         d = dict(src_dict)
         object_ids = []
         _object_ids = d.pop("object_ids")
@@ -149,11 +182,36 @@ class BulkFilesetExportSchema:
 
         object_type = BulkFilesetExportSchemaObjectType(d.pop("object_type"))
 
-        allow_duplicate_transfers = d.pop("allow_duplicate_transfers", UNSET)
+        def _parse_allow_duplicate_transfers(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        delete_only_from_source_folder = d.pop("delete_only_from_source_folder", UNSET)
+        allow_duplicate_transfers = _parse_allow_duplicate_transfers(
+            d.pop("allow_duplicate_transfers", UNSET)
+        )
 
-        delete_original = d.pop("delete_original", UNSET)
+        def _parse_delete_only_from_source_folder(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        delete_only_from_source_folder = _parse_delete_only_from_source_folder(
+            d.pop("delete_only_from_source_folder", UNSET)
+        )
+
+        def _parse_delete_original(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        delete_original = _parse_delete_original(d.pop("delete_original", UNSET))
 
         def _parse_export_metadata(data: object) -> bool | None | Unset:
             if data is None:
@@ -175,14 +233,37 @@ class BulkFilesetExportSchema:
             d.pop("export_to_asset_folder", UNSET)
         )
 
-        keep_collection_structure = d.pop("keep_collection_structure", UNSET)
+        def _parse_keep_collection_structure(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        _metadata_format = d.pop("metadata_format", UNSET)
-        metadata_format: BulkFilesetExportSchemaMetadataFormat | Unset
-        if isinstance(_metadata_format, Unset):
-            metadata_format = UNSET
-        else:
-            metadata_format = BulkFilesetExportSchemaMetadataFormat(_metadata_format)
+        keep_collection_structure = _parse_keep_collection_structure(
+            d.pop("keep_collection_structure", UNSET)
+        )
+
+        def _parse_metadata_format(
+            data: object,
+        ) -> BulkFilesetExportSchemaMetadataFormatType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                metadata_format_type_1 = (
+                    BulkFilesetExportSchemaMetadataFormatType1.from_dict(data)
+                )
+
+                return metadata_format_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(BulkFilesetExportSchemaMetadataFormatType1 | None | Unset, data)
+
+        metadata_format = _parse_metadata_format(d.pop("metadata_format", UNSET))
 
         def _parse_metadata_view(data: object) -> None | Unset | UUID:
             if data is None:

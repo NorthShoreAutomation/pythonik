@@ -15,15 +15,20 @@ T = TypeVar("T", bound="BillingRecipientsSchema")
 class BillingRecipientsSchema:
     """
     Attributes:
-        emails (list[str] | Unset):
+        emails (list[str] | None | Unset):
     """
 
-    emails: list[str] | Unset = UNSET
+    emails: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        emails: list[str] | Unset = UNSET
-        if not isinstance(self.emails, Unset):
+        emails: list[str] | None | Unset
+        if isinstance(self.emails, Unset):
+            emails = UNSET
+        elif isinstance(self.emails, list):
+            emails = self.emails
+
+        else:
             emails = self.emails
 
         field_dict: dict[str, Any] = {}
@@ -37,7 +42,23 @@ class BillingRecipientsSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        emails = cast(list[str], d.pop("emails", UNSET))
+
+        def _parse_emails(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                emails_type_0 = cast(list[str], data)
+
+                return emails_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        emails = _parse_emails(d.pop("emails", UNSET))
 
         billing_recipients_schema = cls(
             emails=emails,

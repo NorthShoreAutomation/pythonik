@@ -8,11 +8,13 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.playlist_keyframe_schema_status import PlaylistKeyframeSchemaStatus
 from ..models.playlist_keyframe_schema_type import PlaylistKeyframeSchemaType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
+    from ..models.playlist_keyframe_schema_status_type_1 import (
+        PlaylistKeyframeSchemaStatusType1,
+    )
     from ..models.resolution_type import ResolutionType
     from ..models.time_code_type import TimeCodeType
 
@@ -25,55 +27,73 @@ class PlaylistKeyframeSchema:
     """
     Attributes:
         type_ (PlaylistKeyframeSchemaType):
-        date_created (datetime.datetime | Unset):
-        date_modified (datetime.datetime | Unset):
-        filename (str | Unset):
+        date_created (datetime.datetime | None | Unset):
+        date_modified (datetime.datetime | None | Unset):
+        filename (None | str | Unset):
         format_ (None | str | Unset):
-        id (UUID | Unset):
-        is_custom_keyframe (bool | Unset):
-        is_public (bool | Unset):
-        name (str | Unset):
-        playlist_id (UUID | Unset):
-        resolution (ResolutionType | Unset):
+        id (None | Unset | UUID):
+        is_custom_keyframe (bool | None | Unset):
+        is_public (bool | None | Unset):
+        name (None | str | Unset):
+        playlist_id (None | Unset | UUID):
+        resolution (None | ResolutionType | Unset):
         rotation (int | None | Unset):
         size (int | None | Unset):
-        status (PlaylistKeyframeSchemaStatus | Unset):
-        storage_id (UUID | Unset):
-        time_code (TimeCodeType | Unset):
-        url (str | Unset):
+        status (None | PlaylistKeyframeSchemaStatusType1 | Unset):
+        storage_id (None | Unset | UUID):
+        time_code (None | TimeCodeType | Unset):
+        url (None | str | Unset):
     """
 
     type_: PlaylistKeyframeSchemaType
-    date_created: datetime.datetime | Unset = UNSET
-    date_modified: datetime.datetime | Unset = UNSET
-    filename: str | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_modified: datetime.datetime | None | Unset = UNSET
+    filename: None | str | Unset = UNSET
     format_: None | str | Unset = UNSET
-    id: UUID | Unset = UNSET
-    is_custom_keyframe: bool | Unset = UNSET
-    is_public: bool | Unset = UNSET
-    name: str | Unset = UNSET
-    playlist_id: UUID | Unset = UNSET
-    resolution: ResolutionType | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    is_custom_keyframe: bool | None | Unset = UNSET
+    is_public: bool | None | Unset = UNSET
+    name: None | str | Unset = UNSET
+    playlist_id: None | Unset | UUID = UNSET
+    resolution: None | ResolutionType | Unset = UNSET
     rotation: int | None | Unset = UNSET
     size: int | None | Unset = UNSET
-    status: PlaylistKeyframeSchemaStatus | Unset = UNSET
-    storage_id: UUID | Unset = UNSET
-    time_code: TimeCodeType | Unset = UNSET
-    url: str | Unset = UNSET
+    status: None | PlaylistKeyframeSchemaStatusType1 | Unset = UNSET
+    storage_id: None | Unset | UUID = UNSET
+    time_code: None | TimeCodeType | Unset = UNSET
+    url: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.playlist_keyframe_schema_status_type_1 import (
+            PlaylistKeyframeSchemaStatusType1,
+        )
+        from ..models.resolution_type import ResolutionType
+        from ..models.time_code_type import TimeCodeType
+
         type_ = self.type_.value
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_modified: str | Unset = UNSET
-        if not isinstance(self.date_modified, Unset):
+        date_modified: None | str | Unset
+        if isinstance(self.date_modified, Unset):
+            date_modified = UNSET
+        elif isinstance(self.date_modified, datetime.datetime):
             date_modified = self.date_modified.isoformat()
+        else:
+            date_modified = self.date_modified
 
-        filename = self.filename
+        filename: None | str | Unset
+        if isinstance(self.filename, Unset):
+            filename = UNSET
+        else:
+            filename = self.filename
 
         format_: None | str | Unset
         if isinstance(self.format_, Unset):
@@ -81,23 +101,47 @@ class PlaylistKeyframeSchema:
         else:
             format_ = self.format_
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        is_custom_keyframe = self.is_custom_keyframe
+        is_custom_keyframe: bool | None | Unset
+        if isinstance(self.is_custom_keyframe, Unset):
+            is_custom_keyframe = UNSET
+        else:
+            is_custom_keyframe = self.is_custom_keyframe
 
-        is_public = self.is_public
+        is_public: bool | None | Unset
+        if isinstance(self.is_public, Unset):
+            is_public = UNSET
+        else:
+            is_public = self.is_public
 
-        name = self.name
+        name: None | str | Unset
+        if isinstance(self.name, Unset):
+            name = UNSET
+        else:
+            name = self.name
 
-        playlist_id: str | Unset = UNSET
-        if not isinstance(self.playlist_id, Unset):
+        playlist_id: None | str | Unset
+        if isinstance(self.playlist_id, Unset):
+            playlist_id = UNSET
+        elif isinstance(self.playlist_id, UUID):
             playlist_id = str(self.playlist_id)
+        else:
+            playlist_id = self.playlist_id
 
-        resolution: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.resolution, Unset):
+        resolution: dict[str, Any] | None | Unset
+        if isinstance(self.resolution, Unset):
+            resolution = UNSET
+        elif isinstance(self.resolution, ResolutionType):
             resolution = self.resolution.to_dict()
+        else:
+            resolution = self.resolution
 
         rotation: int | None | Unset
         if isinstance(self.rotation, Unset):
@@ -111,19 +155,35 @@ class PlaylistKeyframeSchema:
         else:
             size = self.size
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        status: dict[str, Any] | None | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        elif isinstance(self.status, PlaylistKeyframeSchemaStatusType1):
+            status = self.status.to_dict()
+        else:
+            status = self.status
 
-        storage_id: str | Unset = UNSET
-        if not isinstance(self.storage_id, Unset):
+        storage_id: None | str | Unset
+        if isinstance(self.storage_id, Unset):
+            storage_id = UNSET
+        elif isinstance(self.storage_id, UUID):
             storage_id = str(self.storage_id)
+        else:
+            storage_id = self.storage_id
 
-        time_code: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.time_code, Unset):
+        time_code: dict[str, Any] | None | Unset
+        if isinstance(self.time_code, Unset):
+            time_code = UNSET
+        elif isinstance(self.time_code, TimeCodeType):
             time_code = self.time_code.to_dict()
+        else:
+            time_code = self.time_code
 
-        url = self.url
+        url: None | str | Unset
+        if isinstance(self.url, Unset):
+            url = UNSET
+        else:
+            url = self.url
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -169,27 +229,57 @@ class PlaylistKeyframeSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.playlist_keyframe_schema_status_type_1 import (
+            PlaylistKeyframeSchemaStatusType1,
+        )
         from ..models.resolution_type import ResolutionType
         from ..models.time_code_type import TimeCodeType
 
         d = dict(src_dict)
         type_ = PlaylistKeyframeSchemaType(d.pop("type"))
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        _date_modified = d.pop("date_modified", UNSET)
-        date_modified: datetime.datetime | Unset
-        if isinstance(_date_modified, Unset):
-            date_modified = UNSET
-        else:
-            date_modified = datetime.datetime.fromisoformat(_date_modified)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        filename = d.pop("filename", UNSET)
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
+
+        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_modified_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_modified_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
+
+        def _parse_filename(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        filename = _parse_filename(d.pop("filename", UNSET))
 
         def _parse_format_(data: object) -> None | str | Unset:
             if data is None:
@@ -200,32 +290,85 @@ class PlaylistKeyframeSchema:
 
         format_ = _parse_format_(d.pop("format", UNSET))
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
 
-        is_custom_keyframe = d.pop("is_custom_keyframe", UNSET)
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        is_public = d.pop("is_public", UNSET)
+        id = _parse_id(d.pop("id", UNSET))
 
-        name = d.pop("name", UNSET)
+        def _parse_is_custom_keyframe(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        _playlist_id = d.pop("playlist_id", UNSET)
-        playlist_id: UUID | Unset
-        if isinstance(_playlist_id, Unset):
-            playlist_id = UNSET
-        else:
-            playlist_id = UUID(_playlist_id)
+        is_custom_keyframe = _parse_is_custom_keyframe(
+            d.pop("is_custom_keyframe", UNSET)
+        )
 
-        _resolution = d.pop("resolution", UNSET)
-        resolution: ResolutionType | Unset
-        if isinstance(_resolution, Unset):
-            resolution = UNSET
-        else:
-            resolution = ResolutionType.from_dict(_resolution)
+        def _parse_is_public(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        is_public = _parse_is_public(d.pop("is_public", UNSET))
+
+        def _parse_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        name = _parse_name(d.pop("name", UNSET))
+
+        def _parse_playlist_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                playlist_id_type_0 = UUID(data)
+
+                return playlist_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        playlist_id = _parse_playlist_id(d.pop("playlist_id", UNSET))
+
+        def _parse_resolution(data: object) -> None | ResolutionType | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                resolution_type_1 = ResolutionType.from_dict(data)
+
+                return resolution_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | ResolutionType | Unset, data)
+
+        resolution = _parse_resolution(d.pop("resolution", UNSET))
 
         def _parse_rotation(data: object) -> int | None | Unset:
             if data is None:
@@ -245,28 +388,67 @@ class PlaylistKeyframeSchema:
 
         size = _parse_size(d.pop("size", UNSET))
 
-        _status = d.pop("status", UNSET)
-        status: PlaylistKeyframeSchemaStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = PlaylistKeyframeSchemaStatus(_status)
+        def _parse_status(
+            data: object,
+        ) -> None | PlaylistKeyframeSchemaStatusType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                status_type_1 = PlaylistKeyframeSchemaStatusType1.from_dict(data)
 
-        _storage_id = d.pop("storage_id", UNSET)
-        storage_id: UUID | Unset
-        if isinstance(_storage_id, Unset):
-            storage_id = UNSET
-        else:
-            storage_id = UUID(_storage_id)
+                return status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | PlaylistKeyframeSchemaStatusType1 | Unset, data)
 
-        _time_code = d.pop("time_code", UNSET)
-        time_code: TimeCodeType | Unset
-        if isinstance(_time_code, Unset):
-            time_code = UNSET
-        else:
-            time_code = TimeCodeType.from_dict(_time_code)
+        status = _parse_status(d.pop("status", UNSET))
 
-        url = d.pop("url", UNSET)
+        def _parse_storage_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                storage_id_type_0 = UUID(data)
+
+                return storage_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        storage_id = _parse_storage_id(d.pop("storage_id", UNSET))
+
+        def _parse_time_code(data: object) -> None | TimeCodeType | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                time_code_type_1 = TimeCodeType.from_dict(data)
+
+                return time_code_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | TimeCodeType | Unset, data)
+
+        time_code = _parse_time_code(d.pop("time_code", UNSET))
+
+        def _parse_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        url = _parse_url(d.pop("url", UNSET))
 
         playlist_keyframe_schema = cls(
             type_=type_,

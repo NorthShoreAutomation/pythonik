@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 from io import BytesIO
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,16 +16,21 @@ T = TypeVar("T", bound="PostUsersCurrentPhotoBody")
 class PostUsersCurrentPhotoBody:
     """
     Attributes:
-        photo (File | Unset):
+        photo (File | None | Unset):
     """
 
-    photo: File | Unset = UNSET
+    photo: File | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        photo: FileTypes | Unset = UNSET
-        if not isinstance(self.photo, Unset):
+        photo: FileTypes | None | Unset
+        if isinstance(self.photo, Unset):
+            photo = UNSET
+        elif isinstance(self.photo, File):
             photo = self.photo.to_tuple()
+
+        else:
+            photo = self.photo
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -38,12 +43,23 @@ class PostUsersCurrentPhotoBody:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        _photo = d.pop("photo", UNSET)
-        photo: File | Unset
-        if isinstance(_photo, Unset):
-            photo = UNSET
-        else:
-            photo = File(payload=BytesIO(_photo))
+
+        def _parse_photo(data: object) -> File | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, bytes):
+                    raise TypeError()
+                photo_type_0 = File(payload=BytesIO(data))
+
+                return photo_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(File | None | Unset, data)
+
+        photo = _parse_photo(d.pop("photo", UNSET))
 
         post_users_current_photo_body = cls(
             photo=photo,

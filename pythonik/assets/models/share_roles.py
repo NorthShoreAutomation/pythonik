@@ -15,15 +15,20 @@ T = TypeVar("T", bound="ShareRoles")
 class ShareRoles:
     """
     Attributes:
-        roles (list[str] | Unset):
+        roles (list[str] | None | Unset):
     """
 
-    roles: list[str] | Unset = UNSET
+    roles: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        roles: list[str] | Unset = UNSET
-        if not isinstance(self.roles, Unset):
+        roles: list[str] | None | Unset
+        if isinstance(self.roles, Unset):
+            roles = UNSET
+        elif isinstance(self.roles, list):
+            roles = self.roles
+
+        else:
             roles = self.roles
 
         field_dict: dict[str, Any] = {}
@@ -37,7 +42,23 @@ class ShareRoles:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        roles = cast(list[str], d.pop("roles", UNSET))
+
+        def _parse_roles(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                roles_type_0 = cast(list[str], data)
+
+                return roles_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        roles = _parse_roles(d.pop("roles", UNSET))
 
         share_roles = cls(
             roles=roles,

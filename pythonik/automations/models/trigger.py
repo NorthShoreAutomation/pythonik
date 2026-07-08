@@ -9,13 +9,13 @@ from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..models.trigger_event_type import TriggerEventType
-from ..models.trigger_operations_item import TriggerOperationsItem
-from ..models.trigger_realm import TriggerRealm
+from ..models.trigger_operations_type_0_item import TriggerOperationsType0Item
 from ..models.trigger_type import TriggerType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.condition import Condition
+    from ..models.trigger_realm_type_1 import TriggerRealmType1
 
 
 T = TypeVar("T", bound="Trigger")
@@ -27,49 +27,68 @@ class Trigger:
     Attributes:
         event_type (TriggerEventType):
         type_ (TriggerType):
-        date_created (datetime.datetime | Unset):
-        date_modified (datetime.datetime | Unset):
-        execute_at (datetime.datetime | Unset):
-        filters (list[Condition] | Unset):
+        date_created (datetime.datetime | None | Unset):
+        date_modified (datetime.datetime | None | Unset):
+        execute_at (datetime.datetime | None | Unset):
+        filters (list[Condition] | None | Unset):
         object_id (None | Unset | UUID):
-        operations (list[TriggerOperationsItem] | Unset):
-        realm (TriggerRealm | Unset):
+        operations (list[TriggerOperationsType0Item] | None | Unset):
+        realm (None | TriggerRealmType1 | Unset):
     """
 
     event_type: TriggerEventType
     type_: TriggerType
-    date_created: datetime.datetime | Unset = UNSET
-    date_modified: datetime.datetime | Unset = UNSET
-    execute_at: datetime.datetime | Unset = UNSET
-    filters: list[Condition] | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_modified: datetime.datetime | None | Unset = UNSET
+    execute_at: datetime.datetime | None | Unset = UNSET
+    filters: list[Condition] | None | Unset = UNSET
     object_id: None | Unset | UUID = UNSET
-    operations: list[TriggerOperationsItem] | Unset = UNSET
-    realm: TriggerRealm | Unset = UNSET
+    operations: list[TriggerOperationsType0Item] | None | Unset = UNSET
+    realm: None | TriggerRealmType1 | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.trigger_realm_type_1 import TriggerRealmType1
+
         event_type = self.event_type.value
 
         type_ = self.type_.value
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_modified: str | Unset = UNSET
-        if not isinstance(self.date_modified, Unset):
+        date_modified: None | str | Unset
+        if isinstance(self.date_modified, Unset):
+            date_modified = UNSET
+        elif isinstance(self.date_modified, datetime.datetime):
             date_modified = self.date_modified.isoformat()
+        else:
+            date_modified = self.date_modified
 
-        execute_at: str | Unset = UNSET
-        if not isinstance(self.execute_at, Unset):
+        execute_at: None | str | Unset
+        if isinstance(self.execute_at, Unset):
+            execute_at = UNSET
+        elif isinstance(self.execute_at, datetime.datetime):
             execute_at = self.execute_at.isoformat()
+        else:
+            execute_at = self.execute_at
 
-        filters: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.filters, Unset):
+        filters: list[dict[str, Any]] | None | Unset
+        if isinstance(self.filters, Unset):
+            filters = UNSET
+        elif isinstance(self.filters, list):
             filters = []
-            for filters_item_data in self.filters:
-                filters_item = filters_item_data.to_dict()
-                filters.append(filters_item)
+            for filters_type_0_item_data in self.filters:
+                filters_type_0_item = filters_type_0_item_data.to_dict()
+                filters.append(filters_type_0_item)
+
+        else:
+            filters = self.filters
 
         object_id: None | str | Unset
         if isinstance(self.object_id, Unset):
@@ -79,16 +98,25 @@ class Trigger:
         else:
             object_id = self.object_id
 
-        operations: list[str] | Unset = UNSET
-        if not isinstance(self.operations, Unset):
+        operations: list[str] | None | Unset
+        if isinstance(self.operations, Unset):
+            operations = UNSET
+        elif isinstance(self.operations, list):
             operations = []
-            for operations_item_data in self.operations:
-                operations_item = operations_item_data.value
-                operations.append(operations_item)
+            for operations_type_0_item_data in self.operations:
+                operations_type_0_item = operations_type_0_item_data.value
+                operations.append(operations_type_0_item)
 
-        realm: str | Unset = UNSET
-        if not isinstance(self.realm, Unset):
-            realm = self.realm.value
+        else:
+            operations = self.operations
+
+        realm: dict[str, Any] | None | Unset
+        if isinstance(self.realm, Unset):
+            realm = UNSET
+        elif isinstance(self.realm, TriggerRealmType1):
+            realm = self.realm.to_dict()
+        else:
+            realm = self.realm
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -118,41 +146,85 @@ class Trigger:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.condition import Condition
+        from ..models.trigger_realm_type_1 import TriggerRealmType1
 
         d = dict(src_dict)
         event_type = TriggerEventType(d.pop("event_type"))
 
         type_ = TriggerType(d.pop("type"))
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        _date_modified = d.pop("date_modified", UNSET)
-        date_modified: datetime.datetime | Unset
-        if isinstance(_date_modified, Unset):
-            date_modified = UNSET
-        else:
-            date_modified = datetime.datetime.fromisoformat(_date_modified)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        _execute_at = d.pop("execute_at", UNSET)
-        execute_at: datetime.datetime | Unset
-        if isinstance(_execute_at, Unset):
-            execute_at = UNSET
-        else:
-            execute_at = datetime.datetime.fromisoformat(_execute_at)
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
 
-        _filters = d.pop("filters", UNSET)
-        filters: list[Condition] | Unset = UNSET
-        if _filters is not UNSET:
-            filters = []
-            for filters_item_data in _filters:
-                filters_item = Condition.from_dict(filters_item_data)
+        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_modified_type_0 = datetime.datetime.fromisoformat(data)
 
-                filters.append(filters_item)
+                return date_modified_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
+
+        def _parse_execute_at(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                execute_at_type_0 = datetime.datetime.fromisoformat(data)
+
+                return execute_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        execute_at = _parse_execute_at(d.pop("execute_at", UNSET))
+
+        def _parse_filters(data: object) -> list[Condition] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                filters_type_0 = []
+                _filters_type_0 = data
+                for filters_type_0_item_data in _filters_type_0:
+                    filters_type_0_item = Condition.from_dict(filters_type_0_item_data)
+
+                    filters_type_0.append(filters_type_0_item)
+
+                return filters_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[Condition] | None | Unset, data)
+
+        filters = _parse_filters(d.pop("filters", UNSET))
 
         def _parse_object_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -171,21 +243,48 @@ class Trigger:
 
         object_id = _parse_object_id(d.pop("object_id", UNSET))
 
-        _operations = d.pop("operations", UNSET)
-        operations: list[TriggerOperationsItem] | Unset = UNSET
-        if _operations is not UNSET:
-            operations = []
-            for operations_item_data in _operations:
-                operations_item = TriggerOperationsItem(operations_item_data)
+        def _parse_operations(
+            data: object,
+        ) -> list[TriggerOperationsType0Item] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                operations_type_0 = []
+                _operations_type_0 = data
+                for operations_type_0_item_data in _operations_type_0:
+                    operations_type_0_item = TriggerOperationsType0Item(
+                        operations_type_0_item_data
+                    )
 
-                operations.append(operations_item)
+                    operations_type_0.append(operations_type_0_item)
 
-        _realm = d.pop("realm", UNSET)
-        realm: TriggerRealm | Unset
-        if isinstance(_realm, Unset):
-            realm = UNSET
-        else:
-            realm = TriggerRealm(_realm)
+                return operations_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[TriggerOperationsType0Item] | None | Unset, data)
+
+        operations = _parse_operations(d.pop("operations", UNSET))
+
+        def _parse_realm(data: object) -> None | TriggerRealmType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                realm_type_1 = TriggerRealmType1.from_dict(data)
+
+                return realm_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | TriggerRealmType1 | Unset, data)
+
+        realm = _parse_realm(d.pop("realm", UNSET))
 
         trigger = cls(
             event_type=event_type,

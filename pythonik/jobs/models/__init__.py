@@ -32,29 +32,33 @@ from .get_jobs_response_default_type_0 import GetJobsResponseDefaultType0
 from .get_jobs_response_default_type_1 import GetJobsResponseDefaultType1
 from .get_jobs_response_default_type_1_errors import GetJobsResponseDefaultType1Errors
 from .job_base_schema import JobBaseSchema
-from .job_base_schema_children_progress import JobBaseSchemaChildrenProgress
-from .job_base_schema_job_context import JobBaseSchemaJobContext
-from .job_base_schema_metadata import JobBaseSchemaMetadata
+from .job_base_schema_children_progress_type_0 import JobBaseSchemaChildrenProgressType0
+from .job_base_schema_job_context_type_0 import JobBaseSchemaJobContextType0
+from .job_base_schema_metadata_type_0 import JobBaseSchemaMetadataType0
 from .job_base_schema_status import JobBaseSchemaStatus
 from .job_base_schema_type import JobBaseSchemaType
 from .job_child_progress_schema import JobChildProgressSchema
-from .job_child_progress_schema_status import JobChildProgressSchemaStatus
+from .job_child_progress_schema_status_type_1 import JobChildProgressSchemaStatusType1
 from .job_create_schema import JobCreateSchema
-from .job_create_schema_children_progress import JobCreateSchemaChildrenProgress
-from .job_create_schema_job_context import JobCreateSchemaJobContext
-from .job_create_schema_metadata import JobCreateSchemaMetadata
+from .job_create_schema_children_progress_type_0 import (
+    JobCreateSchemaChildrenProgressType0,
+)
+from .job_create_schema_job_context_type_0 import JobCreateSchemaJobContextType0
+from .job_create_schema_metadata_type_0 import JobCreateSchemaMetadataType0
 from .job_create_schema_status import JobCreateSchemaStatus
 from .job_create_schema_type import JobCreateSchemaType
 from .job_elastic_schema import JobElasticSchema
-from .job_elastic_schema_children_progress import JobElasticSchemaChildrenProgress
-from .job_elastic_schema_job_context import JobElasticSchemaJobContext
-from .job_elastic_schema_metadata import JobElasticSchemaMetadata
+from .job_elastic_schema_children_progress_type_0 import (
+    JobElasticSchemaChildrenProgressType0,
+)
+from .job_elastic_schema_job_context_type_0 import JobElasticSchemaJobContextType0
+from .job_elastic_schema_metadata_type_0 import JobElasticSchemaMetadataType0
 from .job_elastic_schema_status import JobElasticSchemaStatus
 from .job_elastic_schema_type import JobElasticSchemaType
 from .job_schema import JobSchema
-from .job_schema_children_progress import JobSchemaChildrenProgress
-from .job_schema_job_context import JobSchemaJobContext
-from .job_schema_metadata import JobSchemaMetadata
+from .job_schema_children_progress_type_0 import JobSchemaChildrenProgressType0
+from .job_schema_job_context_type_0 import JobSchemaJobContextType0
+from .job_schema_metadata_type_0 import JobSchemaMetadataType0
 from .job_schema_status import JobSchemaStatus
 from .job_schema_type import JobSchemaType
 from .job_step import JobStep
@@ -71,24 +75,30 @@ from .job_steps_schema import JobStepsSchema
 from .job_steps_update_schema import JobStepsUpdateSchema
 from .jobs_bulk_action_schema import JobsBulkActionSchema
 from .jobs_bulk_delete_params_schema import JobsBulkDeleteParamsSchema
-from .jobs_bulk_delete_params_schema_status_item import (
-    JobsBulkDeleteParamsSchemaStatusItem,
+from .jobs_bulk_delete_params_schema_status_type_0_item import (
+    JobsBulkDeleteParamsSchemaStatusType0Item,
 )
-from .jobs_bulk_delete_params_schema_type_item import JobsBulkDeleteParamsSchemaTypeItem
+from .jobs_bulk_delete_params_schema_type_type_0_item import (
+    JobsBulkDeleteParamsSchemaTypeType0Item,
+)
 from .jobs_bulk_delete_schema import JobsBulkDeleteSchema
 from .jobs_bulk_edit_params_schema import JobsBulkEditParamsSchema
-from .jobs_bulk_edit_params_schema_status_item import JobsBulkEditParamsSchemaStatusItem
-from .jobs_bulk_edit_params_schema_type_item import JobsBulkEditParamsSchemaTypeItem
+from .jobs_bulk_edit_params_schema_status_type_0_item import (
+    JobsBulkEditParamsSchemaStatusType0Item,
+)
+from .jobs_bulk_edit_params_schema_type_type_0_item import (
+    JobsBulkEditParamsSchemaTypeType0Item,
+)
 from .jobs_bulk_edit_schema import JobsBulkEditSchema
-from .jobs_bulk_edit_schema_job_context import JobsBulkEditSchemaJobContext
-from .jobs_bulk_edit_schema_metadata import JobsBulkEditSchemaMetadata
-from .jobs_bulk_edit_schema_status import JobsBulkEditSchemaStatus
+from .jobs_bulk_edit_schema_job_context_type_0 import JobsBulkEditSchemaJobContextType0
+from .jobs_bulk_edit_schema_metadata_type_0 import JobsBulkEditSchemaMetadataType0
+from .jobs_bulk_edit_schema_status_type_1 import JobsBulkEditSchemaStatusType1
 from .jobs_bulk_params_schema import JobsBulkParamsSchema
-from .jobs_bulk_params_schema_type_item import JobsBulkParamsSchemaTypeItem
+from .jobs_bulk_params_schema_type_type_0_item import JobsBulkParamsSchemaTypeType0Item
 from .jobs_priority_schema import JobsPrioritySchema
 from .jobs_query_params_schema import JobsQueryParamsSchema
 from .jobs_schema import JobsSchema
-from .jobs_schema_facets import JobsSchemaFacets
+from .jobs_schema_facets_type_0 import JobsSchemaFacetsType0
 from .jobs_state_schema import JobsStateSchema
 from .jobs_state_schema_action import JobsStateSchemaAction
 from .list_objects_schema import ListObjectsSchema
@@ -200,49 +210,49 @@ __all__ = (
     "GetJobsResponseDefaultType1",
     "GetJobsResponseDefaultType1Errors",
     "JobBaseSchema",
-    "JobBaseSchemaChildrenProgress",
-    "JobBaseSchemaJobContext",
-    "JobBaseSchemaMetadata",
+    "JobBaseSchemaChildrenProgressType0",
+    "JobBaseSchemaJobContextType0",
+    "JobBaseSchemaMetadataType0",
     "JobBaseSchemaStatus",
     "JobBaseSchemaType",
     "JobChildProgressSchema",
-    "JobChildProgressSchemaStatus",
+    "JobChildProgressSchemaStatusType1",
     "JobCreateSchema",
-    "JobCreateSchemaChildrenProgress",
-    "JobCreateSchemaJobContext",
-    "JobCreateSchemaMetadata",
+    "JobCreateSchemaChildrenProgressType0",
+    "JobCreateSchemaJobContextType0",
+    "JobCreateSchemaMetadataType0",
     "JobCreateSchemaStatus",
     "JobCreateSchemaType",
     "JobElasticSchema",
-    "JobElasticSchemaChildrenProgress",
-    "JobElasticSchemaJobContext",
-    "JobElasticSchemaMetadata",
+    "JobElasticSchemaChildrenProgressType0",
+    "JobElasticSchemaJobContextType0",
+    "JobElasticSchemaMetadataType0",
     "JobElasticSchemaStatus",
     "JobElasticSchemaType",
     "JobsBulkActionSchema",
     "JobsBulkDeleteParamsSchema",
-    "JobsBulkDeleteParamsSchemaStatusItem",
-    "JobsBulkDeleteParamsSchemaTypeItem",
+    "JobsBulkDeleteParamsSchemaStatusType0Item",
+    "JobsBulkDeleteParamsSchemaTypeType0Item",
     "JobsBulkDeleteSchema",
     "JobsBulkEditParamsSchema",
-    "JobsBulkEditParamsSchemaStatusItem",
-    "JobsBulkEditParamsSchemaTypeItem",
+    "JobsBulkEditParamsSchemaStatusType0Item",
+    "JobsBulkEditParamsSchemaTypeType0Item",
     "JobsBulkEditSchema",
-    "JobsBulkEditSchemaJobContext",
-    "JobsBulkEditSchemaMetadata",
-    "JobsBulkEditSchemaStatus",
+    "JobsBulkEditSchemaJobContextType0",
+    "JobsBulkEditSchemaMetadataType0",
+    "JobsBulkEditSchemaStatusType1",
     "JobsBulkParamsSchema",
-    "JobsBulkParamsSchemaTypeItem",
+    "JobsBulkParamsSchemaTypeType0Item",
     "JobSchema",
-    "JobSchemaChildrenProgress",
-    "JobSchemaJobContext",
-    "JobSchemaMetadata",
+    "JobSchemaChildrenProgressType0",
+    "JobSchemaJobContextType0",
+    "JobSchemaMetadataType0",
     "JobSchemaStatus",
     "JobSchemaType",
     "JobsPrioritySchema",
     "JobsQueryParamsSchema",
     "JobsSchema",
-    "JobsSchemaFacets",
+    "JobsSchemaFacetsType0",
     "JobsStateSchema",
     "JobsStateSchemaAction",
     "JobStep",

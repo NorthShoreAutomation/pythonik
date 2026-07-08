@@ -17,23 +17,23 @@ class BulkArchiveAssetSchema:
     """
     Attributes:
         asset_ids (list[UUID]):
-        all_versions (bool | Unset): If true, all versions of the asset will be transferred
-        delete_only_from_source_folder (bool | Unset):  Default: False.
-        delete_original (bool | Unset):  Default: False.
-        destination_directory_path (str | Unset):
+        all_versions (bool | None | Unset): If true, all versions of the asset will be transferred
+        delete_only_from_source_folder (bool | None | Unset):  Default: False.
+        delete_original (bool | None | Unset):  Default: False.
+        destination_directory_path (None | str | Unset):
         destination_storage_id (None | Unset | UUID):
-        formats (list[str] | Unset): List of format names to transfer. If not specified, all formats will be
+        formats (list[str] | None | Unset): List of format names to transfer. If not specified, all formats will be
             transferred.
         preferred_original_storage_id (None | Unset | UUID):
     """
 
     asset_ids: list[UUID]
-    all_versions: bool | Unset = UNSET
-    delete_only_from_source_folder: bool | Unset = False
-    delete_original: bool | Unset = False
-    destination_directory_path: str | Unset = UNSET
+    all_versions: bool | None | Unset = UNSET
+    delete_only_from_source_folder: bool | None | Unset = False
+    delete_original: bool | None | Unset = False
+    destination_directory_path: None | str | Unset = UNSET
     destination_storage_id: None | Unset | UUID = UNSET
-    formats: list[str] | Unset = UNSET
+    formats: list[str] | None | Unset = UNSET
     preferred_original_storage_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -43,13 +43,29 @@ class BulkArchiveAssetSchema:
             asset_ids_item = str(asset_ids_item_data)
             asset_ids.append(asset_ids_item)
 
-        all_versions = self.all_versions
+        all_versions: bool | None | Unset
+        if isinstance(self.all_versions, Unset):
+            all_versions = UNSET
+        else:
+            all_versions = self.all_versions
 
-        delete_only_from_source_folder = self.delete_only_from_source_folder
+        delete_only_from_source_folder: bool | None | Unset
+        if isinstance(self.delete_only_from_source_folder, Unset):
+            delete_only_from_source_folder = UNSET
+        else:
+            delete_only_from_source_folder = self.delete_only_from_source_folder
 
-        delete_original = self.delete_original
+        delete_original: bool | None | Unset
+        if isinstance(self.delete_original, Unset):
+            delete_original = UNSET
+        else:
+            delete_original = self.delete_original
 
-        destination_directory_path = self.destination_directory_path
+        destination_directory_path: None | str | Unset
+        if isinstance(self.destination_directory_path, Unset):
+            destination_directory_path = UNSET
+        else:
+            destination_directory_path = self.destination_directory_path
 
         destination_storage_id: None | str | Unset
         if isinstance(self.destination_storage_id, Unset):
@@ -59,8 +75,13 @@ class BulkArchiveAssetSchema:
         else:
             destination_storage_id = self.destination_storage_id
 
-        formats: list[str] | Unset = UNSET
-        if not isinstance(self.formats, Unset):
+        formats: list[str] | None | Unset
+        if isinstance(self.formats, Unset):
+            formats = UNSET
+        elif isinstance(self.formats, list):
+            formats = self.formats
+
+        else:
             formats = self.formats
 
         preferred_original_storage_id: None | str | Unset
@@ -107,13 +128,45 @@ class BulkArchiveAssetSchema:
 
             asset_ids.append(asset_ids_item)
 
-        all_versions = d.pop("all_versions", UNSET)
+        def _parse_all_versions(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        delete_only_from_source_folder = d.pop("delete_only_from_source_folder", UNSET)
+        all_versions = _parse_all_versions(d.pop("all_versions", UNSET))
 
-        delete_original = d.pop("delete_original", UNSET)
+        def _parse_delete_only_from_source_folder(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        destination_directory_path = d.pop("destination_directory_path", UNSET)
+        delete_only_from_source_folder = _parse_delete_only_from_source_folder(
+            d.pop("delete_only_from_source_folder", UNSET)
+        )
+
+        def _parse_delete_original(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        delete_original = _parse_delete_original(d.pop("delete_original", UNSET))
+
+        def _parse_destination_directory_path(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        destination_directory_path = _parse_destination_directory_path(
+            d.pop("destination_directory_path", UNSET)
+        )
 
         def _parse_destination_storage_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -134,7 +187,22 @@ class BulkArchiveAssetSchema:
             d.pop("destination_storage_id", UNSET)
         )
 
-        formats = cast(list[str], d.pop("formats", UNSET))
+        def _parse_formats(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                formats_type_0 = cast(list[str], data)
+
+                return formats_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        formats = _parse_formats(d.pop("formats", UNSET))
 
         def _parse_preferred_original_storage_id(data: object) -> None | Unset | UUID:
             if data is None:

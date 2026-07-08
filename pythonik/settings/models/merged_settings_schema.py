@@ -7,11 +7,9 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.merged_settings_schema_drm import MergedSettingsSchemaDrm
 from ..models.merged_settings_schema_mfa_methods_type_0_item import (
     MergedSettingsSchemaMfaMethodsType0Item,
 )
-from ..models.merged_settings_schema_watermark import MergedSettingsSchemaWatermark
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -20,6 +18,10 @@ if TYPE_CHECKING:
     from ..models.default_share_options_type_schema import DefaultShareOptionsTypeSchema
     from ..models.facet_field_schema import FacetFieldSchema
     from ..models.jobs_dashboard_schema import JobsDashboardSchema
+    from ..models.merged_settings_schema_drm_type_1 import MergedSettingsSchemaDrmType1
+    from ..models.merged_settings_schema_watermark_type_1 import (
+        MergedSettingsSchemaWatermarkType1,
+    )
     from ..models.password_checks_type import PasswordChecksType
     from ..models.search_display_field import SearchDisplayField
     from ..models.usage_history import UsageHistory
@@ -38,14 +40,14 @@ class MergedSettingsSchema:
         allow_play_original_during_transcoding (bool | None | Unset): Allow playing the original file while transcoding
             is in progress.
         allow_share_magic_link_creation (bool | None | Unset):
-        allowed_ips (list[AllowedIPSchema] | Unset):
+        allowed_ips (list[AllowedIPSchema] | None | Unset):
         append_asset_uuid_to_downloads (bool | None | Unset):
-        asset_default_sections (list[str] | Unset):
-        billing_tier (str | Unset):
-        client_ip (str | Unset):
+        asset_default_sections (list[str] | None | Unset):
+        billing_tier (None | str | Unset):
+        client_ip (None | str | Unset):
         collections_get_parent_acls (bool | None | Unset):
-        cors_hosts (list[str] | Unset):
-        custom_terms (bool | Unset):
+        cors_hosts (list[str] | None | Unset):
+        custom_terms (bool | None | Unset):
         dashboard (DashboardSchema | None | Unset):
         date_format (None | str | Unset):
         datetime_format (None | str | Unset):
@@ -56,9 +58,9 @@ class MergedSettingsSchema:
         default_user_token_ttl (int | None | Unset): Default time to live for user tokens in seconds.
         delete_grace_period (int | None | Unset): Grace period that indicate how long objects will live in recycle bin.
             Unit: hours
-        disable_billing_page (bool | Unset):
-        domain_has_preloaded_assets (bool | Unset):
-        drm (MergedSettingsSchemaDrm | Unset): DRM setting Default: MergedSettingsSchemaDrm.NONE.
+        disable_billing_page (bool | None | Unset):
+        domain_has_preloaded_assets (bool | None | Unset):
+        drm (MergedSettingsSchemaDrmType1 | None | Unset):
         drm_enforce (bool | None | Unset): Whether to require hardware DRM for playback when DRM is enabled Default:
             True.
         enable_ai_metadata_filling (bool | None | Unset):
@@ -68,20 +70,20 @@ class MergedSettingsSchema:
         enforce_magic_link_allowlist (bool | None | Unset): When enabled, magic links can only be sent to allowlisted
             emails/domains
         external_share (bool | None | Unset):
-        facet_fields (list[FacetFieldSchema] | Unset):
-        features (list[str] | Unset):
+        facet_fields (list[FacetFieldSchema] | None | Unset):
+        features (list[str] | None | Unset):
         filters_default_metadata_view_id (None | Unset | UUID):
         genesis (None | str | Unset):
-        group_id (UUID | Unset):
+        group_id (None | Unset | UUID):
         hide_favourites (bool | None | Unset):
         home_page (None | str | Unset):
         image_properties_metadata_field (None | str | Unset):
-        is_plg_domain (bool | Unset):
+        is_plg_domain (bool | None | Unset):
         jobs_dashboard (JobsDashboardSchema | None | Unset):
         locations_metadata_field (None | str | Unset):
         lock_mapped_collections (bool | None | Unset): Forbid regular users to edit or delete mapped collections.
         logo_storage_id (None | Unset | UUID):
-        logo_url (str | Unset):
+        logo_url (None | str | Unset):
         logos_metadata_field (None | str | Unset):
         max_browse_users (int | None | Unset):
         max_power_users (int | None | Unset):
@@ -92,14 +94,14 @@ class MergedSettingsSchema:
         mfa_required (bool | None | Unset):
         password_checks (None | PasswordChecksType | Unset):
         require_limit_download_groups (bool | None | Unset):
-        required_metadata_views (list[str] | Unset):
+        required_metadata_views (list[str] | None | Unset):
         review_experience_disabled (bool | None | Unset):
         review_experience_disabled_per_share (bool | None | Unset):
         safe_searches_metadata_field (None | str | Unset):
         saml_require_groups (bool | None | Unset):
         search_auto_resize_title_column (bool | None | Unset):
-        search_default_sections (list[str] | Unset):
-        search_display_fields (list[SearchDisplayField] | Unset):
+        search_default_sections (list[str] | None | Unset):
+        search_display_fields (list[SearchDisplayField] | None | Unset):
         search_in_transcriptions (bool | None | Unset):
         search_results_asset_metadata_view_id (None | Unset | UUID):
         search_results_collection_metadata_view_id (None | Unset | UUID):
@@ -109,15 +111,14 @@ class MergedSettingsSchema:
             valid. Unit: days
         show_persons_confirmation_modal (bool | None | Unset):
         support_access (bool | None | Unset):
-        system_domain_id (UUID | Unset):
-        system_domain_name (str | Unset):
+        system_domain_id (None | Unset | UUID):
+        system_domain_name (None | str | Unset):
         tags_metadata_field (None | str | Unset):
         texts_metadata_field (None | str | Unset):
         update_saml_primary_group_on_login (bool | None | Unset):
         usage_history (None | Unset | UsageHistory):
         use_asset_name_on_download (bool | None | Unset):
-        watermark (MergedSettingsSchemaWatermark | Unset): Watermark setting Default:
-            MergedSettingsSchemaWatermark.NONE.
+        watermark (MergedSettingsSchemaWatermarkType1 | None | Unset):
         watermark_options (None | Unset | WatermarkOptionsType):
     """
 
@@ -125,14 +126,14 @@ class MergedSettingsSchema:
     allow_invites_by_link: bool | None | Unset = UNSET
     allow_play_original_during_transcoding: bool | None | Unset = UNSET
     allow_share_magic_link_creation: bool | None | Unset = UNSET
-    allowed_ips: list[AllowedIPSchema] | Unset = UNSET
+    allowed_ips: list[AllowedIPSchema] | None | Unset = UNSET
     append_asset_uuid_to_downloads: bool | None | Unset = UNSET
-    asset_default_sections: list[str] | Unset = UNSET
-    billing_tier: str | Unset = UNSET
-    client_ip: str | Unset = UNSET
+    asset_default_sections: list[str] | None | Unset = UNSET
+    billing_tier: None | str | Unset = UNSET
+    client_ip: None | str | Unset = UNSET
     collections_get_parent_acls: bool | None | Unset = UNSET
-    cors_hosts: list[str] | Unset = UNSET
-    custom_terms: bool | Unset = UNSET
+    cors_hosts: list[str] | None | Unset = UNSET
+    custom_terms: bool | None | Unset = UNSET
     dashboard: DashboardSchema | None | Unset = UNSET
     date_format: None | str | Unset = UNSET
     datetime_format: None | str | Unset = UNSET
@@ -142,9 +143,9 @@ class MergedSettingsSchema:
     default_upload_storage_id: None | Unset | UUID = UNSET
     default_user_token_ttl: int | None | Unset = UNSET
     delete_grace_period: int | None | Unset = UNSET
-    disable_billing_page: bool | Unset = UNSET
-    domain_has_preloaded_assets: bool | Unset = UNSET
-    drm: MergedSettingsSchemaDrm | Unset = MergedSettingsSchemaDrm.NONE
+    disable_billing_page: bool | None | Unset = UNSET
+    domain_has_preloaded_assets: bool | None | Unset = UNSET
+    drm: MergedSettingsSchemaDrmType1 | None | Unset = UNSET
     drm_enforce: bool | None | Unset = True
     enable_ai_metadata_filling: bool | None | Unset = UNSET
     enable_face_recognition: bool | None | Unset = UNSET
@@ -152,20 +153,20 @@ class MergedSettingsSchema:
     enable_shield: bool | None | Unset = UNSET
     enforce_magic_link_allowlist: bool | None | Unset = UNSET
     external_share: bool | None | Unset = UNSET
-    facet_fields: list[FacetFieldSchema] | Unset = UNSET
-    features: list[str] | Unset = UNSET
+    facet_fields: list[FacetFieldSchema] | None | Unset = UNSET
+    features: list[str] | None | Unset = UNSET
     filters_default_metadata_view_id: None | Unset | UUID = UNSET
     genesis: None | str | Unset = UNSET
-    group_id: UUID | Unset = UNSET
+    group_id: None | Unset | UUID = UNSET
     hide_favourites: bool | None | Unset = UNSET
     home_page: None | str | Unset = UNSET
     image_properties_metadata_field: None | str | Unset = UNSET
-    is_plg_domain: bool | Unset = UNSET
+    is_plg_domain: bool | None | Unset = UNSET
     jobs_dashboard: JobsDashboardSchema | None | Unset = UNSET
     locations_metadata_field: None | str | Unset = UNSET
     lock_mapped_collections: bool | None | Unset = UNSET
     logo_storage_id: None | Unset | UUID = UNSET
-    logo_url: str | Unset = UNSET
+    logo_url: None | str | Unset = UNSET
     logos_metadata_field: None | str | Unset = UNSET
     max_browse_users: int | None | Unset = UNSET
     max_power_users: int | None | Unset = UNSET
@@ -176,14 +177,14 @@ class MergedSettingsSchema:
     mfa_required: bool | None | Unset = UNSET
     password_checks: None | PasswordChecksType | Unset = UNSET
     require_limit_download_groups: bool | None | Unset = UNSET
-    required_metadata_views: list[str] | Unset = UNSET
+    required_metadata_views: list[str] | None | Unset = UNSET
     review_experience_disabled: bool | None | Unset = UNSET
     review_experience_disabled_per_share: bool | None | Unset = UNSET
     safe_searches_metadata_field: None | str | Unset = UNSET
     saml_require_groups: bool | None | Unset = UNSET
     search_auto_resize_title_column: bool | None | Unset = UNSET
-    search_default_sections: list[str] | Unset = UNSET
-    search_display_fields: list[SearchDisplayField] | Unset = UNSET
+    search_default_sections: list[str] | None | Unset = UNSET
+    search_display_fields: list[SearchDisplayField] | None | Unset = UNSET
     search_in_transcriptions: bool | None | Unset = UNSET
     search_results_asset_metadata_view_id: None | Unset | UUID = UNSET
     search_results_collection_metadata_view_id: None | Unset | UUID = UNSET
@@ -192,16 +193,14 @@ class MergedSettingsSchema:
     share_expiration_time: int | None | Unset = UNSET
     show_persons_confirmation_modal: bool | None | Unset = UNSET
     support_access: bool | None | Unset = UNSET
-    system_domain_id: UUID | Unset = UNSET
-    system_domain_name: str | Unset = UNSET
+    system_domain_id: None | Unset | UUID = UNSET
+    system_domain_name: None | str | Unset = UNSET
     tags_metadata_field: None | str | Unset = UNSET
     texts_metadata_field: None | str | Unset = UNSET
     update_saml_primary_group_on_login: bool | None | Unset = UNSET
     usage_history: None | Unset | UsageHistory = UNSET
     use_asset_name_on_download: bool | None | Unset = UNSET
-    watermark: MergedSettingsSchemaWatermark | Unset = (
-        MergedSettingsSchemaWatermark.NONE
-    )
+    watermark: MergedSettingsSchemaWatermarkType1 | None | Unset = UNSET
     watermark_options: None | Unset | WatermarkOptionsType = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -211,6 +210,12 @@ class MergedSettingsSchema:
             DefaultShareOptionsTypeSchema,
         )
         from ..models.jobs_dashboard_schema import JobsDashboardSchema
+        from ..models.merged_settings_schema_drm_type_1 import (
+            MergedSettingsSchemaDrmType1,
+        )
+        from ..models.merged_settings_schema_watermark_type_1 import (
+            MergedSettingsSchemaWatermarkType1,
+        )
         from ..models.password_checks_type import PasswordChecksType
         from ..models.usage_history import UsageHistory
         from ..models.watermark_options_type import WatermarkOptionsType
@@ -243,12 +248,17 @@ class MergedSettingsSchema:
         else:
             allow_share_magic_link_creation = self.allow_share_magic_link_creation
 
-        allowed_ips: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.allowed_ips, Unset):
+        allowed_ips: list[dict[str, Any]] | None | Unset
+        if isinstance(self.allowed_ips, Unset):
+            allowed_ips = UNSET
+        elif isinstance(self.allowed_ips, list):
             allowed_ips = []
-            for allowed_ips_item_data in self.allowed_ips:
-                allowed_ips_item = allowed_ips_item_data.to_dict()
-                allowed_ips.append(allowed_ips_item)
+            for allowed_ips_type_0_item_data in self.allowed_ips:
+                allowed_ips_type_0_item = allowed_ips_type_0_item_data.to_dict()
+                allowed_ips.append(allowed_ips_type_0_item)
+
+        else:
+            allowed_ips = self.allowed_ips
 
         append_asset_uuid_to_downloads: bool | None | Unset
         if isinstance(self.append_asset_uuid_to_downloads, Unset):
@@ -256,13 +266,26 @@ class MergedSettingsSchema:
         else:
             append_asset_uuid_to_downloads = self.append_asset_uuid_to_downloads
 
-        asset_default_sections: list[str] | Unset = UNSET
-        if not isinstance(self.asset_default_sections, Unset):
+        asset_default_sections: list[str] | None | Unset
+        if isinstance(self.asset_default_sections, Unset):
+            asset_default_sections = UNSET
+        elif isinstance(self.asset_default_sections, list):
             asset_default_sections = self.asset_default_sections
 
-        billing_tier = self.billing_tier
+        else:
+            asset_default_sections = self.asset_default_sections
 
-        client_ip = self.client_ip
+        billing_tier: None | str | Unset
+        if isinstance(self.billing_tier, Unset):
+            billing_tier = UNSET
+        else:
+            billing_tier = self.billing_tier
+
+        client_ip: None | str | Unset
+        if isinstance(self.client_ip, Unset):
+            client_ip = UNSET
+        else:
+            client_ip = self.client_ip
 
         collections_get_parent_acls: bool | None | Unset
         if isinstance(self.collections_get_parent_acls, Unset):
@@ -270,11 +293,20 @@ class MergedSettingsSchema:
         else:
             collections_get_parent_acls = self.collections_get_parent_acls
 
-        cors_hosts: list[str] | Unset = UNSET
-        if not isinstance(self.cors_hosts, Unset):
+        cors_hosts: list[str] | None | Unset
+        if isinstance(self.cors_hosts, Unset):
+            cors_hosts = UNSET
+        elif isinstance(self.cors_hosts, list):
             cors_hosts = self.cors_hosts
 
-        custom_terms = self.custom_terms
+        else:
+            cors_hosts = self.cors_hosts
+
+        custom_terms: bool | None | Unset
+        if isinstance(self.custom_terms, Unset):
+            custom_terms = UNSET
+        else:
+            custom_terms = self.custom_terms
 
         dashboard: dict[str, Any] | None | Unset
         if isinstance(self.dashboard, Unset):
@@ -336,13 +368,25 @@ class MergedSettingsSchema:
         else:
             delete_grace_period = self.delete_grace_period
 
-        disable_billing_page = self.disable_billing_page
+        disable_billing_page: bool | None | Unset
+        if isinstance(self.disable_billing_page, Unset):
+            disable_billing_page = UNSET
+        else:
+            disable_billing_page = self.disable_billing_page
 
-        domain_has_preloaded_assets = self.domain_has_preloaded_assets
+        domain_has_preloaded_assets: bool | None | Unset
+        if isinstance(self.domain_has_preloaded_assets, Unset):
+            domain_has_preloaded_assets = UNSET
+        else:
+            domain_has_preloaded_assets = self.domain_has_preloaded_assets
 
-        drm: str | Unset = UNSET
-        if not isinstance(self.drm, Unset):
-            drm = self.drm.value
+        drm: dict[str, Any] | None | Unset
+        if isinstance(self.drm, Unset):
+            drm = UNSET
+        elif isinstance(self.drm, MergedSettingsSchemaDrmType1):
+            drm = self.drm.to_dict()
+        else:
+            drm = self.drm
 
         drm_enforce: bool | None | Unset
         if isinstance(self.drm_enforce, Unset):
@@ -386,15 +430,25 @@ class MergedSettingsSchema:
         else:
             external_share = self.external_share
 
-        facet_fields: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.facet_fields, Unset):
+        facet_fields: list[dict[str, Any]] | None | Unset
+        if isinstance(self.facet_fields, Unset):
+            facet_fields = UNSET
+        elif isinstance(self.facet_fields, list):
             facet_fields = []
-            for facet_fields_item_data in self.facet_fields:
-                facet_fields_item = facet_fields_item_data.to_dict()
-                facet_fields.append(facet_fields_item)
+            for facet_fields_type_0_item_data in self.facet_fields:
+                facet_fields_type_0_item = facet_fields_type_0_item_data.to_dict()
+                facet_fields.append(facet_fields_type_0_item)
 
-        features: list[str] | Unset = UNSET
-        if not isinstance(self.features, Unset):
+        else:
+            facet_fields = self.facet_fields
+
+        features: list[str] | None | Unset
+        if isinstance(self.features, Unset):
+            features = UNSET
+        elif isinstance(self.features, list):
+            features = self.features
+
+        else:
             features = self.features
 
         filters_default_metadata_view_id: None | str | Unset
@@ -413,9 +467,13 @@ class MergedSettingsSchema:
         else:
             genesis = self.genesis
 
-        group_id: str | Unset = UNSET
-        if not isinstance(self.group_id, Unset):
+        group_id: None | str | Unset
+        if isinstance(self.group_id, Unset):
+            group_id = UNSET
+        elif isinstance(self.group_id, UUID):
             group_id = str(self.group_id)
+        else:
+            group_id = self.group_id
 
         hide_favourites: bool | None | Unset
         if isinstance(self.hide_favourites, Unset):
@@ -435,7 +493,11 @@ class MergedSettingsSchema:
         else:
             image_properties_metadata_field = self.image_properties_metadata_field
 
-        is_plg_domain = self.is_plg_domain
+        is_plg_domain: bool | None | Unset
+        if isinstance(self.is_plg_domain, Unset):
+            is_plg_domain = UNSET
+        else:
+            is_plg_domain = self.is_plg_domain
 
         jobs_dashboard: dict[str, Any] | None | Unset
         if isinstance(self.jobs_dashboard, Unset):
@@ -465,7 +527,11 @@ class MergedSettingsSchema:
         else:
             logo_storage_id = self.logo_storage_id
 
-        logo_url = self.logo_url
+        logo_url: None | str | Unset
+        if isinstance(self.logo_url, Unset):
+            logo_url = UNSET
+        else:
+            logo_url = self.logo_url
 
         logos_metadata_field: None | str | Unset
         if isinstance(self.logos_metadata_field, Unset):
@@ -535,8 +601,13 @@ class MergedSettingsSchema:
         else:
             require_limit_download_groups = self.require_limit_download_groups
 
-        required_metadata_views: list[str] | Unset = UNSET
-        if not isinstance(self.required_metadata_views, Unset):
+        required_metadata_views: list[str] | None | Unset
+        if isinstance(self.required_metadata_views, Unset):
+            required_metadata_views = UNSET
+        elif isinstance(self.required_metadata_views, list):
+            required_metadata_views = self.required_metadata_views
+
+        else:
             required_metadata_views = self.required_metadata_views
 
         review_experience_disabled: bool | None | Unset
@@ -571,16 +642,28 @@ class MergedSettingsSchema:
         else:
             search_auto_resize_title_column = self.search_auto_resize_title_column
 
-        search_default_sections: list[str] | Unset = UNSET
-        if not isinstance(self.search_default_sections, Unset):
+        search_default_sections: list[str] | None | Unset
+        if isinstance(self.search_default_sections, Unset):
+            search_default_sections = UNSET
+        elif isinstance(self.search_default_sections, list):
             search_default_sections = self.search_default_sections
 
-        search_display_fields: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.search_display_fields, Unset):
+        else:
+            search_default_sections = self.search_default_sections
+
+        search_display_fields: list[dict[str, Any]] | None | Unset
+        if isinstance(self.search_display_fields, Unset):
+            search_display_fields = UNSET
+        elif isinstance(self.search_display_fields, list):
             search_display_fields = []
-            for search_display_fields_item_data in self.search_display_fields:
-                search_display_fields_item = search_display_fields_item_data.to_dict()
-                search_display_fields.append(search_display_fields_item)
+            for search_display_fields_type_0_item_data in self.search_display_fields:
+                search_display_fields_type_0_item = (
+                    search_display_fields_type_0_item_data.to_dict()
+                )
+                search_display_fields.append(search_display_fields_type_0_item)
+
+        else:
+            search_display_fields = self.search_display_fields
 
         search_in_transcriptions: bool | None | Unset
         if isinstance(self.search_in_transcriptions, Unset):
@@ -644,11 +727,19 @@ class MergedSettingsSchema:
         else:
             support_access = self.support_access
 
-        system_domain_id: str | Unset = UNSET
-        if not isinstance(self.system_domain_id, Unset):
+        system_domain_id: None | str | Unset
+        if isinstance(self.system_domain_id, Unset):
+            system_domain_id = UNSET
+        elif isinstance(self.system_domain_id, UUID):
             system_domain_id = str(self.system_domain_id)
+        else:
+            system_domain_id = self.system_domain_id
 
-        system_domain_name = self.system_domain_name
+        system_domain_name: None | str | Unset
+        if isinstance(self.system_domain_name, Unset):
+            system_domain_name = UNSET
+        else:
+            system_domain_name = self.system_domain_name
 
         tags_metadata_field: None | str | Unset
         if isinstance(self.tags_metadata_field, Unset):
@@ -682,9 +773,13 @@ class MergedSettingsSchema:
         else:
             use_asset_name_on_download = self.use_asset_name_on_download
 
-        watermark: str | Unset = UNSET
-        if not isinstance(self.watermark, Unset):
-            watermark = self.watermark.value
+        watermark: dict[str, Any] | None | Unset
+        if isinstance(self.watermark, Unset):
+            watermark = UNSET
+        elif isinstance(self.watermark, MergedSettingsSchemaWatermarkType1):
+            watermark = self.watermark.to_dict()
+        else:
+            watermark = self.watermark
 
         watermark_options: dict[str, Any] | None | Unset
         if isinstance(self.watermark_options, Unset):
@@ -891,6 +986,12 @@ class MergedSettingsSchema:
         )
         from ..models.facet_field_schema import FacetFieldSchema
         from ..models.jobs_dashboard_schema import JobsDashboardSchema
+        from ..models.merged_settings_schema_drm_type_1 import (
+            MergedSettingsSchemaDrmType1,
+        )
+        from ..models.merged_settings_schema_watermark_type_1 import (
+            MergedSettingsSchemaWatermarkType1,
+        )
         from ..models.password_checks_type import PasswordChecksType
         from ..models.search_display_field import SearchDisplayField
         from ..models.usage_history import UsageHistory
@@ -952,14 +1053,29 @@ class MergedSettingsSchema:
             d.pop("allow_share_magic_link_creation", UNSET)
         )
 
-        _allowed_ips = d.pop("allowed_ips", UNSET)
-        allowed_ips: list[AllowedIPSchema] | Unset = UNSET
-        if _allowed_ips is not UNSET:
-            allowed_ips = []
-            for allowed_ips_item_data in _allowed_ips:
-                allowed_ips_item = AllowedIPSchema.from_dict(allowed_ips_item_data)
+        def _parse_allowed_ips(data: object) -> list[AllowedIPSchema] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                allowed_ips_type_0 = []
+                _allowed_ips_type_0 = data
+                for allowed_ips_type_0_item_data in _allowed_ips_type_0:
+                    allowed_ips_type_0_item = AllowedIPSchema.from_dict(
+                        allowed_ips_type_0_item_data
+                    )
 
-                allowed_ips.append(allowed_ips_item)
+                    allowed_ips_type_0.append(allowed_ips_type_0_item)
+
+                return allowed_ips_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[AllowedIPSchema] | None | Unset, data)
+
+        allowed_ips = _parse_allowed_ips(d.pop("allowed_ips", UNSET))
 
         def _parse_append_asset_uuid_to_downloads(data: object) -> bool | None | Unset:
             if data is None:
@@ -972,11 +1088,42 @@ class MergedSettingsSchema:
             d.pop("append_asset_uuid_to_downloads", UNSET)
         )
 
-        asset_default_sections = cast(list[str], d.pop("asset_default_sections", UNSET))
+        def _parse_asset_default_sections(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                asset_default_sections_type_0 = cast(list[str], data)
 
-        billing_tier = d.pop("billing_tier", UNSET)
+                return asset_default_sections_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
 
-        client_ip = d.pop("client_ip", UNSET)
+        asset_default_sections = _parse_asset_default_sections(
+            d.pop("asset_default_sections", UNSET)
+        )
+
+        def _parse_billing_tier(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        billing_tier = _parse_billing_tier(d.pop("billing_tier", UNSET))
+
+        def _parse_client_ip(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        client_ip = _parse_client_ip(d.pop("client_ip", UNSET))
 
         def _parse_collections_get_parent_acls(data: object) -> bool | None | Unset:
             if data is None:
@@ -989,9 +1136,31 @@ class MergedSettingsSchema:
             d.pop("collections_get_parent_acls", UNSET)
         )
 
-        cors_hosts = cast(list[str], d.pop("cors_hosts", UNSET))
+        def _parse_cors_hosts(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                cors_hosts_type_0 = cast(list[str], data)
 
-        custom_terms = d.pop("custom_terms", UNSET)
+                return cors_hosts_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        cors_hosts = _parse_cors_hosts(d.pop("cors_hosts", UNSET))
+
+        def _parse_custom_terms(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        custom_terms = _parse_custom_terms(d.pop("custom_terms", UNSET))
 
         def _parse_dashboard(data: object) -> DashboardSchema | None | Unset:
             if data is None:
@@ -1114,16 +1283,44 @@ class MergedSettingsSchema:
             d.pop("delete_grace_period", UNSET)
         )
 
-        disable_billing_page = d.pop("disable_billing_page", UNSET)
+        def _parse_disable_billing_page(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        domain_has_preloaded_assets = d.pop("domain_has_preloaded_assets", UNSET)
+        disable_billing_page = _parse_disable_billing_page(
+            d.pop("disable_billing_page", UNSET)
+        )
 
-        _drm = d.pop("drm", UNSET)
-        drm: MergedSettingsSchemaDrm | Unset
-        if isinstance(_drm, Unset):
-            drm = UNSET
-        else:
-            drm = MergedSettingsSchemaDrm(_drm)
+        def _parse_domain_has_preloaded_assets(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        domain_has_preloaded_assets = _parse_domain_has_preloaded_assets(
+            d.pop("domain_has_preloaded_assets", UNSET)
+        )
+
+        def _parse_drm(data: object) -> MergedSettingsSchemaDrmType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                drm_type_1 = MergedSettingsSchemaDrmType1.from_dict(data)
+
+                return drm_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(MergedSettingsSchemaDrmType1 | None | Unset, data)
+
+        drm = _parse_drm(d.pop("drm", UNSET))
 
         def _parse_drm_enforce(data: object) -> bool | None | Unset:
             if data is None:
@@ -1194,16 +1391,46 @@ class MergedSettingsSchema:
 
         external_share = _parse_external_share(d.pop("external_share", UNSET))
 
-        _facet_fields = d.pop("facet_fields", UNSET)
-        facet_fields: list[FacetFieldSchema] | Unset = UNSET
-        if _facet_fields is not UNSET:
-            facet_fields = []
-            for facet_fields_item_data in _facet_fields:
-                facet_fields_item = FacetFieldSchema.from_dict(facet_fields_item_data)
+        def _parse_facet_fields(data: object) -> list[FacetFieldSchema] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                facet_fields_type_0 = []
+                _facet_fields_type_0 = data
+                for facet_fields_type_0_item_data in _facet_fields_type_0:
+                    facet_fields_type_0_item = FacetFieldSchema.from_dict(
+                        facet_fields_type_0_item_data
+                    )
 
-                facet_fields.append(facet_fields_item)
+                    facet_fields_type_0.append(facet_fields_type_0_item)
 
-        features = cast(list[str], d.pop("features", UNSET))
+                return facet_fields_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[FacetFieldSchema] | None | Unset, data)
+
+        facet_fields = _parse_facet_fields(d.pop("facet_fields", UNSET))
+
+        def _parse_features(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                features_type_0 = cast(list[str], data)
+
+                return features_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        features = _parse_features(d.pop("features", UNSET))
 
         def _parse_filters_default_metadata_view_id(
             data: object,
@@ -1235,12 +1462,22 @@ class MergedSettingsSchema:
 
         genesis = _parse_genesis(d.pop("genesis", UNSET))
 
-        _group_id = d.pop("group_id", UNSET)
-        group_id: UUID | Unset
-        if isinstance(_group_id, Unset):
-            group_id = UNSET
-        else:
-            group_id = UUID(_group_id)
+        def _parse_group_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                group_id_type_0 = UUID(data)
+
+                return group_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        group_id = _parse_group_id(d.pop("group_id", UNSET))
 
         def _parse_hide_favourites(data: object) -> bool | None | Unset:
             if data is None:
@@ -1271,7 +1508,14 @@ class MergedSettingsSchema:
             d.pop("image_properties_metadata_field", UNSET)
         )
 
-        is_plg_domain = d.pop("is_plg_domain", UNSET)
+        def _parse_is_plg_domain(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        is_plg_domain = _parse_is_plg_domain(d.pop("is_plg_domain", UNSET))
 
         def _parse_jobs_dashboard(data: object) -> JobsDashboardSchema | None | Unset:
             if data is None:
@@ -1329,7 +1573,14 @@ class MergedSettingsSchema:
 
         logo_storage_id = _parse_logo_storage_id(d.pop("logo_storage_id", UNSET))
 
-        logo_url = d.pop("logo_url", UNSET)
+        def _parse_logo_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        logo_url = _parse_logo_url(d.pop("logo_url", UNSET))
 
         def _parse_logos_metadata_field(data: object) -> None | str | Unset:
             if data is None:
@@ -1454,8 +1705,23 @@ class MergedSettingsSchema:
             d.pop("require_limit_download_groups", UNSET)
         )
 
-        required_metadata_views = cast(
-            list[str], d.pop("required_metadata_views", UNSET)
+        def _parse_required_metadata_views(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                required_metadata_views_type_0 = cast(list[str], data)
+
+                return required_metadata_views_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        required_metadata_views = _parse_required_metadata_views(
+            d.pop("required_metadata_views", UNSET)
         )
 
         def _parse_review_experience_disabled(data: object) -> bool | None | Unset:
@@ -1517,20 +1783,56 @@ class MergedSettingsSchema:
             d.pop("search_auto_resize_title_column", UNSET)
         )
 
-        search_default_sections = cast(
-            list[str], d.pop("search_default_sections", UNSET)
+        def _parse_search_default_sections(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                search_default_sections_type_0 = cast(list[str], data)
+
+                return search_default_sections_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        search_default_sections = _parse_search_default_sections(
+            d.pop("search_default_sections", UNSET)
         )
 
-        _search_display_fields = d.pop("search_display_fields", UNSET)
-        search_display_fields: list[SearchDisplayField] | Unset = UNSET
-        if _search_display_fields is not UNSET:
-            search_display_fields = []
-            for search_display_fields_item_data in _search_display_fields:
-                search_display_fields_item = SearchDisplayField.from_dict(
-                    search_display_fields_item_data
-                )
+        def _parse_search_display_fields(
+            data: object,
+        ) -> list[SearchDisplayField] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                search_display_fields_type_0 = []
+                _search_display_fields_type_0 = data
+                for (
+                    search_display_fields_type_0_item_data
+                ) in _search_display_fields_type_0:
+                    search_display_fields_type_0_item = SearchDisplayField.from_dict(
+                        search_display_fields_type_0_item_data
+                    )
 
-                search_display_fields.append(search_display_fields_item)
+                    search_display_fields_type_0.append(
+                        search_display_fields_type_0_item
+                    )
+
+                return search_display_fields_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[SearchDisplayField] | None | Unset, data)
+
+        search_display_fields = _parse_search_display_fields(
+            d.pop("search_display_fields", UNSET)
+        )
 
         def _parse_search_in_transcriptions(data: object) -> bool | None | Unset:
             if data is None:
@@ -1648,14 +1950,33 @@ class MergedSettingsSchema:
 
         support_access = _parse_support_access(d.pop("support_access", UNSET))
 
-        _system_domain_id = d.pop("system_domain_id", UNSET)
-        system_domain_id: UUID | Unset
-        if isinstance(_system_domain_id, Unset):
-            system_domain_id = UNSET
-        else:
-            system_domain_id = UUID(_system_domain_id)
+        def _parse_system_domain_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                system_domain_id_type_0 = UUID(data)
 
-        system_domain_name = d.pop("system_domain_name", UNSET)
+                return system_domain_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
+
+        def _parse_system_domain_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        system_domain_name = _parse_system_domain_name(
+            d.pop("system_domain_name", UNSET)
+        )
 
         def _parse_tags_metadata_field(data: object) -> None | str | Unset:
             if data is None:
@@ -1720,12 +2041,24 @@ class MergedSettingsSchema:
             d.pop("use_asset_name_on_download", UNSET)
         )
 
-        _watermark = d.pop("watermark", UNSET)
-        watermark: MergedSettingsSchemaWatermark | Unset
-        if isinstance(_watermark, Unset):
-            watermark = UNSET
-        else:
-            watermark = MergedSettingsSchemaWatermark(_watermark)
+        def _parse_watermark(
+            data: object,
+        ) -> MergedSettingsSchemaWatermarkType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                watermark_type_1 = MergedSettingsSchemaWatermarkType1.from_dict(data)
+
+                return watermark_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(MergedSettingsSchemaWatermarkType1 | None | Unset, data)
+
+        watermark = _parse_watermark(d.pop("watermark", UNSET))
 
         def _parse_watermark_options(
             data: object,

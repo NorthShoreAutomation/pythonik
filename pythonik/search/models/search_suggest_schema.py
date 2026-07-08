@@ -1,14 +1,14 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.search_suggest_schema_doc_types_item import (
-    SearchSuggestSchemaDocTypesItem,
+from ..models.search_suggest_schema_doc_types_type_0_item import (
+    SearchSuggestSchemaDocTypesType0Item,
 )
 from ..types import UNSET, Unset
 
@@ -21,14 +21,14 @@ class SearchSuggestSchema:
     Attributes:
         field_name (str):
         query (str):
-        doc_types (list[SearchSuggestSchemaDocTypesItem] | Unset):
-        metadata_view_id (UUID | Unset):
+        doc_types (list[SearchSuggestSchemaDocTypesType0Item] | None | Unset):
+        metadata_view_id (None | Unset | UUID):
     """
 
     field_name: str
     query: str
-    doc_types: list[SearchSuggestSchemaDocTypesItem] | Unset = UNSET
-    metadata_view_id: UUID | Unset = UNSET
+    doc_types: list[SearchSuggestSchemaDocTypesType0Item] | None | Unset = UNSET
+    metadata_view_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -36,16 +36,25 @@ class SearchSuggestSchema:
 
         query = self.query
 
-        doc_types: list[str] | Unset = UNSET
-        if not isinstance(self.doc_types, Unset):
+        doc_types: list[str] | None | Unset
+        if isinstance(self.doc_types, Unset):
+            doc_types = UNSET
+        elif isinstance(self.doc_types, list):
             doc_types = []
-            for doc_types_item_data in self.doc_types:
-                doc_types_item = doc_types_item_data.value
-                doc_types.append(doc_types_item)
+            for doc_types_type_0_item_data in self.doc_types:
+                doc_types_type_0_item = doc_types_type_0_item_data.value
+                doc_types.append(doc_types_type_0_item)
 
-        metadata_view_id: str | Unset = UNSET
-        if not isinstance(self.metadata_view_id, Unset):
+        else:
+            doc_types = self.doc_types
+
+        metadata_view_id: None | str | Unset
+        if isinstance(self.metadata_view_id, Unset):
+            metadata_view_id = UNSET
+        elif isinstance(self.metadata_view_id, UUID):
             metadata_view_id = str(self.metadata_view_id)
+        else:
+            metadata_view_id = self.metadata_view_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -69,21 +78,48 @@ class SearchSuggestSchema:
 
         query = d.pop("query")
 
-        _doc_types = d.pop("doc_types", UNSET)
-        doc_types: list[SearchSuggestSchemaDocTypesItem] | Unset = UNSET
-        if _doc_types is not UNSET:
-            doc_types = []
-            for doc_types_item_data in _doc_types:
-                doc_types_item = SearchSuggestSchemaDocTypesItem(doc_types_item_data)
+        def _parse_doc_types(
+            data: object,
+        ) -> list[SearchSuggestSchemaDocTypesType0Item] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                doc_types_type_0 = []
+                _doc_types_type_0 = data
+                for doc_types_type_0_item_data in _doc_types_type_0:
+                    doc_types_type_0_item = SearchSuggestSchemaDocTypesType0Item(
+                        doc_types_type_0_item_data
+                    )
 
-                doc_types.append(doc_types_item)
+                    doc_types_type_0.append(doc_types_type_0_item)
 
-        _metadata_view_id = d.pop("metadata_view_id", UNSET)
-        metadata_view_id: UUID | Unset
-        if isinstance(_metadata_view_id, Unset):
-            metadata_view_id = UNSET
-        else:
-            metadata_view_id = UUID(_metadata_view_id)
+                return doc_types_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[SearchSuggestSchemaDocTypesType0Item] | None | Unset, data)
+
+        doc_types = _parse_doc_types(d.pop("doc_types", UNSET))
+
+        def _parse_metadata_view_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                metadata_view_id_type_0 = UUID(data)
+
+                return metadata_view_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        metadata_view_id = _parse_metadata_view_id(d.pop("metadata_view_id", UNSET))
 
         search_suggest_schema = cls(
             field_name=field_name,

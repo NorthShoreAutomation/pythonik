@@ -18,18 +18,18 @@ class ExportSavedSearchRequestSchema:
     Attributes:
         id (UUID): ID of the object to export.
         export_metadata (bool | None | Unset): Whether to export metadata.
-        export_to_asset_folder (bool | Unset): Whether to export to asset folder. Default: False.
-        formats (list[str] | Unset): List containing a single format name to transfer. If not specified, ORIGINAL will
-            be transferred.
-        overwrite (bool | Unset): Whether to overwrite existing files. Default: False.
+        export_to_asset_folder (bool | None | Unset): Whether to export to asset folder. Default: False.
+        formats (list[str] | None | Unset): List containing a single format name to transfer. If not specified, ORIGINAL
+            will be transferred.
+        overwrite (bool | None | Unset): Whether to overwrite existing files. Default: False.
         preferred_original_storage_id (None | Unset | UUID):
     """
 
     id: UUID
     export_metadata: bool | None | Unset = UNSET
-    export_to_asset_folder: bool | Unset = False
-    formats: list[str] | Unset = UNSET
-    overwrite: bool | Unset = False
+    export_to_asset_folder: bool | None | Unset = False
+    formats: list[str] | None | Unset = UNSET
+    overwrite: bool | None | Unset = False
     preferred_original_storage_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -42,13 +42,26 @@ class ExportSavedSearchRequestSchema:
         else:
             export_metadata = self.export_metadata
 
-        export_to_asset_folder = self.export_to_asset_folder
+        export_to_asset_folder: bool | None | Unset
+        if isinstance(self.export_to_asset_folder, Unset):
+            export_to_asset_folder = UNSET
+        else:
+            export_to_asset_folder = self.export_to_asset_folder
 
-        formats: list[str] | Unset = UNSET
-        if not isinstance(self.formats, Unset):
+        formats: list[str] | None | Unset
+        if isinstance(self.formats, Unset):
+            formats = UNSET
+        elif isinstance(self.formats, list):
             formats = self.formats
 
-        overwrite = self.overwrite
+        else:
+            formats = self.formats
+
+        overwrite: bool | None | Unset
+        if isinstance(self.overwrite, Unset):
+            overwrite = UNSET
+        else:
+            overwrite = self.overwrite
 
         preferred_original_storage_id: None | str | Unset
         if isinstance(self.preferred_original_storage_id, Unset):
@@ -92,11 +105,42 @@ class ExportSavedSearchRequestSchema:
 
         export_metadata = _parse_export_metadata(d.pop("export_metadata", UNSET))
 
-        export_to_asset_folder = d.pop("export_to_asset_folder", UNSET)
+        def _parse_export_to_asset_folder(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        formats = cast(list[str], d.pop("formats", UNSET))
+        export_to_asset_folder = _parse_export_to_asset_folder(
+            d.pop("export_to_asset_folder", UNSET)
+        )
 
-        overwrite = d.pop("overwrite", UNSET)
+        def _parse_formats(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                formats_type_0 = cast(list[str], data)
+
+                return formats_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        formats = _parse_formats(d.pop("formats", UNSET))
+
+        def _parse_overwrite(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        overwrite = _parse_overwrite(d.pop("overwrite", UNSET))
 
         def _parse_preferred_original_storage_id(data: object) -> None | Unset | UUID:
             if data is None:

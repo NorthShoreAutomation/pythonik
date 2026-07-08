@@ -16,11 +16,11 @@ class JobsWidgetOptionFilterSchema:
     """
     Attributes:
         name (None | str | Unset):
-        value (list[str] | Unset):
+        value (list[str] | None | Unset):
     """
 
     name: None | str | Unset = UNSET
-    value: list[str] | Unset = UNSET
+    value: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -30,8 +30,13 @@ class JobsWidgetOptionFilterSchema:
         else:
             name = self.name
 
-        value: list[str] | Unset = UNSET
-        if not isinstance(self.value, Unset):
+        value: list[str] | None | Unset
+        if isinstance(self.value, Unset):
+            value = UNSET
+        elif isinstance(self.value, list):
+            value = self.value
+
+        else:
             value = self.value
 
         field_dict: dict[str, Any] = {}
@@ -57,7 +62,22 @@ class JobsWidgetOptionFilterSchema:
 
         name = _parse_name(d.pop("name", UNSET))
 
-        value = cast(list[str], d.pop("value", UNSET))
+        def _parse_value(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                value_type_0 = cast(list[str], data)
+
+                return value_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        value = _parse_value(d.pop("value", UNSET))
 
         jobs_widget_option_filter_schema = cls(
             name=name,

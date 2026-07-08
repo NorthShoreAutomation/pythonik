@@ -1,8 +1,8 @@
 """Contains all the data models used in inputs/outputs"""
 
 from .automation_search_criteria_schema import AutomationSearchCriteriaSchema
-from .automation_search_criteria_schema_doc_types_item import (
-    AutomationSearchCriteriaSchemaDocTypesItem,
+from .automation_search_criteria_schema_doc_types_type_0_item import (
+    AutomationSearchCriteriaSchemaDocTypesType0Item,
 )
 from .base_query_params_schema import BaseQueryParamsSchema
 from .bulk_add_to_favorites_schema import BulkAddToFavoritesSchema
@@ -115,10 +115,10 @@ from .delete_views_response_default_type_1_errors import (
 )
 from .discovery_entities_schema import DiscoveryEntitiesSchema
 from .discovery_entity import DiscoveryEntity
-from .discovery_entity_metadata import DiscoveryEntityMetadata
+from .discovery_entity_metadata_type_0 import DiscoveryEntityMetadataType0
 from .discovery_entity_object_type import DiscoveryEntityObjectType
 from .discovery_entity_schema import DiscoveryEntitySchema
-from .discovery_entity_schema_metadata import DiscoveryEntitySchemaMetadata
+from .discovery_entity_schema_metadata_type_0 import DiscoveryEntitySchemaMetadataType0
 from .discovery_entity_schema_object_type import DiscoveryEntitySchemaObjectType
 from .discovery_view_settings_schema import DiscoveryViewSettingsSchema
 from .facet_filter_schema import FacetFilterSchema
@@ -225,31 +225,43 @@ from .get_views_response_default_type_1 import GetViewsResponseDefaultType1
 from .get_views_response_default_type_1_errors import GetViewsResponseDefaultType1Errors
 from .list_objects_schema import ListObjectsSchema
 from .multi_select_filter_group_schema import MultiSelectFilterGroupSchema
-from .multi_select_filter_group_schema_modifier import (
-    MultiSelectFilterGroupSchemaModifier,
+from .multi_select_filter_group_schema_modifier_type_1 import (
+    MultiSelectFilterGroupSchemaModifierType1,
 )
 from .nltf_context_schema import NltfContextSchema
 from .nltf_displayed_filters import NltfDisplayedFilters
-from .nltf_displayed_filters_facets import NltfDisplayedFiltersFacets
-from .nltf_displayed_filters_filters import NltfDisplayedFiltersFilters
+from .nltf_displayed_filters_facets_type_0 import NltfDisplayedFiltersFacetsType0
+from .nltf_displayed_filters_filters_type_0 import NltfDisplayedFiltersFiltersType0
 from .nltf_displayed_filters_schema import NltfDisplayedFiltersSchema
-from .nltf_displayed_filters_schema_facets import NltfDisplayedFiltersSchemaFacets
-from .nltf_displayed_filters_schema_filters import NltfDisplayedFiltersSchemaFilters
+from .nltf_displayed_filters_schema_facets_type_0 import (
+    NltfDisplayedFiltersSchemaFacetsType0,
+)
+from .nltf_displayed_filters_schema_filters_type_0 import (
+    NltfDisplayedFiltersSchemaFiltersType0,
+)
 from .nltf_parse_metadata_schema import NltfParseMetadataSchema
 from .nltf_parse_request_schema import NltfParseRequestSchema
 from .nltf_parse_response_schema import NltfParseResponseSchema
 from .nltf_parse_result import NltfParseResult
-from .nltf_parse_result_facets_filters import NltfParseResultFacetsFilters
-from .nltf_parse_result_field_types import NltfParseResultFieldTypes
-from .nltf_parse_result_filter import NltfParseResultFilter
-from .nltf_parse_result_filter_options import NltfParseResultFilterOptions
-from .nltf_parse_result_query_mapping import NltfParseResultQueryMapping
+from .nltf_parse_result_facets_filters_type_0 import NltfParseResultFacetsFiltersType0
+from .nltf_parse_result_field_types_type_0 import NltfParseResultFieldTypesType0
+from .nltf_parse_result_filter_options_type_0 import NltfParseResultFilterOptionsType0
+from .nltf_parse_result_filter_type_0 import NltfParseResultFilterType0
+from .nltf_parse_result_query_mapping_type_0 import NltfParseResultQueryMappingType0
 from .nltf_parse_result_schema import NltfParseResultSchema
-from .nltf_parse_result_schema_facets_filters import NltfParseResultSchemaFacetsFilters
-from .nltf_parse_result_schema_field_types import NltfParseResultSchemaFieldTypes
-from .nltf_parse_result_schema_filter import NltfParseResultSchemaFilter
-from .nltf_parse_result_schema_filter_options import NltfParseResultSchemaFilterOptions
-from .nltf_parse_result_schema_query_mapping import NltfParseResultSchemaQueryMapping
+from .nltf_parse_result_schema_facets_filters_type_0 import (
+    NltfParseResultSchemaFacetsFiltersType0,
+)
+from .nltf_parse_result_schema_field_types_type_0 import (
+    NltfParseResultSchemaFieldTypesType0,
+)
+from .nltf_parse_result_schema_filter_options_type_0 import (
+    NltfParseResultSchemaFilterOptionsType0,
+)
+from .nltf_parse_result_schema_filter_type_0 import NltfParseResultSchemaFilterType0
+from .nltf_parse_result_schema_query_mapping_type_0 import (
+    NltfParseResultSchemaQueryMappingType0,
+)
 from .patch_discovery_default_entities_by_entity_id_response_default_type_0 import (
     PatchDiscoveryDefaultEntitiesByEntityIdResponseDefaultType0,
 )
@@ -445,54 +457,64 @@ from .saved_search_group_query_params_schema import SavedSearchGroupQueryParamsS
 from .saved_search_group_schema import SavedSearchGroupSchema
 from .saved_search_groups_schema import SavedSearchGroupsSchema
 from .saved_search_query_params_schema import SavedSearchQueryParamsSchema
-from .saved_search_query_params_schema_types_item import (
-    SavedSearchQueryParamsSchemaTypesItem,
+from .saved_search_query_params_schema_types_type_0_item import (
+    SavedSearchQueryParamsSchemaTypesType0Item,
 )
 from .saved_search_results_schema import SavedSearchResultsSchema
-from .saved_search_results_schema_facets import SavedSearchResultsSchemaFacets
+from .saved_search_results_schema_facets_type_0 import (
+    SavedSearchResultsSchemaFacetsType0,
+)
 from .saved_search_schema import SavedSearchSchema
 from .saved_searches_schema import SavedSearchesSchema
-from .saved_searches_schema_facets import SavedSearchesSchemaFacets
+from .saved_searches_schema_facets_type_0 import SavedSearchesSchemaFacetsType0
 from .search_content_info_internal_schema import SearchContentInfoInternalSchema
-from .search_content_info_internal_schema_media_formats_item import (
-    SearchContentInfoInternalSchemaMediaFormatsItem,
+from .search_content_info_internal_schema_media_formats_type_0_item import (
+    SearchContentInfoInternalSchemaMediaFormatsType0Item,
 )
-from .search_content_info_internal_schema_media_types_item import (
-    SearchContentInfoInternalSchemaMediaTypesItem,
+from .search_content_info_internal_schema_media_types_type_0_item import (
+    SearchContentInfoInternalSchemaMediaTypesType0Item,
 )
 from .search_content_info_schema import SearchContentInfoSchema
 from .search_criteria_base_schema import SearchCriteriaBaseSchema
-from .search_criteria_base_schema_doc_types_item import (
-    SearchCriteriaBaseSchemaDocTypesItem,
+from .search_criteria_base_schema_doc_types_type_0_item import (
+    SearchCriteriaBaseSchemaDocTypesType0Item,
 )
 from .search_criteria_saved import SearchCriteriaSaved
-from .search_criteria_saved_doc_types_item import SearchCriteriaSavedDocTypesItem
+from .search_criteria_saved_doc_types_type_0_item import (
+    SearchCriteriaSavedDocTypesType0Item,
+)
 from .search_criteria_saved_schema import SearchCriteriaSavedSchema
-from .search_criteria_saved_schema_doc_types_item import (
-    SearchCriteriaSavedSchemaDocTypesItem,
+from .search_criteria_saved_schema_doc_types_type_0_item import (
+    SearchCriteriaSavedSchemaDocTypesType0Item,
 )
 from .search_criteria_schema import SearchCriteriaSchema
-from .search_criteria_schema_doc_types_item import SearchCriteriaSchemaDocTypesItem
+from .search_criteria_schema_doc_types_type_0_item import (
+    SearchCriteriaSchemaDocTypesType0Item,
+)
 from .search_document import SearchDocument
 from .search_document_input_schema import SearchDocumentInputSchema
 from .search_document_input_schema_fields_item import (
     SearchDocumentInputSchemaFieldsItem,
 )
-from .search_document_metadata import SearchDocumentMetadata
+from .search_document_metadata_type_0 import SearchDocumentMetadataType0
 from .search_document_schema import SearchDocumentSchema
-from .search_document_schema_metadata import SearchDocumentSchemaMetadata
+from .search_document_schema_metadata_type_0 import SearchDocumentSchemaMetadataType0
 from .search_documents_schema import SearchDocumentsSchema
-from .search_documents_schema_facets import SearchDocumentsSchemaFacets
+from .search_documents_schema_facets_type_0 import SearchDocumentsSchemaFacetsType0
 from .search_history import SearchHistory
 from .search_history_criteria import SearchHistoryCriteria
 from .search_history_list_schema import SearchHistoryListSchema
 from .search_history_schema import SearchHistorySchema
 from .search_history_schema_criteria import SearchHistorySchemaCriteria
 from .search_query_params_schema import SearchQueryParamsSchema
-from .search_query_params_schema_types_item import SearchQueryParamsSchemaTypesItem
+from .search_query_params_schema_types_type_0_item import (
+    SearchQueryParamsSchemaTypesType0Item,
+)
 from .search_suggest_response_schema import SearchSuggestResponseSchema
 from .search_suggest_schema import SearchSuggestSchema
-from .search_suggest_schema_doc_types_item import SearchSuggestSchemaDocTypesItem
+from .search_suggest_schema_doc_types_type_0_item import (
+    SearchSuggestSchemaDocTypesType0Item,
+)
 from .search_suggests_response_schema import SearchSuggestsResponseSchema
 from .search_view_field_type_schema import SearchViewFieldTypeSchema
 from .search_view_field_type_width import SearchViewFieldTypeWidth
@@ -505,7 +527,7 @@ from .storage_content_info_schema import StorageContentInfoSchema
 
 __all__ = (
     "AutomationSearchCriteriaSchema",
-    "AutomationSearchCriteriaSchemaDocTypesItem",
+    "AutomationSearchCriteriaSchemaDocTypesType0Item",
     "BaseQueryParamsSchema",
     "BulkAddToFavoritesSchema",
     "BulkDeleteFromFavoritesSchema",
@@ -555,10 +577,10 @@ __all__ = (
     "DeleteViewsResponseDefaultType1Errors",
     "DiscoveryEntitiesSchema",
     "DiscoveryEntity",
-    "DiscoveryEntityMetadata",
+    "DiscoveryEntityMetadataType0",
     "DiscoveryEntityObjectType",
     "DiscoveryEntitySchema",
-    "DiscoveryEntitySchemaMetadata",
+    "DiscoveryEntitySchemaMetadataType0",
     "DiscoveryEntitySchemaObjectType",
     "DiscoveryViewSettingsSchema",
     "FacetFilterSchema",
@@ -601,29 +623,29 @@ __all__ = (
     "GetViewsResponseDefaultType1Errors",
     "ListObjectsSchema",
     "MultiSelectFilterGroupSchema",
-    "MultiSelectFilterGroupSchemaModifier",
+    "MultiSelectFilterGroupSchemaModifierType1",
     "NltfContextSchema",
     "NltfDisplayedFilters",
-    "NltfDisplayedFiltersFacets",
-    "NltfDisplayedFiltersFilters",
+    "NltfDisplayedFiltersFacetsType0",
+    "NltfDisplayedFiltersFiltersType0",
     "NltfDisplayedFiltersSchema",
-    "NltfDisplayedFiltersSchemaFacets",
-    "NltfDisplayedFiltersSchemaFilters",
+    "NltfDisplayedFiltersSchemaFacetsType0",
+    "NltfDisplayedFiltersSchemaFiltersType0",
     "NltfParseMetadataSchema",
     "NltfParseRequestSchema",
     "NltfParseResponseSchema",
     "NltfParseResult",
-    "NltfParseResultFacetsFilters",
-    "NltfParseResultFieldTypes",
-    "NltfParseResultFilter",
-    "NltfParseResultFilterOptions",
-    "NltfParseResultQueryMapping",
+    "NltfParseResultFacetsFiltersType0",
+    "NltfParseResultFieldTypesType0",
+    "NltfParseResultFilterOptionsType0",
+    "NltfParseResultFilterType0",
+    "NltfParseResultQueryMappingType0",
     "NltfParseResultSchema",
-    "NltfParseResultSchemaFacetsFilters",
-    "NltfParseResultSchemaFieldTypes",
-    "NltfParseResultSchemaFilter",
-    "NltfParseResultSchemaFilterOptions",
-    "NltfParseResultSchemaQueryMapping",
+    "NltfParseResultSchemaFacetsFiltersType0",
+    "NltfParseResultSchemaFieldTypesType0",
+    "NltfParseResultSchemaFilterOptionsType0",
+    "NltfParseResultSchemaFilterType0",
+    "NltfParseResultSchemaQueryMappingType0",
     "PatchDiscoveryDefaultEntitiesByEntityIdResponseDefaultType0",
     "PatchDiscoveryDefaultEntitiesByEntityIdResponseDefaultType1",
     "PatchDiscoveryDefaultEntitiesByEntityIdResponseDefaultType1Errors",
@@ -698,45 +720,45 @@ __all__ = (
     "SavedSearchCopyFromTemplateSchemaMetadataViewMap",
     "SavedSearchElasticSchema",
     "SavedSearchesSchema",
-    "SavedSearchesSchemaFacets",
+    "SavedSearchesSchemaFacetsType0",
     "SavedSearchGroupQueryParamsSchema",
     "SavedSearchGroupSchema",
     "SavedSearchGroupsSchema",
     "SavedSearchQueryParamsSchema",
-    "SavedSearchQueryParamsSchemaTypesItem",
+    "SavedSearchQueryParamsSchemaTypesType0Item",
     "SavedSearchResultsSchema",
-    "SavedSearchResultsSchemaFacets",
+    "SavedSearchResultsSchemaFacetsType0",
     "SavedSearchSchema",
     "SearchContentInfoInternalSchema",
-    "SearchContentInfoInternalSchemaMediaFormatsItem",
-    "SearchContentInfoInternalSchemaMediaTypesItem",
+    "SearchContentInfoInternalSchemaMediaFormatsType0Item",
+    "SearchContentInfoInternalSchemaMediaTypesType0Item",
     "SearchContentInfoSchema",
     "SearchCriteriaBaseSchema",
-    "SearchCriteriaBaseSchemaDocTypesItem",
+    "SearchCriteriaBaseSchemaDocTypesType0Item",
     "SearchCriteriaSaved",
-    "SearchCriteriaSavedDocTypesItem",
+    "SearchCriteriaSavedDocTypesType0Item",
     "SearchCriteriaSavedSchema",
-    "SearchCriteriaSavedSchemaDocTypesItem",
+    "SearchCriteriaSavedSchemaDocTypesType0Item",
     "SearchCriteriaSchema",
-    "SearchCriteriaSchemaDocTypesItem",
+    "SearchCriteriaSchemaDocTypesType0Item",
     "SearchDocument",
     "SearchDocumentInputSchema",
     "SearchDocumentInputSchemaFieldsItem",
-    "SearchDocumentMetadata",
+    "SearchDocumentMetadataType0",
     "SearchDocumentSchema",
-    "SearchDocumentSchemaMetadata",
+    "SearchDocumentSchemaMetadataType0",
     "SearchDocumentsSchema",
-    "SearchDocumentsSchemaFacets",
+    "SearchDocumentsSchemaFacetsType0",
     "SearchHistory",
     "SearchHistoryCriteria",
     "SearchHistoryListSchema",
     "SearchHistorySchema",
     "SearchHistorySchemaCriteria",
     "SearchQueryParamsSchema",
-    "SearchQueryParamsSchemaTypesItem",
+    "SearchQueryParamsSchemaTypesType0Item",
     "SearchSuggestResponseSchema",
     "SearchSuggestSchema",
-    "SearchSuggestSchemaDocTypesItem",
+    "SearchSuggestSchemaDocTypesType0Item",
     "SearchSuggestsResponseSchema",
     "SearchViewFieldTypeSchema",
     "SearchViewFieldTypeWidth",

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -9,7 +9,9 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.trigger_schema_base_parameters import TriggerSchemaBaseParameters
+    from ..models.trigger_schema_base_parameters_type_0 import (
+        TriggerSchemaBaseParametersType0,
+    )
 
 
 T = TypeVar("T", bound="TriggerSchemaBase")
@@ -19,16 +21,24 @@ T = TypeVar("T", bound="TriggerSchemaBase")
 class TriggerSchemaBase:
     """
     Attributes:
-        parameters (TriggerSchemaBaseParameters | Unset):
+        parameters (None | TriggerSchemaBaseParametersType0 | Unset):
     """
 
-    parameters: TriggerSchemaBaseParameters | Unset = UNSET
+    parameters: None | TriggerSchemaBaseParametersType0 | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        parameters: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.parameters, Unset):
+        from ..models.trigger_schema_base_parameters_type_0 import (
+            TriggerSchemaBaseParametersType0,
+        )
+
+        parameters: dict[str, Any] | None | Unset
+        if isinstance(self.parameters, Unset):
+            parameters = UNSET
+        elif isinstance(self.parameters, TriggerSchemaBaseParametersType0):
             parameters = self.parameters.to_dict()
+        else:
+            parameters = self.parameters
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -40,15 +50,30 @@ class TriggerSchemaBase:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.trigger_schema_base_parameters import TriggerSchemaBaseParameters
+        from ..models.trigger_schema_base_parameters_type_0 import (
+            TriggerSchemaBaseParametersType0,
+        )
 
         d = dict(src_dict)
-        _parameters = d.pop("parameters", UNSET)
-        parameters: TriggerSchemaBaseParameters | Unset
-        if isinstance(_parameters, Unset):
-            parameters = UNSET
-        else:
-            parameters = TriggerSchemaBaseParameters.from_dict(_parameters)
+
+        def _parse_parameters(
+            data: object,
+        ) -> None | TriggerSchemaBaseParametersType0 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                parameters_type_0 = TriggerSchemaBaseParametersType0.from_dict(data)
+
+                return parameters_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | TriggerSchemaBaseParametersType0 | Unset, data)
+
+        parameters = _parse_parameters(d.pop("parameters", UNSET))
 
         trigger_schema_base = cls(
             parameters=parameters,

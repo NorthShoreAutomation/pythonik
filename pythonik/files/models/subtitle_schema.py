@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -21,9 +21,9 @@ class SubtitleSchema:
         format_id (UUID):
         id (UUID):
         language (str):
-        content (str | Unset):
-        name (str | Unset):
-        version_id (UUID | Unset):
+        content (None | str | Unset):
+        name (None | str | Unset):
+        version_id (None | Unset | UUID):
     """
 
     asset_id: UUID
@@ -31,9 +31,9 @@ class SubtitleSchema:
     format_id: UUID
     id: UUID
     language: str
-    content: str | Unset = UNSET
-    name: str | Unset = UNSET
-    version_id: UUID | Unset = UNSET
+    content: None | str | Unset = UNSET
+    name: None | str | Unset = UNSET
+    version_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -47,13 +47,25 @@ class SubtitleSchema:
 
         language = self.language
 
-        content = self.content
+        content: None | str | Unset
+        if isinstance(self.content, Unset):
+            content = UNSET
+        else:
+            content = self.content
 
-        name = self.name
+        name: None | str | Unset
+        if isinstance(self.name, Unset):
+            name = UNSET
+        else:
+            name = self.name
 
-        version_id: str | Unset = UNSET
-        if not isinstance(self.version_id, Unset):
+        version_id: None | str | Unset
+        if isinstance(self.version_id, Unset):
+            version_id = UNSET
+        elif isinstance(self.version_id, UUID):
             version_id = str(self.version_id)
+        else:
+            version_id = self.version_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -88,16 +100,40 @@ class SubtitleSchema:
 
         language = d.pop("language")
 
-        content = d.pop("content", UNSET)
+        def _parse_content(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        name = d.pop("name", UNSET)
+        content = _parse_content(d.pop("content", UNSET))
 
-        _version_id = d.pop("version_id", UNSET)
-        version_id: UUID | Unset
-        if isinstance(_version_id, Unset):
-            version_id = UNSET
-        else:
-            version_id = UUID(_version_id)
+        def _parse_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        name = _parse_name(d.pop("name", UNSET))
+
+        def _parse_version_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                version_id_type_0 = UUID(data)
+
+                return version_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        version_id = _parse_version_id(d.pop("version_id", UNSET))
 
         subtitle_schema = cls(
             asset_id=asset_id,

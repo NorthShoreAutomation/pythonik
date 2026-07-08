@@ -17,19 +17,23 @@ class UpdateConfirmPersonSchema:
     """
     Attributes:
         name (str):
-        all_instances_except_unconfirmed (bool | Unset):  Default: False.
+        all_instances_except_unconfirmed (bool | None | Unset):  Default: False.
         version_ids (list[UUID] | None | Unset):
     """
 
     name: str
-    all_instances_except_unconfirmed: bool | Unset = False
+    all_instances_except_unconfirmed: bool | None | Unset = False
     version_ids: list[UUID] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
 
-        all_instances_except_unconfirmed = self.all_instances_except_unconfirmed
+        all_instances_except_unconfirmed: bool | None | Unset
+        if isinstance(self.all_instances_except_unconfirmed, Unset):
+            all_instances_except_unconfirmed = UNSET
+        else:
+            all_instances_except_unconfirmed = self.all_instances_except_unconfirmed
 
         version_ids: list[str] | None | Unset
         if isinstance(self.version_ids, Unset):
@@ -64,8 +68,17 @@ class UpdateConfirmPersonSchema:
         d = dict(src_dict)
         name = d.pop("name")
 
-        all_instances_except_unconfirmed = d.pop(
-            "all_instances_except_unconfirmed", UNSET
+        def _parse_all_instances_except_unconfirmed(
+            data: object,
+        ) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        all_instances_except_unconfirmed = _parse_all_instances_except_unconfirmed(
+            d.pop("all_instances_except_unconfirmed", UNSET)
         )
 
         def _parse_version_ids(data: object) -> list[UUID] | None | Unset:

@@ -2,19 +2,21 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.automation_internal_schema_status import AutomationInternalSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.add_to_collection_action_schema import AddToCollectionActionSchema
     from ..models.analyze_action_schema import AnalyzeActionSchema
     from ..models.archive_action_schema import ArchiveActionSchema
+    from ..models.automation_internal_schema_status_type_1 import (
+        AutomationInternalSchemaStatusType1,
+    )
     from ..models.condition import Condition
     from ..models.create_publication_job_action import CreatePublicationJobAction
     from ..models.create_share_action import CreateShareAction
@@ -50,15 +52,15 @@ class AutomationInternalSchema:
             | TriggerCustomAction | UpdateACLAction]):
         name (str):
         triggers (list[Trigger]):
-        conditions (list[Condition] | Unset):
-        created_by (UUID | Unset):
-        date_created (datetime.datetime | Unset):
-        date_modified (datetime.datetime | Unset):
-        description (str | Unset):
-        id (UUID | Unset):
-        modified_by (UUID | Unset):
-        status (AutomationInternalSchemaStatus | Unset):
-        system_domain_id (UUID | Unset):
+        conditions (list[Condition] | None | Unset):
+        created_by (None | Unset | UUID):
+        date_created (datetime.datetime | None | Unset):
+        date_modified (datetime.datetime | None | Unset):
+        description (None | str | Unset):
+        id (None | Unset | UUID):
+        modified_by (None | Unset | UUID):
+        status (AutomationInternalSchemaStatusType1 | None | Unset):
+        system_domain_id (None | Unset | UUID):
     """
 
     actions: list[
@@ -85,21 +87,24 @@ class AutomationInternalSchema:
     ]
     name: str
     triggers: list[Trigger]
-    conditions: list[Condition] | Unset = UNSET
-    created_by: UUID | Unset = UNSET
-    date_created: datetime.datetime | Unset = UNSET
-    date_modified: datetime.datetime | Unset = UNSET
-    description: str | Unset = UNSET
-    id: UUID | Unset = UNSET
-    modified_by: UUID | Unset = UNSET
-    status: AutomationInternalSchemaStatus | Unset = UNSET
-    system_domain_id: UUID | Unset = UNSET
+    conditions: list[Condition] | None | Unset = UNSET
+    created_by: None | Unset | UUID = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_modified: datetime.datetime | None | Unset = UNSET
+    description: None | str | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    modified_by: None | Unset | UUID = UNSET
+    status: AutomationInternalSchemaStatusType1 | None | Unset = UNSET
+    system_domain_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.add_to_collection_action_schema import AddToCollectionActionSchema
         from ..models.analyze_action_schema import AnalyzeActionSchema
         from ..models.archive_action_schema import ArchiveActionSchema
+        from ..models.automation_internal_schema_status_type_1 import (
+            AutomationInternalSchemaStatusType1,
+        )
         from ..models.create_publication_job_action import CreatePublicationJobAction
         from ..models.create_share_action import CreateShareAction
         from ..models.delete_action import DeleteAction
@@ -172,42 +177,79 @@ class AutomationInternalSchema:
             triggers_item = triggers_item_data.to_dict()
             triggers.append(triggers_item)
 
-        conditions: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.conditions, Unset):
+        conditions: list[dict[str, Any]] | None | Unset
+        if isinstance(self.conditions, Unset):
+            conditions = UNSET
+        elif isinstance(self.conditions, list):
             conditions = []
-            for conditions_item_data in self.conditions:
-                conditions_item = conditions_item_data.to_dict()
-                conditions.append(conditions_item)
+            for conditions_type_0_item_data in self.conditions:
+                conditions_type_0_item = conditions_type_0_item_data.to_dict()
+                conditions.append(conditions_type_0_item)
 
-        created_by: str | Unset = UNSET
-        if not isinstance(self.created_by, Unset):
+        else:
+            conditions = self.conditions
+
+        created_by: None | str | Unset
+        if isinstance(self.created_by, Unset):
+            created_by = UNSET
+        elif isinstance(self.created_by, UUID):
             created_by = str(self.created_by)
+        else:
+            created_by = self.created_by
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_modified: str | Unset = UNSET
-        if not isinstance(self.date_modified, Unset):
+        date_modified: None | str | Unset
+        if isinstance(self.date_modified, Unset):
+            date_modified = UNSET
+        elif isinstance(self.date_modified, datetime.datetime):
             date_modified = self.date_modified.isoformat()
+        else:
+            date_modified = self.date_modified
 
-        description = self.description
+        description: None | str | Unset
+        if isinstance(self.description, Unset):
+            description = UNSET
+        else:
+            description = self.description
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        modified_by: str | Unset = UNSET
-        if not isinstance(self.modified_by, Unset):
+        modified_by: None | str | Unset
+        if isinstance(self.modified_by, Unset):
+            modified_by = UNSET
+        elif isinstance(self.modified_by, UUID):
             modified_by = str(self.modified_by)
+        else:
+            modified_by = self.modified_by
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        status: dict[str, Any] | None | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        elif isinstance(self.status, AutomationInternalSchemaStatusType1):
+            status = self.status.to_dict()
+        else:
+            status = self.status
 
-        system_domain_id: str | Unset = UNSET
-        if not isinstance(self.system_domain_id, Unset):
+        system_domain_id: None | str | Unset
+        if isinstance(self.system_domain_id, Unset):
+            system_domain_id = UNSET
+        elif isinstance(self.system_domain_id, UUID):
             system_domain_id = str(self.system_domain_id)
+        else:
+            system_domain_id = self.system_domain_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -244,6 +286,9 @@ class AutomationInternalSchema:
         from ..models.add_to_collection_action_schema import AddToCollectionActionSchema
         from ..models.analyze_action_schema import AnalyzeActionSchema
         from ..models.archive_action_schema import ArchiveActionSchema
+        from ..models.automation_internal_schema_status_type_1 import (
+            AutomationInternalSchemaStatusType1,
+        )
         from ..models.condition import Condition
         from ..models.create_publication_job_action import CreatePublicationJobAction
         from ..models.create_share_action import CreateShareAction
@@ -466,65 +511,159 @@ class AutomationInternalSchema:
 
             triggers.append(triggers_item)
 
-        _conditions = d.pop("conditions", UNSET)
-        conditions: list[Condition] | Unset = UNSET
-        if _conditions is not UNSET:
-            conditions = []
-            for conditions_item_data in _conditions:
-                conditions_item = Condition.from_dict(conditions_item_data)
+        def _parse_conditions(data: object) -> list[Condition] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                conditions_type_0 = []
+                _conditions_type_0 = data
+                for conditions_type_0_item_data in _conditions_type_0:
+                    conditions_type_0_item = Condition.from_dict(
+                        conditions_type_0_item_data
+                    )
 
-                conditions.append(conditions_item)
+                    conditions_type_0.append(conditions_type_0_item)
 
-        _created_by = d.pop("created_by", UNSET)
-        created_by: UUID | Unset
-        if isinstance(_created_by, Unset):
-            created_by = UNSET
-        else:
-            created_by = UUID(_created_by)
+                return conditions_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[Condition] | None | Unset, data)
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        conditions = _parse_conditions(d.pop("conditions", UNSET))
 
-        _date_modified = d.pop("date_modified", UNSET)
-        date_modified: datetime.datetime | Unset
-        if isinstance(_date_modified, Unset):
-            date_modified = UNSET
-        else:
-            date_modified = datetime.datetime.fromisoformat(_date_modified)
+        def _parse_created_by(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                created_by_type_0 = UUID(data)
 
-        description = d.pop("description", UNSET)
+                return created_by_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        created_by = _parse_created_by(d.pop("created_by", UNSET))
 
-        _modified_by = d.pop("modified_by", UNSET)
-        modified_by: UUID | Unset
-        if isinstance(_modified_by, Unset):
-            modified_by = UNSET
-        else:
-            modified_by = UUID(_modified_by)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        _status = d.pop("status", UNSET)
-        status: AutomationInternalSchemaStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = AutomationInternalSchemaStatus(_status)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        _system_domain_id = d.pop("system_domain_id", UNSET)
-        system_domain_id: UUID | Unset
-        if isinstance(_system_domain_id, Unset):
-            system_domain_id = UNSET
-        else:
-            system_domain_id = UUID(_system_domain_id)
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
+
+        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_modified_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_modified_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
+
+        def _parse_description(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        description = _parse_description(d.pop("description", UNSET))
+
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_modified_by(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                modified_by_type_0 = UUID(data)
+
+                return modified_by_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        modified_by = _parse_modified_by(d.pop("modified_by", UNSET))
+
+        def _parse_status(
+            data: object,
+        ) -> AutomationInternalSchemaStatusType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                status_type_1 = AutomationInternalSchemaStatusType1.from_dict(data)
+
+                return status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(AutomationInternalSchemaStatusType1 | None | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
+
+        def _parse_system_domain_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                system_domain_id_type_0 = UUID(data)
+
+                return system_domain_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
 
         automation_internal_schema = cls(
             actions=actions,

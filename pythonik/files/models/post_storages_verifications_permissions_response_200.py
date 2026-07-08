@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -19,46 +19,82 @@ class PostStoragesVerificationsPermissionsResponse200:
             no access'}
 
     Attributes:
-        cors (bool | Unset):
-        cors_error (str | Unset):
-        delete_access (bool | Unset):
-        delete_access_error (str | Unset):
-        error_message (str | Unset):
-        read_access (bool | Unset):
-        read_access_error (str | Unset):
-        write_access (bool | Unset):
-        write_access_error (str | Unset):
+        cors (bool | None | Unset):
+        cors_error (None | str | Unset):
+        delete_access (bool | None | Unset):
+        delete_access_error (None | str | Unset):
+        error_message (None | str | Unset):
+        read_access (bool | None | Unset):
+        read_access_error (None | str | Unset):
+        write_access (bool | None | Unset):
+        write_access_error (None | str | Unset):
     """
 
-    cors: bool | Unset = UNSET
-    cors_error: str | Unset = UNSET
-    delete_access: bool | Unset = UNSET
-    delete_access_error: str | Unset = UNSET
-    error_message: str | Unset = UNSET
-    read_access: bool | Unset = UNSET
-    read_access_error: str | Unset = UNSET
-    write_access: bool | Unset = UNSET
-    write_access_error: str | Unset = UNSET
+    cors: bool | None | Unset = UNSET
+    cors_error: None | str | Unset = UNSET
+    delete_access: bool | None | Unset = UNSET
+    delete_access_error: None | str | Unset = UNSET
+    error_message: None | str | Unset = UNSET
+    read_access: bool | None | Unset = UNSET
+    read_access_error: None | str | Unset = UNSET
+    write_access: bool | None | Unset = UNSET
+    write_access_error: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        cors = self.cors
+        cors: bool | None | Unset
+        if isinstance(self.cors, Unset):
+            cors = UNSET
+        else:
+            cors = self.cors
 
-        cors_error = self.cors_error
+        cors_error: None | str | Unset
+        if isinstance(self.cors_error, Unset):
+            cors_error = UNSET
+        else:
+            cors_error = self.cors_error
 
-        delete_access = self.delete_access
+        delete_access: bool | None | Unset
+        if isinstance(self.delete_access, Unset):
+            delete_access = UNSET
+        else:
+            delete_access = self.delete_access
 
-        delete_access_error = self.delete_access_error
+        delete_access_error: None | str | Unset
+        if isinstance(self.delete_access_error, Unset):
+            delete_access_error = UNSET
+        else:
+            delete_access_error = self.delete_access_error
 
-        error_message = self.error_message
+        error_message: None | str | Unset
+        if isinstance(self.error_message, Unset):
+            error_message = UNSET
+        else:
+            error_message = self.error_message
 
-        read_access = self.read_access
+        read_access: bool | None | Unset
+        if isinstance(self.read_access, Unset):
+            read_access = UNSET
+        else:
+            read_access = self.read_access
 
-        read_access_error = self.read_access_error
+        read_access_error: None | str | Unset
+        if isinstance(self.read_access_error, Unset):
+            read_access_error = UNSET
+        else:
+            read_access_error = self.read_access_error
 
-        write_access = self.write_access
+        write_access: bool | None | Unset
+        if isinstance(self.write_access, Unset):
+            write_access = UNSET
+        else:
+            write_access = self.write_access
 
-        write_access_error = self.write_access_error
+        write_access_error: None | str | Unset
+        if isinstance(self.write_access_error, Unset):
+            write_access_error = UNSET
+        else:
+            write_access_error = self.write_access_error
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -87,23 +123,91 @@ class PostStoragesVerificationsPermissionsResponse200:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        cors = d.pop("cors", UNSET)
 
-        cors_error = d.pop("cors_error", UNSET)
+        def _parse_cors(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        delete_access = d.pop("delete_access", UNSET)
+        cors = _parse_cors(d.pop("cors", UNSET))
 
-        delete_access_error = d.pop("delete_access_error", UNSET)
+        def _parse_cors_error(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        error_message = d.pop("error_message", UNSET)
+        cors_error = _parse_cors_error(d.pop("cors_error", UNSET))
 
-        read_access = d.pop("read_access", UNSET)
+        def _parse_delete_access(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        read_access_error = d.pop("read_access_error", UNSET)
+        delete_access = _parse_delete_access(d.pop("delete_access", UNSET))
 
-        write_access = d.pop("write_access", UNSET)
+        def _parse_delete_access_error(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        write_access_error = d.pop("write_access_error", UNSET)
+        delete_access_error = _parse_delete_access_error(
+            d.pop("delete_access_error", UNSET)
+        )
+
+        def _parse_error_message(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        error_message = _parse_error_message(d.pop("error_message", UNSET))
+
+        def _parse_read_access(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        read_access = _parse_read_access(d.pop("read_access", UNSET))
+
+        def _parse_read_access_error(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        read_access_error = _parse_read_access_error(d.pop("read_access_error", UNSET))
+
+        def _parse_write_access(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        write_access = _parse_write_access(d.pop("write_access", UNSET))
+
+        def _parse_write_access_error(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        write_access_error = _parse_write_access_error(
+            d.pop("write_access_error", UNSET)
+        )
 
         post_storages_verifications_permissions_response_200 = cls(
             cors=cors,

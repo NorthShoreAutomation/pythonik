@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -21,22 +21,27 @@ class BulkPersonByAssetAndVersionSchema:
     """
     Attributes:
         version_id (UUID):
-        persons (list[PersonByAssetAndVersion] | Unset):
+        persons (list[PersonByAssetAndVersion] | None | Unset):
     """
 
     version_id: UUID
-    persons: list[PersonByAssetAndVersion] | Unset = UNSET
+    persons: list[PersonByAssetAndVersion] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         version_id = str(self.version_id)
 
-        persons: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.persons, Unset):
+        persons: list[dict[str, Any]] | None | Unset
+        if isinstance(self.persons, Unset):
+            persons = UNSET
+        elif isinstance(self.persons, list):
             persons = []
-            for persons_item_data in self.persons:
-                persons_item = persons_item_data.to_dict()
-                persons.append(persons_item)
+            for persons_type_0_item_data in self.persons:
+                persons_type_0_item = persons_type_0_item_data.to_dict()
+                persons.append(persons_type_0_item)
+
+        else:
+            persons = self.persons
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -57,14 +62,31 @@ class BulkPersonByAssetAndVersionSchema:
         d = dict(src_dict)
         version_id = UUID(d.pop("version_id"))
 
-        _persons = d.pop("persons", UNSET)
-        persons: list[PersonByAssetAndVersion] | Unset = UNSET
-        if _persons is not UNSET:
-            persons = []
-            for persons_item_data in _persons:
-                persons_item = PersonByAssetAndVersion.from_dict(persons_item_data)
+        def _parse_persons(
+            data: object,
+        ) -> list[PersonByAssetAndVersion] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                persons_type_0 = []
+                _persons_type_0 = data
+                for persons_type_0_item_data in _persons_type_0:
+                    persons_type_0_item = PersonByAssetAndVersion.from_dict(
+                        persons_type_0_item_data
+                    )
 
-                persons.append(persons_item)
+                    persons_type_0.append(persons_type_0_item)
+
+                return persons_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[PersonByAssetAndVersion] | None | Unset, data)
+
+        persons = _parse_persons(d.pop("persons", UNSET))
 
         bulk_person_by_asset_and_version_schema = cls(
             version_id=version_id,

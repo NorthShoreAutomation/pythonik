@@ -2,16 +2,21 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.share_url_schema_drm import ShareURLSchemaDrm
-from ..models.share_url_schema_population_status import ShareURLSchemaPopulationStatus
-from ..models.share_url_schema_watermark import ShareURLSchemaWatermark
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.share_url_schema_drm_type_1 import ShareURLSchemaDrmType1
+    from ..models.share_url_schema_population_status_type_1 import (
+        ShareURLSchemaPopulationStatusType1,
+    )
+    from ..models.share_url_schema_watermark_type_1 import ShareURLSchemaWatermarkType1
+
 
 T = TypeVar("T", bound="ShareURLSchema")
 
@@ -24,73 +29,81 @@ class ShareURLSchema:
         allow_comments (bool):
         allow_download (bool):
         allow_setting_approve_status (bool):
-        allow_custom_actions (bool | Unset):
-        allow_download_proxy (bool | Unset):
+        allow_custom_actions (bool | None | Unset):
+        allow_download_proxy (bool | None | Unset):
         allow_sync (bool | None | Unset):
-        allow_upload (bool | Unset):
-        allow_user_search_for_mentions (bool | Unset):
-        allow_view_transcriptions (bool | Unset):
-        allow_view_versions (bool | Unset):
-        automatic_approval_share (bool | Unset):
-        date_created (datetime.datetime | Unset):
-        drm (ShareURLSchemaDrm | Unset): DRM settings for the share
-        expires (datetime.datetime | Unset):
-        has_password (bool | Unset):
-        id (str | Unset):
+        allow_upload (bool | None | Unset):
+        allow_user_search_for_mentions (bool | None | Unset):
+        allow_view_transcriptions (bool | None | Unset):
+        allow_view_versions (bool | None | Unset):
+        automatic_approval_share (bool | None | Unset):
+        date_created (datetime.datetime | None | Unset):
+        drm (None | ShareURLSchemaDrmType1 | Unset):
+        expires (datetime.datetime | None | Unset):
+        has_password (bool | None | Unset):
+        id (None | str | Unset):
         is_approval (bool | None | Unset):
         message (None | str | Unset):
         metadata_views (list[str] | None | Unset):
-        object_id (str | Unset):
-        object_type (str | Unset):
-        owner_id (str | Unset):
-        population_status (ShareURLSchemaPopulationStatus | Unset):
+        object_id (None | str | Unset):
+        object_type (None | str | Unset):
+        owner_id (None | str | Unset):
+        population_status (None | ShareURLSchemaPopulationStatusType1 | Unset):
         project_id (None | Unset | UUID): Project ID if the share is created from a project
         review_experience_public_beta (bool | None | Unset):
         show_existing_comments (bool | None | Unset):
         show_watermark (bool | None | Unset):
-        system_domain_id (str | Unset):
+        system_domain_id (None | str | Unset):
         title (None | str | Unset):
         upload_storage_id (None | Unset | UUID):
-        url (str | Unset):
-        watermark (ShareURLSchemaWatermark | Unset): Watermark settings for the share
+        url (None | str | Unset):
+        watermark (None | ShareURLSchemaWatermarkType1 | Unset):
     """
 
     allow_approving_comments: bool
     allow_comments: bool
     allow_download: bool
     allow_setting_approve_status: bool
-    allow_custom_actions: bool | Unset = UNSET
-    allow_download_proxy: bool | Unset = UNSET
+    allow_custom_actions: bool | None | Unset = UNSET
+    allow_download_proxy: bool | None | Unset = UNSET
     allow_sync: bool | None | Unset = UNSET
-    allow_upload: bool | Unset = UNSET
-    allow_user_search_for_mentions: bool | Unset = UNSET
-    allow_view_transcriptions: bool | Unset = UNSET
-    allow_view_versions: bool | Unset = UNSET
-    automatic_approval_share: bool | Unset = UNSET
-    date_created: datetime.datetime | Unset = UNSET
-    drm: ShareURLSchemaDrm | Unset = UNSET
-    expires: datetime.datetime | Unset = UNSET
-    has_password: bool | Unset = UNSET
-    id: str | Unset = UNSET
+    allow_upload: bool | None | Unset = UNSET
+    allow_user_search_for_mentions: bool | None | Unset = UNSET
+    allow_view_transcriptions: bool | None | Unset = UNSET
+    allow_view_versions: bool | None | Unset = UNSET
+    automatic_approval_share: bool | None | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    drm: None | ShareURLSchemaDrmType1 | Unset = UNSET
+    expires: datetime.datetime | None | Unset = UNSET
+    has_password: bool | None | Unset = UNSET
+    id: None | str | Unset = UNSET
     is_approval: bool | None | Unset = UNSET
     message: None | str | Unset = UNSET
     metadata_views: list[str] | None | Unset = UNSET
-    object_id: str | Unset = UNSET
-    object_type: str | Unset = UNSET
-    owner_id: str | Unset = UNSET
-    population_status: ShareURLSchemaPopulationStatus | Unset = UNSET
+    object_id: None | str | Unset = UNSET
+    object_type: None | str | Unset = UNSET
+    owner_id: None | str | Unset = UNSET
+    population_status: None | ShareURLSchemaPopulationStatusType1 | Unset = UNSET
     project_id: None | Unset | UUID = UNSET
     review_experience_public_beta: bool | None | Unset = UNSET
     show_existing_comments: bool | None | Unset = UNSET
     show_watermark: bool | None | Unset = UNSET
-    system_domain_id: str | Unset = UNSET
+    system_domain_id: None | str | Unset = UNSET
     title: None | str | Unset = UNSET
     upload_storage_id: None | Unset | UUID = UNSET
-    url: str | Unset = UNSET
-    watermark: ShareURLSchemaWatermark | Unset = UNSET
+    url: None | str | Unset = UNSET
+    watermark: None | ShareURLSchemaWatermarkType1 | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.share_url_schema_drm_type_1 import ShareURLSchemaDrmType1
+        from ..models.share_url_schema_population_status_type_1 import (
+            ShareURLSchemaPopulationStatusType1,
+        )
+        from ..models.share_url_schema_watermark_type_1 import (
+            ShareURLSchemaWatermarkType1,
+        )
+
         allow_approving_comments = self.allow_approving_comments
 
         allow_comments = self.allow_comments
@@ -99,9 +112,17 @@ class ShareURLSchema:
 
         allow_setting_approve_status = self.allow_setting_approve_status
 
-        allow_custom_actions = self.allow_custom_actions
+        allow_custom_actions: bool | None | Unset
+        if isinstance(self.allow_custom_actions, Unset):
+            allow_custom_actions = UNSET
+        else:
+            allow_custom_actions = self.allow_custom_actions
 
-        allow_download_proxy = self.allow_download_proxy
+        allow_download_proxy: bool | None | Unset
+        if isinstance(self.allow_download_proxy, Unset):
+            allow_download_proxy = UNSET
+        else:
+            allow_download_proxy = self.allow_download_proxy
 
         allow_sync: bool | None | Unset
         if isinstance(self.allow_sync, Unset):
@@ -109,31 +130,71 @@ class ShareURLSchema:
         else:
             allow_sync = self.allow_sync
 
-        allow_upload = self.allow_upload
+        allow_upload: bool | None | Unset
+        if isinstance(self.allow_upload, Unset):
+            allow_upload = UNSET
+        else:
+            allow_upload = self.allow_upload
 
-        allow_user_search_for_mentions = self.allow_user_search_for_mentions
+        allow_user_search_for_mentions: bool | None | Unset
+        if isinstance(self.allow_user_search_for_mentions, Unset):
+            allow_user_search_for_mentions = UNSET
+        else:
+            allow_user_search_for_mentions = self.allow_user_search_for_mentions
 
-        allow_view_transcriptions = self.allow_view_transcriptions
+        allow_view_transcriptions: bool | None | Unset
+        if isinstance(self.allow_view_transcriptions, Unset):
+            allow_view_transcriptions = UNSET
+        else:
+            allow_view_transcriptions = self.allow_view_transcriptions
 
-        allow_view_versions = self.allow_view_versions
+        allow_view_versions: bool | None | Unset
+        if isinstance(self.allow_view_versions, Unset):
+            allow_view_versions = UNSET
+        else:
+            allow_view_versions = self.allow_view_versions
 
-        automatic_approval_share = self.automatic_approval_share
+        automatic_approval_share: bool | None | Unset
+        if isinstance(self.automatic_approval_share, Unset):
+            automatic_approval_share = UNSET
+        else:
+            automatic_approval_share = self.automatic_approval_share
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        drm: str | Unset = UNSET
-        if not isinstance(self.drm, Unset):
-            drm = self.drm.value
+        drm: dict[str, Any] | None | Unset
+        if isinstance(self.drm, Unset):
+            drm = UNSET
+        elif isinstance(self.drm, ShareURLSchemaDrmType1):
+            drm = self.drm.to_dict()
+        else:
+            drm = self.drm
 
-        expires: str | Unset = UNSET
-        if not isinstance(self.expires, Unset):
+        expires: None | str | Unset
+        if isinstance(self.expires, Unset):
+            expires = UNSET
+        elif isinstance(self.expires, datetime.datetime):
             expires = self.expires.isoformat()
+        else:
+            expires = self.expires
 
-        has_password = self.has_password
+        has_password: bool | None | Unset
+        if isinstance(self.has_password, Unset):
+            has_password = UNSET
+        else:
+            has_password = self.has_password
 
-        id = self.id
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        else:
+            id = self.id
 
         is_approval: bool | None | Unset
         if isinstance(self.is_approval, Unset):
@@ -156,15 +217,31 @@ class ShareURLSchema:
         else:
             metadata_views = self.metadata_views
 
-        object_id = self.object_id
+        object_id: None | str | Unset
+        if isinstance(self.object_id, Unset):
+            object_id = UNSET
+        else:
+            object_id = self.object_id
 
-        object_type = self.object_type
+        object_type: None | str | Unset
+        if isinstance(self.object_type, Unset):
+            object_type = UNSET
+        else:
+            object_type = self.object_type
 
-        owner_id = self.owner_id
+        owner_id: None | str | Unset
+        if isinstance(self.owner_id, Unset):
+            owner_id = UNSET
+        else:
+            owner_id = self.owner_id
 
-        population_status: str | Unset = UNSET
-        if not isinstance(self.population_status, Unset):
-            population_status = self.population_status.value
+        population_status: dict[str, Any] | None | Unset
+        if isinstance(self.population_status, Unset):
+            population_status = UNSET
+        elif isinstance(self.population_status, ShareURLSchemaPopulationStatusType1):
+            population_status = self.population_status.to_dict()
+        else:
+            population_status = self.population_status
 
         project_id: None | str | Unset
         if isinstance(self.project_id, Unset):
@@ -192,7 +269,11 @@ class ShareURLSchema:
         else:
             show_watermark = self.show_watermark
 
-        system_domain_id = self.system_domain_id
+        system_domain_id: None | str | Unset
+        if isinstance(self.system_domain_id, Unset):
+            system_domain_id = UNSET
+        else:
+            system_domain_id = self.system_domain_id
 
         title: None | str | Unset
         if isinstance(self.title, Unset):
@@ -208,11 +289,19 @@ class ShareURLSchema:
         else:
             upload_storage_id = self.upload_storage_id
 
-        url = self.url
+        url: None | str | Unset
+        if isinstance(self.url, Unset):
+            url = UNSET
+        else:
+            url = self.url
 
-        watermark: str | Unset = UNSET
-        if not isinstance(self.watermark, Unset):
-            watermark = self.watermark.value
+        watermark: dict[str, Any] | None | Unset
+        if isinstance(self.watermark, Unset):
+            watermark = UNSET
+        elif isinstance(self.watermark, ShareURLSchemaWatermarkType1):
+            watermark = self.watermark.to_dict()
+        else:
+            watermark = self.watermark
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -289,6 +378,14 @@ class ShareURLSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.share_url_schema_drm_type_1 import ShareURLSchemaDrmType1
+        from ..models.share_url_schema_population_status_type_1 import (
+            ShareURLSchemaPopulationStatusType1,
+        )
+        from ..models.share_url_schema_watermark_type_1 import (
+            ShareURLSchemaWatermarkType1,
+        )
+
         d = dict(src_dict)
         allow_approving_comments = d.pop("allow_approving_comments")
 
@@ -298,9 +395,27 @@ class ShareURLSchema:
 
         allow_setting_approve_status = d.pop("allow_setting_approve_status")
 
-        allow_custom_actions = d.pop("allow_custom_actions", UNSET)
+        def _parse_allow_custom_actions(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        allow_download_proxy = d.pop("allow_download_proxy", UNSET)
+        allow_custom_actions = _parse_allow_custom_actions(
+            d.pop("allow_custom_actions", UNSET)
+        )
+
+        def _parse_allow_download_proxy(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        allow_download_proxy = _parse_allow_download_proxy(
+            d.pop("allow_download_proxy", UNSET)
+        )
 
         def _parse_allow_sync(data: object) -> bool | None | Unset:
             if data is None:
@@ -311,40 +426,127 @@ class ShareURLSchema:
 
         allow_sync = _parse_allow_sync(d.pop("allow_sync", UNSET))
 
-        allow_upload = d.pop("allow_upload", UNSET)
+        def _parse_allow_upload(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        allow_user_search_for_mentions = d.pop("allow_user_search_for_mentions", UNSET)
+        allow_upload = _parse_allow_upload(d.pop("allow_upload", UNSET))
 
-        allow_view_transcriptions = d.pop("allow_view_transcriptions", UNSET)
+        def _parse_allow_user_search_for_mentions(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        allow_view_versions = d.pop("allow_view_versions", UNSET)
+        allow_user_search_for_mentions = _parse_allow_user_search_for_mentions(
+            d.pop("allow_user_search_for_mentions", UNSET)
+        )
 
-        automatic_approval_share = d.pop("automatic_approval_share", UNSET)
+        def _parse_allow_view_transcriptions(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        allow_view_transcriptions = _parse_allow_view_transcriptions(
+            d.pop("allow_view_transcriptions", UNSET)
+        )
 
-        _drm = d.pop("drm", UNSET)
-        drm: ShareURLSchemaDrm | Unset
-        if isinstance(_drm, Unset):
-            drm = UNSET
-        else:
-            drm = ShareURLSchemaDrm(_drm)
+        def _parse_allow_view_versions(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        _expires = d.pop("expires", UNSET)
-        expires: datetime.datetime | Unset
-        if isinstance(_expires, Unset):
-            expires = UNSET
-        else:
-            expires = datetime.datetime.fromisoformat(_expires)
+        allow_view_versions = _parse_allow_view_versions(
+            d.pop("allow_view_versions", UNSET)
+        )
 
-        has_password = d.pop("has_password", UNSET)
+        def _parse_automatic_approval_share(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        id = d.pop("id", UNSET)
+        automatic_approval_share = _parse_automatic_approval_share(
+            d.pop("automatic_approval_share", UNSET)
+        )
+
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
+
+        def _parse_drm(data: object) -> None | ShareURLSchemaDrmType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                drm_type_1 = ShareURLSchemaDrmType1.from_dict(data)
+
+                return drm_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | ShareURLSchemaDrmType1 | Unset, data)
+
+        drm = _parse_drm(d.pop("drm", UNSET))
+
+        def _parse_expires(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                expires_type_0 = datetime.datetime.fromisoformat(data)
+
+                return expires_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        expires = _parse_expires(d.pop("expires", UNSET))
+
+        def _parse_has_password(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        has_password = _parse_has_password(d.pop("has_password", UNSET))
+
+        def _parse_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        id = _parse_id(d.pop("id", UNSET))
 
         def _parse_is_approval(data: object) -> bool | None | Unset:
             if data is None:
@@ -381,18 +583,53 @@ class ShareURLSchema:
 
         metadata_views = _parse_metadata_views(d.pop("metadata_views", UNSET))
 
-        object_id = d.pop("object_id", UNSET)
+        def _parse_object_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        object_type = d.pop("object_type", UNSET)
+        object_id = _parse_object_id(d.pop("object_id", UNSET))
 
-        owner_id = d.pop("owner_id", UNSET)
+        def _parse_object_type(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        _population_status = d.pop("population_status", UNSET)
-        population_status: ShareURLSchemaPopulationStatus | Unset
-        if isinstance(_population_status, Unset):
-            population_status = UNSET
-        else:
-            population_status = ShareURLSchemaPopulationStatus(_population_status)
+        object_type = _parse_object_type(d.pop("object_type", UNSET))
+
+        def _parse_owner_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        owner_id = _parse_owner_id(d.pop("owner_id", UNSET))
+
+        def _parse_population_status(
+            data: object,
+        ) -> None | ShareURLSchemaPopulationStatusType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                population_status_type_1 = (
+                    ShareURLSchemaPopulationStatusType1.from_dict(data)
+                )
+
+                return population_status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | ShareURLSchemaPopulationStatusType1 | Unset, data)
+
+        population_status = _parse_population_status(d.pop("population_status", UNSET))
 
         def _parse_project_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -442,7 +679,14 @@ class ShareURLSchema:
 
         show_watermark = _parse_show_watermark(d.pop("show_watermark", UNSET))
 
-        system_domain_id = d.pop("system_domain_id", UNSET)
+        def _parse_system_domain_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
 
         def _parse_title(data: object) -> None | str | Unset:
             if data is None:
@@ -470,14 +714,33 @@ class ShareURLSchema:
 
         upload_storage_id = _parse_upload_storage_id(d.pop("upload_storage_id", UNSET))
 
-        url = d.pop("url", UNSET)
+        def _parse_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        _watermark = d.pop("watermark", UNSET)
-        watermark: ShareURLSchemaWatermark | Unset
-        if isinstance(_watermark, Unset):
-            watermark = UNSET
-        else:
-            watermark = ShareURLSchemaWatermark(_watermark)
+        url = _parse_url(d.pop("url", UNSET))
+
+        def _parse_watermark(
+            data: object,
+        ) -> None | ShareURLSchemaWatermarkType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                watermark_type_1 = ShareURLSchemaWatermarkType1.from_dict(data)
+
+                return watermark_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | ShareURLSchemaWatermarkType1 | Unset, data)
+
+        watermark = _parse_watermark(d.pop("watermark", UNSET))
 
         share_url_schema = cls(
             allow_approving_comments=allow_approving_comments,

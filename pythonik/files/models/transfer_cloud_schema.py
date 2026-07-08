@@ -8,11 +8,15 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.transfer_cloud_schema_status import TransferCloudSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.transfer_cloud_schema_job_steps import TransferCloudSchemaJobSteps
+    from ..models.transfer_cloud_schema_job_steps_type_0 import (
+        TransferCloudSchemaJobStepsType0,
+    )
+    from ..models.transfer_cloud_schema_status_type_1 import (
+        TransferCloudSchemaStatusType1,
+    )
 
 
 T = TypeVar("T", bound="TransferCloudSchema")
@@ -22,143 +26,248 @@ T = TypeVar("T", bound="TransferCloudSchema")
 class TransferCloudSchema:
     """
     Attributes:
-        asset_id (UUID | Unset):
-        asset_paths (list[str] | Unset):
-        celery_task_id (UUID | Unset):
-        collection_storage_id (UUID | Unset):
-        component_ids (list[UUID] | Unset):
-        date_created (datetime.datetime | Unset):
-        date_modified (datetime.datetime | Unset):
-        delete_only_from_source_folder (bool | Unset):
-        delete_original (bool | Unset):
-        destination_directory_path (str | Unset):
-        destination_filename (str | Unset):
-        destination_storage_id (UUID | Unset):
-        id (UUID | Unset):
-        job_id (UUID | Unset):
-        job_steps (TransferCloudSchemaJobSteps | Unset):
-        original_file_set_id (UUID | Unset):
-        original_storage_id (UUID | Unset):
-        original_url (str | Unset):
-        parent_job_id (UUID | Unset):
-        priority (int | Unset):
-        status (TransferCloudSchemaStatus | Unset):
-        success (str | Unset):
-        transfer_type (UUID | Unset):
-        user_id (UUID | Unset):
+        asset_id (None | Unset | UUID):
+        asset_paths (list[str] | None | Unset):
+        celery_task_id (None | Unset | UUID):
+        collection_storage_id (None | Unset | UUID):
+        component_ids (list[UUID] | None | Unset):
+        date_created (datetime.datetime | None | Unset):
+        date_modified (datetime.datetime | None | Unset):
+        delete_only_from_source_folder (bool | None | Unset):
+        delete_original (bool | None | Unset):
+        destination_directory_path (None | str | Unset):
+        destination_filename (None | str | Unset):
+        destination_storage_id (None | Unset | UUID):
+        id (None | Unset | UUID):
+        job_id (None | Unset | UUID):
+        job_steps (None | TransferCloudSchemaJobStepsType0 | Unset):
+        original_file_set_id (None | Unset | UUID):
+        original_storage_id (None | Unset | UUID):
+        original_url (None | str | Unset):
+        parent_job_id (None | Unset | UUID):
+        priority (int | None | Unset):
+        status (None | TransferCloudSchemaStatusType1 | Unset):
+        success (None | str | Unset):
+        transfer_type (None | Unset | UUID):
+        user_id (None | Unset | UUID):
     """
 
-    asset_id: UUID | Unset = UNSET
-    asset_paths: list[str] | Unset = UNSET
-    celery_task_id: UUID | Unset = UNSET
-    collection_storage_id: UUID | Unset = UNSET
-    component_ids: list[UUID] | Unset = UNSET
-    date_created: datetime.datetime | Unset = UNSET
-    date_modified: datetime.datetime | Unset = UNSET
-    delete_only_from_source_folder: bool | Unset = UNSET
-    delete_original: bool | Unset = UNSET
-    destination_directory_path: str | Unset = UNSET
-    destination_filename: str | Unset = UNSET
-    destination_storage_id: UUID | Unset = UNSET
-    id: UUID | Unset = UNSET
-    job_id: UUID | Unset = UNSET
-    job_steps: TransferCloudSchemaJobSteps | Unset = UNSET
-    original_file_set_id: UUID | Unset = UNSET
-    original_storage_id: UUID | Unset = UNSET
-    original_url: str | Unset = UNSET
-    parent_job_id: UUID | Unset = UNSET
-    priority: int | Unset = UNSET
-    status: TransferCloudSchemaStatus | Unset = UNSET
-    success: str | Unset = UNSET
-    transfer_type: UUID | Unset = UNSET
-    user_id: UUID | Unset = UNSET
+    asset_id: None | Unset | UUID = UNSET
+    asset_paths: list[str] | None | Unset = UNSET
+    celery_task_id: None | Unset | UUID = UNSET
+    collection_storage_id: None | Unset | UUID = UNSET
+    component_ids: list[UUID] | None | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_modified: datetime.datetime | None | Unset = UNSET
+    delete_only_from_source_folder: bool | None | Unset = UNSET
+    delete_original: bool | None | Unset = UNSET
+    destination_directory_path: None | str | Unset = UNSET
+    destination_filename: None | str | Unset = UNSET
+    destination_storage_id: None | Unset | UUID = UNSET
+    id: None | Unset | UUID = UNSET
+    job_id: None | Unset | UUID = UNSET
+    job_steps: None | TransferCloudSchemaJobStepsType0 | Unset = UNSET
+    original_file_set_id: None | Unset | UUID = UNSET
+    original_storage_id: None | Unset | UUID = UNSET
+    original_url: None | str | Unset = UNSET
+    parent_job_id: None | Unset | UUID = UNSET
+    priority: int | None | Unset = UNSET
+    status: None | TransferCloudSchemaStatusType1 | Unset = UNSET
+    success: None | str | Unset = UNSET
+    transfer_type: None | Unset | UUID = UNSET
+    user_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        asset_id: str | Unset = UNSET
-        if not isinstance(self.asset_id, Unset):
-            asset_id = str(self.asset_id)
+        from ..models.transfer_cloud_schema_job_steps_type_0 import (
+            TransferCloudSchemaJobStepsType0,
+        )
+        from ..models.transfer_cloud_schema_status_type_1 import (
+            TransferCloudSchemaStatusType1,
+        )
 
-        asset_paths: list[str] | Unset = UNSET
-        if not isinstance(self.asset_paths, Unset):
+        asset_id: None | str | Unset
+        if isinstance(self.asset_id, Unset):
+            asset_id = UNSET
+        elif isinstance(self.asset_id, UUID):
+            asset_id = str(self.asset_id)
+        else:
+            asset_id = self.asset_id
+
+        asset_paths: list[str] | None | Unset
+        if isinstance(self.asset_paths, Unset):
+            asset_paths = UNSET
+        elif isinstance(self.asset_paths, list):
             asset_paths = self.asset_paths
 
-        celery_task_id: str | Unset = UNSET
-        if not isinstance(self.celery_task_id, Unset):
+        else:
+            asset_paths = self.asset_paths
+
+        celery_task_id: None | str | Unset
+        if isinstance(self.celery_task_id, Unset):
+            celery_task_id = UNSET
+        elif isinstance(self.celery_task_id, UUID):
             celery_task_id = str(self.celery_task_id)
+        else:
+            celery_task_id = self.celery_task_id
 
-        collection_storage_id: str | Unset = UNSET
-        if not isinstance(self.collection_storage_id, Unset):
+        collection_storage_id: None | str | Unset
+        if isinstance(self.collection_storage_id, Unset):
+            collection_storage_id = UNSET
+        elif isinstance(self.collection_storage_id, UUID):
             collection_storage_id = str(self.collection_storage_id)
+        else:
+            collection_storage_id = self.collection_storage_id
 
-        component_ids: list[str] | Unset = UNSET
-        if not isinstance(self.component_ids, Unset):
+        component_ids: list[str] | None | Unset
+        if isinstance(self.component_ids, Unset):
+            component_ids = UNSET
+        elif isinstance(self.component_ids, list):
             component_ids = []
-            for component_ids_item_data in self.component_ids:
-                component_ids_item = str(component_ids_item_data)
-                component_ids.append(component_ids_item)
+            for component_ids_type_0_item_data in self.component_ids:
+                component_ids_type_0_item = str(component_ids_type_0_item_data)
+                component_ids.append(component_ids_type_0_item)
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        else:
+            component_ids = self.component_ids
+
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_modified: str | Unset = UNSET
-        if not isinstance(self.date_modified, Unset):
+        date_modified: None | str | Unset
+        if isinstance(self.date_modified, Unset):
+            date_modified = UNSET
+        elif isinstance(self.date_modified, datetime.datetime):
             date_modified = self.date_modified.isoformat()
+        else:
+            date_modified = self.date_modified
 
-        delete_only_from_source_folder = self.delete_only_from_source_folder
+        delete_only_from_source_folder: bool | None | Unset
+        if isinstance(self.delete_only_from_source_folder, Unset):
+            delete_only_from_source_folder = UNSET
+        else:
+            delete_only_from_source_folder = self.delete_only_from_source_folder
 
-        delete_original = self.delete_original
+        delete_original: bool | None | Unset
+        if isinstance(self.delete_original, Unset):
+            delete_original = UNSET
+        else:
+            delete_original = self.delete_original
 
-        destination_directory_path = self.destination_directory_path
+        destination_directory_path: None | str | Unset
+        if isinstance(self.destination_directory_path, Unset):
+            destination_directory_path = UNSET
+        else:
+            destination_directory_path = self.destination_directory_path
 
-        destination_filename = self.destination_filename
+        destination_filename: None | str | Unset
+        if isinstance(self.destination_filename, Unset):
+            destination_filename = UNSET
+        else:
+            destination_filename = self.destination_filename
 
-        destination_storage_id: str | Unset = UNSET
-        if not isinstance(self.destination_storage_id, Unset):
+        destination_storage_id: None | str | Unset
+        if isinstance(self.destination_storage_id, Unset):
+            destination_storage_id = UNSET
+        elif isinstance(self.destination_storage_id, UUID):
             destination_storage_id = str(self.destination_storage_id)
+        else:
+            destination_storage_id = self.destination_storage_id
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        job_id: str | Unset = UNSET
-        if not isinstance(self.job_id, Unset):
+        job_id: None | str | Unset
+        if isinstance(self.job_id, Unset):
+            job_id = UNSET
+        elif isinstance(self.job_id, UUID):
             job_id = str(self.job_id)
+        else:
+            job_id = self.job_id
 
-        job_steps: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.job_steps, Unset):
+        job_steps: dict[str, Any] | None | Unset
+        if isinstance(self.job_steps, Unset):
+            job_steps = UNSET
+        elif isinstance(self.job_steps, TransferCloudSchemaJobStepsType0):
             job_steps = self.job_steps.to_dict()
+        else:
+            job_steps = self.job_steps
 
-        original_file_set_id: str | Unset = UNSET
-        if not isinstance(self.original_file_set_id, Unset):
+        original_file_set_id: None | str | Unset
+        if isinstance(self.original_file_set_id, Unset):
+            original_file_set_id = UNSET
+        elif isinstance(self.original_file_set_id, UUID):
             original_file_set_id = str(self.original_file_set_id)
+        else:
+            original_file_set_id = self.original_file_set_id
 
-        original_storage_id: str | Unset = UNSET
-        if not isinstance(self.original_storage_id, Unset):
+        original_storage_id: None | str | Unset
+        if isinstance(self.original_storage_id, Unset):
+            original_storage_id = UNSET
+        elif isinstance(self.original_storage_id, UUID):
             original_storage_id = str(self.original_storage_id)
+        else:
+            original_storage_id = self.original_storage_id
 
-        original_url = self.original_url
+        original_url: None | str | Unset
+        if isinstance(self.original_url, Unset):
+            original_url = UNSET
+        else:
+            original_url = self.original_url
 
-        parent_job_id: str | Unset = UNSET
-        if not isinstance(self.parent_job_id, Unset):
+        parent_job_id: None | str | Unset
+        if isinstance(self.parent_job_id, Unset):
+            parent_job_id = UNSET
+        elif isinstance(self.parent_job_id, UUID):
             parent_job_id = str(self.parent_job_id)
+        else:
+            parent_job_id = self.parent_job_id
 
-        priority = self.priority
+        priority: int | None | Unset
+        if isinstance(self.priority, Unset):
+            priority = UNSET
+        else:
+            priority = self.priority
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        status: dict[str, Any] | None | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        elif isinstance(self.status, TransferCloudSchemaStatusType1):
+            status = self.status.to_dict()
+        else:
+            status = self.status
 
-        success = self.success
+        success: None | str | Unset
+        if isinstance(self.success, Unset):
+            success = UNSET
+        else:
+            success = self.success
 
-        transfer_type: str | Unset = UNSET
-        if not isinstance(self.transfer_type, Unset):
+        transfer_type: None | str | Unset
+        if isinstance(self.transfer_type, Unset):
+            transfer_type = UNSET
+        elif isinstance(self.transfer_type, UUID):
             transfer_type = str(self.transfer_type)
+        else:
+            transfer_type = self.transfer_type
 
-        user_id: str | Unset = UNSET
-        if not isinstance(self.user_id, Unset):
+        user_id: None | str | Unset
+        if isinstance(self.user_id, Unset):
+            user_id = UNSET
+        elif isinstance(self.user_id, UUID):
             user_id = str(self.user_id)
+        else:
+            user_id = self.user_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -218,138 +327,389 @@ class TransferCloudSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.transfer_cloud_schema_job_steps import TransferCloudSchemaJobSteps
+        from ..models.transfer_cloud_schema_job_steps_type_0 import (
+            TransferCloudSchemaJobStepsType0,
+        )
+        from ..models.transfer_cloud_schema_status_type_1 import (
+            TransferCloudSchemaStatusType1,
+        )
 
         d = dict(src_dict)
-        _asset_id = d.pop("asset_id", UNSET)
-        asset_id: UUID | Unset
-        if isinstance(_asset_id, Unset):
-            asset_id = UNSET
-        else:
-            asset_id = UUID(_asset_id)
 
-        asset_paths = cast(list[str], d.pop("asset_paths", UNSET))
+        def _parse_asset_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                asset_id_type_0 = UUID(data)
 
-        _celery_task_id = d.pop("celery_task_id", UNSET)
-        celery_task_id: UUID | Unset
-        if isinstance(_celery_task_id, Unset):
-            celery_task_id = UNSET
-        else:
-            celery_task_id = UUID(_celery_task_id)
+                return asset_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        _collection_storage_id = d.pop("collection_storage_id", UNSET)
-        collection_storage_id: UUID | Unset
-        if isinstance(_collection_storage_id, Unset):
-            collection_storage_id = UNSET
-        else:
-            collection_storage_id = UUID(_collection_storage_id)
+        asset_id = _parse_asset_id(d.pop("asset_id", UNSET))
 
-        _component_ids = d.pop("component_ids", UNSET)
-        component_ids: list[UUID] | Unset = UNSET
-        if _component_ids is not UNSET:
-            component_ids = []
-            for component_ids_item_data in _component_ids:
-                component_ids_item = UUID(component_ids_item_data)
+        def _parse_asset_paths(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                asset_paths_type_0 = cast(list[str], data)
 
-                component_ids.append(component_ids_item)
+                return asset_paths_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        asset_paths = _parse_asset_paths(d.pop("asset_paths", UNSET))
 
-        _date_modified = d.pop("date_modified", UNSET)
-        date_modified: datetime.datetime | Unset
-        if isinstance(_date_modified, Unset):
-            date_modified = UNSET
-        else:
-            date_modified = datetime.datetime.fromisoformat(_date_modified)
+        def _parse_celery_task_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                celery_task_id_type_0 = UUID(data)
 
-        delete_only_from_source_folder = d.pop("delete_only_from_source_folder", UNSET)
+                return celery_task_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        delete_original = d.pop("delete_original", UNSET)
+        celery_task_id = _parse_celery_task_id(d.pop("celery_task_id", UNSET))
 
-        destination_directory_path = d.pop("destination_directory_path", UNSET)
+        def _parse_collection_storage_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                collection_storage_id_type_0 = UUID(data)
 
-        destination_filename = d.pop("destination_filename", UNSET)
+                return collection_storage_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        _destination_storage_id = d.pop("destination_storage_id", UNSET)
-        destination_storage_id: UUID | Unset
-        if isinstance(_destination_storage_id, Unset):
-            destination_storage_id = UNSET
-        else:
-            destination_storage_id = UUID(_destination_storage_id)
+        collection_storage_id = _parse_collection_storage_id(
+            d.pop("collection_storage_id", UNSET)
+        )
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        def _parse_component_ids(data: object) -> list[UUID] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                component_ids_type_0 = []
+                _component_ids_type_0 = data
+                for component_ids_type_0_item_data in _component_ids_type_0:
+                    component_ids_type_0_item = UUID(component_ids_type_0_item_data)
 
-        _job_id = d.pop("job_id", UNSET)
-        job_id: UUID | Unset
-        if isinstance(_job_id, Unset):
-            job_id = UNSET
-        else:
-            job_id = UUID(_job_id)
+                    component_ids_type_0.append(component_ids_type_0_item)
 
-        _job_steps = d.pop("job_steps", UNSET)
-        job_steps: TransferCloudSchemaJobSteps | Unset
-        if isinstance(_job_steps, Unset):
-            job_steps = UNSET
-        else:
-            job_steps = TransferCloudSchemaJobSteps.from_dict(_job_steps)
+                return component_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[UUID] | None | Unset, data)
 
-        _original_file_set_id = d.pop("original_file_set_id", UNSET)
-        original_file_set_id: UUID | Unset
-        if isinstance(_original_file_set_id, Unset):
-            original_file_set_id = UNSET
-        else:
-            original_file_set_id = UUID(_original_file_set_id)
+        component_ids = _parse_component_ids(d.pop("component_ids", UNSET))
 
-        _original_storage_id = d.pop("original_storage_id", UNSET)
-        original_storage_id: UUID | Unset
-        if isinstance(_original_storage_id, Unset):
-            original_storage_id = UNSET
-        else:
-            original_storage_id = UUID(_original_storage_id)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        original_url = d.pop("original_url", UNSET)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        _parent_job_id = d.pop("parent_job_id", UNSET)
-        parent_job_id: UUID | Unset
-        if isinstance(_parent_job_id, Unset):
-            parent_job_id = UNSET
-        else:
-            parent_job_id = UUID(_parent_job_id)
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
 
-        priority = d.pop("priority", UNSET)
+        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_modified_type_0 = datetime.datetime.fromisoformat(data)
 
-        _status = d.pop("status", UNSET)
-        status: TransferCloudSchemaStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = TransferCloudSchemaStatus(_status)
+                return date_modified_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        success = d.pop("success", UNSET)
+        date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
 
-        _transfer_type = d.pop("transfer_type", UNSET)
-        transfer_type: UUID | Unset
-        if isinstance(_transfer_type, Unset):
-            transfer_type = UNSET
-        else:
-            transfer_type = UUID(_transfer_type)
+        def _parse_delete_only_from_source_folder(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        _user_id = d.pop("user_id", UNSET)
-        user_id: UUID | Unset
-        if isinstance(_user_id, Unset):
-            user_id = UNSET
-        else:
-            user_id = UUID(_user_id)
+        delete_only_from_source_folder = _parse_delete_only_from_source_folder(
+            d.pop("delete_only_from_source_folder", UNSET)
+        )
+
+        def _parse_delete_original(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        delete_original = _parse_delete_original(d.pop("delete_original", UNSET))
+
+        def _parse_destination_directory_path(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        destination_directory_path = _parse_destination_directory_path(
+            d.pop("destination_directory_path", UNSET)
+        )
+
+        def _parse_destination_filename(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        destination_filename = _parse_destination_filename(
+            d.pop("destination_filename", UNSET)
+        )
+
+        def _parse_destination_storage_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                destination_storage_id_type_0 = UUID(data)
+
+                return destination_storage_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        destination_storage_id = _parse_destination_storage_id(
+            d.pop("destination_storage_id", UNSET)
+        )
+
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_job_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                job_id_type_0 = UUID(data)
+
+                return job_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        job_id = _parse_job_id(d.pop("job_id", UNSET))
+
+        def _parse_job_steps(
+            data: object,
+        ) -> None | TransferCloudSchemaJobStepsType0 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                job_steps_type_0 = TransferCloudSchemaJobStepsType0.from_dict(data)
+
+                return job_steps_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | TransferCloudSchemaJobStepsType0 | Unset, data)
+
+        job_steps = _parse_job_steps(d.pop("job_steps", UNSET))
+
+        def _parse_original_file_set_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                original_file_set_id_type_0 = UUID(data)
+
+                return original_file_set_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        original_file_set_id = _parse_original_file_set_id(
+            d.pop("original_file_set_id", UNSET)
+        )
+
+        def _parse_original_storage_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                original_storage_id_type_0 = UUID(data)
+
+                return original_storage_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        original_storage_id = _parse_original_storage_id(
+            d.pop("original_storage_id", UNSET)
+        )
+
+        def _parse_original_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        original_url = _parse_original_url(d.pop("original_url", UNSET))
+
+        def _parse_parent_job_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                parent_job_id_type_0 = UUID(data)
+
+                return parent_job_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        parent_job_id = _parse_parent_job_id(d.pop("parent_job_id", UNSET))
+
+        def _parse_priority(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        priority = _parse_priority(d.pop("priority", UNSET))
+
+        def _parse_status(
+            data: object,
+        ) -> None | TransferCloudSchemaStatusType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                status_type_1 = TransferCloudSchemaStatusType1.from_dict(data)
+
+                return status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | TransferCloudSchemaStatusType1 | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
+
+        def _parse_success(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        success = _parse_success(d.pop("success", UNSET))
+
+        def _parse_transfer_type(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                transfer_type_type_0 = UUID(data)
+
+                return transfer_type_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        transfer_type = _parse_transfer_type(d.pop("transfer_type", UNSET))
+
+        def _parse_user_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                user_id_type_0 = UUID(data)
+
+                return user_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        user_id = _parse_user_id(d.pop("user_id", UNSET))
 
         transfer_cloud_schema = cls(
             asset_id=asset_id,

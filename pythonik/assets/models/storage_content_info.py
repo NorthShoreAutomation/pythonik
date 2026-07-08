@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -16,32 +16,52 @@ T = TypeVar("T", bound="StorageContentInfo")
 class StorageContentInfo:
     """
     Attributes:
-        assets_count (int | Unset):
-        file_count (int | Unset):
-        storage_id (UUID | Unset):
-        total_duration_milliseconds (int | Unset):
-        total_size (int | Unset):
+        assets_count (int | None | Unset):
+        file_count (int | None | Unset):
+        storage_id (None | Unset | UUID):
+        total_duration_milliseconds (int | None | Unset):
+        total_size (int | None | Unset):
     """
 
-    assets_count: int | Unset = UNSET
-    file_count: int | Unset = UNSET
-    storage_id: UUID | Unset = UNSET
-    total_duration_milliseconds: int | Unset = UNSET
-    total_size: int | Unset = UNSET
+    assets_count: int | None | Unset = UNSET
+    file_count: int | None | Unset = UNSET
+    storage_id: None | Unset | UUID = UNSET
+    total_duration_milliseconds: int | None | Unset = UNSET
+    total_size: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        assets_count = self.assets_count
+        assets_count: int | None | Unset
+        if isinstance(self.assets_count, Unset):
+            assets_count = UNSET
+        else:
+            assets_count = self.assets_count
 
-        file_count = self.file_count
+        file_count: int | None | Unset
+        if isinstance(self.file_count, Unset):
+            file_count = UNSET
+        else:
+            file_count = self.file_count
 
-        storage_id: str | Unset = UNSET
-        if not isinstance(self.storage_id, Unset):
+        storage_id: None | str | Unset
+        if isinstance(self.storage_id, Unset):
+            storage_id = UNSET
+        elif isinstance(self.storage_id, UUID):
             storage_id = str(self.storage_id)
+        else:
+            storage_id = self.storage_id
 
-        total_duration_milliseconds = self.total_duration_milliseconds
+        total_duration_milliseconds: int | None | Unset
+        if isinstance(self.total_duration_milliseconds, Unset):
+            total_duration_milliseconds = UNSET
+        else:
+            total_duration_milliseconds = self.total_duration_milliseconds
 
-        total_size = self.total_size
+        total_size: int | None | Unset
+        if isinstance(self.total_size, Unset):
+            total_size = UNSET
+        else:
+            total_size = self.total_size
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -62,20 +82,61 @@ class StorageContentInfo:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        assets_count = d.pop("assets_count", UNSET)
 
-        file_count = d.pop("file_count", UNSET)
+        def _parse_assets_count(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        _storage_id = d.pop("storage_id", UNSET)
-        storage_id: UUID | Unset
-        if isinstance(_storage_id, Unset):
-            storage_id = UNSET
-        else:
-            storage_id = UUID(_storage_id)
+        assets_count = _parse_assets_count(d.pop("assets_count", UNSET))
 
-        total_duration_milliseconds = d.pop("total_duration_milliseconds", UNSET)
+        def _parse_file_count(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        total_size = d.pop("total_size", UNSET)
+        file_count = _parse_file_count(d.pop("file_count", UNSET))
+
+        def _parse_storage_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                storage_id_type_0 = UUID(data)
+
+                return storage_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        storage_id = _parse_storage_id(d.pop("storage_id", UNSET))
+
+        def _parse_total_duration_milliseconds(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        total_duration_milliseconds = _parse_total_duration_milliseconds(
+            d.pop("total_duration_milliseconds", UNSET)
+        )
+
+        def _parse_total_size(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        total_size = _parse_total_size(d.pop("total_size", UNSET))
 
         storage_content_info = cls(
             assets_count=assets_count,

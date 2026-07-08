@@ -18,13 +18,13 @@ class RelationsQueryParamsSchema:
         page (int | None | Unset): Which page number to fetch Default: 1.
         per_page (int | None | Unset): The number of items for each page Default: 10.
         search_after (None | str | Unset): JSON-encoded list of sort values from the previous page's last hit
-        sort (str | Unset): A comma separated list of fieldnames with order (asc/desc)
+        sort (None | str | Unset): A comma separated list of fieldnames with order (asc/desc)
     """
 
     page: int | None | Unset = 1
     per_page: int | None | Unset = 10
     search_after: None | str | Unset = UNSET
-    sort: str | Unset = UNSET
+    sort: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -46,7 +46,11 @@ class RelationsQueryParamsSchema:
         else:
             search_after = self.search_after
 
-        sort = self.sort
+        sort: None | str | Unset
+        if isinstance(self.sort, Unset):
+            sort = UNSET
+        else:
+            sort = self.sort
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -93,7 +97,14 @@ class RelationsQueryParamsSchema:
 
         search_after = _parse_search_after(d.pop("search_after", UNSET))
 
-        sort = d.pop("sort", UNSET)
+        def _parse_sort(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        sort = _parse_sort(d.pop("sort", UNSET))
 
         relations_query_params_schema = cls(
             page=page,

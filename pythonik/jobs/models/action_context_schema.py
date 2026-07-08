@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -19,40 +19,62 @@ T = TypeVar("T", bound="ActionContextSchema")
 class ActionContextSchema:
     """
     Attributes:
-        abort (ActionContextValue | Unset):
-        change_priority (ActionContextValue | Unset):
-        pause (ActionContextValue | Unset):
-        restart (ActionContextValue | Unset):
-        resume (ActionContextValue | Unset):
+        abort (ActionContextValue | None | Unset):
+        change_priority (ActionContextValue | None | Unset):
+        pause (ActionContextValue | None | Unset):
+        restart (ActionContextValue | None | Unset):
+        resume (ActionContextValue | None | Unset):
     """
 
-    abort: ActionContextValue | Unset = UNSET
-    change_priority: ActionContextValue | Unset = UNSET
-    pause: ActionContextValue | Unset = UNSET
-    restart: ActionContextValue | Unset = UNSET
-    resume: ActionContextValue | Unset = UNSET
+    abort: ActionContextValue | None | Unset = UNSET
+    change_priority: ActionContextValue | None | Unset = UNSET
+    pause: ActionContextValue | None | Unset = UNSET
+    restart: ActionContextValue | None | Unset = UNSET
+    resume: ActionContextValue | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        abort: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.abort, Unset):
+        from ..models.action_context_value import ActionContextValue
+
+        abort: dict[str, Any] | None | Unset
+        if isinstance(self.abort, Unset):
+            abort = UNSET
+        elif isinstance(self.abort, ActionContextValue):
             abort = self.abort.to_dict()
+        else:
+            abort = self.abort
 
-        change_priority: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.change_priority, Unset):
+        change_priority: dict[str, Any] | None | Unset
+        if isinstance(self.change_priority, Unset):
+            change_priority = UNSET
+        elif isinstance(self.change_priority, ActionContextValue):
             change_priority = self.change_priority.to_dict()
+        else:
+            change_priority = self.change_priority
 
-        pause: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.pause, Unset):
+        pause: dict[str, Any] | None | Unset
+        if isinstance(self.pause, Unset):
+            pause = UNSET
+        elif isinstance(self.pause, ActionContextValue):
             pause = self.pause.to_dict()
+        else:
+            pause = self.pause
 
-        restart: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.restart, Unset):
+        restart: dict[str, Any] | None | Unset
+        if isinstance(self.restart, Unset):
+            restart = UNSET
+        elif isinstance(self.restart, ActionContextValue):
             restart = self.restart.to_dict()
+        else:
+            restart = self.restart
 
-        resume: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.resume, Unset):
+        resume: dict[str, Any] | None | Unset
+        if isinstance(self.resume, Unset):
+            resume = UNSET
+        elif isinstance(self.resume, ActionContextValue):
             resume = self.resume.to_dict()
+        else:
+            resume = self.resume
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -75,40 +97,91 @@ class ActionContextSchema:
         from ..models.action_context_value import ActionContextValue
 
         d = dict(src_dict)
-        _abort = d.pop("ABORT", UNSET)
-        abort: ActionContextValue | Unset
-        if isinstance(_abort, Unset):
-            abort = UNSET
-        else:
-            abort = ActionContextValue.from_dict(_abort)
 
-        _change_priority = d.pop("CHANGE_PRIORITY", UNSET)
-        change_priority: ActionContextValue | Unset
-        if isinstance(_change_priority, Unset):
-            change_priority = UNSET
-        else:
-            change_priority = ActionContextValue.from_dict(_change_priority)
+        def _parse_abort(data: object) -> ActionContextValue | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                abort_type_1 = ActionContextValue.from_dict(data)
 
-        _pause = d.pop("PAUSE", UNSET)
-        pause: ActionContextValue | Unset
-        if isinstance(_pause, Unset):
-            pause = UNSET
-        else:
-            pause = ActionContextValue.from_dict(_pause)
+                return abort_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(ActionContextValue | None | Unset, data)
 
-        _restart = d.pop("RESTART", UNSET)
-        restart: ActionContextValue | Unset
-        if isinstance(_restart, Unset):
-            restart = UNSET
-        else:
-            restart = ActionContextValue.from_dict(_restart)
+        abort = _parse_abort(d.pop("ABORT", UNSET))
 
-        _resume = d.pop("RESUME", UNSET)
-        resume: ActionContextValue | Unset
-        if isinstance(_resume, Unset):
-            resume = UNSET
-        else:
-            resume = ActionContextValue.from_dict(_resume)
+        def _parse_change_priority(data: object) -> ActionContextValue | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                change_priority_type_1 = ActionContextValue.from_dict(data)
+
+                return change_priority_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(ActionContextValue | None | Unset, data)
+
+        change_priority = _parse_change_priority(d.pop("CHANGE_PRIORITY", UNSET))
+
+        def _parse_pause(data: object) -> ActionContextValue | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                pause_type_1 = ActionContextValue.from_dict(data)
+
+                return pause_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(ActionContextValue | None | Unset, data)
+
+        pause = _parse_pause(d.pop("PAUSE", UNSET))
+
+        def _parse_restart(data: object) -> ActionContextValue | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                restart_type_1 = ActionContextValue.from_dict(data)
+
+                return restart_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(ActionContextValue | None | Unset, data)
+
+        restart = _parse_restart(d.pop("RESTART", UNSET))
+
+        def _parse_resume(data: object) -> ActionContextValue | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                resume_type_1 = ActionContextValue.from_dict(data)
+
+                return resume_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(ActionContextValue | None | Unset, data)
+
+        resume = _parse_resume(d.pop("RESUME", UNSET))
 
         action_context_schema = cls(
             abort=abort,

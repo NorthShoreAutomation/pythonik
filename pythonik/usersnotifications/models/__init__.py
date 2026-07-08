@@ -48,7 +48,7 @@ from .delete_users_by_user_id_device_tokens_response_default_type_1_errors impor
 )
 from .device_token_schema import DeviceTokenSchema
 from .device_token_schema_platform import DeviceTokenSchemaPlatform
-from .device_token_schema_push_service import DeviceTokenSchemaPushService
+from .device_token_schema_push_service_type_1 import DeviceTokenSchemaPushServiceType1
 from .device_tokens_query_params_schema import DeviceTokensQueryParamsSchema
 from .device_tokens_schema import DeviceTokensSchema
 from .get_by_object_type_by_object_id_subscriptions_response_default_type_0 import (
@@ -134,11 +134,15 @@ from .get_users_by_user_id_device_tokens_response_default_type_1_errors import (
 )
 from .list_objects_schema import ListObjectsSchema
 from .notification_schema import NotificationSchema
-from .notification_schema_context import NotificationSchemaContext
-from .notification_schema_status import NotificationSchemaStatus
+from .notification_schema_context_type_0 import NotificationSchemaContextType0
+from .notification_schema_status_type_1 import NotificationSchemaStatusType1
 from .notification_setting_schema import NotificationSettingSchema
-from .notification_setting_schema_protocol import NotificationSettingSchemaProtocol
-from .notification_setting_schema_settings import NotificationSettingSchemaSettings
+from .notification_setting_schema_protocol_type_1 import (
+    NotificationSettingSchemaProtocolType1,
+)
+from .notification_setting_schema_settings_type_0 import (
+    NotificationSettingSchemaSettingsType0,
+)
 from .notification_settings_schema import NotificationSettingsSchema
 from .notifications_schema import NotificationsSchema
 from .patch_users_by_user_id_device_tokens_by_device_token_response_default_type_0 import (
@@ -225,8 +229,12 @@ from .put_notifications_by_notification_id_read_response_default_type_1_errors i
 from .subscription_schema import SubscriptionSchema
 from .subscriptions_schema import SubscriptionsSchema
 from .system_notification_schema import SystemNotificationSchema
-from .system_notification_schema_context import SystemNotificationSchemaContext
-from .system_notification_schema_status import SystemNotificationSchemaStatus
+from .system_notification_schema_context_type_0 import (
+    SystemNotificationSchemaContextType0,
+)
+from .system_notification_schema_status_type_1 import (
+    SystemNotificationSchemaStatusType1,
+)
 
 __all__ = (
     "BaseQueryParamsSchema",
@@ -247,7 +255,7 @@ __all__ = (
     "DeleteUsersByUserIdDeviceTokensResponseDefaultType1Errors",
     "DeviceTokenSchema",
     "DeviceTokenSchemaPlatform",
-    "DeviceTokenSchemaPushService",
+    "DeviceTokenSchemaPushServiceType1",
     "DeviceTokensQueryParamsSchema",
     "DeviceTokensSchema",
     "GetByObjectTypeByObjectIdSubscriptionsResponseDefaultType0",
@@ -279,11 +287,11 @@ __all__ = (
     "GetUsersByUserIdDeviceTokensResponseDefaultType1Errors",
     "ListObjectsSchema",
     "NotificationSchema",
-    "NotificationSchemaContext",
-    "NotificationSchemaStatus",
+    "NotificationSchemaContextType0",
+    "NotificationSchemaStatusType1",
     "NotificationSettingSchema",
-    "NotificationSettingSchemaProtocol",
-    "NotificationSettingSchemaSettings",
+    "NotificationSettingSchemaProtocolType1",
+    "NotificationSettingSchemaSettingsType0",
     "NotificationSettingsSchema",
     "NotificationsSchema",
     "PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0",
@@ -316,6 +324,6 @@ __all__ = (
     "SubscriptionSchema",
     "SubscriptionsSchema",
     "SystemNotificationSchema",
-    "SystemNotificationSchemaContext",
-    "SystemNotificationSchemaStatus",
+    "SystemNotificationSchemaContextType0",
+    "SystemNotificationSchemaStatusType1",
 )

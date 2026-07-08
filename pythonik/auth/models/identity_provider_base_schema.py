@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -9,8 +9,8 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.identity_provider_base_schema_saml_settings import (
-        IdentityProviderBaseSchemaSamlSettings,
+    from ..models.identity_provider_base_schema_saml_settings_type_0 import (
+        IdentityProviderBaseSchemaSamlSettingsType0,
     )
 
 
@@ -21,16 +21,26 @@ T = TypeVar("T", bound="IdentityProviderBaseSchema")
 class IdentityProviderBaseSchema:
     """
     Attributes:
-        saml_settings (IdentityProviderBaseSchemaSamlSettings | Unset):
+        saml_settings (IdentityProviderBaseSchemaSamlSettingsType0 | None | Unset):
     """
 
-    saml_settings: IdentityProviderBaseSchemaSamlSettings | Unset = UNSET
+    saml_settings: IdentityProviderBaseSchemaSamlSettingsType0 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        saml_settings: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.saml_settings, Unset):
+        from ..models.identity_provider_base_schema_saml_settings_type_0 import (
+            IdentityProviderBaseSchemaSamlSettingsType0,
+        )
+
+        saml_settings: dict[str, Any] | None | Unset
+        if isinstance(self.saml_settings, Unset):
+            saml_settings = UNSET
+        elif isinstance(
+            self.saml_settings, IdentityProviderBaseSchemaSamlSettingsType0
+        ):
             saml_settings = self.saml_settings.to_dict()
+        else:
+            saml_settings = self.saml_settings
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -42,19 +52,34 @@ class IdentityProviderBaseSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.identity_provider_base_schema_saml_settings import (
-            IdentityProviderBaseSchemaSamlSettings,
+        from ..models.identity_provider_base_schema_saml_settings_type_0 import (
+            IdentityProviderBaseSchemaSamlSettingsType0,
         )
 
         d = dict(src_dict)
-        _saml_settings = d.pop("saml_settings", UNSET)
-        saml_settings: IdentityProviderBaseSchemaSamlSettings | Unset
-        if isinstance(_saml_settings, Unset):
-            saml_settings = UNSET
-        else:
-            saml_settings = IdentityProviderBaseSchemaSamlSettings.from_dict(
-                _saml_settings
+
+        def _parse_saml_settings(
+            data: object,
+        ) -> IdentityProviderBaseSchemaSamlSettingsType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                saml_settings_type_0 = (
+                    IdentityProviderBaseSchemaSamlSettingsType0.from_dict(data)
+                )
+
+                return saml_settings_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(
+                IdentityProviderBaseSchemaSamlSettingsType0 | None | Unset, data
             )
+
+        saml_settings = _parse_saml_settings(d.pop("saml_settings", UNSET))
 
         identity_provider_base_schema = cls(
             saml_settings=saml_settings,

@@ -29,24 +29,24 @@ class BulkCollectionMetadataFillingSchema:
         include_assets (bool):
         include_collections (bool):
         job_id (UUID):
-        callback_chunk_size (int | Unset):
+        callback_chunk_size (int | None | Unset):
         callback_data (BulkCollectionMetadataFillingSchemaCallbackDataType0 | None | Unset):
         callback_data_request (BulkCollectionMetadataFillingSchemaCallbackDataRequestType0 | None | Unset):
-        callback_url (str | Unset):
+        callback_url (None | str | Unset):
     """
 
     collection_ids: list[UUID]
     include_assets: bool
     include_collections: bool
     job_id: UUID
-    callback_chunk_size: int | Unset = UNSET
+    callback_chunk_size: int | None | Unset = UNSET
     callback_data: (
         BulkCollectionMetadataFillingSchemaCallbackDataType0 | None | Unset
     ) = UNSET
     callback_data_request: (
         BulkCollectionMetadataFillingSchemaCallbackDataRequestType0 | None | Unset
     ) = UNSET
-    callback_url: str | Unset = UNSET
+    callback_url: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -68,7 +68,11 @@ class BulkCollectionMetadataFillingSchema:
 
         job_id = str(self.job_id)
 
-        callback_chunk_size = self.callback_chunk_size
+        callback_chunk_size: int | None | Unset
+        if isinstance(self.callback_chunk_size, Unset):
+            callback_chunk_size = UNSET
+        else:
+            callback_chunk_size = self.callback_chunk_size
 
         callback_data: dict[str, Any] | None | Unset
         if isinstance(self.callback_data, Unset):
@@ -91,7 +95,11 @@ class BulkCollectionMetadataFillingSchema:
         else:
             callback_data_request = self.callback_data_request
 
-        callback_url = self.callback_url
+        callback_url: None | str | Unset
+        if isinstance(self.callback_url, Unset):
+            callback_url = UNSET
+        else:
+            callback_url = self.callback_url
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -137,7 +145,16 @@ class BulkCollectionMetadataFillingSchema:
 
         job_id = UUID(d.pop("job_id"))
 
-        callback_chunk_size = d.pop("callback_chunk_size", UNSET)
+        def _parse_callback_chunk_size(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        callback_chunk_size = _parse_callback_chunk_size(
+            d.pop("callback_chunk_size", UNSET)
+        )
 
         def _parse_callback_data(
             data: object,
@@ -191,7 +208,14 @@ class BulkCollectionMetadataFillingSchema:
             d.pop("callback_data_request", UNSET)
         )
 
-        callback_url = d.pop("callback_url", UNSET)
+        def _parse_callback_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        callback_url = _parse_callback_url(d.pop("callback_url", UNSET))
 
         bulk_collection_metadata_filling_schema = cls(
             collection_ids=collection_ids,

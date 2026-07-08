@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,29 +16,45 @@ class WebflowContentSchema:
     """
     Attributes:
         slug (str):
-        caption (str | Unset):
-        category (str | Unset):
-        image (str | Unset):
-        name (str | Unset):
+        caption (None | str | Unset):
+        category (None | str | Unset):
+        image (None | str | Unset):
+        name (None | str | Unset):
     """
 
     slug: str
-    caption: str | Unset = UNSET
-    category: str | Unset = UNSET
-    image: str | Unset = UNSET
-    name: str | Unset = UNSET
+    caption: None | str | Unset = UNSET
+    category: None | str | Unset = UNSET
+    image: None | str | Unset = UNSET
+    name: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         slug = self.slug
 
-        caption = self.caption
+        caption: None | str | Unset
+        if isinstance(self.caption, Unset):
+            caption = UNSET
+        else:
+            caption = self.caption
 
-        category = self.category
+        category: None | str | Unset
+        if isinstance(self.category, Unset):
+            category = UNSET
+        else:
+            category = self.category
 
-        image = self.image
+        image: None | str | Unset
+        if isinstance(self.image, Unset):
+            image = UNSET
+        else:
+            image = self.image
 
-        name = self.name
+        name: None | str | Unset
+        if isinstance(self.name, Unset):
+            name = UNSET
+        else:
+            name = self.name
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -63,13 +79,41 @@ class WebflowContentSchema:
         d = dict(src_dict)
         slug = d.pop("slug")
 
-        caption = d.pop("caption", UNSET)
+        def _parse_caption(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        category = d.pop("category", UNSET)
+        caption = _parse_caption(d.pop("caption", UNSET))
 
-        image = d.pop("image", UNSET)
+        def _parse_category(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        name = d.pop("name", UNSET)
+        category = _parse_category(d.pop("category", UNSET))
+
+        def _parse_image(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        image = _parse_image(d.pop("image", UNSET))
+
+        def _parse_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        name = _parse_name(d.pop("name", UNSET))
 
         webflow_content_schema = cls(
             slug=slug,

@@ -22,16 +22,16 @@ class ScheduleSyncPersonToVersionsSchema:
     Attributes:
         objects (list[AssetVersionLookupSchema]):
         sync_id (UUID):
-        finished (bool | Unset):  Default: False.
-        has_unconfirmed_instances (bool | Unset):  Default: False.
+        finished (bool | None | Unset):  Default: False.
+        has_unconfirmed_instances (bool | None | Unset):  Default: False.
         job_id (None | Unset | UUID):
         person_id (None | Unset | UUID):
     """
 
     objects: list[AssetVersionLookupSchema]
     sync_id: UUID
-    finished: bool | Unset = False
-    has_unconfirmed_instances: bool | Unset = False
+    finished: bool | None | Unset = False
+    has_unconfirmed_instances: bool | None | Unset = False
     job_id: None | Unset | UUID = UNSET
     person_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -44,9 +44,17 @@ class ScheduleSyncPersonToVersionsSchema:
 
         sync_id = str(self.sync_id)
 
-        finished = self.finished
+        finished: bool | None | Unset
+        if isinstance(self.finished, Unset):
+            finished = UNSET
+        else:
+            finished = self.finished
 
-        has_unconfirmed_instances = self.has_unconfirmed_instances
+        has_unconfirmed_instances: bool | None | Unset
+        if isinstance(self.has_unconfirmed_instances, Unset):
+            has_unconfirmed_instances = UNSET
+        else:
+            has_unconfirmed_instances = self.has_unconfirmed_instances
 
         job_id: None | str | Unset
         if isinstance(self.job_id, Unset):
@@ -97,9 +105,25 @@ class ScheduleSyncPersonToVersionsSchema:
 
         sync_id = UUID(d.pop("sync_id"))
 
-        finished = d.pop("finished", UNSET)
+        def _parse_finished(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        has_unconfirmed_instances = d.pop("has_unconfirmed_instances", UNSET)
+        finished = _parse_finished(d.pop("finished", UNSET))
+
+        def _parse_has_unconfirmed_instances(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        has_unconfirmed_instances = _parse_has_unconfirmed_instances(
+            d.pop("has_unconfirmed_instances", UNSET)
+        )
 
         def _parse_job_id(data: object) -> None | Unset | UUID:
             if data is None:

@@ -17,25 +17,29 @@ class JobStepElastic:
     """
     Attributes:
         label (str):
-        date_updated (str | Unset):
+        date_updated (None | str | Unset):
         error_message (None | str | Unset):
-        id (UUID | Unset):
+        id (None | Unset | UUID):
         message (None | str | Unset):
-        status (str | Unset):
+        status (None | str | Unset):
     """
 
     label: str
-    date_updated: str | Unset = UNSET
+    date_updated: None | str | Unset = UNSET
     error_message: None | str | Unset = UNSET
-    id: UUID | Unset = UNSET
+    id: None | Unset | UUID = UNSET
     message: None | str | Unset = UNSET
-    status: str | Unset = UNSET
+    status: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         label = self.label
 
-        date_updated = self.date_updated
+        date_updated: None | str | Unset
+        if isinstance(self.date_updated, Unset):
+            date_updated = UNSET
+        else:
+            date_updated = self.date_updated
 
         error_message: None | str | Unset
         if isinstance(self.error_message, Unset):
@@ -43,9 +47,13 @@ class JobStepElastic:
         else:
             error_message = self.error_message
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
         message: None | str | Unset
         if isinstance(self.message, Unset):
@@ -53,7 +61,11 @@ class JobStepElastic:
         else:
             message = self.message
 
-        status = self.status
+        status: None | str | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        else:
+            status = self.status
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -80,7 +92,14 @@ class JobStepElastic:
         d = dict(src_dict)
         label = d.pop("label")
 
-        date_updated = d.pop("date_updated", UNSET)
+        def _parse_date_updated(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        date_updated = _parse_date_updated(d.pop("date_updated", UNSET))
 
         def _parse_error_message(data: object) -> None | str | Unset:
             if data is None:
@@ -91,12 +110,22 @@ class JobStepElastic:
 
         error_message = _parse_error_message(d.pop("error_message", UNSET))
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
 
         def _parse_message(data: object) -> None | str | Unset:
             if data is None:
@@ -107,7 +136,14 @@ class JobStepElastic:
 
         message = _parse_message(d.pop("message", UNSET))
 
-        status = d.pop("status", UNSET)
+        def _parse_status(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
 
         job_step_elastic = cls(
             label=label,

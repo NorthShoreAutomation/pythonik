@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -12,7 +12,7 @@ from ..models.discovery_entity_object_type import DiscoveryEntityObjectType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.discovery_entity_metadata import DiscoveryEntityMetadata
+    from ..models.discovery_entity_metadata_type_0 import DiscoveryEntityMetadataType0
 
 
 T = TypeVar("T", bound="DiscoveryEntity")
@@ -26,23 +26,27 @@ class DiscoveryEntity:
         object_type (DiscoveryEntityObjectType):
         title (str):
         user_id (str):
-        date_created (datetime.datetime | Unset):
-        date_modified (datetime.datetime | Unset):
-        id (UUID | Unset):
-        metadata (DiscoveryEntityMetadata | Unset):
+        date_created (datetime.datetime | None | Unset):
+        date_modified (datetime.datetime | None | Unset):
+        id (None | Unset | UUID):
+        metadata (DiscoveryEntityMetadataType0 | None | Unset):
     """
 
     object_id: UUID
     object_type: DiscoveryEntityObjectType
     title: str
     user_id: str
-    date_created: datetime.datetime | Unset = UNSET
-    date_modified: datetime.datetime | Unset = UNSET
-    id: UUID | Unset = UNSET
-    metadata: DiscoveryEntityMetadata | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_modified: datetime.datetime | None | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    metadata: DiscoveryEntityMetadataType0 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.discovery_entity_metadata_type_0 import (
+            DiscoveryEntityMetadataType0,
+        )
+
         object_id = str(self.object_id)
 
         object_type = self.object_type.value
@@ -51,21 +55,37 @@ class DiscoveryEntity:
 
         user_id = self.user_id
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_modified: str | Unset = UNSET
-        if not isinstance(self.date_modified, Unset):
+        date_modified: None | str | Unset
+        if isinstance(self.date_modified, Unset):
+            date_modified = UNSET
+        elif isinstance(self.date_modified, datetime.datetime):
             date_modified = self.date_modified.isoformat()
+        else:
+            date_modified = self.date_modified
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        metadata: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.metadata, Unset):
+        metadata: dict[str, Any] | None | Unset
+        if isinstance(self.metadata, Unset):
+            metadata = UNSET
+        elif isinstance(self.metadata, DiscoveryEntityMetadataType0):
             metadata = self.metadata.to_dict()
+        else:
+            metadata = self.metadata
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -90,7 +110,9 @@ class DiscoveryEntity:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.discovery_entity_metadata import DiscoveryEntityMetadata
+        from ..models.discovery_entity_metadata_type_0 import (
+            DiscoveryEntityMetadataType0,
+        )
 
         d = dict(src_dict)
         object_id = UUID(d.pop("object_id"))
@@ -101,33 +123,75 @@ class DiscoveryEntity:
 
         user_id = d.pop("user_id")
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        _date_modified = d.pop("date_modified", UNSET)
-        date_modified: datetime.datetime | Unset
-        if isinstance(_date_modified, Unset):
-            date_modified = UNSET
-        else:
-            date_modified = datetime.datetime.fromisoformat(_date_modified)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
 
-        _metadata = d.pop("metadata", UNSET)
-        metadata: DiscoveryEntityMetadata | Unset
-        if isinstance(_metadata, Unset):
-            metadata = UNSET
-        else:
-            metadata = DiscoveryEntityMetadata.from_dict(_metadata)
+        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_modified_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_modified_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
+
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_metadata(
+            data: object,
+        ) -> DiscoveryEntityMetadataType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                metadata_type_0 = DiscoveryEntityMetadataType0.from_dict(data)
+
+                return metadata_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(DiscoveryEntityMetadataType0 | None | Unset, data)
+
+        metadata = _parse_metadata(d.pop("metadata", UNSET))
 
         discovery_entity = cls(
             object_id=object_id,

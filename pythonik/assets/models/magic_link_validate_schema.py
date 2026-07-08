@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,16 +17,16 @@ class MagicLinkValidateSchema:
     Attributes:
         email (str): The recipient email address
         hash_ (str): The JWT magic link token
-        app_id (str | Unset): App ID for session fallback authentication
-        password (str | Unset): Password for password-protected shares
-        token (str | Unset): Auth token for session fallback authentication
+        app_id (None | str | Unset): App ID for session fallback authentication
+        password (None | str | Unset): Password for password-protected shares
+        token (None | str | Unset): Auth token for session fallback authentication
     """
 
     email: str
     hash_: str
-    app_id: str | Unset = UNSET
-    password: str | Unset = UNSET
-    token: str | Unset = UNSET
+    app_id: None | str | Unset = UNSET
+    password: None | str | Unset = UNSET
+    token: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -34,11 +34,23 @@ class MagicLinkValidateSchema:
 
         hash_ = self.hash_
 
-        app_id = self.app_id
+        app_id: None | str | Unset
+        if isinstance(self.app_id, Unset):
+            app_id = UNSET
+        else:
+            app_id = self.app_id
 
-        password = self.password
+        password: None | str | Unset
+        if isinstance(self.password, Unset):
+            password = UNSET
+        else:
+            password = self.password
 
-        token = self.token
+        token: None | str | Unset
+        if isinstance(self.token, Unset):
+            token = UNSET
+        else:
+            token = self.token
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -64,11 +76,32 @@ class MagicLinkValidateSchema:
 
         hash_ = d.pop("hash")
 
-        app_id = d.pop("app_id", UNSET)
+        def _parse_app_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        password = d.pop("password", UNSET)
+        app_id = _parse_app_id(d.pop("app_id", UNSET))
 
-        token = d.pop("token", UNSET)
+        def _parse_password(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        password = _parse_password(d.pop("password", UNSET))
+
+        def _parse_token(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        token = _parse_token(d.pop("token", UNSET))
 
         magic_link_validate_schema = cls(
             email=email,

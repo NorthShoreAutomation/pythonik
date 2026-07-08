@@ -20,13 +20,13 @@ class RecentAssetsQueryParamsSchema:
         search_after (list[Any] | None | Unset): This parameter is used for infinite scroll pagination instead of
             deprecatedscroll API. It accepts a list of sort keys that will be used for getting a next page and it can be
             obtained from `_sort` key of the last object of the previous response
-        sort (str | Unset): A comma separated list of fieldnames with order (asc/desc)
+        sort (None | str | Unset): A comma separated list of fieldnames with order (asc/desc)
     """
 
     page: int | None | Unset = 1
     per_page: int | None | Unset = 10
     search_after: list[Any] | None | Unset = UNSET
-    sort: str | Unset = UNSET
+    sort: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -51,7 +51,11 @@ class RecentAssetsQueryParamsSchema:
         else:
             search_after = self.search_after
 
-        sort = self.sort
+        sort: None | str | Unset
+        if isinstance(self.sort, Unset):
+            sort = UNSET
+        else:
+            sort = self.sort
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -106,7 +110,14 @@ class RecentAssetsQueryParamsSchema:
 
         search_after = _parse_search_after(d.pop("search_after", UNSET))
 
-        sort = d.pop("sort", UNSET)
+        def _parse_sort(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        sort = _parse_sort(d.pop("sort", UNSET))
 
         recent_assets_query_params_schema = cls(
             page=page,

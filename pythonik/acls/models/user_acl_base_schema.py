@@ -17,19 +17,23 @@ class UserACLBaseSchema:
     """
     Attributes:
         permissions (list[str]):
-        user_id (UUID | Unset):
+        user_id (None | Unset | UUID):
     """
 
     permissions: list[str]
-    user_id: UUID | Unset = UNSET
+    user_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         permissions = self.permissions
 
-        user_id: str | Unset = UNSET
-        if not isinstance(self.user_id, Unset):
+        user_id: None | str | Unset
+        if isinstance(self.user_id, Unset):
+            user_id = UNSET
+        elif isinstance(self.user_id, UUID):
             user_id = str(self.user_id)
+        else:
+            user_id = self.user_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -48,12 +52,22 @@ class UserACLBaseSchema:
         d = dict(src_dict)
         permissions = cast(list[str], d.pop("permissions"))
 
-        _user_id = d.pop("user_id", UNSET)
-        user_id: UUID | Unset
-        if isinstance(_user_id, Unset):
-            user_id = UNSET
-        else:
-            user_id = UUID(_user_id)
+        def _parse_user_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                user_id_type_0 = UUID(data)
+
+                return user_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        user_id = _parse_user_id(d.pop("user_id", UNSET))
 
         user_acl_base_schema = cls(
             permissions=permissions,

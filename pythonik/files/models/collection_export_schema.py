@@ -1,16 +1,19 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.collection_export_schema_metadata_format import (
-    CollectionExportSchemaMetadataFormat,
-)
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.collection_export_schema_metadata_format_type_1 import (
+        CollectionExportSchemaMetadataFormatType1,
+    )
+
 
 T = TypeVar("T", bound="CollectionExportSchema")
 
@@ -23,7 +26,7 @@ class CollectionExportSchema:
         export_metadata (bool | None | Unset):
         export_to_asset_folder (bool | None | Unset):
         keep_collection_structure (bool | None | Unset):
-        metadata_format (CollectionExportSchemaMetadataFormat | Unset):
+        metadata_format (CollectionExportSchemaMetadataFormatType1 | None | Unset):
         metadata_view (None | Unset | UUID):
         overwrite (bool | None | Unset):
         preferred_original_storage_id (None | Unset | UUID):
@@ -33,13 +36,17 @@ class CollectionExportSchema:
     export_metadata: bool | None | Unset = UNSET
     export_to_asset_folder: bool | None | Unset = UNSET
     keep_collection_structure: bool | None | Unset = UNSET
-    metadata_format: CollectionExportSchemaMetadataFormat | Unset = UNSET
+    metadata_format: CollectionExportSchemaMetadataFormatType1 | None | Unset = UNSET
     metadata_view: None | Unset | UUID = UNSET
     overwrite: bool | None | Unset = UNSET
     preferred_original_storage_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.collection_export_schema_metadata_format_type_1 import (
+            CollectionExportSchemaMetadataFormatType1,
+        )
+
         delete_original: bool | None | Unset
         if isinstance(self.delete_original, Unset):
             delete_original = UNSET
@@ -64,9 +71,15 @@ class CollectionExportSchema:
         else:
             keep_collection_structure = self.keep_collection_structure
 
-        metadata_format: str | Unset = UNSET
-        if not isinstance(self.metadata_format, Unset):
-            metadata_format = self.metadata_format.value
+        metadata_format: dict[str, Any] | None | Unset
+        if isinstance(self.metadata_format, Unset):
+            metadata_format = UNSET
+        elif isinstance(
+            self.metadata_format, CollectionExportSchemaMetadataFormatType1
+        ):
+            metadata_format = self.metadata_format.to_dict()
+        else:
+            metadata_format = self.metadata_format
 
         metadata_view: None | str | Unset
         if isinstance(self.metadata_view, Unset):
@@ -114,6 +127,10 @@ class CollectionExportSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.collection_export_schema_metadata_format_type_1 import (
+            CollectionExportSchemaMetadataFormatType1,
+        )
+
         d = dict(src_dict)
 
         def _parse_delete_original(data: object) -> bool | None | Unset:
@@ -156,12 +173,26 @@ class CollectionExportSchema:
             d.pop("keep_collection_structure", UNSET)
         )
 
-        _metadata_format = d.pop("metadata_format", UNSET)
-        metadata_format: CollectionExportSchemaMetadataFormat | Unset
-        if isinstance(_metadata_format, Unset):
-            metadata_format = UNSET
-        else:
-            metadata_format = CollectionExportSchemaMetadataFormat(_metadata_format)
+        def _parse_metadata_format(
+            data: object,
+        ) -> CollectionExportSchemaMetadataFormatType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                metadata_format_type_1 = (
+                    CollectionExportSchemaMetadataFormatType1.from_dict(data)
+                )
+
+                return metadata_format_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(CollectionExportSchemaMetadataFormatType1 | None | Unset, data)
+
+        metadata_format = _parse_metadata_format(d.pop("metadata_format", UNSET))
 
         def _parse_metadata_view(data: object) -> None | Unset | UUID:
             if data is None:

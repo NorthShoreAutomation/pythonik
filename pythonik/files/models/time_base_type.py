@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,18 +15,26 @@ T = TypeVar("T", bound="TimeBaseType")
 class TimeBaseType:
     """
     Attributes:
-        denominator (int | Unset):
-        numerator (int | Unset):
+        denominator (int | None | Unset):
+        numerator (int | None | Unset):
     """
 
-    denominator: int | Unset = UNSET
-    numerator: int | Unset = UNSET
+    denominator: int | None | Unset = UNSET
+    numerator: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        denominator = self.denominator
+        denominator: int | None | Unset
+        if isinstance(self.denominator, Unset):
+            denominator = UNSET
+        else:
+            denominator = self.denominator
 
-        numerator = self.numerator
+        numerator: int | None | Unset
+        if isinstance(self.numerator, Unset):
+            numerator = UNSET
+        else:
+            numerator = self.numerator
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -41,9 +49,24 @@ class TimeBaseType:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        denominator = d.pop("denominator", UNSET)
 
-        numerator = d.pop("numerator", UNSET)
+        def _parse_denominator(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        denominator = _parse_denominator(d.pop("denominator", UNSET))
+
+        def _parse_numerator(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        numerator = _parse_numerator(d.pop("numerator", UNSET))
 
         time_base_type = cls(
             denominator=denominator,

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,14 +15,18 @@ T = TypeVar("T", bound="PostAuthSamlLoginResponse200")
 class PostAuthSamlLoginResponse200:
     """
     Attributes:
-        url (str | Unset): saml sso url
+        url (None | str | Unset): saml sso url
     """
 
-    url: str | Unset = UNSET
+    url: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        url = self.url
+        url: None | str | Unset
+        if isinstance(self.url, Unset):
+            url = UNSET
+        else:
+            url = self.url
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -35,7 +39,15 @@ class PostAuthSamlLoginResponse200:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        url = d.pop("url", UNSET)
+
+        def _parse_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        url = _parse_url(d.pop("url", UNSET))
 
         post_auth_saml_login_response_200 = cls(
             url=url,

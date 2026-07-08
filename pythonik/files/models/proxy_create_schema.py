@@ -8,12 +8,12 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.proxy_create_schema_status import ProxyCreateSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.proxy_create_schema_upload_credentials import (
-        ProxyCreateSchemaUploadCredentials,
+    from ..models.proxy_create_schema_status_type_1 import ProxyCreateSchemaStatusType1
+    from ..models.proxy_create_schema_upload_credentials_type_0 import (
+        ProxyCreateSchemaUploadCredentialsType0,
     )
     from ..models.resolution_type import ResolutionType
 
@@ -25,76 +25,92 @@ T = TypeVar("T", bound="ProxyCreateSchema")
 class ProxyCreateSchema:
     """
     Attributes:
-        asset_id (UUID | Unset):
-        audio_bitrate (int | Unset):
+        asset_id (None | Unset | UUID):
+        audio_bitrate (int | None | Unset):
         audio_channels (int | None | Unset):
-        bit_rate (int | Unset):
-        codec (str | Unset):
-        content_type (str | Unset):
-        date_created (datetime.datetime | Unset):
-        date_modified (datetime.datetime | Unset):
-        filename (str | Unset):
-        format_ (str | Unset):
+        bit_rate (int | None | Unset):
+        codec (None | str | Unset):
+        content_type (None | str | Unset):
+        date_created (datetime.datetime | None | Unset):
+        date_modified (datetime.datetime | None | Unset):
+        filename (None | str | Unset):
+        format_ (None | str | Unset):
         frame_rate (None | str | Unset):
-        id (UUID | Unset):
+        id (None | Unset | UUID):
         is_drop_frame (bool | None | Unset):
         is_multichannel (bool | None | Unset):
-        is_public (bool | Unset):
-        multipart_upload_url (str | Unset):
-        name (str | Unset):
+        is_public (bool | None | Unset):
+        multipart_upload_url (None | str | Unset):
+        name (None | str | Unset):
         proxy_container_id (None | Unset | UUID):
-        resolution (ResolutionType | Unset):
+        resolution (None | ResolutionType | Unset):
         rotation (int | None | Unset):
         size (int | None | Unset):
         start_time_code (None | str | Unset):
-        status (ProxyCreateSchemaStatus | Unset):
-        storage_id (UUID | Unset):
-        storage_method (str | Unset):
-        upload_credentials (ProxyCreateSchemaUploadCredentials | Unset):
-        upload_method (str | Unset):
-        upload_url (str | Unset):
-        url (str | Unset):
+        status (None | ProxyCreateSchemaStatusType1 | Unset):
+        storage_id (None | Unset | UUID):
+        storage_method (None | str | Unset):
+        upload_credentials (None | ProxyCreateSchemaUploadCredentialsType0 | Unset):
+        upload_method (None | str | Unset):
+        upload_url (None | str | Unset):
+        url (None | str | Unset):
         version_id (None | Unset | UUID):
     """
 
-    asset_id: UUID | Unset = UNSET
-    audio_bitrate: int | Unset = UNSET
+    asset_id: None | Unset | UUID = UNSET
+    audio_bitrate: int | None | Unset = UNSET
     audio_channels: int | None | Unset = UNSET
-    bit_rate: int | Unset = UNSET
-    codec: str | Unset = UNSET
-    content_type: str | Unset = UNSET
-    date_created: datetime.datetime | Unset = UNSET
-    date_modified: datetime.datetime | Unset = UNSET
-    filename: str | Unset = UNSET
-    format_: str | Unset = UNSET
+    bit_rate: int | None | Unset = UNSET
+    codec: None | str | Unset = UNSET
+    content_type: None | str | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_modified: datetime.datetime | None | Unset = UNSET
+    filename: None | str | Unset = UNSET
+    format_: None | str | Unset = UNSET
     frame_rate: None | str | Unset = UNSET
-    id: UUID | Unset = UNSET
+    id: None | Unset | UUID = UNSET
     is_drop_frame: bool | None | Unset = UNSET
     is_multichannel: bool | None | Unset = UNSET
-    is_public: bool | Unset = UNSET
-    multipart_upload_url: str | Unset = UNSET
-    name: str | Unset = UNSET
+    is_public: bool | None | Unset = UNSET
+    multipart_upload_url: None | str | Unset = UNSET
+    name: None | str | Unset = UNSET
     proxy_container_id: None | Unset | UUID = UNSET
-    resolution: ResolutionType | Unset = UNSET
+    resolution: None | ResolutionType | Unset = UNSET
     rotation: int | None | Unset = UNSET
     size: int | None | Unset = UNSET
     start_time_code: None | str | Unset = UNSET
-    status: ProxyCreateSchemaStatus | Unset = UNSET
-    storage_id: UUID | Unset = UNSET
-    storage_method: str | Unset = UNSET
-    upload_credentials: ProxyCreateSchemaUploadCredentials | Unset = UNSET
-    upload_method: str | Unset = UNSET
-    upload_url: str | Unset = UNSET
-    url: str | Unset = UNSET
+    status: None | ProxyCreateSchemaStatusType1 | Unset = UNSET
+    storage_id: None | Unset | UUID = UNSET
+    storage_method: None | str | Unset = UNSET
+    upload_credentials: None | ProxyCreateSchemaUploadCredentialsType0 | Unset = UNSET
+    upload_method: None | str | Unset = UNSET
+    upload_url: None | str | Unset = UNSET
+    url: None | str | Unset = UNSET
     version_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        asset_id: str | Unset = UNSET
-        if not isinstance(self.asset_id, Unset):
-            asset_id = str(self.asset_id)
+        from ..models.proxy_create_schema_status_type_1 import (
+            ProxyCreateSchemaStatusType1,
+        )
+        from ..models.proxy_create_schema_upload_credentials_type_0 import (
+            ProxyCreateSchemaUploadCredentialsType0,
+        )
+        from ..models.resolution_type import ResolutionType
 
-        audio_bitrate = self.audio_bitrate
+        asset_id: None | str | Unset
+        if isinstance(self.asset_id, Unset):
+            asset_id = UNSET
+        elif isinstance(self.asset_id, UUID):
+            asset_id = str(self.asset_id)
+        else:
+            asset_id = self.asset_id
+
+        audio_bitrate: int | None | Unset
+        if isinstance(self.audio_bitrate, Unset):
+            audio_bitrate = UNSET
+        else:
+            audio_bitrate = self.audio_bitrate
 
         audio_channels: int | None | Unset
         if isinstance(self.audio_channels, Unset):
@@ -102,23 +118,51 @@ class ProxyCreateSchema:
         else:
             audio_channels = self.audio_channels
 
-        bit_rate = self.bit_rate
+        bit_rate: int | None | Unset
+        if isinstance(self.bit_rate, Unset):
+            bit_rate = UNSET
+        else:
+            bit_rate = self.bit_rate
 
-        codec = self.codec
+        codec: None | str | Unset
+        if isinstance(self.codec, Unset):
+            codec = UNSET
+        else:
+            codec = self.codec
 
-        content_type = self.content_type
+        content_type: None | str | Unset
+        if isinstance(self.content_type, Unset):
+            content_type = UNSET
+        else:
+            content_type = self.content_type
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_modified: str | Unset = UNSET
-        if not isinstance(self.date_modified, Unset):
+        date_modified: None | str | Unset
+        if isinstance(self.date_modified, Unset):
+            date_modified = UNSET
+        elif isinstance(self.date_modified, datetime.datetime):
             date_modified = self.date_modified.isoformat()
+        else:
+            date_modified = self.date_modified
 
-        filename = self.filename
+        filename: None | str | Unset
+        if isinstance(self.filename, Unset):
+            filename = UNSET
+        else:
+            filename = self.filename
 
-        format_ = self.format_
+        format_: None | str | Unset
+        if isinstance(self.format_, Unset):
+            format_ = UNSET
+        else:
+            format_ = self.format_
 
         frame_rate: None | str | Unset
         if isinstance(self.frame_rate, Unset):
@@ -126,9 +170,13 @@ class ProxyCreateSchema:
         else:
             frame_rate = self.frame_rate
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
         is_drop_frame: bool | None | Unset
         if isinstance(self.is_drop_frame, Unset):
@@ -142,11 +190,23 @@ class ProxyCreateSchema:
         else:
             is_multichannel = self.is_multichannel
 
-        is_public = self.is_public
+        is_public: bool | None | Unset
+        if isinstance(self.is_public, Unset):
+            is_public = UNSET
+        else:
+            is_public = self.is_public
 
-        multipart_upload_url = self.multipart_upload_url
+        multipart_upload_url: None | str | Unset
+        if isinstance(self.multipart_upload_url, Unset):
+            multipart_upload_url = UNSET
+        else:
+            multipart_upload_url = self.multipart_upload_url
 
-        name = self.name
+        name: None | str | Unset
+        if isinstance(self.name, Unset):
+            name = UNSET
+        else:
+            name = self.name
 
         proxy_container_id: None | str | Unset
         if isinstance(self.proxy_container_id, Unset):
@@ -156,9 +216,13 @@ class ProxyCreateSchema:
         else:
             proxy_container_id = self.proxy_container_id
 
-        resolution: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.resolution, Unset):
+        resolution: dict[str, Any] | None | Unset
+        if isinstance(self.resolution, Unset):
+            resolution = UNSET
+        elif isinstance(self.resolution, ResolutionType):
             resolution = self.resolution.to_dict()
+        else:
+            resolution = self.resolution
 
         rotation: int | None | Unset
         if isinstance(self.rotation, Unset):
@@ -178,25 +242,55 @@ class ProxyCreateSchema:
         else:
             start_time_code = self.start_time_code
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        status: dict[str, Any] | None | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        elif isinstance(self.status, ProxyCreateSchemaStatusType1):
+            status = self.status.to_dict()
+        else:
+            status = self.status
 
-        storage_id: str | Unset = UNSET
-        if not isinstance(self.storage_id, Unset):
+        storage_id: None | str | Unset
+        if isinstance(self.storage_id, Unset):
+            storage_id = UNSET
+        elif isinstance(self.storage_id, UUID):
             storage_id = str(self.storage_id)
+        else:
+            storage_id = self.storage_id
 
-        storage_method = self.storage_method
+        storage_method: None | str | Unset
+        if isinstance(self.storage_method, Unset):
+            storage_method = UNSET
+        else:
+            storage_method = self.storage_method
 
-        upload_credentials: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.upload_credentials, Unset):
+        upload_credentials: dict[str, Any] | None | Unset
+        if isinstance(self.upload_credentials, Unset):
+            upload_credentials = UNSET
+        elif isinstance(
+            self.upload_credentials, ProxyCreateSchemaUploadCredentialsType0
+        ):
             upload_credentials = self.upload_credentials.to_dict()
+        else:
+            upload_credentials = self.upload_credentials
 
-        upload_method = self.upload_method
+        upload_method: None | str | Unset
+        if isinstance(self.upload_method, Unset):
+            upload_method = UNSET
+        else:
+            upload_method = self.upload_method
 
-        upload_url = self.upload_url
+        upload_url: None | str | Unset
+        if isinstance(self.upload_url, Unset):
+            upload_url = UNSET
+        else:
+            upload_url = self.upload_url
 
-        url = self.url
+        url: None | str | Unset
+        if isinstance(self.url, Unset):
+            url = UNSET
+        else:
+            url = self.url
 
         version_id: None | str | Unset
         if isinstance(self.version_id, Unset):
@@ -274,20 +368,41 @@ class ProxyCreateSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.proxy_create_schema_upload_credentials import (
-            ProxyCreateSchemaUploadCredentials,
+        from ..models.proxy_create_schema_status_type_1 import (
+            ProxyCreateSchemaStatusType1,
+        )
+        from ..models.proxy_create_schema_upload_credentials_type_0 import (
+            ProxyCreateSchemaUploadCredentialsType0,
         )
         from ..models.resolution_type import ResolutionType
 
         d = dict(src_dict)
-        _asset_id = d.pop("asset_id", UNSET)
-        asset_id: UUID | Unset
-        if isinstance(_asset_id, Unset):
-            asset_id = UNSET
-        else:
-            asset_id = UUID(_asset_id)
 
-        audio_bitrate = d.pop("audio_bitrate", UNSET)
+        def _parse_asset_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                asset_id_type_0 = UUID(data)
+
+                return asset_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        asset_id = _parse_asset_id(d.pop("asset_id", UNSET))
+
+        def _parse_audio_bitrate(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        audio_bitrate = _parse_audio_bitrate(d.pop("audio_bitrate", UNSET))
 
         def _parse_audio_channels(data: object) -> int | None | Unset:
             if data is None:
@@ -298,29 +413,84 @@ class ProxyCreateSchema:
 
         audio_channels = _parse_audio_channels(d.pop("audio_channels", UNSET))
 
-        bit_rate = d.pop("bit_rate", UNSET)
+        def _parse_bit_rate(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        codec = d.pop("codec", UNSET)
+        bit_rate = _parse_bit_rate(d.pop("bit_rate", UNSET))
 
-        content_type = d.pop("content_type", UNSET)
+        def _parse_codec(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        codec = _parse_codec(d.pop("codec", UNSET))
 
-        _date_modified = d.pop("date_modified", UNSET)
-        date_modified: datetime.datetime | Unset
-        if isinstance(_date_modified, Unset):
-            date_modified = UNSET
-        else:
-            date_modified = datetime.datetime.fromisoformat(_date_modified)
+        def _parse_content_type(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        filename = d.pop("filename", UNSET)
+        content_type = _parse_content_type(d.pop("content_type", UNSET))
 
-        format_ = d.pop("format", UNSET)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
+
+        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_modified_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_modified_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
+
+        def _parse_filename(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        filename = _parse_filename(d.pop("filename", UNSET))
+
+        def _parse_format_(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        format_ = _parse_format_(d.pop("format", UNSET))
 
         def _parse_frame_rate(data: object) -> None | str | Unset:
             if data is None:
@@ -331,12 +501,22 @@ class ProxyCreateSchema:
 
         frame_rate = _parse_frame_rate(d.pop("frame_rate", UNSET))
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
 
         def _parse_is_drop_frame(data: object) -> bool | None | Unset:
             if data is None:
@@ -356,11 +536,34 @@ class ProxyCreateSchema:
 
         is_multichannel = _parse_is_multichannel(d.pop("is_multichannel", UNSET))
 
-        is_public = d.pop("is_public", UNSET)
+        def _parse_is_public(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        multipart_upload_url = d.pop("multipart_upload_url", UNSET)
+        is_public = _parse_is_public(d.pop("is_public", UNSET))
 
-        name = d.pop("name", UNSET)
+        def _parse_multipart_upload_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        multipart_upload_url = _parse_multipart_upload_url(
+            d.pop("multipart_upload_url", UNSET)
+        )
+
+        def _parse_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        name = _parse_name(d.pop("name", UNSET))
 
         def _parse_proxy_container_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -381,12 +584,22 @@ class ProxyCreateSchema:
             d.pop("proxy_container_id", UNSET)
         )
 
-        _resolution = d.pop("resolution", UNSET)
-        resolution: ResolutionType | Unset
-        if isinstance(_resolution, Unset):
-            resolution = UNSET
-        else:
-            resolution = ResolutionType.from_dict(_resolution)
+        def _parse_resolution(data: object) -> None | ResolutionType | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                resolution_type_1 = ResolutionType.from_dict(data)
+
+                return resolution_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | ResolutionType | Unset, data)
+
+        resolution = _parse_resolution(d.pop("resolution", UNSET))
 
         def _parse_rotation(data: object) -> int | None | Unset:
             if data is None:
@@ -415,36 +628,98 @@ class ProxyCreateSchema:
 
         start_time_code = _parse_start_time_code(d.pop("start_time_code", UNSET))
 
-        _status = d.pop("status", UNSET)
-        status: ProxyCreateSchemaStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = ProxyCreateSchemaStatus(_status)
+        def _parse_status(data: object) -> None | ProxyCreateSchemaStatusType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                status_type_1 = ProxyCreateSchemaStatusType1.from_dict(data)
 
-        _storage_id = d.pop("storage_id", UNSET)
-        storage_id: UUID | Unset
-        if isinstance(_storage_id, Unset):
-            storage_id = UNSET
-        else:
-            storage_id = UUID(_storage_id)
+                return status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | ProxyCreateSchemaStatusType1 | Unset, data)
 
-        storage_method = d.pop("storage_method", UNSET)
+        status = _parse_status(d.pop("status", UNSET))
 
-        _upload_credentials = d.pop("upload_credentials", UNSET)
-        upload_credentials: ProxyCreateSchemaUploadCredentials | Unset
-        if isinstance(_upload_credentials, Unset):
-            upload_credentials = UNSET
-        else:
-            upload_credentials = ProxyCreateSchemaUploadCredentials.from_dict(
-                _upload_credentials
-            )
+        def _parse_storage_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                storage_id_type_0 = UUID(data)
 
-        upload_method = d.pop("upload_method", UNSET)
+                return storage_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        upload_url = d.pop("upload_url", UNSET)
+        storage_id = _parse_storage_id(d.pop("storage_id", UNSET))
 
-        url = d.pop("url", UNSET)
+        def _parse_storage_method(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        storage_method = _parse_storage_method(d.pop("storage_method", UNSET))
+
+        def _parse_upload_credentials(
+            data: object,
+        ) -> None | ProxyCreateSchemaUploadCredentialsType0 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                upload_credentials_type_0 = (
+                    ProxyCreateSchemaUploadCredentialsType0.from_dict(data)
+                )
+
+                return upload_credentials_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | ProxyCreateSchemaUploadCredentialsType0 | Unset, data)
+
+        upload_credentials = _parse_upload_credentials(
+            d.pop("upload_credentials", UNSET)
+        )
+
+        def _parse_upload_method(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        upload_method = _parse_upload_method(d.pop("upload_method", UNSET))
+
+        def _parse_upload_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        upload_url = _parse_upload_url(d.pop("upload_url", UNSET))
+
+        def _parse_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        url = _parse_url(d.pop("url", UNSET))
 
         def _parse_version_id(data: object) -> None | Unset | UUID:
             if data is None:

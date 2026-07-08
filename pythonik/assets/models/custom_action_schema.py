@@ -9,12 +9,16 @@ from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..models.custom_action_schema_context import CustomActionSchemaContext
-from ..models.custom_action_schema_status import CustomActionSchemaStatus
-from ..models.custom_action_schema_type import CustomActionSchemaType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.custom_action_schema_headers import CustomActionSchemaHeaders
+    from ..models.custom_action_schema_headers_type_0 import (
+        CustomActionSchemaHeadersType0,
+    )
+    from ..models.custom_action_schema_status_type_1 import (
+        CustomActionSchemaStatusType1,
+    )
+    from ..models.custom_action_schema_type_type_1 import CustomActionSchemaTypeType1
 
 
 T = TypeVar("T", bound="CustomActionSchema")
@@ -28,41 +32,51 @@ class CustomActionSchema:
         title (str):
         url (str):
         app_id (None | Unset | UUID):
-        date_created (datetime.datetime | Unset):
-        date_modified (datetime.datetime | Unset):
-        disabled (bool | Unset):
-        headers (CustomActionSchemaHeaders | Unset):
-        id (UUID | Unset):
-        last_error (str | Unset):
-        last_error_date (datetime.datetime | Unset):
+        date_created (datetime.datetime | None | Unset):
+        date_modified (datetime.datetime | None | Unset):
+        disabled (bool | None | Unset):
+        headers (CustomActionSchemaHeadersType0 | None | Unset):
+        id (None | Unset | UUID):
+        last_error (None | str | Unset):
+        last_error_date (datetime.datetime | None | Unset):
         metadata_view (None | Unset | UUID):
         publish_template_id (None | str | Unset):
-        status (CustomActionSchemaStatus | Unset):
-        system_domain_id (UUID | Unset):
+        status (CustomActionSchemaStatusType1 | None | Unset):
+        system_domain_id (None | Unset | UUID):
         transcoder_id (None | Unset | UUID):
-        type_ (CustomActionSchemaType | Unset):
+        type_ (CustomActionSchemaTypeType1 | None | Unset):
     """
 
     context: CustomActionSchemaContext
     title: str
     url: str
     app_id: None | Unset | UUID = UNSET
-    date_created: datetime.datetime | Unset = UNSET
-    date_modified: datetime.datetime | Unset = UNSET
-    disabled: bool | Unset = UNSET
-    headers: CustomActionSchemaHeaders | Unset = UNSET
-    id: UUID | Unset = UNSET
-    last_error: str | Unset = UNSET
-    last_error_date: datetime.datetime | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_modified: datetime.datetime | None | Unset = UNSET
+    disabled: bool | None | Unset = UNSET
+    headers: CustomActionSchemaHeadersType0 | None | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    last_error: None | str | Unset = UNSET
+    last_error_date: datetime.datetime | None | Unset = UNSET
     metadata_view: None | Unset | UUID = UNSET
     publish_template_id: None | str | Unset = UNSET
-    status: CustomActionSchemaStatus | Unset = UNSET
-    system_domain_id: UUID | Unset = UNSET
+    status: CustomActionSchemaStatusType1 | None | Unset = UNSET
+    system_domain_id: None | Unset | UUID = UNSET
     transcoder_id: None | Unset | UUID = UNSET
-    type_: CustomActionSchemaType | Unset = UNSET
+    type_: CustomActionSchemaTypeType1 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.custom_action_schema_headers_type_0 import (
+            CustomActionSchemaHeadersType0,
+        )
+        from ..models.custom_action_schema_status_type_1 import (
+            CustomActionSchemaStatusType1,
+        )
+        from ..models.custom_action_schema_type_type_1 import (
+            CustomActionSchemaTypeType1,
+        )
+
         context = self.context.value
 
         title = self.title
@@ -77,29 +91,57 @@ class CustomActionSchema:
         else:
             app_id = self.app_id
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_modified: str | Unset = UNSET
-        if not isinstance(self.date_modified, Unset):
+        date_modified: None | str | Unset
+        if isinstance(self.date_modified, Unset):
+            date_modified = UNSET
+        elif isinstance(self.date_modified, datetime.datetime):
             date_modified = self.date_modified.isoformat()
+        else:
+            date_modified = self.date_modified
 
-        disabled = self.disabled
+        disabled: bool | None | Unset
+        if isinstance(self.disabled, Unset):
+            disabled = UNSET
+        else:
+            disabled = self.disabled
 
-        headers: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.headers, Unset):
+        headers: dict[str, Any] | None | Unset
+        if isinstance(self.headers, Unset):
+            headers = UNSET
+        elif isinstance(self.headers, CustomActionSchemaHeadersType0):
             headers = self.headers.to_dict()
+        else:
+            headers = self.headers
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        last_error = self.last_error
+        last_error: None | str | Unset
+        if isinstance(self.last_error, Unset):
+            last_error = UNSET
+        else:
+            last_error = self.last_error
 
-        last_error_date: str | Unset = UNSET
-        if not isinstance(self.last_error_date, Unset):
+        last_error_date: None | str | Unset
+        if isinstance(self.last_error_date, Unset):
+            last_error_date = UNSET
+        elif isinstance(self.last_error_date, datetime.datetime):
             last_error_date = self.last_error_date.isoformat()
+        else:
+            last_error_date = self.last_error_date
 
         metadata_view: None | str | Unset
         if isinstance(self.metadata_view, Unset):
@@ -115,13 +157,21 @@ class CustomActionSchema:
         else:
             publish_template_id = self.publish_template_id
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        status: dict[str, Any] | None | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        elif isinstance(self.status, CustomActionSchemaStatusType1):
+            status = self.status.to_dict()
+        else:
+            status = self.status
 
-        system_domain_id: str | Unset = UNSET
-        if not isinstance(self.system_domain_id, Unset):
+        system_domain_id: None | str | Unset
+        if isinstance(self.system_domain_id, Unset):
+            system_domain_id = UNSET
+        elif isinstance(self.system_domain_id, UUID):
             system_domain_id = str(self.system_domain_id)
+        else:
+            system_domain_id = self.system_domain_id
 
         transcoder_id: None | str | Unset
         if isinstance(self.transcoder_id, Unset):
@@ -131,9 +181,13 @@ class CustomActionSchema:
         else:
             transcoder_id = self.transcoder_id
 
-        type_: str | Unset = UNSET
-        if not isinstance(self.type_, Unset):
-            type_ = self.type_.value
+        type_: dict[str, Any] | None | Unset
+        if isinstance(self.type_, Unset):
+            type_ = UNSET
+        elif isinstance(self.type_, CustomActionSchemaTypeType1):
+            type_ = self.type_.to_dict()
+        else:
+            type_ = self.type_
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -177,7 +231,15 @@ class CustomActionSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.custom_action_schema_headers import CustomActionSchemaHeaders
+        from ..models.custom_action_schema_headers_type_0 import (
+            CustomActionSchemaHeadersType0,
+        )
+        from ..models.custom_action_schema_status_type_1 import (
+            CustomActionSchemaStatusType1,
+        )
+        from ..models.custom_action_schema_type_type_1 import (
+            CustomActionSchemaTypeType1,
+        )
 
         d = dict(src_dict)
         context = CustomActionSchemaContext(d.pop("context"))
@@ -203,44 +265,110 @@ class CustomActionSchema:
 
         app_id = _parse_app_id(d.pop("app_id", UNSET))
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        _date_modified = d.pop("date_modified", UNSET)
-        date_modified: datetime.datetime | Unset
-        if isinstance(_date_modified, Unset):
-            date_modified = UNSET
-        else:
-            date_modified = datetime.datetime.fromisoformat(_date_modified)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        disabled = d.pop("disabled", UNSET)
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
 
-        _headers = d.pop("headers", UNSET)
-        headers: CustomActionSchemaHeaders | Unset
-        if isinstance(_headers, Unset):
-            headers = UNSET
-        else:
-            headers = CustomActionSchemaHeaders.from_dict(_headers)
+        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_modified_type_0 = datetime.datetime.fromisoformat(data)
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+                return date_modified_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        last_error = d.pop("last_error", UNSET)
+        date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
 
-        _last_error_date = d.pop("last_error_date", UNSET)
-        last_error_date: datetime.datetime | Unset
-        if isinstance(_last_error_date, Unset):
-            last_error_date = UNSET
-        else:
-            last_error_date = datetime.datetime.fromisoformat(_last_error_date)
+        def _parse_disabled(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        disabled = _parse_disabled(d.pop("disabled", UNSET))
+
+        def _parse_headers(
+            data: object,
+        ) -> CustomActionSchemaHeadersType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                headers_type_0 = CustomActionSchemaHeadersType0.from_dict(data)
+
+                return headers_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(CustomActionSchemaHeadersType0 | None | Unset, data)
+
+        headers = _parse_headers(d.pop("headers", UNSET))
+
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_last_error(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        last_error = _parse_last_error(d.pop("last_error", UNSET))
+
+        def _parse_last_error_date(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                last_error_date_type_0 = datetime.datetime.fromisoformat(data)
+
+                return last_error_date_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        last_error_date = _parse_last_error_date(d.pop("last_error_date", UNSET))
 
         def _parse_metadata_view(data: object) -> None | Unset | UUID:
             if data is None:
@@ -270,19 +398,39 @@ class CustomActionSchema:
             d.pop("publish_template_id", UNSET)
         )
 
-        _status = d.pop("status", UNSET)
-        status: CustomActionSchemaStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = CustomActionSchemaStatus(_status)
+        def _parse_status(data: object) -> CustomActionSchemaStatusType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                status_type_1 = CustomActionSchemaStatusType1.from_dict(data)
 
-        _system_domain_id = d.pop("system_domain_id", UNSET)
-        system_domain_id: UUID | Unset
-        if isinstance(_system_domain_id, Unset):
-            system_domain_id = UNSET
-        else:
-            system_domain_id = UUID(_system_domain_id)
+                return status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(CustomActionSchemaStatusType1 | None | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
+
+        def _parse_system_domain_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                system_domain_id_type_0 = UUID(data)
+
+                return system_domain_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
 
         def _parse_transcoder_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -301,12 +449,22 @@ class CustomActionSchema:
 
         transcoder_id = _parse_transcoder_id(d.pop("transcoder_id", UNSET))
 
-        _type_ = d.pop("type", UNSET)
-        type_: CustomActionSchemaType | Unset
-        if isinstance(_type_, Unset):
-            type_ = UNSET
-        else:
-            type_ = CustomActionSchemaType(_type_)
+        def _parse_type_(data: object) -> CustomActionSchemaTypeType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                type_type_1 = CustomActionSchemaTypeType1.from_dict(data)
+
+                return type_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(CustomActionSchemaTypeType1 | None | Unset, data)
+
+        type_ = _parse_type_(d.pop("type", UNSET))
 
         custom_action_schema = cls(
             context=context,

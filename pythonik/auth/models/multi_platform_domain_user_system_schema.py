@@ -1,17 +1,17 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.multi_platform_domain_user_system_schema_mfa_methods_configured_item import (
-    MultiPlatformDomainUserSystemSchemaMfaMethodsConfiguredItem,
+from ..models.multi_platform_domain_user_system_schema_mfa_methods_configured_type_0_item import (
+    MultiPlatformDomainUserSystemSchemaMfaMethodsConfiguredType0Item,
 )
-from ..models.multi_platform_domain_user_system_schema_mfa_methods_item import (
-    MultiPlatformDomainUserSystemSchemaMfaMethodsItem,
+from ..models.multi_platform_domain_user_system_schema_mfa_methods_type_0_item import (
+    MultiPlatformDomainUserSystemSchemaMfaMethodsType0Item,
 )
 from ..types import UNSET, Unset
 
@@ -24,28 +24,32 @@ class MultiPlatformDomainUserSystemSchema:
     Attributes:
         system_domain_id (UUID):
         token (str):
-        logo_url (str | Unset):
-        mfa_methods (list[MultiPlatformDomainUserSystemSchemaMfaMethodsItem] | Unset):
-        mfa_methods_configured (list[MultiPlatformDomainUserSystemSchemaMfaMethodsConfiguredItem] | Unset):
-        mfa_required (bool | Unset):
-        mfa_required_configured (bool | Unset):
-        platform_url (str | Unset):
-        system_domain_name (str | Unset):
-        url (str | Unset):
+        logo_url (None | str | Unset):
+        mfa_methods (list[MultiPlatformDomainUserSystemSchemaMfaMethodsType0Item] | None | Unset):
+        mfa_methods_configured (list[MultiPlatformDomainUserSystemSchemaMfaMethodsConfiguredType0Item] | None | Unset):
+        mfa_required (bool | None | Unset):
+        mfa_required_configured (bool | None | Unset):
+        platform_url (None | str | Unset):
+        system_domain_name (None | str | Unset):
+        url (None | str | Unset):
     """
 
     system_domain_id: UUID
     token: str
-    logo_url: str | Unset = UNSET
-    mfa_methods: list[MultiPlatformDomainUserSystemSchemaMfaMethodsItem] | Unset = UNSET
-    mfa_methods_configured: (
-        list[MultiPlatformDomainUserSystemSchemaMfaMethodsConfiguredItem] | Unset
+    logo_url: None | str | Unset = UNSET
+    mfa_methods: (
+        list[MultiPlatformDomainUserSystemSchemaMfaMethodsType0Item] | None | Unset
     ) = UNSET
-    mfa_required: bool | Unset = UNSET
-    mfa_required_configured: bool | Unset = UNSET
-    platform_url: str | Unset = UNSET
-    system_domain_name: str | Unset = UNSET
-    url: str | Unset = UNSET
+    mfa_methods_configured: (
+        list[MultiPlatformDomainUserSystemSchemaMfaMethodsConfiguredType0Item]
+        | None
+        | Unset
+    ) = UNSET
+    mfa_required: bool | None | Unset = UNSET
+    mfa_required_configured: bool | None | Unset = UNSET
+    platform_url: None | str | Unset = UNSET
+    system_domain_name: None | str | Unset = UNSET
+    url: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -53,31 +57,67 @@ class MultiPlatformDomainUserSystemSchema:
 
         token = self.token
 
-        logo_url = self.logo_url
+        logo_url: None | str | Unset
+        if isinstance(self.logo_url, Unset):
+            logo_url = UNSET
+        else:
+            logo_url = self.logo_url
 
-        mfa_methods: list[str] | Unset = UNSET
-        if not isinstance(self.mfa_methods, Unset):
+        mfa_methods: list[str] | None | Unset
+        if isinstance(self.mfa_methods, Unset):
+            mfa_methods = UNSET
+        elif isinstance(self.mfa_methods, list):
             mfa_methods = []
-            for mfa_methods_item_data in self.mfa_methods:
-                mfa_methods_item = mfa_methods_item_data.value
-                mfa_methods.append(mfa_methods_item)
+            for mfa_methods_type_0_item_data in self.mfa_methods:
+                mfa_methods_type_0_item = mfa_methods_type_0_item_data.value
+                mfa_methods.append(mfa_methods_type_0_item)
 
-        mfa_methods_configured: list[str] | Unset = UNSET
-        if not isinstance(self.mfa_methods_configured, Unset):
+        else:
+            mfa_methods = self.mfa_methods
+
+        mfa_methods_configured: list[str] | None | Unset
+        if isinstance(self.mfa_methods_configured, Unset):
+            mfa_methods_configured = UNSET
+        elif isinstance(self.mfa_methods_configured, list):
             mfa_methods_configured = []
-            for mfa_methods_configured_item_data in self.mfa_methods_configured:
-                mfa_methods_configured_item = mfa_methods_configured_item_data.value
-                mfa_methods_configured.append(mfa_methods_configured_item)
+            for mfa_methods_configured_type_0_item_data in self.mfa_methods_configured:
+                mfa_methods_configured_type_0_item = (
+                    mfa_methods_configured_type_0_item_data.value
+                )
+                mfa_methods_configured.append(mfa_methods_configured_type_0_item)
 
-        mfa_required = self.mfa_required
+        else:
+            mfa_methods_configured = self.mfa_methods_configured
 
-        mfa_required_configured = self.mfa_required_configured
+        mfa_required: bool | None | Unset
+        if isinstance(self.mfa_required, Unset):
+            mfa_required = UNSET
+        else:
+            mfa_required = self.mfa_required
 
-        platform_url = self.platform_url
+        mfa_required_configured: bool | None | Unset
+        if isinstance(self.mfa_required_configured, Unset):
+            mfa_required_configured = UNSET
+        else:
+            mfa_required_configured = self.mfa_required_configured
 
-        system_domain_name = self.system_domain_name
+        platform_url: None | str | Unset
+        if isinstance(self.platform_url, Unset):
+            platform_url = UNSET
+        else:
+            platform_url = self.platform_url
 
-        url = self.url
+        system_domain_name: None | str | Unset
+        if isinstance(self.system_domain_name, Unset):
+            system_domain_name = UNSET
+        else:
+            system_domain_name = self.system_domain_name
+
+        url: None | str | Unset
+        if isinstance(self.url, Unset):
+            url = UNSET
+        else:
+            url = self.url
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -113,45 +153,139 @@ class MultiPlatformDomainUserSystemSchema:
 
         token = d.pop("token")
 
-        logo_url = d.pop("logo_url", UNSET)
+        def _parse_logo_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        _mfa_methods = d.pop("mfa_methods", UNSET)
-        mfa_methods: list[MultiPlatformDomainUserSystemSchemaMfaMethodsItem] | Unset = (
-            UNSET
-        )
-        if _mfa_methods is not UNSET:
-            mfa_methods = []
-            for mfa_methods_item_data in _mfa_methods:
-                mfa_methods_item = MultiPlatformDomainUserSystemSchemaMfaMethodsItem(
-                    mfa_methods_item_data
-                )
+        logo_url = _parse_logo_url(d.pop("logo_url", UNSET))
 
-                mfa_methods.append(mfa_methods_item)
-
-        _mfa_methods_configured = d.pop("mfa_methods_configured", UNSET)
-        mfa_methods_configured: (
-            list[MultiPlatformDomainUserSystemSchemaMfaMethodsConfiguredItem] | Unset
-        ) = UNSET
-        if _mfa_methods_configured is not UNSET:
-            mfa_methods_configured = []
-            for mfa_methods_configured_item_data in _mfa_methods_configured:
-                mfa_methods_configured_item = (
-                    MultiPlatformDomainUserSystemSchemaMfaMethodsConfiguredItem(
-                        mfa_methods_configured_item_data
+        def _parse_mfa_methods(
+            data: object,
+        ) -> (
+            list[MultiPlatformDomainUserSystemSchemaMfaMethodsType0Item] | None | Unset
+        ):
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                mfa_methods_type_0 = []
+                _mfa_methods_type_0 = data
+                for mfa_methods_type_0_item_data in _mfa_methods_type_0:
+                    mfa_methods_type_0_item = (
+                        MultiPlatformDomainUserSystemSchemaMfaMethodsType0Item(
+                            mfa_methods_type_0_item_data
+                        )
                     )
-                )
 
-                mfa_methods_configured.append(mfa_methods_configured_item)
+                    mfa_methods_type_0.append(mfa_methods_type_0_item)
 
-        mfa_required = d.pop("mfa_required", UNSET)
+                return mfa_methods_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(
+                list[MultiPlatformDomainUserSystemSchemaMfaMethodsType0Item]
+                | None
+                | Unset,
+                data,
+            )
 
-        mfa_required_configured = d.pop("mfa_required_configured", UNSET)
+        mfa_methods = _parse_mfa_methods(d.pop("mfa_methods", UNSET))
 
-        platform_url = d.pop("platform_url", UNSET)
+        def _parse_mfa_methods_configured(
+            data: object,
+        ) -> (
+            list[MultiPlatformDomainUserSystemSchemaMfaMethodsConfiguredType0Item]
+            | None
+            | Unset
+        ):
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                mfa_methods_configured_type_0 = []
+                _mfa_methods_configured_type_0 = data
+                for (
+                    mfa_methods_configured_type_0_item_data
+                ) in _mfa_methods_configured_type_0:
+                    mfa_methods_configured_type_0_item = MultiPlatformDomainUserSystemSchemaMfaMethodsConfiguredType0Item(
+                        mfa_methods_configured_type_0_item_data
+                    )
 
-        system_domain_name = d.pop("system_domain_name", UNSET)
+                    mfa_methods_configured_type_0.append(
+                        mfa_methods_configured_type_0_item
+                    )
 
-        url = d.pop("url", UNSET)
+                return mfa_methods_configured_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(
+                list[MultiPlatformDomainUserSystemSchemaMfaMethodsConfiguredType0Item]
+                | None
+                | Unset,
+                data,
+            )
+
+        mfa_methods_configured = _parse_mfa_methods_configured(
+            d.pop("mfa_methods_configured", UNSET)
+        )
+
+        def _parse_mfa_required(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        mfa_required = _parse_mfa_required(d.pop("mfa_required", UNSET))
+
+        def _parse_mfa_required_configured(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        mfa_required_configured = _parse_mfa_required_configured(
+            d.pop("mfa_required_configured", UNSET)
+        )
+
+        def _parse_platform_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        platform_url = _parse_platform_url(d.pop("platform_url", UNSET))
+
+        def _parse_system_domain_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        system_domain_name = _parse_system_domain_name(
+            d.pop("system_domain_name", UNSET)
+        )
+
+        def _parse_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        url = _parse_url(d.pop("url", UNSET))
 
         multi_platform_domain_user_system_schema = cls(
             system_domain_id=system_domain_id,

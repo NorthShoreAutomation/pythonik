@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,12 +17,12 @@ class AnalysisGoogleAISettingsSchema:
     Attributes:
         bucket_name (str):
         json_key (str):
-        is_system (bool | Unset):
+        is_system (bool | None | Unset):
     """
 
     bucket_name: str
     json_key: str
-    is_system: bool | Unset = UNSET
+    is_system: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -30,7 +30,11 @@ class AnalysisGoogleAISettingsSchema:
 
         json_key = self.json_key
 
-        is_system = self.is_system
+        is_system: bool | None | Unset
+        if isinstance(self.is_system, Unset):
+            is_system = UNSET
+        else:
+            is_system = self.is_system
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -52,7 +56,14 @@ class AnalysisGoogleAISettingsSchema:
 
         json_key = d.pop("json_key")
 
-        is_system = d.pop("is_system", UNSET)
+        def _parse_is_system(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        is_system = _parse_is_system(d.pop("is_system", UNSET))
 
         analysis_google_ai_settings_schema = cls(
             bucket_name=bucket_name,

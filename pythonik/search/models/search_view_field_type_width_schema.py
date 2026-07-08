@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,30 +15,50 @@ T = TypeVar("T", bound="SearchViewFieldTypeWidthSchema")
 class SearchViewFieldTypeWidthSchema:
     """
     Attributes:
-        auto_resize (bool | Unset):
-        current (int | Unset):
-        fixed (int | Unset):
-        max_ (int | Unset):
-        min_ (int | Unset):
+        auto_resize (bool | None | Unset):
+        current (int | None | Unset):
+        fixed (int | None | Unset):
+        max_ (int | None | Unset):
+        min_ (int | None | Unset):
     """
 
-    auto_resize: bool | Unset = UNSET
-    current: int | Unset = UNSET
-    fixed: int | Unset = UNSET
-    max_: int | Unset = UNSET
-    min_: int | Unset = UNSET
+    auto_resize: bool | None | Unset = UNSET
+    current: int | None | Unset = UNSET
+    fixed: int | None | Unset = UNSET
+    max_: int | None | Unset = UNSET
+    min_: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        auto_resize = self.auto_resize
+        auto_resize: bool | None | Unset
+        if isinstance(self.auto_resize, Unset):
+            auto_resize = UNSET
+        else:
+            auto_resize = self.auto_resize
 
-        current = self.current
+        current: int | None | Unset
+        if isinstance(self.current, Unset):
+            current = UNSET
+        else:
+            current = self.current
 
-        fixed = self.fixed
+        fixed: int | None | Unset
+        if isinstance(self.fixed, Unset):
+            fixed = UNSET
+        else:
+            fixed = self.fixed
 
-        max_ = self.max_
+        max_: int | None | Unset
+        if isinstance(self.max_, Unset):
+            max_ = UNSET
+        else:
+            max_ = self.max_
 
-        min_ = self.min_
+        min_: int | None | Unset
+        if isinstance(self.min_, Unset):
+            min_ = UNSET
+        else:
+            min_ = self.min_
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -59,15 +79,51 @@ class SearchViewFieldTypeWidthSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        auto_resize = d.pop("auto_resize", UNSET)
 
-        current = d.pop("current", UNSET)
+        def _parse_auto_resize(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        fixed = d.pop("fixed", UNSET)
+        auto_resize = _parse_auto_resize(d.pop("auto_resize", UNSET))
 
-        max_ = d.pop("max", UNSET)
+        def _parse_current(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        min_ = d.pop("min", UNSET)
+        current = _parse_current(d.pop("current", UNSET))
+
+        def _parse_fixed(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        fixed = _parse_fixed(d.pop("fixed", UNSET))
+
+        def _parse_max_(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        max_ = _parse_max_(d.pop("max", UNSET))
+
+        def _parse_min_(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        min_ = _parse_min_(d.pop("min", UNSET))
 
         search_view_field_type_width_schema = cls(
             auto_resize=auto_resize,

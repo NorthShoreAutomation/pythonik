@@ -17,34 +17,38 @@ class RestoreCollectionToStorageRequestSchema:
     """
     Attributes:
         id (UUID): ID of the object to transfer.
-        all_versions (bool | Unset):  Default: False.
+        all_versions (bool | None | Unset):  Default: False.
         destination_directory_path (None | str | Unset):
-        formats (list[str] | Unset): List of format names to transfer. If not specified, all formats will be
+        formats (list[str] | None | Unset): List of format names to transfer. If not specified, all formats will be
             transferred.
-        keep_collection_structure (bool | Unset): Whether to keep the collection structure when transferring
+        keep_collection_structure (bool | None | Unset): Whether to keep the collection structure when transferring
             collections. Default: False.
-        keep_parent_collection_structure (bool | Unset): Whether to keep the parent collection structure when
+        keep_parent_collection_structure (bool | None | Unset): Whether to keep the parent collection structure when
             transferring collections. Default: False.
         preferred_original_storage_id (None | Unset | UUID):
         restore_priority (Any | Unset): The restore tier to use when retrieving from cold storage one of LOW, MID, HIGH.
-        version_ids (list[UUID] | Unset): List of version IDs to transfer.
+        version_ids (list[UUID] | None | Unset): List of version IDs to transfer.
     """
 
     id: UUID
-    all_versions: bool | Unset = False
+    all_versions: bool | None | Unset = False
     destination_directory_path: None | str | Unset = UNSET
-    formats: list[str] | Unset = UNSET
-    keep_collection_structure: bool | Unset = False
-    keep_parent_collection_structure: bool | Unset = False
+    formats: list[str] | None | Unset = UNSET
+    keep_collection_structure: bool | None | Unset = False
+    keep_parent_collection_structure: bool | None | Unset = False
     preferred_original_storage_id: None | Unset | UUID = UNSET
     restore_priority: Any | Unset = UNSET
-    version_ids: list[UUID] | Unset = UNSET
+    version_ids: list[UUID] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         id = str(self.id)
 
-        all_versions = self.all_versions
+        all_versions: bool | None | Unset
+        if isinstance(self.all_versions, Unset):
+            all_versions = UNSET
+        else:
+            all_versions = self.all_versions
 
         destination_directory_path: None | str | Unset
         if isinstance(self.destination_directory_path, Unset):
@@ -52,13 +56,26 @@ class RestoreCollectionToStorageRequestSchema:
         else:
             destination_directory_path = self.destination_directory_path
 
-        formats: list[str] | Unset = UNSET
-        if not isinstance(self.formats, Unset):
+        formats: list[str] | None | Unset
+        if isinstance(self.formats, Unset):
+            formats = UNSET
+        elif isinstance(self.formats, list):
             formats = self.formats
 
-        keep_collection_structure = self.keep_collection_structure
+        else:
+            formats = self.formats
 
-        keep_parent_collection_structure = self.keep_parent_collection_structure
+        keep_collection_structure: bool | None | Unset
+        if isinstance(self.keep_collection_structure, Unset):
+            keep_collection_structure = UNSET
+        else:
+            keep_collection_structure = self.keep_collection_structure
+
+        keep_parent_collection_structure: bool | None | Unset
+        if isinstance(self.keep_parent_collection_structure, Unset):
+            keep_parent_collection_structure = UNSET
+        else:
+            keep_parent_collection_structure = self.keep_parent_collection_structure
 
         preferred_original_storage_id: None | str | Unset
         if isinstance(self.preferred_original_storage_id, Unset):
@@ -70,12 +87,17 @@ class RestoreCollectionToStorageRequestSchema:
 
         restore_priority = self.restore_priority
 
-        version_ids: list[str] | Unset = UNSET
-        if not isinstance(self.version_ids, Unset):
+        version_ids: list[str] | None | Unset
+        if isinstance(self.version_ids, Unset):
+            version_ids = UNSET
+        elif isinstance(self.version_ids, list):
             version_ids = []
-            for version_ids_item_data in self.version_ids:
-                version_ids_item = str(version_ids_item_data)
-                version_ids.append(version_ids_item)
+            for version_ids_type_0_item_data in self.version_ids:
+                version_ids_type_0_item = str(version_ids_type_0_item_data)
+                version_ids.append(version_ids_type_0_item)
+
+        else:
+            version_ids = self.version_ids
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -110,7 +132,14 @@ class RestoreCollectionToStorageRequestSchema:
         d = dict(src_dict)
         id = UUID(d.pop("id"))
 
-        all_versions = d.pop("all_versions", UNSET)
+        def _parse_all_versions(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        all_versions = _parse_all_versions(d.pop("all_versions", UNSET))
 
         def _parse_destination_directory_path(data: object) -> None | str | Unset:
             if data is None:
@@ -123,12 +152,45 @@ class RestoreCollectionToStorageRequestSchema:
             d.pop("destination_directory_path", UNSET)
         )
 
-        formats = cast(list[str], d.pop("formats", UNSET))
+        def _parse_formats(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                formats_type_0 = cast(list[str], data)
 
-        keep_collection_structure = d.pop("keep_collection_structure", UNSET)
+                return formats_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
 
-        keep_parent_collection_structure = d.pop(
-            "keep_parent_collection_structure", UNSET
+        formats = _parse_formats(d.pop("formats", UNSET))
+
+        def _parse_keep_collection_structure(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        keep_collection_structure = _parse_keep_collection_structure(
+            d.pop("keep_collection_structure", UNSET)
+        )
+
+        def _parse_keep_parent_collection_structure(
+            data: object,
+        ) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        keep_parent_collection_structure = _parse_keep_parent_collection_structure(
+            d.pop("keep_parent_collection_structure", UNSET)
         )
 
         def _parse_preferred_original_storage_id(data: object) -> None | Unset | UUID:
@@ -152,14 +214,27 @@ class RestoreCollectionToStorageRequestSchema:
 
         restore_priority = d.pop("restore_priority", UNSET)
 
-        _version_ids = d.pop("version_ids", UNSET)
-        version_ids: list[UUID] | Unset = UNSET
-        if _version_ids is not UNSET:
-            version_ids = []
-            for version_ids_item_data in _version_ids:
-                version_ids_item = UUID(version_ids_item_data)
+        def _parse_version_ids(data: object) -> list[UUID] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                version_ids_type_0 = []
+                _version_ids_type_0 = data
+                for version_ids_type_0_item_data in _version_ids_type_0:
+                    version_ids_type_0_item = UUID(version_ids_type_0_item_data)
 
-                version_ids.append(version_ids_item)
+                    version_ids_type_0.append(version_ids_type_0_item)
+
+                return version_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[UUID] | None | Unset, data)
+
+        version_ids = _parse_version_ids(d.pop("version_ids", UNSET))
 
         restore_collection_to_storage_request_schema = cls(
             id=id,

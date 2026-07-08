@@ -17,7 +17,7 @@ class AnalysisRevAISettingsSchema:
     Attributes:
         access_token (str):
         custom_vocabulary (list[str] | None | Unset):
-        is_system (bool | Unset):
+        is_system (bool | None | Unset):
         metadata_view_id (None | str | Unset): View in which to save topic extraction time-based metadata
         summary_metadata_field (None | str | Unset): If a transcription summary is requested, save it to this metadata
             field
@@ -27,7 +27,7 @@ class AnalysisRevAISettingsSchema:
 
     access_token: str
     custom_vocabulary: list[str] | None | Unset = UNSET
-    is_system: bool | Unset = UNSET
+    is_system: bool | None | Unset = UNSET
     metadata_view_id: None | str | Unset = UNSET
     summary_metadata_field: None | str | Unset = UNSET
     topics_metadata_field: None | str | Unset = UNSET
@@ -45,7 +45,11 @@ class AnalysisRevAISettingsSchema:
         else:
             custom_vocabulary = self.custom_vocabulary
 
-        is_system = self.is_system
+        is_system: bool | None | Unset
+        if isinstance(self.is_system, Unset):
+            is_system = UNSET
+        else:
+            is_system = self.is_system
 
         metadata_view_id: None | str | Unset
         if isinstance(self.metadata_view_id, Unset):
@@ -107,7 +111,14 @@ class AnalysisRevAISettingsSchema:
 
         custom_vocabulary = _parse_custom_vocabulary(d.pop("custom_vocabulary", UNSET))
 
-        is_system = d.pop("is_system", UNSET)
+        def _parse_is_system(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        is_system = _parse_is_system(d.pop("is_system", UNSET))
 
         def _parse_metadata_view_id(data: object) -> None | str | Unset:
             if data is None:

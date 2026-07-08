@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,14 +15,18 @@ T = TypeVar("T", bound="PostUsersInviteTokenRequestResponse200")
 class PostUsersInviteTokenRequestResponse200:
     """
     Attributes:
-        invite_link (str | Unset): The generated invite link
+        invite_link (None | str | Unset): The generated invite link
     """
 
-    invite_link: str | Unset = UNSET
+    invite_link: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        invite_link = self.invite_link
+        invite_link: None | str | Unset
+        if isinstance(self.invite_link, Unset):
+            invite_link = UNSET
+        else:
+            invite_link = self.invite_link
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -35,7 +39,15 @@ class PostUsersInviteTokenRequestResponse200:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        invite_link = d.pop("invite_link", UNSET)
+
+        def _parse_invite_link(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        invite_link = _parse_invite_link(d.pop("invite_link", UNSET))
 
         post_users_invite_token_request_response_200 = cls(
             invite_link=invite_link,

@@ -26,10 +26,10 @@ class UserSettingSchema:
     """
     Attributes:
         acl_template_id (None | Unset | UUID):
-        allowed_ips (list[AllowedIPSchema] | Unset):
+        allowed_ips (list[AllowedIPSchema] | None | Unset):
         append_asset_uuid_to_downloads (bool | None | Unset):
-        asset_default_sections (list[str] | Unset):
-        client_ip (str | Unset):
+        asset_default_sections (list[str] | None | Unset):
+        client_ip (None | str | Unset):
         collections_get_parent_acls (bool | None | Unset):
         dashboard (DashboardSchema | None | Unset):
         date_format (None | str | Unset):
@@ -37,15 +37,15 @@ class UserSettingSchema:
         default_upload_storage_id (None | Unset | UUID):
         delete_grace_period (int | None | Unset): Grace period that indicate how long objects will live in recycle bin.
             Unit: hours
-        facet_fields (list[FacetFieldSchema] | Unset):
+        facet_fields (list[FacetFieldSchema] | None | Unset):
         filters_default_metadata_view_id (None | Unset | UUID):
         genesis (None | str | Unset):
         hide_favourites (bool | None | Unset):
         home_page (None | str | Unset):
         jobs_dashboard (JobsDashboardSchema | None | Unset):
         search_auto_resize_title_column (bool | None | Unset):
-        search_default_sections (list[str] | Unset):
-        search_display_fields (list[SearchDisplayFieldSchema] | Unset):
+        search_default_sections (list[str] | None | Unset):
+        search_display_fields (list[SearchDisplayFieldSchema] | None | Unset):
         search_in_transcriptions (bool | None | Unset):
         search_results_asset_metadata_view_id (None | Unset | UUID):
         search_results_collection_metadata_view_id (None | Unset | UUID):
@@ -58,25 +58,25 @@ class UserSettingSchema:
     """
 
     acl_template_id: None | Unset | UUID = UNSET
-    allowed_ips: list[AllowedIPSchema] | Unset = UNSET
+    allowed_ips: list[AllowedIPSchema] | None | Unset = UNSET
     append_asset_uuid_to_downloads: bool | None | Unset = UNSET
-    asset_default_sections: list[str] | Unset = UNSET
-    client_ip: str | Unset = UNSET
+    asset_default_sections: list[str] | None | Unset = UNSET
+    client_ip: None | str | Unset = UNSET
     collections_get_parent_acls: bool | None | Unset = UNSET
     dashboard: DashboardSchema | None | Unset = UNSET
     date_format: None | str | Unset = UNSET
     datetime_format: None | str | Unset = UNSET
     default_upload_storage_id: None | Unset | UUID = UNSET
     delete_grace_period: int | None | Unset = UNSET
-    facet_fields: list[FacetFieldSchema] | Unset = UNSET
+    facet_fields: list[FacetFieldSchema] | None | Unset = UNSET
     filters_default_metadata_view_id: None | Unset | UUID = UNSET
     genesis: None | str | Unset = UNSET
     hide_favourites: bool | None | Unset = UNSET
     home_page: None | str | Unset = UNSET
     jobs_dashboard: JobsDashboardSchema | None | Unset = UNSET
     search_auto_resize_title_column: bool | None | Unset = UNSET
-    search_default_sections: list[str] | Unset = UNSET
-    search_display_fields: list[SearchDisplayFieldSchema] | Unset = UNSET
+    search_default_sections: list[str] | None | Unset = UNSET
+    search_display_fields: list[SearchDisplayFieldSchema] | None | Unset = UNSET
     search_in_transcriptions: bool | None | Unset = UNSET
     search_results_asset_metadata_view_id: None | Unset | UUID = UNSET
     search_results_collection_metadata_view_id: None | Unset | UUID = UNSET
@@ -100,12 +100,17 @@ class UserSettingSchema:
         else:
             acl_template_id = self.acl_template_id
 
-        allowed_ips: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.allowed_ips, Unset):
+        allowed_ips: list[dict[str, Any]] | None | Unset
+        if isinstance(self.allowed_ips, Unset):
+            allowed_ips = UNSET
+        elif isinstance(self.allowed_ips, list):
             allowed_ips = []
-            for allowed_ips_item_data in self.allowed_ips:
-                allowed_ips_item = allowed_ips_item_data.to_dict()
-                allowed_ips.append(allowed_ips_item)
+            for allowed_ips_type_0_item_data in self.allowed_ips:
+                allowed_ips_type_0_item = allowed_ips_type_0_item_data.to_dict()
+                allowed_ips.append(allowed_ips_type_0_item)
+
+        else:
+            allowed_ips = self.allowed_ips
 
         append_asset_uuid_to_downloads: bool | None | Unset
         if isinstance(self.append_asset_uuid_to_downloads, Unset):
@@ -113,11 +118,20 @@ class UserSettingSchema:
         else:
             append_asset_uuid_to_downloads = self.append_asset_uuid_to_downloads
 
-        asset_default_sections: list[str] | Unset = UNSET
-        if not isinstance(self.asset_default_sections, Unset):
+        asset_default_sections: list[str] | None | Unset
+        if isinstance(self.asset_default_sections, Unset):
+            asset_default_sections = UNSET
+        elif isinstance(self.asset_default_sections, list):
             asset_default_sections = self.asset_default_sections
 
-        client_ip = self.client_ip
+        else:
+            asset_default_sections = self.asset_default_sections
+
+        client_ip: None | str | Unset
+        if isinstance(self.client_ip, Unset):
+            client_ip = UNSET
+        else:
+            client_ip = self.client_ip
 
         collections_get_parent_acls: bool | None | Unset
         if isinstance(self.collections_get_parent_acls, Unset):
@@ -159,12 +173,17 @@ class UserSettingSchema:
         else:
             delete_grace_period = self.delete_grace_period
 
-        facet_fields: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.facet_fields, Unset):
+        facet_fields: list[dict[str, Any]] | None | Unset
+        if isinstance(self.facet_fields, Unset):
+            facet_fields = UNSET
+        elif isinstance(self.facet_fields, list):
             facet_fields = []
-            for facet_fields_item_data in self.facet_fields:
-                facet_fields_item = facet_fields_item_data.to_dict()
-                facet_fields.append(facet_fields_item)
+            for facet_fields_type_0_item_data in self.facet_fields:
+                facet_fields_type_0_item = facet_fields_type_0_item_data.to_dict()
+                facet_fields.append(facet_fields_type_0_item)
+
+        else:
+            facet_fields = self.facet_fields
 
         filters_default_metadata_view_id: None | str | Unset
         if isinstance(self.filters_default_metadata_view_id, Unset):
@@ -208,16 +227,28 @@ class UserSettingSchema:
         else:
             search_auto_resize_title_column = self.search_auto_resize_title_column
 
-        search_default_sections: list[str] | Unset = UNSET
-        if not isinstance(self.search_default_sections, Unset):
+        search_default_sections: list[str] | None | Unset
+        if isinstance(self.search_default_sections, Unset):
+            search_default_sections = UNSET
+        elif isinstance(self.search_default_sections, list):
             search_default_sections = self.search_default_sections
 
-        search_display_fields: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.search_display_fields, Unset):
+        else:
+            search_default_sections = self.search_default_sections
+
+        search_display_fields: list[dict[str, Any]] | None | Unset
+        if isinstance(self.search_display_fields, Unset):
+            search_display_fields = UNSET
+        elif isinstance(self.search_display_fields, list):
             search_display_fields = []
-            for search_display_fields_item_data in self.search_display_fields:
-                search_display_fields_item = search_display_fields_item_data.to_dict()
-                search_display_fields.append(search_display_fields_item)
+            for search_display_fields_type_0_item_data in self.search_display_fields:
+                search_display_fields_type_0_item = (
+                    search_display_fields_type_0_item_data.to_dict()
+                )
+                search_display_fields.append(search_display_fields_type_0_item)
+
+        else:
+            search_display_fields = self.search_display_fields
 
         search_in_transcriptions: bool | None | Unset
         if isinstance(self.search_in_transcriptions, Unset):
@@ -385,14 +416,29 @@ class UserSettingSchema:
 
         acl_template_id = _parse_acl_template_id(d.pop("acl_template_id", UNSET))
 
-        _allowed_ips = d.pop("allowed_ips", UNSET)
-        allowed_ips: list[AllowedIPSchema] | Unset = UNSET
-        if _allowed_ips is not UNSET:
-            allowed_ips = []
-            for allowed_ips_item_data in _allowed_ips:
-                allowed_ips_item = AllowedIPSchema.from_dict(allowed_ips_item_data)
+        def _parse_allowed_ips(data: object) -> list[AllowedIPSchema] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                allowed_ips_type_0 = []
+                _allowed_ips_type_0 = data
+                for allowed_ips_type_0_item_data in _allowed_ips_type_0:
+                    allowed_ips_type_0_item = AllowedIPSchema.from_dict(
+                        allowed_ips_type_0_item_data
+                    )
 
-                allowed_ips.append(allowed_ips_item)
+                    allowed_ips_type_0.append(allowed_ips_type_0_item)
+
+                return allowed_ips_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[AllowedIPSchema] | None | Unset, data)
+
+        allowed_ips = _parse_allowed_ips(d.pop("allowed_ips", UNSET))
 
         def _parse_append_asset_uuid_to_downloads(data: object) -> bool | None | Unset:
             if data is None:
@@ -405,9 +451,33 @@ class UserSettingSchema:
             d.pop("append_asset_uuid_to_downloads", UNSET)
         )
 
-        asset_default_sections = cast(list[str], d.pop("asset_default_sections", UNSET))
+        def _parse_asset_default_sections(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                asset_default_sections_type_0 = cast(list[str], data)
 
-        client_ip = d.pop("client_ip", UNSET)
+                return asset_default_sections_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        asset_default_sections = _parse_asset_default_sections(
+            d.pop("asset_default_sections", UNSET)
+        )
+
+        def _parse_client_ip(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        client_ip = _parse_client_ip(d.pop("client_ip", UNSET))
 
         def _parse_collections_get_parent_acls(data: object) -> bool | None | Unset:
             if data is None:
@@ -485,14 +555,29 @@ class UserSettingSchema:
             d.pop("delete_grace_period", UNSET)
         )
 
-        _facet_fields = d.pop("facet_fields", UNSET)
-        facet_fields: list[FacetFieldSchema] | Unset = UNSET
-        if _facet_fields is not UNSET:
-            facet_fields = []
-            for facet_fields_item_data in _facet_fields:
-                facet_fields_item = FacetFieldSchema.from_dict(facet_fields_item_data)
+        def _parse_facet_fields(data: object) -> list[FacetFieldSchema] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                facet_fields_type_0 = []
+                _facet_fields_type_0 = data
+                for facet_fields_type_0_item_data in _facet_fields_type_0:
+                    facet_fields_type_0_item = FacetFieldSchema.from_dict(
+                        facet_fields_type_0_item_data
+                    )
 
-                facet_fields.append(facet_fields_item)
+                    facet_fields_type_0.append(facet_fields_type_0_item)
+
+                return facet_fields_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[FacetFieldSchema] | None | Unset, data)
+
+        facet_fields = _parse_facet_fields(d.pop("facet_fields", UNSET))
 
         def _parse_filters_default_metadata_view_id(
             data: object,
@@ -570,20 +655,58 @@ class UserSettingSchema:
             d.pop("search_auto_resize_title_column", UNSET)
         )
 
-        search_default_sections = cast(
-            list[str], d.pop("search_default_sections", UNSET)
+        def _parse_search_default_sections(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                search_default_sections_type_0 = cast(list[str], data)
+
+                return search_default_sections_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        search_default_sections = _parse_search_default_sections(
+            d.pop("search_default_sections", UNSET)
         )
 
-        _search_display_fields = d.pop("search_display_fields", UNSET)
-        search_display_fields: list[SearchDisplayFieldSchema] | Unset = UNSET
-        if _search_display_fields is not UNSET:
-            search_display_fields = []
-            for search_display_fields_item_data in _search_display_fields:
-                search_display_fields_item = SearchDisplayFieldSchema.from_dict(
-                    search_display_fields_item_data
-                )
+        def _parse_search_display_fields(
+            data: object,
+        ) -> list[SearchDisplayFieldSchema] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                search_display_fields_type_0 = []
+                _search_display_fields_type_0 = data
+                for (
+                    search_display_fields_type_0_item_data
+                ) in _search_display_fields_type_0:
+                    search_display_fields_type_0_item = (
+                        SearchDisplayFieldSchema.from_dict(
+                            search_display_fields_type_0_item_data
+                        )
+                    )
 
-                search_display_fields.append(search_display_fields_item)
+                    search_display_fields_type_0.append(
+                        search_display_fields_type_0_item
+                    )
+
+                return search_display_fields_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[SearchDisplayFieldSchema] | None | Unset, data)
+
+        search_display_fields = _parse_search_display_fields(
+            d.pop("search_display_fields", UNSET)
+        )
 
         def _parse_search_in_transcriptions(data: object) -> bool | None | Unset:
             if data is None:

@@ -1,13 +1,16 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.sort_order import SortOrder
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.sort_order_type_1 import SortOrderType1
+
 
 T = TypeVar("T", bound="Sort")
 
@@ -17,19 +20,25 @@ class Sort:
     """
     Attributes:
         name (str):
-        order (SortOrder | Unset):
+        order (None | SortOrderType1 | Unset):
     """
 
     name: str
-    order: SortOrder | Unset = UNSET
+    order: None | SortOrderType1 | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.sort_order_type_1 import SortOrderType1
+
         name = self.name
 
-        order: str | Unset = UNSET
-        if not isinstance(self.order, Unset):
-            order = self.order.value
+        order: dict[str, Any] | None | Unset
+        if isinstance(self.order, Unset):
+            order = UNSET
+        elif isinstance(self.order, SortOrderType1):
+            order = self.order.to_dict()
+        else:
+            order = self.order
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -45,15 +54,27 @@ class Sort:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.sort_order_type_1 import SortOrderType1
+
         d = dict(src_dict)
         name = d.pop("name")
 
-        _order = d.pop("order", UNSET)
-        order: SortOrder | Unset
-        if isinstance(_order, Unset):
-            order = UNSET
-        else:
-            order = SortOrder(_order)
+        def _parse_order(data: object) -> None | SortOrderType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                order_type_1 = SortOrderType1.from_dict(data)
+
+                return order_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | SortOrderType1 | Unset, data)
+
+        order = _parse_order(d.pop("order", UNSET))
 
         sort = cls(
             name=name,

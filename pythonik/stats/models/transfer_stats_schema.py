@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,29 +16,45 @@ class TransferStatsSchema:
     """
     Attributes:
         bytes_sent (int):
-        ip (str | Unset):
-        object_info (str | Unset):
-        object_name (str | Unset):
-        time_taken_us (int | Unset):
+        ip (None | str | Unset):
+        object_info (None | str | Unset):
+        object_name (None | str | Unset):
+        time_taken_us (int | None | Unset):
     """
 
     bytes_sent: int
-    ip: str | Unset = UNSET
-    object_info: str | Unset = UNSET
-    object_name: str | Unset = UNSET
-    time_taken_us: int | Unset = UNSET
+    ip: None | str | Unset = UNSET
+    object_info: None | str | Unset = UNSET
+    object_name: None | str | Unset = UNSET
+    time_taken_us: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         bytes_sent = self.bytes_sent
 
-        ip = self.ip
+        ip: None | str | Unset
+        if isinstance(self.ip, Unset):
+            ip = UNSET
+        else:
+            ip = self.ip
 
-        object_info = self.object_info
+        object_info: None | str | Unset
+        if isinstance(self.object_info, Unset):
+            object_info = UNSET
+        else:
+            object_info = self.object_info
 
-        object_name = self.object_name
+        object_name: None | str | Unset
+        if isinstance(self.object_name, Unset):
+            object_name = UNSET
+        else:
+            object_name = self.object_name
 
-        time_taken_us = self.time_taken_us
+        time_taken_us: int | None | Unset
+        if isinstance(self.time_taken_us, Unset):
+            time_taken_us = UNSET
+        else:
+            time_taken_us = self.time_taken_us
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -63,13 +79,41 @@ class TransferStatsSchema:
         d = dict(src_dict)
         bytes_sent = d.pop("bytes_sent")
 
-        ip = d.pop("ip", UNSET)
+        def _parse_ip(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        object_info = d.pop("object_info", UNSET)
+        ip = _parse_ip(d.pop("ip", UNSET))
 
-        object_name = d.pop("object_name", UNSET)
+        def _parse_object_info(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        time_taken_us = d.pop("time_taken_us", UNSET)
+        object_info = _parse_object_info(d.pop("object_info", UNSET))
+
+        def _parse_object_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        object_name = _parse_object_name(d.pop("object_name", UNSET))
+
+        def _parse_time_taken_us(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        time_taken_us = _parse_time_taken_us(d.pop("time_taken_us", UNSET))
 
         transfer_stats_schema = cls(
             bytes_sent=bytes_sent,

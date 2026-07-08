@@ -8,12 +8,16 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.role_group_schema_default_user_type import RoleGroupSchemaDefaultUserType
-from ..models.role_group_schema_group_type import RoleGroupSchemaGroupType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.role_categories_schema import RoleCategoriesSchema
+    from ..models.role_group_schema_default_user_type_type_1 import (
+        RoleGroupSchemaDefaultUserTypeType1,
+    )
+    from ..models.role_group_schema_group_type_type_1 import (
+        RoleGroupSchemaGroupTypeType1,
+    )
 
 
 T = TypeVar("T", bound="RoleGroupSchema")
@@ -24,57 +28,83 @@ class RoleGroupSchema:
     """
     Attributes:
         name (str):
-        alias (str | Unset):
-        date_created (datetime.datetime | Unset):
-        date_modified (datetime.datetime | Unset):
-        default_user_type (RoleGroupSchemaDefaultUserType | Unset):
-        description (str | Unset):
+        alias (None | str | Unset):
+        date_created (datetime.datetime | None | Unset):
+        date_modified (datetime.datetime | None | Unset):
+        default_user_type (None | RoleGroupSchemaDefaultUserTypeType1 | Unset):
+        description (None | str | Unset):
         external_id (None | str | Unset):
-        group_type (RoleGroupSchemaGroupType | Unset):
-        id (UUID | Unset):
-        is_legacy_everyone (bool | Unset):
-        is_saml_group (bool | Unset):
+        group_type (None | RoleGroupSchemaGroupTypeType1 | Unset):
+        id (None | Unset | UUID):
+        is_legacy_everyone (bool | None | Unset):
+        is_saml_group (bool | None | Unset):
         role_categories (None | RoleCategoriesSchema | Unset):
-        roles (list[str] | Unset):
+        roles (list[str] | None | Unset):
         saml_primary_group_priority (int | None | Unset):
     """
 
     name: str
-    alias: str | Unset = UNSET
-    date_created: datetime.datetime | Unset = UNSET
-    date_modified: datetime.datetime | Unset = UNSET
-    default_user_type: RoleGroupSchemaDefaultUserType | Unset = UNSET
-    description: str | Unset = UNSET
+    alias: None | str | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_modified: datetime.datetime | None | Unset = UNSET
+    default_user_type: None | RoleGroupSchemaDefaultUserTypeType1 | Unset = UNSET
+    description: None | str | Unset = UNSET
     external_id: None | str | Unset = UNSET
-    group_type: RoleGroupSchemaGroupType | Unset = UNSET
-    id: UUID | Unset = UNSET
-    is_legacy_everyone: bool | Unset = UNSET
-    is_saml_group: bool | Unset = UNSET
+    group_type: None | RoleGroupSchemaGroupTypeType1 | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    is_legacy_everyone: bool | None | Unset = UNSET
+    is_saml_group: bool | None | Unset = UNSET
     role_categories: None | RoleCategoriesSchema | Unset = UNSET
-    roles: list[str] | Unset = UNSET
+    roles: list[str] | None | Unset = UNSET
     saml_primary_group_priority: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.role_categories_schema import RoleCategoriesSchema
+        from ..models.role_group_schema_default_user_type_type_1 import (
+            RoleGroupSchemaDefaultUserTypeType1,
+        )
+        from ..models.role_group_schema_group_type_type_1 import (
+            RoleGroupSchemaGroupTypeType1,
+        )
 
         name = self.name
 
-        alias = self.alias
+        alias: None | str | Unset
+        if isinstance(self.alias, Unset):
+            alias = UNSET
+        else:
+            alias = self.alias
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_modified: str | Unset = UNSET
-        if not isinstance(self.date_modified, Unset):
+        date_modified: None | str | Unset
+        if isinstance(self.date_modified, Unset):
+            date_modified = UNSET
+        elif isinstance(self.date_modified, datetime.datetime):
             date_modified = self.date_modified.isoformat()
+        else:
+            date_modified = self.date_modified
 
-        default_user_type: str | Unset = UNSET
-        if not isinstance(self.default_user_type, Unset):
-            default_user_type = self.default_user_type.value
+        default_user_type: dict[str, Any] | None | Unset
+        if isinstance(self.default_user_type, Unset):
+            default_user_type = UNSET
+        elif isinstance(self.default_user_type, RoleGroupSchemaDefaultUserTypeType1):
+            default_user_type = self.default_user_type.to_dict()
+        else:
+            default_user_type = self.default_user_type
 
-        description = self.description
+        description: None | str | Unset
+        if isinstance(self.description, Unset):
+            description = UNSET
+        else:
+            description = self.description
 
         external_id: None | str | Unset
         if isinstance(self.external_id, Unset):
@@ -82,17 +112,33 @@ class RoleGroupSchema:
         else:
             external_id = self.external_id
 
-        group_type: str | Unset = UNSET
-        if not isinstance(self.group_type, Unset):
-            group_type = self.group_type.value
+        group_type: dict[str, Any] | None | Unset
+        if isinstance(self.group_type, Unset):
+            group_type = UNSET
+        elif isinstance(self.group_type, RoleGroupSchemaGroupTypeType1):
+            group_type = self.group_type.to_dict()
+        else:
+            group_type = self.group_type
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        is_legacy_everyone = self.is_legacy_everyone
+        is_legacy_everyone: bool | None | Unset
+        if isinstance(self.is_legacy_everyone, Unset):
+            is_legacy_everyone = UNSET
+        else:
+            is_legacy_everyone = self.is_legacy_everyone
 
-        is_saml_group = self.is_saml_group
+        is_saml_group: bool | None | Unset
+        if isinstance(self.is_saml_group, Unset):
+            is_saml_group = UNSET
+        else:
+            is_saml_group = self.is_saml_group
 
         role_categories: dict[str, Any] | None | Unset
         if isinstance(self.role_categories, Unset):
@@ -102,8 +148,13 @@ class RoleGroupSchema:
         else:
             role_categories = self.role_categories
 
-        roles: list[str] | Unset = UNSET
-        if not isinstance(self.roles, Unset):
+        roles: list[str] | None | Unset
+        if isinstance(self.roles, Unset):
+            roles = UNSET
+        elif isinstance(self.roles, list):
+            roles = self.roles
+
+        else:
             roles = self.roles
 
         saml_primary_group_priority: int | None | Unset
@@ -151,34 +202,88 @@ class RoleGroupSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.role_categories_schema import RoleCategoriesSchema
+        from ..models.role_group_schema_default_user_type_type_1 import (
+            RoleGroupSchemaDefaultUserTypeType1,
+        )
+        from ..models.role_group_schema_group_type_type_1 import (
+            RoleGroupSchemaGroupTypeType1,
+        )
 
         d = dict(src_dict)
         name = d.pop("name")
 
-        alias = d.pop("alias", UNSET)
+        def _parse_alias(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        alias = _parse_alias(d.pop("alias", UNSET))
 
-        _date_modified = d.pop("date_modified", UNSET)
-        date_modified: datetime.datetime | Unset
-        if isinstance(_date_modified, Unset):
-            date_modified = UNSET
-        else:
-            date_modified = datetime.datetime.fromisoformat(_date_modified)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        _default_user_type = d.pop("default_user_type", UNSET)
-        default_user_type: RoleGroupSchemaDefaultUserType | Unset
-        if isinstance(_default_user_type, Unset):
-            default_user_type = UNSET
-        else:
-            default_user_type = RoleGroupSchemaDefaultUserType(_default_user_type)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        description = d.pop("description", UNSET)
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
+
+        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_modified_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_modified_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
+
+        def _parse_default_user_type(
+            data: object,
+        ) -> None | RoleGroupSchemaDefaultUserTypeType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                default_user_type_type_1 = (
+                    RoleGroupSchemaDefaultUserTypeType1.from_dict(data)
+                )
+
+                return default_user_type_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | RoleGroupSchemaDefaultUserTypeType1 | Unset, data)
+
+        default_user_type = _parse_default_user_type(d.pop("default_user_type", UNSET))
+
+        def _parse_description(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        description = _parse_description(d.pop("description", UNSET))
 
         def _parse_external_id(data: object) -> None | str | Unset:
             if data is None:
@@ -189,23 +294,61 @@ class RoleGroupSchema:
 
         external_id = _parse_external_id(d.pop("external_id", UNSET))
 
-        _group_type = d.pop("group_type", UNSET)
-        group_type: RoleGroupSchemaGroupType | Unset
-        if isinstance(_group_type, Unset):
-            group_type = UNSET
-        else:
-            group_type = RoleGroupSchemaGroupType(_group_type)
+        def _parse_group_type(
+            data: object,
+        ) -> None | RoleGroupSchemaGroupTypeType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                group_type_type_1 = RoleGroupSchemaGroupTypeType1.from_dict(data)
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+                return group_type_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | RoleGroupSchemaGroupTypeType1 | Unset, data)
 
-        is_legacy_everyone = d.pop("is_legacy_everyone", UNSET)
+        group_type = _parse_group_type(d.pop("group_type", UNSET))
 
-        is_saml_group = d.pop("is_saml_group", UNSET)
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_is_legacy_everyone(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        is_legacy_everyone = _parse_is_legacy_everyone(
+            d.pop("is_legacy_everyone", UNSET)
+        )
+
+        def _parse_is_saml_group(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        is_saml_group = _parse_is_saml_group(d.pop("is_saml_group", UNSET))
 
         def _parse_role_categories(data: object) -> None | RoleCategoriesSchema | Unset:
             if data is None:
@@ -224,7 +367,22 @@ class RoleGroupSchema:
 
         role_categories = _parse_role_categories(d.pop("role_categories", UNSET))
 
-        roles = cast(list[str], d.pop("roles", UNSET))
+        def _parse_roles(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                roles_type_0 = cast(list[str], data)
+
+                return roles_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        roles = _parse_roles(d.pop("roles", UNSET))
 
         def _parse_saml_primary_group_priority(data: object) -> int | None | Unset:
             if data is None:

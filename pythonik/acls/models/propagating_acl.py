@@ -17,27 +17,39 @@ class PropagatingACL:
     """
     Attributes:
         permissions (list[str]):
-        object_key (str | Unset):
-        object_type (str | Unset):
-        user_id (UUID | Unset):
+        object_key (None | str | Unset):
+        object_type (None | str | Unset):
+        user_id (None | Unset | UUID):
     """
 
     permissions: list[str]
-    object_key: str | Unset = UNSET
-    object_type: str | Unset = UNSET
-    user_id: UUID | Unset = UNSET
+    object_key: None | str | Unset = UNSET
+    object_type: None | str | Unset = UNSET
+    user_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         permissions = self.permissions
 
-        object_key = self.object_key
+        object_key: None | str | Unset
+        if isinstance(self.object_key, Unset):
+            object_key = UNSET
+        else:
+            object_key = self.object_key
 
-        object_type = self.object_type
+        object_type: None | str | Unset
+        if isinstance(self.object_type, Unset):
+            object_type = UNSET
+        else:
+            object_type = self.object_type
 
-        user_id: str | Unset = UNSET
-        if not isinstance(self.user_id, Unset):
+        user_id: None | str | Unset
+        if isinstance(self.user_id, Unset):
+            user_id = UNSET
+        elif isinstance(self.user_id, UUID):
             user_id = str(self.user_id)
+        else:
+            user_id = self.user_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -60,16 +72,40 @@ class PropagatingACL:
         d = dict(src_dict)
         permissions = cast(list[str], d.pop("permissions"))
 
-        object_key = d.pop("object_key", UNSET)
+        def _parse_object_key(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        object_type = d.pop("object_type", UNSET)
+        object_key = _parse_object_key(d.pop("object_key", UNSET))
 
-        _user_id = d.pop("user_id", UNSET)
-        user_id: UUID | Unset
-        if isinstance(_user_id, Unset):
-            user_id = UNSET
-        else:
-            user_id = UUID(_user_id)
+        def _parse_object_type(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        object_type = _parse_object_type(d.pop("object_type", UNSET))
+
+        def _parse_user_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                user_id_type_0 = UUID(data)
+
+                return user_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        user_id = _parse_user_id(d.pop("user_id", UNSET))
 
         propagating_acl = cls(
             permissions=permissions,

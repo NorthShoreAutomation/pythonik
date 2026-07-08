@@ -15,15 +15,20 @@ T = TypeVar("T", bound="CreateACLsResultSchema")
 class CreateACLsResultSchema:
     """
     Attributes:
-        updated_object_keys (list[str] | Unset):
+        updated_object_keys (list[str] | None | Unset):
     """
 
-    updated_object_keys: list[str] | Unset = UNSET
+    updated_object_keys: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        updated_object_keys: list[str] | Unset = UNSET
-        if not isinstance(self.updated_object_keys, Unset):
+        updated_object_keys: list[str] | None | Unset
+        if isinstance(self.updated_object_keys, Unset):
+            updated_object_keys = UNSET
+        elif isinstance(self.updated_object_keys, list):
+            updated_object_keys = self.updated_object_keys
+
+        else:
             updated_object_keys = self.updated_object_keys
 
         field_dict: dict[str, Any] = {}
@@ -37,7 +42,25 @@ class CreateACLsResultSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        updated_object_keys = cast(list[str], d.pop("updated_object_keys", UNSET))
+
+        def _parse_updated_object_keys(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                updated_object_keys_type_0 = cast(list[str], data)
+
+                return updated_object_keys_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        updated_object_keys = _parse_updated_object_keys(
+            d.pop("updated_object_keys", UNSET)
+        )
 
         create_ac_ls_result_schema = cls(
             updated_object_keys=updated_object_keys,

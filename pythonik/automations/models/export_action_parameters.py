@@ -1,16 +1,19 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.export_action_parameters_metadata_format import (
-    ExportActionParametersMetadataFormat,
-)
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.export_action_parameters_metadata_format_type_1 import (
+        ExportActionParametersMetadataFormatType1,
+    )
+
 
 T = TypeVar("T", bound="ExportActionParameters")
 
@@ -24,7 +27,7 @@ class ExportActionParameters:
         export_to_asset_folder (bool | None | Unset):
         file_name (None | str | Unset):
         format_id (None | Unset | UUID):
-        metadata_format (ExportActionParametersMetadataFormat | Unset):
+        metadata_format (ExportActionParametersMetadataFormatType1 | None | Unset):
         metadata_view (None | Unset | UUID):
         overwrite (bool | None | Unset):
         preferred_original_storage_id (None | Unset | UUID):
@@ -36,7 +39,7 @@ class ExportActionParameters:
     export_to_asset_folder: bool | None | Unset = UNSET
     file_name: None | str | Unset = UNSET
     format_id: None | Unset | UUID = UNSET
-    metadata_format: ExportActionParametersMetadataFormat | Unset = UNSET
+    metadata_format: ExportActionParametersMetadataFormatType1 | None | Unset = UNSET
     metadata_view: None | Unset | UUID = UNSET
     overwrite: bool | None | Unset = UNSET
     preferred_original_storage_id: None | Unset | UUID = UNSET
@@ -44,6 +47,10 @@ class ExportActionParameters:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.export_action_parameters_metadata_format_type_1 import (
+            ExportActionParametersMetadataFormatType1,
+        )
+
         export_location_id = str(self.export_location_id)
 
         export_metadata: bool | None | Unset
@@ -72,9 +79,15 @@ class ExportActionParameters:
         else:
             format_id = self.format_id
 
-        metadata_format: str | Unset = UNSET
-        if not isinstance(self.metadata_format, Unset):
-            metadata_format = self.metadata_format.value
+        metadata_format: dict[str, Any] | None | Unset
+        if isinstance(self.metadata_format, Unset):
+            metadata_format = UNSET
+        elif isinstance(
+            self.metadata_format, ExportActionParametersMetadataFormatType1
+        ):
+            metadata_format = self.metadata_format.to_dict()
+        else:
+            metadata_format = self.metadata_format
 
         metadata_view: None | str | Unset
         if isinstance(self.metadata_view, Unset):
@@ -142,6 +155,10 @@ class ExportActionParameters:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.export_action_parameters_metadata_format_type_1 import (
+            ExportActionParametersMetadataFormatType1,
+        )
+
         d = dict(src_dict)
         export_location_id = UUID(d.pop("export_location_id"))
 
@@ -191,12 +208,26 @@ class ExportActionParameters:
 
         format_id = _parse_format_id(d.pop("format_id", UNSET))
 
-        _metadata_format = d.pop("metadata_format", UNSET)
-        metadata_format: ExportActionParametersMetadataFormat | Unset
-        if isinstance(_metadata_format, Unset):
-            metadata_format = UNSET
-        else:
-            metadata_format = ExportActionParametersMetadataFormat(_metadata_format)
+        def _parse_metadata_format(
+            data: object,
+        ) -> ExportActionParametersMetadataFormatType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                metadata_format_type_1 = (
+                    ExportActionParametersMetadataFormatType1.from_dict(data)
+                )
+
+                return metadata_format_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(ExportActionParametersMetadataFormatType1 | None | Unset, data)
+
+        metadata_format = _parse_metadata_format(d.pop("metadata_format", UNSET))
 
         def _parse_metadata_view(data: object) -> None | Unset | UUID:
             if data is None:

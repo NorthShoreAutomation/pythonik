@@ -21,9 +21,9 @@ class MLDetectionQueueRecordSchema:
         system_domain_id (UUID):
         user_id (UUID):
         bytes_params (Any | Unset):
-        date_created (datetime.datetime | Unset):
-        date_updated (datetime.datetime | Unset):
-        id (UUID | Unset):
+        date_created (datetime.datetime | None | Unset):
+        date_updated (datetime.datetime | None | Unset):
+        id (None | Unset | UUID):
         object_id (None | Unset | UUID):
         object_type (None | str | Unset):
         params (None | str | Unset):
@@ -32,7 +32,7 @@ class MLDetectionQueueRecordSchema:
         retry_count (int | None | Unset):
         spec (None | str | Unset):
         status (None | str | Unset):
-        system_name (str | Unset):
+        system_name (None | str | Unset):
         type_ (None | str | Unset):
         version_id (None | Unset | UUID):
     """
@@ -41,9 +41,9 @@ class MLDetectionQueueRecordSchema:
     system_domain_id: UUID
     user_id: UUID
     bytes_params: Any | Unset = UNSET
-    date_created: datetime.datetime | Unset = UNSET
-    date_updated: datetime.datetime | Unset = UNSET
-    id: UUID | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_updated: datetime.datetime | None | Unset = UNSET
+    id: None | Unset | UUID = UNSET
     object_id: None | Unset | UUID = UNSET
     object_type: None | str | Unset = UNSET
     params: None | str | Unset = UNSET
@@ -52,7 +52,7 @@ class MLDetectionQueueRecordSchema:
     retry_count: int | None | Unset = UNSET
     spec: None | str | Unset = UNSET
     status: None | str | Unset = UNSET
-    system_name: str | Unset = UNSET
+    system_name: None | str | Unset = UNSET
     type_: None | str | Unset = UNSET
     version_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -66,17 +66,29 @@ class MLDetectionQueueRecordSchema:
 
         bytes_params = self.bytes_params
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_updated: str | Unset = UNSET
-        if not isinstance(self.date_updated, Unset):
+        date_updated: None | str | Unset
+        if isinstance(self.date_updated, Unset):
+            date_updated = UNSET
+        elif isinstance(self.date_updated, datetime.datetime):
             date_updated = self.date_updated.isoformat()
+        else:
+            date_updated = self.date_updated
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
         object_id: None | str | Unset
         if isinstance(self.object_id, Unset):
@@ -130,7 +142,11 @@ class MLDetectionQueueRecordSchema:
         else:
             status = self.status
 
-        system_name = self.system_name
+        system_name: None | str | Unset
+        if isinstance(self.system_name, Unset):
+            system_name = UNSET
+        else:
+            system_name = self.system_name
 
         type_: None | str | Unset
         if isinstance(self.type_, Unset):
@@ -199,26 +215,56 @@ class MLDetectionQueueRecordSchema:
 
         bytes_params = d.pop("bytes_params", UNSET)
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        _date_updated = d.pop("date_updated", UNSET)
-        date_updated: datetime.datetime | Unset
-        if isinstance(_date_updated, Unset):
-            date_updated = UNSET
-        else:
-            date_updated = datetime.datetime.fromisoformat(_date_updated)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
+
+        def _parse_date_updated(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_updated_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_updated_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_updated = _parse_date_updated(d.pop("date_updated", UNSET))
+
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
 
         def _parse_object_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -308,7 +354,14 @@ class MLDetectionQueueRecordSchema:
 
         status = _parse_status(d.pop("status", UNSET))
 
-        system_name = d.pop("system_name", UNSET)
+        def _parse_system_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        system_name = _parse_system_name(d.pop("system_name", UNSET))
 
         def _parse_type_(data: object) -> None | str | Unset:
             if data is None:

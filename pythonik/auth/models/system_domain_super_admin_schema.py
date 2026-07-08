@@ -8,22 +8,22 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.system_domain_super_admin_schema_billing_tier import (
-    SystemDomainSuperAdminSchemaBillingTier,
-)
-from ..models.system_domain_super_admin_schema_industry import (
-    SystemDomainSuperAdminSchemaIndustry,
-)
-from ..models.system_domain_super_admin_schema_status import (
-    SystemDomainSuperAdminSchemaStatus,
-)
-from ..models.system_domain_super_admin_schema_type import (
-    SystemDomainSuperAdminSchemaType,
-)
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.billing_limits_schema import BillingLimitsSchema
+    from ..models.system_domain_super_admin_schema_billing_tier_type_1 import (
+        SystemDomainSuperAdminSchemaBillingTierType1,
+    )
+    from ..models.system_domain_super_admin_schema_industry_type_1 import (
+        SystemDomainSuperAdminSchemaIndustryType1,
+    )
+    from ..models.system_domain_super_admin_schema_status_type_1 import (
+        SystemDomainSuperAdminSchemaStatusType1,
+    )
+    from ..models.system_domain_super_admin_schema_type_type_1 import (
+        SystemDomainSuperAdminSchemaTypeType1,
+    )
 
 
 T = TypeVar("T", bound="SystemDomainSuperAdminSchema")
@@ -36,87 +36,99 @@ class SystemDomainSuperAdminSchema:
         base_url (str):
         name (str):
         billing_limits (BillingLimitsSchema | None | Unset):
-        billing_tier (SystemDomainSuperAdminSchemaBillingTier | Unset):
+        billing_tier (None | SystemDomainSuperAdminSchemaBillingTierType1 | Unset):
         contract_end_date (datetime.datetime | None | Unset):
         country (None | str | Unset):
         creating_user_id (None | Unset | UUID):
-        custom_terms (bool | Unset):
-        date_created (datetime.datetime | Unset):
-        date_modified (datetime.datetime | Unset):
+        custom_terms (bool | None | Unset):
+        date_created (datetime.datetime | None | Unset):
+        date_modified (datetime.datetime | None | Unset):
         deactivate_date (datetime.datetime | None | Unset):
-        description (str | Unset):
-        disable_billing_page (bool | Unset):
-        disable_cc_purchase (bool | Unset):
+        description (None | str | Unset):
+        disable_billing_page (bool | None | Unset):
+        disable_cc_purchase (bool | None | Unset):
         discount_percent (float | None | Unset):
-        do_not_charge_edge_transcoder (bool | Unset):
-        do_not_charge_remote_proxies (bool | Unset):
-        do_not_charge_shield (bool | Unset):
-        features (list[str] | Unset):
+        do_not_charge_edge_transcoder (bool | None | Unset):
+        do_not_charge_remote_proxies (bool | None | Unset):
+        do_not_charge_shield (bool | None | Unset):
+        features (list[str] | None | Unset):
         freeze_date (datetime.datetime | None | Unset):
-        has_preloaded_assets (bool | Unset):
-        id (UUID | Unset):
-        industry (SystemDomainSuperAdminSchemaIndustry | Unset):
-        invoice_end_of_month (bool | Unset):
-        is_plg (bool | Unset):
-        is_template (bool | Unset):
-        licensed_user_billing (bool | Unset):
+        has_preloaded_assets (bool | None | Unset):
+        id (None | Unset | UUID):
+        industry (None | SystemDomainSuperAdminSchemaIndustryType1 | Unset):
+        invoice_end_of_month (bool | None | Unset):
+        is_plg (bool | None | Unset):
+        is_template (bool | None | Unset):
+        licensed_user_billing (bool | None | Unset):
         marketplace_customer_id (None | str | Unset):
         marketplace_entitlement_id (None | str | Unset):
         ordway_customer_id (None | str | Unset):
         ordway_subscription_id (None | str | Unset):
-        platform_name (str | Unset):
+        platform_name (None | str | Unset):
         price_list (None | str | Unset):
         referral_code (None | str | Unset):
         sales_force_id (None | str | Unset):
-        status (SystemDomainSuperAdminSchemaStatus | Unset):
+        status (None | SystemDomainSuperAdminSchemaStatusType1 | Unset):
         stripe_id (None | str | Unset):
-        type_ (SystemDomainSuperAdminSchemaType | Unset):
-        warning_message (str | Unset):
+        type_ (None | SystemDomainSuperAdminSchemaTypeType1 | Unset):
+        warning_message (None | str | Unset):
     """
 
     base_url: str
     name: str
     billing_limits: BillingLimitsSchema | None | Unset = UNSET
-    billing_tier: SystemDomainSuperAdminSchemaBillingTier | Unset = UNSET
+    billing_tier: None | SystemDomainSuperAdminSchemaBillingTierType1 | Unset = UNSET
     contract_end_date: datetime.datetime | None | Unset = UNSET
     country: None | str | Unset = UNSET
     creating_user_id: None | Unset | UUID = UNSET
-    custom_terms: bool | Unset = UNSET
-    date_created: datetime.datetime | Unset = UNSET
-    date_modified: datetime.datetime | Unset = UNSET
+    custom_terms: bool | None | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_modified: datetime.datetime | None | Unset = UNSET
     deactivate_date: datetime.datetime | None | Unset = UNSET
-    description: str | Unset = UNSET
-    disable_billing_page: bool | Unset = UNSET
-    disable_cc_purchase: bool | Unset = UNSET
+    description: None | str | Unset = UNSET
+    disable_billing_page: bool | None | Unset = UNSET
+    disable_cc_purchase: bool | None | Unset = UNSET
     discount_percent: float | None | Unset = UNSET
-    do_not_charge_edge_transcoder: bool | Unset = UNSET
-    do_not_charge_remote_proxies: bool | Unset = UNSET
-    do_not_charge_shield: bool | Unset = UNSET
-    features: list[str] | Unset = UNSET
+    do_not_charge_edge_transcoder: bool | None | Unset = UNSET
+    do_not_charge_remote_proxies: bool | None | Unset = UNSET
+    do_not_charge_shield: bool | None | Unset = UNSET
+    features: list[str] | None | Unset = UNSET
     freeze_date: datetime.datetime | None | Unset = UNSET
-    has_preloaded_assets: bool | Unset = UNSET
-    id: UUID | Unset = UNSET
-    industry: SystemDomainSuperAdminSchemaIndustry | Unset = UNSET
-    invoice_end_of_month: bool | Unset = UNSET
-    is_plg: bool | Unset = UNSET
-    is_template: bool | Unset = UNSET
-    licensed_user_billing: bool | Unset = UNSET
+    has_preloaded_assets: bool | None | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    industry: None | SystemDomainSuperAdminSchemaIndustryType1 | Unset = UNSET
+    invoice_end_of_month: bool | None | Unset = UNSET
+    is_plg: bool | None | Unset = UNSET
+    is_template: bool | None | Unset = UNSET
+    licensed_user_billing: bool | None | Unset = UNSET
     marketplace_customer_id: None | str | Unset = UNSET
     marketplace_entitlement_id: None | str | Unset = UNSET
     ordway_customer_id: None | str | Unset = UNSET
     ordway_subscription_id: None | str | Unset = UNSET
-    platform_name: str | Unset = UNSET
+    platform_name: None | str | Unset = UNSET
     price_list: None | str | Unset = UNSET
     referral_code: None | str | Unset = UNSET
     sales_force_id: None | str | Unset = UNSET
-    status: SystemDomainSuperAdminSchemaStatus | Unset = UNSET
+    status: None | SystemDomainSuperAdminSchemaStatusType1 | Unset = UNSET
     stripe_id: None | str | Unset = UNSET
-    type_: SystemDomainSuperAdminSchemaType | Unset = UNSET
-    warning_message: str | Unset = UNSET
+    type_: None | SystemDomainSuperAdminSchemaTypeType1 | Unset = UNSET
+    warning_message: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.billing_limits_schema import BillingLimitsSchema
+        from ..models.system_domain_super_admin_schema_billing_tier_type_1 import (
+            SystemDomainSuperAdminSchemaBillingTierType1,
+        )
+        from ..models.system_domain_super_admin_schema_industry_type_1 import (
+            SystemDomainSuperAdminSchemaIndustryType1,
+        )
+        from ..models.system_domain_super_admin_schema_status_type_1 import (
+            SystemDomainSuperAdminSchemaStatusType1,
+        )
+        from ..models.system_domain_super_admin_schema_type_type_1 import (
+            SystemDomainSuperAdminSchemaTypeType1,
+        )
 
         base_url = self.base_url
 
@@ -130,9 +142,15 @@ class SystemDomainSuperAdminSchema:
         else:
             billing_limits = self.billing_limits
 
-        billing_tier: str | Unset = UNSET
-        if not isinstance(self.billing_tier, Unset):
-            billing_tier = self.billing_tier.value
+        billing_tier: dict[str, Any] | None | Unset
+        if isinstance(self.billing_tier, Unset):
+            billing_tier = UNSET
+        elif isinstance(
+            self.billing_tier, SystemDomainSuperAdminSchemaBillingTierType1
+        ):
+            billing_tier = self.billing_tier.to_dict()
+        else:
+            billing_tier = self.billing_tier
 
         contract_end_date: None | str | Unset
         if isinstance(self.contract_end_date, Unset):
@@ -156,15 +174,27 @@ class SystemDomainSuperAdminSchema:
         else:
             creating_user_id = self.creating_user_id
 
-        custom_terms = self.custom_terms
+        custom_terms: bool | None | Unset
+        if isinstance(self.custom_terms, Unset):
+            custom_terms = UNSET
+        else:
+            custom_terms = self.custom_terms
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_modified: str | Unset = UNSET
-        if not isinstance(self.date_modified, Unset):
+        date_modified: None | str | Unset
+        if isinstance(self.date_modified, Unset):
+            date_modified = UNSET
+        elif isinstance(self.date_modified, datetime.datetime):
             date_modified = self.date_modified.isoformat()
+        else:
+            date_modified = self.date_modified
 
         deactivate_date: None | str | Unset
         if isinstance(self.deactivate_date, Unset):
@@ -174,11 +204,23 @@ class SystemDomainSuperAdminSchema:
         else:
             deactivate_date = self.deactivate_date
 
-        description = self.description
+        description: None | str | Unset
+        if isinstance(self.description, Unset):
+            description = UNSET
+        else:
+            description = self.description
 
-        disable_billing_page = self.disable_billing_page
+        disable_billing_page: bool | None | Unset
+        if isinstance(self.disable_billing_page, Unset):
+            disable_billing_page = UNSET
+        else:
+            disable_billing_page = self.disable_billing_page
 
-        disable_cc_purchase = self.disable_cc_purchase
+        disable_cc_purchase: bool | None | Unset
+        if isinstance(self.disable_cc_purchase, Unset):
+            disable_cc_purchase = UNSET
+        else:
+            disable_cc_purchase = self.disable_cc_purchase
 
         discount_percent: float | None | Unset
         if isinstance(self.discount_percent, Unset):
@@ -186,14 +228,31 @@ class SystemDomainSuperAdminSchema:
         else:
             discount_percent = self.discount_percent
 
-        do_not_charge_edge_transcoder = self.do_not_charge_edge_transcoder
+        do_not_charge_edge_transcoder: bool | None | Unset
+        if isinstance(self.do_not_charge_edge_transcoder, Unset):
+            do_not_charge_edge_transcoder = UNSET
+        else:
+            do_not_charge_edge_transcoder = self.do_not_charge_edge_transcoder
 
-        do_not_charge_remote_proxies = self.do_not_charge_remote_proxies
+        do_not_charge_remote_proxies: bool | None | Unset
+        if isinstance(self.do_not_charge_remote_proxies, Unset):
+            do_not_charge_remote_proxies = UNSET
+        else:
+            do_not_charge_remote_proxies = self.do_not_charge_remote_proxies
 
-        do_not_charge_shield = self.do_not_charge_shield
+        do_not_charge_shield: bool | None | Unset
+        if isinstance(self.do_not_charge_shield, Unset):
+            do_not_charge_shield = UNSET
+        else:
+            do_not_charge_shield = self.do_not_charge_shield
 
-        features: list[str] | Unset = UNSET
-        if not isinstance(self.features, Unset):
+        features: list[str] | None | Unset
+        if isinstance(self.features, Unset):
+            features = UNSET
+        elif isinstance(self.features, list):
+            features = self.features
+
+        else:
             features = self.features
 
         freeze_date: None | str | Unset
@@ -204,23 +263,51 @@ class SystemDomainSuperAdminSchema:
         else:
             freeze_date = self.freeze_date
 
-        has_preloaded_assets = self.has_preloaded_assets
+        has_preloaded_assets: bool | None | Unset
+        if isinstance(self.has_preloaded_assets, Unset):
+            has_preloaded_assets = UNSET
+        else:
+            has_preloaded_assets = self.has_preloaded_assets
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        industry: str | Unset = UNSET
-        if not isinstance(self.industry, Unset):
-            industry = self.industry.value
+        industry: dict[str, Any] | None | Unset
+        if isinstance(self.industry, Unset):
+            industry = UNSET
+        elif isinstance(self.industry, SystemDomainSuperAdminSchemaIndustryType1):
+            industry = self.industry.to_dict()
+        else:
+            industry = self.industry
 
-        invoice_end_of_month = self.invoice_end_of_month
+        invoice_end_of_month: bool | None | Unset
+        if isinstance(self.invoice_end_of_month, Unset):
+            invoice_end_of_month = UNSET
+        else:
+            invoice_end_of_month = self.invoice_end_of_month
 
-        is_plg = self.is_plg
+        is_plg: bool | None | Unset
+        if isinstance(self.is_plg, Unset):
+            is_plg = UNSET
+        else:
+            is_plg = self.is_plg
 
-        is_template = self.is_template
+        is_template: bool | None | Unset
+        if isinstance(self.is_template, Unset):
+            is_template = UNSET
+        else:
+            is_template = self.is_template
 
-        licensed_user_billing = self.licensed_user_billing
+        licensed_user_billing: bool | None | Unset
+        if isinstance(self.licensed_user_billing, Unset):
+            licensed_user_billing = UNSET
+        else:
+            licensed_user_billing = self.licensed_user_billing
 
         marketplace_customer_id: None | str | Unset
         if isinstance(self.marketplace_customer_id, Unset):
@@ -246,7 +333,11 @@ class SystemDomainSuperAdminSchema:
         else:
             ordway_subscription_id = self.ordway_subscription_id
 
-        platform_name = self.platform_name
+        platform_name: None | str | Unset
+        if isinstance(self.platform_name, Unset):
+            platform_name = UNSET
+        else:
+            platform_name = self.platform_name
 
         price_list: None | str | Unset
         if isinstance(self.price_list, Unset):
@@ -266,9 +357,13 @@ class SystemDomainSuperAdminSchema:
         else:
             sales_force_id = self.sales_force_id
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        status: dict[str, Any] | None | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        elif isinstance(self.status, SystemDomainSuperAdminSchemaStatusType1):
+            status = self.status.to_dict()
+        else:
+            status = self.status
 
         stripe_id: None | str | Unset
         if isinstance(self.stripe_id, Unset):
@@ -276,11 +371,19 @@ class SystemDomainSuperAdminSchema:
         else:
             stripe_id = self.stripe_id
 
-        type_: str | Unset = UNSET
-        if not isinstance(self.type_, Unset):
-            type_ = self.type_.value
+        type_: dict[str, Any] | None | Unset
+        if isinstance(self.type_, Unset):
+            type_ = UNSET
+        elif isinstance(self.type_, SystemDomainSuperAdminSchemaTypeType1):
+            type_ = self.type_.to_dict()
+        else:
+            type_ = self.type_
 
-        warning_message = self.warning_message
+        warning_message: None | str | Unset
+        if isinstance(self.warning_message, Unset):
+            warning_message = UNSET
+        else:
+            warning_message = self.warning_message
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -370,6 +473,18 @@ class SystemDomainSuperAdminSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.billing_limits_schema import BillingLimitsSchema
+        from ..models.system_domain_super_admin_schema_billing_tier_type_1 import (
+            SystemDomainSuperAdminSchemaBillingTierType1,
+        )
+        from ..models.system_domain_super_admin_schema_industry_type_1 import (
+            SystemDomainSuperAdminSchemaIndustryType1,
+        )
+        from ..models.system_domain_super_admin_schema_status_type_1 import (
+            SystemDomainSuperAdminSchemaStatusType1,
+        )
+        from ..models.system_domain_super_admin_schema_type_type_1 import (
+            SystemDomainSuperAdminSchemaTypeType1,
+        )
 
         d = dict(src_dict)
         base_url = d.pop("base_url")
@@ -393,12 +508,28 @@ class SystemDomainSuperAdminSchema:
 
         billing_limits = _parse_billing_limits(d.pop("billing_limits", UNSET))
 
-        _billing_tier = d.pop("billing_tier", UNSET)
-        billing_tier: SystemDomainSuperAdminSchemaBillingTier | Unset
-        if isinstance(_billing_tier, Unset):
-            billing_tier = UNSET
-        else:
-            billing_tier = SystemDomainSuperAdminSchemaBillingTier(_billing_tier)
+        def _parse_billing_tier(
+            data: object,
+        ) -> None | SystemDomainSuperAdminSchemaBillingTierType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                billing_tier_type_1 = (
+                    SystemDomainSuperAdminSchemaBillingTierType1.from_dict(data)
+                )
+
+                return billing_tier_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(
+                None | SystemDomainSuperAdminSchemaBillingTierType1 | Unset, data
+            )
+
+        billing_tier = _parse_billing_tier(d.pop("billing_tier", UNSET))
 
         def _parse_contract_end_date(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -443,21 +574,48 @@ class SystemDomainSuperAdminSchema:
 
         creating_user_id = _parse_creating_user_id(d.pop("creating_user_id", UNSET))
 
-        custom_terms = d.pop("custom_terms", UNSET)
+        def _parse_custom_terms(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        custom_terms = _parse_custom_terms(d.pop("custom_terms", UNSET))
 
-        _date_modified = d.pop("date_modified", UNSET)
-        date_modified: datetime.datetime | Unset
-        if isinstance(_date_modified, Unset):
-            date_modified = UNSET
-        else:
-            date_modified = datetime.datetime.fromisoformat(_date_modified)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
+
+        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_modified_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_modified_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
 
         def _parse_deactivate_date(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -476,11 +634,36 @@ class SystemDomainSuperAdminSchema:
 
         deactivate_date = _parse_deactivate_date(d.pop("deactivate_date", UNSET))
 
-        description = d.pop("description", UNSET)
+        def _parse_description(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        disable_billing_page = d.pop("disable_billing_page", UNSET)
+        description = _parse_description(d.pop("description", UNSET))
 
-        disable_cc_purchase = d.pop("disable_cc_purchase", UNSET)
+        def _parse_disable_billing_page(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        disable_billing_page = _parse_disable_billing_page(
+            d.pop("disable_billing_page", UNSET)
+        )
+
+        def _parse_disable_cc_purchase(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        disable_cc_purchase = _parse_disable_cc_purchase(
+            d.pop("disable_cc_purchase", UNSET)
+        )
 
         def _parse_discount_percent(data: object) -> float | None | Unset:
             if data is None:
@@ -491,13 +674,55 @@ class SystemDomainSuperAdminSchema:
 
         discount_percent = _parse_discount_percent(d.pop("discount_percent", UNSET))
 
-        do_not_charge_edge_transcoder = d.pop("do_not_charge_edge_transcoder", UNSET)
+        def _parse_do_not_charge_edge_transcoder(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        do_not_charge_remote_proxies = d.pop("do_not_charge_remote_proxies", UNSET)
+        do_not_charge_edge_transcoder = _parse_do_not_charge_edge_transcoder(
+            d.pop("do_not_charge_edge_transcoder", UNSET)
+        )
 
-        do_not_charge_shield = d.pop("do_not_charge_shield", UNSET)
+        def _parse_do_not_charge_remote_proxies(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        features = cast(list[str], d.pop("features", UNSET))
+        do_not_charge_remote_proxies = _parse_do_not_charge_remote_proxies(
+            d.pop("do_not_charge_remote_proxies", UNSET)
+        )
+
+        def _parse_do_not_charge_shield(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        do_not_charge_shield = _parse_do_not_charge_shield(
+            d.pop("do_not_charge_shield", UNSET)
+        )
+
+        def _parse_features(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                features_type_0 = cast(list[str], data)
+
+                return features_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        features = _parse_features(d.pop("features", UNSET))
 
         def _parse_freeze_date(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -516,29 +741,94 @@ class SystemDomainSuperAdminSchema:
 
         freeze_date = _parse_freeze_date(d.pop("freeze_date", UNSET))
 
-        has_preloaded_assets = d.pop("has_preloaded_assets", UNSET)
+        def _parse_has_preloaded_assets(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        has_preloaded_assets = _parse_has_preloaded_assets(
+            d.pop("has_preloaded_assets", UNSET)
+        )
 
-        _industry = d.pop("industry", UNSET)
-        industry: SystemDomainSuperAdminSchemaIndustry | Unset
-        if isinstance(_industry, Unset):
-            industry = UNSET
-        else:
-            industry = SystemDomainSuperAdminSchemaIndustry(_industry)
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
 
-        invoice_end_of_month = d.pop("invoice_end_of_month", UNSET)
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        is_plg = d.pop("is_plg", UNSET)
+        id = _parse_id(d.pop("id", UNSET))
 
-        is_template = d.pop("is_template", UNSET)
+        def _parse_industry(
+            data: object,
+        ) -> None | SystemDomainSuperAdminSchemaIndustryType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                industry_type_1 = SystemDomainSuperAdminSchemaIndustryType1.from_dict(
+                    data
+                )
 
-        licensed_user_billing = d.pop("licensed_user_billing", UNSET)
+                return industry_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | SystemDomainSuperAdminSchemaIndustryType1 | Unset, data)
+
+        industry = _parse_industry(d.pop("industry", UNSET))
+
+        def _parse_invoice_end_of_month(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        invoice_end_of_month = _parse_invoice_end_of_month(
+            d.pop("invoice_end_of_month", UNSET)
+        )
+
+        def _parse_is_plg(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        is_plg = _parse_is_plg(d.pop("is_plg", UNSET))
+
+        def _parse_is_template(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        is_template = _parse_is_template(d.pop("is_template", UNSET))
+
+        def _parse_licensed_user_billing(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        licensed_user_billing = _parse_licensed_user_billing(
+            d.pop("licensed_user_billing", UNSET)
+        )
 
         def _parse_marketplace_customer_id(data: object) -> None | str | Unset:
             if data is None:
@@ -584,7 +874,14 @@ class SystemDomainSuperAdminSchema:
             d.pop("ordway_subscription_id", UNSET)
         )
 
-        platform_name = d.pop("platform_name", UNSET)
+        def _parse_platform_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        platform_name = _parse_platform_name(d.pop("platform_name", UNSET))
 
         def _parse_price_list(data: object) -> None | str | Unset:
             if data is None:
@@ -613,12 +910,24 @@ class SystemDomainSuperAdminSchema:
 
         sales_force_id = _parse_sales_force_id(d.pop("sales_force_id", UNSET))
 
-        _status = d.pop("status", UNSET)
-        status: SystemDomainSuperAdminSchemaStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = SystemDomainSuperAdminSchemaStatus(_status)
+        def _parse_status(
+            data: object,
+        ) -> None | SystemDomainSuperAdminSchemaStatusType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                status_type_1 = SystemDomainSuperAdminSchemaStatusType1.from_dict(data)
+
+                return status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | SystemDomainSuperAdminSchemaStatusType1 | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
 
         def _parse_stripe_id(data: object) -> None | str | Unset:
             if data is None:
@@ -629,14 +938,33 @@ class SystemDomainSuperAdminSchema:
 
         stripe_id = _parse_stripe_id(d.pop("stripe_id", UNSET))
 
-        _type_ = d.pop("type", UNSET)
-        type_: SystemDomainSuperAdminSchemaType | Unset
-        if isinstance(_type_, Unset):
-            type_ = UNSET
-        else:
-            type_ = SystemDomainSuperAdminSchemaType(_type_)
+        def _parse_type_(
+            data: object,
+        ) -> None | SystemDomainSuperAdminSchemaTypeType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                type_type_1 = SystemDomainSuperAdminSchemaTypeType1.from_dict(data)
 
-        warning_message = d.pop("warning_message", UNSET)
+                return type_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | SystemDomainSuperAdminSchemaTypeType1 | Unset, data)
+
+        type_ = _parse_type_(d.pop("type", UNSET))
+
+        def _parse_warning_message(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        warning_message = _parse_warning_message(d.pop("warning_message", UNSET))
 
         system_domain_super_admin_schema = cls(
             base_url=base_url,

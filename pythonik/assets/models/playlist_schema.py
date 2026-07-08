@@ -8,12 +8,14 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.playlist_schema_status import PlaylistSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.playlist_item_schema import PlaylistItemSchema
-    from ..models.playlist_schema_keyframes_item import PlaylistSchemaKeyframesItem
+    from ..models.playlist_schema_keyframes_type_0_item import (
+        PlaylistSchemaKeyframesType0Item,
+    )
+    from ..models.playlist_schema_status_type_1 import PlaylistSchemaStatusType1
 
 
 T = TypeVar("T", bound="PlaylistSchema")
@@ -24,43 +26,49 @@ class PlaylistSchema:
     """
     Attributes:
         name (str):
-        created_by_user (UUID | Unset):
+        created_by_user (None | Unset | UUID):
         custom_keyframe (None | Unset | UUID):
         custom_poster (None | Unset | UUID):
-        date_created (datetime.datetime | Unset):
-        date_modified (datetime.datetime | Unset):
-        id (UUID | Unset):
-        item_count (int | Unset):
-        keyframe_asset_ids (list[UUID] | Unset):
-        keyframes (list[PlaylistSchemaKeyframesItem] | Unset):
-        playlist_items (list[PlaylistItemSchema] | Unset):
-        project_id (UUID | Unset):
-        status (PlaylistSchemaStatus | Unset):
-        system_domain_id (UUID | Unset):
+        date_created (datetime.datetime | None | Unset):
+        date_modified (datetime.datetime | None | Unset):
+        id (None | Unset | UUID):
+        item_count (int | None | Unset):
+        keyframe_asset_ids (list[UUID] | None | Unset):
+        keyframes (list[PlaylistSchemaKeyframesType0Item] | None | Unset):
+        playlist_items (list[PlaylistItemSchema] | None | Unset):
+        project_id (None | Unset | UUID):
+        status (None | PlaylistSchemaStatusType1 | Unset):
+        system_domain_id (None | Unset | UUID):
     """
 
     name: str
-    created_by_user: UUID | Unset = UNSET
+    created_by_user: None | Unset | UUID = UNSET
     custom_keyframe: None | Unset | UUID = UNSET
     custom_poster: None | Unset | UUID = UNSET
-    date_created: datetime.datetime | Unset = UNSET
-    date_modified: datetime.datetime | Unset = UNSET
-    id: UUID | Unset = UNSET
-    item_count: int | Unset = UNSET
-    keyframe_asset_ids: list[UUID] | Unset = UNSET
-    keyframes: list[PlaylistSchemaKeyframesItem] | Unset = UNSET
-    playlist_items: list[PlaylistItemSchema] | Unset = UNSET
-    project_id: UUID | Unset = UNSET
-    status: PlaylistSchemaStatus | Unset = UNSET
-    system_domain_id: UUID | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_modified: datetime.datetime | None | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    item_count: int | None | Unset = UNSET
+    keyframe_asset_ids: list[UUID] | None | Unset = UNSET
+    keyframes: list[PlaylistSchemaKeyframesType0Item] | None | Unset = UNSET
+    playlist_items: list[PlaylistItemSchema] | None | Unset = UNSET
+    project_id: None | Unset | UUID = UNSET
+    status: None | PlaylistSchemaStatusType1 | Unset = UNSET
+    system_domain_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.playlist_schema_status_type_1 import PlaylistSchemaStatusType1
+
         name = self.name
 
-        created_by_user: str | Unset = UNSET
-        if not isinstance(self.created_by_user, Unset):
+        created_by_user: None | str | Unset
+        if isinstance(self.created_by_user, Unset):
+            created_by_user = UNSET
+        elif isinstance(self.created_by_user, UUID):
             created_by_user = str(self.created_by_user)
+        else:
+            created_by_user = self.created_by_user
 
         custom_keyframe: None | str | Unset
         if isinstance(self.custom_keyframe, Unset):
@@ -78,52 +86,97 @@ class PlaylistSchema:
         else:
             custom_poster = self.custom_poster
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_modified: str | Unset = UNSET
-        if not isinstance(self.date_modified, Unset):
+        date_modified: None | str | Unset
+        if isinstance(self.date_modified, Unset):
+            date_modified = UNSET
+        elif isinstance(self.date_modified, datetime.datetime):
             date_modified = self.date_modified.isoformat()
+        else:
+            date_modified = self.date_modified
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        item_count = self.item_count
+        item_count: int | None | Unset
+        if isinstance(self.item_count, Unset):
+            item_count = UNSET
+        else:
+            item_count = self.item_count
 
-        keyframe_asset_ids: list[str] | Unset = UNSET
-        if not isinstance(self.keyframe_asset_ids, Unset):
+        keyframe_asset_ids: list[str] | None | Unset
+        if isinstance(self.keyframe_asset_ids, Unset):
+            keyframe_asset_ids = UNSET
+        elif isinstance(self.keyframe_asset_ids, list):
             keyframe_asset_ids = []
-            for keyframe_asset_ids_item_data in self.keyframe_asset_ids:
-                keyframe_asset_ids_item = str(keyframe_asset_ids_item_data)
-                keyframe_asset_ids.append(keyframe_asset_ids_item)
+            for keyframe_asset_ids_type_0_item_data in self.keyframe_asset_ids:
+                keyframe_asset_ids_type_0_item = str(
+                    keyframe_asset_ids_type_0_item_data
+                )
+                keyframe_asset_ids.append(keyframe_asset_ids_type_0_item)
 
-        keyframes: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.keyframes, Unset):
+        else:
+            keyframe_asset_ids = self.keyframe_asset_ids
+
+        keyframes: list[dict[str, Any]] | None | Unset
+        if isinstance(self.keyframes, Unset):
+            keyframes = UNSET
+        elif isinstance(self.keyframes, list):
             keyframes = []
-            for keyframes_item_data in self.keyframes:
-                keyframes_item = keyframes_item_data.to_dict()
-                keyframes.append(keyframes_item)
+            for keyframes_type_0_item_data in self.keyframes:
+                keyframes_type_0_item = keyframes_type_0_item_data.to_dict()
+                keyframes.append(keyframes_type_0_item)
 
-        playlist_items: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.playlist_items, Unset):
+        else:
+            keyframes = self.keyframes
+
+        playlist_items: list[dict[str, Any]] | None | Unset
+        if isinstance(self.playlist_items, Unset):
+            playlist_items = UNSET
+        elif isinstance(self.playlist_items, list):
             playlist_items = []
-            for playlist_items_item_data in self.playlist_items:
-                playlist_items_item = playlist_items_item_data.to_dict()
-                playlist_items.append(playlist_items_item)
+            for playlist_items_type_0_item_data in self.playlist_items:
+                playlist_items_type_0_item = playlist_items_type_0_item_data.to_dict()
+                playlist_items.append(playlist_items_type_0_item)
 
-        project_id: str | Unset = UNSET
-        if not isinstance(self.project_id, Unset):
+        else:
+            playlist_items = self.playlist_items
+
+        project_id: None | str | Unset
+        if isinstance(self.project_id, Unset):
+            project_id = UNSET
+        elif isinstance(self.project_id, UUID):
             project_id = str(self.project_id)
+        else:
+            project_id = self.project_id
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        status: dict[str, Any] | None | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        elif isinstance(self.status, PlaylistSchemaStatusType1):
+            status = self.status.to_dict()
+        else:
+            status = self.status
 
-        system_domain_id: str | Unset = UNSET
-        if not isinstance(self.system_domain_id, Unset):
+        system_domain_id: None | str | Unset
+        if isinstance(self.system_domain_id, Unset):
+            system_domain_id = UNSET
+        elif isinstance(self.system_domain_id, UUID):
             system_domain_id = str(self.system_domain_id)
+        else:
+            system_domain_id = self.system_domain_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -164,17 +217,30 @@ class PlaylistSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.playlist_item_schema import PlaylistItemSchema
-        from ..models.playlist_schema_keyframes_item import PlaylistSchemaKeyframesItem
+        from ..models.playlist_schema_keyframes_type_0_item import (
+            PlaylistSchemaKeyframesType0Item,
+        )
+        from ..models.playlist_schema_status_type_1 import PlaylistSchemaStatusType1
 
         d = dict(src_dict)
         name = d.pop("name")
 
-        _created_by_user = d.pop("created_by_user", UNSET)
-        created_by_user: UUID | Unset
-        if isinstance(_created_by_user, Unset):
-            created_by_user = UNSET
-        else:
-            created_by_user = UUID(_created_by_user)
+        def _parse_created_by_user(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                created_by_user_type_0 = UUID(data)
+
+                return created_by_user_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        created_by_user = _parse_created_by_user(d.pop("created_by_user", UNSET))
 
         def _parse_custom_keyframe(data: object) -> None | Unset | UUID:
             if data is None:
@@ -210,80 +276,194 @@ class PlaylistSchema:
 
         custom_poster = _parse_custom_poster(d.pop("custom_poster", UNSET))
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        _date_modified = d.pop("date_modified", UNSET)
-        date_modified: datetime.datetime | Unset
-        if isinstance(_date_modified, Unset):
-            date_modified = UNSET
-        else:
-            date_modified = datetime.datetime.fromisoformat(_date_modified)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
 
-        item_count = d.pop("item_count", UNSET)
+        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_modified_type_0 = datetime.datetime.fromisoformat(data)
 
-        _keyframe_asset_ids = d.pop("keyframe_asset_ids", UNSET)
-        keyframe_asset_ids: list[UUID] | Unset = UNSET
-        if _keyframe_asset_ids is not UNSET:
-            keyframe_asset_ids = []
-            for keyframe_asset_ids_item_data in _keyframe_asset_ids:
-                keyframe_asset_ids_item = UUID(keyframe_asset_ids_item_data)
+                return date_modified_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-                keyframe_asset_ids.append(keyframe_asset_ids_item)
+        date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
 
-        _keyframes = d.pop("keyframes", UNSET)
-        keyframes: list[PlaylistSchemaKeyframesItem] | Unset = UNSET
-        if _keyframes is not UNSET:
-            keyframes = []
-            for keyframes_item_data in _keyframes:
-                keyframes_item = PlaylistSchemaKeyframesItem.from_dict(
-                    keyframes_item_data
-                )
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
 
-                keyframes.append(keyframes_item)
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        _playlist_items = d.pop("playlist_items", UNSET)
-        playlist_items: list[PlaylistItemSchema] | Unset = UNSET
-        if _playlist_items is not UNSET:
-            playlist_items = []
-            for playlist_items_item_data in _playlist_items:
-                playlist_items_item = PlaylistItemSchema.from_dict(
-                    playlist_items_item_data
-                )
+        id = _parse_id(d.pop("id", UNSET))
 
-                playlist_items.append(playlist_items_item)
+        def _parse_item_count(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        _project_id = d.pop("project_id", UNSET)
-        project_id: UUID | Unset
-        if isinstance(_project_id, Unset):
-            project_id = UNSET
-        else:
-            project_id = UUID(_project_id)
+        item_count = _parse_item_count(d.pop("item_count", UNSET))
 
-        _status = d.pop("status", UNSET)
-        status: PlaylistSchemaStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = PlaylistSchemaStatus(_status)
+        def _parse_keyframe_asset_ids(data: object) -> list[UUID] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                keyframe_asset_ids_type_0 = []
+                _keyframe_asset_ids_type_0 = data
+                for keyframe_asset_ids_type_0_item_data in _keyframe_asset_ids_type_0:
+                    keyframe_asset_ids_type_0_item = UUID(
+                        keyframe_asset_ids_type_0_item_data
+                    )
 
-        _system_domain_id = d.pop("system_domain_id", UNSET)
-        system_domain_id: UUID | Unset
-        if isinstance(_system_domain_id, Unset):
-            system_domain_id = UNSET
-        else:
-            system_domain_id = UUID(_system_domain_id)
+                    keyframe_asset_ids_type_0.append(keyframe_asset_ids_type_0_item)
+
+                return keyframe_asset_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[UUID] | None | Unset, data)
+
+        keyframe_asset_ids = _parse_keyframe_asset_ids(
+            d.pop("keyframe_asset_ids", UNSET)
+        )
+
+        def _parse_keyframes(
+            data: object,
+        ) -> list[PlaylistSchemaKeyframesType0Item] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                keyframes_type_0 = []
+                _keyframes_type_0 = data
+                for keyframes_type_0_item_data in _keyframes_type_0:
+                    keyframes_type_0_item = PlaylistSchemaKeyframesType0Item.from_dict(
+                        keyframes_type_0_item_data
+                    )
+
+                    keyframes_type_0.append(keyframes_type_0_item)
+
+                return keyframes_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[PlaylistSchemaKeyframesType0Item] | None | Unset, data)
+
+        keyframes = _parse_keyframes(d.pop("keyframes", UNSET))
+
+        def _parse_playlist_items(
+            data: object,
+        ) -> list[PlaylistItemSchema] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                playlist_items_type_0 = []
+                _playlist_items_type_0 = data
+                for playlist_items_type_0_item_data in _playlist_items_type_0:
+                    playlist_items_type_0_item = PlaylistItemSchema.from_dict(
+                        playlist_items_type_0_item_data
+                    )
+
+                    playlist_items_type_0.append(playlist_items_type_0_item)
+
+                return playlist_items_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[PlaylistItemSchema] | None | Unset, data)
+
+        playlist_items = _parse_playlist_items(d.pop("playlist_items", UNSET))
+
+        def _parse_project_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                project_id_type_0 = UUID(data)
+
+                return project_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        project_id = _parse_project_id(d.pop("project_id", UNSET))
+
+        def _parse_status(data: object) -> None | PlaylistSchemaStatusType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                status_type_1 = PlaylistSchemaStatusType1.from_dict(data)
+
+                return status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | PlaylistSchemaStatusType1 | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
+
+        def _parse_system_domain_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                system_domain_id_type_0 = UUID(data)
+
+                return system_domain_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
 
         playlist_schema = cls(
             name=name,

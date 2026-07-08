@@ -18,12 +18,12 @@ class ExtractFacesParameters:
     Attributes:
         face_image_analysis_profile_id (None | Unset | UUID):
         face_video_analysis_profile_id (None | Unset | UUID):
-        force (bool | Unset):  Default: False.
+        force (bool | None | Unset):  Default: False.
     """
 
     face_image_analysis_profile_id: None | Unset | UUID = UNSET
     face_video_analysis_profile_id: None | Unset | UUID = UNSET
-    force: bool | Unset = False
+    force: bool | None | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -43,7 +43,11 @@ class ExtractFacesParameters:
         else:
             face_video_analysis_profile_id = self.face_video_analysis_profile_id
 
-        force = self.force
+        force: bool | None | Unset
+        if isinstance(self.force, Unset):
+            force = UNSET
+        else:
+            force = self.force
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -103,7 +107,14 @@ class ExtractFacesParameters:
             d.pop("face_video_analysis_profile_id", UNSET)
         )
 
-        force = d.pop("force", UNSET)
+        def _parse_force(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        force = _parse_force(d.pop("force", UNSET))
 
         extract_faces_parameters = cls(
             face_image_analysis_profile_id=face_image_analysis_profile_id,

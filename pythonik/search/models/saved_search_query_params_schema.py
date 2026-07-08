@@ -7,8 +7,8 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.saved_search_query_params_schema_types_item import (
-    SavedSearchQueryParamsSchemaTypesItem,
+from ..models.saved_search_query_params_schema_types_type_0_item import (
+    SavedSearchQueryParamsSchemaTypesType0Item,
 )
 from ..types import UNSET, Unset
 
@@ -21,23 +21,23 @@ class SavedSearchQueryParamsSchema:
     Attributes:
         page (int | None | Unset): Which page number to fetch Default: 1.
         per_page (int | None | Unset): The number of items for each page Default: 10.
-        scroll (bool | Unset):
-        scroll_id (UUID | Unset):
+        scroll (bool | None | Unset):
+        scroll_id (None | Unset | UUID):
         search_after (list[Any] | None | Unset): This parameter is used for infinite scroll pagination instead of
             deprecatedscroll API. It accepts a list of sort keys that will be used for getting a next page and it can be
             obtained from `_sort` key of the last object of the previous response
-        sort (str | Unset): A comma separated list of fieldnames with order (asc/desc)
-        types (list[SavedSearchQueryParamsSchemaTypesItem] | Unset): Comma-separated list of asset types to include in
-            results. Defaults to all except POST.
+        sort (None | str | Unset): A comma separated list of fieldnames with order (asc/desc)
+        types (list[SavedSearchQueryParamsSchemaTypesType0Item] | None | Unset): Comma-separated list of asset types to
+            include in results. Defaults to all except POST.
     """
 
     page: int | None | Unset = 1
     per_page: int | None | Unset = 10
-    scroll: bool | Unset = UNSET
-    scroll_id: UUID | Unset = UNSET
+    scroll: bool | None | Unset = UNSET
+    scroll_id: None | Unset | UUID = UNSET
     search_after: list[Any] | None | Unset = UNSET
-    sort: str | Unset = UNSET
-    types: list[SavedSearchQueryParamsSchemaTypesItem] | Unset = UNSET
+    sort: None | str | Unset = UNSET
+    types: list[SavedSearchQueryParamsSchemaTypesType0Item] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -53,11 +53,19 @@ class SavedSearchQueryParamsSchema:
         else:
             per_page = self.per_page
 
-        scroll = self.scroll
+        scroll: bool | None | Unset
+        if isinstance(self.scroll, Unset):
+            scroll = UNSET
+        else:
+            scroll = self.scroll
 
-        scroll_id: str | Unset = UNSET
-        if not isinstance(self.scroll_id, Unset):
+        scroll_id: None | str | Unset
+        if isinstance(self.scroll_id, Unset):
+            scroll_id = UNSET
+        elif isinstance(self.scroll_id, UUID):
             scroll_id = str(self.scroll_id)
+        else:
+            scroll_id = self.scroll_id
 
         search_after: list[Any] | None | Unset
         if isinstance(self.search_after, Unset):
@@ -68,14 +76,23 @@ class SavedSearchQueryParamsSchema:
         else:
             search_after = self.search_after
 
-        sort = self.sort
+        sort: None | str | Unset
+        if isinstance(self.sort, Unset):
+            sort = UNSET
+        else:
+            sort = self.sort
 
-        types: list[str] | Unset = UNSET
-        if not isinstance(self.types, Unset):
+        types: list[str] | None | Unset
+        if isinstance(self.types, Unset):
+            types = UNSET
+        elif isinstance(self.types, list):
             types = []
-            for types_item_data in self.types:
-                types_item = types_item_data.value
-                types.append(types_item)
+            for types_type_0_item_data in self.types:
+                types_type_0_item = types_type_0_item_data.value
+                types.append(types_type_0_item)
+
+        else:
+            types = self.types
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -119,14 +136,31 @@ class SavedSearchQueryParamsSchema:
 
         per_page = _parse_per_page(d.pop("per_page", UNSET))
 
-        scroll = d.pop("scroll", UNSET)
+        def _parse_scroll(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        _scroll_id = d.pop("scroll_id", UNSET)
-        scroll_id: UUID | Unset
-        if isinstance(_scroll_id, Unset):
-            scroll_id = UNSET
-        else:
-            scroll_id = UUID(_scroll_id)
+        scroll = _parse_scroll(d.pop("scroll", UNSET))
+
+        def _parse_scroll_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                scroll_id_type_0 = UUID(data)
+
+                return scroll_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        scroll_id = _parse_scroll_id(d.pop("scroll_id", UNSET))
 
         def _parse_search_after(data: object) -> list[Any] | None | Unset:
             if data is None:
@@ -145,16 +179,42 @@ class SavedSearchQueryParamsSchema:
 
         search_after = _parse_search_after(d.pop("search_after", UNSET))
 
-        sort = d.pop("sort", UNSET)
+        def _parse_sort(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        _types = d.pop("types", UNSET)
-        types: list[SavedSearchQueryParamsSchemaTypesItem] | Unset = UNSET
-        if _types is not UNSET:
-            types = []
-            for types_item_data in _types:
-                types_item = SavedSearchQueryParamsSchemaTypesItem(types_item_data)
+        sort = _parse_sort(d.pop("sort", UNSET))
 
-                types.append(types_item)
+        def _parse_types(
+            data: object,
+        ) -> list[SavedSearchQueryParamsSchemaTypesType0Item] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                types_type_0 = []
+                _types_type_0 = data
+                for types_type_0_item_data in _types_type_0:
+                    types_type_0_item = SavedSearchQueryParamsSchemaTypesType0Item(
+                        types_type_0_item_data
+                    )
+
+                    types_type_0.append(types_type_0_item)
+
+                return types_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(
+                list[SavedSearchQueryParamsSchemaTypesType0Item] | None | Unset, data
+            )
+
+        types = _parse_types(d.pop("types", UNSET))
 
         saved_search_query_params_schema = cls(
             page=page,

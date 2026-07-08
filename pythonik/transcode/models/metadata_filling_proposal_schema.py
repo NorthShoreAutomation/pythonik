@@ -2,16 +2,19 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.metadata_filling_proposal_schema_review_status import (
-    MetadataFillingProposalSchemaReviewStatus,
-)
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.metadata_filling_proposal_schema_review_status_type_1 import (
+        MetadataFillingProposalSchemaReviewStatusType1,
+    )
+
 
 T = TypeVar("T", bound="MetadataFillingProposalSchema")
 
@@ -20,56 +23,82 @@ T = TypeVar("T", bound="MetadataFillingProposalSchema")
 class MetadataFillingProposalSchema:
     """
     Attributes:
-        asset_id (UUID | Unset):
-        date_created (datetime.datetime | Unset):
-        errors (list[str] | Unset):
-        field_names (list[str] | Unset):
+        asset_id (None | Unset | UUID):
+        date_created (datetime.datetime | None | Unset):
+        errors (list[str] | None | Unset):
+        field_names (list[str] | None | Unset):
         field_values (Any | Unset):
-        job_id (UUID | Unset):
+        job_id (None | Unset | UUID):
         parent_job_id (None | Unset | UUID):
-        review_status (MetadataFillingProposalSchemaReviewStatus | Unset):
-        user_id (UUID | Unset):
+        review_status (MetadataFillingProposalSchemaReviewStatusType1 | None | Unset):
+        user_id (None | Unset | UUID):
         version_id (None | Unset | UUID):
         view_id (None | Unset | UUID):
-        warnings (list[str] | Unset):
+        warnings (list[str] | None | Unset):
     """
 
-    asset_id: UUID | Unset = UNSET
-    date_created: datetime.datetime | Unset = UNSET
-    errors: list[str] | Unset = UNSET
-    field_names: list[str] | Unset = UNSET
+    asset_id: None | Unset | UUID = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    errors: list[str] | None | Unset = UNSET
+    field_names: list[str] | None | Unset = UNSET
     field_values: Any | Unset = UNSET
-    job_id: UUID | Unset = UNSET
+    job_id: None | Unset | UUID = UNSET
     parent_job_id: None | Unset | UUID = UNSET
-    review_status: MetadataFillingProposalSchemaReviewStatus | Unset = UNSET
-    user_id: UUID | Unset = UNSET
+    review_status: MetadataFillingProposalSchemaReviewStatusType1 | None | Unset = UNSET
+    user_id: None | Unset | UUID = UNSET
     version_id: None | Unset | UUID = UNSET
     view_id: None | Unset | UUID = UNSET
-    warnings: list[str] | Unset = UNSET
+    warnings: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        asset_id: str | Unset = UNSET
-        if not isinstance(self.asset_id, Unset):
+        from ..models.metadata_filling_proposal_schema_review_status_type_1 import (
+            MetadataFillingProposalSchemaReviewStatusType1,
+        )
+
+        asset_id: None | str | Unset
+        if isinstance(self.asset_id, Unset):
+            asset_id = UNSET
+        elif isinstance(self.asset_id, UUID):
             asset_id = str(self.asset_id)
+        else:
+            asset_id = self.asset_id
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        errors: list[str] | Unset = UNSET
-        if not isinstance(self.errors, Unset):
+        errors: list[str] | None | Unset
+        if isinstance(self.errors, Unset):
+            errors = UNSET
+        elif isinstance(self.errors, list):
             errors = self.errors
 
-        field_names: list[str] | Unset = UNSET
-        if not isinstance(self.field_names, Unset):
+        else:
+            errors = self.errors
+
+        field_names: list[str] | None | Unset
+        if isinstance(self.field_names, Unset):
+            field_names = UNSET
+        elif isinstance(self.field_names, list):
+            field_names = self.field_names
+
+        else:
             field_names = self.field_names
 
         field_values = self.field_values
 
-        job_id: str | Unset = UNSET
-        if not isinstance(self.job_id, Unset):
+        job_id: None | str | Unset
+        if isinstance(self.job_id, Unset):
+            job_id = UNSET
+        elif isinstance(self.job_id, UUID):
             job_id = str(self.job_id)
+        else:
+            job_id = self.job_id
 
         parent_job_id: None | str | Unset
         if isinstance(self.parent_job_id, Unset):
@@ -79,13 +108,23 @@ class MetadataFillingProposalSchema:
         else:
             parent_job_id = self.parent_job_id
 
-        review_status: str | Unset = UNSET
-        if not isinstance(self.review_status, Unset):
-            review_status = self.review_status.value
+        review_status: dict[str, Any] | None | Unset
+        if isinstance(self.review_status, Unset):
+            review_status = UNSET
+        elif isinstance(
+            self.review_status, MetadataFillingProposalSchemaReviewStatusType1
+        ):
+            review_status = self.review_status.to_dict()
+        else:
+            review_status = self.review_status
 
-        user_id: str | Unset = UNSET
-        if not isinstance(self.user_id, Unset):
+        user_id: None | str | Unset
+        if isinstance(self.user_id, Unset):
+            user_id = UNSET
+        elif isinstance(self.user_id, UUID):
             user_id = str(self.user_id)
+        else:
+            user_id = self.user_id
 
         version_id: None | str | Unset
         if isinstance(self.version_id, Unset):
@@ -103,8 +142,13 @@ class MetadataFillingProposalSchema:
         else:
             view_id = self.view_id
 
-        warnings: list[str] | Unset = UNSET
-        if not isinstance(self.warnings, Unset):
+        warnings: list[str] | None | Unset
+        if isinstance(self.warnings, Unset):
+            warnings = UNSET
+        elif isinstance(self.warnings, list):
+            warnings = self.warnings
+
+        else:
             warnings = self.warnings
 
         field_dict: dict[str, Any] = {}
@@ -139,33 +183,98 @@ class MetadataFillingProposalSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.metadata_filling_proposal_schema_review_status_type_1 import (
+            MetadataFillingProposalSchemaReviewStatusType1,
+        )
+
         d = dict(src_dict)
-        _asset_id = d.pop("asset_id", UNSET)
-        asset_id: UUID | Unset
-        if isinstance(_asset_id, Unset):
-            asset_id = UNSET
-        else:
-            asset_id = UUID(_asset_id)
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        def _parse_asset_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                asset_id_type_0 = UUID(data)
 
-        errors = cast(list[str], d.pop("errors", UNSET))
+                return asset_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        field_names = cast(list[str], d.pop("field_names", UNSET))
+        asset_id = _parse_asset_id(d.pop("asset_id", UNSET))
+
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
+
+        def _parse_errors(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                errors_type_0 = cast(list[str], data)
+
+                return errors_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        errors = _parse_errors(d.pop("errors", UNSET))
+
+        def _parse_field_names(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                field_names_type_0 = cast(list[str], data)
+
+                return field_names_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        field_names = _parse_field_names(d.pop("field_names", UNSET))
 
         field_values = d.pop("field_values", UNSET)
 
-        _job_id = d.pop("job_id", UNSET)
-        job_id: UUID | Unset
-        if isinstance(_job_id, Unset):
-            job_id = UNSET
-        else:
-            job_id = UUID(_job_id)
+        def _parse_job_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                job_id_type_0 = UUID(data)
+
+                return job_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        job_id = _parse_job_id(d.pop("job_id", UNSET))
 
         def _parse_parent_job_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -184,19 +293,45 @@ class MetadataFillingProposalSchema:
 
         parent_job_id = _parse_parent_job_id(d.pop("parent_job_id", UNSET))
 
-        _review_status = d.pop("review_status", UNSET)
-        review_status: MetadataFillingProposalSchemaReviewStatus | Unset
-        if isinstance(_review_status, Unset):
-            review_status = UNSET
-        else:
-            review_status = MetadataFillingProposalSchemaReviewStatus(_review_status)
+        def _parse_review_status(
+            data: object,
+        ) -> MetadataFillingProposalSchemaReviewStatusType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                review_status_type_1 = (
+                    MetadataFillingProposalSchemaReviewStatusType1.from_dict(data)
+                )
 
-        _user_id = d.pop("user_id", UNSET)
-        user_id: UUID | Unset
-        if isinstance(_user_id, Unset):
-            user_id = UNSET
-        else:
-            user_id = UUID(_user_id)
+                return review_status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(
+                MetadataFillingProposalSchemaReviewStatusType1 | None | Unset, data
+            )
+
+        review_status = _parse_review_status(d.pop("review_status", UNSET))
+
+        def _parse_user_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                user_id_type_0 = UUID(data)
+
+                return user_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        user_id = _parse_user_id(d.pop("user_id", UNSET))
 
         def _parse_version_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -232,7 +367,22 @@ class MetadataFillingProposalSchema:
 
         view_id = _parse_view_id(d.pop("view_id", UNSET))
 
-        warnings = cast(list[str], d.pop("warnings", UNSET))
+        def _parse_warnings(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                warnings_type_0 = cast(list[str], data)
+
+                return warnings_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        warnings = _parse_warnings(d.pop("warnings", UNSET))
 
         metadata_filling_proposal_schema = cls(
             asset_id=asset_id,

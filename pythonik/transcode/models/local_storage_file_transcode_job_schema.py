@@ -26,10 +26,10 @@ class LocalStorageFileTranscodeJobSchema:
         version_id (str):
         checksum (None | str | Unset):
         collection_id (None | str | Unset):
-        component_ids (list[str] | Unset):
-        id (str | Unset):
+        component_ids (list[str] | None | Unset):
+        id (None | str | Unset):
         metadata_update_only (bool | None | Unset):
-        priority (int | Unset):
+        priority (int | None | Unset):
     """
 
     asset_id: str
@@ -43,10 +43,10 @@ class LocalStorageFileTranscodeJobSchema:
     version_id: str
     checksum: None | str | Unset = UNSET
     collection_id: None | str | Unset = UNSET
-    component_ids: list[str] | Unset = UNSET
-    id: str | Unset = UNSET
+    component_ids: list[str] | None | Unset = UNSET
+    id: None | str | Unset = UNSET
     metadata_update_only: bool | None | Unset = UNSET
-    priority: int | Unset = UNSET
+    priority: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -80,11 +80,20 @@ class LocalStorageFileTranscodeJobSchema:
         else:
             collection_id = self.collection_id
 
-        component_ids: list[str] | Unset = UNSET
-        if not isinstance(self.component_ids, Unset):
+        component_ids: list[str] | None | Unset
+        if isinstance(self.component_ids, Unset):
+            component_ids = UNSET
+        elif isinstance(self.component_ids, list):
             component_ids = self.component_ids
 
-        id = self.id
+        else:
+            component_ids = self.component_ids
+
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        else:
+            id = self.id
 
         metadata_update_only: bool | None | Unset
         if isinstance(self.metadata_update_only, Unset):
@@ -92,7 +101,11 @@ class LocalStorageFileTranscodeJobSchema:
         else:
             metadata_update_only = self.metadata_update_only
 
-        priority = self.priority
+        priority: int | None | Unset
+        if isinstance(self.priority, Unset):
+            priority = UNSET
+        else:
+            priority = self.priority
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -163,9 +176,31 @@ class LocalStorageFileTranscodeJobSchema:
 
         collection_id = _parse_collection_id(d.pop("collection_id", UNSET))
 
-        component_ids = cast(list[str], d.pop("component_ids", UNSET))
+        def _parse_component_ids(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                component_ids_type_0 = cast(list[str], data)
 
-        id = d.pop("id", UNSET)
+                return component_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        component_ids = _parse_component_ids(d.pop("component_ids", UNSET))
+
+        def _parse_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        id = _parse_id(d.pop("id", UNSET))
 
         def _parse_metadata_update_only(data: object) -> bool | None | Unset:
             if data is None:
@@ -178,7 +213,14 @@ class LocalStorageFileTranscodeJobSchema:
             d.pop("metadata_update_only", UNSET)
         )
 
-        priority = d.pop("priority", UNSET)
+        def _parse_priority(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        priority = _parse_priority(d.pop("priority", UNSET))
 
         local_storage_file_transcode_job_schema = cls(
             asset_id=asset_id,

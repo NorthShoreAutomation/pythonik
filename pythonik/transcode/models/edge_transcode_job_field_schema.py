@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,22 +15,34 @@ T = TypeVar("T", bound="EdgeTranscodeJobFieldSchema")
 class EdgeTranscodeJobFieldSchema:
     """
     Attributes:
-        height (int | Unset):
-        id (str | Unset):
-        width (int | Unset):
+        height (int | None | Unset):
+        id (None | str | Unset):
+        width (int | None | Unset):
     """
 
-    height: int | Unset = UNSET
-    id: str | Unset = UNSET
-    width: int | Unset = UNSET
+    height: int | None | Unset = UNSET
+    id: None | str | Unset = UNSET
+    width: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        height = self.height
+        height: int | None | Unset
+        if isinstance(self.height, Unset):
+            height = UNSET
+        else:
+            height = self.height
 
-        id = self.id
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        else:
+            id = self.id
 
-        width = self.width
+        width: int | None | Unset
+        if isinstance(self.width, Unset):
+            width = UNSET
+        else:
+            width = self.width
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -47,11 +59,33 @@ class EdgeTranscodeJobFieldSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        height = d.pop("height", UNSET)
 
-        id = d.pop("id", UNSET)
+        def _parse_height(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        width = d.pop("width", UNSET)
+        height = _parse_height(d.pop("height", UNSET))
+
+        def _parse_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_width(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        width = _parse_width(d.pop("width", UNSET))
 
         edge_transcode_job_field_schema = cls(
             height=height,

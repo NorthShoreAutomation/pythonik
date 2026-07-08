@@ -4,12 +4,14 @@ from .acl_update_schema import ACLUpdateSchema
 from .acl_update_schema_mode import ACLUpdateSchemaMode
 from .acl_update_schema_permissions_item import ACLUpdateSchemaPermissionsItem
 from .action_schema_base import ActionSchemaBase
-from .action_schema_base_parameters import ActionSchemaBaseParameters
+from .action_schema_base_parameters_type_0 import ActionSchemaBaseParametersType0
 from .add_to_collection_action_parameters import AddToCollectionActionParameters
 from .add_to_collection_action_schema import AddToCollectionActionSchema
 from .add_to_collection_action_schema_type import AddToCollectionActionSchemaType
 from .analyze_action_parameters import AnalyzeActionParameters
-from .analyze_action_parameters_force_type import AnalyzeActionParametersForceType
+from .analyze_action_parameters_force_type_type_1 import (
+    AnalyzeActionParametersForceTypeType1,
+)
 from .analyze_action_schema import AnalyzeActionSchema
 from .analyze_action_schema_type import AnalyzeActionSchemaType
 from .archive_action_parameters import ArchiveActionParameters
@@ -37,11 +39,15 @@ from .asset_transferred_to_storage_trigger_schema_type import (
 from .automation_history_schema import AutomationHistorySchema
 from .automation_history_schema_status import AutomationHistorySchemaStatus
 from .automation_internal_schema import AutomationInternalSchema
-from .automation_internal_schema_status import AutomationInternalSchemaStatus
+from .automation_internal_schema_status_type_1 import (
+    AutomationInternalSchemaStatusType1,
+)
 from .automation_run_estimate_schema import AutomationRunEstimateSchema
-from .automation_run_estimate_schema_facets import AutomationRunEstimateSchemaFacets
+from .automation_run_estimate_schema_facets_type_0 import (
+    AutomationRunEstimateSchemaFacetsType0,
+)
 from .automation_schema import AutomationSchema
-from .automation_schema_status import AutomationSchemaStatus
+from .automation_schema_status_type_1 import AutomationSchemaStatusType1
 from .automation_stats_object_schema import AutomationStatsObjectSchema
 from .automation_stats_object_schema_type import AutomationStatsObjectSchemaType
 from .automation_stats_schema import AutomationStatsSchema
@@ -57,8 +63,8 @@ from .create_publication_job_action_schema_type import (
 )
 from .create_publication_job_action_type import CreatePublicationJobActionType
 from .create_publication_job_parameters import CreatePublicationJobParameters
-from .create_publication_job_parameters_metadata_overrides import (
-    CreatePublicationJobParametersMetadataOverrides,
+from .create_publication_job_parameters_metadata_overrides_type_0 import (
+    CreatePublicationJobParametersMetadataOverridesType0,
 )
 from .create_publication_job_thumbnail_keyframe import (
     CreatePublicationJobThumbnailKeyframe,
@@ -67,7 +73,7 @@ from .create_publication_job_thumbnail_keyframe_type import (
     CreatePublicationJobThumbnailKeyframeType,
 )
 from .create_publication_template import CreatePublicationTemplate
-from .create_publication_template_data import CreatePublicationTemplateData
+from .create_publication_template_data_type_0 import CreatePublicationTemplateDataType0
 from .create_share_action import CreateShareAction
 from .create_share_action_parameters import CreateShareActionParameters
 from .create_share_action_parameters_schema import CreateShareActionParametersSchema
@@ -84,9 +90,9 @@ from .created_at_transition_trigger_schema_type import (
 )
 from .created_at_transition_trigger_type import CreatedAtTransitionTriggerType
 from .delete_action import DeleteAction
-from .delete_action_parameters import DeleteActionParameters
+from .delete_action_parameters_type_0 import DeleteActionParametersType0
 from .delete_action_schema import DeleteActionSchema
-from .delete_action_schema_parameters import DeleteActionSchemaParameters
+from .delete_action_schema_parameters_type_0 import DeleteActionSchemaParametersType0
 from .delete_action_schema_type import DeleteActionSchemaType
 from .delete_action_type import DeleteActionType
 from .delete_automations_by_automation_id_history_by_object_type_by_object_id_by_version_id_response_default_type_0 import (
@@ -114,8 +120,8 @@ from .delete_file_set_action_schema_type import DeleteFileSetActionSchemaType
 from .delete_file_set_action_type import DeleteFileSetActionType
 from .export_action import ExportAction
 from .export_action_parameters import ExportActionParameters
-from .export_action_parameters_metadata_format import (
-    ExportActionParametersMetadataFormat,
+from .export_action_parameters_metadata_format_type_1 import (
+    ExportActionParametersMetadataFormatType1,
 )
 from .export_action_schema import ExportActionSchema
 from .export_action_schema_type import ExportActionSchemaType
@@ -160,14 +166,16 @@ from .get_automations_response_default_type_1_errors import (
 )
 from .list_objects_schema import ListObjectsSchema
 from .metadata_field_value_schema import MetadataFieldValueSchema
-from .metadata_field_value_schema_field_values_item import (
-    MetadataFieldValueSchemaFieldValuesItem,
+from .metadata_field_value_schema_field_values_type_0_item import (
+    MetadataFieldValueSchemaFieldValuesType0Item,
 )
 from .metadata_field_value_update_schema import MetadataFieldValueUpdateSchema
-from .metadata_field_value_update_schema_field_values_item import (
-    MetadataFieldValueUpdateSchemaFieldValuesItem,
+from .metadata_field_value_update_schema_field_values_type_0_item import (
+    MetadataFieldValueUpdateSchemaFieldValuesType0Item,
 )
-from .metadata_field_value_update_schema_mode import MetadataFieldValueUpdateSchemaMode
+from .metadata_field_value_update_schema_mode_type_1 import (
+    MetadataFieldValueUpdateSchemaModeType1,
+)
 from .metadata_update_action import MetadataUpdateAction
 from .metadata_update_action_parameters import MetadataUpdateActionParameters
 from .metadata_update_action_parameters_metadata_values import (
@@ -280,7 +288,9 @@ from .request_original_action_schema_type import RequestOriginalActionSchemaType
 from .request_original_action_type import RequestOriginalActionType
 from .request_review_action import RequestReviewAction
 from .request_review_action_parameters import RequestReviewActionParameters
-from .request_review_action_parameters_status import RequestReviewActionParametersStatus
+from .request_review_action_parameters_status_type_1 import (
+    RequestReviewActionParametersStatusType1,
+)
 from .request_review_action_schema import RequestReviewActionSchema
 from .request_review_action_schema_type import RequestReviewActionSchemaType
 from .request_review_action_type import RequestReviewActionType
@@ -298,8 +308,8 @@ from .review_status_changed_trigger import ReviewStatusChangedTrigger
 from .review_status_changed_trigger_parameters import (
     ReviewStatusChangedTriggerParameters,
 )
-from .review_status_changed_trigger_parameters_statuses_item import (
-    ReviewStatusChangedTriggerParametersStatusesItem,
+from .review_status_changed_trigger_parameters_statuses_type_0_item import (
+    ReviewStatusChangedTriggerParametersStatusesType0Item,
 )
 from .review_status_changed_trigger_schema import ReviewStatusChangedTriggerSchema
 from .review_status_changed_trigger_schema_type import (
@@ -312,17 +322,17 @@ from .subtitle_added_trigger_schema import SubtitleAddedTriggerSchema
 from .subtitle_added_trigger_schema_type import SubtitleAddedTriggerSchemaType
 from .subtitle_added_trigger_type import SubtitleAddedTriggerType
 from .term import Term
-from .term_external import TermExternal
+from .term_external_type_0 import TermExternalType0
 from .term_schema import TermSchema
-from .term_schema_external import TermSchemaExternal
+from .term_schema_external_type_0 import TermSchemaExternalType0
 from .transcode_action import TranscodeAction
 from .transcode_action_parameters import TranscodeActionParameters
-from .transcode_action_parameters_preferred_storage_method import (
-    TranscodeActionParametersPreferredStorageMethod,
+from .transcode_action_parameters_preferred_storage_method_type_1 import (
+    TranscodeActionParametersPreferredStorageMethodType1,
 )
 from .transcode_action_parameters_schema import TranscodeActionParametersSchema
-from .transcode_action_parameters_schema_preferred_storage_method import (
-    TranscodeActionParametersSchemaPreferredStorageMethod,
+from .transcode_action_parameters_schema_preferred_storage_method_type_1 import (
+    TranscodeActionParametersSchemaPreferredStorageMethodType1,
 )
 from .transcode_action_schema import TranscodeActionSchema
 from .transcode_action_schema_type import TranscodeActionSchemaType
@@ -344,21 +354,21 @@ from .trigger_custom_action_parameters import TriggerCustomActionParameters
 from .trigger_custom_action_parameters_context import (
     TriggerCustomActionParametersContext,
 )
-from .trigger_custom_action_parameters_metadata_values import (
-    TriggerCustomActionParametersMetadataValues,
+from .trigger_custom_action_parameters_metadata_values_type_0 import (
+    TriggerCustomActionParametersMetadataValuesType0,
 )
 from .trigger_custom_action_schema import TriggerCustomActionSchema
 from .trigger_custom_action_schema_type import TriggerCustomActionSchemaType
 from .trigger_custom_action_type import TriggerCustomActionType
 from .trigger_event_type import TriggerEventType
-from .trigger_operations_item import TriggerOperationsItem
-from .trigger_realm import TriggerRealm
+from .trigger_operations_type_0_item import TriggerOperationsType0Item
+from .trigger_realm_type_1 import TriggerRealmType1
 from .trigger_schema import TriggerSchema
 from .trigger_schema_base import TriggerSchemaBase
-from .trigger_schema_base_parameters import TriggerSchemaBaseParameters
+from .trigger_schema_base_parameters_type_0 import TriggerSchemaBaseParametersType0
 from .trigger_schema_event_type import TriggerSchemaEventType
-from .trigger_schema_operations_item import TriggerSchemaOperationsItem
-from .trigger_schema_realm import TriggerSchemaRealm
+from .trigger_schema_operations_type_0_item import TriggerSchemaOperationsType0Item
+from .trigger_schema_realm_type_1 import TriggerSchemaRealmType1
 from .trigger_schema_type import TriggerSchemaType
 from .trigger_type import TriggerType
 from .triggers_schema import TriggersSchema
@@ -378,12 +388,12 @@ __all__ = (
     "ACLUpdateSchemaMode",
     "ACLUpdateSchemaPermissionsItem",
     "ActionSchemaBase",
-    "ActionSchemaBaseParameters",
+    "ActionSchemaBaseParametersType0",
     "AddToCollectionActionParameters",
     "AddToCollectionActionSchema",
     "AddToCollectionActionSchemaType",
     "AnalyzeActionParameters",
-    "AnalyzeActionParametersForceType",
+    "AnalyzeActionParametersForceTypeType1",
     "AnalyzeActionSchema",
     "AnalyzeActionSchemaType",
     "ArchiveActionParameters",
@@ -407,11 +417,11 @@ __all__ = (
     "AutomationHistorySchema",
     "AutomationHistorySchemaStatus",
     "AutomationInternalSchema",
-    "AutomationInternalSchemaStatus",
+    "AutomationInternalSchemaStatusType1",
     "AutomationRunEstimateSchema",
-    "AutomationRunEstimateSchemaFacets",
+    "AutomationRunEstimateSchemaFacetsType0",
     "AutomationSchema",
-    "AutomationSchemaStatus",
+    "AutomationSchemaStatusType1",
     "AutomationsInternalSchema",
     "AutomationsSchema",
     "AutomationStatsObjectSchema",
@@ -430,11 +440,11 @@ __all__ = (
     "CreatePublicationJobActionSchemaType",
     "CreatePublicationJobActionType",
     "CreatePublicationJobParameters",
-    "CreatePublicationJobParametersMetadataOverrides",
+    "CreatePublicationJobParametersMetadataOverridesType0",
     "CreatePublicationJobThumbnailKeyframe",
     "CreatePublicationJobThumbnailKeyframeType",
     "CreatePublicationTemplate",
-    "CreatePublicationTemplateData",
+    "CreatePublicationTemplateDataType0",
     "CreateShareAction",
     "CreateShareActionParameters",
     "CreateShareActionParametersSchema",
@@ -442,9 +452,9 @@ __all__ = (
     "CreateShareActionSchemaType",
     "CreateShareActionType",
     "DeleteAction",
-    "DeleteActionParameters",
+    "DeleteActionParametersType0",
     "DeleteActionSchema",
-    "DeleteActionSchemaParameters",
+    "DeleteActionSchemaParametersType0",
     "DeleteActionSchemaType",
     "DeleteActionType",
     "DeleteAutomationsByAutomationIdHistoryByObjectTypeByObjectIdByVersionIdResponseDefaultType0",
@@ -460,7 +470,7 @@ __all__ = (
     "DeleteFileSetActionType",
     "ExportAction",
     "ExportActionParameters",
-    "ExportActionParametersMetadataFormat",
+    "ExportActionParametersMetadataFormatType1",
     "ExportActionSchema",
     "ExportActionSchemaType",
     "ExportActionType",
@@ -484,10 +494,10 @@ __all__ = (
     "GetAutomationsResponseDefaultType1Errors",
     "ListObjectsSchema",
     "MetadataFieldValueSchema",
-    "MetadataFieldValueSchemaFieldValuesItem",
+    "MetadataFieldValueSchemaFieldValuesType0Item",
     "MetadataFieldValueUpdateSchema",
-    "MetadataFieldValueUpdateSchemaFieldValuesItem",
-    "MetadataFieldValueUpdateSchemaMode",
+    "MetadataFieldValueUpdateSchemaFieldValuesType0Item",
+    "MetadataFieldValueUpdateSchemaModeType1",
     "MetadataUpdateAction",
     "MetadataUpdateActionParameters",
     "MetadataUpdateActionParametersMetadataValues",
@@ -544,7 +554,7 @@ __all__ = (
     "RequestOriginalActionType",
     "RequestReviewAction",
     "RequestReviewActionParameters",
-    "RequestReviewActionParametersStatus",
+    "RequestReviewActionParametersStatusType1",
     "RequestReviewActionSchema",
     "RequestReviewActionSchemaType",
     "RequestReviewActionType",
@@ -560,7 +570,7 @@ __all__ = (
     "RestrictAssetActionType",
     "ReviewStatusChangedTrigger",
     "ReviewStatusChangedTriggerParameters",
-    "ReviewStatusChangedTriggerParametersStatusesItem",
+    "ReviewStatusChangedTriggerParametersStatusesType0Item",
     "ReviewStatusChangedTriggerSchema",
     "ReviewStatusChangedTriggerSchemaType",
     "ReviewStatusChangedTriggerType",
@@ -570,14 +580,14 @@ __all__ = (
     "SubtitleAddedTriggerSchemaType",
     "SubtitleAddedTriggerType",
     "Term",
-    "TermExternal",
+    "TermExternalType0",
     "TermSchema",
-    "TermSchemaExternal",
+    "TermSchemaExternalType0",
     "TranscodeAction",
     "TranscodeActionParameters",
-    "TranscodeActionParametersPreferredStorageMethod",
+    "TranscodeActionParametersPreferredStorageMethodType1",
     "TranscodeActionParametersSchema",
-    "TranscodeActionParametersSchemaPreferredStorageMethod",
+    "TranscodeActionParametersSchemaPreferredStorageMethodType1",
     "TranscodeActionSchema",
     "TranscodeActionSchemaType",
     "TranscodeActionType",
@@ -596,19 +606,19 @@ __all__ = (
     "TriggerCustomAction",
     "TriggerCustomActionParameters",
     "TriggerCustomActionParametersContext",
-    "TriggerCustomActionParametersMetadataValues",
+    "TriggerCustomActionParametersMetadataValuesType0",
     "TriggerCustomActionSchema",
     "TriggerCustomActionSchemaType",
     "TriggerCustomActionType",
     "TriggerEventType",
-    "TriggerOperationsItem",
-    "TriggerRealm",
+    "TriggerOperationsType0Item",
+    "TriggerRealmType1",
     "TriggerSchema",
     "TriggerSchemaBase",
-    "TriggerSchemaBaseParameters",
+    "TriggerSchemaBaseParametersType0",
     "TriggerSchemaEventType",
-    "TriggerSchemaOperationsItem",
-    "TriggerSchemaRealm",
+    "TriggerSchemaOperationsType0Item",
+    "TriggerSchemaRealmType1",
     "TriggerSchemaType",
     "TriggersSchema",
     "TriggerType",

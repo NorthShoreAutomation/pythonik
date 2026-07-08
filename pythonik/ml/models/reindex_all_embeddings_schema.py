@@ -17,11 +17,11 @@ class ReindexAllEmbeddingsSchema:
     """
     Attributes:
         embedding_ids (list[UUID] | None | Unset):
-        sync_to_another_dc (bool | Unset):
+        sync_to_another_dc (bool | None | Unset):
     """
 
     embedding_ids: list[UUID] | None | Unset = UNSET
-    sync_to_another_dc: bool | Unset = UNSET
+    sync_to_another_dc: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -37,7 +37,11 @@ class ReindexAllEmbeddingsSchema:
         else:
             embedding_ids = self.embedding_ids
 
-        sync_to_another_dc = self.sync_to_another_dc
+        sync_to_another_dc: bool | None | Unset
+        if isinstance(self.sync_to_another_dc, Unset):
+            sync_to_another_dc = UNSET
+        else:
+            sync_to_another_dc = self.sync_to_another_dc
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -75,7 +79,16 @@ class ReindexAllEmbeddingsSchema:
 
         embedding_ids = _parse_embedding_ids(d.pop("embedding_ids", UNSET))
 
-        sync_to_another_dc = d.pop("sync_to_another_dc", UNSET)
+        def _parse_sync_to_another_dc(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        sync_to_another_dc = _parse_sync_to_another_dc(
+            d.pop("sync_to_another_dc", UNSET)
+        )
 
         reindex_all_embeddings_schema = cls(
             embedding_ids=embedding_ids,

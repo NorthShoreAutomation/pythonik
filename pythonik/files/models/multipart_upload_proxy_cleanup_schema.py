@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,18 +15,26 @@ T = TypeVar("T", bound="MultipartUploadProxyCleanupSchema")
 class MultipartUploadProxyCleanupSchema:
     """
     Attributes:
-        abort_upload (bool | Unset):
-        upload_id (str | Unset):
+        abort_upload (bool | None | Unset):
+        upload_id (None | str | Unset):
     """
 
-    abort_upload: bool | Unset = UNSET
-    upload_id: str | Unset = UNSET
+    abort_upload: bool | None | Unset = UNSET
+    upload_id: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        abort_upload = self.abort_upload
+        abort_upload: bool | None | Unset
+        if isinstance(self.abort_upload, Unset):
+            abort_upload = UNSET
+        else:
+            abort_upload = self.abort_upload
 
-        upload_id = self.upload_id
+        upload_id: None | str | Unset
+        if isinstance(self.upload_id, Unset):
+            upload_id = UNSET
+        else:
+            upload_id = self.upload_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -41,9 +49,24 @@ class MultipartUploadProxyCleanupSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        abort_upload = d.pop("abort_upload", UNSET)
 
-        upload_id = d.pop("upload_id", UNSET)
+        def _parse_abort_upload(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        abort_upload = _parse_abort_upload(d.pop("abort_upload", UNSET))
+
+        def _parse_upload_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        upload_id = _parse_upload_id(d.pop("upload_id", UNSET))
 
         multipart_upload_proxy_cleanup_schema = cls(
             abort_upload=abort_upload,

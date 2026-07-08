@@ -1,8 +1,10 @@
 """Contains all the data models used in inputs/outputs"""
 
 from .asset_usage_schema import AssetUsageSchema
-from .asset_usage_schema_asset_type import AssetUsageSchemaAssetType
-from .asset_usage_schema_operation_source import AssetUsageSchemaOperationSource
+from .asset_usage_schema_asset_type_type_1 import AssetUsageSchemaAssetTypeType1
+from .asset_usage_schema_operation_source_type_1 import (
+    AssetUsageSchemaOperationSourceType1,
+)
 from .asset_usage_schema_operation_type import AssetUsageSchemaOperationType
 from .asset_usages_elastic_schema import AssetUsagesElasticSchema
 from .asset_usages_schema import AssetUsagesSchema
@@ -22,24 +24,24 @@ from .billing_expiration_update_schema import BillingExpirationUpdateSchema
 from .billing_receipt_schema import BillingReceiptSchema
 from .billing_recipients_schema import BillingRecipientsSchema
 from .billing_schema import BillingSchema
-from .billing_schema_currency import BillingSchemaCurrency
+from .billing_schema_currency_type_1 import BillingSchemaCurrencyType1
 from .billing_settings_schema import BillingSettingsSchema
 from .billing_stats_schema import BillingStatsSchema
-from .billing_stats_schema_system_domain_status import (
-    BillingStatsSchemaSystemDomainStatus,
+from .billing_stats_schema_system_domain_status_type_1 import (
+    BillingStatsSchemaSystemDomainStatusType1,
 )
 from .billings_schema import BillingsSchema
 from .collection_usage_schema import CollectionUsageSchema
-from .collection_usage_schema_operation_source import (
-    CollectionUsageSchemaOperationSource,
+from .collection_usage_schema_operation_source_type_1 import (
+    CollectionUsageSchemaOperationSourceType1,
 )
 from .collection_usage_schema_operation_type import CollectionUsageSchemaOperationType
 from .collection_usages_elastic_schema import CollectionUsagesElasticSchema
 from .collection_usages_schema import CollectionUsagesSchema
 from .credits_schema import CreditsSchema
 from .current_usage_schema import CurrentUsageSchema
-from .current_usage_schema_storage import CurrentUsageSchemaStorage
-from .current_usage_schema_users import CurrentUsageSchemaUsers
+from .current_usage_schema_storage_type_0 import CurrentUsageSchemaStorageType0
+from .current_usage_schema_users_type_0 import CurrentUsageSchemaUsersType0
 from .date_filter_schema import DateFilterSchema
 from .delete_billing_by_system_domain_id_by_billing_id_response_default_type_0 import (
     DeleteBillingBySystemDomainIdByBillingIdResponseDefaultType0,
@@ -339,8 +341,8 @@ from .patch_system_logs_recipients_by_logs_recipient_id_response_default_type_1_
     PatchSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1Errors,
 )
 from .paygo_costs_schema import PaygoCostsSchema
-from .paygo_costs_schema_storage_costs import PaygoCostsSchemaStorageCosts
-from .paygo_costs_schema_user_costs import PaygoCostsSchemaUserCosts
+from .paygo_costs_schema_storage_costs_type_0 import PaygoCostsSchemaStorageCostsType0
+from .paygo_costs_schema_user_costs_type_0 import PaygoCostsSchemaUserCostsType0
 from .post_assets_response_default_type_0 import PostAssetsResponseDefaultType0
 from .post_assets_response_default_type_1 import PostAssetsResponseDefaultType1
 from .post_assets_response_default_type_1_errors import (
@@ -466,12 +468,14 @@ from .storage_usage_schema_storage_type import StorageUsageSchemaStorageType
 from .storage_usages_elastic_schema import StorageUsagesElasticSchema
 from .storage_usages_schema import StorageUsagesSchema
 from .transcoder_usage_schema import TranscoderUsageSchema
-from .transcoder_usage_schema_operation_type import TranscoderUsageSchemaOperationType
+from .transcoder_usage_schema_operation_type_type_1 import (
+    TranscoderUsageSchemaOperationTypeType1,
+)
 from .transcoder_usage_schema_status import TranscoderUsageSchemaStatus
 from .transcoder_usage_schema_transcoder_type import TranscoderUsageSchemaTranscoderType
 from .transcoder_usages_elastic_schema import TranscoderUsagesElasticSchema
-from .transcoder_usages_elastic_schema_operation_type import (
-    TranscoderUsagesElasticSchemaOperationType,
+from .transcoder_usages_elastic_schema_operation_type_type_1 import (
+    TranscoderUsagesElasticSchemaOperationTypeType1,
 )
 from .transcoder_usages_elastic_schema_transcoder_type import (
     TranscoderUsagesElasticSchemaTranscoderType,
@@ -490,8 +494,8 @@ from .user_usages_schema import UserUsagesSchema
 
 __all__ = (
     "AssetUsageSchema",
-    "AssetUsageSchemaAssetType",
-    "AssetUsageSchemaOperationSource",
+    "AssetUsageSchemaAssetTypeType1",
+    "AssetUsageSchemaOperationSourceType1",
     "AssetUsageSchemaOperationType",
     "AssetUsagesElasticSchema",
     "AssetUsagesSchema",
@@ -509,20 +513,20 @@ __all__ = (
     "BillingReceiptSchema",
     "BillingRecipientsSchema",
     "BillingSchema",
-    "BillingSchemaCurrency",
+    "BillingSchemaCurrencyType1",
     "BillingSettingsSchema",
     "BillingsSchema",
     "BillingStatsSchema",
-    "BillingStatsSchemaSystemDomainStatus",
+    "BillingStatsSchemaSystemDomainStatusType1",
     "CollectionUsageSchema",
-    "CollectionUsageSchemaOperationSource",
+    "CollectionUsageSchemaOperationSourceType1",
     "CollectionUsageSchemaOperationType",
     "CollectionUsagesElasticSchema",
     "CollectionUsagesSchema",
     "CreditsSchema",
     "CurrentUsageSchema",
-    "CurrentUsageSchemaStorage",
-    "CurrentUsageSchemaUsers",
+    "CurrentUsageSchemaStorageType0",
+    "CurrentUsageSchemaUsersType0",
     "DateFilterSchema",
     "DeleteBillingBySystemDomainIdByBillingIdResponseDefaultType0",
     "DeleteBillingBySystemDomainIdByBillingIdResponseDefaultType1",
@@ -632,8 +636,8 @@ __all__ = (
     "PatchSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1",
     "PatchSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1Errors",
     "PaygoCostsSchema",
-    "PaygoCostsSchemaStorageCosts",
-    "PaygoCostsSchemaUserCosts",
+    "PaygoCostsSchemaStorageCostsType0",
+    "PaygoCostsSchemaUserCostsType0",
     "PostAssetsResponseDefaultType0",
     "PostAssetsResponseDefaultType1",
     "PostAssetsResponseDefaultType1Errors",
@@ -687,11 +691,11 @@ __all__ = (
     "StorageUsagesElasticSchema",
     "StorageUsagesSchema",
     "TranscoderUsageSchema",
-    "TranscoderUsageSchemaOperationType",
+    "TranscoderUsageSchemaOperationTypeType1",
     "TranscoderUsageSchemaStatus",
     "TranscoderUsageSchemaTranscoderType",
     "TranscoderUsagesElasticSchema",
-    "TranscoderUsagesElasticSchemaOperationType",
+    "TranscoderUsagesElasticSchemaOperationTypeType1",
     "TranscoderUsagesElasticSchemaTranscoderType",
     "TranscoderUsagesSchema",
     "TransferStatsSchema",

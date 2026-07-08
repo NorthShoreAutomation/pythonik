@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,30 +15,50 @@ T = TypeVar("T", bound="MultiPartUploadURLSchema")
 class MultiPartUploadURLSchema:
     """
     Attributes:
-        delete_url (str | Unset):
-        download_url (str | Unset):
-        key (str | Unset):
-        number (int | Unset):
-        url (str | Unset):
+        delete_url (None | str | Unset):
+        download_url (None | str | Unset):
+        key (None | str | Unset):
+        number (int | None | Unset):
+        url (None | str | Unset):
     """
 
-    delete_url: str | Unset = UNSET
-    download_url: str | Unset = UNSET
-    key: str | Unset = UNSET
-    number: int | Unset = UNSET
-    url: str | Unset = UNSET
+    delete_url: None | str | Unset = UNSET
+    download_url: None | str | Unset = UNSET
+    key: None | str | Unset = UNSET
+    number: int | None | Unset = UNSET
+    url: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        delete_url = self.delete_url
+        delete_url: None | str | Unset
+        if isinstance(self.delete_url, Unset):
+            delete_url = UNSET
+        else:
+            delete_url = self.delete_url
 
-        download_url = self.download_url
+        download_url: None | str | Unset
+        if isinstance(self.download_url, Unset):
+            download_url = UNSET
+        else:
+            download_url = self.download_url
 
-        key = self.key
+        key: None | str | Unset
+        if isinstance(self.key, Unset):
+            key = UNSET
+        else:
+            key = self.key
 
-        number = self.number
+        number: int | None | Unset
+        if isinstance(self.number, Unset):
+            number = UNSET
+        else:
+            number = self.number
 
-        url = self.url
+        url: None | str | Unset
+        if isinstance(self.url, Unset):
+            url = UNSET
+        else:
+            url = self.url
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -59,15 +79,51 @@ class MultiPartUploadURLSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        delete_url = d.pop("delete_url", UNSET)
 
-        download_url = d.pop("download_url", UNSET)
+        def _parse_delete_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        key = d.pop("key", UNSET)
+        delete_url = _parse_delete_url(d.pop("delete_url", UNSET))
 
-        number = d.pop("number", UNSET)
+        def _parse_download_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        url = d.pop("url", UNSET)
+        download_url = _parse_download_url(d.pop("download_url", UNSET))
+
+        def _parse_key(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        key = _parse_key(d.pop("key", UNSET))
+
+        def _parse_number(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        number = _parse_number(d.pop("number", UNSET))
+
+        def _parse_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        url = _parse_url(d.pop("url", UNSET))
 
         multi_part_upload_url_schema = cls(
             delete_url=delete_url,

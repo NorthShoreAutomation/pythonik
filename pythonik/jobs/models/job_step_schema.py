@@ -20,17 +20,17 @@ class JobStepSchema:
     Attributes:
         label (str):
         status (JobStepSchemaStatus):
-        date_updated (datetime.datetime | Unset):
+        date_updated (datetime.datetime | None | Unset):
         error_message (None | str | Unset):
-        id (UUID | Unset):
+        id (None | Unset | UUID):
         message (None | str | Unset):
     """
 
     label: str
     status: JobStepSchemaStatus
-    date_updated: datetime.datetime | Unset = UNSET
+    date_updated: datetime.datetime | None | Unset = UNSET
     error_message: None | str | Unset = UNSET
-    id: UUID | Unset = UNSET
+    id: None | Unset | UUID = UNSET
     message: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -39,9 +39,13 @@ class JobStepSchema:
 
         status = self.status.value
 
-        date_updated: str | Unset = UNSET
-        if not isinstance(self.date_updated, Unset):
+        date_updated: None | str | Unset
+        if isinstance(self.date_updated, Unset):
+            date_updated = UNSET
+        elif isinstance(self.date_updated, datetime.datetime):
             date_updated = self.date_updated.isoformat()
+        else:
+            date_updated = self.date_updated
 
         error_message: None | str | Unset
         if isinstance(self.error_message, Unset):
@@ -49,9 +53,13 @@ class JobStepSchema:
         else:
             error_message = self.error_message
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
         message: None | str | Unset
         if isinstance(self.message, Unset):
@@ -85,12 +93,22 @@ class JobStepSchema:
 
         status = JobStepSchemaStatus(d.pop("status"))
 
-        _date_updated = d.pop("date_updated", UNSET)
-        date_updated: datetime.datetime | Unset
-        if isinstance(_date_updated, Unset):
-            date_updated = UNSET
-        else:
-            date_updated = datetime.datetime.fromisoformat(_date_updated)
+        def _parse_date_updated(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_updated_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_updated_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_updated = _parse_date_updated(d.pop("date_updated", UNSET))
 
         def _parse_error_message(data: object) -> None | str | Unset:
             if data is None:
@@ -101,12 +119,22 @@ class JobStepSchema:
 
         error_message = _parse_error_message(d.pop("error_message", UNSET))
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
 
         def _parse_message(data: object) -> None | str | Unset:
             if data is None:

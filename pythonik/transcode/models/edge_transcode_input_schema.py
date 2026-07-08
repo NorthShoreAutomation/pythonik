@@ -20,43 +20,59 @@ class EdgeTranscodeInputSchema:
     """
     Attributes:
         endpoint (EdgeTranscodeEndpointSchema):
-        asset_id (str | Unset):
-        closed_captions (bool | Unset):
-        directory_path (str | Unset):
-        file_id (str | Unset):
+        asset_id (None | str | Unset):
+        closed_captions (bool | None | Unset):
+        directory_path (None | str | Unset):
+        file_id (None | str | Unset):
         file_set_id (None | str | Unset):
         format_id (None | str | Unset):
-        language (str | Unset):
+        language (None | str | Unset):
         original_asset_id (None | str | Unset):
-        original_name (str | Unset):
+        original_name (None | str | Unset):
         proxy_id (None | str | Unset):
-        storage_id (str | Unset):
+        storage_id (None | str | Unset):
     """
 
     endpoint: EdgeTranscodeEndpointSchema
-    asset_id: str | Unset = UNSET
-    closed_captions: bool | Unset = UNSET
-    directory_path: str | Unset = UNSET
-    file_id: str | Unset = UNSET
+    asset_id: None | str | Unset = UNSET
+    closed_captions: bool | None | Unset = UNSET
+    directory_path: None | str | Unset = UNSET
+    file_id: None | str | Unset = UNSET
     file_set_id: None | str | Unset = UNSET
     format_id: None | str | Unset = UNSET
-    language: str | Unset = UNSET
+    language: None | str | Unset = UNSET
     original_asset_id: None | str | Unset = UNSET
-    original_name: str | Unset = UNSET
+    original_name: None | str | Unset = UNSET
     proxy_id: None | str | Unset = UNSET
-    storage_id: str | Unset = UNSET
+    storage_id: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         endpoint = self.endpoint.to_dict()
 
-        asset_id = self.asset_id
+        asset_id: None | str | Unset
+        if isinstance(self.asset_id, Unset):
+            asset_id = UNSET
+        else:
+            asset_id = self.asset_id
 
-        closed_captions = self.closed_captions
+        closed_captions: bool | None | Unset
+        if isinstance(self.closed_captions, Unset):
+            closed_captions = UNSET
+        else:
+            closed_captions = self.closed_captions
 
-        directory_path = self.directory_path
+        directory_path: None | str | Unset
+        if isinstance(self.directory_path, Unset):
+            directory_path = UNSET
+        else:
+            directory_path = self.directory_path
 
-        file_id = self.file_id
+        file_id: None | str | Unset
+        if isinstance(self.file_id, Unset):
+            file_id = UNSET
+        else:
+            file_id = self.file_id
 
         file_set_id: None | str | Unset
         if isinstance(self.file_set_id, Unset):
@@ -70,7 +86,11 @@ class EdgeTranscodeInputSchema:
         else:
             format_id = self.format_id
 
-        language = self.language
+        language: None | str | Unset
+        if isinstance(self.language, Unset):
+            language = UNSET
+        else:
+            language = self.language
 
         original_asset_id: None | str | Unset
         if isinstance(self.original_asset_id, Unset):
@@ -78,7 +98,11 @@ class EdgeTranscodeInputSchema:
         else:
             original_asset_id = self.original_asset_id
 
-        original_name = self.original_name
+        original_name: None | str | Unset
+        if isinstance(self.original_name, Unset):
+            original_name = UNSET
+        else:
+            original_name = self.original_name
 
         proxy_id: None | str | Unset
         if isinstance(self.proxy_id, Unset):
@@ -86,7 +110,11 @@ class EdgeTranscodeInputSchema:
         else:
             proxy_id = self.proxy_id
 
-        storage_id = self.storage_id
+        storage_id: None | str | Unset
+        if isinstance(self.storage_id, Unset):
+            storage_id = UNSET
+        else:
+            storage_id = self.storage_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -127,13 +155,41 @@ class EdgeTranscodeInputSchema:
         d = dict(src_dict)
         endpoint = EdgeTranscodeEndpointSchema.from_dict(d.pop("endpoint"))
 
-        asset_id = d.pop("asset_id", UNSET)
+        def _parse_asset_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        closed_captions = d.pop("closed_captions", UNSET)
+        asset_id = _parse_asset_id(d.pop("asset_id", UNSET))
 
-        directory_path = d.pop("directory_path", UNSET)
+        def _parse_closed_captions(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        file_id = d.pop("file_id", UNSET)
+        closed_captions = _parse_closed_captions(d.pop("closed_captions", UNSET))
+
+        def _parse_directory_path(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        directory_path = _parse_directory_path(d.pop("directory_path", UNSET))
+
+        def _parse_file_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        file_id = _parse_file_id(d.pop("file_id", UNSET))
 
         def _parse_file_set_id(data: object) -> None | str | Unset:
             if data is None:
@@ -153,7 +209,14 @@ class EdgeTranscodeInputSchema:
 
         format_id = _parse_format_id(d.pop("format_id", UNSET))
 
-        language = d.pop("language", UNSET)
+        def _parse_language(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        language = _parse_language(d.pop("language", UNSET))
 
         def _parse_original_asset_id(data: object) -> None | str | Unset:
             if data is None:
@@ -164,7 +227,14 @@ class EdgeTranscodeInputSchema:
 
         original_asset_id = _parse_original_asset_id(d.pop("original_asset_id", UNSET))
 
-        original_name = d.pop("original_name", UNSET)
+        def _parse_original_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        original_name = _parse_original_name(d.pop("original_name", UNSET))
 
         def _parse_proxy_id(data: object) -> None | str | Unset:
             if data is None:
@@ -175,7 +245,14 @@ class EdgeTranscodeInputSchema:
 
         proxy_id = _parse_proxy_id(d.pop("proxy_id", UNSET))
 
-        storage_id = d.pop("storage_id", UNSET)
+        def _parse_storage_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        storage_id = _parse_storage_id(d.pop("storage_id", UNSET))
 
         edge_transcode_input_schema = cls(
             endpoint=endpoint,

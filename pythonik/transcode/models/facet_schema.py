@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -19,27 +19,40 @@ T = TypeVar("T", bound="FacetSchema")
 class FacetSchema:
     """
     Attributes:
-        buckets (list[FacetBucketSchema] | Unset):
-        doc_count_error_upper_bound (int | Unset):
-        sum_other_doc_count (int | Unset):
+        buckets (list[FacetBucketSchema] | None | Unset):
+        doc_count_error_upper_bound (int | None | Unset):
+        sum_other_doc_count (int | None | Unset):
     """
 
-    buckets: list[FacetBucketSchema] | Unset = UNSET
-    doc_count_error_upper_bound: int | Unset = UNSET
-    sum_other_doc_count: int | Unset = UNSET
+    buckets: list[FacetBucketSchema] | None | Unset = UNSET
+    doc_count_error_upper_bound: int | None | Unset = UNSET
+    sum_other_doc_count: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        buckets: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.buckets, Unset):
+        buckets: list[dict[str, Any]] | None | Unset
+        if isinstance(self.buckets, Unset):
+            buckets = UNSET
+        elif isinstance(self.buckets, list):
             buckets = []
-            for buckets_item_data in self.buckets:
-                buckets_item = buckets_item_data.to_dict()
-                buckets.append(buckets_item)
+            for buckets_type_0_item_data in self.buckets:
+                buckets_type_0_item = buckets_type_0_item_data.to_dict()
+                buckets.append(buckets_type_0_item)
 
-        doc_count_error_upper_bound = self.doc_count_error_upper_bound
+        else:
+            buckets = self.buckets
 
-        sum_other_doc_count = self.sum_other_doc_count
+        doc_count_error_upper_bound: int | None | Unset
+        if isinstance(self.doc_count_error_upper_bound, Unset):
+            doc_count_error_upper_bound = UNSET
+        else:
+            doc_count_error_upper_bound = self.doc_count_error_upper_bound
+
+        sum_other_doc_count: int | None | Unset
+        if isinstance(self.sum_other_doc_count, Unset):
+            sum_other_doc_count = UNSET
+        else:
+            sum_other_doc_count = self.sum_other_doc_count
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -58,18 +71,52 @@ class FacetSchema:
         from ..models.facet_bucket_schema import FacetBucketSchema
 
         d = dict(src_dict)
-        _buckets = d.pop("buckets", UNSET)
-        buckets: list[FacetBucketSchema] | Unset = UNSET
-        if _buckets is not UNSET:
-            buckets = []
-            for buckets_item_data in _buckets:
-                buckets_item = FacetBucketSchema.from_dict(buckets_item_data)
 
-                buckets.append(buckets_item)
+        def _parse_buckets(data: object) -> list[FacetBucketSchema] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                buckets_type_0 = []
+                _buckets_type_0 = data
+                for buckets_type_0_item_data in _buckets_type_0:
+                    buckets_type_0_item = FacetBucketSchema.from_dict(
+                        buckets_type_0_item_data
+                    )
 
-        doc_count_error_upper_bound = d.pop("doc_count_error_upper_bound", UNSET)
+                    buckets_type_0.append(buckets_type_0_item)
 
-        sum_other_doc_count = d.pop("sum_other_doc_count", UNSET)
+                return buckets_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[FacetBucketSchema] | None | Unset, data)
+
+        buckets = _parse_buckets(d.pop("buckets", UNSET))
+
+        def _parse_doc_count_error_upper_bound(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        doc_count_error_upper_bound = _parse_doc_count_error_upper_bound(
+            d.pop("doc_count_error_upper_bound", UNSET)
+        )
+
+        def _parse_sum_other_doc_count(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        sum_other_doc_count = _parse_sum_other_doc_count(
+            d.pop("sum_other_doc_count", UNSET)
+        )
 
         facet_schema = cls(
             buckets=buckets,

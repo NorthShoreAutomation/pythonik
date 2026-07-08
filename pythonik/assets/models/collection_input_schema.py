@@ -2,14 +2,19 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.collection_input_schema_status import CollectionInputSchemaStatus
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.collection_input_schema_status_type_1 import (
+        CollectionInputSchemaStatusType1,
+    )
+
 
 T = TypeVar("T", bound="CollectionInputSchema")
 
@@ -22,12 +27,12 @@ class CollectionInputSchema:
         category (None | str | Unset):
         custom_keyframe (None | Unset | UUID):
         custom_poster (None | Unset | UUID):
-        date_created (datetime.datetime | Unset):
+        date_created (datetime.datetime | None | Unset):
         external_id (None | str | Unset):
-        is_root (bool | Unset):
-        keyframe_asset_ids (list[UUID] | Unset):
+        is_root (bool | None | Unset):
+        keyframe_asset_ids (list[UUID] | None | Unset):
         parent_id (None | Unset | UUID):
-        status (CollectionInputSchemaStatus | Unset):
+        status (CollectionInputSchemaStatusType1 | None | Unset):
         storage_id (None | Unset | UUID):
     """
 
@@ -35,16 +40,20 @@ class CollectionInputSchema:
     category: None | str | Unset = UNSET
     custom_keyframe: None | Unset | UUID = UNSET
     custom_poster: None | Unset | UUID = UNSET
-    date_created: datetime.datetime | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
     external_id: None | str | Unset = UNSET
-    is_root: bool | Unset = UNSET
-    keyframe_asset_ids: list[UUID] | Unset = UNSET
+    is_root: bool | None | Unset = UNSET
+    keyframe_asset_ids: list[UUID] | None | Unset = UNSET
     parent_id: None | Unset | UUID = UNSET
-    status: CollectionInputSchemaStatus | Unset = UNSET
+    status: CollectionInputSchemaStatusType1 | None | Unset = UNSET
     storage_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.collection_input_schema_status_type_1 import (
+            CollectionInputSchemaStatusType1,
+        )
+
         title = self.title
 
         category: None | str | Unset
@@ -69,9 +78,13 @@ class CollectionInputSchema:
         else:
             custom_poster = self.custom_poster
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
         external_id: None | str | Unset
         if isinstance(self.external_id, Unset):
@@ -79,14 +92,25 @@ class CollectionInputSchema:
         else:
             external_id = self.external_id
 
-        is_root = self.is_root
+        is_root: bool | None | Unset
+        if isinstance(self.is_root, Unset):
+            is_root = UNSET
+        else:
+            is_root = self.is_root
 
-        keyframe_asset_ids: list[str] | Unset = UNSET
-        if not isinstance(self.keyframe_asset_ids, Unset):
+        keyframe_asset_ids: list[str] | None | Unset
+        if isinstance(self.keyframe_asset_ids, Unset):
+            keyframe_asset_ids = UNSET
+        elif isinstance(self.keyframe_asset_ids, list):
             keyframe_asset_ids = []
-            for keyframe_asset_ids_item_data in self.keyframe_asset_ids:
-                keyframe_asset_ids_item = str(keyframe_asset_ids_item_data)
-                keyframe_asset_ids.append(keyframe_asset_ids_item)
+            for keyframe_asset_ids_type_0_item_data in self.keyframe_asset_ids:
+                keyframe_asset_ids_type_0_item = str(
+                    keyframe_asset_ids_type_0_item_data
+                )
+                keyframe_asset_ids.append(keyframe_asset_ids_type_0_item)
+
+        else:
+            keyframe_asset_ids = self.keyframe_asset_ids
 
         parent_id: None | str | Unset
         if isinstance(self.parent_id, Unset):
@@ -96,9 +120,13 @@ class CollectionInputSchema:
         else:
             parent_id = self.parent_id
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        status: dict[str, Any] | None | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        elif isinstance(self.status, CollectionInputSchemaStatusType1):
+            status = self.status.to_dict()
+        else:
+            status = self.status
 
         storage_id: None | str | Unset
         if isinstance(self.storage_id, Unset):
@@ -140,6 +168,10 @@ class CollectionInputSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.collection_input_schema_status_type_1 import (
+            CollectionInputSchemaStatusType1,
+        )
+
         d = dict(src_dict)
         title = d.pop("title")
 
@@ -186,12 +218,22 @@ class CollectionInputSchema:
 
         custom_poster = _parse_custom_poster(d.pop("custom_poster", UNSET))
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
 
         def _parse_external_id(data: object) -> None | str | Unset:
             if data is None:
@@ -202,16 +244,40 @@ class CollectionInputSchema:
 
         external_id = _parse_external_id(d.pop("external_id", UNSET))
 
-        is_root = d.pop("is_root", UNSET)
+        def _parse_is_root(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        _keyframe_asset_ids = d.pop("keyframe_asset_ids", UNSET)
-        keyframe_asset_ids: list[UUID] | Unset = UNSET
-        if _keyframe_asset_ids is not UNSET:
-            keyframe_asset_ids = []
-            for keyframe_asset_ids_item_data in _keyframe_asset_ids:
-                keyframe_asset_ids_item = UUID(keyframe_asset_ids_item_data)
+        is_root = _parse_is_root(d.pop("is_root", UNSET))
 
-                keyframe_asset_ids.append(keyframe_asset_ids_item)
+        def _parse_keyframe_asset_ids(data: object) -> list[UUID] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                keyframe_asset_ids_type_0 = []
+                _keyframe_asset_ids_type_0 = data
+                for keyframe_asset_ids_type_0_item_data in _keyframe_asset_ids_type_0:
+                    keyframe_asset_ids_type_0_item = UUID(
+                        keyframe_asset_ids_type_0_item_data
+                    )
+
+                    keyframe_asset_ids_type_0.append(keyframe_asset_ids_type_0_item)
+
+                return keyframe_asset_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[UUID] | None | Unset, data)
+
+        keyframe_asset_ids = _parse_keyframe_asset_ids(
+            d.pop("keyframe_asset_ids", UNSET)
+        )
 
         def _parse_parent_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -230,12 +296,24 @@ class CollectionInputSchema:
 
         parent_id = _parse_parent_id(d.pop("parent_id", UNSET))
 
-        _status = d.pop("status", UNSET)
-        status: CollectionInputSchemaStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = CollectionInputSchemaStatus(_status)
+        def _parse_status(
+            data: object,
+        ) -> CollectionInputSchemaStatusType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                status_type_1 = CollectionInputSchemaStatusType1.from_dict(data)
+
+                return status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(CollectionInputSchemaStatusType1 | None | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
 
         def _parse_storage_id(data: object) -> None | Unset | UUID:
             if data is None:

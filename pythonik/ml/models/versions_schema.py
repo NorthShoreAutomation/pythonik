@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -17,22 +17,27 @@ class VersionsSchema:
     """
     Attributes:
         asset_id (UUID):
-        version_ids (list[UUID] | Unset):
+        version_ids (list[UUID] | None | Unset):
     """
 
     asset_id: UUID
-    version_ids: list[UUID] | Unset = UNSET
+    version_ids: list[UUID] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         asset_id = str(self.asset_id)
 
-        version_ids: list[str] | Unset = UNSET
-        if not isinstance(self.version_ids, Unset):
+        version_ids: list[str] | None | Unset
+        if isinstance(self.version_ids, Unset):
+            version_ids = UNSET
+        elif isinstance(self.version_ids, list):
             version_ids = []
-            for version_ids_item_data in self.version_ids:
-                version_ids_item = str(version_ids_item_data)
-                version_ids.append(version_ids_item)
+            for version_ids_type_0_item_data in self.version_ids:
+                version_ids_type_0_item = str(version_ids_type_0_item_data)
+                version_ids.append(version_ids_type_0_item)
+
+        else:
+            version_ids = self.version_ids
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -51,14 +56,27 @@ class VersionsSchema:
         d = dict(src_dict)
         asset_id = UUID(d.pop("asset_id"))
 
-        _version_ids = d.pop("version_ids", UNSET)
-        version_ids: list[UUID] | Unset = UNSET
-        if _version_ids is not UNSET:
-            version_ids = []
-            for version_ids_item_data in _version_ids:
-                version_ids_item = UUID(version_ids_item_data)
+        def _parse_version_ids(data: object) -> list[UUID] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                version_ids_type_0 = []
+                _version_ids_type_0 = data
+                for version_ids_type_0_item_data in _version_ids_type_0:
+                    version_ids_type_0_item = UUID(version_ids_type_0_item_data)
 
-                version_ids.append(version_ids_item)
+                    version_ids_type_0.append(version_ids_type_0_item)
+
+                return version_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[UUID] | None | Unset, data)
+
+        version_ids = _parse_version_ids(d.pop("version_ids", UNSET))
 
         versions_schema = cls(
             asset_id=asset_id,

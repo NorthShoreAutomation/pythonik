@@ -1,13 +1,13 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.review_status_changed_trigger_parameters_statuses_item import (
-    ReviewStatusChangedTriggerParametersStatusesItem,
+from ..models.review_status_changed_trigger_parameters_statuses_type_0_item import (
+    ReviewStatusChangedTriggerParametersStatusesType0Item,
 )
 from ..types import UNSET, Unset
 
@@ -18,19 +18,26 @@ T = TypeVar("T", bound="ReviewStatusChangedTriggerParameters")
 class ReviewStatusChangedTriggerParameters:
     """
     Attributes:
-        statuses (list[ReviewStatusChangedTriggerParametersStatusesItem] | Unset):
+        statuses (list[ReviewStatusChangedTriggerParametersStatusesType0Item] | None | Unset):
     """
 
-    statuses: list[ReviewStatusChangedTriggerParametersStatusesItem] | Unset = UNSET
+    statuses: (
+        list[ReviewStatusChangedTriggerParametersStatusesType0Item] | None | Unset
+    ) = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        statuses: list[str] | Unset = UNSET
-        if not isinstance(self.statuses, Unset):
+        statuses: list[str] | None | Unset
+        if isinstance(self.statuses, Unset):
+            statuses = UNSET
+        elif isinstance(self.statuses, list):
             statuses = []
-            for statuses_item_data in self.statuses:
-                statuses_item = statuses_item_data.value
-                statuses.append(statuses_item)
+            for statuses_type_0_item_data in self.statuses:
+                statuses_type_0_item = statuses_type_0_item_data.value
+                statuses.append(statuses_type_0_item)
+
+        else:
+            statuses = self.statuses
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -43,16 +50,39 @@ class ReviewStatusChangedTriggerParameters:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        _statuses = d.pop("statuses", UNSET)
-        statuses: list[ReviewStatusChangedTriggerParametersStatusesItem] | Unset = UNSET
-        if _statuses is not UNSET:
-            statuses = []
-            for statuses_item_data in _statuses:
-                statuses_item = ReviewStatusChangedTriggerParametersStatusesItem(
-                    statuses_item_data
-                )
 
-                statuses.append(statuses_item)
+        def _parse_statuses(
+            data: object,
+        ) -> list[ReviewStatusChangedTriggerParametersStatusesType0Item] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                statuses_type_0 = []
+                _statuses_type_0 = data
+                for statuses_type_0_item_data in _statuses_type_0:
+                    statuses_type_0_item = (
+                        ReviewStatusChangedTriggerParametersStatusesType0Item(
+                            statuses_type_0_item_data
+                        )
+                    )
+
+                    statuses_type_0.append(statuses_type_0_item)
+
+                return statuses_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(
+                list[ReviewStatusChangedTriggerParametersStatusesType0Item]
+                | None
+                | Unset,
+                data,
+            )
+
+        statuses = _parse_statuses(d.pop("statuses", UNSET))
 
         review_status_changed_trigger_parameters = cls(
             statuses=statuses,

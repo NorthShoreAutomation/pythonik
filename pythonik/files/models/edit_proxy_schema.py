@@ -24,8 +24,8 @@ class EditProxySchema:
         width (int):
         allow_mxf (bool | None | Unset):
         file_suffix (None | str | Unset):
-        force_storage_id (bool | Unset):
-        ignore_transcoder_settings (bool | Unset):
+        force_storage_id (bool | None | Unset):
+        ignore_transcoder_settings (bool | None | Unset):
         keep_extension (bool | None | Unset):
     """
 
@@ -37,8 +37,8 @@ class EditProxySchema:
     width: int
     allow_mxf: bool | None | Unset = UNSET
     file_suffix: None | str | Unset = UNSET
-    force_storage_id: bool | Unset = UNSET
-    ignore_transcoder_settings: bool | Unset = UNSET
+    force_storage_id: bool | None | Unset = UNSET
+    ignore_transcoder_settings: bool | None | Unset = UNSET
     keep_extension: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -68,9 +68,17 @@ class EditProxySchema:
         else:
             file_suffix = self.file_suffix
 
-        force_storage_id = self.force_storage_id
+        force_storage_id: bool | None | Unset
+        if isinstance(self.force_storage_id, Unset):
+            force_storage_id = UNSET
+        else:
+            force_storage_id = self.force_storage_id
 
-        ignore_transcoder_settings = self.ignore_transcoder_settings
+        ignore_transcoder_settings: bool | None | Unset
+        if isinstance(self.ignore_transcoder_settings, Unset):
+            ignore_transcoder_settings = UNSET
+        else:
+            ignore_transcoder_settings = self.ignore_transcoder_settings
 
         keep_extension: bool | None | Unset
         if isinstance(self.keep_extension, Unset):
@@ -142,9 +150,25 @@ class EditProxySchema:
 
         file_suffix = _parse_file_suffix(d.pop("file_suffix", UNSET))
 
-        force_storage_id = d.pop("force_storage_id", UNSET)
+        def _parse_force_storage_id(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        ignore_transcoder_settings = d.pop("ignore_transcoder_settings", UNSET)
+        force_storage_id = _parse_force_storage_id(d.pop("force_storage_id", UNSET))
+
+        def _parse_ignore_transcoder_settings(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        ignore_transcoder_settings = _parse_ignore_transcoder_settings(
+            d.pop("ignore_transcoder_settings", UNSET)
+        )
 
         def _parse_keep_extension(data: object) -> bool | None | Unset:
             if data is None:

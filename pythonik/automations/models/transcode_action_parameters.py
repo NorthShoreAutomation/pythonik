@@ -1,16 +1,19 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.transcode_action_parameters_preferred_storage_method import (
-    TranscodeActionParametersPreferredStorageMethod,
-)
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.transcode_action_parameters_preferred_storage_method_type_1 import (
+        TranscodeActionParametersPreferredStorageMethodType1,
+    )
+
 
 T = TypeVar("T", bound="TranscodeActionParameters")
 
@@ -19,36 +22,63 @@ T = TypeVar("T", bound="TranscodeActionParameters")
 class TranscodeActionParameters:
     """
     Attributes:
-        format_name (str | Unset):  Default: 'ORIGINAL'.
-        prefer_any_cloud (bool | Unset):
-        preferred_storage_id (UUID | Unset):
-        preferred_storage_method (TranscodeActionParametersPreferredStorageMethod | Unset):
-        priority (int | Unset):
+        format_name (None | str | Unset):  Default: 'ORIGINAL'.
+        prefer_any_cloud (bool | None | Unset):
+        preferred_storage_id (None | Unset | UUID):
+        preferred_storage_method (None | TranscodeActionParametersPreferredStorageMethodType1 | Unset):
+        priority (int | None | Unset):
     """
 
-    format_name: str | Unset = "ORIGINAL"
-    prefer_any_cloud: bool | Unset = UNSET
-    preferred_storage_id: UUID | Unset = UNSET
+    format_name: None | str | Unset = "ORIGINAL"
+    prefer_any_cloud: bool | None | Unset = UNSET
+    preferred_storage_id: None | Unset | UUID = UNSET
     preferred_storage_method: (
-        TranscodeActionParametersPreferredStorageMethod | Unset
+        None | TranscodeActionParametersPreferredStorageMethodType1 | Unset
     ) = UNSET
-    priority: int | Unset = UNSET
+    priority: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        format_name = self.format_name
+        from ..models.transcode_action_parameters_preferred_storage_method_type_1 import (
+            TranscodeActionParametersPreferredStorageMethodType1,
+        )
 
-        prefer_any_cloud = self.prefer_any_cloud
+        format_name: None | str | Unset
+        if isinstance(self.format_name, Unset):
+            format_name = UNSET
+        else:
+            format_name = self.format_name
 
-        preferred_storage_id: str | Unset = UNSET
-        if not isinstance(self.preferred_storage_id, Unset):
+        prefer_any_cloud: bool | None | Unset
+        if isinstance(self.prefer_any_cloud, Unset):
+            prefer_any_cloud = UNSET
+        else:
+            prefer_any_cloud = self.prefer_any_cloud
+
+        preferred_storage_id: None | str | Unset
+        if isinstance(self.preferred_storage_id, Unset):
+            preferred_storage_id = UNSET
+        elif isinstance(self.preferred_storage_id, UUID):
             preferred_storage_id = str(self.preferred_storage_id)
+        else:
+            preferred_storage_id = self.preferred_storage_id
 
-        preferred_storage_method: str | Unset = UNSET
-        if not isinstance(self.preferred_storage_method, Unset):
-            preferred_storage_method = self.preferred_storage_method.value
+        preferred_storage_method: dict[str, Any] | None | Unset
+        if isinstance(self.preferred_storage_method, Unset):
+            preferred_storage_method = UNSET
+        elif isinstance(
+            self.preferred_storage_method,
+            TranscodeActionParametersPreferredStorageMethodType1,
+        ):
+            preferred_storage_method = self.preferred_storage_method.to_dict()
+        else:
+            preferred_storage_method = self.preferred_storage_method
 
-        priority = self.priority
+        priority: int | None | Unset
+        if isinstance(self.priority, Unset):
+            priority = UNSET
+        else:
+            priority = self.priority
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -68,30 +98,83 @@ class TranscodeActionParameters:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        d = dict(src_dict)
-        format_name = d.pop("format_name", UNSET)
-
-        prefer_any_cloud = d.pop("prefer_any_cloud", UNSET)
-
-        _preferred_storage_id = d.pop("preferred_storage_id", UNSET)
-        preferred_storage_id: UUID | Unset
-        if isinstance(_preferred_storage_id, Unset):
-            preferred_storage_id = UNSET
-        else:
-            preferred_storage_id = UUID(_preferred_storage_id)
-
-        _preferred_storage_method = d.pop("preferred_storage_method", UNSET)
-        preferred_storage_method: (
-            TranscodeActionParametersPreferredStorageMethod | Unset
+        from ..models.transcode_action_parameters_preferred_storage_method_type_1 import (
+            TranscodeActionParametersPreferredStorageMethodType1,
         )
-        if isinstance(_preferred_storage_method, Unset):
-            preferred_storage_method = UNSET
-        else:
-            preferred_storage_method = TranscodeActionParametersPreferredStorageMethod(
-                _preferred_storage_method
+
+        d = dict(src_dict)
+
+        def _parse_format_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        format_name = _parse_format_name(d.pop("format_name", UNSET))
+
+        def _parse_prefer_any_cloud(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        prefer_any_cloud = _parse_prefer_any_cloud(d.pop("prefer_any_cloud", UNSET))
+
+        def _parse_preferred_storage_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                preferred_storage_id_type_0 = UUID(data)
+
+                return preferred_storage_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        preferred_storage_id = _parse_preferred_storage_id(
+            d.pop("preferred_storage_id", UNSET)
+        )
+
+        def _parse_preferred_storage_method(
+            data: object,
+        ) -> None | TranscodeActionParametersPreferredStorageMethodType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                preferred_storage_method_type_1 = (
+                    TranscodeActionParametersPreferredStorageMethodType1.from_dict(data)
+                )
+
+                return preferred_storage_method_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(
+                None | TranscodeActionParametersPreferredStorageMethodType1 | Unset,
+                data,
             )
 
-        priority = d.pop("priority", UNSET)
+        preferred_storage_method = _parse_preferred_storage_method(
+            d.pop("preferred_storage_method", UNSET)
+        )
+
+        def _parse_priority(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        priority = _parse_priority(d.pop("priority", UNSET))
 
         transcode_action_parameters = cls(
             format_name=format_name,

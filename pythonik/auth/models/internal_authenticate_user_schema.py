@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -23,12 +23,12 @@ class InternalAuthenticateUserSchema:
     Attributes:
         app_name (str):
         user (InternalAuthenticateUserSchemaUser):
-        marketplace_signup_nonce (str | Unset):
+        marketplace_signup_nonce (None | str | Unset):
     """
 
     app_name: str
     user: InternalAuthenticateUserSchemaUser
-    marketplace_signup_nonce: str | Unset = UNSET
+    marketplace_signup_nonce: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -36,7 +36,11 @@ class InternalAuthenticateUserSchema:
 
         user = self.user.to_dict()
 
-        marketplace_signup_nonce = self.marketplace_signup_nonce
+        marketplace_signup_nonce: None | str | Unset
+        if isinstance(self.marketplace_signup_nonce, Unset):
+            marketplace_signup_nonce = UNSET
+        else:
+            marketplace_signup_nonce = self.marketplace_signup_nonce
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -62,7 +66,16 @@ class InternalAuthenticateUserSchema:
 
         user = InternalAuthenticateUserSchemaUser.from_dict(d.pop("user"))
 
-        marketplace_signup_nonce = d.pop("marketplace_signup_nonce", UNSET)
+        def _parse_marketplace_signup_nonce(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        marketplace_signup_nonce = _parse_marketplace_signup_nonce(
+            d.pop("marketplace_signup_nonce", UNSET)
+        )
 
         internal_authenticate_user_schema = cls(
             app_name=app_name,

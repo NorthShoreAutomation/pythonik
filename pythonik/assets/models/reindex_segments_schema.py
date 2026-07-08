@@ -17,15 +17,15 @@ class ReindexSegmentsSchema:
     """
     Attributes:
         segment_ids (list[UUID]):
-        ignore_comments (bool | Unset):
+        ignore_comments (bool | None | Unset):
         realms (list[str] | None | Unset):
-        sync_to_another_dc (bool | Unset):
+        sync_to_another_dc (bool | None | Unset):
     """
 
     segment_ids: list[UUID]
-    ignore_comments: bool | Unset = UNSET
+    ignore_comments: bool | None | Unset = UNSET
     realms: list[str] | None | Unset = UNSET
-    sync_to_another_dc: bool | Unset = UNSET
+    sync_to_another_dc: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -34,7 +34,11 @@ class ReindexSegmentsSchema:
             segment_ids_item = str(segment_ids_item_data)
             segment_ids.append(segment_ids_item)
 
-        ignore_comments = self.ignore_comments
+        ignore_comments: bool | None | Unset
+        if isinstance(self.ignore_comments, Unset):
+            ignore_comments = UNSET
+        else:
+            ignore_comments = self.ignore_comments
 
         realms: list[str] | None | Unset
         if isinstance(self.realms, Unset):
@@ -45,7 +49,11 @@ class ReindexSegmentsSchema:
         else:
             realms = self.realms
 
-        sync_to_another_dc = self.sync_to_another_dc
+        sync_to_another_dc: bool | None | Unset
+        if isinstance(self.sync_to_another_dc, Unset):
+            sync_to_another_dc = UNSET
+        else:
+            sync_to_another_dc = self.sync_to_another_dc
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -73,7 +81,14 @@ class ReindexSegmentsSchema:
 
             segment_ids.append(segment_ids_item)
 
-        ignore_comments = d.pop("ignore_comments", UNSET)
+        def _parse_ignore_comments(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        ignore_comments = _parse_ignore_comments(d.pop("ignore_comments", UNSET))
 
         def _parse_realms(data: object) -> list[str] | None | Unset:
             if data is None:
@@ -92,7 +107,16 @@ class ReindexSegmentsSchema:
 
         realms = _parse_realms(d.pop("realms", UNSET))
 
-        sync_to_another_dc = d.pop("sync_to_another_dc", UNSET)
+        def _parse_sync_to_another_dc(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        sync_to_another_dc = _parse_sync_to_another_dc(
+            d.pop("sync_to_another_dc", UNSET)
+        )
 
         reindex_segments_schema = cls(
             segment_ids=segment_ids,

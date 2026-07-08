@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,26 +15,42 @@ T = TypeVar("T", bound="UserTypeCountsSchema")
 class UserTypeCountsSchema:
     """
     Attributes:
-        browse_api_only (int | Unset):
-        browse_only (int | Unset):
-        power (int | Unset):
-        standard (int | Unset):
+        browse_api_only (int | None | Unset):
+        browse_only (int | None | Unset):
+        power (int | None | Unset):
+        standard (int | None | Unset):
     """
 
-    browse_api_only: int | Unset = UNSET
-    browse_only: int | Unset = UNSET
-    power: int | Unset = UNSET
-    standard: int | Unset = UNSET
+    browse_api_only: int | None | Unset = UNSET
+    browse_only: int | None | Unset = UNSET
+    power: int | None | Unset = UNSET
+    standard: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        browse_api_only = self.browse_api_only
+        browse_api_only: int | None | Unset
+        if isinstance(self.browse_api_only, Unset):
+            browse_api_only = UNSET
+        else:
+            browse_api_only = self.browse_api_only
 
-        browse_only = self.browse_only
+        browse_only: int | None | Unset
+        if isinstance(self.browse_only, Unset):
+            browse_only = UNSET
+        else:
+            browse_only = self.browse_only
 
-        power = self.power
+        power: int | None | Unset
+        if isinstance(self.power, Unset):
+            power = UNSET
+        else:
+            power = self.power
 
-        standard = self.standard
+        standard: int | None | Unset
+        if isinstance(self.standard, Unset):
+            standard = UNSET
+        else:
+            standard = self.standard
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -53,13 +69,42 @@ class UserTypeCountsSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        browse_api_only = d.pop("BROWSE_API_ONLY", UNSET)
 
-        browse_only = d.pop("BROWSE_ONLY", UNSET)
+        def _parse_browse_api_only(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        power = d.pop("POWER", UNSET)
+        browse_api_only = _parse_browse_api_only(d.pop("BROWSE_API_ONLY", UNSET))
 
-        standard = d.pop("STANDARD", UNSET)
+        def _parse_browse_only(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        browse_only = _parse_browse_only(d.pop("BROWSE_ONLY", UNSET))
+
+        def _parse_power(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        power = _parse_power(d.pop("POWER", UNSET))
+
+        def _parse_standard(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        standard = _parse_standard(d.pop("STANDARD", UNSET))
 
         user_type_counts_schema = cls(
             browse_api_only=browse_api_only,

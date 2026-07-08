@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,18 +15,26 @@ T = TypeVar("T", bound="PostUsersCurrentTotpConfigureResponse201")
 class PostUsersCurrentTotpConfigureResponse201:
     """
     Attributes:
-        secret (str | Unset): secret key
-        url (str | Unset): provisioning URIs
+        secret (None | str | Unset): secret key
+        url (None | str | Unset): provisioning URIs
     """
 
-    secret: str | Unset = UNSET
-    url: str | Unset = UNSET
+    secret: None | str | Unset = UNSET
+    url: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        secret = self.secret
+        secret: None | str | Unset
+        if isinstance(self.secret, Unset):
+            secret = UNSET
+        else:
+            secret = self.secret
 
-        url = self.url
+        url: None | str | Unset
+        if isinstance(self.url, Unset):
+            url = UNSET
+        else:
+            url = self.url
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -41,9 +49,24 @@ class PostUsersCurrentTotpConfigureResponse201:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        secret = d.pop("secret", UNSET)
 
-        url = d.pop("url", UNSET)
+        def _parse_secret(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        secret = _parse_secret(d.pop("secret", UNSET))
+
+        def _parse_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        url = _parse_url(d.pop("url", UNSET))
 
         post_users_current_totp_configure_response_201 = cls(
             secret=secret,

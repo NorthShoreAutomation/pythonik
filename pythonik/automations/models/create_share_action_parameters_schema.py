@@ -22,19 +22,19 @@ class CreateShareActionParametersSchema:
         allow_setting_approve_status (bool):
         emails (list[str]):
         user_id (UUID):
-        allow_custom_actions (bool | Unset):
-        allow_download_proxy (bool | Unset):
-        allow_upload (bool | Unset):
-        allow_user_search_for_mentions (bool | Unset):
-        allow_view_transcriptions (bool | Unset):
-        allow_view_versions (bool | Unset):
+        allow_custom_actions (bool | None | Unset):
+        allow_download_proxy (bool | None | Unset):
+        allow_upload (bool | None | Unset):
+        allow_user_search_for_mentions (bool | None | Unset):
+        allow_view_transcriptions (bool | None | Unset):
+        allow_view_versions (bool | None | Unset):
         expires_in_days (int | None | Unset):
         has_password (Any | Unset):
-        message (str | Unset):
+        message (None | str | Unset):
         metadata_views (list[str] | None | Unset):
         password (None | str | Unset):
-        show_watermark (bool | Unset):
-        title (str | Unset):
+        show_watermark (bool | None | Unset):
+        title (None | str | Unset):
         upload_storage_id (None | Unset | UUID):
     """
 
@@ -44,19 +44,19 @@ class CreateShareActionParametersSchema:
     allow_setting_approve_status: bool
     emails: list[str]
     user_id: UUID
-    allow_custom_actions: bool | Unset = UNSET
-    allow_download_proxy: bool | Unset = UNSET
-    allow_upload: bool | Unset = UNSET
-    allow_user_search_for_mentions: bool | Unset = UNSET
-    allow_view_transcriptions: bool | Unset = UNSET
-    allow_view_versions: bool | Unset = UNSET
+    allow_custom_actions: bool | None | Unset = UNSET
+    allow_download_proxy: bool | None | Unset = UNSET
+    allow_upload: bool | None | Unset = UNSET
+    allow_user_search_for_mentions: bool | None | Unset = UNSET
+    allow_view_transcriptions: bool | None | Unset = UNSET
+    allow_view_versions: bool | None | Unset = UNSET
     expires_in_days: int | None | Unset = UNSET
     has_password: Any | Unset = UNSET
-    message: str | Unset = UNSET
+    message: None | str | Unset = UNSET
     metadata_views: list[str] | None | Unset = UNSET
     password: None | str | Unset = UNSET
-    show_watermark: bool | Unset = UNSET
-    title: str | Unset = UNSET
+    show_watermark: bool | None | Unset = UNSET
+    title: None | str | Unset = UNSET
     upload_storage_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -73,17 +73,41 @@ class CreateShareActionParametersSchema:
 
         user_id = str(self.user_id)
 
-        allow_custom_actions = self.allow_custom_actions
+        allow_custom_actions: bool | None | Unset
+        if isinstance(self.allow_custom_actions, Unset):
+            allow_custom_actions = UNSET
+        else:
+            allow_custom_actions = self.allow_custom_actions
 
-        allow_download_proxy = self.allow_download_proxy
+        allow_download_proxy: bool | None | Unset
+        if isinstance(self.allow_download_proxy, Unset):
+            allow_download_proxy = UNSET
+        else:
+            allow_download_proxy = self.allow_download_proxy
 
-        allow_upload = self.allow_upload
+        allow_upload: bool | None | Unset
+        if isinstance(self.allow_upload, Unset):
+            allow_upload = UNSET
+        else:
+            allow_upload = self.allow_upload
 
-        allow_user_search_for_mentions = self.allow_user_search_for_mentions
+        allow_user_search_for_mentions: bool | None | Unset
+        if isinstance(self.allow_user_search_for_mentions, Unset):
+            allow_user_search_for_mentions = UNSET
+        else:
+            allow_user_search_for_mentions = self.allow_user_search_for_mentions
 
-        allow_view_transcriptions = self.allow_view_transcriptions
+        allow_view_transcriptions: bool | None | Unset
+        if isinstance(self.allow_view_transcriptions, Unset):
+            allow_view_transcriptions = UNSET
+        else:
+            allow_view_transcriptions = self.allow_view_transcriptions
 
-        allow_view_versions = self.allow_view_versions
+        allow_view_versions: bool | None | Unset
+        if isinstance(self.allow_view_versions, Unset):
+            allow_view_versions = UNSET
+        else:
+            allow_view_versions = self.allow_view_versions
 
         expires_in_days: int | None | Unset
         if isinstance(self.expires_in_days, Unset):
@@ -93,7 +117,11 @@ class CreateShareActionParametersSchema:
 
         has_password = self.has_password
 
-        message = self.message
+        message: None | str | Unset
+        if isinstance(self.message, Unset):
+            message = UNSET
+        else:
+            message = self.message
 
         metadata_views: list[str] | None | Unset
         if isinstance(self.metadata_views, Unset):
@@ -110,9 +138,17 @@ class CreateShareActionParametersSchema:
         else:
             password = self.password
 
-        show_watermark = self.show_watermark
+        show_watermark: bool | None | Unset
+        if isinstance(self.show_watermark, Unset):
+            show_watermark = UNSET
+        else:
+            show_watermark = self.show_watermark
 
-        title = self.title
+        title: None | str | Unset
+        if isinstance(self.title, Unset):
+            title = UNSET
+        else:
+            title = self.title
 
         upload_storage_id: None | str | Unset
         if isinstance(self.upload_storage_id, Unset):
@@ -182,17 +218,69 @@ class CreateShareActionParametersSchema:
 
         user_id = UUID(d.pop("user_id"))
 
-        allow_custom_actions = d.pop("allow_custom_actions", UNSET)
+        def _parse_allow_custom_actions(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        allow_download_proxy = d.pop("allow_download_proxy", UNSET)
+        allow_custom_actions = _parse_allow_custom_actions(
+            d.pop("allow_custom_actions", UNSET)
+        )
 
-        allow_upload = d.pop("allow_upload", UNSET)
+        def _parse_allow_download_proxy(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        allow_user_search_for_mentions = d.pop("allow_user_search_for_mentions", UNSET)
+        allow_download_proxy = _parse_allow_download_proxy(
+            d.pop("allow_download_proxy", UNSET)
+        )
 
-        allow_view_transcriptions = d.pop("allow_view_transcriptions", UNSET)
+        def _parse_allow_upload(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        allow_view_versions = d.pop("allow_view_versions", UNSET)
+        allow_upload = _parse_allow_upload(d.pop("allow_upload", UNSET))
+
+        def _parse_allow_user_search_for_mentions(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        allow_user_search_for_mentions = _parse_allow_user_search_for_mentions(
+            d.pop("allow_user_search_for_mentions", UNSET)
+        )
+
+        def _parse_allow_view_transcriptions(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        allow_view_transcriptions = _parse_allow_view_transcriptions(
+            d.pop("allow_view_transcriptions", UNSET)
+        )
+
+        def _parse_allow_view_versions(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        allow_view_versions = _parse_allow_view_versions(
+            d.pop("allow_view_versions", UNSET)
+        )
 
         def _parse_expires_in_days(data: object) -> int | None | Unset:
             if data is None:
@@ -205,7 +293,14 @@ class CreateShareActionParametersSchema:
 
         has_password = d.pop("has_password", UNSET)
 
-        message = d.pop("message", UNSET)
+        def _parse_message(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        message = _parse_message(d.pop("message", UNSET))
 
         def _parse_metadata_views(data: object) -> list[str] | None | Unset:
             if data is None:
@@ -233,9 +328,23 @@ class CreateShareActionParametersSchema:
 
         password = _parse_password(d.pop("password", UNSET))
 
-        show_watermark = d.pop("show_watermark", UNSET)
+        def _parse_show_watermark(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        title = d.pop("title", UNSET)
+        show_watermark = _parse_show_watermark(d.pop("show_watermark", UNSET))
+
+        def _parse_title(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        title = _parse_title(d.pop("title", UNSET))
 
         def _parse_upload_storage_id(data: object) -> None | Unset | UUID:
             if data is None:

@@ -2,17 +2,22 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.system_domain_basic_schema_billing_tier import (
-    SystemDomainBasicSchemaBillingTier,
-)
-from ..models.system_domain_basic_schema_type import SystemDomainBasicSchemaType
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.system_domain_basic_schema_billing_tier_type_1 import (
+        SystemDomainBasicSchemaBillingTierType1,
+    )
+    from ..models.system_domain_basic_schema_type_type_1 import (
+        SystemDomainBasicSchemaTypeType1,
+    )
+
 
 T = TypeVar("T", bound="SystemDomainBasicSchema")
 
@@ -22,51 +27,87 @@ class SystemDomainBasicSchema:
     """
     Attributes:
         name (str):
-        billing_tier (SystemDomainBasicSchemaBillingTier | Unset):
-        country (str | Unset):
-        date_created (datetime.datetime | Unset):
-        features (list[str] | Unset):
-        id (UUID | Unset):
-        is_plg (bool | Unset):
-        type_ (SystemDomainBasicSchemaType | Unset):
+        billing_tier (None | SystemDomainBasicSchemaBillingTierType1 | Unset):
+        country (None | str | Unset):
+        date_created (datetime.datetime | None | Unset):
+        features (list[str] | None | Unset):
+        id (None | Unset | UUID):
+        is_plg (bool | None | Unset):
+        type_ (None | SystemDomainBasicSchemaTypeType1 | Unset):
     """
 
     name: str
-    billing_tier: SystemDomainBasicSchemaBillingTier | Unset = UNSET
-    country: str | Unset = UNSET
-    date_created: datetime.datetime | Unset = UNSET
-    features: list[str] | Unset = UNSET
-    id: UUID | Unset = UNSET
-    is_plg: bool | Unset = UNSET
-    type_: SystemDomainBasicSchemaType | Unset = UNSET
+    billing_tier: None | SystemDomainBasicSchemaBillingTierType1 | Unset = UNSET
+    country: None | str | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    features: list[str] | None | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    is_plg: bool | None | Unset = UNSET
+    type_: None | SystemDomainBasicSchemaTypeType1 | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.system_domain_basic_schema_billing_tier_type_1 import (
+            SystemDomainBasicSchemaBillingTierType1,
+        )
+        from ..models.system_domain_basic_schema_type_type_1 import (
+            SystemDomainBasicSchemaTypeType1,
+        )
+
         name = self.name
 
-        billing_tier: str | Unset = UNSET
-        if not isinstance(self.billing_tier, Unset):
-            billing_tier = self.billing_tier.value
+        billing_tier: dict[str, Any] | None | Unset
+        if isinstance(self.billing_tier, Unset):
+            billing_tier = UNSET
+        elif isinstance(self.billing_tier, SystemDomainBasicSchemaBillingTierType1):
+            billing_tier = self.billing_tier.to_dict()
+        else:
+            billing_tier = self.billing_tier
 
-        country = self.country
+        country: None | str | Unset
+        if isinstance(self.country, Unset):
+            country = UNSET
+        else:
+            country = self.country
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        features: list[str] | Unset = UNSET
-        if not isinstance(self.features, Unset):
+        features: list[str] | None | Unset
+        if isinstance(self.features, Unset):
+            features = UNSET
+        elif isinstance(self.features, list):
             features = self.features
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        else:
+            features = self.features
+
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        is_plg = self.is_plg
+        is_plg: bool | None | Unset
+        if isinstance(self.is_plg, Unset):
+            is_plg = UNSET
+        else:
+            is_plg = self.is_plg
 
-        type_: str | Unset = UNSET
-        if not isinstance(self.type_, Unset):
-            type_ = self.type_.value
+        type_: dict[str, Any] | None | Unset
+        if isinstance(self.type_, Unset):
+            type_ = UNSET
+        elif isinstance(self.type_, SystemDomainBasicSchemaTypeType1):
+            type_ = self.type_.to_dict()
+        else:
+            type_ = self.type_
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -94,42 +135,124 @@ class SystemDomainBasicSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.system_domain_basic_schema_billing_tier_type_1 import (
+            SystemDomainBasicSchemaBillingTierType1,
+        )
+        from ..models.system_domain_basic_schema_type_type_1 import (
+            SystemDomainBasicSchemaTypeType1,
+        )
+
         d = dict(src_dict)
         name = d.pop("name")
 
-        _billing_tier = d.pop("billing_tier", UNSET)
-        billing_tier: SystemDomainBasicSchemaBillingTier | Unset
-        if isinstance(_billing_tier, Unset):
-            billing_tier = UNSET
-        else:
-            billing_tier = SystemDomainBasicSchemaBillingTier(_billing_tier)
+        def _parse_billing_tier(
+            data: object,
+        ) -> None | SystemDomainBasicSchemaBillingTierType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                billing_tier_type_1 = SystemDomainBasicSchemaBillingTierType1.from_dict(
+                    data
+                )
 
-        country = d.pop("country", UNSET)
+                return billing_tier_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | SystemDomainBasicSchemaBillingTierType1 | Unset, data)
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        billing_tier = _parse_billing_tier(d.pop("billing_tier", UNSET))
 
-        features = cast(list[str], d.pop("features", UNSET))
+        def _parse_country(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        country = _parse_country(d.pop("country", UNSET))
 
-        is_plg = d.pop("is_plg", UNSET)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        _type_ = d.pop("type", UNSET)
-        type_: SystemDomainBasicSchemaType | Unset
-        if isinstance(_type_, Unset):
-            type_ = UNSET
-        else:
-            type_ = SystemDomainBasicSchemaType(_type_)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
+
+        def _parse_features(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                features_type_0 = cast(list[str], data)
+
+                return features_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        features = _parse_features(d.pop("features", UNSET))
+
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_is_plg(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        is_plg = _parse_is_plg(d.pop("is_plg", UNSET))
+
+        def _parse_type_(
+            data: object,
+        ) -> None | SystemDomainBasicSchemaTypeType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                type_type_1 = SystemDomainBasicSchemaTypeType1.from_dict(data)
+
+                return type_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | SystemDomainBasicSchemaTypeType1 | Unset, data)
+
+        type_ = _parse_type_(d.pop("type", UNSET))
 
         system_domain_basic_schema = cls(
             name=name,

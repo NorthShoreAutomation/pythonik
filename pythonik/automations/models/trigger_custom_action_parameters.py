@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -13,8 +13,8 @@ from ..models.trigger_custom_action_parameters_context import (
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.trigger_custom_action_parameters_metadata_values import (
-        TriggerCustomActionParametersMetadataValues,
+    from ..models.trigger_custom_action_parameters_metadata_values_type_0 import (
+        TriggerCustomActionParametersMetadataValuesType0,
     )
 
 
@@ -27,22 +27,34 @@ class TriggerCustomActionParameters:
     Attributes:
         action_id (UUID):
         context (TriggerCustomActionParametersContext):
-        metadata_values (TriggerCustomActionParametersMetadataValues | Unset):
+        metadata_values (None | TriggerCustomActionParametersMetadataValuesType0 | Unset):
     """
 
     action_id: UUID
     context: TriggerCustomActionParametersContext
-    metadata_values: TriggerCustomActionParametersMetadataValues | Unset = UNSET
+    metadata_values: None | TriggerCustomActionParametersMetadataValuesType0 | Unset = (
+        UNSET
+    )
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.trigger_custom_action_parameters_metadata_values_type_0 import (
+            TriggerCustomActionParametersMetadataValuesType0,
+        )
+
         action_id = str(self.action_id)
 
         context = self.context.value
 
-        metadata_values: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.metadata_values, Unset):
+        metadata_values: dict[str, Any] | None | Unset
+        if isinstance(self.metadata_values, Unset):
+            metadata_values = UNSET
+        elif isinstance(
+            self.metadata_values, TriggerCustomActionParametersMetadataValuesType0
+        ):
             metadata_values = self.metadata_values.to_dict()
+        else:
+            metadata_values = self.metadata_values
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -59,8 +71,8 @@ class TriggerCustomActionParameters:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.trigger_custom_action_parameters_metadata_values import (
-            TriggerCustomActionParametersMetadataValues,
+        from ..models.trigger_custom_action_parameters_metadata_values_type_0 import (
+            TriggerCustomActionParametersMetadataValuesType0,
         )
 
         d = dict(src_dict)
@@ -68,14 +80,28 @@ class TriggerCustomActionParameters:
 
         context = TriggerCustomActionParametersContext(d.pop("context"))
 
-        _metadata_values = d.pop("metadata_values", UNSET)
-        metadata_values: TriggerCustomActionParametersMetadataValues | Unset
-        if isinstance(_metadata_values, Unset):
-            metadata_values = UNSET
-        else:
-            metadata_values = TriggerCustomActionParametersMetadataValues.from_dict(
-                _metadata_values
+        def _parse_metadata_values(
+            data: object,
+        ) -> None | TriggerCustomActionParametersMetadataValuesType0 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                metadata_values_type_0 = (
+                    TriggerCustomActionParametersMetadataValuesType0.from_dict(data)
+                )
+
+                return metadata_values_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(
+                None | TriggerCustomActionParametersMetadataValuesType0 | Unset, data
             )
+
+        metadata_values = _parse_metadata_values(d.pop("metadata_values", UNSET))
 
         trigger_custom_action_parameters = cls(
             action_id=action_id,

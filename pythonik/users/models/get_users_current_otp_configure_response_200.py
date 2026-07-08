@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,17 +16,21 @@ class GetUsersCurrentOtpConfigureResponse200:
     """
     Attributes:
         mfa_methods (Any | Unset): mfa methods
-        mfa_required (bool | Unset): is mfa required for the user
+        mfa_required (bool | None | Unset): is mfa required for the user
     """
 
     mfa_methods: Any | Unset = UNSET
-    mfa_required: bool | Unset = UNSET
+    mfa_required: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         mfa_methods = self.mfa_methods
 
-        mfa_required = self.mfa_required
+        mfa_required: bool | None | Unset
+        if isinstance(self.mfa_required, Unset):
+            mfa_required = UNSET
+        else:
+            mfa_required = self.mfa_required
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -43,7 +47,14 @@ class GetUsersCurrentOtpConfigureResponse200:
         d = dict(src_dict)
         mfa_methods = d.pop("mfa_methods", UNSET)
 
-        mfa_required = d.pop("mfa_required", UNSET)
+        def _parse_mfa_required(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        mfa_required = _parse_mfa_required(d.pop("mfa_required", UNSET))
 
         get_users_current_otp_configure_response_200 = cls(
             mfa_methods=mfa_methods,

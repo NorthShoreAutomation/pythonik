@@ -10,11 +10,11 @@ from attrs import field as _attrs_field
 
 from ..models.storage_schema_method import StorageSchemaMethod
 from ..models.storage_schema_purpose import StorageSchemaPurpose
-from ..models.storage_schema_status import StorageSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.storage_schema_settings import StorageSchemaSettings
+    from ..models.storage_schema_status_type_1 import StorageSchemaStatusType1
 
 
 T = TypeVar("T", bound="StorageSchema")
@@ -28,31 +28,33 @@ class StorageSchema:
         name (str):
         purpose (StorageSchemaPurpose):
         settings (StorageSchemaSettings):
-        default (bool | Unset):
+        default (bool | None | Unset):
         description (None | str | Unset):
-        id (UUID | Unset):
+        id (None | Unset | UUID):
         last_scanned (datetime.datetime | None | Unset):
         scanner_status (None | str | Unset):
-        status (StorageSchemaStatus | Unset):
+        status (None | StorageSchemaStatusType1 | Unset):
         status_message (None | str | Unset):
-        version (str | Unset):
+        version (None | str | Unset):
     """
 
     method: StorageSchemaMethod
     name: str
     purpose: StorageSchemaPurpose
     settings: StorageSchemaSettings
-    default: bool | Unset = UNSET
+    default: bool | None | Unset = UNSET
     description: None | str | Unset = UNSET
-    id: UUID | Unset = UNSET
+    id: None | Unset | UUID = UNSET
     last_scanned: datetime.datetime | None | Unset = UNSET
     scanner_status: None | str | Unset = UNSET
-    status: StorageSchemaStatus | Unset = UNSET
+    status: None | StorageSchemaStatusType1 | Unset = UNSET
     status_message: None | str | Unset = UNSET
-    version: str | Unset = UNSET
+    version: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.storage_schema_status_type_1 import StorageSchemaStatusType1
+
         method = self.method.value
 
         name = self.name
@@ -61,7 +63,11 @@ class StorageSchema:
 
         settings = self.settings.to_dict()
 
-        default = self.default
+        default: bool | None | Unset
+        if isinstance(self.default, Unset):
+            default = UNSET
+        else:
+            default = self.default
 
         description: None | str | Unset
         if isinstance(self.description, Unset):
@@ -69,9 +75,13 @@ class StorageSchema:
         else:
             description = self.description
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
         last_scanned: None | str | Unset
         if isinstance(self.last_scanned, Unset):
@@ -87,9 +97,13 @@ class StorageSchema:
         else:
             scanner_status = self.scanner_status
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        status: dict[str, Any] | None | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        elif isinstance(self.status, StorageSchemaStatusType1):
+            status = self.status.to_dict()
+        else:
+            status = self.status
 
         status_message: None | str | Unset
         if isinstance(self.status_message, Unset):
@@ -97,7 +111,11 @@ class StorageSchema:
         else:
             status_message = self.status_message
 
-        version = self.version
+        version: None | str | Unset
+        if isinstance(self.version, Unset):
+            version = UNSET
+        else:
+            version = self.version
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -131,6 +149,7 @@ class StorageSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.storage_schema_settings import StorageSchemaSettings
+        from ..models.storage_schema_status_type_1 import StorageSchemaStatusType1
 
         d = dict(src_dict)
         method = StorageSchemaMethod(d.pop("method"))
@@ -141,7 +160,14 @@ class StorageSchema:
 
         settings = StorageSchemaSettings.from_dict(d.pop("settings"))
 
-        default = d.pop("default", UNSET)
+        def _parse_default(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        default = _parse_default(d.pop("default", UNSET))
 
         def _parse_description(data: object) -> None | str | Unset:
             if data is None:
@@ -152,12 +178,22 @@ class StorageSchema:
 
         description = _parse_description(d.pop("description", UNSET))
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
 
         def _parse_last_scanned(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -185,12 +221,22 @@ class StorageSchema:
 
         scanner_status = _parse_scanner_status(d.pop("scanner_status", UNSET))
 
-        _status = d.pop("status", UNSET)
-        status: StorageSchemaStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = StorageSchemaStatus(_status)
+        def _parse_status(data: object) -> None | StorageSchemaStatusType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                status_type_1 = StorageSchemaStatusType1.from_dict(data)
+
+                return status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | StorageSchemaStatusType1 | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
 
         def _parse_status_message(data: object) -> None | str | Unset:
             if data is None:
@@ -201,7 +247,14 @@ class StorageSchema:
 
         status_message = _parse_status_message(d.pop("status_message", UNSET))
 
-        version = d.pop("version", UNSET)
+        def _parse_version(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        version = _parse_version(d.pop("version", UNSET))
 
         storage_schema = cls(
             method=method,

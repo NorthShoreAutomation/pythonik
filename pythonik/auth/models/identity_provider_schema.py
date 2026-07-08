@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -12,8 +12,8 @@ from ..models.identity_provider_schema_type import IdentityProviderSchemaType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.identity_provider_schema_saml_settings import (
-        IdentityProviderSchemaSamlSettings,
+    from ..models.identity_provider_schema_saml_settings_type_0 import (
+        IdentityProviderSchemaSamlSettingsType0,
     )
     from ..models.identity_provider_schema_settings import (
         IdentityProviderSchemaSettings,
@@ -29,50 +29,78 @@ class IdentityProviderSchema:
     Attributes:
         settings (IdentityProviderSchemaSettings):
         type_ (IdentityProviderSchemaType):
-        date_created (datetime.datetime | Unset):
-        date_modified (datetime.datetime | Unset):
-        id (UUID | Unset):
-        public_id (UUID | Unset):
-        saml_settings (IdentityProviderSchemaSamlSettings | Unset):
-        verbose_logging (bool | Unset):
+        date_created (datetime.datetime | None | Unset):
+        date_modified (datetime.datetime | None | Unset):
+        id (None | Unset | UUID):
+        public_id (None | Unset | UUID):
+        saml_settings (IdentityProviderSchemaSamlSettingsType0 | None | Unset):
+        verbose_logging (bool | None | Unset):
     """
 
     settings: IdentityProviderSchemaSettings
     type_: IdentityProviderSchemaType
-    date_created: datetime.datetime | Unset = UNSET
-    date_modified: datetime.datetime | Unset = UNSET
-    id: UUID | Unset = UNSET
-    public_id: UUID | Unset = UNSET
-    saml_settings: IdentityProviderSchemaSamlSettings | Unset = UNSET
-    verbose_logging: bool | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_modified: datetime.datetime | None | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    public_id: None | Unset | UUID = UNSET
+    saml_settings: IdentityProviderSchemaSamlSettingsType0 | None | Unset = UNSET
+    verbose_logging: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.identity_provider_schema_saml_settings_type_0 import (
+            IdentityProviderSchemaSamlSettingsType0,
+        )
+
         settings = self.settings.to_dict()
 
         type_ = self.type_.value
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_modified: str | Unset = UNSET
-        if not isinstance(self.date_modified, Unset):
+        date_modified: None | str | Unset
+        if isinstance(self.date_modified, Unset):
+            date_modified = UNSET
+        elif isinstance(self.date_modified, datetime.datetime):
             date_modified = self.date_modified.isoformat()
+        else:
+            date_modified = self.date_modified
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        public_id: str | Unset = UNSET
-        if not isinstance(self.public_id, Unset):
+        public_id: None | str | Unset
+        if isinstance(self.public_id, Unset):
+            public_id = UNSET
+        elif isinstance(self.public_id, UUID):
             public_id = str(self.public_id)
+        else:
+            public_id = self.public_id
 
-        saml_settings: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.saml_settings, Unset):
+        saml_settings: dict[str, Any] | None | Unset
+        if isinstance(self.saml_settings, Unset):
+            saml_settings = UNSET
+        elif isinstance(self.saml_settings, IdentityProviderSchemaSamlSettingsType0):
             saml_settings = self.saml_settings.to_dict()
+        else:
+            saml_settings = self.saml_settings
 
-        verbose_logging = self.verbose_logging
+        verbose_logging: bool | None | Unset
+        if isinstance(self.verbose_logging, Unset):
+            verbose_logging = UNSET
+        else:
+            verbose_logging = self.verbose_logging
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -99,8 +127,8 @@ class IdentityProviderSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.identity_provider_schema_saml_settings import (
-            IdentityProviderSchemaSamlSettings,
+        from ..models.identity_provider_schema_saml_settings_type_0 import (
+            IdentityProviderSchemaSamlSettingsType0,
         )
         from ..models.identity_provider_schema_settings import (
             IdentityProviderSchemaSettings,
@@ -111,42 +139,103 @@ class IdentityProviderSchema:
 
         type_ = IdentityProviderSchemaType(d.pop("type"))
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        _date_modified = d.pop("date_modified", UNSET)
-        date_modified: datetime.datetime | Unset
-        if isinstance(_date_modified, Unset):
-            date_modified = UNSET
-        else:
-            date_modified = datetime.datetime.fromisoformat(_date_modified)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
 
-        _public_id = d.pop("public_id", UNSET)
-        public_id: UUID | Unset
-        if isinstance(_public_id, Unset):
-            public_id = UNSET
-        else:
-            public_id = UUID(_public_id)
+        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_modified_type_0 = datetime.datetime.fromisoformat(data)
 
-        _saml_settings = d.pop("saml_settings", UNSET)
-        saml_settings: IdentityProviderSchemaSamlSettings | Unset
-        if isinstance(_saml_settings, Unset):
-            saml_settings = UNSET
-        else:
-            saml_settings = IdentityProviderSchemaSamlSettings.from_dict(_saml_settings)
+                return date_modified_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        verbose_logging = d.pop("verbose_logging", UNSET)
+        date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
+
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_public_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                public_id_type_0 = UUID(data)
+
+                return public_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        public_id = _parse_public_id(d.pop("public_id", UNSET))
+
+        def _parse_saml_settings(
+            data: object,
+        ) -> IdentityProviderSchemaSamlSettingsType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                saml_settings_type_0 = (
+                    IdentityProviderSchemaSamlSettingsType0.from_dict(data)
+                )
+
+                return saml_settings_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(IdentityProviderSchemaSamlSettingsType0 | None | Unset, data)
+
+        saml_settings = _parse_saml_settings(d.pop("saml_settings", UNSET))
+
+        def _parse_verbose_logging(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        verbose_logging = _parse_verbose_logging(d.pop("verbose_logging", UNSET))
 
         identity_provider_schema = cls(
             settings=settings,

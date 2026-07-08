@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,18 +15,26 @@ T = TypeVar("T", bound="FaceLandmarkSchema")
 class FaceLandmarkSchema:
     """
     Attributes:
-        x (float | Unset):
-        y (float | Unset):
+        x (float | None | Unset):
+        y (float | None | Unset):
     """
 
-    x: float | Unset = UNSET
-    y: float | Unset = UNSET
+    x: float | None | Unset = UNSET
+    y: float | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        x = self.x
+        x: float | None | Unset
+        if isinstance(self.x, Unset):
+            x = UNSET
+        else:
+            x = self.x
 
-        y = self.y
+        y: float | None | Unset
+        if isinstance(self.y, Unset):
+            y = UNSET
+        else:
+            y = self.y
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -41,9 +49,24 @@ class FaceLandmarkSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        x = d.pop("x", UNSET)
 
-        y = d.pop("y", UNSET)
+        def _parse_x(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        x = _parse_x(d.pop("x", UNSET))
+
+        def _parse_y(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        y = _parse_y(d.pop("y", UNSET))
 
         face_landmark_schema = cls(
             x=x,

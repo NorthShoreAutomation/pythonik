@@ -1,13 +1,16 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.analyze_schema_force_type import AnalyzeSchemaForceType
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.analyze_schema_force_type_type_1 import AnalyzeSchemaForceTypeType1
+
 
 T = TypeVar("T", bound="AnalyzeSchema")
 
@@ -16,24 +19,40 @@ T = TypeVar("T", bound="AnalyzeSchema")
 class AnalyzeSchema:
     """
     Attributes:
-        force (bool | Unset):  Default: False.
-        force_type (AnalyzeSchemaForceType | Unset):  Default: AnalyzeSchemaForceType.APPEND.
-        service_name (str | Unset):
+        force (bool | None | Unset):  Default: False.
+        force_type (AnalyzeSchemaForceTypeType1 | None | Unset):
+        service_name (None | str | Unset):
     """
 
-    force: bool | Unset = False
-    force_type: AnalyzeSchemaForceType | Unset = AnalyzeSchemaForceType.APPEND
-    service_name: str | Unset = UNSET
+    force: bool | None | Unset = False
+    force_type: AnalyzeSchemaForceTypeType1 | None | Unset = UNSET
+    service_name: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        force = self.force
+        from ..models.analyze_schema_force_type_type_1 import (
+            AnalyzeSchemaForceTypeType1,
+        )
 
-        force_type: str | Unset = UNSET
-        if not isinstance(self.force_type, Unset):
-            force_type = self.force_type.value
+        force: bool | None | Unset
+        if isinstance(self.force, Unset):
+            force = UNSET
+        else:
+            force = self.force
 
-        service_name = self.service_name
+        force_type: dict[str, Any] | None | Unset
+        if isinstance(self.force_type, Unset):
+            force_type = UNSET
+        elif isinstance(self.force_type, AnalyzeSchemaForceTypeType1):
+            force_type = self.force_type.to_dict()
+        else:
+            force_type = self.force_type
+
+        service_name: None | str | Unset
+        if isinstance(self.service_name, Unset):
+            service_name = UNSET
+        else:
+            service_name = self.service_name
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -49,17 +68,48 @@ class AnalyzeSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.analyze_schema_force_type_type_1 import (
+            AnalyzeSchemaForceTypeType1,
+        )
+
         d = dict(src_dict)
-        force = d.pop("force", UNSET)
 
-        _force_type = d.pop("force_type", UNSET)
-        force_type: AnalyzeSchemaForceType | Unset
-        if isinstance(_force_type, Unset):
-            force_type = UNSET
-        else:
-            force_type = AnalyzeSchemaForceType(_force_type)
+        def _parse_force(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        service_name = d.pop("service_name", UNSET)
+        force = _parse_force(d.pop("force", UNSET))
+
+        def _parse_force_type(
+            data: object,
+        ) -> AnalyzeSchemaForceTypeType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                force_type_type_1 = AnalyzeSchemaForceTypeType1.from_dict(data)
+
+                return force_type_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(AnalyzeSchemaForceTypeType1 | None | Unset, data)
+
+        force_type = _parse_force_type(d.pop("force_type", UNSET))
+
+        def _parse_service_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        service_name = _parse_service_name(d.pop("service_name", UNSET))
 
         analyze_schema = cls(
             force=force,

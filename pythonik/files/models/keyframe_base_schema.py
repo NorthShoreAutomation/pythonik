@@ -7,11 +7,13 @@ from typing import TYPE_CHECKING, Any, TypeVar, cast
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.keyframe_base_schema_status import KeyframeBaseSchemaStatus
 from ..models.keyframe_base_schema_type import KeyframeBaseSchemaType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
+    from ..models.keyframe_base_schema_status_type_1 import (
+        KeyframeBaseSchemaStatusType1,
+    )
     from ..models.resolution_type import ResolutionType
     from ..models.time_code_type import TimeCodeType
 
@@ -24,49 +26,67 @@ class KeyframeBaseSchema:
     """
     Attributes:
         type_ (KeyframeBaseSchemaType):
-        date_created (datetime.datetime | Unset):
-        date_modified (datetime.datetime | Unset):
-        filename (str | Unset):
+        date_created (datetime.datetime | None | Unset):
+        date_modified (datetime.datetime | None | Unset):
+        filename (None | str | Unset):
         format_ (None | str | Unset):
-        is_custom_keyframe (bool | Unset):
-        is_public (bool | Unset):
-        name (str | Unset):
-        resolution (ResolutionType | Unset):
+        is_custom_keyframe (bool | None | Unset):
+        is_public (bool | None | Unset):
+        name (None | str | Unset):
+        resolution (None | ResolutionType | Unset):
         rotation (int | None | Unset):
         size (int | None | Unset):
-        status (KeyframeBaseSchemaStatus | Unset):
-        time_code (TimeCodeType | Unset):
-        url (str | Unset):
+        status (KeyframeBaseSchemaStatusType1 | None | Unset):
+        time_code (None | TimeCodeType | Unset):
+        url (None | str | Unset):
     """
 
     type_: KeyframeBaseSchemaType
-    date_created: datetime.datetime | Unset = UNSET
-    date_modified: datetime.datetime | Unset = UNSET
-    filename: str | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_modified: datetime.datetime | None | Unset = UNSET
+    filename: None | str | Unset = UNSET
     format_: None | str | Unset = UNSET
-    is_custom_keyframe: bool | Unset = UNSET
-    is_public: bool | Unset = UNSET
-    name: str | Unset = UNSET
-    resolution: ResolutionType | Unset = UNSET
+    is_custom_keyframe: bool | None | Unset = UNSET
+    is_public: bool | None | Unset = UNSET
+    name: None | str | Unset = UNSET
+    resolution: None | ResolutionType | Unset = UNSET
     rotation: int | None | Unset = UNSET
     size: int | None | Unset = UNSET
-    status: KeyframeBaseSchemaStatus | Unset = UNSET
-    time_code: TimeCodeType | Unset = UNSET
-    url: str | Unset = UNSET
+    status: KeyframeBaseSchemaStatusType1 | None | Unset = UNSET
+    time_code: None | TimeCodeType | Unset = UNSET
+    url: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.keyframe_base_schema_status_type_1 import (
+            KeyframeBaseSchemaStatusType1,
+        )
+        from ..models.resolution_type import ResolutionType
+        from ..models.time_code_type import TimeCodeType
+
         type_ = self.type_.value
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_modified: str | Unset = UNSET
-        if not isinstance(self.date_modified, Unset):
+        date_modified: None | str | Unset
+        if isinstance(self.date_modified, Unset):
+            date_modified = UNSET
+        elif isinstance(self.date_modified, datetime.datetime):
             date_modified = self.date_modified.isoformat()
+        else:
+            date_modified = self.date_modified
 
-        filename = self.filename
+        filename: None | str | Unset
+        if isinstance(self.filename, Unset):
+            filename = UNSET
+        else:
+            filename = self.filename
 
         format_: None | str | Unset
         if isinstance(self.format_, Unset):
@@ -74,15 +94,31 @@ class KeyframeBaseSchema:
         else:
             format_ = self.format_
 
-        is_custom_keyframe = self.is_custom_keyframe
+        is_custom_keyframe: bool | None | Unset
+        if isinstance(self.is_custom_keyframe, Unset):
+            is_custom_keyframe = UNSET
+        else:
+            is_custom_keyframe = self.is_custom_keyframe
 
-        is_public = self.is_public
+        is_public: bool | None | Unset
+        if isinstance(self.is_public, Unset):
+            is_public = UNSET
+        else:
+            is_public = self.is_public
 
-        name = self.name
+        name: None | str | Unset
+        if isinstance(self.name, Unset):
+            name = UNSET
+        else:
+            name = self.name
 
-        resolution: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.resolution, Unset):
+        resolution: dict[str, Any] | None | Unset
+        if isinstance(self.resolution, Unset):
+            resolution = UNSET
+        elif isinstance(self.resolution, ResolutionType):
             resolution = self.resolution.to_dict()
+        else:
+            resolution = self.resolution
 
         rotation: int | None | Unset
         if isinstance(self.rotation, Unset):
@@ -96,15 +132,27 @@ class KeyframeBaseSchema:
         else:
             size = self.size
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        status: dict[str, Any] | None | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        elif isinstance(self.status, KeyframeBaseSchemaStatusType1):
+            status = self.status.to_dict()
+        else:
+            status = self.status
 
-        time_code: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.time_code, Unset):
+        time_code: dict[str, Any] | None | Unset
+        if isinstance(self.time_code, Unset):
+            time_code = UNSET
+        elif isinstance(self.time_code, TimeCodeType):
             time_code = self.time_code.to_dict()
+        else:
+            time_code = self.time_code
 
-        url = self.url
+        url: None | str | Unset
+        if isinstance(self.url, Unset):
+            url = UNSET
+        else:
+            url = self.url
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -144,27 +192,57 @@ class KeyframeBaseSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.keyframe_base_schema_status_type_1 import (
+            KeyframeBaseSchemaStatusType1,
+        )
         from ..models.resolution_type import ResolutionType
         from ..models.time_code_type import TimeCodeType
 
         d = dict(src_dict)
         type_ = KeyframeBaseSchemaType(d.pop("type"))
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        _date_modified = d.pop("date_modified", UNSET)
-        date_modified: datetime.datetime | Unset
-        if isinstance(_date_modified, Unset):
-            date_modified = UNSET
-        else:
-            date_modified = datetime.datetime.fromisoformat(_date_modified)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        filename = d.pop("filename", UNSET)
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
+
+        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_modified_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_modified_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
+
+        def _parse_filename(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        filename = _parse_filename(d.pop("filename", UNSET))
 
         def _parse_format_(data: object) -> None | str | Unset:
             if data is None:
@@ -175,18 +253,51 @@ class KeyframeBaseSchema:
 
         format_ = _parse_format_(d.pop("format", UNSET))
 
-        is_custom_keyframe = d.pop("is_custom_keyframe", UNSET)
+        def _parse_is_custom_keyframe(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        is_public = d.pop("is_public", UNSET)
+        is_custom_keyframe = _parse_is_custom_keyframe(
+            d.pop("is_custom_keyframe", UNSET)
+        )
 
-        name = d.pop("name", UNSET)
+        def _parse_is_public(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        _resolution = d.pop("resolution", UNSET)
-        resolution: ResolutionType | Unset
-        if isinstance(_resolution, Unset):
-            resolution = UNSET
-        else:
-            resolution = ResolutionType.from_dict(_resolution)
+        is_public = _parse_is_public(d.pop("is_public", UNSET))
+
+        def _parse_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        name = _parse_name(d.pop("name", UNSET))
+
+        def _parse_resolution(data: object) -> None | ResolutionType | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                resolution_type_1 = ResolutionType.from_dict(data)
+
+                return resolution_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | ResolutionType | Unset, data)
+
+        resolution = _parse_resolution(d.pop("resolution", UNSET))
 
         def _parse_rotation(data: object) -> int | None | Unset:
             if data is None:
@@ -206,21 +317,48 @@ class KeyframeBaseSchema:
 
         size = _parse_size(d.pop("size", UNSET))
 
-        _status = d.pop("status", UNSET)
-        status: KeyframeBaseSchemaStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = KeyframeBaseSchemaStatus(_status)
+        def _parse_status(data: object) -> KeyframeBaseSchemaStatusType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                status_type_1 = KeyframeBaseSchemaStatusType1.from_dict(data)
 
-        _time_code = d.pop("time_code", UNSET)
-        time_code: TimeCodeType | Unset
-        if isinstance(_time_code, Unset):
-            time_code = UNSET
-        else:
-            time_code = TimeCodeType.from_dict(_time_code)
+                return status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(KeyframeBaseSchemaStatusType1 | None | Unset, data)
 
-        url = d.pop("url", UNSET)
+        status = _parse_status(d.pop("status", UNSET))
+
+        def _parse_time_code(data: object) -> None | TimeCodeType | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                time_code_type_1 = TimeCodeType.from_dict(data)
+
+                return time_code_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | TimeCodeType | Unset, data)
+
+        time_code = _parse_time_code(d.pop("time_code", UNSET))
+
+        def _parse_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        url = _parse_url(d.pop("url", UNSET))
 
         keyframe_base_schema = cls(
             type_=type_,

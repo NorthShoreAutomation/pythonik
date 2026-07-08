@@ -1,19 +1,19 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.invitation_response_schema_domain_status import (
-    InvitationResponseSchemaDomainStatus,
-)
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.auto_login_schema import AutoLoginSchema
+    from ..models.invitation_response_schema_domain_status_type_1 import (
+        InvitationResponseSchemaDomainStatusType1,
+    )
 
 
 T = TypeVar("T", bound="InvitationResponseSchema")
@@ -23,32 +23,53 @@ T = TypeVar("T", bound="InvitationResponseSchema")
 class InvitationResponseSchema:
     """
     Attributes:
-        auto_login (bool | Unset):
-        domain_status (InvitationResponseSchemaDomainStatus | Unset):
-        login_data (AutoLoginSchema | Unset):
-        user_id (UUID | Unset):
+        auto_login (bool | None | Unset):
+        domain_status (InvitationResponseSchemaDomainStatusType1 | None | Unset):
+        login_data (AutoLoginSchema | None | Unset):
+        user_id (None | Unset | UUID):
     """
 
-    auto_login: bool | Unset = UNSET
-    domain_status: InvitationResponseSchemaDomainStatus | Unset = UNSET
-    login_data: AutoLoginSchema | Unset = UNSET
-    user_id: UUID | Unset = UNSET
+    auto_login: bool | None | Unset = UNSET
+    domain_status: InvitationResponseSchemaDomainStatusType1 | None | Unset = UNSET
+    login_data: AutoLoginSchema | None | Unset = UNSET
+    user_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        auto_login = self.auto_login
+        from ..models.auto_login_schema import AutoLoginSchema
+        from ..models.invitation_response_schema_domain_status_type_1 import (
+            InvitationResponseSchemaDomainStatusType1,
+        )
 
-        domain_status: str | Unset = UNSET
-        if not isinstance(self.domain_status, Unset):
-            domain_status = self.domain_status.value
+        auto_login: bool | None | Unset
+        if isinstance(self.auto_login, Unset):
+            auto_login = UNSET
+        else:
+            auto_login = self.auto_login
 
-        login_data: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.login_data, Unset):
+        domain_status: dict[str, Any] | None | Unset
+        if isinstance(self.domain_status, Unset):
+            domain_status = UNSET
+        elif isinstance(self.domain_status, InvitationResponseSchemaDomainStatusType1):
+            domain_status = self.domain_status.to_dict()
+        else:
+            domain_status = self.domain_status
+
+        login_data: dict[str, Any] | None | Unset
+        if isinstance(self.login_data, Unset):
+            login_data = UNSET
+        elif isinstance(self.login_data, AutoLoginSchema):
             login_data = self.login_data.to_dict()
+        else:
+            login_data = self.login_data
 
-        user_id: str | Unset = UNSET
-        if not isinstance(self.user_id, Unset):
+        user_id: None | str | Unset
+        if isinstance(self.user_id, Unset):
+            user_id = UNSET
+        elif isinstance(self.user_id, UUID):
             user_id = str(self.user_id)
+        else:
+            user_id = self.user_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -67,30 +88,75 @@ class InvitationResponseSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.auto_login_schema import AutoLoginSchema
+        from ..models.invitation_response_schema_domain_status_type_1 import (
+            InvitationResponseSchemaDomainStatusType1,
+        )
 
         d = dict(src_dict)
-        auto_login = d.pop("auto_login", UNSET)
 
-        _domain_status = d.pop("domain_status", UNSET)
-        domain_status: InvitationResponseSchemaDomainStatus | Unset
-        if isinstance(_domain_status, Unset):
-            domain_status = UNSET
-        else:
-            domain_status = InvitationResponseSchemaDomainStatus(_domain_status)
+        def _parse_auto_login(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        _login_data = d.pop("login_data", UNSET)
-        login_data: AutoLoginSchema | Unset
-        if isinstance(_login_data, Unset):
-            login_data = UNSET
-        else:
-            login_data = AutoLoginSchema.from_dict(_login_data)
+        auto_login = _parse_auto_login(d.pop("auto_login", UNSET))
 
-        _user_id = d.pop("user_id", UNSET)
-        user_id: UUID | Unset
-        if isinstance(_user_id, Unset):
-            user_id = UNSET
-        else:
-            user_id = UUID(_user_id)
+        def _parse_domain_status(
+            data: object,
+        ) -> InvitationResponseSchemaDomainStatusType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                domain_status_type_1 = (
+                    InvitationResponseSchemaDomainStatusType1.from_dict(data)
+                )
+
+                return domain_status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(InvitationResponseSchemaDomainStatusType1 | None | Unset, data)
+
+        domain_status = _parse_domain_status(d.pop("domain_status", UNSET))
+
+        def _parse_login_data(data: object) -> AutoLoginSchema | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                login_data_type_1 = AutoLoginSchema.from_dict(data)
+
+                return login_data_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(AutoLoginSchema | None | Unset, data)
+
+        login_data = _parse_login_data(d.pop("login_data", UNSET))
+
+        def _parse_user_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                user_id_type_0 = UUID(data)
+
+                return user_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        user_id = _parse_user_id(d.pop("user_id", UNSET))
 
         invitation_response_schema = cls(
             auto_login=auto_login,

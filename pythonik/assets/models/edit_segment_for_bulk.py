@@ -9,12 +9,16 @@ from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..models.edit_segment_for_bulk_segment_type import EditSegmentForBulkSegmentType
-from ..models.edit_segment_for_bulk_status import EditSegmentForBulkStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.drawing import Drawing
-    from ..models.edit_segment_for_bulk_metadata import EditSegmentForBulkMetadata
+    from ..models.edit_segment_for_bulk_metadata_type_0 import (
+        EditSegmentForBulkMetadataType0,
+    )
+    from ..models.edit_segment_for_bulk_status_type_1 import (
+        EditSegmentForBulkStatusType1,
+    )
     from ..models.face_bounding_box import FaceBoundingBox
     from ..models.transcription_type import TranscriptionType
     from ..models.user import User
@@ -30,79 +34,87 @@ class EditSegmentForBulk:
         asset_id (UUID):
         id (UUID):
         segment_type (EditSegmentForBulkSegmentType):
-        date_created (datetime.datetime | Unset):
-        date_modified (datetime.datetime | Unset):
+        date_created (datetime.datetime | None | Unset):
+        date_modified (datetime.datetime | None | Unset):
         drawing (Drawing | None | Unset):
         external_id (None | str | Unset):
         face_bounding_boxes (list[FaceBoundingBox] | None | Unset):
         is_internal (bool | None | Unset): If set to true, the segment is only visible to internal iconik users
         keyframe_id (None | Unset | UUID):
-        metadata (EditSegmentForBulkMetadata | Unset):
+        metadata (EditSegmentForBulkMetadataType0 | None | Unset):
         metadata_view_id (None | Unset | UUID):
-        parent_id (UUID | Unset):
-        path (str | Unset):
+        parent_id (None | Unset | UUID):
+        path (None | str | Unset):
         person_id (None | Unset | UUID):
         project_id (None | Unset | UUID): ID of a project if the segment is created from a project
-        segment_checked (bool | Unset):
-        segment_color (str | Unset):
+        segment_checked (bool | None | Unset):
+        segment_color (None | str | Unset):
         segment_text (None | str | Unset):
         segment_track (None | str | Unset):
         share_id (None | Unset | UUID): ID of a share if the segment is created from a share
         share_user_email (None | str | Unset):
-        status (EditSegmentForBulkStatus | Unset):
-        subclip_id (UUID | Unset):
+        status (EditSegmentForBulkStatusType1 | None | Unset):
+        subclip_id (None | Unset | UUID):
         time_end_milliseconds (int | None | Unset):
         time_start_milliseconds (int | None | Unset):
-        top_level (bool | Unset):
-        transcription (TranscriptionType | Unset):
+        top_level (bool | None | Unset):
+        transcription (None | TranscriptionType | Unset):
         transcription_id (None | Unset | UUID):
-        user_first_name (str | Unset):
-        user_id (UUID | Unset):
-        user_info (User | Unset):
-        user_last_name (str | Unset):
-        user_photo (str | Unset):
-        version_id (UUID | Unset):
+        user_first_name (None | str | Unset):
+        user_id (None | Unset | UUID):
+        user_info (None | Unset | User):
+        user_last_name (None | str | Unset):
+        user_photo (None | str | Unset):
+        version_id (None | Unset | UUID):
     """
 
     asset_id: UUID
     id: UUID
     segment_type: EditSegmentForBulkSegmentType
-    date_created: datetime.datetime | Unset = UNSET
-    date_modified: datetime.datetime | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_modified: datetime.datetime | None | Unset = UNSET
     drawing: Drawing | None | Unset = UNSET
     external_id: None | str | Unset = UNSET
     face_bounding_boxes: list[FaceBoundingBox] | None | Unset = UNSET
     is_internal: bool | None | Unset = UNSET
     keyframe_id: None | Unset | UUID = UNSET
-    metadata: EditSegmentForBulkMetadata | Unset = UNSET
+    metadata: EditSegmentForBulkMetadataType0 | None | Unset = UNSET
     metadata_view_id: None | Unset | UUID = UNSET
-    parent_id: UUID | Unset = UNSET
-    path: str | Unset = UNSET
+    parent_id: None | Unset | UUID = UNSET
+    path: None | str | Unset = UNSET
     person_id: None | Unset | UUID = UNSET
     project_id: None | Unset | UUID = UNSET
-    segment_checked: bool | Unset = UNSET
-    segment_color: str | Unset = UNSET
+    segment_checked: bool | None | Unset = UNSET
+    segment_color: None | str | Unset = UNSET
     segment_text: None | str | Unset = UNSET
     segment_track: None | str | Unset = UNSET
     share_id: None | Unset | UUID = UNSET
     share_user_email: None | str | Unset = UNSET
-    status: EditSegmentForBulkStatus | Unset = UNSET
-    subclip_id: UUID | Unset = UNSET
+    status: EditSegmentForBulkStatusType1 | None | Unset = UNSET
+    subclip_id: None | Unset | UUID = UNSET
     time_end_milliseconds: int | None | Unset = UNSET
     time_start_milliseconds: int | None | Unset = UNSET
-    top_level: bool | Unset = UNSET
-    transcription: TranscriptionType | Unset = UNSET
+    top_level: bool | None | Unset = UNSET
+    transcription: None | TranscriptionType | Unset = UNSET
     transcription_id: None | Unset | UUID = UNSET
-    user_first_name: str | Unset = UNSET
-    user_id: UUID | Unset = UNSET
-    user_info: User | Unset = UNSET
-    user_last_name: str | Unset = UNSET
-    user_photo: str | Unset = UNSET
-    version_id: UUID | Unset = UNSET
+    user_first_name: None | str | Unset = UNSET
+    user_id: None | Unset | UUID = UNSET
+    user_info: None | Unset | User = UNSET
+    user_last_name: None | str | Unset = UNSET
+    user_photo: None | str | Unset = UNSET
+    version_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.drawing import Drawing
+        from ..models.edit_segment_for_bulk_metadata_type_0 import (
+            EditSegmentForBulkMetadataType0,
+        )
+        from ..models.edit_segment_for_bulk_status_type_1 import (
+            EditSegmentForBulkStatusType1,
+        )
+        from ..models.transcription_type import TranscriptionType
+        from ..models.user import User
 
         asset_id = str(self.asset_id)
 
@@ -110,13 +122,21 @@ class EditSegmentForBulk:
 
         segment_type = self.segment_type.value
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_modified: str | Unset = UNSET
-        if not isinstance(self.date_modified, Unset):
+        date_modified: None | str | Unset
+        if isinstance(self.date_modified, Unset):
+            date_modified = UNSET
+        elif isinstance(self.date_modified, datetime.datetime):
             date_modified = self.date_modified.isoformat()
+        else:
+            date_modified = self.date_modified
 
         drawing: dict[str, Any] | None | Unset
         if isinstance(self.drawing, Unset):
@@ -160,9 +180,13 @@ class EditSegmentForBulk:
         else:
             keyframe_id = self.keyframe_id
 
-        metadata: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.metadata, Unset):
+        metadata: dict[str, Any] | None | Unset
+        if isinstance(self.metadata, Unset):
+            metadata = UNSET
+        elif isinstance(self.metadata, EditSegmentForBulkMetadataType0):
             metadata = self.metadata.to_dict()
+        else:
+            metadata = self.metadata
 
         metadata_view_id: None | str | Unset
         if isinstance(self.metadata_view_id, Unset):
@@ -172,11 +196,19 @@ class EditSegmentForBulk:
         else:
             metadata_view_id = self.metadata_view_id
 
-        parent_id: str | Unset = UNSET
-        if not isinstance(self.parent_id, Unset):
+        parent_id: None | str | Unset
+        if isinstance(self.parent_id, Unset):
+            parent_id = UNSET
+        elif isinstance(self.parent_id, UUID):
             parent_id = str(self.parent_id)
+        else:
+            parent_id = self.parent_id
 
-        path = self.path
+        path: None | str | Unset
+        if isinstance(self.path, Unset):
+            path = UNSET
+        else:
+            path = self.path
 
         person_id: None | str | Unset
         if isinstance(self.person_id, Unset):
@@ -194,9 +226,17 @@ class EditSegmentForBulk:
         else:
             project_id = self.project_id
 
-        segment_checked = self.segment_checked
+        segment_checked: bool | None | Unset
+        if isinstance(self.segment_checked, Unset):
+            segment_checked = UNSET
+        else:
+            segment_checked = self.segment_checked
 
-        segment_color = self.segment_color
+        segment_color: None | str | Unset
+        if isinstance(self.segment_color, Unset):
+            segment_color = UNSET
+        else:
+            segment_color = self.segment_color
 
         segment_text: None | str | Unset
         if isinstance(self.segment_text, Unset):
@@ -224,13 +264,21 @@ class EditSegmentForBulk:
         else:
             share_user_email = self.share_user_email
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        status: dict[str, Any] | None | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        elif isinstance(self.status, EditSegmentForBulkStatusType1):
+            status = self.status.to_dict()
+        else:
+            status = self.status
 
-        subclip_id: str | Unset = UNSET
-        if not isinstance(self.subclip_id, Unset):
+        subclip_id: None | str | Unset
+        if isinstance(self.subclip_id, Unset):
+            subclip_id = UNSET
+        elif isinstance(self.subclip_id, UUID):
             subclip_id = str(self.subclip_id)
+        else:
+            subclip_id = self.subclip_id
 
         time_end_milliseconds: int | None | Unset
         if isinstance(self.time_end_milliseconds, Unset):
@@ -244,11 +292,19 @@ class EditSegmentForBulk:
         else:
             time_start_milliseconds = self.time_start_milliseconds
 
-        top_level = self.top_level
+        top_level: bool | None | Unset
+        if isinstance(self.top_level, Unset):
+            top_level = UNSET
+        else:
+            top_level = self.top_level
 
-        transcription: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.transcription, Unset):
+        transcription: dict[str, Any] | None | Unset
+        if isinstance(self.transcription, Unset):
+            transcription = UNSET
+        elif isinstance(self.transcription, TranscriptionType):
             transcription = self.transcription.to_dict()
+        else:
+            transcription = self.transcription
 
         transcription_id: None | str | Unset
         if isinstance(self.transcription_id, Unset):
@@ -258,23 +314,47 @@ class EditSegmentForBulk:
         else:
             transcription_id = self.transcription_id
 
-        user_first_name = self.user_first_name
+        user_first_name: None | str | Unset
+        if isinstance(self.user_first_name, Unset):
+            user_first_name = UNSET
+        else:
+            user_first_name = self.user_first_name
 
-        user_id: str | Unset = UNSET
-        if not isinstance(self.user_id, Unset):
+        user_id: None | str | Unset
+        if isinstance(self.user_id, Unset):
+            user_id = UNSET
+        elif isinstance(self.user_id, UUID):
             user_id = str(self.user_id)
+        else:
+            user_id = self.user_id
 
-        user_info: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.user_info, Unset):
+        user_info: dict[str, Any] | None | Unset
+        if isinstance(self.user_info, Unset):
+            user_info = UNSET
+        elif isinstance(self.user_info, User):
             user_info = self.user_info.to_dict()
+        else:
+            user_info = self.user_info
 
-        user_last_name = self.user_last_name
+        user_last_name: None | str | Unset
+        if isinstance(self.user_last_name, Unset):
+            user_last_name = UNSET
+        else:
+            user_last_name = self.user_last_name
 
-        user_photo = self.user_photo
+        user_photo: None | str | Unset
+        if isinstance(self.user_photo, Unset):
+            user_photo = UNSET
+        else:
+            user_photo = self.user_photo
 
-        version_id: str | Unset = UNSET
-        if not isinstance(self.version_id, Unset):
+        version_id: None | str | Unset
+        if isinstance(self.version_id, Unset):
+            version_id = UNSET
+        elif isinstance(self.version_id, UUID):
             version_id = str(self.version_id)
+        else:
+            version_id = self.version_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -355,7 +435,12 @@ class EditSegmentForBulk:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.drawing import Drawing
-        from ..models.edit_segment_for_bulk_metadata import EditSegmentForBulkMetadata
+        from ..models.edit_segment_for_bulk_metadata_type_0 import (
+            EditSegmentForBulkMetadataType0,
+        )
+        from ..models.edit_segment_for_bulk_status_type_1 import (
+            EditSegmentForBulkStatusType1,
+        )
         from ..models.face_bounding_box import FaceBoundingBox
         from ..models.transcription_type import TranscriptionType
         from ..models.user import User
@@ -367,19 +452,39 @@ class EditSegmentForBulk:
 
         segment_type = EditSegmentForBulkSegmentType(d.pop("segment_type"))
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        _date_modified = d.pop("date_modified", UNSET)
-        date_modified: datetime.datetime | Unset
-        if isinstance(_date_modified, Unset):
-            date_modified = UNSET
-        else:
-            date_modified = datetime.datetime.fromisoformat(_date_modified)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
+
+        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_modified_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_modified_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
 
         def _parse_drawing(data: object) -> Drawing | None | Unset:
             if data is None:
@@ -461,12 +566,24 @@ class EditSegmentForBulk:
 
         keyframe_id = _parse_keyframe_id(d.pop("keyframe_id", UNSET))
 
-        _metadata = d.pop("metadata", UNSET)
-        metadata: EditSegmentForBulkMetadata | Unset
-        if isinstance(_metadata, Unset):
-            metadata = UNSET
-        else:
-            metadata = EditSegmentForBulkMetadata.from_dict(_metadata)
+        def _parse_metadata(
+            data: object,
+        ) -> EditSegmentForBulkMetadataType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                metadata_type_0 = EditSegmentForBulkMetadataType0.from_dict(data)
+
+                return metadata_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(EditSegmentForBulkMetadataType0 | None | Unset, data)
+
+        metadata = _parse_metadata(d.pop("metadata", UNSET))
 
         def _parse_metadata_view_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -485,14 +602,31 @@ class EditSegmentForBulk:
 
         metadata_view_id = _parse_metadata_view_id(d.pop("metadata_view_id", UNSET))
 
-        _parent_id = d.pop("parent_id", UNSET)
-        parent_id: UUID | Unset
-        if isinstance(_parent_id, Unset):
-            parent_id = UNSET
-        else:
-            parent_id = UUID(_parent_id)
+        def _parse_parent_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                parent_id_type_0 = UUID(data)
 
-        path = d.pop("path", UNSET)
+                return parent_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        parent_id = _parse_parent_id(d.pop("parent_id", UNSET))
+
+        def _parse_path(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        path = _parse_path(d.pop("path", UNSET))
 
         def _parse_person_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -528,9 +662,23 @@ class EditSegmentForBulk:
 
         project_id = _parse_project_id(d.pop("project_id", UNSET))
 
-        segment_checked = d.pop("segment_checked", UNSET)
+        def _parse_segment_checked(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        segment_color = d.pop("segment_color", UNSET)
+        segment_checked = _parse_segment_checked(d.pop("segment_checked", UNSET))
+
+        def _parse_segment_color(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        segment_color = _parse_segment_color(d.pop("segment_color", UNSET))
 
         def _parse_segment_text(data: object) -> None | str | Unset:
             if data is None:
@@ -576,19 +724,39 @@ class EditSegmentForBulk:
 
         share_user_email = _parse_share_user_email(d.pop("share_user_email", UNSET))
 
-        _status = d.pop("status", UNSET)
-        status: EditSegmentForBulkStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = EditSegmentForBulkStatus(_status)
+        def _parse_status(data: object) -> EditSegmentForBulkStatusType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                status_type_1 = EditSegmentForBulkStatusType1.from_dict(data)
 
-        _subclip_id = d.pop("subclip_id", UNSET)
-        subclip_id: UUID | Unset
-        if isinstance(_subclip_id, Unset):
-            subclip_id = UNSET
-        else:
-            subclip_id = UUID(_subclip_id)
+                return status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(EditSegmentForBulkStatusType1 | None | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
+
+        def _parse_subclip_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                subclip_id_type_0 = UUID(data)
+
+                return subclip_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        subclip_id = _parse_subclip_id(d.pop("subclip_id", UNSET))
 
         def _parse_time_end_milliseconds(data: object) -> int | None | Unset:
             if data is None:
@@ -612,14 +780,31 @@ class EditSegmentForBulk:
             d.pop("time_start_milliseconds", UNSET)
         )
 
-        top_level = d.pop("top_level", UNSET)
+        def _parse_top_level(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        _transcription = d.pop("transcription", UNSET)
-        transcription: TranscriptionType | Unset
-        if isinstance(_transcription, Unset):
-            transcription = UNSET
-        else:
-            transcription = TranscriptionType.from_dict(_transcription)
+        top_level = _parse_top_level(d.pop("top_level", UNSET))
+
+        def _parse_transcription(data: object) -> None | TranscriptionType | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                transcription_type_1 = TranscriptionType.from_dict(data)
+
+                return transcription_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | TranscriptionType | Unset, data)
+
+        transcription = _parse_transcription(d.pop("transcription", UNSET))
 
         def _parse_transcription_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -638,32 +823,83 @@ class EditSegmentForBulk:
 
         transcription_id = _parse_transcription_id(d.pop("transcription_id", UNSET))
 
-        user_first_name = d.pop("user_first_name", UNSET)
+        def _parse_user_first_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        _user_id = d.pop("user_id", UNSET)
-        user_id: UUID | Unset
-        if isinstance(_user_id, Unset):
-            user_id = UNSET
-        else:
-            user_id = UUID(_user_id)
+        user_first_name = _parse_user_first_name(d.pop("user_first_name", UNSET))
 
-        _user_info = d.pop("user_info", UNSET)
-        user_info: User | Unset
-        if isinstance(_user_info, Unset):
-            user_info = UNSET
-        else:
-            user_info = User.from_dict(_user_info)
+        def _parse_user_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                user_id_type_0 = UUID(data)
 
-        user_last_name = d.pop("user_last_name", UNSET)
+                return user_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        user_photo = d.pop("user_photo", UNSET)
+        user_id = _parse_user_id(d.pop("user_id", UNSET))
 
-        _version_id = d.pop("version_id", UNSET)
-        version_id: UUID | Unset
-        if isinstance(_version_id, Unset):
-            version_id = UNSET
-        else:
-            version_id = UUID(_version_id)
+        def _parse_user_info(data: object) -> None | Unset | User:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                user_info_type_1 = User.from_dict(data)
+
+                return user_info_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | User, data)
+
+        user_info = _parse_user_info(d.pop("user_info", UNSET))
+
+        def _parse_user_last_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        user_last_name = _parse_user_last_name(d.pop("user_last_name", UNSET))
+
+        def _parse_user_photo(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        user_photo = _parse_user_photo(d.pop("user_photo", UNSET))
+
+        def _parse_version_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                version_id_type_0 = UUID(data)
+
+                return version_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        version_id = _parse_version_id(d.pop("version_id", UNSET))
 
         edit_segment_for_bulk = cls(
             asset_id=asset_id,

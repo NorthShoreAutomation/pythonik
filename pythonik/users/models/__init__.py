@@ -146,9 +146,11 @@ from .delete_users_partner_domain_access_response_default_type_1_errors import (
     DeleteUsersPartnerDomainAccessResponseDefaultType1Errors,
 )
 from .domain_users_by_email_schema import DomainUsersByEmailSchema
-from .domain_users_by_email_schema_facets import DomainUsersByEmailSchemaFacets
-from .domain_users_by_email_schema_mfa_methods_item import (
-    DomainUsersByEmailSchemaMfaMethodsItem,
+from .domain_users_by_email_schema_facets_type_0 import (
+    DomainUsersByEmailSchemaFacetsType0,
+)
+from .domain_users_by_email_schema_mfa_methods_type_0_item import (
+    DomainUsersByEmailSchemaMfaMethodsType0Item,
 )
 from .get_groups_all_basic_response_default_type_0 import (
     GetGroupsAllBasicResponseDefaultType0,
@@ -302,34 +304,42 @@ from .get_users_response_default_type_0 import GetUsersResponseDefaultType0
 from .get_users_response_default_type_1 import GetUsersResponseDefaultType1
 from .get_users_response_default_type_1_errors import GetUsersResponseDefaultType1Errors
 from .group_base_schema import GroupBaseSchema
-from .group_base_schema_default_user_type import GroupBaseSchemaDefaultUserType
-from .group_base_schema_group_type import GroupBaseSchemaGroupType
+from .group_base_schema_default_user_type_type_1 import (
+    GroupBaseSchemaDefaultUserTypeType1,
+)
+from .group_base_schema_group_type_type_1 import GroupBaseSchemaGroupTypeType1
 from .group_create_schema import GroupCreateSchema
-from .group_create_schema_default_user_type import GroupCreateSchemaDefaultUserType
-from .group_create_schema_group_type import GroupCreateSchemaGroupType
+from .group_create_schema_default_user_type_type_1 import (
+    GroupCreateSchemaDefaultUserTypeType1,
+)
+from .group_create_schema_group_type_type_1 import GroupCreateSchemaGroupTypeType1
 from .group_elastic_schema import GroupElasticSchema
-from .group_elastic_schema_default_user_type import GroupElasticSchemaDefaultUserType
-from .group_elastic_schema_group_type import GroupElasticSchemaGroupType
+from .group_elastic_schema_default_user_type_type_1 import (
+    GroupElasticSchemaDefaultUserTypeType1,
+)
+from .group_elastic_schema_group_type_type_1 import GroupElasticSchemaGroupTypeType1
 from .group_mapping_schema import GroupMappingSchema
 from .group_mappings_schema import GroupMappingsSchema
 from .group_schema import GroupSchema
-from .group_schema_default_user_type import GroupSchemaDefaultUserType
-from .group_schema_group_type import GroupSchemaGroupType
+from .group_schema_default_user_type_type_1 import GroupSchemaDefaultUserTypeType1
+from .group_schema_group_type_type_1 import GroupSchemaGroupTypeType1
 from .group_with_roles_base_schema import GroupWithRolesBaseSchema
-from .group_with_roles_base_schema_default_user_type import (
-    GroupWithRolesBaseSchemaDefaultUserType,
+from .group_with_roles_base_schema_default_user_type_type_1 import (
+    GroupWithRolesBaseSchemaDefaultUserTypeType1,
 )
-from .group_with_roles_base_schema_group_type import GroupWithRolesBaseSchemaGroupType
+from .group_with_roles_base_schema_group_type_type_1 import (
+    GroupWithRolesBaseSchemaGroupTypeType1,
+)
 from .group_with_roles_elastic_schema import GroupWithRolesElasticSchema
-from .group_with_roles_elastic_schema_default_user_type import (
-    GroupWithRolesElasticSchemaDefaultUserType,
+from .group_with_roles_elastic_schema_default_user_type_type_1 import (
+    GroupWithRolesElasticSchemaDefaultUserTypeType1,
 )
-from .group_with_roles_elastic_schema_group_type import (
-    GroupWithRolesElasticSchemaGroupType,
+from .group_with_roles_elastic_schema_group_type_type_1 import (
+    GroupWithRolesElasticSchemaGroupTypeType1,
 )
 from .groups_query_params_schema import GroupsQueryParamsSchema
 from .groups_schema import GroupsSchema
-from .groups_schema_facets import GroupsSchemaFacets
+from .groups_schema_facets_type_0 import GroupsSchemaFacetsType0
 from .list_objects_schema import ListObjectsSchema
 from .multiplatform_user_password_edit_schema import MultiplatformUserPasswordEditSchema
 from .multiplatform_user_schema import MultiplatformUserSchema
@@ -645,81 +655,91 @@ from .reindex_user_schema import ReindexUserSchema
 from .role_categories import RoleCategories
 from .role_categories_schema import RoleCategoriesSchema
 from .role_group_schema import RoleGroupSchema
-from .role_group_schema_default_user_type import RoleGroupSchemaDefaultUserType
-from .role_group_schema_group_type import RoleGroupSchemaGroupType
+from .role_group_schema_default_user_type_type_1 import (
+    RoleGroupSchemaDefaultUserTypeType1,
+)
+from .role_group_schema_group_type_type_1 import RoleGroupSchemaGroupTypeType1
 from .role_groups_schema import RoleGroupsSchema
-from .role_groups_schema_facets import RoleGroupsSchemaFacets
+from .role_groups_schema_facets_type_0 import RoleGroupsSchemaFacetsType0
 from .team_schema import TeamSchema
-from .team_schema_default_user_type import TeamSchemaDefaultUserType
-from .team_schema_group_type import TeamSchemaGroupType
+from .team_schema_default_user_type_type_1 import TeamSchemaDefaultUserTypeType1
+from .team_schema_group_type_type_1 import TeamSchemaGroupTypeType1
 from .teams_schema import TeamsSchema
-from .teams_schema_facets import TeamsSchemaFacets
+from .teams_schema_facets_type_0 import TeamsSchemaFacetsType0
 from .user_base_schema import UserBaseSchema
-from .user_base_schema_onboarding_goal import UserBaseSchemaOnboardingGoal
-from .user_base_schema_status import UserBaseSchemaStatus
+from .user_base_schema_onboarding_goal_type_1 import UserBaseSchemaOnboardingGoalType1
+from .user_base_schema_status_type_1 import UserBaseSchemaStatusType1
 from .user_base_schema_type import UserBaseSchemaType
 from .user_basic_elastic_schema import UserBasicElasticSchema
 from .user_by_email_and_login_type_schema import UserByEmailAndLoginTypeSchema
-from .user_by_email_and_login_type_schema_login_type import (
-    UserByEmailAndLoginTypeSchemaLoginType,
+from .user_by_email_and_login_type_schema_login_type_type_1 import (
+    UserByEmailAndLoginTypeSchemaLoginTypeType1,
 )
 from .user_by_email_schema import UserByEmailSchema
 from .user_create_schema import UserCreateSchema
-from .user_create_schema_onboarding_goal import UserCreateSchemaOnboardingGoal
-from .user_create_schema_status import UserCreateSchemaStatus
+from .user_create_schema_onboarding_goal_type_1 import (
+    UserCreateSchemaOnboardingGoalType1,
+)
+from .user_create_schema_status_type_1 import UserCreateSchemaStatusType1
 from .user_create_schema_type import UserCreateSchemaType
 from .user_edit_internal_schema import UserEditInternalSchema
-from .user_edit_internal_schema_onboarding_goal import (
-    UserEditInternalSchemaOnboardingGoal,
+from .user_edit_internal_schema_onboarding_goal_type_1 import (
+    UserEditInternalSchemaOnboardingGoalType1,
 )
-from .user_edit_internal_schema_status import UserEditInternalSchemaStatus
+from .user_edit_internal_schema_status_type_1 import UserEditInternalSchemaStatusType1
 from .user_edit_internal_schema_type import UserEditInternalSchemaType
 from .user_edit_schema import UserEditSchema
-from .user_edit_schema_onboarding_goal import UserEditSchemaOnboardingGoal
-from .user_edit_schema_status import UserEditSchemaStatus
+from .user_edit_schema_onboarding_goal_type_1 import UserEditSchemaOnboardingGoalType1
+from .user_edit_schema_status_type_1 import UserEditSchemaStatusType1
 from .user_edit_schema_type import UserEditSchemaType
 from .user_elastic import UserElastic
-from .user_elastic_onboarding_goal import UserElasticOnboardingGoal
+from .user_elastic_onboarding_goal_type_1 import UserElasticOnboardingGoalType1
 from .user_elastic_schema import UserElasticSchema
-from .user_elastic_schema_onboarding_goal import UserElasticSchemaOnboardingGoal
-from .user_elastic_schema_status import UserElasticSchemaStatus
+from .user_elastic_schema_onboarding_goal_type_1 import (
+    UserElasticSchemaOnboardingGoalType1,
+)
+from .user_elastic_schema_status_type_1 import UserElasticSchemaStatusType1
 from .user_elastic_schema_type import UserElasticSchemaType
-from .user_elastic_status import UserElasticStatus
+from .user_elastic_status_type_1 import UserElasticStatusType1
 from .user_elastic_type import UserElasticType
 from .user_invite_register_request_schema import UserInviteRegisterRequestSchema
 from .user_invite_register_response_schema import UserInviteRegisterResponseSchema
 from .user_invite_request_link_schema import UserInviteRequestLinkSchema
-from .user_invite_request_link_schema_type import UserInviteRequestLinkSchemaType
+from .user_invite_request_link_schema_type_type_1 import (
+    UserInviteRequestLinkSchemaTypeType1,
+)
 from .user_login_schema import UserLoginSchema
 from .user_otp_edit_multi_platform_schema import UserOTPEditMultiPlatformSchema
 from .user_roles_schema import UserRolesSchema
 from .user_saml_create_schema import UserSamlCreateSchema
-from .user_saml_create_schema_onboarding_goal import UserSamlCreateSchemaOnboardingGoal
-from .user_saml_create_schema_status import UserSamlCreateSchemaStatus
-from .user_saml_create_schema_type import UserSamlCreateSchemaType
+from .user_saml_create_schema_onboarding_goal_type_1 import (
+    UserSamlCreateSchemaOnboardingGoalType1,
+)
+from .user_saml_create_schema_status_type_1 import UserSamlCreateSchemaStatusType1
+from .user_saml_create_schema_type_type_1 import UserSamlCreateSchemaTypeType1
 from .user_saml_idp_update_schema import UserSamlIdpUpdateSchema
 from .user_saml_update_schema import UserSamlUpdateSchema
 from .user_schema import UserSchema
-from .user_schema_onboarding_goal import UserSchemaOnboardingGoal
-from .user_schema_status import UserSchemaStatus
+from .user_schema_onboarding_goal_type_1 import UserSchemaOnboardingGoalType1
+from .user_schema_status_type_1 import UserSchemaStatusType1
 from .user_schema_type import UserSchemaType
 from .user_system_metadata import UserSystemMetadata
 from .user_system_metadata_schema import UserSystemMetadataSchema
 from .user_type_counts_schema import UserTypeCountsSchema
 from .user_with_separated_groups_schema import UserWithSeparatedGroupsSchema
-from .user_with_separated_groups_schema_onboarding_goal import (
-    UserWithSeparatedGroupsSchemaOnboardingGoal,
+from .user_with_separated_groups_schema_onboarding_goal_type_1 import (
+    UserWithSeparatedGroupsSchemaOnboardingGoalType1,
 )
-from .user_with_separated_groups_schema_status import (
-    UserWithSeparatedGroupsSchemaStatus,
+from .user_with_separated_groups_schema_status_type_1 import (
+    UserWithSeparatedGroupsSchemaStatusType1,
 )
 from .user_with_separated_groups_schema_type import UserWithSeparatedGroupsSchemaType
 from .users_basic_schema import UsersBasicSchema
-from .users_basic_schema_facets import UsersBasicSchemaFacets
+from .users_basic_schema_facets_type_0 import UsersBasicSchemaFacetsType0
 from .users_by_emails_schema import UsersByEmailsSchema
 from .users_query_params_schema import UsersQueryParamsSchema
 from .users_schema import UsersSchema
-from .users_schema_facets import UsersSchemaFacets
+from .users_schema_facets_type_0 import UsersSchemaFacetsType0
 
 __all__ = (
     "BaseQueryParamsSchema",
@@ -772,8 +792,8 @@ __all__ = (
     "DeleteUsersPartnerDomainAccessResponseDefaultType1",
     "DeleteUsersPartnerDomainAccessResponseDefaultType1Errors",
     "DomainUsersByEmailSchema",
-    "DomainUsersByEmailSchemaFacets",
-    "DomainUsersByEmailSchemaMfaMethodsItem",
+    "DomainUsersByEmailSchemaFacetsType0",
+    "DomainUsersByEmailSchemaMfaMethodsType0Item",
     "GetGroupsAllBasicResponseDefaultType0",
     "GetGroupsAllBasicResponseDefaultType1",
     "GetGroupsAllBasicResponseDefaultType1Errors",
@@ -836,28 +856,28 @@ __all__ = (
     "GetUsersResponseDefaultType1",
     "GetUsersResponseDefaultType1Errors",
     "GroupBaseSchema",
-    "GroupBaseSchemaDefaultUserType",
-    "GroupBaseSchemaGroupType",
+    "GroupBaseSchemaDefaultUserTypeType1",
+    "GroupBaseSchemaGroupTypeType1",
     "GroupCreateSchema",
-    "GroupCreateSchemaDefaultUserType",
-    "GroupCreateSchemaGroupType",
+    "GroupCreateSchemaDefaultUserTypeType1",
+    "GroupCreateSchemaGroupTypeType1",
     "GroupElasticSchema",
-    "GroupElasticSchemaDefaultUserType",
-    "GroupElasticSchemaGroupType",
+    "GroupElasticSchemaDefaultUserTypeType1",
+    "GroupElasticSchemaGroupTypeType1",
     "GroupMappingSchema",
     "GroupMappingsSchema",
     "GroupSchema",
-    "GroupSchemaDefaultUserType",
-    "GroupSchemaGroupType",
+    "GroupSchemaDefaultUserTypeType1",
+    "GroupSchemaGroupTypeType1",
     "GroupsQueryParamsSchema",
     "GroupsSchema",
-    "GroupsSchemaFacets",
+    "GroupsSchemaFacetsType0",
     "GroupWithRolesBaseSchema",
-    "GroupWithRolesBaseSchemaDefaultUserType",
-    "GroupWithRolesBaseSchemaGroupType",
+    "GroupWithRolesBaseSchemaDefaultUserTypeType1",
+    "GroupWithRolesBaseSchemaGroupTypeType1",
     "GroupWithRolesElasticSchema",
-    "GroupWithRolesElasticSchemaDefaultUserType",
-    "GroupWithRolesElasticSchemaGroupType",
+    "GroupWithRolesElasticSchemaDefaultUserTypeType1",
+    "GroupWithRolesElasticSchemaGroupTypeType1",
     "ListObjectsSchema",
     "MultiplatformUserPasswordEditSchema",
     "MultiplatformUserSchema",
@@ -985,71 +1005,71 @@ __all__ = (
     "RoleCategories",
     "RoleCategoriesSchema",
     "RoleGroupSchema",
-    "RoleGroupSchemaDefaultUserType",
-    "RoleGroupSchemaGroupType",
+    "RoleGroupSchemaDefaultUserTypeType1",
+    "RoleGroupSchemaGroupTypeType1",
     "RoleGroupsSchema",
-    "RoleGroupsSchemaFacets",
+    "RoleGroupsSchemaFacetsType0",
     "TeamSchema",
-    "TeamSchemaDefaultUserType",
-    "TeamSchemaGroupType",
+    "TeamSchemaDefaultUserTypeType1",
+    "TeamSchemaGroupTypeType1",
     "TeamsSchema",
-    "TeamsSchemaFacets",
+    "TeamsSchemaFacetsType0",
     "UserBaseSchema",
-    "UserBaseSchemaOnboardingGoal",
-    "UserBaseSchemaStatus",
+    "UserBaseSchemaOnboardingGoalType1",
+    "UserBaseSchemaStatusType1",
     "UserBaseSchemaType",
     "UserBasicElasticSchema",
     "UserByEmailAndLoginTypeSchema",
-    "UserByEmailAndLoginTypeSchemaLoginType",
+    "UserByEmailAndLoginTypeSchemaLoginTypeType1",
     "UserByEmailSchema",
     "UserCreateSchema",
-    "UserCreateSchemaOnboardingGoal",
-    "UserCreateSchemaStatus",
+    "UserCreateSchemaOnboardingGoalType1",
+    "UserCreateSchemaStatusType1",
     "UserCreateSchemaType",
     "UserEditInternalSchema",
-    "UserEditInternalSchemaOnboardingGoal",
-    "UserEditInternalSchemaStatus",
+    "UserEditInternalSchemaOnboardingGoalType1",
+    "UserEditInternalSchemaStatusType1",
     "UserEditInternalSchemaType",
     "UserEditSchema",
-    "UserEditSchemaOnboardingGoal",
-    "UserEditSchemaStatus",
+    "UserEditSchemaOnboardingGoalType1",
+    "UserEditSchemaStatusType1",
     "UserEditSchemaType",
     "UserElastic",
-    "UserElasticOnboardingGoal",
+    "UserElasticOnboardingGoalType1",
     "UserElasticSchema",
-    "UserElasticSchemaOnboardingGoal",
-    "UserElasticSchemaStatus",
+    "UserElasticSchemaOnboardingGoalType1",
+    "UserElasticSchemaStatusType1",
     "UserElasticSchemaType",
-    "UserElasticStatus",
+    "UserElasticStatusType1",
     "UserElasticType",
     "UserInviteRegisterRequestSchema",
     "UserInviteRegisterResponseSchema",
     "UserInviteRequestLinkSchema",
-    "UserInviteRequestLinkSchemaType",
+    "UserInviteRequestLinkSchemaTypeType1",
     "UserLoginSchema",
     "UserOTPEditMultiPlatformSchema",
     "UserRolesSchema",
     "UserSamlCreateSchema",
-    "UserSamlCreateSchemaOnboardingGoal",
-    "UserSamlCreateSchemaStatus",
-    "UserSamlCreateSchemaType",
+    "UserSamlCreateSchemaOnboardingGoalType1",
+    "UserSamlCreateSchemaStatusType1",
+    "UserSamlCreateSchemaTypeType1",
     "UserSamlIdpUpdateSchema",
     "UserSamlUpdateSchema",
     "UsersBasicSchema",
-    "UsersBasicSchemaFacets",
+    "UsersBasicSchemaFacetsType0",
     "UsersByEmailsSchema",
     "UserSchema",
-    "UserSchemaOnboardingGoal",
-    "UserSchemaStatus",
+    "UserSchemaOnboardingGoalType1",
+    "UserSchemaStatusType1",
     "UserSchemaType",
     "UsersQueryParamsSchema",
     "UsersSchema",
-    "UsersSchemaFacets",
+    "UsersSchemaFacetsType0",
     "UserSystemMetadata",
     "UserSystemMetadataSchema",
     "UserTypeCountsSchema",
     "UserWithSeparatedGroupsSchema",
-    "UserWithSeparatedGroupsSchemaOnboardingGoal",
-    "UserWithSeparatedGroupsSchemaStatus",
+    "UserWithSeparatedGroupsSchemaOnboardingGoalType1",
+    "UserWithSeparatedGroupsSchemaStatusType1",
     "UserWithSeparatedGroupsSchemaType",
 )

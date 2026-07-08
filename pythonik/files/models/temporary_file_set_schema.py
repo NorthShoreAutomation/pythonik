@@ -2,15 +2,22 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.temporary_file_set_schema_status import TemporaryFileSetSchemaStatus
-from ..models.temporary_file_set_schema_type import TemporaryFileSetSchemaType
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.temporary_file_set_schema_status_type_1 import (
+        TemporaryFileSetSchemaStatusType1,
+    )
+    from ..models.temporary_file_set_schema_type_type_1 import (
+        TemporaryFileSetSchemaTypeType1,
+    )
+
 
 T = TypeVar("T", bound="TemporaryFileSetSchema")
 
@@ -24,20 +31,20 @@ class TemporaryFileSetSchema:
         format_id (UUID):
         job_id (UUID):
         name (str):
-        archive_file_set_id (UUID | Unset):
-        asset_id (UUID | Unset):
-        date_created (datetime.datetime | Unset):
-        date_deleted (datetime.datetime | Unset):
-        date_modified (datetime.datetime | Unset):
-        deleted_by_user (UUID | Unset):
-        file_count (int | Unset):
-        id (UUID | Unset):
-        is_archive (bool | Unset):
-        original_storage_id (UUID | Unset):
-        status (TemporaryFileSetSchemaStatus | Unset):
-        storage_id (UUID | Unset):
-        type_ (TemporaryFileSetSchemaType | Unset):
-        version_id (UUID | Unset):
+        archive_file_set_id (None | Unset | UUID):
+        asset_id (None | Unset | UUID):
+        date_created (datetime.datetime | None | Unset):
+        date_deleted (datetime.datetime | None | Unset):
+        date_modified (datetime.datetime | None | Unset):
+        deleted_by_user (None | Unset | UUID):
+        file_count (int | None | Unset):
+        id (None | Unset | UUID):
+        is_archive (bool | None | Unset):
+        original_storage_id (None | Unset | UUID):
+        status (None | TemporaryFileSetSchemaStatusType1 | Unset):
+        storage_id (None | Unset | UUID):
+        type_ (None | TemporaryFileSetSchemaTypeType1 | Unset):
+        version_id (None | Unset | UUID):
     """
 
     base_dir: str
@@ -45,23 +52,30 @@ class TemporaryFileSetSchema:
     format_id: UUID
     job_id: UUID
     name: str
-    archive_file_set_id: UUID | Unset = UNSET
-    asset_id: UUID | Unset = UNSET
-    date_created: datetime.datetime | Unset = UNSET
-    date_deleted: datetime.datetime | Unset = UNSET
-    date_modified: datetime.datetime | Unset = UNSET
-    deleted_by_user: UUID | Unset = UNSET
-    file_count: int | Unset = UNSET
-    id: UUID | Unset = UNSET
-    is_archive: bool | Unset = UNSET
-    original_storage_id: UUID | Unset = UNSET
-    status: TemporaryFileSetSchemaStatus | Unset = UNSET
-    storage_id: UUID | Unset = UNSET
-    type_: TemporaryFileSetSchemaType | Unset = UNSET
-    version_id: UUID | Unset = UNSET
+    archive_file_set_id: None | Unset | UUID = UNSET
+    asset_id: None | Unset | UUID = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_deleted: datetime.datetime | None | Unset = UNSET
+    date_modified: datetime.datetime | None | Unset = UNSET
+    deleted_by_user: None | Unset | UUID = UNSET
+    file_count: int | None | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    is_archive: bool | None | Unset = UNSET
+    original_storage_id: None | Unset | UUID = UNSET
+    status: None | TemporaryFileSetSchemaStatusType1 | Unset = UNSET
+    storage_id: None | Unset | UUID = UNSET
+    type_: None | TemporaryFileSetSchemaTypeType1 | Unset = UNSET
+    version_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.temporary_file_set_schema_status_type_1 import (
+            TemporaryFileSetSchemaStatusType1,
+        )
+        from ..models.temporary_file_set_schema_type_type_1 import (
+            TemporaryFileSetSchemaTypeType1,
+        )
+
         base_dir = self.base_dir
 
         component_ids = []
@@ -75,57 +89,113 @@ class TemporaryFileSetSchema:
 
         name = self.name
 
-        archive_file_set_id: str | Unset = UNSET
-        if not isinstance(self.archive_file_set_id, Unset):
+        archive_file_set_id: None | str | Unset
+        if isinstance(self.archive_file_set_id, Unset):
+            archive_file_set_id = UNSET
+        elif isinstance(self.archive_file_set_id, UUID):
             archive_file_set_id = str(self.archive_file_set_id)
+        else:
+            archive_file_set_id = self.archive_file_set_id
 
-        asset_id: str | Unset = UNSET
-        if not isinstance(self.asset_id, Unset):
+        asset_id: None | str | Unset
+        if isinstance(self.asset_id, Unset):
+            asset_id = UNSET
+        elif isinstance(self.asset_id, UUID):
             asset_id = str(self.asset_id)
+        else:
+            asset_id = self.asset_id
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_deleted: str | Unset = UNSET
-        if not isinstance(self.date_deleted, Unset):
+        date_deleted: None | str | Unset
+        if isinstance(self.date_deleted, Unset):
+            date_deleted = UNSET
+        elif isinstance(self.date_deleted, datetime.datetime):
             date_deleted = self.date_deleted.isoformat()
+        else:
+            date_deleted = self.date_deleted
 
-        date_modified: str | Unset = UNSET
-        if not isinstance(self.date_modified, Unset):
+        date_modified: None | str | Unset
+        if isinstance(self.date_modified, Unset):
+            date_modified = UNSET
+        elif isinstance(self.date_modified, datetime.datetime):
             date_modified = self.date_modified.isoformat()
+        else:
+            date_modified = self.date_modified
 
-        deleted_by_user: str | Unset = UNSET
-        if not isinstance(self.deleted_by_user, Unset):
+        deleted_by_user: None | str | Unset
+        if isinstance(self.deleted_by_user, Unset):
+            deleted_by_user = UNSET
+        elif isinstance(self.deleted_by_user, UUID):
             deleted_by_user = str(self.deleted_by_user)
+        else:
+            deleted_by_user = self.deleted_by_user
 
-        file_count = self.file_count
+        file_count: int | None | Unset
+        if isinstance(self.file_count, Unset):
+            file_count = UNSET
+        else:
+            file_count = self.file_count
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        is_archive = self.is_archive
+        is_archive: bool | None | Unset
+        if isinstance(self.is_archive, Unset):
+            is_archive = UNSET
+        else:
+            is_archive = self.is_archive
 
-        original_storage_id: str | Unset = UNSET
-        if not isinstance(self.original_storage_id, Unset):
+        original_storage_id: None | str | Unset
+        if isinstance(self.original_storage_id, Unset):
+            original_storage_id = UNSET
+        elif isinstance(self.original_storage_id, UUID):
             original_storage_id = str(self.original_storage_id)
+        else:
+            original_storage_id = self.original_storage_id
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        status: dict[str, Any] | None | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        elif isinstance(self.status, TemporaryFileSetSchemaStatusType1):
+            status = self.status.to_dict()
+        else:
+            status = self.status
 
-        storage_id: str | Unset = UNSET
-        if not isinstance(self.storage_id, Unset):
+        storage_id: None | str | Unset
+        if isinstance(self.storage_id, Unset):
+            storage_id = UNSET
+        elif isinstance(self.storage_id, UUID):
             storage_id = str(self.storage_id)
+        else:
+            storage_id = self.storage_id
 
-        type_: str | Unset = UNSET
-        if not isinstance(self.type_, Unset):
-            type_ = self.type_.value
+        type_: dict[str, Any] | None | Unset
+        if isinstance(self.type_, Unset):
+            type_ = UNSET
+        elif isinstance(self.type_, TemporaryFileSetSchemaTypeType1):
+            type_ = self.type_.to_dict()
+        else:
+            type_ = self.type_
 
-        version_id: str | Unset = UNSET
-        if not isinstance(self.version_id, Unset):
+        version_id: None | str | Unset
+        if isinstance(self.version_id, Unset):
+            version_id = UNSET
+        elif isinstance(self.version_id, UUID):
             version_id = str(self.version_id)
+        else:
+            version_id = self.version_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -171,6 +241,13 @@ class TemporaryFileSetSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.temporary_file_set_schema_status_type_1 import (
+            TemporaryFileSetSchemaStatusType1,
+        )
+        from ..models.temporary_file_set_schema_type_type_1 import (
+            TemporaryFileSetSchemaTypeType1,
+        )
+
         d = dict(src_dict)
         base_dir = d.pop("base_dir")
 
@@ -187,93 +264,235 @@ class TemporaryFileSetSchema:
 
         name = d.pop("name")
 
-        _archive_file_set_id = d.pop("archive_file_set_id", UNSET)
-        archive_file_set_id: UUID | Unset
-        if isinstance(_archive_file_set_id, Unset):
-            archive_file_set_id = UNSET
-        else:
-            archive_file_set_id = UUID(_archive_file_set_id)
+        def _parse_archive_file_set_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                archive_file_set_id_type_0 = UUID(data)
 
-        _asset_id = d.pop("asset_id", UNSET)
-        asset_id: UUID | Unset
-        if isinstance(_asset_id, Unset):
-            asset_id = UNSET
-        else:
-            asset_id = UUID(_asset_id)
+                return archive_file_set_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        archive_file_set_id = _parse_archive_file_set_id(
+            d.pop("archive_file_set_id", UNSET)
+        )
 
-        _date_deleted = d.pop("date_deleted", UNSET)
-        date_deleted: datetime.datetime | Unset
-        if isinstance(_date_deleted, Unset):
-            date_deleted = UNSET
-        else:
-            date_deleted = datetime.datetime.fromisoformat(_date_deleted)
+        def _parse_asset_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                asset_id_type_0 = UUID(data)
 
-        _date_modified = d.pop("date_modified", UNSET)
-        date_modified: datetime.datetime | Unset
-        if isinstance(_date_modified, Unset):
-            date_modified = UNSET
-        else:
-            date_modified = datetime.datetime.fromisoformat(_date_modified)
+                return asset_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        _deleted_by_user = d.pop("deleted_by_user", UNSET)
-        deleted_by_user: UUID | Unset
-        if isinstance(_deleted_by_user, Unset):
-            deleted_by_user = UNSET
-        else:
-            deleted_by_user = UUID(_deleted_by_user)
+        asset_id = _parse_asset_id(d.pop("asset_id", UNSET))
 
-        file_count = d.pop("file_count", UNSET)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        is_archive = d.pop("is_archive", UNSET)
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
 
-        _original_storage_id = d.pop("original_storage_id", UNSET)
-        original_storage_id: UUID | Unset
-        if isinstance(_original_storage_id, Unset):
-            original_storage_id = UNSET
-        else:
-            original_storage_id = UUID(_original_storage_id)
+        def _parse_date_deleted(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_deleted_type_0 = datetime.datetime.fromisoformat(data)
 
-        _status = d.pop("status", UNSET)
-        status: TemporaryFileSetSchemaStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = TemporaryFileSetSchemaStatus(_status)
+                return date_deleted_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        _storage_id = d.pop("storage_id", UNSET)
-        storage_id: UUID | Unset
-        if isinstance(_storage_id, Unset):
-            storage_id = UNSET
-        else:
-            storage_id = UUID(_storage_id)
+        date_deleted = _parse_date_deleted(d.pop("date_deleted", UNSET))
 
-        _type_ = d.pop("type", UNSET)
-        type_: TemporaryFileSetSchemaType | Unset
-        if isinstance(_type_, Unset):
-            type_ = UNSET
-        else:
-            type_ = TemporaryFileSetSchemaType(_type_)
+        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_modified_type_0 = datetime.datetime.fromisoformat(data)
 
-        _version_id = d.pop("version_id", UNSET)
-        version_id: UUID | Unset
-        if isinstance(_version_id, Unset):
-            version_id = UNSET
-        else:
-            version_id = UUID(_version_id)
+                return date_modified_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
+
+        def _parse_deleted_by_user(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                deleted_by_user_type_0 = UUID(data)
+
+                return deleted_by_user_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        deleted_by_user = _parse_deleted_by_user(d.pop("deleted_by_user", UNSET))
+
+        def _parse_file_count(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        file_count = _parse_file_count(d.pop("file_count", UNSET))
+
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_is_archive(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        is_archive = _parse_is_archive(d.pop("is_archive", UNSET))
+
+        def _parse_original_storage_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                original_storage_id_type_0 = UUID(data)
+
+                return original_storage_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        original_storage_id = _parse_original_storage_id(
+            d.pop("original_storage_id", UNSET)
+        )
+
+        def _parse_status(
+            data: object,
+        ) -> None | TemporaryFileSetSchemaStatusType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                status_type_1 = TemporaryFileSetSchemaStatusType1.from_dict(data)
+
+                return status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | TemporaryFileSetSchemaStatusType1 | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
+
+        def _parse_storage_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                storage_id_type_0 = UUID(data)
+
+                return storage_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        storage_id = _parse_storage_id(d.pop("storage_id", UNSET))
+
+        def _parse_type_(
+            data: object,
+        ) -> None | TemporaryFileSetSchemaTypeType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                type_type_1 = TemporaryFileSetSchemaTypeType1.from_dict(data)
+
+                return type_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | TemporaryFileSetSchemaTypeType1 | Unset, data)
+
+        type_ = _parse_type_(d.pop("type", UNSET))
+
+        def _parse_version_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                version_id_type_0 = UUID(data)
+
+                return version_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        version_id = _parse_version_id(d.pop("version_id", UNSET))
 
         temporary_file_set_schema = cls(
             base_dir=base_dir,

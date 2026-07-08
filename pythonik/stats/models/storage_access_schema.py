@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -22,24 +22,24 @@ class StorageAccessSchema:
         operation_type (str):
         storage_type (StorageAccessSchemaStorageType):
         system_name (str):
-        bytes_received (int | Unset):
-        bytes_sent (int | Unset):
-        date (datetime.datetime | Unset):
-        id (UUID | Unset):
-        operations (int | Unset):
-        system_domain_id (UUID | Unset):
+        bytes_received (int | None | Unset):
+        bytes_sent (int | None | Unset):
+        date (datetime.datetime | None | Unset):
+        id (None | Unset | UUID):
+        operations (int | None | Unset):
+        system_domain_id (None | Unset | UUID):
     """
 
     bucket_name: str
     operation_type: str
     storage_type: StorageAccessSchemaStorageType
     system_name: str
-    bytes_received: int | Unset = UNSET
-    bytes_sent: int | Unset = UNSET
-    date: datetime.datetime | Unset = UNSET
-    id: UUID | Unset = UNSET
-    operations: int | Unset = UNSET
-    system_domain_id: UUID | Unset = UNSET
+    bytes_received: int | None | Unset = UNSET
+    bytes_sent: int | None | Unset = UNSET
+    date: datetime.datetime | None | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    operations: int | None | Unset = UNSET
+    system_domain_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -51,23 +51,47 @@ class StorageAccessSchema:
 
         system_name = self.system_name
 
-        bytes_received = self.bytes_received
+        bytes_received: int | None | Unset
+        if isinstance(self.bytes_received, Unset):
+            bytes_received = UNSET
+        else:
+            bytes_received = self.bytes_received
 
-        bytes_sent = self.bytes_sent
+        bytes_sent: int | None | Unset
+        if isinstance(self.bytes_sent, Unset):
+            bytes_sent = UNSET
+        else:
+            bytes_sent = self.bytes_sent
 
-        date: str | Unset = UNSET
-        if not isinstance(self.date, Unset):
+        date: None | str | Unset
+        if isinstance(self.date, Unset):
+            date = UNSET
+        elif isinstance(self.date, datetime.datetime):
             date = self.date.isoformat()
+        else:
+            date = self.date
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        operations = self.operations
+        operations: int | None | Unset
+        if isinstance(self.operations, Unset):
+            operations = UNSET
+        else:
+            operations = self.operations
 
-        system_domain_id: str | Unset = UNSET
-        if not isinstance(self.system_domain_id, Unset):
+        system_domain_id: None | str | Unset
+        if isinstance(self.system_domain_id, Unset):
+            system_domain_id = UNSET
+        elif isinstance(self.system_domain_id, UUID):
             system_domain_id = str(self.system_domain_id)
+        else:
+            system_domain_id = self.system_domain_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -105,32 +129,83 @@ class StorageAccessSchema:
 
         system_name = d.pop("system_name")
 
-        bytes_received = d.pop("bytes_received", UNSET)
+        def _parse_bytes_received(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        bytes_sent = d.pop("bytes_sent", UNSET)
+        bytes_received = _parse_bytes_received(d.pop("bytes_received", UNSET))
 
-        _date = d.pop("date", UNSET)
-        date: datetime.datetime | Unset
-        if isinstance(_date, Unset):
-            date = UNSET
-        else:
-            date = datetime.datetime.fromisoformat(_date)
+        def _parse_bytes_sent(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        bytes_sent = _parse_bytes_sent(d.pop("bytes_sent", UNSET))
 
-        operations = d.pop("operations", UNSET)
+        def _parse_date(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_type_0 = datetime.datetime.fromisoformat(data)
 
-        _system_domain_id = d.pop("system_domain_id", UNSET)
-        system_domain_id: UUID | Unset
-        if isinstance(_system_domain_id, Unset):
-            system_domain_id = UNSET
-        else:
-            system_domain_id = UUID(_system_domain_id)
+                return date_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date = _parse_date(d.pop("date", UNSET))
+
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_operations(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        operations = _parse_operations(d.pop("operations", UNSET))
+
+        def _parse_system_domain_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                system_domain_id_type_0 = UUID(data)
+
+                return system_domain_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
 
         storage_access_schema = cls(
             bucket_name=bucket_name,

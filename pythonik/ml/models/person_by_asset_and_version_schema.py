@@ -33,7 +33,7 @@ class PersonByAssetAndVersionSchema:
         person_version_face_image_url (None | str):
         status (PersonByAssetAndVersionSchemaStatus):
         version_id (UUID):
-        system_domain_id (UUID | Unset):
+        system_domain_id (None | Unset | UUID):
     """
 
     asset_id: UUID
@@ -49,7 +49,7 @@ class PersonByAssetAndVersionSchema:
     person_version_face_image_url: None | str
     status: PersonByAssetAndVersionSchemaStatus
     version_id: UUID
-    system_domain_id: UUID | Unset = UNSET
+    system_domain_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -90,9 +90,13 @@ class PersonByAssetAndVersionSchema:
 
         version_id = str(self.version_id)
 
-        system_domain_id: str | Unset = UNSET
-        if not isinstance(self.system_domain_id, Unset):
+        system_domain_id: None | str | Unset
+        if isinstance(self.system_domain_id, Unset):
+            system_domain_id = UNSET
+        elif isinstance(self.system_domain_id, UUID):
             system_domain_id = str(self.system_domain_id)
+        else:
+            system_domain_id = self.system_domain_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -190,12 +194,22 @@ class PersonByAssetAndVersionSchema:
 
         version_id = UUID(d.pop("version_id"))
 
-        _system_domain_id = d.pop("system_domain_id", UNSET)
-        system_domain_id: UUID | Unset
-        if isinstance(_system_domain_id, Unset):
-            system_domain_id = UNSET
-        else:
-            system_domain_id = UUID(_system_domain_id)
+        def _parse_system_domain_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                system_domain_id_type_0 = UUID(data)
+
+                return system_domain_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
 
         person_by_asset_and_version_schema = cls(
             asset_id=asset_id,

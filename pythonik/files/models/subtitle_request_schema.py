@@ -15,20 +15,28 @@ T = TypeVar("T", bound="SubtitleRequestSchema")
 class SubtitleRequestSchema:
     """
     Attributes:
-        create_transcription (bool | Unset):
-        delete_old_transcriptions (bool | Unset):
+        create_transcription (bool | None | Unset):
+        delete_old_transcriptions (bool | None | Unset):
         priority (int | None | Unset):
     """
 
-    create_transcription: bool | Unset = UNSET
-    delete_old_transcriptions: bool | Unset = UNSET
+    create_transcription: bool | None | Unset = UNSET
+    delete_old_transcriptions: bool | None | Unset = UNSET
     priority: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        create_transcription = self.create_transcription
+        create_transcription: bool | None | Unset
+        if isinstance(self.create_transcription, Unset):
+            create_transcription = UNSET
+        else:
+            create_transcription = self.create_transcription
 
-        delete_old_transcriptions = self.delete_old_transcriptions
+        delete_old_transcriptions: bool | None | Unset
+        if isinstance(self.delete_old_transcriptions, Unset):
+            delete_old_transcriptions = UNSET
+        else:
+            delete_old_transcriptions = self.delete_old_transcriptions
 
         priority: int | None | Unset
         if isinstance(self.priority, Unset):
@@ -51,9 +59,28 @@ class SubtitleRequestSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        create_transcription = d.pop("create_transcription", UNSET)
 
-        delete_old_transcriptions = d.pop("delete_old_transcriptions", UNSET)
+        def _parse_create_transcription(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        create_transcription = _parse_create_transcription(
+            d.pop("create_transcription", UNSET)
+        )
+
+        def _parse_delete_old_transcriptions(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        delete_old_transcriptions = _parse_delete_old_transcriptions(
+            d.pop("delete_old_transcriptions", UNSET)
+        )
 
         def _parse_priority(data: object) -> int | None | Unset:
             if data is None:

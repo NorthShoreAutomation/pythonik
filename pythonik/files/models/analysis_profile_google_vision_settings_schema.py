@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,18 +15,26 @@ T = TypeVar("T", bound="AnalysisProfileGoogleVisionSettingsSchema")
 class AnalysisProfileGoogleVisionSettingsSchema:
     """
     Attributes:
-        is_system (bool | Unset):
-        min_confidence (float | Unset):
+        is_system (bool | None | Unset):
+        min_confidence (float | None | Unset):
     """
 
-    is_system: bool | Unset = UNSET
-    min_confidence: float | Unset = UNSET
+    is_system: bool | None | Unset = UNSET
+    min_confidence: float | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        is_system = self.is_system
+        is_system: bool | None | Unset
+        if isinstance(self.is_system, Unset):
+            is_system = UNSET
+        else:
+            is_system = self.is_system
 
-        min_confidence = self.min_confidence
+        min_confidence: float | None | Unset
+        if isinstance(self.min_confidence, Unset):
+            min_confidence = UNSET
+        else:
+            min_confidence = self.min_confidence
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -41,9 +49,24 @@ class AnalysisProfileGoogleVisionSettingsSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        is_system = d.pop("is_system", UNSET)
 
-        min_confidence = d.pop("min_confidence", UNSET)
+        def _parse_is_system(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        is_system = _parse_is_system(d.pop("is_system", UNSET))
+
+        def _parse_min_confidence(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        min_confidence = _parse_min_confidence(d.pop("min_confidence", UNSET))
 
         analysis_profile_google_vision_settings_schema = cls(
             is_system=is_system,

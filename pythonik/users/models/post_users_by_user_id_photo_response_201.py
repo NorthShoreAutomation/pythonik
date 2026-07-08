@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,22 +15,34 @@ T = TypeVar("T", bound="PostUsersByUserIdPhotoResponse201")
 class PostUsersByUserIdPhotoResponse201:
     """
     Attributes:
-        photo (str | Unset): Url for the user original photo
-        photo_big (str | Unset): Url for the user re-sized big photo
-        photo_small (str | Unset): Url for the user re-sized small photo
+        photo (None | str | Unset): Url for the user original photo
+        photo_big (None | str | Unset): Url for the user re-sized big photo
+        photo_small (None | str | Unset): Url for the user re-sized small photo
     """
 
-    photo: str | Unset = UNSET
-    photo_big: str | Unset = UNSET
-    photo_small: str | Unset = UNSET
+    photo: None | str | Unset = UNSET
+    photo_big: None | str | Unset = UNSET
+    photo_small: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        photo = self.photo
+        photo: None | str | Unset
+        if isinstance(self.photo, Unset):
+            photo = UNSET
+        else:
+            photo = self.photo
 
-        photo_big = self.photo_big
+        photo_big: None | str | Unset
+        if isinstance(self.photo_big, Unset):
+            photo_big = UNSET
+        else:
+            photo_big = self.photo_big
 
-        photo_small = self.photo_small
+        photo_small: None | str | Unset
+        if isinstance(self.photo_small, Unset):
+            photo_small = UNSET
+        else:
+            photo_small = self.photo_small
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -47,11 +59,33 @@ class PostUsersByUserIdPhotoResponse201:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        photo = d.pop("photo", UNSET)
 
-        photo_big = d.pop("photo_big", UNSET)
+        def _parse_photo(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        photo_small = d.pop("photo_small", UNSET)
+        photo = _parse_photo(d.pop("photo", UNSET))
+
+        def _parse_photo_big(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        photo_big = _parse_photo_big(d.pop("photo_big", UNSET))
+
+        def _parse_photo_small(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        photo_small = _parse_photo_small(d.pop("photo_small", UNSET))
 
         post_users_by_user_id_photo_response_201 = cls(
             photo=photo,

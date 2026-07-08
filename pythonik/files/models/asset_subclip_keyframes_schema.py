@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -22,9 +22,9 @@ class AssetSubclipKeyframesSchema:
         time_end_milliseconds (int):
         time_start_milliseconds (int):
         version_id (UUID):
-        filename (str | Unset):
-        name (str | Unset):
-        original_segment_id (UUID | Unset):
+        filename (None | str | Unset):
+        name (None | str | Unset):
+        original_segment_id (None | Unset | UUID):
     """
 
     asset_id: UUID
@@ -33,9 +33,9 @@ class AssetSubclipKeyframesSchema:
     time_end_milliseconds: int
     time_start_milliseconds: int
     version_id: UUID
-    filename: str | Unset = UNSET
-    name: str | Unset = UNSET
-    original_segment_id: UUID | Unset = UNSET
+    filename: None | str | Unset = UNSET
+    name: None | str | Unset = UNSET
+    original_segment_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -51,13 +51,25 @@ class AssetSubclipKeyframesSchema:
 
         version_id = str(self.version_id)
 
-        filename = self.filename
+        filename: None | str | Unset
+        if isinstance(self.filename, Unset):
+            filename = UNSET
+        else:
+            filename = self.filename
 
-        name = self.name
+        name: None | str | Unset
+        if isinstance(self.name, Unset):
+            name = UNSET
+        else:
+            name = self.name
 
-        original_segment_id: str | Unset = UNSET
-        if not isinstance(self.original_segment_id, Unset):
+        original_segment_id: None | str | Unset
+        if isinstance(self.original_segment_id, Unset):
+            original_segment_id = UNSET
+        elif isinstance(self.original_segment_id, UUID):
             original_segment_id = str(self.original_segment_id)
+        else:
+            original_segment_id = self.original_segment_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -95,16 +107,42 @@ class AssetSubclipKeyframesSchema:
 
         version_id = UUID(d.pop("version_id"))
 
-        filename = d.pop("filename", UNSET)
+        def _parse_filename(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        name = d.pop("name", UNSET)
+        filename = _parse_filename(d.pop("filename", UNSET))
 
-        _original_segment_id = d.pop("original_segment_id", UNSET)
-        original_segment_id: UUID | Unset
-        if isinstance(_original_segment_id, Unset):
-            original_segment_id = UNSET
-        else:
-            original_segment_id = UUID(_original_segment_id)
+        def _parse_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        name = _parse_name(d.pop("name", UNSET))
+
+        def _parse_original_segment_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                original_segment_id_type_0 = UUID(data)
+
+                return original_segment_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        original_segment_id = _parse_original_segment_id(
+            d.pop("original_segment_id", UNSET)
+        )
 
         asset_subclip_keyframes_schema = cls(
             asset_id=asset_id,

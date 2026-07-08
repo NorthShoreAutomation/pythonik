@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,14 +15,18 @@ T = TypeVar("T", bound="CustomActionCallbackReplySchema")
 class CustomActionCallbackReplySchema:
     """
     Attributes:
-        redirect_url (str | Unset):
+        redirect_url (None | str | Unset):
     """
 
-    redirect_url: str | Unset = UNSET
+    redirect_url: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        redirect_url = self.redirect_url
+        redirect_url: None | str | Unset
+        if isinstance(self.redirect_url, Unset):
+            redirect_url = UNSET
+        else:
+            redirect_url = self.redirect_url
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -35,7 +39,15 @@ class CustomActionCallbackReplySchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        redirect_url = d.pop("redirect_url", UNSET)
+
+        def _parse_redirect_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        redirect_url = _parse_redirect_url(d.pop("redirect_url", UNSET))
 
         custom_action_callback_reply_schema = cls(
             redirect_url=redirect_url,

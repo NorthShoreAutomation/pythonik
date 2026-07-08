@@ -1,13 +1,18 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.global_settings_schema_log_level import GlobalSettingsSchemaLogLevel
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.global_settings_schema_log_level_type_1 import (
+        GlobalSettingsSchemaLogLevelType1,
+    )
+
 
 T = TypeVar("T", bound="GlobalSettingsSchema")
 
@@ -16,20 +21,32 @@ T = TypeVar("T", bound="GlobalSettingsSchema")
 class GlobalSettingsSchema:
     """
     Attributes:
-        debug (bool | Unset):
-        log_level (GlobalSettingsSchemaLogLevel | Unset):
+        debug (bool | None | Unset):
+        log_level (GlobalSettingsSchemaLogLevelType1 | None | Unset):
     """
 
-    debug: bool | Unset = UNSET
-    log_level: GlobalSettingsSchemaLogLevel | Unset = UNSET
+    debug: bool | None | Unset = UNSET
+    log_level: GlobalSettingsSchemaLogLevelType1 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        debug = self.debug
+        from ..models.global_settings_schema_log_level_type_1 import (
+            GlobalSettingsSchemaLogLevelType1,
+        )
 
-        log_level: str | Unset = UNSET
-        if not isinstance(self.log_level, Unset):
-            log_level = self.log_level.value
+        debug: bool | None | Unset
+        if isinstance(self.debug, Unset):
+            debug = UNSET
+        else:
+            debug = self.debug
+
+        log_level: dict[str, Any] | None | Unset
+        if isinstance(self.log_level, Unset):
+            log_level = UNSET
+        elif isinstance(self.log_level, GlobalSettingsSchemaLogLevelType1):
+            log_level = self.log_level.to_dict()
+        else:
+            log_level = self.log_level
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -43,15 +60,39 @@ class GlobalSettingsSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        d = dict(src_dict)
-        debug = d.pop("debug", UNSET)
+        from ..models.global_settings_schema_log_level_type_1 import (
+            GlobalSettingsSchemaLogLevelType1,
+        )
 
-        _log_level = d.pop("log_level", UNSET)
-        log_level: GlobalSettingsSchemaLogLevel | Unset
-        if isinstance(_log_level, Unset):
-            log_level = UNSET
-        else:
-            log_level = GlobalSettingsSchemaLogLevel(_log_level)
+        d = dict(src_dict)
+
+        def _parse_debug(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        debug = _parse_debug(d.pop("debug", UNSET))
+
+        def _parse_log_level(
+            data: object,
+        ) -> GlobalSettingsSchemaLogLevelType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                log_level_type_1 = GlobalSettingsSchemaLogLevelType1.from_dict(data)
+
+                return log_level_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(GlobalSettingsSchemaLogLevelType1 | None | Unset, data)
+
+        log_level = _parse_log_level(d.pop("log_level", UNSET))
 
         global_settings_schema = cls(
             debug=debug,

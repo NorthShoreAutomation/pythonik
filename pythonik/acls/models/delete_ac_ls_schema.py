@@ -16,39 +16,58 @@ T = TypeVar("T", bound="DeleteACLsSchema")
 class DeleteACLsSchema:
     """
     Attributes:
-        group_ids (list[UUID] | Unset):
-        object_keys (list[str] | Unset): The number of object_keys in the list is limitedto a minimum of 0 and a maximum
-            of 500
-        object_type (str | Unset):
-        user_ids (list[UUID] | Unset):
+        group_ids (list[UUID] | None | Unset):
+        object_keys (list[str] | None | Unset): The number of object_keys in the list is limitedto a minimum of 0 and a
+            maximum of 500
+        object_type (None | str | Unset):
+        user_ids (list[UUID] | None | Unset):
     """
 
-    group_ids: list[UUID] | Unset = UNSET
-    object_keys: list[str] | Unset = UNSET
-    object_type: str | Unset = UNSET
-    user_ids: list[UUID] | Unset = UNSET
+    group_ids: list[UUID] | None | Unset = UNSET
+    object_keys: list[str] | None | Unset = UNSET
+    object_type: None | str | Unset = UNSET
+    user_ids: list[UUID] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        group_ids: list[str] | Unset = UNSET
-        if not isinstance(self.group_ids, Unset):
+        group_ids: list[str] | None | Unset
+        if isinstance(self.group_ids, Unset):
+            group_ids = UNSET
+        elif isinstance(self.group_ids, list):
             group_ids = []
-            for group_ids_item_data in self.group_ids:
-                group_ids_item = str(group_ids_item_data)
-                group_ids.append(group_ids_item)
+            for group_ids_type_0_item_data in self.group_ids:
+                group_ids_type_0_item = str(group_ids_type_0_item_data)
+                group_ids.append(group_ids_type_0_item)
 
-        object_keys: list[str] | Unset = UNSET
-        if not isinstance(self.object_keys, Unset):
+        else:
+            group_ids = self.group_ids
+
+        object_keys: list[str] | None | Unset
+        if isinstance(self.object_keys, Unset):
+            object_keys = UNSET
+        elif isinstance(self.object_keys, list):
             object_keys = self.object_keys
 
-        object_type = self.object_type
+        else:
+            object_keys = self.object_keys
 
-        user_ids: list[str] | Unset = UNSET
-        if not isinstance(self.user_ids, Unset):
+        object_type: None | str | Unset
+        if isinstance(self.object_type, Unset):
+            object_type = UNSET
+        else:
+            object_type = self.object_type
+
+        user_ids: list[str] | None | Unset
+        if isinstance(self.user_ids, Unset):
+            user_ids = UNSET
+        elif isinstance(self.user_ids, list):
             user_ids = []
-            for user_ids_item_data in self.user_ids:
-                user_ids_item = str(user_ids_item_data)
-                user_ids.append(user_ids_item)
+            for user_ids_type_0_item_data in self.user_ids:
+                user_ids_type_0_item = str(user_ids_type_0_item_data)
+                user_ids.append(user_ids_type_0_item)
+
+        else:
+            user_ids = self.user_ids
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -67,27 +86,76 @@ class DeleteACLsSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        _group_ids = d.pop("group_ids", UNSET)
-        group_ids: list[UUID] | Unset = UNSET
-        if _group_ids is not UNSET:
-            group_ids = []
-            for group_ids_item_data in _group_ids:
-                group_ids_item = UUID(group_ids_item_data)
 
-                group_ids.append(group_ids_item)
+        def _parse_group_ids(data: object) -> list[UUID] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                group_ids_type_0 = []
+                _group_ids_type_0 = data
+                for group_ids_type_0_item_data in _group_ids_type_0:
+                    group_ids_type_0_item = UUID(group_ids_type_0_item_data)
 
-        object_keys = cast(list[str], d.pop("object_keys", UNSET))
+                    group_ids_type_0.append(group_ids_type_0_item)
 
-        object_type = d.pop("object_type", UNSET)
+                return group_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[UUID] | None | Unset, data)
 
-        _user_ids = d.pop("user_ids", UNSET)
-        user_ids: list[UUID] | Unset = UNSET
-        if _user_ids is not UNSET:
-            user_ids = []
-            for user_ids_item_data in _user_ids:
-                user_ids_item = UUID(user_ids_item_data)
+        group_ids = _parse_group_ids(d.pop("group_ids", UNSET))
 
-                user_ids.append(user_ids_item)
+        def _parse_object_keys(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                object_keys_type_0 = cast(list[str], data)
+
+                return object_keys_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        object_keys = _parse_object_keys(d.pop("object_keys", UNSET))
+
+        def _parse_object_type(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        object_type = _parse_object_type(d.pop("object_type", UNSET))
+
+        def _parse_user_ids(data: object) -> list[UUID] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                user_ids_type_0 = []
+                _user_ids_type_0 = data
+                for user_ids_type_0_item_data in _user_ids_type_0:
+                    user_ids_type_0_item = UUID(user_ids_type_0_item_data)
+
+                    user_ids_type_0.append(user_ids_type_0_item)
+
+                return user_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[UUID] | None | Unset, data)
+
+        user_ids = _parse_user_ids(d.pop("user_ids", UNSET))
 
         delete_ac_ls_schema = cls(
             group_ids=group_ids,

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,14 +15,18 @@ T = TypeVar("T", bound="BillingReceiptSchema")
 class BillingReceiptSchema:
     """
     Attributes:
-        receipt_url (str | Unset):
+        receipt_url (None | str | Unset):
     """
 
-    receipt_url: str | Unset = UNSET
+    receipt_url: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        receipt_url = self.receipt_url
+        receipt_url: None | str | Unset
+        if isinstance(self.receipt_url, Unset):
+            receipt_url = UNSET
+        else:
+            receipt_url = self.receipt_url
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -35,7 +39,15 @@ class BillingReceiptSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        receipt_url = d.pop("receipt_url", UNSET)
+
+        def _parse_receipt_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        receipt_url = _parse_receipt_url(d.pop("receipt_url", UNSET))
 
         billing_receipt_schema = cls(
             receipt_url=receipt_url,

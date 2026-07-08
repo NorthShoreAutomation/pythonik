@@ -16,26 +16,38 @@ T = TypeVar("T", bound="ArchiveAssetFormatSchema")
 class ArchiveAssetFormatSchema:
     """
     Attributes:
-        delete_original (bool | Unset):  Default: False.
-        destination_directory_path (str | Unset):
-        destination_filename (str | Unset):
+        delete_original (bool | None | Unset):  Default: False.
+        destination_directory_path (None | str | Unset):
+        destination_filename (None | str | Unset):
         destination_storage_id (None | Unset | UUID):
         preferred_original_storage_id (None | Unset | UUID):
     """
 
-    delete_original: bool | Unset = False
-    destination_directory_path: str | Unset = UNSET
-    destination_filename: str | Unset = UNSET
+    delete_original: bool | None | Unset = False
+    destination_directory_path: None | str | Unset = UNSET
+    destination_filename: None | str | Unset = UNSET
     destination_storage_id: None | Unset | UUID = UNSET
     preferred_original_storage_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        delete_original = self.delete_original
+        delete_original: bool | None | Unset
+        if isinstance(self.delete_original, Unset):
+            delete_original = UNSET
+        else:
+            delete_original = self.delete_original
 
-        destination_directory_path = self.destination_directory_path
+        destination_directory_path: None | str | Unset
+        if isinstance(self.destination_directory_path, Unset):
+            destination_directory_path = UNSET
+        else:
+            destination_directory_path = self.destination_directory_path
 
-        destination_filename = self.destination_filename
+        destination_filename: None | str | Unset
+        if isinstance(self.destination_filename, Unset):
+            destination_filename = UNSET
+        else:
+            destination_filename = self.destination_filename
 
         destination_storage_id: None | str | Unset
         if isinstance(self.destination_storage_id, Unset):
@@ -72,11 +84,37 @@ class ArchiveAssetFormatSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        delete_original = d.pop("delete_original", UNSET)
 
-        destination_directory_path = d.pop("destination_directory_path", UNSET)
+        def _parse_delete_original(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        destination_filename = d.pop("destination_filename", UNSET)
+        delete_original = _parse_delete_original(d.pop("delete_original", UNSET))
+
+        def _parse_destination_directory_path(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        destination_directory_path = _parse_destination_directory_path(
+            d.pop("destination_directory_path", UNSET)
+        )
+
+        def _parse_destination_filename(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        destination_filename = _parse_destination_filename(
+            d.pop("destination_filename", UNSET)
+        )
 
         def _parse_destination_storage_id(data: object) -> None | Unset | UUID:
             if data is None:

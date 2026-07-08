@@ -20,9 +20,9 @@ class VantageSettingsSchema:
         share_name (str):
         temp_proxy_folder (str):
         workflow_id (str):
-        exclude_patterns (list[str] | Unset):
-        include_patterns (list[str] | Unset):
-        local (bool | Unset):
+        exclude_patterns (list[str] | None | Unset):
+        include_patterns (list[str] | None | Unset):
+        local (bool | None | Unset):
         priority (int | None | Unset):
     """
 
@@ -31,9 +31,9 @@ class VantageSettingsSchema:
     share_name: str
     temp_proxy_folder: str
     workflow_id: str
-    exclude_patterns: list[str] | Unset = UNSET
-    include_patterns: list[str] | Unset = UNSET
-    local: bool | Unset = UNSET
+    exclude_patterns: list[str] | None | Unset = UNSET
+    include_patterns: list[str] | None | Unset = UNSET
+    local: bool | None | Unset = UNSET
     priority: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -48,15 +48,29 @@ class VantageSettingsSchema:
 
         workflow_id = self.workflow_id
 
-        exclude_patterns: list[str] | Unset = UNSET
-        if not isinstance(self.exclude_patterns, Unset):
+        exclude_patterns: list[str] | None | Unset
+        if isinstance(self.exclude_patterns, Unset):
+            exclude_patterns = UNSET
+        elif isinstance(self.exclude_patterns, list):
             exclude_patterns = self.exclude_patterns
 
-        include_patterns: list[str] | Unset = UNSET
-        if not isinstance(self.include_patterns, Unset):
+        else:
+            exclude_patterns = self.exclude_patterns
+
+        include_patterns: list[str] | None | Unset
+        if isinstance(self.include_patterns, Unset):
+            include_patterns = UNSET
+        elif isinstance(self.include_patterns, list):
             include_patterns = self.include_patterns
 
-        local = self.local
+        else:
+            include_patterns = self.include_patterns
+
+        local: bool | None | Unset
+        if isinstance(self.local, Unset):
+            local = UNSET
+        else:
+            local = self.local
 
         priority: int | None | Unset
         if isinstance(self.priority, Unset):
@@ -99,11 +113,48 @@ class VantageSettingsSchema:
 
         workflow_id = d.pop("workflow_id")
 
-        exclude_patterns = cast(list[str], d.pop("exclude_patterns", UNSET))
+        def _parse_exclude_patterns(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                exclude_patterns_type_0 = cast(list[str], data)
 
-        include_patterns = cast(list[str], d.pop("include_patterns", UNSET))
+                return exclude_patterns_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
 
-        local = d.pop("local", UNSET)
+        exclude_patterns = _parse_exclude_patterns(d.pop("exclude_patterns", UNSET))
+
+        def _parse_include_patterns(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                include_patterns_type_0 = cast(list[str], data)
+
+                return include_patterns_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        include_patterns = _parse_include_patterns(d.pop("include_patterns", UNSET))
+
+        def _parse_local(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        local = _parse_local(d.pop("local", UNSET))
 
         def _parse_priority(data: object) -> int | None | Unset:
             if data is None:

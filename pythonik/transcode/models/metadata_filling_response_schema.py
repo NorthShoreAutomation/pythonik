@@ -9,8 +9,8 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.metadata_filling_response_schema_metadata_values import (
-        MetadataFillingResponseSchemaMetadataValues,
+    from ..models.metadata_filling_response_schema_metadata_values_type_0 import (
+        MetadataFillingResponseSchemaMetadataValuesType0,
     )
 
 
@@ -21,28 +21,51 @@ T = TypeVar("T", bound="MetadataFillingResponseSchema")
 class MetadataFillingResponseSchema:
     """
     Attributes:
-        errors (list[str] | Unset):
-        metadata_values (MetadataFillingResponseSchemaMetadataValues | Unset): Map of field names to generated values.
-            Values can be a string, a list of strings, or an object with 'value' and optional 'label' keys.
-        warnings (list[str] | Unset):
+        errors (list[str] | None | Unset):
+        metadata_values (MetadataFillingResponseSchemaMetadataValuesType0 | None | Unset): Map of field names to
+            generated values. Values can be a string, a list of strings, or an object with 'value' and optional 'label'
+            keys.
+        warnings (list[str] | None | Unset):
     """
 
-    errors: list[str] | Unset = UNSET
-    metadata_values: MetadataFillingResponseSchemaMetadataValues | Unset = UNSET
-    warnings: list[str] | Unset = UNSET
+    errors: list[str] | None | Unset = UNSET
+    metadata_values: MetadataFillingResponseSchemaMetadataValuesType0 | None | Unset = (
+        UNSET
+    )
+    warnings: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        errors: list[str] | Unset = UNSET
-        if not isinstance(self.errors, Unset):
+        from ..models.metadata_filling_response_schema_metadata_values_type_0 import (
+            MetadataFillingResponseSchemaMetadataValuesType0,
+        )
+
+        errors: list[str] | None | Unset
+        if isinstance(self.errors, Unset):
+            errors = UNSET
+        elif isinstance(self.errors, list):
             errors = self.errors
 
-        metadata_values: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.metadata_values, Unset):
-            metadata_values = self.metadata_values.to_dict()
+        else:
+            errors = self.errors
 
-        warnings: list[str] | Unset = UNSET
-        if not isinstance(self.warnings, Unset):
+        metadata_values: dict[str, Any] | None | Unset
+        if isinstance(self.metadata_values, Unset):
+            metadata_values = UNSET
+        elif isinstance(
+            self.metadata_values, MetadataFillingResponseSchemaMetadataValuesType0
+        ):
+            metadata_values = self.metadata_values.to_dict()
+        else:
+            metadata_values = self.metadata_values
+
+        warnings: list[str] | None | Unset
+        if isinstance(self.warnings, Unset):
+            warnings = UNSET
+        elif isinstance(self.warnings, list):
+            warnings = self.warnings
+
+        else:
             warnings = self.warnings
 
         field_dict: dict[str, Any] = {}
@@ -59,23 +82,68 @@ class MetadataFillingResponseSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.metadata_filling_response_schema_metadata_values import (
-            MetadataFillingResponseSchemaMetadataValues,
+        from ..models.metadata_filling_response_schema_metadata_values_type_0 import (
+            MetadataFillingResponseSchemaMetadataValuesType0,
         )
 
         d = dict(src_dict)
-        errors = cast(list[str], d.pop("errors", UNSET))
 
-        _metadata_values = d.pop("metadata_values", UNSET)
-        metadata_values: MetadataFillingResponseSchemaMetadataValues | Unset
-        if isinstance(_metadata_values, Unset):
-            metadata_values = UNSET
-        else:
-            metadata_values = MetadataFillingResponseSchemaMetadataValues.from_dict(
-                _metadata_values
+        def _parse_errors(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                errors_type_0 = cast(list[str], data)
+
+                return errors_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        errors = _parse_errors(d.pop("errors", UNSET))
+
+        def _parse_metadata_values(
+            data: object,
+        ) -> MetadataFillingResponseSchemaMetadataValuesType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                metadata_values_type_0 = (
+                    MetadataFillingResponseSchemaMetadataValuesType0.from_dict(data)
+                )
+
+                return metadata_values_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(
+                MetadataFillingResponseSchemaMetadataValuesType0 | None | Unset, data
             )
 
-        warnings = cast(list[str], d.pop("warnings", UNSET))
+        metadata_values = _parse_metadata_values(d.pop("metadata_values", UNSET))
+
+        def _parse_warnings(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                warnings_type_0 = cast(list[str], data)
+
+                return warnings_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        warnings = _parse_warnings(d.pop("warnings", UNSET))
 
         metadata_filling_response_schema = cls(
             errors=errors,

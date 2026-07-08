@@ -1,22 +1,25 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.watermark_options_type_schema_show_for_groups import (
-    WatermarkOptionsTypeSchemaShowForGroups,
-)
-from ..models.watermark_options_type_schema_show_in_context import (
-    WatermarkOptionsTypeSchemaShowInContext,
-)
-from ..models.watermark_options_type_schema_text_appearance import (
-    WatermarkOptionsTypeSchemaTextAppearance,
-)
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.watermark_options_type_schema_show_for_groups_type_1 import (
+        WatermarkOptionsTypeSchemaShowForGroupsType1,
+    )
+    from ..models.watermark_options_type_schema_show_in_context_type_1 import (
+        WatermarkOptionsTypeSchemaShowInContextType1,
+    )
+    from ..models.watermark_options_type_schema_text_appearance_type_1 import (
+        WatermarkOptionsTypeSchemaTextAppearanceType1,
+    )
+
 
 T = TypeVar("T", bound="WatermarkOptionsTypeSchema")
 
@@ -25,36 +28,52 @@ T = TypeVar("T", bound="WatermarkOptionsTypeSchema")
 class WatermarkOptionsTypeSchema:
     """
     Attributes:
-        custom_text (str | Unset):
+        custom_text (None | str | Unset):
         groups (list[UUID] | None | Unset):
-        include_custom_text (bool | Unset):
-        include_date_time (bool | Unset):
-        include_email (bool | Unset):
-        include_ip_address (bool | Unset):
-        shadow_opacity (float | Unset):
-        show_for_groups (WatermarkOptionsTypeSchemaShowForGroups | Unset):
-        show_in_context (WatermarkOptionsTypeSchemaShowInContext | Unset):
-        show_watermark (bool | Unset):
-        text_appearance (WatermarkOptionsTypeSchemaTextAppearance | Unset):
-        text_opacity (float | Unset):
+        include_custom_text (bool | None | Unset):
+        include_date_time (bool | None | Unset):
+        include_email (bool | None | Unset):
+        include_ip_address (bool | None | Unset):
+        shadow_opacity (float | None | Unset):
+        show_for_groups (None | Unset | WatermarkOptionsTypeSchemaShowForGroupsType1):
+        show_in_context (None | Unset | WatermarkOptionsTypeSchemaShowInContextType1):
+        show_watermark (bool | None | Unset):
+        text_appearance (None | Unset | WatermarkOptionsTypeSchemaTextAppearanceType1):
+        text_opacity (float | None | Unset):
     """
 
-    custom_text: str | Unset = UNSET
+    custom_text: None | str | Unset = UNSET
     groups: list[UUID] | None | Unset = UNSET
-    include_custom_text: bool | Unset = UNSET
-    include_date_time: bool | Unset = UNSET
-    include_email: bool | Unset = UNSET
-    include_ip_address: bool | Unset = UNSET
-    shadow_opacity: float | Unset = UNSET
-    show_for_groups: WatermarkOptionsTypeSchemaShowForGroups | Unset = UNSET
-    show_in_context: WatermarkOptionsTypeSchemaShowInContext | Unset = UNSET
-    show_watermark: bool | Unset = UNSET
-    text_appearance: WatermarkOptionsTypeSchemaTextAppearance | Unset = UNSET
-    text_opacity: float | Unset = UNSET
+    include_custom_text: bool | None | Unset = UNSET
+    include_date_time: bool | None | Unset = UNSET
+    include_email: bool | None | Unset = UNSET
+    include_ip_address: bool | None | Unset = UNSET
+    shadow_opacity: float | None | Unset = UNSET
+    show_for_groups: None | Unset | WatermarkOptionsTypeSchemaShowForGroupsType1 = UNSET
+    show_in_context: None | Unset | WatermarkOptionsTypeSchemaShowInContextType1 = UNSET
+    show_watermark: bool | None | Unset = UNSET
+    text_appearance: None | Unset | WatermarkOptionsTypeSchemaTextAppearanceType1 = (
+        UNSET
+    )
+    text_opacity: float | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        custom_text = self.custom_text
+        from ..models.watermark_options_type_schema_show_for_groups_type_1 import (
+            WatermarkOptionsTypeSchemaShowForGroupsType1,
+        )
+        from ..models.watermark_options_type_schema_show_in_context_type_1 import (
+            WatermarkOptionsTypeSchemaShowInContextType1,
+        )
+        from ..models.watermark_options_type_schema_text_appearance_type_1 import (
+            WatermarkOptionsTypeSchemaTextAppearanceType1,
+        )
+
+        custom_text: None | str | Unset
+        if isinstance(self.custom_text, Unset):
+            custom_text = UNSET
+        else:
+            custom_text = self.custom_text
 
         groups: list[str] | None | Unset
         if isinstance(self.groups, Unset):
@@ -68,31 +87,77 @@ class WatermarkOptionsTypeSchema:
         else:
             groups = self.groups
 
-        include_custom_text = self.include_custom_text
+        include_custom_text: bool | None | Unset
+        if isinstance(self.include_custom_text, Unset):
+            include_custom_text = UNSET
+        else:
+            include_custom_text = self.include_custom_text
 
-        include_date_time = self.include_date_time
+        include_date_time: bool | None | Unset
+        if isinstance(self.include_date_time, Unset):
+            include_date_time = UNSET
+        else:
+            include_date_time = self.include_date_time
 
-        include_email = self.include_email
+        include_email: bool | None | Unset
+        if isinstance(self.include_email, Unset):
+            include_email = UNSET
+        else:
+            include_email = self.include_email
 
-        include_ip_address = self.include_ip_address
+        include_ip_address: bool | None | Unset
+        if isinstance(self.include_ip_address, Unset):
+            include_ip_address = UNSET
+        else:
+            include_ip_address = self.include_ip_address
 
-        shadow_opacity = self.shadow_opacity
+        shadow_opacity: float | None | Unset
+        if isinstance(self.shadow_opacity, Unset):
+            shadow_opacity = UNSET
+        else:
+            shadow_opacity = self.shadow_opacity
 
-        show_for_groups: str | Unset = UNSET
-        if not isinstance(self.show_for_groups, Unset):
-            show_for_groups = self.show_for_groups.value
+        show_for_groups: dict[str, Any] | None | Unset
+        if isinstance(self.show_for_groups, Unset):
+            show_for_groups = UNSET
+        elif isinstance(
+            self.show_for_groups, WatermarkOptionsTypeSchemaShowForGroupsType1
+        ):
+            show_for_groups = self.show_for_groups.to_dict()
+        else:
+            show_for_groups = self.show_for_groups
 
-        show_in_context: str | Unset = UNSET
-        if not isinstance(self.show_in_context, Unset):
-            show_in_context = self.show_in_context.value
+        show_in_context: dict[str, Any] | None | Unset
+        if isinstance(self.show_in_context, Unset):
+            show_in_context = UNSET
+        elif isinstance(
+            self.show_in_context, WatermarkOptionsTypeSchemaShowInContextType1
+        ):
+            show_in_context = self.show_in_context.to_dict()
+        else:
+            show_in_context = self.show_in_context
 
-        show_watermark = self.show_watermark
+        show_watermark: bool | None | Unset
+        if isinstance(self.show_watermark, Unset):
+            show_watermark = UNSET
+        else:
+            show_watermark = self.show_watermark
 
-        text_appearance: str | Unset = UNSET
-        if not isinstance(self.text_appearance, Unset):
-            text_appearance = self.text_appearance.value
+        text_appearance: dict[str, Any] | None | Unset
+        if isinstance(self.text_appearance, Unset):
+            text_appearance = UNSET
+        elif isinstance(
+            self.text_appearance, WatermarkOptionsTypeSchemaTextAppearanceType1
+        ):
+            text_appearance = self.text_appearance.to_dict()
+        else:
+            text_appearance = self.text_appearance
 
-        text_opacity = self.text_opacity
+        text_opacity: float | None | Unset
+        if isinstance(self.text_opacity, Unset):
+            text_opacity = UNSET
+        else:
+            text_opacity = self.text_opacity
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -126,8 +191,26 @@ class WatermarkOptionsTypeSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.watermark_options_type_schema_show_for_groups_type_1 import (
+            WatermarkOptionsTypeSchemaShowForGroupsType1,
+        )
+        from ..models.watermark_options_type_schema_show_in_context_type_1 import (
+            WatermarkOptionsTypeSchemaShowInContextType1,
+        )
+        from ..models.watermark_options_type_schema_text_appearance_type_1 import (
+            WatermarkOptionsTypeSchemaTextAppearanceType1,
+        )
+
         d = dict(src_dict)
-        custom_text = d.pop("custom_text", UNSET)
+
+        def _parse_custom_text(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        custom_text = _parse_custom_text(d.pop("custom_text", UNSET))
 
         def _parse_groups(data: object) -> list[UUID] | None | Unset:
             if data is None:
@@ -151,40 +234,141 @@ class WatermarkOptionsTypeSchema:
 
         groups = _parse_groups(d.pop("groups", UNSET))
 
-        include_custom_text = d.pop("include_custom_text", UNSET)
+        def _parse_include_custom_text(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        include_date_time = d.pop("include_date_time", UNSET)
+        include_custom_text = _parse_include_custom_text(
+            d.pop("include_custom_text", UNSET)
+        )
 
-        include_email = d.pop("include_email", UNSET)
+        def _parse_include_date_time(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        include_ip_address = d.pop("include_ip_address", UNSET)
+        include_date_time = _parse_include_date_time(d.pop("include_date_time", UNSET))
 
-        shadow_opacity = d.pop("shadow_opacity", UNSET)
+        def _parse_include_email(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        _show_for_groups = d.pop("show_for_groups", UNSET)
-        show_for_groups: WatermarkOptionsTypeSchemaShowForGroups | Unset
-        if isinstance(_show_for_groups, Unset):
-            show_for_groups = UNSET
-        else:
-            show_for_groups = WatermarkOptionsTypeSchemaShowForGroups(_show_for_groups)
+        include_email = _parse_include_email(d.pop("include_email", UNSET))
 
-        _show_in_context = d.pop("show_in_context", UNSET)
-        show_in_context: WatermarkOptionsTypeSchemaShowInContext | Unset
-        if isinstance(_show_in_context, Unset):
-            show_in_context = UNSET
-        else:
-            show_in_context = WatermarkOptionsTypeSchemaShowInContext(_show_in_context)
+        def _parse_include_ip_address(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        show_watermark = d.pop("show_watermark", UNSET)
+        include_ip_address = _parse_include_ip_address(
+            d.pop("include_ip_address", UNSET)
+        )
 
-        _text_appearance = d.pop("text_appearance", UNSET)
-        text_appearance: WatermarkOptionsTypeSchemaTextAppearance | Unset
-        if isinstance(_text_appearance, Unset):
-            text_appearance = UNSET
-        else:
-            text_appearance = WatermarkOptionsTypeSchemaTextAppearance(_text_appearance)
+        def _parse_shadow_opacity(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
 
-        text_opacity = d.pop("text_opacity", UNSET)
+        shadow_opacity = _parse_shadow_opacity(d.pop("shadow_opacity", UNSET))
+
+        def _parse_show_for_groups(
+            data: object,
+        ) -> None | Unset | WatermarkOptionsTypeSchemaShowForGroupsType1:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                show_for_groups_type_1 = (
+                    WatermarkOptionsTypeSchemaShowForGroupsType1.from_dict(data)
+                )
+
+                return show_for_groups_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(
+                None | Unset | WatermarkOptionsTypeSchemaShowForGroupsType1, data
+            )
+
+        show_for_groups = _parse_show_for_groups(d.pop("show_for_groups", UNSET))
+
+        def _parse_show_in_context(
+            data: object,
+        ) -> None | Unset | WatermarkOptionsTypeSchemaShowInContextType1:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                show_in_context_type_1 = (
+                    WatermarkOptionsTypeSchemaShowInContextType1.from_dict(data)
+                )
+
+                return show_in_context_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(
+                None | Unset | WatermarkOptionsTypeSchemaShowInContextType1, data
+            )
+
+        show_in_context = _parse_show_in_context(d.pop("show_in_context", UNSET))
+
+        def _parse_show_watermark(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        show_watermark = _parse_show_watermark(d.pop("show_watermark", UNSET))
+
+        def _parse_text_appearance(
+            data: object,
+        ) -> None | Unset | WatermarkOptionsTypeSchemaTextAppearanceType1:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                text_appearance_type_1 = (
+                    WatermarkOptionsTypeSchemaTextAppearanceType1.from_dict(data)
+                )
+
+                return text_appearance_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(
+                None | Unset | WatermarkOptionsTypeSchemaTextAppearanceType1, data
+            )
+
+        text_appearance = _parse_text_appearance(d.pop("text_appearance", UNSET))
+
+        def _parse_text_opacity(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        text_opacity = _parse_text_opacity(d.pop("text_opacity", UNSET))
 
         watermark_options_type_schema = cls(
             custom_text=custom_text,

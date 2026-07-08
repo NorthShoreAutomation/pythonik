@@ -1,19 +1,19 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.metadata_field_value_update_schema_mode import (
-    MetadataFieldValueUpdateSchemaMode,
-)
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.metadata_field_value_update_schema_field_values_item import (
-        MetadataFieldValueUpdateSchemaFieldValuesItem,
+    from ..models.metadata_field_value_update_schema_field_values_type_0_item import (
+        MetadataFieldValueUpdateSchemaFieldValuesType0Item,
+    )
+    from ..models.metadata_field_value_update_schema_mode_type_1 import (
+        MetadataFieldValueUpdateSchemaModeType1,
     )
 
 
@@ -24,27 +24,40 @@ T = TypeVar("T", bound="MetadataFieldValueUpdateSchema")
 class MetadataFieldValueUpdateSchema:
     """
     Attributes:
-        field_values (list[MetadataFieldValueUpdateSchemaFieldValuesItem] | Unset):
-        mode (MetadataFieldValueUpdateSchemaMode | Unset):  Default: MetadataFieldValueUpdateSchemaMode.OVERWRITE.
+        field_values (list[MetadataFieldValueUpdateSchemaFieldValuesType0Item] | None | Unset):
+        mode (MetadataFieldValueUpdateSchemaModeType1 | None | Unset):
     """
 
-    field_values: list[MetadataFieldValueUpdateSchemaFieldValuesItem] | Unset = UNSET
-    mode: MetadataFieldValueUpdateSchemaMode | Unset = (
-        MetadataFieldValueUpdateSchemaMode.OVERWRITE
-    )
+    field_values: (
+        list[MetadataFieldValueUpdateSchemaFieldValuesType0Item] | None | Unset
+    ) = UNSET
+    mode: MetadataFieldValueUpdateSchemaModeType1 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        field_values: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.field_values, Unset):
-            field_values = []
-            for field_values_item_data in self.field_values:
-                field_values_item = field_values_item_data.to_dict()
-                field_values.append(field_values_item)
+        from ..models.metadata_field_value_update_schema_mode_type_1 import (
+            MetadataFieldValueUpdateSchemaModeType1,
+        )
 
-        mode: str | Unset = UNSET
-        if not isinstance(self.mode, Unset):
-            mode = self.mode.value
+        field_values: list[dict[str, Any]] | None | Unset
+        if isinstance(self.field_values, Unset):
+            field_values = UNSET
+        elif isinstance(self.field_values, list):
+            field_values = []
+            for field_values_type_0_item_data in self.field_values:
+                field_values_type_0_item = field_values_type_0_item_data.to_dict()
+                field_values.append(field_values_type_0_item)
+
+        else:
+            field_values = self.field_values
+
+        mode: dict[str, Any] | None | Unset
+        if isinstance(self.mode, Unset):
+            mode = UNSET
+        elif isinstance(self.mode, MetadataFieldValueUpdateSchemaModeType1):
+            mode = self.mode.to_dict()
+        else:
+            mode = self.mode
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -58,32 +71,64 @@ class MetadataFieldValueUpdateSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.metadata_field_value_update_schema_field_values_item import (
-            MetadataFieldValueUpdateSchemaFieldValuesItem,
+        from ..models.metadata_field_value_update_schema_field_values_type_0_item import (
+            MetadataFieldValueUpdateSchemaFieldValuesType0Item,
+        )
+        from ..models.metadata_field_value_update_schema_mode_type_1 import (
+            MetadataFieldValueUpdateSchemaModeType1,
         )
 
         d = dict(src_dict)
-        _field_values = d.pop("field_values", UNSET)
-        field_values: list[MetadataFieldValueUpdateSchemaFieldValuesItem] | Unset = (
-            UNSET
-        )
-        if _field_values is not UNSET:
-            field_values = []
-            for field_values_item_data in _field_values:
-                field_values_item = (
-                    MetadataFieldValueUpdateSchemaFieldValuesItem.from_dict(
-                        field_values_item_data
+
+        def _parse_field_values(
+            data: object,
+        ) -> list[MetadataFieldValueUpdateSchemaFieldValuesType0Item] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                field_values_type_0 = []
+                _field_values_type_0 = data
+                for field_values_type_0_item_data in _field_values_type_0:
+                    field_values_type_0_item = (
+                        MetadataFieldValueUpdateSchemaFieldValuesType0Item.from_dict(
+                            field_values_type_0_item_data
+                        )
                     )
-                )
 
-                field_values.append(field_values_item)
+                    field_values_type_0.append(field_values_type_0_item)
 
-        _mode = d.pop("mode", UNSET)
-        mode: MetadataFieldValueUpdateSchemaMode | Unset
-        if isinstance(_mode, Unset):
-            mode = UNSET
-        else:
-            mode = MetadataFieldValueUpdateSchemaMode(_mode)
+                return field_values_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(
+                list[MetadataFieldValueUpdateSchemaFieldValuesType0Item] | None | Unset,
+                data,
+            )
+
+        field_values = _parse_field_values(d.pop("field_values", UNSET))
+
+        def _parse_mode(
+            data: object,
+        ) -> MetadataFieldValueUpdateSchemaModeType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                mode_type_1 = MetadataFieldValueUpdateSchemaModeType1.from_dict(data)
+
+                return mode_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(MetadataFieldValueUpdateSchemaModeType1 | None | Unset, data)
+
+        mode = _parse_mode(d.pop("mode", UNSET))
 
         metadata_field_value_update_schema = cls(
             field_values=field_values,

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -20,22 +20,32 @@ T = TypeVar("T", bound="ExternalAuthRequestResponseSchema")
 class ExternalAuthRequestResponseSchema:
     """
     Attributes:
-        app_id (UUID | Unset):
-        redirect_info (RedirectInfoType | Unset):
+        app_id (None | Unset | UUID):
+        redirect_info (None | RedirectInfoType | Unset):
     """
 
-    app_id: UUID | Unset = UNSET
-    redirect_info: RedirectInfoType | Unset = UNSET
+    app_id: None | Unset | UUID = UNSET
+    redirect_info: None | RedirectInfoType | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        app_id: str | Unset = UNSET
-        if not isinstance(self.app_id, Unset):
-            app_id = str(self.app_id)
+        from ..models.redirect_info_type import RedirectInfoType
 
-        redirect_info: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.redirect_info, Unset):
+        app_id: None | str | Unset
+        if isinstance(self.app_id, Unset):
+            app_id = UNSET
+        elif isinstance(self.app_id, UUID):
+            app_id = str(self.app_id)
+        else:
+            app_id = self.app_id
+
+        redirect_info: dict[str, Any] | None | Unset
+        if isinstance(self.redirect_info, Unset):
+            redirect_info = UNSET
+        elif isinstance(self.redirect_info, RedirectInfoType):
             redirect_info = self.redirect_info.to_dict()
+        else:
+            redirect_info = self.redirect_info
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -52,19 +62,40 @@ class ExternalAuthRequestResponseSchema:
         from ..models.redirect_info_type import RedirectInfoType
 
         d = dict(src_dict)
-        _app_id = d.pop("app_id", UNSET)
-        app_id: UUID | Unset
-        if isinstance(_app_id, Unset):
-            app_id = UNSET
-        else:
-            app_id = UUID(_app_id)
 
-        _redirect_info = d.pop("redirect_info", UNSET)
-        redirect_info: RedirectInfoType | Unset
-        if isinstance(_redirect_info, Unset):
-            redirect_info = UNSET
-        else:
-            redirect_info = RedirectInfoType.from_dict(_redirect_info)
+        def _parse_app_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                app_id_type_0 = UUID(data)
+
+                return app_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        app_id = _parse_app_id(d.pop("app_id", UNSET))
+
+        def _parse_redirect_info(data: object) -> None | RedirectInfoType | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                redirect_info_type_1 = RedirectInfoType.from_dict(data)
+
+                return redirect_info_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | RedirectInfoType | Unset, data)
+
+        redirect_info = _parse_redirect_info(d.pop("redirect_info", UNSET))
 
         external_auth_request_response_schema = cls(
             app_id=app_id,

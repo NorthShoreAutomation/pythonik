@@ -15,21 +15,31 @@ T = TypeVar("T", bound="BulkACLSchema")
 class BulkACLSchema:
     """
     Attributes:
-        access_denied (list[str] | Unset):
-        access_granted (list[str] | Unset):
+        access_denied (list[str] | None | Unset):
+        access_granted (list[str] | None | Unset):
     """
 
-    access_denied: list[str] | Unset = UNSET
-    access_granted: list[str] | Unset = UNSET
+    access_denied: list[str] | None | Unset = UNSET
+    access_granted: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        access_denied: list[str] | Unset = UNSET
-        if not isinstance(self.access_denied, Unset):
+        access_denied: list[str] | None | Unset
+        if isinstance(self.access_denied, Unset):
+            access_denied = UNSET
+        elif isinstance(self.access_denied, list):
             access_denied = self.access_denied
 
-        access_granted: list[str] | Unset = UNSET
-        if not isinstance(self.access_granted, Unset):
+        else:
+            access_denied = self.access_denied
+
+        access_granted: list[str] | None | Unset
+        if isinstance(self.access_granted, Unset):
+            access_granted = UNSET
+        elif isinstance(self.access_granted, list):
+            access_granted = self.access_granted
+
+        else:
             access_granted = self.access_granted
 
         field_dict: dict[str, Any] = {}
@@ -45,9 +55,40 @@ class BulkACLSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        access_denied = cast(list[str], d.pop("access_denied", UNSET))
 
-        access_granted = cast(list[str], d.pop("access_granted", UNSET))
+        def _parse_access_denied(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                access_denied_type_0 = cast(list[str], data)
+
+                return access_denied_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        access_denied = _parse_access_denied(d.pop("access_denied", UNSET))
+
+        def _parse_access_granted(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                access_granted_type_0 = cast(list[str], data)
+
+                return access_granted_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        access_granted = _parse_access_granted(d.pop("access_granted", UNSET))
 
         bulk_acl_schema = cls(
             access_denied=access_denied,

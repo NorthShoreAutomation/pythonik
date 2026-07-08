@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,17 +16,21 @@ class RemoveAssetRestrictionActionParameters:
     """
     Attributes:
         restrict_metadata_field (str):
-        warning_metadata_field (str | Unset):
+        warning_metadata_field (None | str | Unset):
     """
 
     restrict_metadata_field: str
-    warning_metadata_field: str | Unset = UNSET
+    warning_metadata_field: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         restrict_metadata_field = self.restrict_metadata_field
 
-        warning_metadata_field = self.warning_metadata_field
+        warning_metadata_field: None | str | Unset
+        if isinstance(self.warning_metadata_field, Unset):
+            warning_metadata_field = UNSET
+        else:
+            warning_metadata_field = self.warning_metadata_field
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -45,7 +49,16 @@ class RemoveAssetRestrictionActionParameters:
         d = dict(src_dict)
         restrict_metadata_field = d.pop("restrict_metadata_field")
 
-        warning_metadata_field = d.pop("warning_metadata_field", UNSET)
+        def _parse_warning_metadata_field(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        warning_metadata_field = _parse_warning_metadata_field(
+            d.pop("warning_metadata_field", UNSET)
+        )
 
         remove_asset_restriction_action_parameters = cls(
             restrict_metadata_field=restrict_metadata_field,

@@ -1,15 +1,22 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.group_base_schema_default_user_type import GroupBaseSchemaDefaultUserType
-from ..models.group_base_schema_group_type import GroupBaseSchemaGroupType
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.group_base_schema_default_user_type_type_1 import (
+        GroupBaseSchemaDefaultUserTypeType1,
+    )
+    from ..models.group_base_schema_group_type_type_1 import (
+        GroupBaseSchemaGroupTypeType1,
+    )
+
 
 T = TypeVar("T", bound="GroupBaseSchema")
 
@@ -19,39 +26,58 @@ class GroupBaseSchema:
     """
     Attributes:
         name (str):
-        alias (str | Unset):
-        default_user_type (GroupBaseSchemaDefaultUserType | Unset):
-        description (str | Unset):
+        alias (None | str | Unset):
+        default_user_type (GroupBaseSchemaDefaultUserTypeType1 | None | Unset):
+        description (None | str | Unset):
         external_id (None | str | Unset):
-        group_type (GroupBaseSchemaGroupType | Unset):
-        id (UUID | Unset):
-        is_legacy_everyone (bool | Unset):
-        is_saml_group (bool | Unset):
+        group_type (GroupBaseSchemaGroupTypeType1 | None | Unset):
+        id (None | Unset | UUID):
+        is_legacy_everyone (bool | None | Unset):
+        is_saml_group (bool | None | Unset):
         saml_primary_group_priority (int | None | Unset):
     """
 
     name: str
-    alias: str | Unset = UNSET
-    default_user_type: GroupBaseSchemaDefaultUserType | Unset = UNSET
-    description: str | Unset = UNSET
+    alias: None | str | Unset = UNSET
+    default_user_type: GroupBaseSchemaDefaultUserTypeType1 | None | Unset = UNSET
+    description: None | str | Unset = UNSET
     external_id: None | str | Unset = UNSET
-    group_type: GroupBaseSchemaGroupType | Unset = UNSET
-    id: UUID | Unset = UNSET
-    is_legacy_everyone: bool | Unset = UNSET
-    is_saml_group: bool | Unset = UNSET
+    group_type: GroupBaseSchemaGroupTypeType1 | None | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    is_legacy_everyone: bool | None | Unset = UNSET
+    is_saml_group: bool | None | Unset = UNSET
     saml_primary_group_priority: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.group_base_schema_default_user_type_type_1 import (
+            GroupBaseSchemaDefaultUserTypeType1,
+        )
+        from ..models.group_base_schema_group_type_type_1 import (
+            GroupBaseSchemaGroupTypeType1,
+        )
+
         name = self.name
 
-        alias = self.alias
+        alias: None | str | Unset
+        if isinstance(self.alias, Unset):
+            alias = UNSET
+        else:
+            alias = self.alias
 
-        default_user_type: str | Unset = UNSET
-        if not isinstance(self.default_user_type, Unset):
-            default_user_type = self.default_user_type.value
+        default_user_type: dict[str, Any] | None | Unset
+        if isinstance(self.default_user_type, Unset):
+            default_user_type = UNSET
+        elif isinstance(self.default_user_type, GroupBaseSchemaDefaultUserTypeType1):
+            default_user_type = self.default_user_type.to_dict()
+        else:
+            default_user_type = self.default_user_type
 
-        description = self.description
+        description: None | str | Unset
+        if isinstance(self.description, Unset):
+            description = UNSET
+        else:
+            description = self.description
 
         external_id: None | str | Unset
         if isinstance(self.external_id, Unset):
@@ -59,17 +85,33 @@ class GroupBaseSchema:
         else:
             external_id = self.external_id
 
-        group_type: str | Unset = UNSET
-        if not isinstance(self.group_type, Unset):
-            group_type = self.group_type.value
+        group_type: dict[str, Any] | None | Unset
+        if isinstance(self.group_type, Unset):
+            group_type = UNSET
+        elif isinstance(self.group_type, GroupBaseSchemaGroupTypeType1):
+            group_type = self.group_type.to_dict()
+        else:
+            group_type = self.group_type
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        is_legacy_everyone = self.is_legacy_everyone
+        is_legacy_everyone: bool | None | Unset
+        if isinstance(self.is_legacy_everyone, Unset):
+            is_legacy_everyone = UNSET
+        else:
+            is_legacy_everyone = self.is_legacy_everyone
 
-        is_saml_group = self.is_saml_group
+        is_saml_group: bool | None | Unset
+        if isinstance(self.is_saml_group, Unset):
+            is_saml_group = UNSET
+        else:
+            is_saml_group = self.is_saml_group
 
         saml_primary_group_priority: int | None | Unset
         if isinstance(self.saml_primary_group_priority, Unset):
@@ -107,19 +149,54 @@ class GroupBaseSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.group_base_schema_default_user_type_type_1 import (
+            GroupBaseSchemaDefaultUserTypeType1,
+        )
+        from ..models.group_base_schema_group_type_type_1 import (
+            GroupBaseSchemaGroupTypeType1,
+        )
+
         d = dict(src_dict)
         name = d.pop("name")
 
-        alias = d.pop("alias", UNSET)
+        def _parse_alias(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        _default_user_type = d.pop("default_user_type", UNSET)
-        default_user_type: GroupBaseSchemaDefaultUserType | Unset
-        if isinstance(_default_user_type, Unset):
-            default_user_type = UNSET
-        else:
-            default_user_type = GroupBaseSchemaDefaultUserType(_default_user_type)
+        alias = _parse_alias(d.pop("alias", UNSET))
 
-        description = d.pop("description", UNSET)
+        def _parse_default_user_type(
+            data: object,
+        ) -> GroupBaseSchemaDefaultUserTypeType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                default_user_type_type_1 = (
+                    GroupBaseSchemaDefaultUserTypeType1.from_dict(data)
+                )
+
+                return default_user_type_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(GroupBaseSchemaDefaultUserTypeType1 | None | Unset, data)
+
+        default_user_type = _parse_default_user_type(d.pop("default_user_type", UNSET))
+
+        def _parse_description(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        description = _parse_description(d.pop("description", UNSET))
 
         def _parse_external_id(data: object) -> None | str | Unset:
             if data is None:
@@ -130,23 +207,61 @@ class GroupBaseSchema:
 
         external_id = _parse_external_id(d.pop("external_id", UNSET))
 
-        _group_type = d.pop("group_type", UNSET)
-        group_type: GroupBaseSchemaGroupType | Unset
-        if isinstance(_group_type, Unset):
-            group_type = UNSET
-        else:
-            group_type = GroupBaseSchemaGroupType(_group_type)
+        def _parse_group_type(
+            data: object,
+        ) -> GroupBaseSchemaGroupTypeType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                group_type_type_1 = GroupBaseSchemaGroupTypeType1.from_dict(data)
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+                return group_type_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(GroupBaseSchemaGroupTypeType1 | None | Unset, data)
 
-        is_legacy_everyone = d.pop("is_legacy_everyone", UNSET)
+        group_type = _parse_group_type(d.pop("group_type", UNSET))
 
-        is_saml_group = d.pop("is_saml_group", UNSET)
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_is_legacy_everyone(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        is_legacy_everyone = _parse_is_legacy_everyone(
+            d.pop("is_legacy_everyone", UNSET)
+        )
+
+        def _parse_is_saml_group(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        is_saml_group = _parse_is_saml_group(d.pop("is_saml_group", UNSET))
 
         def _parse_saml_primary_group_priority(data: object) -> int | None | Unset:
             if data is None:

@@ -15,42 +15,64 @@ T = TypeVar("T", bound="ImageMagickSettingsSchema")
 class ImageMagickSettingsSchema:
     """
     Attributes:
-        data (str | Unset):
-        exclude_patterns (list[str] | Unset):
-        height (int | Unset):
-        include_patterns (list[str] | Unset):
-        local (bool | Unset):
+        data (None | str | Unset):
+        exclude_patterns (list[str] | None | Unset):
+        height (int | None | Unset):
+        include_patterns (list[str] | None | Unset):
+        local (bool | None | Unset):
         overlay_coordinates (None | str | Unset):
         overlay_url (None | str | Unset):
         priority (int | None | Unset):
-        width (int | Unset):
+        width (int | None | Unset):
     """
 
-    data: str | Unset = UNSET
-    exclude_patterns: list[str] | Unset = UNSET
-    height: int | Unset = UNSET
-    include_patterns: list[str] | Unset = UNSET
-    local: bool | Unset = UNSET
+    data: None | str | Unset = UNSET
+    exclude_patterns: list[str] | None | Unset = UNSET
+    height: int | None | Unset = UNSET
+    include_patterns: list[str] | None | Unset = UNSET
+    local: bool | None | Unset = UNSET
     overlay_coordinates: None | str | Unset = UNSET
     overlay_url: None | str | Unset = UNSET
     priority: int | None | Unset = UNSET
-    width: int | Unset = UNSET
+    width: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        data = self.data
+        data: None | str | Unset
+        if isinstance(self.data, Unset):
+            data = UNSET
+        else:
+            data = self.data
 
-        exclude_patterns: list[str] | Unset = UNSET
-        if not isinstance(self.exclude_patterns, Unset):
+        exclude_patterns: list[str] | None | Unset
+        if isinstance(self.exclude_patterns, Unset):
+            exclude_patterns = UNSET
+        elif isinstance(self.exclude_patterns, list):
             exclude_patterns = self.exclude_patterns
 
-        height = self.height
+        else:
+            exclude_patterns = self.exclude_patterns
 
-        include_patterns: list[str] | Unset = UNSET
-        if not isinstance(self.include_patterns, Unset):
+        height: int | None | Unset
+        if isinstance(self.height, Unset):
+            height = UNSET
+        else:
+            height = self.height
+
+        include_patterns: list[str] | None | Unset
+        if isinstance(self.include_patterns, Unset):
+            include_patterns = UNSET
+        elif isinstance(self.include_patterns, list):
             include_patterns = self.include_patterns
 
-        local = self.local
+        else:
+            include_patterns = self.include_patterns
+
+        local: bool | None | Unset
+        if isinstance(self.local, Unset):
+            local = UNSET
+        else:
+            local = self.local
 
         overlay_coordinates: None | str | Unset
         if isinstance(self.overlay_coordinates, Unset):
@@ -70,7 +92,11 @@ class ImageMagickSettingsSchema:
         else:
             priority = self.priority
 
-        width = self.width
+        width: int | None | Unset
+        if isinstance(self.width, Unset):
+            width = UNSET
+        else:
+            width = self.width
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -99,15 +125,67 @@ class ImageMagickSettingsSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        data = d.pop("data", UNSET)
 
-        exclude_patterns = cast(list[str], d.pop("exclude_patterns", UNSET))
+        def _parse_data(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        height = d.pop("height", UNSET)
+        data = _parse_data(d.pop("data", UNSET))
 
-        include_patterns = cast(list[str], d.pop("include_patterns", UNSET))
+        def _parse_exclude_patterns(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                exclude_patterns_type_0 = cast(list[str], data)
 
-        local = d.pop("local", UNSET)
+                return exclude_patterns_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        exclude_patterns = _parse_exclude_patterns(d.pop("exclude_patterns", UNSET))
+
+        def _parse_height(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        height = _parse_height(d.pop("height", UNSET))
+
+        def _parse_include_patterns(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                include_patterns_type_0 = cast(list[str], data)
+
+                return include_patterns_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        include_patterns = _parse_include_patterns(d.pop("include_patterns", UNSET))
+
+        def _parse_local(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        local = _parse_local(d.pop("local", UNSET))
 
         def _parse_overlay_coordinates(data: object) -> None | str | Unset:
             if data is None:
@@ -138,7 +216,14 @@ class ImageMagickSettingsSchema:
 
         priority = _parse_priority(d.pop("priority", UNSET))
 
-        width = d.pop("width", UNSET)
+        def _parse_width(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        width = _parse_width(d.pop("width", UNSET))
 
         image_magick_settings_schema = cls(
             data=data,

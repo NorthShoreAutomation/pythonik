@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -21,38 +21,59 @@ class DrawingPrimitiveSchema:
     """
     Attributes:
         type_ (DrawingPrimitiveSchemaType):
-        color (str | Unset):
-        opacity (float | Unset):
-        points (list[DrawingPointSchema] | Unset):
-        text (str | Unset):
-        width (float | Unset):
+        color (None | str | Unset):
+        opacity (float | None | Unset):
+        points (list[DrawingPointSchema] | None | Unset):
+        text (None | str | Unset):
+        width (float | None | Unset):
     """
 
     type_: DrawingPrimitiveSchemaType
-    color: str | Unset = UNSET
-    opacity: float | Unset = UNSET
-    points: list[DrawingPointSchema] | Unset = UNSET
-    text: str | Unset = UNSET
-    width: float | Unset = UNSET
+    color: None | str | Unset = UNSET
+    opacity: float | None | Unset = UNSET
+    points: list[DrawingPointSchema] | None | Unset = UNSET
+    text: None | str | Unset = UNSET
+    width: float | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         type_ = self.type_.value
 
-        color = self.color
+        color: None | str | Unset
+        if isinstance(self.color, Unset):
+            color = UNSET
+        else:
+            color = self.color
 
-        opacity = self.opacity
+        opacity: float | None | Unset
+        if isinstance(self.opacity, Unset):
+            opacity = UNSET
+        else:
+            opacity = self.opacity
 
-        points: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.points, Unset):
+        points: list[dict[str, Any]] | None | Unset
+        if isinstance(self.points, Unset):
+            points = UNSET
+        elif isinstance(self.points, list):
             points = []
-            for points_item_data in self.points:
-                points_item = points_item_data.to_dict()
-                points.append(points_item)
+            for points_type_0_item_data in self.points:
+                points_type_0_item = points_type_0_item_data.to_dict()
+                points.append(points_type_0_item)
 
-        text = self.text
+        else:
+            points = self.points
 
-        width = self.width
+        text: None | str | Unset
+        if isinstance(self.text, Unset):
+            text = UNSET
+        else:
+            text = self.text
+
+        width: float | None | Unset
+        if isinstance(self.width, Unset):
+            width = UNSET
+        else:
+            width = self.width
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -81,22 +102,65 @@ class DrawingPrimitiveSchema:
         d = dict(src_dict)
         type_ = DrawingPrimitiveSchemaType(d.pop("type"))
 
-        color = d.pop("color", UNSET)
+        def _parse_color(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        opacity = d.pop("opacity", UNSET)
+        color = _parse_color(d.pop("color", UNSET))
 
-        _points = d.pop("points", UNSET)
-        points: list[DrawingPointSchema] | Unset = UNSET
-        if _points is not UNSET:
-            points = []
-            for points_item_data in _points:
-                points_item = DrawingPointSchema.from_dict(points_item_data)
+        def _parse_opacity(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
 
-                points.append(points_item)
+        opacity = _parse_opacity(d.pop("opacity", UNSET))
 
-        text = d.pop("text", UNSET)
+        def _parse_points(data: object) -> list[DrawingPointSchema] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                points_type_0 = []
+                _points_type_0 = data
+                for points_type_0_item_data in _points_type_0:
+                    points_type_0_item = DrawingPointSchema.from_dict(
+                        points_type_0_item_data
+                    )
 
-        width = d.pop("width", UNSET)
+                    points_type_0.append(points_type_0_item)
+
+                return points_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[DrawingPointSchema] | None | Unset, data)
+
+        points = _parse_points(d.pop("points", UNSET))
+
+        def _parse_text(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        text = _parse_text(d.pop("text", UNSET))
+
+        def _parse_width(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        width = _parse_width(d.pop("width", UNSET))
 
         drawing_primitive_schema = cls(
             type_=type_,

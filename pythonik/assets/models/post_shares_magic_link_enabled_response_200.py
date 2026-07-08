@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,14 +15,18 @@ T = TypeVar("T", bound="PostSharesMagicLinkEnabledResponse200")
 class PostSharesMagicLinkEnabledResponse200:
     """
     Attributes:
-        system_domain_id (str | Unset):
+        system_domain_id (None | str | Unset):
     """
 
-    system_domain_id: str | Unset = UNSET
+    system_domain_id: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        system_domain_id = self.system_domain_id
+        system_domain_id: None | str | Unset
+        if isinstance(self.system_domain_id, Unset):
+            system_domain_id = UNSET
+        else:
+            system_domain_id = self.system_domain_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -35,7 +39,15 @@ class PostSharesMagicLinkEnabledResponse200:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        system_domain_id = d.pop("system_domain_id", UNSET)
+
+        def _parse_system_domain_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
 
         post_shares_magic_link_enabled_response_200 = cls(
             system_domain_id=system_domain_id,

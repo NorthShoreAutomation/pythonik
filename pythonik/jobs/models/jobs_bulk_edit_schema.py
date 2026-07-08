@@ -1,17 +1,23 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.jobs_bulk_edit_schema_status import JobsBulkEditSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.jobs_bulk_edit_schema_job_context import JobsBulkEditSchemaJobContext
-    from ..models.jobs_bulk_edit_schema_metadata import JobsBulkEditSchemaMetadata
+    from ..models.jobs_bulk_edit_schema_job_context_type_0 import (
+        JobsBulkEditSchemaJobContextType0,
+    )
+    from ..models.jobs_bulk_edit_schema_metadata_type_0 import (
+        JobsBulkEditSchemaMetadataType0,
+    )
+    from ..models.jobs_bulk_edit_schema_status_type_1 import (
+        JobsBulkEditSchemaStatusType1,
+    )
 
 
 T = TypeVar("T", bound="JobsBulkEditSchema")
@@ -21,36 +27,66 @@ T = TypeVar("T", bound="JobsBulkEditSchema")
 class JobsBulkEditSchema:
     """
     Attributes:
-        error_message (str | Unset):
-        job_context (JobsBulkEditSchemaJobContext | Unset):
-        message (str | Unset):
-        metadata (JobsBulkEditSchemaMetadata | Unset):
-        status (JobsBulkEditSchemaStatus | Unset):
+        error_message (None | str | Unset):
+        job_context (JobsBulkEditSchemaJobContextType0 | None | Unset):
+        message (None | str | Unset):
+        metadata (JobsBulkEditSchemaMetadataType0 | None | Unset):
+        status (JobsBulkEditSchemaStatusType1 | None | Unset):
     """
 
-    error_message: str | Unset = UNSET
-    job_context: JobsBulkEditSchemaJobContext | Unset = UNSET
-    message: str | Unset = UNSET
-    metadata: JobsBulkEditSchemaMetadata | Unset = UNSET
-    status: JobsBulkEditSchemaStatus | Unset = UNSET
+    error_message: None | str | Unset = UNSET
+    job_context: JobsBulkEditSchemaJobContextType0 | None | Unset = UNSET
+    message: None | str | Unset = UNSET
+    metadata: JobsBulkEditSchemaMetadataType0 | None | Unset = UNSET
+    status: JobsBulkEditSchemaStatusType1 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        error_message = self.error_message
+        from ..models.jobs_bulk_edit_schema_job_context_type_0 import (
+            JobsBulkEditSchemaJobContextType0,
+        )
+        from ..models.jobs_bulk_edit_schema_metadata_type_0 import (
+            JobsBulkEditSchemaMetadataType0,
+        )
+        from ..models.jobs_bulk_edit_schema_status_type_1 import (
+            JobsBulkEditSchemaStatusType1,
+        )
 
-        job_context: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.job_context, Unset):
+        error_message: None | str | Unset
+        if isinstance(self.error_message, Unset):
+            error_message = UNSET
+        else:
+            error_message = self.error_message
+
+        job_context: dict[str, Any] | None | Unset
+        if isinstance(self.job_context, Unset):
+            job_context = UNSET
+        elif isinstance(self.job_context, JobsBulkEditSchemaJobContextType0):
             job_context = self.job_context.to_dict()
+        else:
+            job_context = self.job_context
 
-        message = self.message
+        message: None | str | Unset
+        if isinstance(self.message, Unset):
+            message = UNSET
+        else:
+            message = self.message
 
-        metadata: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.metadata, Unset):
+        metadata: dict[str, Any] | None | Unset
+        if isinstance(self.metadata, Unset):
+            metadata = UNSET
+        elif isinstance(self.metadata, JobsBulkEditSchemaMetadataType0):
             metadata = self.metadata.to_dict()
+        else:
+            metadata = self.metadata
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        status: dict[str, Any] | None | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        elif isinstance(self.status, JobsBulkEditSchemaStatusType1):
+            status = self.status.to_dict()
+        else:
+            status = self.status
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -70,36 +106,90 @@ class JobsBulkEditSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.jobs_bulk_edit_schema_job_context import (
-            JobsBulkEditSchemaJobContext,
+        from ..models.jobs_bulk_edit_schema_job_context_type_0 import (
+            JobsBulkEditSchemaJobContextType0,
         )
-        from ..models.jobs_bulk_edit_schema_metadata import JobsBulkEditSchemaMetadata
+        from ..models.jobs_bulk_edit_schema_metadata_type_0 import (
+            JobsBulkEditSchemaMetadataType0,
+        )
+        from ..models.jobs_bulk_edit_schema_status_type_1 import (
+            JobsBulkEditSchemaStatusType1,
+        )
 
         d = dict(src_dict)
-        error_message = d.pop("error_message", UNSET)
 
-        _job_context = d.pop("job_context", UNSET)
-        job_context: JobsBulkEditSchemaJobContext | Unset
-        if isinstance(_job_context, Unset):
-            job_context = UNSET
-        else:
-            job_context = JobsBulkEditSchemaJobContext.from_dict(_job_context)
+        def _parse_error_message(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        message = d.pop("message", UNSET)
+        error_message = _parse_error_message(d.pop("error_message", UNSET))
 
-        _metadata = d.pop("metadata", UNSET)
-        metadata: JobsBulkEditSchemaMetadata | Unset
-        if isinstance(_metadata, Unset):
-            metadata = UNSET
-        else:
-            metadata = JobsBulkEditSchemaMetadata.from_dict(_metadata)
+        def _parse_job_context(
+            data: object,
+        ) -> JobsBulkEditSchemaJobContextType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                job_context_type_0 = JobsBulkEditSchemaJobContextType0.from_dict(data)
 
-        _status = d.pop("status", UNSET)
-        status: JobsBulkEditSchemaStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = JobsBulkEditSchemaStatus(_status)
+                return job_context_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(JobsBulkEditSchemaJobContextType0 | None | Unset, data)
+
+        job_context = _parse_job_context(d.pop("job_context", UNSET))
+
+        def _parse_message(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        message = _parse_message(d.pop("message", UNSET))
+
+        def _parse_metadata(
+            data: object,
+        ) -> JobsBulkEditSchemaMetadataType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                metadata_type_0 = JobsBulkEditSchemaMetadataType0.from_dict(data)
+
+                return metadata_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(JobsBulkEditSchemaMetadataType0 | None | Unset, data)
+
+        metadata = _parse_metadata(d.pop("metadata", UNSET))
+
+        def _parse_status(data: object) -> JobsBulkEditSchemaStatusType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                status_type_1 = JobsBulkEditSchemaStatusType1.from_dict(data)
+
+                return status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(JobsBulkEditSchemaStatusType1 | None | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
 
         jobs_bulk_edit_schema = cls(
             error_message=error_message,

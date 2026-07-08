@@ -21,12 +21,13 @@ class BulkArchiveAssetRequestSchema:
     """
     Attributes:
         destination_storage_id (None | Unset | UUID): ID of the storage to archive the assets to.
-        objects (list[ArchiveAssetRequest] | Unset): List of assets to archive. Each asset should contain the asset ID.
+        objects (list[ArchiveAssetRequest] | None | Unset): List of assets to archive. Each asset should contain the
+            asset ID.
         parent_job_id (None | Unset | UUID): Parent job ID
     """
 
     destination_storage_id: None | Unset | UUID = UNSET
-    objects: list[ArchiveAssetRequest] | Unset = UNSET
+    objects: list[ArchiveAssetRequest] | None | Unset = UNSET
     parent_job_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -39,12 +40,17 @@ class BulkArchiveAssetRequestSchema:
         else:
             destination_storage_id = self.destination_storage_id
 
-        objects: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.objects, Unset):
+        objects: list[dict[str, Any]] | None | Unset
+        if isinstance(self.objects, Unset):
+            objects = UNSET
+        elif isinstance(self.objects, list):
             objects = []
-            for objects_item_data in self.objects:
-                objects_item = objects_item_data.to_dict()
-                objects.append(objects_item)
+            for objects_type_0_item_data in self.objects:
+                objects_type_0_item = objects_type_0_item_data.to_dict()
+                objects.append(objects_type_0_item)
+
+        else:
+            objects = self.objects
 
         parent_job_id: None | str | Unset
         if isinstance(self.parent_job_id, Unset):
@@ -91,14 +97,29 @@ class BulkArchiveAssetRequestSchema:
             d.pop("destination_storage_id", UNSET)
         )
 
-        _objects = d.pop("objects", UNSET)
-        objects: list[ArchiveAssetRequest] | Unset = UNSET
-        if _objects is not UNSET:
-            objects = []
-            for objects_item_data in _objects:
-                objects_item = ArchiveAssetRequest.from_dict(objects_item_data)
+        def _parse_objects(data: object) -> list[ArchiveAssetRequest] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                objects_type_0 = []
+                _objects_type_0 = data
+                for objects_type_0_item_data in _objects_type_0:
+                    objects_type_0_item = ArchiveAssetRequest.from_dict(
+                        objects_type_0_item_data
+                    )
 
-                objects.append(objects_item)
+                    objects_type_0.append(objects_type_0_item)
+
+                return objects_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[ArchiveAssetRequest] | None | Unset, data)
+
+        objects = _parse_objects(d.pop("objects", UNSET))
 
         def _parse_parent_job_id(data: object) -> None | Unset | UUID:
             if data is None:

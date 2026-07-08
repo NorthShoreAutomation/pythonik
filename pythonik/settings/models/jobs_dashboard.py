@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -19,19 +19,24 @@ T = TypeVar("T", bound="JobsDashboard")
 class JobsDashboard:
     """
     Attributes:
-        widgets (list[JobsDashboardWidget] | Unset):
+        widgets (list[JobsDashboardWidget] | None | Unset):
     """
 
-    widgets: list[JobsDashboardWidget] | Unset = UNSET
+    widgets: list[JobsDashboardWidget] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        widgets: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.widgets, Unset):
+        widgets: list[dict[str, Any]] | None | Unset
+        if isinstance(self.widgets, Unset):
+            widgets = UNSET
+        elif isinstance(self.widgets, list):
             widgets = []
-            for widgets_item_data in self.widgets:
-                widgets_item = widgets_item_data.to_dict()
-                widgets.append(widgets_item)
+            for widgets_type_0_item_data in self.widgets:
+                widgets_type_0_item = widgets_type_0_item_data.to_dict()
+                widgets.append(widgets_type_0_item)
+
+        else:
+            widgets = self.widgets
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -46,14 +51,30 @@ class JobsDashboard:
         from ..models.jobs_dashboard_widget import JobsDashboardWidget
 
         d = dict(src_dict)
-        _widgets = d.pop("widgets", UNSET)
-        widgets: list[JobsDashboardWidget] | Unset = UNSET
-        if _widgets is not UNSET:
-            widgets = []
-            for widgets_item_data in _widgets:
-                widgets_item = JobsDashboardWidget.from_dict(widgets_item_data)
 
-                widgets.append(widgets_item)
+        def _parse_widgets(data: object) -> list[JobsDashboardWidget] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                widgets_type_0 = []
+                _widgets_type_0 = data
+                for widgets_type_0_item_data in _widgets_type_0:
+                    widgets_type_0_item = JobsDashboardWidget.from_dict(
+                        widgets_type_0_item_data
+                    )
+
+                    widgets_type_0.append(widgets_type_0_item)
+
+                return widgets_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[JobsDashboardWidget] | None | Unset, data)
+
+        widgets = _parse_widgets(d.pop("widgets", UNSET))
 
         jobs_dashboard = cls(
             widgets=widgets,

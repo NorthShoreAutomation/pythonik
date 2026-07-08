@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -9,7 +9,7 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.output_endpoint_headers import OutputEndpointHeaders
+    from ..models.output_endpoint_headers_type_0 import OutputEndpointHeadersType0
 
 
 T = TypeVar("T", bound="OutputEndpoint")
@@ -20,19 +20,25 @@ class OutputEndpoint:
     """
     Attributes:
         key (str):
-        headers (OutputEndpointHeaders | Unset):
+        headers (None | OutputEndpointHeadersType0 | Unset):
     """
 
     key: str
-    headers: OutputEndpointHeaders | Unset = UNSET
+    headers: None | OutputEndpointHeadersType0 | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.output_endpoint_headers_type_0 import OutputEndpointHeadersType0
+
         key = self.key
 
-        headers: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.headers, Unset):
+        headers: dict[str, Any] | None | Unset
+        if isinstance(self.headers, Unset):
+            headers = UNSET
+        elif isinstance(self.headers, OutputEndpointHeadersType0):
             headers = self.headers.to_dict()
+        else:
+            headers = self.headers
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -48,17 +54,27 @@ class OutputEndpoint:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.output_endpoint_headers import OutputEndpointHeaders
+        from ..models.output_endpoint_headers_type_0 import OutputEndpointHeadersType0
 
         d = dict(src_dict)
         key = d.pop("key")
 
-        _headers = d.pop("headers", UNSET)
-        headers: OutputEndpointHeaders | Unset
-        if isinstance(_headers, Unset):
-            headers = UNSET
-        else:
-            headers = OutputEndpointHeaders.from_dict(_headers)
+        def _parse_headers(data: object) -> None | OutputEndpointHeadersType0 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                headers_type_0 = OutputEndpointHeadersType0.from_dict(data)
+
+                return headers_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | OutputEndpointHeadersType0 | Unset, data)
+
+        headers = _parse_headers(d.pop("headers", UNSET))
 
         output_endpoint = cls(
             key=key,

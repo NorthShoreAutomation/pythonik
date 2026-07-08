@@ -19,21 +19,21 @@ class RelationTypeSchema:
         destination_label (str):
         name (str):
         source_label (str):
-        date_created (datetime.datetime | Unset):
-        date_modified (datetime.datetime | Unset):
+        date_created (datetime.datetime | None | Unset):
+        date_modified (datetime.datetime | None | Unset):
         description (None | str | Unset):
-        is_directional (bool | Unset):
-        is_system (bool | Unset):
+        is_directional (bool | None | Unset):
+        is_system (bool | None | Unset):
     """
 
     destination_label: str
     name: str
     source_label: str
-    date_created: datetime.datetime | Unset = UNSET
-    date_modified: datetime.datetime | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_modified: datetime.datetime | None | Unset = UNSET
     description: None | str | Unset = UNSET
-    is_directional: bool | Unset = UNSET
-    is_system: bool | Unset = UNSET
+    is_directional: bool | None | Unset = UNSET
+    is_system: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -43,13 +43,21 @@ class RelationTypeSchema:
 
         source_label = self.source_label
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_modified: str | Unset = UNSET
-        if not isinstance(self.date_modified, Unset):
+        date_modified: None | str | Unset
+        if isinstance(self.date_modified, Unset):
+            date_modified = UNSET
+        elif isinstance(self.date_modified, datetime.datetime):
             date_modified = self.date_modified.isoformat()
+        else:
+            date_modified = self.date_modified
 
         description: None | str | Unset
         if isinstance(self.description, Unset):
@@ -57,9 +65,17 @@ class RelationTypeSchema:
         else:
             description = self.description
 
-        is_directional = self.is_directional
+        is_directional: bool | None | Unset
+        if isinstance(self.is_directional, Unset):
+            is_directional = UNSET
+        else:
+            is_directional = self.is_directional
 
-        is_system = self.is_system
+        is_system: bool | None | Unset
+        if isinstance(self.is_system, Unset):
+            is_system = UNSET
+        else:
+            is_system = self.is_system
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -92,19 +108,39 @@ class RelationTypeSchema:
 
         source_label = d.pop("source_label")
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        _date_modified = d.pop("date_modified", UNSET)
-        date_modified: datetime.datetime | Unset
-        if isinstance(_date_modified, Unset):
-            date_modified = UNSET
-        else:
-            date_modified = datetime.datetime.fromisoformat(_date_modified)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
+
+        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_modified_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_modified_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
 
         def _parse_description(data: object) -> None | str | Unset:
             if data is None:
@@ -115,9 +151,23 @@ class RelationTypeSchema:
 
         description = _parse_description(d.pop("description", UNSET))
 
-        is_directional = d.pop("is_directional", UNSET)
+        def _parse_is_directional(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        is_system = d.pop("is_system", UNSET)
+        is_directional = _parse_is_directional(d.pop("is_directional", UNSET))
+
+        def _parse_is_system(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        is_system = _parse_is_system(d.pop("is_system", UNSET))
 
         relation_type_schema = cls(
             destination_label=destination_label,

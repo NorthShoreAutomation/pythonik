@@ -10,8 +10,8 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.transfer_to_storage_schema_job_steps import (
-        TransferToStorageSchemaJobSteps,
+    from ..models.transfer_to_storage_schema_job_steps_type_0 import (
+        TransferToStorageSchemaJobStepsType0,
     )
 
 
@@ -24,127 +24,213 @@ class TransferToStorageSchema:
     Attributes:
         destination_directory_path (str):
         destination_file_set_name (str):
-        asset_id (UUID | Unset):
-        asset_paths (list[str] | Unset):
-        collection_storage_id (UUID | Unset):
-        component_ids (list[UUID] | Unset):
-        delete_only_from_source_folder (bool | Unset):
-        delete_remote_file_set_after_download (bool | Unset):
-        delete_source_file_set_after_download (bool | Unset):
-        destination_base_directory (str | Unset):
-        destination_filename (str | Unset):
-        file_set_id (UUID | Unset):
-        format_id (UUID | Unset):
-        id (UUID | Unset):
-        job_id (UUID | Unset):
-        job_steps (TransferToStorageSchemaJobSteps | Unset):
-        local_storage_id (UUID | Unset):
-        original_storage_id (UUID | Unset):
-        original_url (str | Unset):
-        parent_job_id (UUID | Unset):
-        temporary_file_set_source (bool | Unset):
-        transfer_type (str | Unset):
+        asset_id (None | Unset | UUID):
+        asset_paths (list[str] | None | Unset):
+        collection_storage_id (None | Unset | UUID):
+        component_ids (list[UUID] | None | Unset):
+        delete_only_from_source_folder (bool | None | Unset):
+        delete_remote_file_set_after_download (bool | None | Unset):
+        delete_source_file_set_after_download (bool | None | Unset):
+        destination_base_directory (None | str | Unset):
+        destination_filename (None | str | Unset):
+        file_set_id (None | Unset | UUID):
+        format_id (None | Unset | UUID):
+        id (None | Unset | UUID):
+        job_id (None | Unset | UUID):
+        job_steps (None | TransferToStorageSchemaJobStepsType0 | Unset):
+        local_storage_id (None | Unset | UUID):
+        original_storage_id (None | Unset | UUID):
+        original_url (None | str | Unset):
+        parent_job_id (None | Unset | UUID):
+        temporary_file_set_source (bool | None | Unset):
+        transfer_type (None | str | Unset):
     """
 
     destination_directory_path: str
     destination_file_set_name: str
-    asset_id: UUID | Unset = UNSET
-    asset_paths: list[str] | Unset = UNSET
-    collection_storage_id: UUID | Unset = UNSET
-    component_ids: list[UUID] | Unset = UNSET
-    delete_only_from_source_folder: bool | Unset = UNSET
-    delete_remote_file_set_after_download: bool | Unset = UNSET
-    delete_source_file_set_after_download: bool | Unset = UNSET
-    destination_base_directory: str | Unset = UNSET
-    destination_filename: str | Unset = UNSET
-    file_set_id: UUID | Unset = UNSET
-    format_id: UUID | Unset = UNSET
-    id: UUID | Unset = UNSET
-    job_id: UUID | Unset = UNSET
-    job_steps: TransferToStorageSchemaJobSteps | Unset = UNSET
-    local_storage_id: UUID | Unset = UNSET
-    original_storage_id: UUID | Unset = UNSET
-    original_url: str | Unset = UNSET
-    parent_job_id: UUID | Unset = UNSET
-    temporary_file_set_source: bool | Unset = UNSET
-    transfer_type: str | Unset = UNSET
+    asset_id: None | Unset | UUID = UNSET
+    asset_paths: list[str] | None | Unset = UNSET
+    collection_storage_id: None | Unset | UUID = UNSET
+    component_ids: list[UUID] | None | Unset = UNSET
+    delete_only_from_source_folder: bool | None | Unset = UNSET
+    delete_remote_file_set_after_download: bool | None | Unset = UNSET
+    delete_source_file_set_after_download: bool | None | Unset = UNSET
+    destination_base_directory: None | str | Unset = UNSET
+    destination_filename: None | str | Unset = UNSET
+    file_set_id: None | Unset | UUID = UNSET
+    format_id: None | Unset | UUID = UNSET
+    id: None | Unset | UUID = UNSET
+    job_id: None | Unset | UUID = UNSET
+    job_steps: None | TransferToStorageSchemaJobStepsType0 | Unset = UNSET
+    local_storage_id: None | Unset | UUID = UNSET
+    original_storage_id: None | Unset | UUID = UNSET
+    original_url: None | str | Unset = UNSET
+    parent_job_id: None | Unset | UUID = UNSET
+    temporary_file_set_source: bool | None | Unset = UNSET
+    transfer_type: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.transfer_to_storage_schema_job_steps_type_0 import (
+            TransferToStorageSchemaJobStepsType0,
+        )
+
         destination_directory_path = self.destination_directory_path
 
         destination_file_set_name = self.destination_file_set_name
 
-        asset_id: str | Unset = UNSET
-        if not isinstance(self.asset_id, Unset):
+        asset_id: None | str | Unset
+        if isinstance(self.asset_id, Unset):
+            asset_id = UNSET
+        elif isinstance(self.asset_id, UUID):
             asset_id = str(self.asset_id)
+        else:
+            asset_id = self.asset_id
 
-        asset_paths: list[str] | Unset = UNSET
-        if not isinstance(self.asset_paths, Unset):
+        asset_paths: list[str] | None | Unset
+        if isinstance(self.asset_paths, Unset):
+            asset_paths = UNSET
+        elif isinstance(self.asset_paths, list):
             asset_paths = self.asset_paths
 
-        collection_storage_id: str | Unset = UNSET
-        if not isinstance(self.collection_storage_id, Unset):
+        else:
+            asset_paths = self.asset_paths
+
+        collection_storage_id: None | str | Unset
+        if isinstance(self.collection_storage_id, Unset):
+            collection_storage_id = UNSET
+        elif isinstance(self.collection_storage_id, UUID):
             collection_storage_id = str(self.collection_storage_id)
+        else:
+            collection_storage_id = self.collection_storage_id
 
-        component_ids: list[str] | Unset = UNSET
-        if not isinstance(self.component_ids, Unset):
+        component_ids: list[str] | None | Unset
+        if isinstance(self.component_ids, Unset):
+            component_ids = UNSET
+        elif isinstance(self.component_ids, list):
             component_ids = []
-            for component_ids_item_data in self.component_ids:
-                component_ids_item = str(component_ids_item_data)
-                component_ids.append(component_ids_item)
+            for component_ids_type_0_item_data in self.component_ids:
+                component_ids_type_0_item = str(component_ids_type_0_item_data)
+                component_ids.append(component_ids_type_0_item)
 
-        delete_only_from_source_folder = self.delete_only_from_source_folder
+        else:
+            component_ids = self.component_ids
 
-        delete_remote_file_set_after_download = (
-            self.delete_remote_file_set_after_download
-        )
+        delete_only_from_source_folder: bool | None | Unset
+        if isinstance(self.delete_only_from_source_folder, Unset):
+            delete_only_from_source_folder = UNSET
+        else:
+            delete_only_from_source_folder = self.delete_only_from_source_folder
 
-        delete_source_file_set_after_download = (
-            self.delete_source_file_set_after_download
-        )
+        delete_remote_file_set_after_download: bool | None | Unset
+        if isinstance(self.delete_remote_file_set_after_download, Unset):
+            delete_remote_file_set_after_download = UNSET
+        else:
+            delete_remote_file_set_after_download = (
+                self.delete_remote_file_set_after_download
+            )
 
-        destination_base_directory = self.destination_base_directory
+        delete_source_file_set_after_download: bool | None | Unset
+        if isinstance(self.delete_source_file_set_after_download, Unset):
+            delete_source_file_set_after_download = UNSET
+        else:
+            delete_source_file_set_after_download = (
+                self.delete_source_file_set_after_download
+            )
 
-        destination_filename = self.destination_filename
+        destination_base_directory: None | str | Unset
+        if isinstance(self.destination_base_directory, Unset):
+            destination_base_directory = UNSET
+        else:
+            destination_base_directory = self.destination_base_directory
 
-        file_set_id: str | Unset = UNSET
-        if not isinstance(self.file_set_id, Unset):
+        destination_filename: None | str | Unset
+        if isinstance(self.destination_filename, Unset):
+            destination_filename = UNSET
+        else:
+            destination_filename = self.destination_filename
+
+        file_set_id: None | str | Unset
+        if isinstance(self.file_set_id, Unset):
+            file_set_id = UNSET
+        elif isinstance(self.file_set_id, UUID):
             file_set_id = str(self.file_set_id)
+        else:
+            file_set_id = self.file_set_id
 
-        format_id: str | Unset = UNSET
-        if not isinstance(self.format_id, Unset):
+        format_id: None | str | Unset
+        if isinstance(self.format_id, Unset):
+            format_id = UNSET
+        elif isinstance(self.format_id, UUID):
             format_id = str(self.format_id)
+        else:
+            format_id = self.format_id
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        job_id: str | Unset = UNSET
-        if not isinstance(self.job_id, Unset):
+        job_id: None | str | Unset
+        if isinstance(self.job_id, Unset):
+            job_id = UNSET
+        elif isinstance(self.job_id, UUID):
             job_id = str(self.job_id)
+        else:
+            job_id = self.job_id
 
-        job_steps: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.job_steps, Unset):
+        job_steps: dict[str, Any] | None | Unset
+        if isinstance(self.job_steps, Unset):
+            job_steps = UNSET
+        elif isinstance(self.job_steps, TransferToStorageSchemaJobStepsType0):
             job_steps = self.job_steps.to_dict()
+        else:
+            job_steps = self.job_steps
 
-        local_storage_id: str | Unset = UNSET
-        if not isinstance(self.local_storage_id, Unset):
+        local_storage_id: None | str | Unset
+        if isinstance(self.local_storage_id, Unset):
+            local_storage_id = UNSET
+        elif isinstance(self.local_storage_id, UUID):
             local_storage_id = str(self.local_storage_id)
+        else:
+            local_storage_id = self.local_storage_id
 
-        original_storage_id: str | Unset = UNSET
-        if not isinstance(self.original_storage_id, Unset):
+        original_storage_id: None | str | Unset
+        if isinstance(self.original_storage_id, Unset):
+            original_storage_id = UNSET
+        elif isinstance(self.original_storage_id, UUID):
             original_storage_id = str(self.original_storage_id)
+        else:
+            original_storage_id = self.original_storage_id
 
-        original_url = self.original_url
+        original_url: None | str | Unset
+        if isinstance(self.original_url, Unset):
+            original_url = UNSET
+        else:
+            original_url = self.original_url
 
-        parent_job_id: str | Unset = UNSET
-        if not isinstance(self.parent_job_id, Unset):
+        parent_job_id: None | str | Unset
+        if isinstance(self.parent_job_id, Unset):
+            parent_job_id = UNSET
+        elif isinstance(self.parent_job_id, UUID):
             parent_job_id = str(self.parent_job_id)
+        else:
+            parent_job_id = self.parent_job_id
 
-        temporary_file_set_source = self.temporary_file_set_source
+        temporary_file_set_source: bool | None | Unset
+        if isinstance(self.temporary_file_set_source, Unset):
+            temporary_file_set_source = UNSET
+        else:
+            temporary_file_set_source = self.temporary_file_set_source
 
-        transfer_type = self.transfer_type
+        transfer_type: None | str | Unset
+        if isinstance(self.transfer_type, Unset):
+            transfer_type = UNSET
+        else:
+            transfer_type = self.transfer_type
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -205,8 +291,8 @@ class TransferToStorageSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.transfer_to_storage_schema_job_steps import (
-            TransferToStorageSchemaJobSteps,
+        from ..models.transfer_to_storage_schema_job_steps_type_0 import (
+            TransferToStorageSchemaJobStepsType0,
         )
 
         d = dict(src_dict)
@@ -214,106 +300,312 @@ class TransferToStorageSchema:
 
         destination_file_set_name = d.pop("destination_file_set_name")
 
-        _asset_id = d.pop("asset_id", UNSET)
-        asset_id: UUID | Unset
-        if isinstance(_asset_id, Unset):
-            asset_id = UNSET
-        else:
-            asset_id = UUID(_asset_id)
+        def _parse_asset_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                asset_id_type_0 = UUID(data)
 
-        asset_paths = cast(list[str], d.pop("asset_paths", UNSET))
+                return asset_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        _collection_storage_id = d.pop("collection_storage_id", UNSET)
-        collection_storage_id: UUID | Unset
-        if isinstance(_collection_storage_id, Unset):
-            collection_storage_id = UNSET
-        else:
-            collection_storage_id = UUID(_collection_storage_id)
+        asset_id = _parse_asset_id(d.pop("asset_id", UNSET))
 
-        _component_ids = d.pop("component_ids", UNSET)
-        component_ids: list[UUID] | Unset = UNSET
-        if _component_ids is not UNSET:
-            component_ids = []
-            for component_ids_item_data in _component_ids:
-                component_ids_item = UUID(component_ids_item_data)
+        def _parse_asset_paths(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                asset_paths_type_0 = cast(list[str], data)
 
-                component_ids.append(component_ids_item)
+                return asset_paths_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
 
-        delete_only_from_source_folder = d.pop("delete_only_from_source_folder", UNSET)
+        asset_paths = _parse_asset_paths(d.pop("asset_paths", UNSET))
 
-        delete_remote_file_set_after_download = d.pop(
-            "delete_remote_file_set_after_download", UNSET
+        def _parse_collection_storage_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                collection_storage_id_type_0 = UUID(data)
+
+                return collection_storage_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        collection_storage_id = _parse_collection_storage_id(
+            d.pop("collection_storage_id", UNSET)
         )
 
-        delete_source_file_set_after_download = d.pop(
-            "delete_source_file_set_after_download", UNSET
+        def _parse_component_ids(data: object) -> list[UUID] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                component_ids_type_0 = []
+                _component_ids_type_0 = data
+                for component_ids_type_0_item_data in _component_ids_type_0:
+                    component_ids_type_0_item = UUID(component_ids_type_0_item_data)
+
+                    component_ids_type_0.append(component_ids_type_0_item)
+
+                return component_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[UUID] | None | Unset, data)
+
+        component_ids = _parse_component_ids(d.pop("component_ids", UNSET))
+
+        def _parse_delete_only_from_source_folder(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        delete_only_from_source_folder = _parse_delete_only_from_source_folder(
+            d.pop("delete_only_from_source_folder", UNSET)
         )
 
-        destination_base_directory = d.pop("destination_base_directory", UNSET)
+        def _parse_delete_remote_file_set_after_download(
+            data: object,
+        ) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        destination_filename = d.pop("destination_filename", UNSET)
+        delete_remote_file_set_after_download = (
+            _parse_delete_remote_file_set_after_download(
+                d.pop("delete_remote_file_set_after_download", UNSET)
+            )
+        )
 
-        _file_set_id = d.pop("file_set_id", UNSET)
-        file_set_id: UUID | Unset
-        if isinstance(_file_set_id, Unset):
-            file_set_id = UNSET
-        else:
-            file_set_id = UUID(_file_set_id)
+        def _parse_delete_source_file_set_after_download(
+            data: object,
+        ) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        _format_id = d.pop("format_id", UNSET)
-        format_id: UUID | Unset
-        if isinstance(_format_id, Unset):
-            format_id = UNSET
-        else:
-            format_id = UUID(_format_id)
+        delete_source_file_set_after_download = (
+            _parse_delete_source_file_set_after_download(
+                d.pop("delete_source_file_set_after_download", UNSET)
+            )
+        )
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        def _parse_destination_base_directory(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        _job_id = d.pop("job_id", UNSET)
-        job_id: UUID | Unset
-        if isinstance(_job_id, Unset):
-            job_id = UNSET
-        else:
-            job_id = UUID(_job_id)
+        destination_base_directory = _parse_destination_base_directory(
+            d.pop("destination_base_directory", UNSET)
+        )
 
-        _job_steps = d.pop("job_steps", UNSET)
-        job_steps: TransferToStorageSchemaJobSteps | Unset
-        if isinstance(_job_steps, Unset):
-            job_steps = UNSET
-        else:
-            job_steps = TransferToStorageSchemaJobSteps.from_dict(_job_steps)
+        def _parse_destination_filename(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        _local_storage_id = d.pop("local_storage_id", UNSET)
-        local_storage_id: UUID | Unset
-        if isinstance(_local_storage_id, Unset):
-            local_storage_id = UNSET
-        else:
-            local_storage_id = UUID(_local_storage_id)
+        destination_filename = _parse_destination_filename(
+            d.pop("destination_filename", UNSET)
+        )
 
-        _original_storage_id = d.pop("original_storage_id", UNSET)
-        original_storage_id: UUID | Unset
-        if isinstance(_original_storage_id, Unset):
-            original_storage_id = UNSET
-        else:
-            original_storage_id = UUID(_original_storage_id)
+        def _parse_file_set_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                file_set_id_type_0 = UUID(data)
 
-        original_url = d.pop("original_url", UNSET)
+                return file_set_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        _parent_job_id = d.pop("parent_job_id", UNSET)
-        parent_job_id: UUID | Unset
-        if isinstance(_parent_job_id, Unset):
-            parent_job_id = UNSET
-        else:
-            parent_job_id = UUID(_parent_job_id)
+        file_set_id = _parse_file_set_id(d.pop("file_set_id", UNSET))
 
-        temporary_file_set_source = d.pop("temporary_file_set_source", UNSET)
+        def _parse_format_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                format_id_type_0 = UUID(data)
 
-        transfer_type = d.pop("transfer_type", UNSET)
+                return format_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        format_id = _parse_format_id(d.pop("format_id", UNSET))
+
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_job_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                job_id_type_0 = UUID(data)
+
+                return job_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        job_id = _parse_job_id(d.pop("job_id", UNSET))
+
+        def _parse_job_steps(
+            data: object,
+        ) -> None | TransferToStorageSchemaJobStepsType0 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                job_steps_type_0 = TransferToStorageSchemaJobStepsType0.from_dict(data)
+
+                return job_steps_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | TransferToStorageSchemaJobStepsType0 | Unset, data)
+
+        job_steps = _parse_job_steps(d.pop("job_steps", UNSET))
+
+        def _parse_local_storage_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                local_storage_id_type_0 = UUID(data)
+
+                return local_storage_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        local_storage_id = _parse_local_storage_id(d.pop("local_storage_id", UNSET))
+
+        def _parse_original_storage_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                original_storage_id_type_0 = UUID(data)
+
+                return original_storage_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        original_storage_id = _parse_original_storage_id(
+            d.pop("original_storage_id", UNSET)
+        )
+
+        def _parse_original_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        original_url = _parse_original_url(d.pop("original_url", UNSET))
+
+        def _parse_parent_job_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                parent_job_id_type_0 = UUID(data)
+
+                return parent_job_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        parent_job_id = _parse_parent_job_id(d.pop("parent_job_id", UNSET))
+
+        def _parse_temporary_file_set_source(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        temporary_file_set_source = _parse_temporary_file_set_source(
+            d.pop("temporary_file_set_source", UNSET)
+        )
+
+        def _parse_transfer_type(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        transfer_type = _parse_transfer_type(d.pop("transfer_type", UNSET))
 
         transfer_to_storage_schema = cls(
             destination_directory_path=destination_directory_path,

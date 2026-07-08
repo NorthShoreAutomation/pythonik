@@ -15,15 +15,20 @@ T = TypeVar("T", bound="FacetFieldNamesSchema")
 class FacetFieldNamesSchema:
     """
     Attributes:
-        objects (list[str] | Unset):
+        objects (list[str] | None | Unset):
     """
 
-    objects: list[str] | Unset = UNSET
+    objects: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        objects: list[str] | Unset = UNSET
-        if not isinstance(self.objects, Unset):
+        objects: list[str] | None | Unset
+        if isinstance(self.objects, Unset):
+            objects = UNSET
+        elif isinstance(self.objects, list):
+            objects = self.objects
+
+        else:
             objects = self.objects
 
         field_dict: dict[str, Any] = {}
@@ -37,7 +42,23 @@ class FacetFieldNamesSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        objects = cast(list[str], d.pop("objects", UNSET))
+
+        def _parse_objects(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                objects_type_0 = cast(list[str], data)
+
+                return objects_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        objects = _parse_objects(d.pop("objects", UNSET))
 
         facet_field_names_schema = cls(
             objects=objects,

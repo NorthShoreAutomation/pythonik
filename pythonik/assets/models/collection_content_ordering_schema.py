@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -16,26 +16,38 @@ T = TypeVar("T", bound="CollectionContentOrderingSchema")
 class CollectionContentOrderingSchema:
     """
     Attributes:
-        after_object_id (UUID | Unset):
-        before_object_id (UUID | Unset):
-        position (int | Unset): Position the member will be moved to. To insert athe the end send -1
+        after_object_id (None | Unset | UUID):
+        before_object_id (None | Unset | UUID):
+        position (int | None | Unset): Position the member will be moved to. To insert athe the end send -1
     """
 
-    after_object_id: UUID | Unset = UNSET
-    before_object_id: UUID | Unset = UNSET
-    position: int | Unset = UNSET
+    after_object_id: None | Unset | UUID = UNSET
+    before_object_id: None | Unset | UUID = UNSET
+    position: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        after_object_id: str | Unset = UNSET
-        if not isinstance(self.after_object_id, Unset):
+        after_object_id: None | str | Unset
+        if isinstance(self.after_object_id, Unset):
+            after_object_id = UNSET
+        elif isinstance(self.after_object_id, UUID):
             after_object_id = str(self.after_object_id)
+        else:
+            after_object_id = self.after_object_id
 
-        before_object_id: str | Unset = UNSET
-        if not isinstance(self.before_object_id, Unset):
+        before_object_id: None | str | Unset
+        if isinstance(self.before_object_id, Unset):
+            before_object_id = UNSET
+        elif isinstance(self.before_object_id, UUID):
             before_object_id = str(self.before_object_id)
+        else:
+            before_object_id = self.before_object_id
 
-        position = self.position
+        position: int | None | Unset
+        if isinstance(self.position, Unset):
+            position = UNSET
+        else:
+            position = self.position
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -52,21 +64,49 @@ class CollectionContentOrderingSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        _after_object_id = d.pop("after_object_id", UNSET)
-        after_object_id: UUID | Unset
-        if isinstance(_after_object_id, Unset):
-            after_object_id = UNSET
-        else:
-            after_object_id = UUID(_after_object_id)
 
-        _before_object_id = d.pop("before_object_id", UNSET)
-        before_object_id: UUID | Unset
-        if isinstance(_before_object_id, Unset):
-            before_object_id = UNSET
-        else:
-            before_object_id = UUID(_before_object_id)
+        def _parse_after_object_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                after_object_id_type_0 = UUID(data)
 
-        position = d.pop("position", UNSET)
+                return after_object_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        after_object_id = _parse_after_object_id(d.pop("after_object_id", UNSET))
+
+        def _parse_before_object_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                before_object_id_type_0 = UUID(data)
+
+                return before_object_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        before_object_id = _parse_before_object_id(d.pop("before_object_id", UNSET))
+
+        def _parse_position(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        position = _parse_position(d.pop("position", UNSET))
 
         collection_content_ordering_schema = cls(
             after_object_id=after_object_id,

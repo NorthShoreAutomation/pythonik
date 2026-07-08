@@ -2,14 +2,17 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.approval_by_schema_status import ApprovalBySchemaStatus
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.approval_by_schema_status_type_1 import ApprovalBySchemaStatusType1
+
 
 T = TypeVar("T", bound="ApprovalBySchema")
 
@@ -18,48 +21,80 @@ T = TypeVar("T", bound="ApprovalBySchema")
 class ApprovalBySchema:
     """
     Attributes:
-        change_date (datetime.datetime | Unset):
-        external (str | Unset):
-        object_id (UUID | Unset):
-        object_type (str | Unset):
-        status (ApprovalBySchemaStatus | Unset):
-        user (UUID | Unset):
-        version_id (UUID | Unset):
+        change_date (datetime.datetime | None | Unset):
+        external (None | str | Unset):
+        object_id (None | Unset | UUID):
+        object_type (None | str | Unset):
+        status (ApprovalBySchemaStatusType1 | None | Unset):
+        user (None | Unset | UUID):
+        version_id (None | Unset | UUID):
     """
 
-    change_date: datetime.datetime | Unset = UNSET
-    external: str | Unset = UNSET
-    object_id: UUID | Unset = UNSET
-    object_type: str | Unset = UNSET
-    status: ApprovalBySchemaStatus | Unset = UNSET
-    user: UUID | Unset = UNSET
-    version_id: UUID | Unset = UNSET
+    change_date: datetime.datetime | None | Unset = UNSET
+    external: None | str | Unset = UNSET
+    object_id: None | Unset | UUID = UNSET
+    object_type: None | str | Unset = UNSET
+    status: ApprovalBySchemaStatusType1 | None | Unset = UNSET
+    user: None | Unset | UUID = UNSET
+    version_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        change_date: str | Unset = UNSET
-        if not isinstance(self.change_date, Unset):
+        from ..models.approval_by_schema_status_type_1 import (
+            ApprovalBySchemaStatusType1,
+        )
+
+        change_date: None | str | Unset
+        if isinstance(self.change_date, Unset):
+            change_date = UNSET
+        elif isinstance(self.change_date, datetime.datetime):
             change_date = self.change_date.isoformat()
+        else:
+            change_date = self.change_date
 
-        external = self.external
+        external: None | str | Unset
+        if isinstance(self.external, Unset):
+            external = UNSET
+        else:
+            external = self.external
 
-        object_id: str | Unset = UNSET
-        if not isinstance(self.object_id, Unset):
+        object_id: None | str | Unset
+        if isinstance(self.object_id, Unset):
+            object_id = UNSET
+        elif isinstance(self.object_id, UUID):
             object_id = str(self.object_id)
+        else:
+            object_id = self.object_id
 
-        object_type = self.object_type
+        object_type: None | str | Unset
+        if isinstance(self.object_type, Unset):
+            object_type = UNSET
+        else:
+            object_type = self.object_type
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        status: dict[str, Any] | None | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        elif isinstance(self.status, ApprovalBySchemaStatusType1):
+            status = self.status.to_dict()
+        else:
+            status = self.status
 
-        user: str | Unset = UNSET
-        if not isinstance(self.user, Unset):
+        user: None | str | Unset
+        if isinstance(self.user, Unset):
+            user = UNSET
+        elif isinstance(self.user, UUID):
             user = str(self.user)
+        else:
+            user = self.user
 
-        version_id: str | Unset = UNSET
-        if not isinstance(self.version_id, Unset):
+        version_id: None | str | Unset
+        if isinstance(self.version_id, Unset):
+            version_id = UNSET
+        elif isinstance(self.version_id, UUID):
             version_id = str(self.version_id)
+        else:
+            version_id = self.version_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -83,45 +118,114 @@ class ApprovalBySchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.approval_by_schema_status_type_1 import (
+            ApprovalBySchemaStatusType1,
+        )
+
         d = dict(src_dict)
-        _change_date = d.pop("change_date", UNSET)
-        change_date: datetime.datetime | Unset
-        if isinstance(_change_date, Unset):
-            change_date = UNSET
-        else:
-            change_date = datetime.datetime.fromisoformat(_change_date)
 
-        external = d.pop("external", UNSET)
+        def _parse_change_date(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                change_date_type_0 = datetime.datetime.fromisoformat(data)
 
-        _object_id = d.pop("object_id", UNSET)
-        object_id: UUID | Unset
-        if isinstance(_object_id, Unset):
-            object_id = UNSET
-        else:
-            object_id = UUID(_object_id)
+                return change_date_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        object_type = d.pop("object_type", UNSET)
+        change_date = _parse_change_date(d.pop("change_date", UNSET))
 
-        _status = d.pop("status", UNSET)
-        status: ApprovalBySchemaStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = ApprovalBySchemaStatus(_status)
+        def _parse_external(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        _user = d.pop("user", UNSET)
-        user: UUID | Unset
-        if isinstance(_user, Unset):
-            user = UNSET
-        else:
-            user = UUID(_user)
+        external = _parse_external(d.pop("external", UNSET))
 
-        _version_id = d.pop("version_id", UNSET)
-        version_id: UUID | Unset
-        if isinstance(_version_id, Unset):
-            version_id = UNSET
-        else:
-            version_id = UUID(_version_id)
+        def _parse_object_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                object_id_type_0 = UUID(data)
+
+                return object_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        object_id = _parse_object_id(d.pop("object_id", UNSET))
+
+        def _parse_object_type(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        object_type = _parse_object_type(d.pop("object_type", UNSET))
+
+        def _parse_status(data: object) -> ApprovalBySchemaStatusType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                status_type_1 = ApprovalBySchemaStatusType1.from_dict(data)
+
+                return status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(ApprovalBySchemaStatusType1 | None | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
+
+        def _parse_user(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                user_type_0 = UUID(data)
+
+                return user_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        user = _parse_user(d.pop("user", UNSET))
+
+        def _parse_version_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                version_id_type_0 = UUID(data)
+
+                return version_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        version_id = _parse_version_id(d.pop("version_id", UNSET))
 
         approval_by_schema = cls(
             change_date=change_date,

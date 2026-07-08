@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,18 +15,26 @@ T = TypeVar("T", bound="ResolutionType")
 class ResolutionType:
     """
     Attributes:
-        height (int | Unset):
-        width (int | Unset):
+        height (int | None | Unset):
+        width (int | None | Unset):
     """
 
-    height: int | Unset = UNSET
-    width: int | Unset = UNSET
+    height: int | None | Unset = UNSET
+    width: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        height = self.height
+        height: int | None | Unset
+        if isinstance(self.height, Unset):
+            height = UNSET
+        else:
+            height = self.height
 
-        width = self.width
+        width: int | None | Unset
+        if isinstance(self.width, Unset):
+            width = UNSET
+        else:
+            width = self.width
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -41,9 +49,24 @@ class ResolutionType:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        height = d.pop("height", UNSET)
 
-        width = d.pop("width", UNSET)
+        def _parse_height(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        height = _parse_height(d.pop("height", UNSET))
+
+        def _parse_width(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        width = _parse_width(d.pop("width", UNSET))
 
         resolution_type = cls(
             height=height,

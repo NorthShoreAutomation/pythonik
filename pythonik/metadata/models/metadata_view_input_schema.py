@@ -23,13 +23,13 @@ class MetadataViewInputSchema:
         name (str):
         view_fields (list[MetadataViewFieldSchema]):
         description (None | str | Unset):
-        id (UUID | Unset):
+        id (None | Unset | UUID):
     """
 
     name: str
     view_fields: list[MetadataViewFieldSchema]
     description: None | str | Unset = UNSET
-    id: UUID | Unset = UNSET
+    id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -46,9 +46,13 @@ class MetadataViewInputSchema:
         else:
             description = self.description
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -88,12 +92,22 @@ class MetadataViewInputSchema:
 
         description = _parse_description(d.pop("description", UNSET))
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
 
         metadata_view_input_schema = cls(
             name=name,

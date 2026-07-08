@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,14 +16,18 @@ T = TypeVar("T", bound="MarketplaceGoogleSignupSchema")
 class MarketplaceGoogleSignupSchema:
     """
     Attributes:
-        x_gcp_marketplace_token (str | Unset):
+        x_gcp_marketplace_token (None | str | Unset):
     """
 
-    x_gcp_marketplace_token: str | Unset = UNSET
+    x_gcp_marketplace_token: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        x_gcp_marketplace_token = self.x_gcp_marketplace_token
+        x_gcp_marketplace_token: None | str | Unset
+        if isinstance(self.x_gcp_marketplace_token, Unset):
+            x_gcp_marketplace_token = UNSET
+        else:
+            x_gcp_marketplace_token = self.x_gcp_marketplace_token
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -37,12 +41,28 @@ class MarketplaceGoogleSignupSchema:
         files: types.RequestFiles = []
 
         if not isinstance(self.x_gcp_marketplace_token, Unset):
-            files.append(
-                (
-                    "x-gcp-marketplace-token",
-                    (None, str(self.x_gcp_marketplace_token).encode(), "text/plain"),
+            if isinstance(self.x_gcp_marketplace_token, str):
+                files.append(
+                    (
+                        "x-gcp-marketplace-token",
+                        (
+                            None,
+                            str(self.x_gcp_marketplace_token).encode(),
+                            "text/plain",
+                        ),
+                    )
                 )
-            )
+            else:
+                files.append(
+                    (
+                        "x-gcp-marketplace-token",
+                        (
+                            None,
+                            str(self.x_gcp_marketplace_token).encode(),
+                            "text/plain",
+                        ),
+                    )
+                )
 
         for prop_name, prop in self.additional_properties.items():
             files.append((prop_name, (None, str(prop).encode(), "text/plain")))
@@ -52,7 +72,17 @@ class MarketplaceGoogleSignupSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        x_gcp_marketplace_token = d.pop("x-gcp-marketplace-token", UNSET)
+
+        def _parse_x_gcp_marketplace_token(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        x_gcp_marketplace_token = _parse_x_gcp_marketplace_token(
+            d.pop("x-gcp-marketplace-token", UNSET)
+        )
 
         marketplace_google_signup_schema = cls(
             x_gcp_marketplace_token=x_gcp_marketplace_token,

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -9,8 +9,8 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.metadata_field_value_schema_field_values_item import (
-        MetadataFieldValueSchemaFieldValuesItem,
+    from ..models.metadata_field_value_schema_field_values_type_0_item import (
+        MetadataFieldValueSchemaFieldValuesType0Item,
     )
 
 
@@ -21,19 +21,26 @@ T = TypeVar("T", bound="MetadataFieldValueSchema")
 class MetadataFieldValueSchema:
     """
     Attributes:
-        field_values (list[MetadataFieldValueSchemaFieldValuesItem] | Unset):
+        field_values (list[MetadataFieldValueSchemaFieldValuesType0Item] | None | Unset):
     """
 
-    field_values: list[MetadataFieldValueSchemaFieldValuesItem] | Unset = UNSET
+    field_values: list[MetadataFieldValueSchemaFieldValuesType0Item] | None | Unset = (
+        UNSET
+    )
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        field_values: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.field_values, Unset):
+        field_values: list[dict[str, Any]] | None | Unset
+        if isinstance(self.field_values, Unset):
+            field_values = UNSET
+        elif isinstance(self.field_values, list):
             field_values = []
-            for field_values_item_data in self.field_values:
-                field_values_item = field_values_item_data.to_dict()
-                field_values.append(field_values_item)
+            for field_values_type_0_item_data in self.field_values:
+                field_values_type_0_item = field_values_type_0_item_data.to_dict()
+                field_values.append(field_values_type_0_item)
+
+        else:
+            field_values = self.field_values
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -45,21 +52,41 @@ class MetadataFieldValueSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.metadata_field_value_schema_field_values_item import (
-            MetadataFieldValueSchemaFieldValuesItem,
+        from ..models.metadata_field_value_schema_field_values_type_0_item import (
+            MetadataFieldValueSchemaFieldValuesType0Item,
         )
 
         d = dict(src_dict)
-        _field_values = d.pop("field_values", UNSET)
-        field_values: list[MetadataFieldValueSchemaFieldValuesItem] | Unset = UNSET
-        if _field_values is not UNSET:
-            field_values = []
-            for field_values_item_data in _field_values:
-                field_values_item = MetadataFieldValueSchemaFieldValuesItem.from_dict(
-                    field_values_item_data
-                )
 
-                field_values.append(field_values_item)
+        def _parse_field_values(
+            data: object,
+        ) -> list[MetadataFieldValueSchemaFieldValuesType0Item] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                field_values_type_0 = []
+                _field_values_type_0 = data
+                for field_values_type_0_item_data in _field_values_type_0:
+                    field_values_type_0_item = (
+                        MetadataFieldValueSchemaFieldValuesType0Item.from_dict(
+                            field_values_type_0_item_data
+                        )
+                    )
+
+                    field_values_type_0.append(field_values_type_0_item)
+
+                return field_values_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(
+                list[MetadataFieldValueSchemaFieldValuesType0Item] | None | Unset, data
+            )
+
+        field_values = _parse_field_values(d.pop("field_values", UNSET))
 
         metadata_field_value_schema = cls(
             field_values=field_values,

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,62 +15,114 @@ T = TypeVar("T", bound="RoleCategoriesSchema")
 class RoleCategoriesSchema:
     """
     Attributes:
-        assets_edit (bool | Unset):
-        billing (bool | Unset):
-        collaborate (bool | Unset):
-        core (bool | Unset):
-        download (bool | Unset):
-        face_recognition (bool | Unset):
-        integrations_admin (bool | Unset):
-        metadata_admin (bool | Unset):
-        organize (bool | Unset):
-        others (bool | Unset):
-        storage_admin (bool | Unset):
-        upload (bool | Unset):
-        users_groups_admin (bool | Unset):
+        assets_edit (bool | None | Unset):
+        billing (bool | None | Unset):
+        collaborate (bool | None | Unset):
+        core (bool | None | Unset):
+        download (bool | None | Unset):
+        face_recognition (bool | None | Unset):
+        integrations_admin (bool | None | Unset):
+        metadata_admin (bool | None | Unset):
+        organize (bool | None | Unset):
+        others (bool | None | Unset):
+        storage_admin (bool | None | Unset):
+        upload (bool | None | Unset):
+        users_groups_admin (bool | None | Unset):
     """
 
-    assets_edit: bool | Unset = UNSET
-    billing: bool | Unset = UNSET
-    collaborate: bool | Unset = UNSET
-    core: bool | Unset = UNSET
-    download: bool | Unset = UNSET
-    face_recognition: bool | Unset = UNSET
-    integrations_admin: bool | Unset = UNSET
-    metadata_admin: bool | Unset = UNSET
-    organize: bool | Unset = UNSET
-    others: bool | Unset = UNSET
-    storage_admin: bool | Unset = UNSET
-    upload: bool | Unset = UNSET
-    users_groups_admin: bool | Unset = UNSET
+    assets_edit: bool | None | Unset = UNSET
+    billing: bool | None | Unset = UNSET
+    collaborate: bool | None | Unset = UNSET
+    core: bool | None | Unset = UNSET
+    download: bool | None | Unset = UNSET
+    face_recognition: bool | None | Unset = UNSET
+    integrations_admin: bool | None | Unset = UNSET
+    metadata_admin: bool | None | Unset = UNSET
+    organize: bool | None | Unset = UNSET
+    others: bool | None | Unset = UNSET
+    storage_admin: bool | None | Unset = UNSET
+    upload: bool | None | Unset = UNSET
+    users_groups_admin: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        assets_edit = self.assets_edit
+        assets_edit: bool | None | Unset
+        if isinstance(self.assets_edit, Unset):
+            assets_edit = UNSET
+        else:
+            assets_edit = self.assets_edit
 
-        billing = self.billing
+        billing: bool | None | Unset
+        if isinstance(self.billing, Unset):
+            billing = UNSET
+        else:
+            billing = self.billing
 
-        collaborate = self.collaborate
+        collaborate: bool | None | Unset
+        if isinstance(self.collaborate, Unset):
+            collaborate = UNSET
+        else:
+            collaborate = self.collaborate
 
-        core = self.core
+        core: bool | None | Unset
+        if isinstance(self.core, Unset):
+            core = UNSET
+        else:
+            core = self.core
 
-        download = self.download
+        download: bool | None | Unset
+        if isinstance(self.download, Unset):
+            download = UNSET
+        else:
+            download = self.download
 
-        face_recognition = self.face_recognition
+        face_recognition: bool | None | Unset
+        if isinstance(self.face_recognition, Unset):
+            face_recognition = UNSET
+        else:
+            face_recognition = self.face_recognition
 
-        integrations_admin = self.integrations_admin
+        integrations_admin: bool | None | Unset
+        if isinstance(self.integrations_admin, Unset):
+            integrations_admin = UNSET
+        else:
+            integrations_admin = self.integrations_admin
 
-        metadata_admin = self.metadata_admin
+        metadata_admin: bool | None | Unset
+        if isinstance(self.metadata_admin, Unset):
+            metadata_admin = UNSET
+        else:
+            metadata_admin = self.metadata_admin
 
-        organize = self.organize
+        organize: bool | None | Unset
+        if isinstance(self.organize, Unset):
+            organize = UNSET
+        else:
+            organize = self.organize
 
-        others = self.others
+        others: bool | None | Unset
+        if isinstance(self.others, Unset):
+            others = UNSET
+        else:
+            others = self.others
 
-        storage_admin = self.storage_admin
+        storage_admin: bool | None | Unset
+        if isinstance(self.storage_admin, Unset):
+            storage_admin = UNSET
+        else:
+            storage_admin = self.storage_admin
 
-        upload = self.upload
+        upload: bool | None | Unset
+        if isinstance(self.upload, Unset):
+            upload = UNSET
+        else:
+            upload = self.upload
 
-        users_groups_admin = self.users_groups_admin
+        users_groups_admin: bool | None | Unset
+        if isinstance(self.users_groups_admin, Unset):
+            users_groups_admin = UNSET
+        else:
+            users_groups_admin = self.users_groups_admin
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -107,31 +159,127 @@ class RoleCategoriesSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        assets_edit = d.pop("assets_edit", UNSET)
 
-        billing = d.pop("billing", UNSET)
+        def _parse_assets_edit(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        collaborate = d.pop("collaborate", UNSET)
+        assets_edit = _parse_assets_edit(d.pop("assets_edit", UNSET))
 
-        core = d.pop("core", UNSET)
+        def _parse_billing(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        download = d.pop("download", UNSET)
+        billing = _parse_billing(d.pop("billing", UNSET))
 
-        face_recognition = d.pop("face_recognition", UNSET)
+        def _parse_collaborate(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        integrations_admin = d.pop("integrations_admin", UNSET)
+        collaborate = _parse_collaborate(d.pop("collaborate", UNSET))
 
-        metadata_admin = d.pop("metadata_admin", UNSET)
+        def _parse_core(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        organize = d.pop("organize", UNSET)
+        core = _parse_core(d.pop("core", UNSET))
 
-        others = d.pop("others", UNSET)
+        def _parse_download(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        storage_admin = d.pop("storage_admin", UNSET)
+        download = _parse_download(d.pop("download", UNSET))
 
-        upload = d.pop("upload", UNSET)
+        def _parse_face_recognition(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        users_groups_admin = d.pop("users_groups_admin", UNSET)
+        face_recognition = _parse_face_recognition(d.pop("face_recognition", UNSET))
+
+        def _parse_integrations_admin(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        integrations_admin = _parse_integrations_admin(
+            d.pop("integrations_admin", UNSET)
+        )
+
+        def _parse_metadata_admin(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        metadata_admin = _parse_metadata_admin(d.pop("metadata_admin", UNSET))
+
+        def _parse_organize(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        organize = _parse_organize(d.pop("organize", UNSET))
+
+        def _parse_others(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        others = _parse_others(d.pop("others", UNSET))
+
+        def _parse_storage_admin(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        storage_admin = _parse_storage_admin(d.pop("storage_admin", UNSET))
+
+        def _parse_upload(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        upload = _parse_upload(d.pop("upload", UNSET))
+
+        def _parse_users_groups_admin(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        users_groups_admin = _parse_users_groups_admin(
+            d.pop("users_groups_admin", UNSET)
+        )
 
         role_categories_schema = cls(
             assets_edit=assets_edit,

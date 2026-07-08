@@ -1,15 +1,22 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.share_options_base_schema_drm import ShareOptionsBaseSchemaDrm
-from ..models.share_options_base_schema_watermark import ShareOptionsBaseSchemaWatermark
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.share_options_base_schema_drm_type_1 import (
+        ShareOptionsBaseSchemaDrmType1,
+    )
+    from ..models.share_options_base_schema_watermark_type_1 import (
+        ShareOptionsBaseSchemaWatermarkType1,
+    )
+
 
 T = TypeVar("T", bound="ShareOptionsBaseSchema")
 
@@ -22,47 +29,54 @@ class ShareOptionsBaseSchema:
         allow_comments (bool):
         allow_download (bool):
         allow_setting_approve_status (bool):
-        allow_custom_actions (bool | Unset):
-        allow_download_proxy (bool | Unset):
+        allow_custom_actions (bool | None | Unset):
+        allow_download_proxy (bool | None | Unset):
         allow_sync (bool | None | Unset):
-        allow_upload (bool | Unset):
-        allow_user_search_for_mentions (bool | Unset):
-        allow_view_transcriptions (bool | Unset):
-        allow_view_versions (bool | Unset):
-        automatic_approval_share (bool | Unset):
-        drm (ShareOptionsBaseSchemaDrm | Unset): DRM settings for the share
+        allow_upload (bool | None | Unset):
+        allow_user_search_for_mentions (bool | None | Unset):
+        allow_view_transcriptions (bool | None | Unset):
+        allow_view_versions (bool | None | Unset):
+        automatic_approval_share (bool | None | Unset):
+        drm (None | ShareOptionsBaseSchemaDrmType1 | Unset):
         is_approval (bool | None | Unset):
         metadata_views (list[str] | None | Unset):
         review_experience_public_beta (bool | None | Unset):
         show_existing_comments (bool | None | Unset):
         show_watermark (bool | None | Unset):
         upload_storage_id (None | Unset | UUID):
-        watermark (ShareOptionsBaseSchemaWatermark | Unset): Watermark settings for the share
+        watermark (None | ShareOptionsBaseSchemaWatermarkType1 | Unset):
     """
 
     allow_approving_comments: bool
     allow_comments: bool
     allow_download: bool
     allow_setting_approve_status: bool
-    allow_custom_actions: bool | Unset = UNSET
-    allow_download_proxy: bool | Unset = UNSET
+    allow_custom_actions: bool | None | Unset = UNSET
+    allow_download_proxy: bool | None | Unset = UNSET
     allow_sync: bool | None | Unset = UNSET
-    allow_upload: bool | Unset = UNSET
-    allow_user_search_for_mentions: bool | Unset = UNSET
-    allow_view_transcriptions: bool | Unset = UNSET
-    allow_view_versions: bool | Unset = UNSET
-    automatic_approval_share: bool | Unset = UNSET
-    drm: ShareOptionsBaseSchemaDrm | Unset = UNSET
+    allow_upload: bool | None | Unset = UNSET
+    allow_user_search_for_mentions: bool | None | Unset = UNSET
+    allow_view_transcriptions: bool | None | Unset = UNSET
+    allow_view_versions: bool | None | Unset = UNSET
+    automatic_approval_share: bool | None | Unset = UNSET
+    drm: None | ShareOptionsBaseSchemaDrmType1 | Unset = UNSET
     is_approval: bool | None | Unset = UNSET
     metadata_views: list[str] | None | Unset = UNSET
     review_experience_public_beta: bool | None | Unset = UNSET
     show_existing_comments: bool | None | Unset = UNSET
     show_watermark: bool | None | Unset = UNSET
     upload_storage_id: None | Unset | UUID = UNSET
-    watermark: ShareOptionsBaseSchemaWatermark | Unset = UNSET
+    watermark: None | ShareOptionsBaseSchemaWatermarkType1 | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.share_options_base_schema_drm_type_1 import (
+            ShareOptionsBaseSchemaDrmType1,
+        )
+        from ..models.share_options_base_schema_watermark_type_1 import (
+            ShareOptionsBaseSchemaWatermarkType1,
+        )
+
         allow_approving_comments = self.allow_approving_comments
 
         allow_comments = self.allow_comments
@@ -71,9 +85,17 @@ class ShareOptionsBaseSchema:
 
         allow_setting_approve_status = self.allow_setting_approve_status
 
-        allow_custom_actions = self.allow_custom_actions
+        allow_custom_actions: bool | None | Unset
+        if isinstance(self.allow_custom_actions, Unset):
+            allow_custom_actions = UNSET
+        else:
+            allow_custom_actions = self.allow_custom_actions
 
-        allow_download_proxy = self.allow_download_proxy
+        allow_download_proxy: bool | None | Unset
+        if isinstance(self.allow_download_proxy, Unset):
+            allow_download_proxy = UNSET
+        else:
+            allow_download_proxy = self.allow_download_proxy
 
         allow_sync: bool | None | Unset
         if isinstance(self.allow_sync, Unset):
@@ -81,19 +103,43 @@ class ShareOptionsBaseSchema:
         else:
             allow_sync = self.allow_sync
 
-        allow_upload = self.allow_upload
+        allow_upload: bool | None | Unset
+        if isinstance(self.allow_upload, Unset):
+            allow_upload = UNSET
+        else:
+            allow_upload = self.allow_upload
 
-        allow_user_search_for_mentions = self.allow_user_search_for_mentions
+        allow_user_search_for_mentions: bool | None | Unset
+        if isinstance(self.allow_user_search_for_mentions, Unset):
+            allow_user_search_for_mentions = UNSET
+        else:
+            allow_user_search_for_mentions = self.allow_user_search_for_mentions
 
-        allow_view_transcriptions = self.allow_view_transcriptions
+        allow_view_transcriptions: bool | None | Unset
+        if isinstance(self.allow_view_transcriptions, Unset):
+            allow_view_transcriptions = UNSET
+        else:
+            allow_view_transcriptions = self.allow_view_transcriptions
 
-        allow_view_versions = self.allow_view_versions
+        allow_view_versions: bool | None | Unset
+        if isinstance(self.allow_view_versions, Unset):
+            allow_view_versions = UNSET
+        else:
+            allow_view_versions = self.allow_view_versions
 
-        automatic_approval_share = self.automatic_approval_share
+        automatic_approval_share: bool | None | Unset
+        if isinstance(self.automatic_approval_share, Unset):
+            automatic_approval_share = UNSET
+        else:
+            automatic_approval_share = self.automatic_approval_share
 
-        drm: str | Unset = UNSET
-        if not isinstance(self.drm, Unset):
-            drm = self.drm.value
+        drm: dict[str, Any] | None | Unset
+        if isinstance(self.drm, Unset):
+            drm = UNSET
+        elif isinstance(self.drm, ShareOptionsBaseSchemaDrmType1):
+            drm = self.drm.to_dict()
+        else:
+            drm = self.drm
 
         is_approval: bool | None | Unset
         if isinstance(self.is_approval, Unset):
@@ -136,9 +182,13 @@ class ShareOptionsBaseSchema:
         else:
             upload_storage_id = self.upload_storage_id
 
-        watermark: str | Unset = UNSET
-        if not isinstance(self.watermark, Unset):
-            watermark = self.watermark.value
+        watermark: dict[str, Any] | None | Unset
+        if isinstance(self.watermark, Unset):
+            watermark = UNSET
+        elif isinstance(self.watermark, ShareOptionsBaseSchemaWatermarkType1):
+            watermark = self.watermark.to_dict()
+        else:
+            watermark = self.watermark
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -189,6 +239,13 @@ class ShareOptionsBaseSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.share_options_base_schema_drm_type_1 import (
+            ShareOptionsBaseSchemaDrmType1,
+        )
+        from ..models.share_options_base_schema_watermark_type_1 import (
+            ShareOptionsBaseSchemaWatermarkType1,
+        )
+
         d = dict(src_dict)
         allow_approving_comments = d.pop("allow_approving_comments")
 
@@ -198,9 +255,27 @@ class ShareOptionsBaseSchema:
 
         allow_setting_approve_status = d.pop("allow_setting_approve_status")
 
-        allow_custom_actions = d.pop("allow_custom_actions", UNSET)
+        def _parse_allow_custom_actions(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        allow_download_proxy = d.pop("allow_download_proxy", UNSET)
+        allow_custom_actions = _parse_allow_custom_actions(
+            d.pop("allow_custom_actions", UNSET)
+        )
+
+        def _parse_allow_download_proxy(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        allow_download_proxy = _parse_allow_download_proxy(
+            d.pop("allow_download_proxy", UNSET)
+        )
 
         def _parse_allow_sync(data: object) -> bool | None | Unset:
             if data is None:
@@ -211,22 +286,75 @@ class ShareOptionsBaseSchema:
 
         allow_sync = _parse_allow_sync(d.pop("allow_sync", UNSET))
 
-        allow_upload = d.pop("allow_upload", UNSET)
+        def _parse_allow_upload(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        allow_user_search_for_mentions = d.pop("allow_user_search_for_mentions", UNSET)
+        allow_upload = _parse_allow_upload(d.pop("allow_upload", UNSET))
 
-        allow_view_transcriptions = d.pop("allow_view_transcriptions", UNSET)
+        def _parse_allow_user_search_for_mentions(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        allow_view_versions = d.pop("allow_view_versions", UNSET)
+        allow_user_search_for_mentions = _parse_allow_user_search_for_mentions(
+            d.pop("allow_user_search_for_mentions", UNSET)
+        )
 
-        automatic_approval_share = d.pop("automatic_approval_share", UNSET)
+        def _parse_allow_view_transcriptions(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        _drm = d.pop("drm", UNSET)
-        drm: ShareOptionsBaseSchemaDrm | Unset
-        if isinstance(_drm, Unset):
-            drm = UNSET
-        else:
-            drm = ShareOptionsBaseSchemaDrm(_drm)
+        allow_view_transcriptions = _parse_allow_view_transcriptions(
+            d.pop("allow_view_transcriptions", UNSET)
+        )
+
+        def _parse_allow_view_versions(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        allow_view_versions = _parse_allow_view_versions(
+            d.pop("allow_view_versions", UNSET)
+        )
+
+        def _parse_automatic_approval_share(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        automatic_approval_share = _parse_automatic_approval_share(
+            d.pop("automatic_approval_share", UNSET)
+        )
+
+        def _parse_drm(data: object) -> None | ShareOptionsBaseSchemaDrmType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                drm_type_1 = ShareOptionsBaseSchemaDrmType1.from_dict(data)
+
+                return drm_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | ShareOptionsBaseSchemaDrmType1 | Unset, data)
+
+        drm = _parse_drm(d.pop("drm", UNSET))
 
         def _parse_is_approval(data: object) -> bool | None | Unset:
             if data is None:
@@ -302,12 +430,24 @@ class ShareOptionsBaseSchema:
 
         upload_storage_id = _parse_upload_storage_id(d.pop("upload_storage_id", UNSET))
 
-        _watermark = d.pop("watermark", UNSET)
-        watermark: ShareOptionsBaseSchemaWatermark | Unset
-        if isinstance(_watermark, Unset):
-            watermark = UNSET
-        else:
-            watermark = ShareOptionsBaseSchemaWatermark(_watermark)
+        def _parse_watermark(
+            data: object,
+        ) -> None | ShareOptionsBaseSchemaWatermarkType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                watermark_type_1 = ShareOptionsBaseSchemaWatermarkType1.from_dict(data)
+
+                return watermark_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | ShareOptionsBaseSchemaWatermarkType1 | Unset, data)
+
+        watermark = _parse_watermark(d.pop("watermark", UNSET))
 
         share_options_base_schema = cls(
             allow_approving_comments=allow_approving_comments,

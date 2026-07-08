@@ -23,22 +23,22 @@ class SavedSearch:
     Attributes:
         criteria (SearchCriteriaSaved):
         name (str):
-        date_created (datetime.datetime | Unset):
-        date_modified (datetime.datetime | Unset):
-        favoured (bool | Unset):
+        date_created (datetime.datetime | None | Unset):
+        date_modified (datetime.datetime | None | Unset):
+        favoured (bool | None | Unset):
         group_id (None | Unset | UUID):
-        id (UUID | Unset):
-        permissions (list[str] | Unset):
+        id (None | Unset | UUID):
+        permissions (list[str] | None | Unset):
     """
 
     criteria: SearchCriteriaSaved
     name: str
-    date_created: datetime.datetime | Unset = UNSET
-    date_modified: datetime.datetime | Unset = UNSET
-    favoured: bool | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_modified: datetime.datetime | None | Unset = UNSET
+    favoured: bool | None | Unset = UNSET
     group_id: None | Unset | UUID = UNSET
-    id: UUID | Unset = UNSET
-    permissions: list[str] | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    permissions: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -46,15 +46,27 @@ class SavedSearch:
 
         name = self.name
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_modified: str | Unset = UNSET
-        if not isinstance(self.date_modified, Unset):
+        date_modified: None | str | Unset
+        if isinstance(self.date_modified, Unset):
+            date_modified = UNSET
+        elif isinstance(self.date_modified, datetime.datetime):
             date_modified = self.date_modified.isoformat()
+        else:
+            date_modified = self.date_modified
 
-        favoured = self.favoured
+        favoured: bool | None | Unset
+        if isinstance(self.favoured, Unset):
+            favoured = UNSET
+        else:
+            favoured = self.favoured
 
         group_id: None | str | Unset
         if isinstance(self.group_id, Unset):
@@ -64,12 +76,21 @@ class SavedSearch:
         else:
             group_id = self.group_id
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        permissions: list[str] | Unset = UNSET
-        if not isinstance(self.permissions, Unset):
+        permissions: list[str] | None | Unset
+        if isinstance(self.permissions, Unset):
+            permissions = UNSET
+        elif isinstance(self.permissions, list):
+            permissions = self.permissions
+
+        else:
             permissions = self.permissions
 
         field_dict: dict[str, Any] = {}
@@ -104,21 +125,48 @@ class SavedSearch:
 
         name = d.pop("name")
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        _date_modified = d.pop("date_modified", UNSET)
-        date_modified: datetime.datetime | Unset
-        if isinstance(_date_modified, Unset):
-            date_modified = UNSET
-        else:
-            date_modified = datetime.datetime.fromisoformat(_date_modified)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        favoured = d.pop("favoured", UNSET)
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
+
+        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_modified_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_modified_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
+
+        def _parse_favoured(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        favoured = _parse_favoured(d.pop("favoured", UNSET))
 
         def _parse_group_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -137,14 +185,39 @@ class SavedSearch:
 
         group_id = _parse_group_id(d.pop("group_id", UNSET))
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
 
-        permissions = cast(list[str], d.pop("permissions", UNSET))
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_permissions(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                permissions_type_0 = cast(list[str], data)
+
+                return permissions_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        permissions = _parse_permissions(d.pop("permissions", UNSET))
 
         saved_search = cls(
             criteria=criteria,

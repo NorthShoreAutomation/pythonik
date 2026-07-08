@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,22 +15,34 @@ T = TypeVar("T", bound="AnalysisProfileGoogleVideoIntelligenceSettingsSchema")
 class AnalysisProfileGoogleVideoIntelligenceSettingsSchema:
     """
     Attributes:
-        frame_confidence_threshold (float | Unset):
-        is_system (bool | Unset):
-        video_confidence_threshold (float | Unset):
+        frame_confidence_threshold (float | None | Unset):
+        is_system (bool | None | Unset):
+        video_confidence_threshold (float | None | Unset):
     """
 
-    frame_confidence_threshold: float | Unset = UNSET
-    is_system: bool | Unset = UNSET
-    video_confidence_threshold: float | Unset = UNSET
+    frame_confidence_threshold: float | None | Unset = UNSET
+    is_system: bool | None | Unset = UNSET
+    video_confidence_threshold: float | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        frame_confidence_threshold = self.frame_confidence_threshold
+        frame_confidence_threshold: float | None | Unset
+        if isinstance(self.frame_confidence_threshold, Unset):
+            frame_confidence_threshold = UNSET
+        else:
+            frame_confidence_threshold = self.frame_confidence_threshold
 
-        is_system = self.is_system
+        is_system: bool | None | Unset
+        if isinstance(self.is_system, Unset):
+            is_system = UNSET
+        else:
+            is_system = self.is_system
 
-        video_confidence_threshold = self.video_confidence_threshold
+        video_confidence_threshold: float | None | Unset
+        if isinstance(self.video_confidence_threshold, Unset):
+            video_confidence_threshold = UNSET
+        else:
+            video_confidence_threshold = self.video_confidence_threshold
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -47,11 +59,37 @@ class AnalysisProfileGoogleVideoIntelligenceSettingsSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        frame_confidence_threshold = d.pop("frame_confidence_threshold", UNSET)
 
-        is_system = d.pop("is_system", UNSET)
+        def _parse_frame_confidence_threshold(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
 
-        video_confidence_threshold = d.pop("video_confidence_threshold", UNSET)
+        frame_confidence_threshold = _parse_frame_confidence_threshold(
+            d.pop("frame_confidence_threshold", UNSET)
+        )
+
+        def _parse_is_system(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        is_system = _parse_is_system(d.pop("is_system", UNSET))
+
+        def _parse_video_confidence_threshold(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        video_confidence_threshold = _parse_video_confidence_threshold(
+            d.pop("video_confidence_threshold", UNSET)
+        )
 
         analysis_profile_google_video_intelligence_settings_schema = cls(
             frame_confidence_threshold=frame_confidence_threshold,

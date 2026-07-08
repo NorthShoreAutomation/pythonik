@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -20,31 +20,41 @@ class CriteriaFilter:
     """
     Attributes:
         operator (str):
-        filters (list[CriteriaFilter] | Unset):
-        terms (list[CriteriaTerm] | Unset):
+        filters (list[CriteriaFilter] | None | Unset):
+        terms (list[CriteriaTerm] | None | Unset):
     """
 
     operator: str
-    filters: list[CriteriaFilter] | Unset = UNSET
-    terms: list[CriteriaTerm] | Unset = UNSET
+    filters: list[CriteriaFilter] | None | Unset = UNSET
+    terms: list[CriteriaTerm] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         operator = self.operator
 
-        filters: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.filters, Unset):
+        filters: list[dict[str, Any]] | None | Unset
+        if isinstance(self.filters, Unset):
+            filters = UNSET
+        elif isinstance(self.filters, list):
             filters = []
-            for filters_item_data in self.filters:
-                filters_item = filters_item_data.to_dict()
-                filters.append(filters_item)
+            for filters_type_0_item_data in self.filters:
+                filters_type_0_item = filters_type_0_item_data.to_dict()
+                filters.append(filters_type_0_item)
 
-        terms: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.terms, Unset):
+        else:
+            filters = self.filters
+
+        terms: list[dict[str, Any]] | None | Unset
+        if isinstance(self.terms, Unset):
+            terms = UNSET
+        elif isinstance(self.terms, list):
             terms = []
-            for terms_item_data in self.terms:
-                terms_item = terms_item_data.to_dict()
-                terms.append(terms_item)
+            for terms_type_0_item_data in self.terms:
+                terms_type_0_item = terms_type_0_item_data.to_dict()
+                terms.append(terms_type_0_item)
+
+        else:
+            terms = self.terms
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -67,23 +77,51 @@ class CriteriaFilter:
         d = dict(src_dict)
         operator = d.pop("operator")
 
-        _filters = d.pop("filters", UNSET)
-        filters: list[CriteriaFilter] | Unset = UNSET
-        if _filters is not UNSET:
-            filters = []
-            for filters_item_data in _filters:
-                filters_item = CriteriaFilter.from_dict(filters_item_data)
+        def _parse_filters(data: object) -> list[CriteriaFilter] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                filters_type_0 = []
+                _filters_type_0 = data
+                for filters_type_0_item_data in _filters_type_0:
+                    filters_type_0_item = CriteriaFilter.from_dict(
+                        filters_type_0_item_data
+                    )
 
-                filters.append(filters_item)
+                    filters_type_0.append(filters_type_0_item)
 
-        _terms = d.pop("terms", UNSET)
-        terms: list[CriteriaTerm] | Unset = UNSET
-        if _terms is not UNSET:
-            terms = []
-            for terms_item_data in _terms:
-                terms_item = CriteriaTerm.from_dict(terms_item_data)
+                return filters_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[CriteriaFilter] | None | Unset, data)
 
-                terms.append(terms_item)
+        filters = _parse_filters(d.pop("filters", UNSET))
+
+        def _parse_terms(data: object) -> list[CriteriaTerm] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                terms_type_0 = []
+                _terms_type_0 = data
+                for terms_type_0_item_data in _terms_type_0:
+                    terms_type_0_item = CriteriaTerm.from_dict(terms_type_0_item_data)
+
+                    terms_type_0.append(terms_type_0_item)
+
+                return terms_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[CriteriaTerm] | None | Unset, data)
+
+        terms = _parse_terms(d.pop("terms", UNSET))
 
         criteria_filter = cls(
             operator=operator,

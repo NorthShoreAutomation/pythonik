@@ -15,30 +15,46 @@ T = TypeVar("T", bound="MultipartB2StartUpload")
 class MultipartB2StartUpload:
     """
     Attributes:
-        authorization_token (str | Unset):
-        error (str | Unset):
-        error_code (str | Unset):
-        status (str | Unset):
+        authorization_token (None | str | Unset):
+        error (None | str | Unset):
+        error_code (None | str | Unset):
+        status (None | str | Unset):
         upload_file_id (None | str | Unset):
-        upload_url (str | Unset):
+        upload_url (None | str | Unset):
     """
 
-    authorization_token: str | Unset = UNSET
-    error: str | Unset = UNSET
-    error_code: str | Unset = UNSET
-    status: str | Unset = UNSET
+    authorization_token: None | str | Unset = UNSET
+    error: None | str | Unset = UNSET
+    error_code: None | str | Unset = UNSET
+    status: None | str | Unset = UNSET
     upload_file_id: None | str | Unset = UNSET
-    upload_url: str | Unset = UNSET
+    upload_url: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        authorization_token = self.authorization_token
+        authorization_token: None | str | Unset
+        if isinstance(self.authorization_token, Unset):
+            authorization_token = UNSET
+        else:
+            authorization_token = self.authorization_token
 
-        error = self.error
+        error: None | str | Unset
+        if isinstance(self.error, Unset):
+            error = UNSET
+        else:
+            error = self.error
 
-        error_code = self.error_code
+        error_code: None | str | Unset
+        if isinstance(self.error_code, Unset):
+            error_code = UNSET
+        else:
+            error_code = self.error_code
 
-        status = self.status
+        status: None | str | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        else:
+            status = self.status
 
         upload_file_id: None | str | Unset
         if isinstance(self.upload_file_id, Unset):
@@ -46,7 +62,11 @@ class MultipartB2StartUpload:
         else:
             upload_file_id = self.upload_file_id
 
-        upload_url = self.upload_url
+        upload_url: None | str | Unset
+        if isinstance(self.upload_url, Unset):
+            upload_url = UNSET
+        else:
+            upload_url = self.upload_url
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -69,13 +89,44 @@ class MultipartB2StartUpload:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        authorization_token = d.pop("authorization_token", UNSET)
 
-        error = d.pop("error", UNSET)
+        def _parse_authorization_token(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        error_code = d.pop("error_code", UNSET)
+        authorization_token = _parse_authorization_token(
+            d.pop("authorization_token", UNSET)
+        )
 
-        status = d.pop("status", UNSET)
+        def _parse_error(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        error = _parse_error(d.pop("error", UNSET))
+
+        def _parse_error_code(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        error_code = _parse_error_code(d.pop("error_code", UNSET))
+
+        def _parse_status(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
 
         def _parse_upload_file_id(data: object) -> None | str | Unset:
             if data is None:
@@ -86,7 +137,14 @@ class MultipartB2StartUpload:
 
         upload_file_id = _parse_upload_file_id(d.pop("upload_file_id", UNSET))
 
-        upload_url = d.pop("upload_url", UNSET)
+        def _parse_upload_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        upload_url = _parse_upload_url(d.pop("upload_url", UNSET))
 
         multipart_b2_start_upload = cls(
             authorization_token=authorization_token,

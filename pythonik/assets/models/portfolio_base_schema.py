@@ -2,16 +2,18 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.portfolio_base_schema_status import PortfolioBaseSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
+    from ..models.portfolio_base_schema_status_type_1 import (
+        PortfolioBaseSchemaStatusType1,
+    )
     from ..models.portfolio_config import PortfolioConfig
 
 
@@ -23,61 +25,98 @@ class PortfolioBaseSchema:
     """
     Attributes:
         name (str):
-        config (PortfolioConfig | Unset):
-        created_by_user (UUID | Unset):
-        date_created (datetime.datetime | Unset):
-        date_modified (datetime.datetime | Unset):
-        id (UUID | Unset):
-        playlist_id (UUID | Unset):
-        status (PortfolioBaseSchemaStatus | Unset):
-        system_domain_id (UUID | Unset):
+        config (None | PortfolioConfig | Unset):
+        created_by_user (None | Unset | UUID):
+        date_created (datetime.datetime | None | Unset):
+        date_modified (datetime.datetime | None | Unset):
+        id (None | Unset | UUID):
+        playlist_id (None | Unset | UUID):
+        status (None | PortfolioBaseSchemaStatusType1 | Unset):
+        system_domain_id (None | Unset | UUID):
     """
 
     name: str
-    config: PortfolioConfig | Unset = UNSET
-    created_by_user: UUID | Unset = UNSET
-    date_created: datetime.datetime | Unset = UNSET
-    date_modified: datetime.datetime | Unset = UNSET
-    id: UUID | Unset = UNSET
-    playlist_id: UUID | Unset = UNSET
-    status: PortfolioBaseSchemaStatus | Unset = UNSET
-    system_domain_id: UUID | Unset = UNSET
+    config: None | PortfolioConfig | Unset = UNSET
+    created_by_user: None | Unset | UUID = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_modified: datetime.datetime | None | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    playlist_id: None | Unset | UUID = UNSET
+    status: None | PortfolioBaseSchemaStatusType1 | Unset = UNSET
+    system_domain_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.portfolio_base_schema_status_type_1 import (
+            PortfolioBaseSchemaStatusType1,
+        )
+        from ..models.portfolio_config import PortfolioConfig
+
         name = self.name
 
-        config: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.config, Unset):
+        config: dict[str, Any] | None | Unset
+        if isinstance(self.config, Unset):
+            config = UNSET
+        elif isinstance(self.config, PortfolioConfig):
             config = self.config.to_dict()
+        else:
+            config = self.config
 
-        created_by_user: str | Unset = UNSET
-        if not isinstance(self.created_by_user, Unset):
+        created_by_user: None | str | Unset
+        if isinstance(self.created_by_user, Unset):
+            created_by_user = UNSET
+        elif isinstance(self.created_by_user, UUID):
             created_by_user = str(self.created_by_user)
+        else:
+            created_by_user = self.created_by_user
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_modified: str | Unset = UNSET
-        if not isinstance(self.date_modified, Unset):
+        date_modified: None | str | Unset
+        if isinstance(self.date_modified, Unset):
+            date_modified = UNSET
+        elif isinstance(self.date_modified, datetime.datetime):
             date_modified = self.date_modified.isoformat()
+        else:
+            date_modified = self.date_modified
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        playlist_id: str | Unset = UNSET
-        if not isinstance(self.playlist_id, Unset):
+        playlist_id: None | str | Unset
+        if isinstance(self.playlist_id, Unset):
+            playlist_id = UNSET
+        elif isinstance(self.playlist_id, UUID):
             playlist_id = str(self.playlist_id)
+        else:
+            playlist_id = self.playlist_id
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        status: dict[str, Any] | None | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        elif isinstance(self.status, PortfolioBaseSchemaStatusType1):
+            status = self.status.to_dict()
+        else:
+            status = self.status
 
-        system_domain_id: str | Unset = UNSET
-        if not isinstance(self.system_domain_id, Unset):
+        system_domain_id: None | str | Unset
+        if isinstance(self.system_domain_id, Unset):
+            system_domain_id = UNSET
+        elif isinstance(self.system_domain_id, UUID):
             system_domain_id = str(self.system_domain_id)
+        else:
+            system_domain_id = self.system_domain_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -107,66 +146,151 @@ class PortfolioBaseSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.portfolio_base_schema_status_type_1 import (
+            PortfolioBaseSchemaStatusType1,
+        )
         from ..models.portfolio_config import PortfolioConfig
 
         d = dict(src_dict)
         name = d.pop("name")
 
-        _config = d.pop("config", UNSET)
-        config: PortfolioConfig | Unset
-        if isinstance(_config, Unset):
-            config = UNSET
-        else:
-            config = PortfolioConfig.from_dict(_config)
+        def _parse_config(data: object) -> None | PortfolioConfig | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                config_type_1 = PortfolioConfig.from_dict(data)
 
-        _created_by_user = d.pop("created_by_user", UNSET)
-        created_by_user: UUID | Unset
-        if isinstance(_created_by_user, Unset):
-            created_by_user = UNSET
-        else:
-            created_by_user = UUID(_created_by_user)
+                return config_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | PortfolioConfig | Unset, data)
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        config = _parse_config(d.pop("config", UNSET))
 
-        _date_modified = d.pop("date_modified", UNSET)
-        date_modified: datetime.datetime | Unset
-        if isinstance(_date_modified, Unset):
-            date_modified = UNSET
-        else:
-            date_modified = datetime.datetime.fromisoformat(_date_modified)
+        def _parse_created_by_user(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                created_by_user_type_0 = UUID(data)
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+                return created_by_user_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        _playlist_id = d.pop("playlist_id", UNSET)
-        playlist_id: UUID | Unset
-        if isinstance(_playlist_id, Unset):
-            playlist_id = UNSET
-        else:
-            playlist_id = UUID(_playlist_id)
+        created_by_user = _parse_created_by_user(d.pop("created_by_user", UNSET))
 
-        _status = d.pop("status", UNSET)
-        status: PortfolioBaseSchemaStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = PortfolioBaseSchemaStatus(_status)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        _system_domain_id = d.pop("system_domain_id", UNSET)
-        system_domain_id: UUID | Unset
-        if isinstance(_system_domain_id, Unset):
-            system_domain_id = UNSET
-        else:
-            system_domain_id = UUID(_system_domain_id)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
+
+        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_modified_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_modified_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
+
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_playlist_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                playlist_id_type_0 = UUID(data)
+
+                return playlist_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        playlist_id = _parse_playlist_id(d.pop("playlist_id", UNSET))
+
+        def _parse_status(
+            data: object,
+        ) -> None | PortfolioBaseSchemaStatusType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                status_type_1 = PortfolioBaseSchemaStatusType1.from_dict(data)
+
+                return status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | PortfolioBaseSchemaStatusType1 | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
+
+        def _parse_system_domain_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                system_domain_id_type_0 = UUID(data)
+
+                return system_domain_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
 
         portfolio_base_schema = cls(
             name=name,

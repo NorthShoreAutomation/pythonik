@@ -15,22 +15,26 @@ T = TypeVar("T", bound="MultipartUploadCleanupSchema")
 class MultipartUploadCleanupSchema:
     """
     Attributes:
-        abort_upload (bool | Unset):
+        abort_upload (bool | None | Unset):
         parts_group_number (int | None | Unset):
-        parts_number (int | Unset):
-        temporary (bool | Unset):  Default: False.
-        upload_id (str | Unset):
+        parts_number (int | None | Unset):
+        temporary (bool | None | Unset):  Default: False.
+        upload_id (None | str | Unset):
     """
 
-    abort_upload: bool | Unset = UNSET
+    abort_upload: bool | None | Unset = UNSET
     parts_group_number: int | None | Unset = UNSET
-    parts_number: int | Unset = UNSET
-    temporary: bool | Unset = False
-    upload_id: str | Unset = UNSET
+    parts_number: int | None | Unset = UNSET
+    temporary: bool | None | Unset = False
+    upload_id: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        abort_upload = self.abort_upload
+        abort_upload: bool | None | Unset
+        if isinstance(self.abort_upload, Unset):
+            abort_upload = UNSET
+        else:
+            abort_upload = self.abort_upload
 
         parts_group_number: int | None | Unset
         if isinstance(self.parts_group_number, Unset):
@@ -38,11 +42,23 @@ class MultipartUploadCleanupSchema:
         else:
             parts_group_number = self.parts_group_number
 
-        parts_number = self.parts_number
+        parts_number: int | None | Unset
+        if isinstance(self.parts_number, Unset):
+            parts_number = UNSET
+        else:
+            parts_number = self.parts_number
 
-        temporary = self.temporary
+        temporary: bool | None | Unset
+        if isinstance(self.temporary, Unset):
+            temporary = UNSET
+        else:
+            temporary = self.temporary
 
-        upload_id = self.upload_id
+        upload_id: None | str | Unset
+        if isinstance(self.upload_id, Unset):
+            upload_id = UNSET
+        else:
+            upload_id = self.upload_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -63,7 +79,15 @@ class MultipartUploadCleanupSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        abort_upload = d.pop("abort_upload", UNSET)
+
+        def _parse_abort_upload(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        abort_upload = _parse_abort_upload(d.pop("abort_upload", UNSET))
 
         def _parse_parts_group_number(data: object) -> int | None | Unset:
             if data is None:
@@ -76,11 +100,32 @@ class MultipartUploadCleanupSchema:
             d.pop("parts_group_number", UNSET)
         )
 
-        parts_number = d.pop("parts_number", UNSET)
+        def _parse_parts_number(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        temporary = d.pop("temporary", UNSET)
+        parts_number = _parse_parts_number(d.pop("parts_number", UNSET))
 
-        upload_id = d.pop("upload_id", UNSET)
+        def _parse_temporary(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        temporary = _parse_temporary(d.pop("temporary", UNSET))
+
+        def _parse_upload_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        upload_id = _parse_upload_id(d.pop("upload_id", UNSET))
 
         multipart_upload_cleanup_schema = cls(
             abort_upload=abort_upload,

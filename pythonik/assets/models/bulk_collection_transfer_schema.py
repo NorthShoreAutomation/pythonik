@@ -29,28 +29,28 @@ class BulkCollectionTransferSchema:
         include_assets (bool):
         include_collections (bool):
         job_id (UUID):
-        callback_chunk_size (int | Unset):
+        callback_chunk_size (int | None | Unset):
         callback_data (BulkCollectionTransferSchemaCallbackDataType0 | None | Unset):
         callback_data_request (BulkCollectionTransferSchemaCallbackDataRequestType0 | None | Unset):
-        callback_url (str | Unset):
-        destination_directory_path (str | Unset):
-        keep_collection_structure (bool | Unset):
-        keep_parent_collection_structure (bool | Unset):
+        callback_url (None | str | Unset):
+        destination_directory_path (None | str | Unset):
+        keep_collection_structure (bool | None | Unset):
+        keep_parent_collection_structure (bool | None | Unset):
     """
 
     collection_ids: list[UUID]
     include_assets: bool
     include_collections: bool
     job_id: UUID
-    callback_chunk_size: int | Unset = UNSET
+    callback_chunk_size: int | None | Unset = UNSET
     callback_data: BulkCollectionTransferSchemaCallbackDataType0 | None | Unset = UNSET
     callback_data_request: (
         BulkCollectionTransferSchemaCallbackDataRequestType0 | None | Unset
     ) = UNSET
-    callback_url: str | Unset = UNSET
-    destination_directory_path: str | Unset = UNSET
-    keep_collection_structure: bool | Unset = UNSET
-    keep_parent_collection_structure: bool | Unset = UNSET
+    callback_url: None | str | Unset = UNSET
+    destination_directory_path: None | str | Unset = UNSET
+    keep_collection_structure: bool | None | Unset = UNSET
+    keep_parent_collection_structure: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -72,7 +72,11 @@ class BulkCollectionTransferSchema:
 
         job_id = str(self.job_id)
 
-        callback_chunk_size = self.callback_chunk_size
+        callback_chunk_size: int | None | Unset
+        if isinstance(self.callback_chunk_size, Unset):
+            callback_chunk_size = UNSET
+        else:
+            callback_chunk_size = self.callback_chunk_size
 
         callback_data: dict[str, Any] | None | Unset
         if isinstance(self.callback_data, Unset):
@@ -95,13 +99,29 @@ class BulkCollectionTransferSchema:
         else:
             callback_data_request = self.callback_data_request
 
-        callback_url = self.callback_url
+        callback_url: None | str | Unset
+        if isinstance(self.callback_url, Unset):
+            callback_url = UNSET
+        else:
+            callback_url = self.callback_url
 
-        destination_directory_path = self.destination_directory_path
+        destination_directory_path: None | str | Unset
+        if isinstance(self.destination_directory_path, Unset):
+            destination_directory_path = UNSET
+        else:
+            destination_directory_path = self.destination_directory_path
 
-        keep_collection_structure = self.keep_collection_structure
+        keep_collection_structure: bool | None | Unset
+        if isinstance(self.keep_collection_structure, Unset):
+            keep_collection_structure = UNSET
+        else:
+            keep_collection_structure = self.keep_collection_structure
 
-        keep_parent_collection_structure = self.keep_parent_collection_structure
+        keep_parent_collection_structure: bool | None | Unset
+        if isinstance(self.keep_parent_collection_structure, Unset):
+            keep_parent_collection_structure = UNSET
+        else:
+            keep_parent_collection_structure = self.keep_parent_collection_structure
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -155,7 +175,16 @@ class BulkCollectionTransferSchema:
 
         job_id = UUID(d.pop("job_id"))
 
-        callback_chunk_size = d.pop("callback_chunk_size", UNSET)
+        def _parse_callback_chunk_size(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        callback_chunk_size = _parse_callback_chunk_size(
+            d.pop("callback_chunk_size", UNSET)
+        )
 
         def _parse_callback_data(
             data: object,
@@ -206,14 +235,48 @@ class BulkCollectionTransferSchema:
             d.pop("callback_data_request", UNSET)
         )
 
-        callback_url = d.pop("callback_url", UNSET)
+        def _parse_callback_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        destination_directory_path = d.pop("destination_directory_path", UNSET)
+        callback_url = _parse_callback_url(d.pop("callback_url", UNSET))
 
-        keep_collection_structure = d.pop("keep_collection_structure", UNSET)
+        def _parse_destination_directory_path(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        keep_parent_collection_structure = d.pop(
-            "keep_parent_collection_structure", UNSET
+        destination_directory_path = _parse_destination_directory_path(
+            d.pop("destination_directory_path", UNSET)
+        )
+
+        def _parse_keep_collection_structure(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        keep_collection_structure = _parse_keep_collection_structure(
+            d.pop("keep_collection_structure", UNSET)
+        )
+
+        def _parse_keep_parent_collection_structure(
+            data: object,
+        ) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        keep_parent_collection_structure = _parse_keep_parent_collection_structure(
+            d.pop("keep_parent_collection_structure", UNSET)
         )
 
         bulk_collection_transfer_schema = cls(

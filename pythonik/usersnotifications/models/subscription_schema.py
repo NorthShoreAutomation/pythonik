@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -18,63 +18,99 @@ class SubscriptionSchema:
     """
     Attributes:
         object_type (str):
-        date_created (datetime.datetime | Unset):
-        date_modified (datetime.datetime | Unset):
-        event_type (str | Unset):
-        id (UUID | Unset):
-        object_id (UUID | Unset):
-        sub_object_id (UUID | Unset):
-        sub_object_type (str | Unset):
-        system_domain_id (UUID | Unset):
-        user_id (UUID | Unset):
+        date_created (datetime.datetime | None | Unset):
+        date_modified (datetime.datetime | None | Unset):
+        event_type (None | str | Unset):
+        id (None | Unset | UUID):
+        object_id (None | Unset | UUID):
+        sub_object_id (None | Unset | UUID):
+        sub_object_type (None | str | Unset):
+        system_domain_id (None | Unset | UUID):
+        user_id (None | Unset | UUID):
     """
 
     object_type: str
-    date_created: datetime.datetime | Unset = UNSET
-    date_modified: datetime.datetime | Unset = UNSET
-    event_type: str | Unset = UNSET
-    id: UUID | Unset = UNSET
-    object_id: UUID | Unset = UNSET
-    sub_object_id: UUID | Unset = UNSET
-    sub_object_type: str | Unset = UNSET
-    system_domain_id: UUID | Unset = UNSET
-    user_id: UUID | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_modified: datetime.datetime | None | Unset = UNSET
+    event_type: None | str | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    object_id: None | Unset | UUID = UNSET
+    sub_object_id: None | Unset | UUID = UNSET
+    sub_object_type: None | str | Unset = UNSET
+    system_domain_id: None | Unset | UUID = UNSET
+    user_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         object_type = self.object_type
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_modified: str | Unset = UNSET
-        if not isinstance(self.date_modified, Unset):
+        date_modified: None | str | Unset
+        if isinstance(self.date_modified, Unset):
+            date_modified = UNSET
+        elif isinstance(self.date_modified, datetime.datetime):
             date_modified = self.date_modified.isoformat()
+        else:
+            date_modified = self.date_modified
 
-        event_type = self.event_type
+        event_type: None | str | Unset
+        if isinstance(self.event_type, Unset):
+            event_type = UNSET
+        else:
+            event_type = self.event_type
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        object_id: str | Unset = UNSET
-        if not isinstance(self.object_id, Unset):
+        object_id: None | str | Unset
+        if isinstance(self.object_id, Unset):
+            object_id = UNSET
+        elif isinstance(self.object_id, UUID):
             object_id = str(self.object_id)
+        else:
+            object_id = self.object_id
 
-        sub_object_id: str | Unset = UNSET
-        if not isinstance(self.sub_object_id, Unset):
+        sub_object_id: None | str | Unset
+        if isinstance(self.sub_object_id, Unset):
+            sub_object_id = UNSET
+        elif isinstance(self.sub_object_id, UUID):
             sub_object_id = str(self.sub_object_id)
+        else:
+            sub_object_id = self.sub_object_id
 
-        sub_object_type = self.sub_object_type
+        sub_object_type: None | str | Unset
+        if isinstance(self.sub_object_type, Unset):
+            sub_object_type = UNSET
+        else:
+            sub_object_type = self.sub_object_type
 
-        system_domain_id: str | Unset = UNSET
-        if not isinstance(self.system_domain_id, Unset):
+        system_domain_id: None | str | Unset
+        if isinstance(self.system_domain_id, Unset):
+            system_domain_id = UNSET
+        elif isinstance(self.system_domain_id, UUID):
             system_domain_id = str(self.system_domain_id)
+        else:
+            system_domain_id = self.system_domain_id
 
-        user_id: str | Unset = UNSET
-        if not isinstance(self.user_id, Unset):
+        user_id: None | str | Unset
+        if isinstance(self.user_id, Unset):
+            user_id = UNSET
+        elif isinstance(self.user_id, UUID):
             user_id = str(self.user_id)
+        else:
+            user_id = self.user_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -109,58 +145,142 @@ class SubscriptionSchema:
         d = dict(src_dict)
         object_type = d.pop("object_type")
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        _date_modified = d.pop("date_modified", UNSET)
-        date_modified: datetime.datetime | Unset
-        if isinstance(_date_modified, Unset):
-            date_modified = UNSET
-        else:
-            date_modified = datetime.datetime.fromisoformat(_date_modified)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        event_type = d.pop("event_type", UNSET)
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_modified_type_0 = datetime.datetime.fromisoformat(data)
 
-        _object_id = d.pop("object_id", UNSET)
-        object_id: UUID | Unset
-        if isinstance(_object_id, Unset):
-            object_id = UNSET
-        else:
-            object_id = UUID(_object_id)
+                return date_modified_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        _sub_object_id = d.pop("sub_object_id", UNSET)
-        sub_object_id: UUID | Unset
-        if isinstance(_sub_object_id, Unset):
-            sub_object_id = UNSET
-        else:
-            sub_object_id = UUID(_sub_object_id)
+        date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
 
-        sub_object_type = d.pop("sub_object_type", UNSET)
+        def _parse_event_type(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        _system_domain_id = d.pop("system_domain_id", UNSET)
-        system_domain_id: UUID | Unset
-        if isinstance(_system_domain_id, Unset):
-            system_domain_id = UNSET
-        else:
-            system_domain_id = UUID(_system_domain_id)
+        event_type = _parse_event_type(d.pop("event_type", UNSET))
 
-        _user_id = d.pop("user_id", UNSET)
-        user_id: UUID | Unset
-        if isinstance(_user_id, Unset):
-            user_id = UNSET
-        else:
-            user_id = UUID(_user_id)
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_object_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                object_id_type_0 = UUID(data)
+
+                return object_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        object_id = _parse_object_id(d.pop("object_id", UNSET))
+
+        def _parse_sub_object_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                sub_object_id_type_0 = UUID(data)
+
+                return sub_object_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        sub_object_id = _parse_sub_object_id(d.pop("sub_object_id", UNSET))
+
+        def _parse_sub_object_type(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        sub_object_type = _parse_sub_object_type(d.pop("sub_object_type", UNSET))
+
+        def _parse_system_domain_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                system_domain_id_type_0 = UUID(data)
+
+                return system_domain_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
+
+        def _parse_user_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                user_id_type_0 = UUID(data)
+
+                return user_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        user_id = _parse_user_id(d.pop("user_id", UNSET))
 
         subscription_schema = cls(
             object_type=object_type,

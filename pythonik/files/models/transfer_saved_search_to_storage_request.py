@@ -21,40 +21,58 @@ class TransferSavedSearchToStorageRequest:
     """
     Attributes:
         id (UUID): ID of the object to transfer.
-        all_versions (bool | Unset):  Default: False.
-        delete_only_from_source (bool | Unset):  Default: False.
-        delete_only_from_source_context (SourceContext | Unset):
-        delete_original (bool | Unset):  Default: False.
+        all_versions (bool | None | Unset):  Default: False.
+        delete_only_from_source (bool | None | Unset):  Default: False.
+        delete_only_from_source_context (None | SourceContext | Unset):
+        delete_original (bool | None | Unset):  Default: False.
         destination_directory_path (None | str | Unset):
-        formats (list[str] | Unset): List of format names to transfer. If not specified, all formats will be
+        formats (list[str] | None | Unset): List of format names to transfer. If not specified, all formats will be
             transferred.
         preferred_original_storage_id (None | Unset | UUID):
     """
 
     id: UUID
-    all_versions: bool | Unset = False
-    delete_only_from_source: bool | Unset = False
-    delete_only_from_source_context: SourceContext | Unset = UNSET
-    delete_original: bool | Unset = False
+    all_versions: bool | None | Unset = False
+    delete_only_from_source: bool | None | Unset = False
+    delete_only_from_source_context: None | SourceContext | Unset = UNSET
+    delete_original: bool | None | Unset = False
     destination_directory_path: None | str | Unset = UNSET
-    formats: list[str] | Unset = UNSET
+    formats: list[str] | None | Unset = UNSET
     preferred_original_storage_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.source_context import SourceContext
+
         id = str(self.id)
 
-        all_versions = self.all_versions
+        all_versions: bool | None | Unset
+        if isinstance(self.all_versions, Unset):
+            all_versions = UNSET
+        else:
+            all_versions = self.all_versions
 
-        delete_only_from_source = self.delete_only_from_source
+        delete_only_from_source: bool | None | Unset
+        if isinstance(self.delete_only_from_source, Unset):
+            delete_only_from_source = UNSET
+        else:
+            delete_only_from_source = self.delete_only_from_source
 
-        delete_only_from_source_context: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.delete_only_from_source_context, Unset):
+        delete_only_from_source_context: dict[str, Any] | None | Unset
+        if isinstance(self.delete_only_from_source_context, Unset):
+            delete_only_from_source_context = UNSET
+        elif isinstance(self.delete_only_from_source_context, SourceContext):
             delete_only_from_source_context = (
                 self.delete_only_from_source_context.to_dict()
             )
+        else:
+            delete_only_from_source_context = self.delete_only_from_source_context
 
-        delete_original = self.delete_original
+        delete_original: bool | None | Unset
+        if isinstance(self.delete_original, Unset):
+            delete_original = UNSET
+        else:
+            delete_original = self.delete_original
 
         destination_directory_path: None | str | Unset
         if isinstance(self.destination_directory_path, Unset):
@@ -62,8 +80,13 @@ class TransferSavedSearchToStorageRequest:
         else:
             destination_directory_path = self.destination_directory_path
 
-        formats: list[str] | Unset = UNSET
-        if not isinstance(self.formats, Unset):
+        formats: list[str] | None | Unset
+        if isinstance(self.formats, Unset):
+            formats = UNSET
+        elif isinstance(self.formats, list):
+            formats = self.formats
+
+        else:
             formats = self.formats
 
         preferred_original_storage_id: None | str | Unset
@@ -107,22 +130,55 @@ class TransferSavedSearchToStorageRequest:
         d = dict(src_dict)
         id = UUID(d.pop("id"))
 
-        all_versions = d.pop("all_versions", UNSET)
+        def _parse_all_versions(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        delete_only_from_source = d.pop("delete_only_from_source", UNSET)
+        all_versions = _parse_all_versions(d.pop("all_versions", UNSET))
 
-        _delete_only_from_source_context = d.pop(
-            "delete_only_from_source_context", UNSET
+        def _parse_delete_only_from_source(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        delete_only_from_source = _parse_delete_only_from_source(
+            d.pop("delete_only_from_source", UNSET)
         )
-        delete_only_from_source_context: SourceContext | Unset
-        if isinstance(_delete_only_from_source_context, Unset):
-            delete_only_from_source_context = UNSET
-        else:
-            delete_only_from_source_context = SourceContext.from_dict(
-                _delete_only_from_source_context
-            )
 
-        delete_original = d.pop("delete_original", UNSET)
+        def _parse_delete_only_from_source_context(
+            data: object,
+        ) -> None | SourceContext | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                delete_only_from_source_context_type_1 = SourceContext.from_dict(data)
+
+                return delete_only_from_source_context_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | SourceContext | Unset, data)
+
+        delete_only_from_source_context = _parse_delete_only_from_source_context(
+            d.pop("delete_only_from_source_context", UNSET)
+        )
+
+        def _parse_delete_original(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        delete_original = _parse_delete_original(d.pop("delete_original", UNSET))
 
         def _parse_destination_directory_path(data: object) -> None | str | Unset:
             if data is None:
@@ -135,7 +191,22 @@ class TransferSavedSearchToStorageRequest:
             d.pop("destination_directory_path", UNSET)
         )
 
-        formats = cast(list[str], d.pop("formats", UNSET))
+        def _parse_formats(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                formats_type_0 = cast(list[str], data)
+
+                return formats_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        formats = _parse_formats(d.pop("formats", UNSET))
 
         def _parse_preferred_original_storage_id(data: object) -> None | Unset | UUID:
             if data is None:

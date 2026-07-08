@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,14 +15,18 @@ T = TypeVar("T", bound="TransferBaseSchema")
 class TransferBaseSchema:
     """
     Attributes:
-        destination_directory_path (str | Unset):
+        destination_directory_path (None | str | Unset):
     """
 
-    destination_directory_path: str | Unset = UNSET
+    destination_directory_path: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        destination_directory_path = self.destination_directory_path
+        destination_directory_path: None | str | Unset
+        if isinstance(self.destination_directory_path, Unset):
+            destination_directory_path = UNSET
+        else:
+            destination_directory_path = self.destination_directory_path
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -35,7 +39,17 @@ class TransferBaseSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        destination_directory_path = d.pop("destination_directory_path", UNSET)
+
+        def _parse_destination_directory_path(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        destination_directory_path = _parse_destination_directory_path(
+            d.pop("destination_directory_path", UNSET)
+        )
 
         transfer_base_schema = cls(
             destination_directory_path=destination_directory_path,

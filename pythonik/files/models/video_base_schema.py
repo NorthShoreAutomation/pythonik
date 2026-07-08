@@ -1,13 +1,18 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.video_base_schema_scaling_method import VideoBaseSchemaScalingMethod
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.video_base_schema_scaling_method_type_1 import (
+        VideoBaseSchemaScalingMethodType1,
+    )
+
 
 T = TypeVar("T", bound="VideoBaseSchema")
 
@@ -16,48 +21,60 @@ T = TypeVar("T", bound="VideoBaseSchema")
 class VideoBaseSchema:
     """
     Attributes:
-        audio_bitrate (int | Unset):
-        bitrate (int | Unset):
+        audio_bitrate (int | None | Unset):
+        bitrate (int | None | Unset):
         edit_proxy_folder (None | str | Unset):
-        enable_multi_channel_audio (bool | Unset):
-        exclude_patterns (list[str] | Unset):
+        enable_multi_channel_audio (bool | None | Unset):
+        exclude_patterns (list[str] | None | Unset):
         hdr_brightness (float | None | Unset):
         hdr_contrast (float | None | Unset):
         hdr_gamma (float | None | Unset):
         hdr_saturation (float | None | Unset):
         hdr_tonemap_desat (float | None | Unset):
         hdr_tonemap_peak (float | None | Unset):
-        include_patterns (list[str] | Unset):
-        local (bool | Unset):
-        merge_multichannel_audio_tracks (bool | Unset):
+        include_patterns (list[str] | None | Unset):
+        local (bool | None | Unset):
+        merge_multichannel_audio_tracks (bool | None | Unset):
         priority (int | None | Unset):
-        scaling_method (VideoBaseSchemaScalingMethod | Unset):
-        width (int | Unset):
+        scaling_method (None | Unset | VideoBaseSchemaScalingMethodType1):
+        width (int | None | Unset):
     """
 
-    audio_bitrate: int | Unset = UNSET
-    bitrate: int | Unset = UNSET
+    audio_bitrate: int | None | Unset = UNSET
+    bitrate: int | None | Unset = UNSET
     edit_proxy_folder: None | str | Unset = UNSET
-    enable_multi_channel_audio: bool | Unset = UNSET
-    exclude_patterns: list[str] | Unset = UNSET
+    enable_multi_channel_audio: bool | None | Unset = UNSET
+    exclude_patterns: list[str] | None | Unset = UNSET
     hdr_brightness: float | None | Unset = UNSET
     hdr_contrast: float | None | Unset = UNSET
     hdr_gamma: float | None | Unset = UNSET
     hdr_saturation: float | None | Unset = UNSET
     hdr_tonemap_desat: float | None | Unset = UNSET
     hdr_tonemap_peak: float | None | Unset = UNSET
-    include_patterns: list[str] | Unset = UNSET
-    local: bool | Unset = UNSET
-    merge_multichannel_audio_tracks: bool | Unset = UNSET
+    include_patterns: list[str] | None | Unset = UNSET
+    local: bool | None | Unset = UNSET
+    merge_multichannel_audio_tracks: bool | None | Unset = UNSET
     priority: int | None | Unset = UNSET
-    scaling_method: VideoBaseSchemaScalingMethod | Unset = UNSET
-    width: int | Unset = UNSET
+    scaling_method: None | Unset | VideoBaseSchemaScalingMethodType1 = UNSET
+    width: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        audio_bitrate = self.audio_bitrate
+        from ..models.video_base_schema_scaling_method_type_1 import (
+            VideoBaseSchemaScalingMethodType1,
+        )
 
-        bitrate = self.bitrate
+        audio_bitrate: int | None | Unset
+        if isinstance(self.audio_bitrate, Unset):
+            audio_bitrate = UNSET
+        else:
+            audio_bitrate = self.audio_bitrate
+
+        bitrate: int | None | Unset
+        if isinstance(self.bitrate, Unset):
+            bitrate = UNSET
+        else:
+            bitrate = self.bitrate
 
         edit_proxy_folder: None | str | Unset
         if isinstance(self.edit_proxy_folder, Unset):
@@ -65,10 +82,19 @@ class VideoBaseSchema:
         else:
             edit_proxy_folder = self.edit_proxy_folder
 
-        enable_multi_channel_audio = self.enable_multi_channel_audio
+        enable_multi_channel_audio: bool | None | Unset
+        if isinstance(self.enable_multi_channel_audio, Unset):
+            enable_multi_channel_audio = UNSET
+        else:
+            enable_multi_channel_audio = self.enable_multi_channel_audio
 
-        exclude_patterns: list[str] | Unset = UNSET
-        if not isinstance(self.exclude_patterns, Unset):
+        exclude_patterns: list[str] | None | Unset
+        if isinstance(self.exclude_patterns, Unset):
+            exclude_patterns = UNSET
+        elif isinstance(self.exclude_patterns, list):
+            exclude_patterns = self.exclude_patterns
+
+        else:
             exclude_patterns = self.exclude_patterns
 
         hdr_brightness: float | None | Unset
@@ -107,13 +133,26 @@ class VideoBaseSchema:
         else:
             hdr_tonemap_peak = self.hdr_tonemap_peak
 
-        include_patterns: list[str] | Unset = UNSET
-        if not isinstance(self.include_patterns, Unset):
+        include_patterns: list[str] | None | Unset
+        if isinstance(self.include_patterns, Unset):
+            include_patterns = UNSET
+        elif isinstance(self.include_patterns, list):
             include_patterns = self.include_patterns
 
-        local = self.local
+        else:
+            include_patterns = self.include_patterns
 
-        merge_multichannel_audio_tracks = self.merge_multichannel_audio_tracks
+        local: bool | None | Unset
+        if isinstance(self.local, Unset):
+            local = UNSET
+        else:
+            local = self.local
+
+        merge_multichannel_audio_tracks: bool | None | Unset
+        if isinstance(self.merge_multichannel_audio_tracks, Unset):
+            merge_multichannel_audio_tracks = UNSET
+        else:
+            merge_multichannel_audio_tracks = self.merge_multichannel_audio_tracks
 
         priority: int | None | Unset
         if isinstance(self.priority, Unset):
@@ -121,11 +160,19 @@ class VideoBaseSchema:
         else:
             priority = self.priority
 
-        scaling_method: str | Unset = UNSET
-        if not isinstance(self.scaling_method, Unset):
-            scaling_method = self.scaling_method.value
+        scaling_method: dict[str, Any] | None | Unset
+        if isinstance(self.scaling_method, Unset):
+            scaling_method = UNSET
+        elif isinstance(self.scaling_method, VideoBaseSchemaScalingMethodType1):
+            scaling_method = self.scaling_method.to_dict()
+        else:
+            scaling_method = self.scaling_method
 
-        width = self.width
+        width: int | None | Unset
+        if isinstance(self.width, Unset):
+            width = UNSET
+        else:
+            width = self.width
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -171,10 +218,29 @@ class VideoBaseSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        d = dict(src_dict)
-        audio_bitrate = d.pop("audio_bitrate", UNSET)
+        from ..models.video_base_schema_scaling_method_type_1 import (
+            VideoBaseSchemaScalingMethodType1,
+        )
 
-        bitrate = d.pop("bitrate", UNSET)
+        d = dict(src_dict)
+
+        def _parse_audio_bitrate(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        audio_bitrate = _parse_audio_bitrate(d.pop("audio_bitrate", UNSET))
+
+        def _parse_bitrate(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        bitrate = _parse_bitrate(d.pop("bitrate", UNSET))
 
         def _parse_edit_proxy_folder(data: object) -> None | str | Unset:
             if data is None:
@@ -185,9 +251,33 @@ class VideoBaseSchema:
 
         edit_proxy_folder = _parse_edit_proxy_folder(d.pop("edit_proxy_folder", UNSET))
 
-        enable_multi_channel_audio = d.pop("enable_multi_channel_audio", UNSET)
+        def _parse_enable_multi_channel_audio(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        exclude_patterns = cast(list[str], d.pop("exclude_patterns", UNSET))
+        enable_multi_channel_audio = _parse_enable_multi_channel_audio(
+            d.pop("enable_multi_channel_audio", UNSET)
+        )
+
+        def _parse_exclude_patterns(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                exclude_patterns_type_0 = cast(list[str], data)
+
+                return exclude_patterns_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        exclude_patterns = _parse_exclude_patterns(d.pop("exclude_patterns", UNSET))
 
         def _parse_hdr_brightness(data: object) -> float | None | Unset:
             if data is None:
@@ -243,12 +333,41 @@ class VideoBaseSchema:
 
         hdr_tonemap_peak = _parse_hdr_tonemap_peak(d.pop("hdr_tonemap_peak", UNSET))
 
-        include_patterns = cast(list[str], d.pop("include_patterns", UNSET))
+        def _parse_include_patterns(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                include_patterns_type_0 = cast(list[str], data)
 
-        local = d.pop("local", UNSET)
+                return include_patterns_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
 
-        merge_multichannel_audio_tracks = d.pop(
-            "merge_multichannel_audio_tracks", UNSET
+        include_patterns = _parse_include_patterns(d.pop("include_patterns", UNSET))
+
+        def _parse_local(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        local = _parse_local(d.pop("local", UNSET))
+
+        def _parse_merge_multichannel_audio_tracks(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        merge_multichannel_audio_tracks = _parse_merge_multichannel_audio_tracks(
+            d.pop("merge_multichannel_audio_tracks", UNSET)
         )
 
         def _parse_priority(data: object) -> int | None | Unset:
@@ -260,14 +379,35 @@ class VideoBaseSchema:
 
         priority = _parse_priority(d.pop("priority", UNSET))
 
-        _scaling_method = d.pop("scaling_method", UNSET)
-        scaling_method: VideoBaseSchemaScalingMethod | Unset
-        if isinstance(_scaling_method, Unset):
-            scaling_method = UNSET
-        else:
-            scaling_method = VideoBaseSchemaScalingMethod(_scaling_method)
+        def _parse_scaling_method(
+            data: object,
+        ) -> None | Unset | VideoBaseSchemaScalingMethodType1:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                scaling_method_type_1 = VideoBaseSchemaScalingMethodType1.from_dict(
+                    data
+                )
 
-        width = d.pop("width", UNSET)
+                return scaling_method_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | VideoBaseSchemaScalingMethodType1, data)
+
+        scaling_method = _parse_scaling_method(d.pop("scaling_method", UNSET))
+
+        def _parse_width(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        width = _parse_width(d.pop("width", UNSET))
 
         video_base_schema = cls(
             audio_bitrate=audio_bitrate,

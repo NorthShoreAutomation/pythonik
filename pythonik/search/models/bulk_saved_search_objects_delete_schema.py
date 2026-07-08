@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -20,14 +20,14 @@ class BulkSavedSearchObjectsDeleteSchema:
         include_collections (bool):
         job_id (UUID):
         search_ids (list[UUID]):
-        content_only (bool | Unset):  Default: True.
+        content_only (bool | None | Unset):  Default: True.
     """
 
     include_assets: bool
     include_collections: bool
     job_id: UUID
     search_ids: list[UUID]
-    content_only: bool | Unset = True
+    content_only: bool | None | Unset = True
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -42,7 +42,11 @@ class BulkSavedSearchObjectsDeleteSchema:
             search_ids_item = str(search_ids_item_data)
             search_ids.append(search_ids_item)
 
-        content_only = self.content_only
+        content_only: bool | None | Unset
+        if isinstance(self.content_only, Unset):
+            content_only = UNSET
+        else:
+            content_only = self.content_only
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -75,7 +79,14 @@ class BulkSavedSearchObjectsDeleteSchema:
 
             search_ids.append(search_ids_item)
 
-        content_only = d.pop("content_only", UNSET)
+        def _parse_content_only(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        content_only = _parse_content_only(d.pop("content_only", UNSET))
 
         bulk_saved_search_objects_delete_schema = cls(
             include_assets=include_assets,

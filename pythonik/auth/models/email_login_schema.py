@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,17 +16,21 @@ class EmailLoginSchema:
     """
     Attributes:
         email (str):
-        app_name (str | Unset):
+        app_name (None | str | Unset):
     """
 
     email: str
-    app_name: str | Unset = UNSET
+    app_name: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         email = self.email
 
-        app_name = self.app_name
+        app_name: None | str | Unset
+        if isinstance(self.app_name, Unset):
+            app_name = UNSET
+        else:
+            app_name = self.app_name
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -45,7 +49,14 @@ class EmailLoginSchema:
         d = dict(src_dict)
         email = d.pop("email")
 
-        app_name = d.pop("app_name", UNSET)
+        def _parse_app_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        app_name = _parse_app_name(d.pop("app_name", UNSET))
 
         email_login_schema = cls(
             email=email,

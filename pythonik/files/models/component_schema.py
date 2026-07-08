@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -11,7 +11,7 @@ from ..models.component_schema_type import ComponentSchemaType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.component_schema_metadata import ComponentSchemaMetadata
+    from ..models.component_schema_metadata_type_0 import ComponentSchemaMetadataType0
 
 
 T = TypeVar("T", bound="ComponentSchema")
@@ -23,28 +23,41 @@ class ComponentSchema:
     Attributes:
         name (str):
         type_ (ComponentSchemaType):
-        id (UUID | Unset):
-        metadata (ComponentSchemaMetadata | Unset): Sequence cannot have more than 10000. Excess values will be stripped
+        id (None | Unset | UUID):
+        metadata (ComponentSchemaMetadataType0 | None | Unset): Sequence cannot have more than 10000. Excess values will
+            be stripped
     """
 
     name: str
     type_: ComponentSchemaType
-    id: UUID | Unset = UNSET
-    metadata: ComponentSchemaMetadata | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    metadata: ComponentSchemaMetadataType0 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.component_schema_metadata_type_0 import (
+            ComponentSchemaMetadataType0,
+        )
+
         name = self.name
 
         type_ = self.type_.value
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        metadata: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.metadata, Unset):
+        metadata: dict[str, Any] | None | Unset
+        if isinstance(self.metadata, Unset):
+            metadata = UNSET
+        elif isinstance(self.metadata, ComponentSchemaMetadataType0):
             metadata = self.metadata.to_dict()
+        else:
+            metadata = self.metadata
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -63,26 +76,50 @@ class ComponentSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.component_schema_metadata import ComponentSchemaMetadata
+        from ..models.component_schema_metadata_type_0 import (
+            ComponentSchemaMetadataType0,
+        )
 
         d = dict(src_dict)
         name = d.pop("name")
 
         type_ = ComponentSchemaType(d.pop("type"))
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
 
-        _metadata = d.pop("metadata", UNSET)
-        metadata: ComponentSchemaMetadata | Unset
-        if isinstance(_metadata, Unset):
-            metadata = UNSET
-        else:
-            metadata = ComponentSchemaMetadata.from_dict(_metadata)
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_metadata(
+            data: object,
+        ) -> ComponentSchemaMetadataType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                metadata_type_0 = ComponentSchemaMetadataType0.from_dict(data)
+
+                return metadata_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(ComponentSchemaMetadataType0 | None | Unset, data)
+
+        metadata = _parse_metadata(d.pop("metadata", UNSET))
 
         component_schema = cls(
             name=name,

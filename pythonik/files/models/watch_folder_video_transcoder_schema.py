@@ -18,39 +18,39 @@ class WatchFolderVideoTranscoderSchema:
         file_grow_threshold (int):
         proxy_folder_name (str):
         watch_folder_location (str):
-        create_web_proxy_from_edit_proxy (bool | Unset):
-        edit_proxy_local_storage_path (str | Unset):
-        edit_proxy_upload_storage_id (str | Unset):
-        edit_proxy_upload_storage_path (str | Unset):
-        exclude_patterns (list[str] | Unset):
-        include_patterns (list[str] | Unset):
-        keep_as_edit_proxy (bool | Unset):
-        keyframe_folder_name (str | Unset):
-        keyframe_map_folder_name (str | Unset):
-        local (bool | Unset):
-        proxy_timeout (int | Unset):
-        use_symlink (bool | Unset): If enabled a soft link is used to add original to the watch folder, if disabled a
-            hard link is used with a fallback to copy.
-        use_unique_sub_folder_workflow (bool | Unset): A sub-folder is created with a unique name inside the watch
-            folder per job.
+        create_web_proxy_from_edit_proxy (bool | None | Unset):
+        edit_proxy_local_storage_path (None | str | Unset):
+        edit_proxy_upload_storage_id (None | str | Unset):
+        edit_proxy_upload_storage_path (None | str | Unset):
+        exclude_patterns (list[str] | None | Unset):
+        include_patterns (list[str] | None | Unset):
+        keep_as_edit_proxy (bool | None | Unset):
+        keyframe_folder_name (None | str | Unset):
+        keyframe_map_folder_name (None | str | Unset):
+        local (bool | None | Unset):
+        proxy_timeout (int | None | Unset):
+        use_symlink (bool | None | Unset): If enabled a soft link is used to add original to the watch folder, if
+            disabled a hard link is used with a fallback to copy.
+        use_unique_sub_folder_workflow (bool | None | Unset): A sub-folder is created with a unique name inside the
+            watch folder per job.
     """
 
     file_grow_threshold: int
     proxy_folder_name: str
     watch_folder_location: str
-    create_web_proxy_from_edit_proxy: bool | Unset = UNSET
-    edit_proxy_local_storage_path: str | Unset = UNSET
-    edit_proxy_upload_storage_id: str | Unset = UNSET
-    edit_proxy_upload_storage_path: str | Unset = UNSET
-    exclude_patterns: list[str] | Unset = UNSET
-    include_patterns: list[str] | Unset = UNSET
-    keep_as_edit_proxy: bool | Unset = UNSET
-    keyframe_folder_name: str | Unset = UNSET
-    keyframe_map_folder_name: str | Unset = UNSET
-    local: bool | Unset = UNSET
-    proxy_timeout: int | Unset = UNSET
-    use_symlink: bool | Unset = UNSET
-    use_unique_sub_folder_workflow: bool | Unset = UNSET
+    create_web_proxy_from_edit_proxy: bool | None | Unset = UNSET
+    edit_proxy_local_storage_path: None | str | Unset = UNSET
+    edit_proxy_upload_storage_id: None | str | Unset = UNSET
+    edit_proxy_upload_storage_path: None | str | Unset = UNSET
+    exclude_patterns: list[str] | None | Unset = UNSET
+    include_patterns: list[str] | None | Unset = UNSET
+    keep_as_edit_proxy: bool | None | Unset = UNSET
+    keyframe_folder_name: None | str | Unset = UNSET
+    keyframe_map_folder_name: None | str | Unset = UNSET
+    local: bool | None | Unset = UNSET
+    proxy_timeout: int | None | Unset = UNSET
+    use_symlink: bool | None | Unset = UNSET
+    use_unique_sub_folder_workflow: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -60,35 +60,89 @@ class WatchFolderVideoTranscoderSchema:
 
         watch_folder_location = self.watch_folder_location
 
-        create_web_proxy_from_edit_proxy = self.create_web_proxy_from_edit_proxy
+        create_web_proxy_from_edit_proxy: bool | None | Unset
+        if isinstance(self.create_web_proxy_from_edit_proxy, Unset):
+            create_web_proxy_from_edit_proxy = UNSET
+        else:
+            create_web_proxy_from_edit_proxy = self.create_web_proxy_from_edit_proxy
 
-        edit_proxy_local_storage_path = self.edit_proxy_local_storage_path
+        edit_proxy_local_storage_path: None | str | Unset
+        if isinstance(self.edit_proxy_local_storage_path, Unset):
+            edit_proxy_local_storage_path = UNSET
+        else:
+            edit_proxy_local_storage_path = self.edit_proxy_local_storage_path
 
-        edit_proxy_upload_storage_id = self.edit_proxy_upload_storage_id
+        edit_proxy_upload_storage_id: None | str | Unset
+        if isinstance(self.edit_proxy_upload_storage_id, Unset):
+            edit_proxy_upload_storage_id = UNSET
+        else:
+            edit_proxy_upload_storage_id = self.edit_proxy_upload_storage_id
 
-        edit_proxy_upload_storage_path = self.edit_proxy_upload_storage_path
+        edit_proxy_upload_storage_path: None | str | Unset
+        if isinstance(self.edit_proxy_upload_storage_path, Unset):
+            edit_proxy_upload_storage_path = UNSET
+        else:
+            edit_proxy_upload_storage_path = self.edit_proxy_upload_storage_path
 
-        exclude_patterns: list[str] | Unset = UNSET
-        if not isinstance(self.exclude_patterns, Unset):
+        exclude_patterns: list[str] | None | Unset
+        if isinstance(self.exclude_patterns, Unset):
+            exclude_patterns = UNSET
+        elif isinstance(self.exclude_patterns, list):
             exclude_patterns = self.exclude_patterns
 
-        include_patterns: list[str] | Unset = UNSET
-        if not isinstance(self.include_patterns, Unset):
+        else:
+            exclude_patterns = self.exclude_patterns
+
+        include_patterns: list[str] | None | Unset
+        if isinstance(self.include_patterns, Unset):
+            include_patterns = UNSET
+        elif isinstance(self.include_patterns, list):
             include_patterns = self.include_patterns
 
-        keep_as_edit_proxy = self.keep_as_edit_proxy
+        else:
+            include_patterns = self.include_patterns
 
-        keyframe_folder_name = self.keyframe_folder_name
+        keep_as_edit_proxy: bool | None | Unset
+        if isinstance(self.keep_as_edit_proxy, Unset):
+            keep_as_edit_proxy = UNSET
+        else:
+            keep_as_edit_proxy = self.keep_as_edit_proxy
 
-        keyframe_map_folder_name = self.keyframe_map_folder_name
+        keyframe_folder_name: None | str | Unset
+        if isinstance(self.keyframe_folder_name, Unset):
+            keyframe_folder_name = UNSET
+        else:
+            keyframe_folder_name = self.keyframe_folder_name
 
-        local = self.local
+        keyframe_map_folder_name: None | str | Unset
+        if isinstance(self.keyframe_map_folder_name, Unset):
+            keyframe_map_folder_name = UNSET
+        else:
+            keyframe_map_folder_name = self.keyframe_map_folder_name
 
-        proxy_timeout = self.proxy_timeout
+        local: bool | None | Unset
+        if isinstance(self.local, Unset):
+            local = UNSET
+        else:
+            local = self.local
 
-        use_symlink = self.use_symlink
+        proxy_timeout: int | None | Unset
+        if isinstance(self.proxy_timeout, Unset):
+            proxy_timeout = UNSET
+        else:
+            proxy_timeout = self.proxy_timeout
 
-        use_unique_sub_folder_workflow = self.use_unique_sub_folder_workflow
+        use_symlink: bool | None | Unset
+        if isinstance(self.use_symlink, Unset):
+            use_symlink = UNSET
+        else:
+            use_symlink = self.use_symlink
+
+        use_unique_sub_folder_workflow: bool | None | Unset
+        if isinstance(self.use_unique_sub_folder_workflow, Unset):
+            use_unique_sub_folder_workflow = UNSET
+        else:
+            use_unique_sub_folder_workflow = self.use_unique_sub_folder_workflow
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -143,33 +197,156 @@ class WatchFolderVideoTranscoderSchema:
 
         watch_folder_location = d.pop("watch_folder_location")
 
-        create_web_proxy_from_edit_proxy = d.pop(
-            "create_web_proxy_from_edit_proxy", UNSET
+        def _parse_create_web_proxy_from_edit_proxy(
+            data: object,
+        ) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        create_web_proxy_from_edit_proxy = _parse_create_web_proxy_from_edit_proxy(
+            d.pop("create_web_proxy_from_edit_proxy", UNSET)
         )
 
-        edit_proxy_local_storage_path = d.pop("edit_proxy_local_storage_path", UNSET)
+        def _parse_edit_proxy_local_storage_path(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        edit_proxy_upload_storage_id = d.pop("edit_proxy_upload_storage_id", UNSET)
+        edit_proxy_local_storage_path = _parse_edit_proxy_local_storage_path(
+            d.pop("edit_proxy_local_storage_path", UNSET)
+        )
 
-        edit_proxy_upload_storage_path = d.pop("edit_proxy_upload_storage_path", UNSET)
+        def _parse_edit_proxy_upload_storage_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        exclude_patterns = cast(list[str], d.pop("exclude_patterns", UNSET))
+        edit_proxy_upload_storage_id = _parse_edit_proxy_upload_storage_id(
+            d.pop("edit_proxy_upload_storage_id", UNSET)
+        )
 
-        include_patterns = cast(list[str], d.pop("include_patterns", UNSET))
+        def _parse_edit_proxy_upload_storage_path(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        keep_as_edit_proxy = d.pop("keep_as_edit_proxy", UNSET)
+        edit_proxy_upload_storage_path = _parse_edit_proxy_upload_storage_path(
+            d.pop("edit_proxy_upload_storage_path", UNSET)
+        )
 
-        keyframe_folder_name = d.pop("keyframe_folder_name", UNSET)
+        def _parse_exclude_patterns(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                exclude_patterns_type_0 = cast(list[str], data)
 
-        keyframe_map_folder_name = d.pop("keyframe_map_folder_name", UNSET)
+                return exclude_patterns_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
 
-        local = d.pop("local", UNSET)
+        exclude_patterns = _parse_exclude_patterns(d.pop("exclude_patterns", UNSET))
 
-        proxy_timeout = d.pop("proxy_timeout", UNSET)
+        def _parse_include_patterns(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                include_patterns_type_0 = cast(list[str], data)
 
-        use_symlink = d.pop("use_symlink", UNSET)
+                return include_patterns_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
 
-        use_unique_sub_folder_workflow = d.pop("use_unique_sub_folder_workflow", UNSET)
+        include_patterns = _parse_include_patterns(d.pop("include_patterns", UNSET))
+
+        def _parse_keep_as_edit_proxy(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        keep_as_edit_proxy = _parse_keep_as_edit_proxy(
+            d.pop("keep_as_edit_proxy", UNSET)
+        )
+
+        def _parse_keyframe_folder_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        keyframe_folder_name = _parse_keyframe_folder_name(
+            d.pop("keyframe_folder_name", UNSET)
+        )
+
+        def _parse_keyframe_map_folder_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        keyframe_map_folder_name = _parse_keyframe_map_folder_name(
+            d.pop("keyframe_map_folder_name", UNSET)
+        )
+
+        def _parse_local(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        local = _parse_local(d.pop("local", UNSET))
+
+        def _parse_proxy_timeout(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        proxy_timeout = _parse_proxy_timeout(d.pop("proxy_timeout", UNSET))
+
+        def _parse_use_symlink(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        use_symlink = _parse_use_symlink(d.pop("use_symlink", UNSET))
+
+        def _parse_use_unique_sub_folder_workflow(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        use_unique_sub_folder_workflow = _parse_use_unique_sub_folder_workflow(
+            d.pop("use_unique_sub_folder_workflow", UNSET)
+        )
 
         watch_folder_video_transcoder_schema = cls(
             file_grow_threshold=file_grow_threshold,

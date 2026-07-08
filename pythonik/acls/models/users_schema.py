@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -19,19 +19,24 @@ T = TypeVar("T", bound="UsersSchema")
 class UsersSchema:
     """
     Attributes:
-        users (list[UsersCheckAclSchema] | Unset):
+        users (list[UsersCheckAclSchema] | None | Unset):
     """
 
-    users: list[UsersCheckAclSchema] | Unset = UNSET
+    users: list[UsersCheckAclSchema] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        users: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.users, Unset):
+        users: list[dict[str, Any]] | None | Unset
+        if isinstance(self.users, Unset):
+            users = UNSET
+        elif isinstance(self.users, list):
             users = []
-            for users_item_data in self.users:
-                users_item = users_item_data.to_dict()
-                users.append(users_item)
+            for users_type_0_item_data in self.users:
+                users_type_0_item = users_type_0_item_data.to_dict()
+                users.append(users_type_0_item)
+
+        else:
+            users = self.users
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -46,14 +51,30 @@ class UsersSchema:
         from ..models.users_check_acl_schema import UsersCheckAclSchema
 
         d = dict(src_dict)
-        _users = d.pop("users", UNSET)
-        users: list[UsersCheckAclSchema] | Unset = UNSET
-        if _users is not UNSET:
-            users = []
-            for users_item_data in _users:
-                users_item = UsersCheckAclSchema.from_dict(users_item_data)
 
-                users.append(users_item)
+        def _parse_users(data: object) -> list[UsersCheckAclSchema] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                users_type_0 = []
+                _users_type_0 = data
+                for users_type_0_item_data in _users_type_0:
+                    users_type_0_item = UsersCheckAclSchema.from_dict(
+                        users_type_0_item_data
+                    )
+
+                    users_type_0.append(users_type_0_item)
+
+                return users_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[UsersCheckAclSchema] | None | Unset, data)
+
+        users = _parse_users(d.pop("users", UNSET))
 
         users_schema = cls(
             users=users,

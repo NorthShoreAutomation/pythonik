@@ -8,14 +8,14 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.iconik_storage_gateway_schema_roles_item import (
-    IconikStorageGatewaySchemaRolesItem,
+from ..models.iconik_storage_gateway_schema_roles_type_0_item import (
+    IconikStorageGatewaySchemaRolesType0Item,
 )
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.iconik_storage_gateway_schema_storages import (
-        IconikStorageGatewaySchemaStorages,
+    from ..models.iconik_storage_gateway_schema_storages_type_0 import (
+        IconikStorageGatewaySchemaStoragesType0,
     )
     from ..models.isg_config_settings_schema import ISGConfigSettingsSchema
 
@@ -29,66 +29,98 @@ class IconikStorageGatewaySchema:
     Attributes:
         enabled (bool): Application toggle. If turned off ISG will enter idle state waiting to get enabled again.
         name (str):
-        cluster_id (UUID | Unset):
-        date_created (datetime.datetime | Unset):
-        date_modified (datetime.datetime | Unset):
-        description (str | Unset):
-        id (UUID | Unset):
-        public_identity (str | Unset):
-        roles (list[IconikStorageGatewaySchemaRolesItem] | Unset): Set of roles this gateway can perform when part of
-            cluster
+        cluster_id (None | Unset | UUID):
+        date_created (datetime.datetime | None | Unset):
+        date_modified (datetime.datetime | None | Unset):
+        description (None | str | Unset):
+        id (None | Unset | UUID):
+        public_identity (None | str | Unset):
+        roles (list[IconikStorageGatewaySchemaRolesType0Item] | None | Unset): Set of roles this gateway can perform
+            when part of cluster
         settings (ISGConfigSettingsSchema | None | Unset): Application configuration settings as key-value pairs
-        storage_addr (str | Unset): Server address for direct transfers between storage gateways
-        storages (IconikStorageGatewaySchemaStorages | Unset): Storage mount points mapped by storage ID
+        storage_addr (None | str | Unset): Server address for direct transfers between storage gateways
+        storages (IconikStorageGatewaySchemaStoragesType0 | None | Unset): Storage mount points mapped by storage ID
     """
 
     enabled: bool
     name: str
-    cluster_id: UUID | Unset = UNSET
-    date_created: datetime.datetime | Unset = UNSET
-    date_modified: datetime.datetime | Unset = UNSET
-    description: str | Unset = UNSET
-    id: UUID | Unset = UNSET
-    public_identity: str | Unset = UNSET
-    roles: list[IconikStorageGatewaySchemaRolesItem] | Unset = UNSET
+    cluster_id: None | Unset | UUID = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_modified: datetime.datetime | None | Unset = UNSET
+    description: None | str | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    public_identity: None | str | Unset = UNSET
+    roles: list[IconikStorageGatewaySchemaRolesType0Item] | None | Unset = UNSET
     settings: ISGConfigSettingsSchema | None | Unset = UNSET
-    storage_addr: str | Unset = UNSET
-    storages: IconikStorageGatewaySchemaStorages | Unset = UNSET
+    storage_addr: None | str | Unset = UNSET
+    storages: IconikStorageGatewaySchemaStoragesType0 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.iconik_storage_gateway_schema_storages_type_0 import (
+            IconikStorageGatewaySchemaStoragesType0,
+        )
         from ..models.isg_config_settings_schema import ISGConfigSettingsSchema
 
         enabled = self.enabled
 
         name = self.name
 
-        cluster_id: str | Unset = UNSET
-        if not isinstance(self.cluster_id, Unset):
+        cluster_id: None | str | Unset
+        if isinstance(self.cluster_id, Unset):
+            cluster_id = UNSET
+        elif isinstance(self.cluster_id, UUID):
             cluster_id = str(self.cluster_id)
+        else:
+            cluster_id = self.cluster_id
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_modified: str | Unset = UNSET
-        if not isinstance(self.date_modified, Unset):
+        date_modified: None | str | Unset
+        if isinstance(self.date_modified, Unset):
+            date_modified = UNSET
+        elif isinstance(self.date_modified, datetime.datetime):
             date_modified = self.date_modified.isoformat()
+        else:
+            date_modified = self.date_modified
 
-        description = self.description
+        description: None | str | Unset
+        if isinstance(self.description, Unset):
+            description = UNSET
+        else:
+            description = self.description
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        public_identity = self.public_identity
+        public_identity: None | str | Unset
+        if isinstance(self.public_identity, Unset):
+            public_identity = UNSET
+        else:
+            public_identity = self.public_identity
 
-        roles: list[str] | Unset = UNSET
-        if not isinstance(self.roles, Unset):
+        roles: list[str] | None | Unset
+        if isinstance(self.roles, Unset):
+            roles = UNSET
+        elif isinstance(self.roles, list):
             roles = []
-            for roles_item_data in self.roles:
-                roles_item = roles_item_data.value
-                roles.append(roles_item)
+            for roles_type_0_item_data in self.roles:
+                roles_type_0_item = roles_type_0_item_data.value
+                roles.append(roles_type_0_item)
+
+        else:
+            roles = self.roles
 
         settings: dict[str, Any] | None | Unset
         if isinstance(self.settings, Unset):
@@ -98,11 +130,19 @@ class IconikStorageGatewaySchema:
         else:
             settings = self.settings
 
-        storage_addr = self.storage_addr
+        storage_addr: None | str | Unset
+        if isinstance(self.storage_addr, Unset):
+            storage_addr = UNSET
+        else:
+            storage_addr = self.storage_addr
 
-        storages: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.storages, Unset):
+        storages: dict[str, Any] | None | Unset
+        if isinstance(self.storages, Unset):
+            storages = UNSET
+        elif isinstance(self.storages, IconikStorageGatewaySchemaStoragesType0):
             storages = self.storages.to_dict()
+        else:
+            storages = self.storages
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -137,8 +177,8 @@ class IconikStorageGatewaySchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.iconik_storage_gateway_schema_storages import (
-            IconikStorageGatewaySchemaStorages,
+        from ..models.iconik_storage_gateway_schema_storages_type_0 import (
+            IconikStorageGatewaySchemaStoragesType0,
         )
         from ..models.isg_config_settings_schema import ISGConfigSettingsSchema
 
@@ -147,46 +187,119 @@ class IconikStorageGatewaySchema:
 
         name = d.pop("name")
 
-        _cluster_id = d.pop("cluster_id", UNSET)
-        cluster_id: UUID | Unset
-        if isinstance(_cluster_id, Unset):
-            cluster_id = UNSET
-        else:
-            cluster_id = UUID(_cluster_id)
+        def _parse_cluster_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                cluster_id_type_0 = UUID(data)
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+                return cluster_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        _date_modified = d.pop("date_modified", UNSET)
-        date_modified: datetime.datetime | Unset
-        if isinstance(_date_modified, Unset):
-            date_modified = UNSET
-        else:
-            date_modified = datetime.datetime.fromisoformat(_date_modified)
+        cluster_id = _parse_cluster_id(d.pop("cluster_id", UNSET))
 
-        description = d.pop("description", UNSET)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        public_identity = d.pop("public_identity", UNSET)
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
 
-        _roles = d.pop("roles", UNSET)
-        roles: list[IconikStorageGatewaySchemaRolesItem] | Unset = UNSET
-        if _roles is not UNSET:
-            roles = []
-            for roles_item_data in _roles:
-                roles_item = IconikStorageGatewaySchemaRolesItem(roles_item_data)
+        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_modified_type_0 = datetime.datetime.fromisoformat(data)
 
-                roles.append(roles_item)
+                return date_modified_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
+
+        def _parse_description(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        description = _parse_description(d.pop("description", UNSET))
+
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_public_identity(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        public_identity = _parse_public_identity(d.pop("public_identity", UNSET))
+
+        def _parse_roles(
+            data: object,
+        ) -> list[IconikStorageGatewaySchemaRolesType0Item] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                roles_type_0 = []
+                _roles_type_0 = data
+                for roles_type_0_item_data in _roles_type_0:
+                    roles_type_0_item = IconikStorageGatewaySchemaRolesType0Item(
+                        roles_type_0_item_data
+                    )
+
+                    roles_type_0.append(roles_type_0_item)
+
+                return roles_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(
+                list[IconikStorageGatewaySchemaRolesType0Item] | None | Unset, data
+            )
+
+        roles = _parse_roles(d.pop("roles", UNSET))
 
         def _parse_settings(data: object) -> ISGConfigSettingsSchema | None | Unset:
             if data is None:
@@ -205,14 +318,35 @@ class IconikStorageGatewaySchema:
 
         settings = _parse_settings(d.pop("settings", UNSET))
 
-        storage_addr = d.pop("storage_addr", UNSET)
+        def _parse_storage_addr(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        _storages = d.pop("storages", UNSET)
-        storages: IconikStorageGatewaySchemaStorages | Unset
-        if isinstance(_storages, Unset):
-            storages = UNSET
-        else:
-            storages = IconikStorageGatewaySchemaStorages.from_dict(_storages)
+        storage_addr = _parse_storage_addr(d.pop("storage_addr", UNSET))
+
+        def _parse_storages(
+            data: object,
+        ) -> IconikStorageGatewaySchemaStoragesType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                storages_type_0 = IconikStorageGatewaySchemaStoragesType0.from_dict(
+                    data
+                )
+
+                return storages_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(IconikStorageGatewaySchemaStoragesType0 | None | Unset, data)
+
+        storages = _parse_storages(d.pop("storages", UNSET))
 
         iconik_storage_gateway_schema = cls(
             enabled=enabled,

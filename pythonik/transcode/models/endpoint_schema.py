@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -9,8 +9,8 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.endpoint_schema_data import EndpointSchemaData
-    from ..models.endpoint_schema_headers import EndpointSchemaHeaders
+    from ..models.endpoint_schema_data_type_0 import EndpointSchemaDataType0
+    from ..models.endpoint_schema_headers_type_0 import EndpointSchemaHeadersType0
 
 
 T = TypeVar("T", bound="EndpointSchema")
@@ -21,37 +21,60 @@ class EndpointSchema:
     """
     Attributes:
         url (str):
-        data (EndpointSchemaData | Unset):
-        headers (EndpointSchemaHeaders | Unset):
-        method (str | Unset):
-        storage_method (str | Unset):
-        type_ (str | Unset):
+        data (EndpointSchemaDataType0 | None | Unset):
+        headers (EndpointSchemaHeadersType0 | None | Unset):
+        method (None | str | Unset):
+        storage_method (None | str | Unset):
+        type_ (None | str | Unset):
     """
 
     url: str
-    data: EndpointSchemaData | Unset = UNSET
-    headers: EndpointSchemaHeaders | Unset = UNSET
-    method: str | Unset = UNSET
-    storage_method: str | Unset = UNSET
-    type_: str | Unset = UNSET
+    data: EndpointSchemaDataType0 | None | Unset = UNSET
+    headers: EndpointSchemaHeadersType0 | None | Unset = UNSET
+    method: None | str | Unset = UNSET
+    storage_method: None | str | Unset = UNSET
+    type_: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.endpoint_schema_data_type_0 import EndpointSchemaDataType0
+        from ..models.endpoint_schema_headers_type_0 import EndpointSchemaHeadersType0
+
         url = self.url
 
-        data: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.data, Unset):
+        data: dict[str, Any] | None | Unset
+        if isinstance(self.data, Unset):
+            data = UNSET
+        elif isinstance(self.data, EndpointSchemaDataType0):
             data = self.data.to_dict()
+        else:
+            data = self.data
 
-        headers: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.headers, Unset):
+        headers: dict[str, Any] | None | Unset
+        if isinstance(self.headers, Unset):
+            headers = UNSET
+        elif isinstance(self.headers, EndpointSchemaHeadersType0):
             headers = self.headers.to_dict()
+        else:
+            headers = self.headers
 
-        method = self.method
+        method: None | str | Unset
+        if isinstance(self.method, Unset):
+            method = UNSET
+        else:
+            method = self.method
 
-        storage_method = self.storage_method
+        storage_method: None | str | Unset
+        if isinstance(self.storage_method, Unset):
+            storage_method = UNSET
+        else:
+            storage_method = self.storage_method
 
-        type_ = self.type_
+        type_: None | str | Unset
+        if isinstance(self.type_, Unset):
+            type_ = UNSET
+        else:
+            type_ = self.type_
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -75,31 +98,72 @@ class EndpointSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.endpoint_schema_data import EndpointSchemaData
-        from ..models.endpoint_schema_headers import EndpointSchemaHeaders
+        from ..models.endpoint_schema_data_type_0 import EndpointSchemaDataType0
+        from ..models.endpoint_schema_headers_type_0 import EndpointSchemaHeadersType0
 
         d = dict(src_dict)
         url = d.pop("url")
 
-        _data = d.pop("data", UNSET)
-        data: EndpointSchemaData | Unset
-        if isinstance(_data, Unset):
-            data = UNSET
-        else:
-            data = EndpointSchemaData.from_dict(_data)
+        def _parse_data(data: object) -> EndpointSchemaDataType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                data_type_0 = EndpointSchemaDataType0.from_dict(data)
 
-        _headers = d.pop("headers", UNSET)
-        headers: EndpointSchemaHeaders | Unset
-        if isinstance(_headers, Unset):
-            headers = UNSET
-        else:
-            headers = EndpointSchemaHeaders.from_dict(_headers)
+                return data_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(EndpointSchemaDataType0 | None | Unset, data)
 
-        method = d.pop("method", UNSET)
+        data = _parse_data(d.pop("data", UNSET))
 
-        storage_method = d.pop("storage_method", UNSET)
+        def _parse_headers(data: object) -> EndpointSchemaHeadersType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                headers_type_0 = EndpointSchemaHeadersType0.from_dict(data)
 
-        type_ = d.pop("type", UNSET)
+                return headers_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(EndpointSchemaHeadersType0 | None | Unset, data)
+
+        headers = _parse_headers(d.pop("headers", UNSET))
+
+        def _parse_method(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        method = _parse_method(d.pop("method", UNSET))
+
+        def _parse_storage_method(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        storage_method = _parse_storage_method(d.pop("storage_method", UNSET))
+
+        def _parse_type_(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        type_ = _parse_type_(d.pop("type", UNSET))
 
         endpoint_schema = cls(
             url=url,

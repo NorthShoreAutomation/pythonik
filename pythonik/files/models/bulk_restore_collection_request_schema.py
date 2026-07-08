@@ -23,12 +23,12 @@ class BulkRestoreCollectionRequestSchema:
     """
     Attributes:
         destination_storage_id (None | Unset | UUID): ID of the storage to restore the saved searches to.
-        objects (list[RestoreCollectionToStorageRequest] | Unset): List of collections to restore. Each collection
-            should contain the collection ID.
+        objects (list[RestoreCollectionToStorageRequest] | None | Unset): List of collections to restore. Each
+            collection should contain the collection ID.
     """
 
     destination_storage_id: None | Unset | UUID = UNSET
-    objects: list[RestoreCollectionToStorageRequest] | Unset = UNSET
+    objects: list[RestoreCollectionToStorageRequest] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -40,12 +40,17 @@ class BulkRestoreCollectionRequestSchema:
         else:
             destination_storage_id = self.destination_storage_id
 
-        objects: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.objects, Unset):
+        objects: list[dict[str, Any]] | None | Unset
+        if isinstance(self.objects, Unset):
+            objects = UNSET
+        elif isinstance(self.objects, list):
             objects = []
-            for objects_item_data in self.objects:
-                objects_item = objects_item_data.to_dict()
-                objects.append(objects_item)
+            for objects_type_0_item_data in self.objects:
+                objects_type_0_item = objects_type_0_item_data.to_dict()
+                objects.append(objects_type_0_item)
+
+        else:
+            objects = self.objects
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -84,16 +89,31 @@ class BulkRestoreCollectionRequestSchema:
             d.pop("destination_storage_id", UNSET)
         )
 
-        _objects = d.pop("objects", UNSET)
-        objects: list[RestoreCollectionToStorageRequest] | Unset = UNSET
-        if _objects is not UNSET:
-            objects = []
-            for objects_item_data in _objects:
-                objects_item = RestoreCollectionToStorageRequest.from_dict(
-                    objects_item_data
-                )
+        def _parse_objects(
+            data: object,
+        ) -> list[RestoreCollectionToStorageRequest] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                objects_type_0 = []
+                _objects_type_0 = data
+                for objects_type_0_item_data in _objects_type_0:
+                    objects_type_0_item = RestoreCollectionToStorageRequest.from_dict(
+                        objects_type_0_item_data
+                    )
 
-                objects.append(objects_item)
+                    objects_type_0.append(objects_type_0_item)
+
+                return objects_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[RestoreCollectionToStorageRequest] | None | Unset, data)
+
+        objects = _parse_objects(d.pop("objects", UNSET))
 
         bulk_restore_collection_request_schema = cls(
             destination_storage_id=destination_storage_id,

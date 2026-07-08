@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,14 +15,18 @@ T = TypeVar("T", bound="PostUsersInviteValidateResponse200")
 class PostUsersInviteValidateResponse200:
     """
     Attributes:
-        system_domain_name (str | Unset): The system domain name
+        system_domain_name (None | str | Unset): The system domain name
     """
 
-    system_domain_name: str | Unset = UNSET
+    system_domain_name: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        system_domain_name = self.system_domain_name
+        system_domain_name: None | str | Unset
+        if isinstance(self.system_domain_name, Unset):
+            system_domain_name = UNSET
+        else:
+            system_domain_name = self.system_domain_name
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -35,7 +39,17 @@ class PostUsersInviteValidateResponse200:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        system_domain_name = d.pop("system_domain_name", UNSET)
+
+        def _parse_system_domain_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        system_domain_name = _parse_system_domain_name(
+            d.pop("system_domain_name", UNSET)
+        )
 
         post_users_invite_validate_response_200 = cls(
             system_domain_name=system_domain_name,

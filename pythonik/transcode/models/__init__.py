@@ -2,13 +2,13 @@
 
 from .abort_storage_transcode_jobs_schema import AbortStorageTranscodeJobsSchema
 from .analyze_schema import AnalyzeSchema
-from .analyze_schema_force_type import AnalyzeSchemaForceType
+from .analyze_schema_force_type_type_1 import AnalyzeSchemaForceTypeType1
 from .asset_link_data import AssetLinkData
 from .asset_link_url_schema import AssetLinkURLSchema
 from .bulk_action_schema import BulkActionSchema
 from .bulk_action_schema_object_type import BulkActionSchemaObjectType
 from .bulk_analyze_schema import BulkAnalyzeSchema
-from .bulk_analyze_schema_force_type import BulkAnalyzeSchemaForceType
+from .bulk_analyze_schema_force_type_type_1 import BulkAnalyzeSchemaForceTypeType1
 from .bulk_analyze_schema_object_type import BulkAnalyzeSchemaObjectType
 from .bulk_metadata_filling_schema import BulkMetadataFillingSchema
 from .bulk_metadata_filling_schema_object_type import (
@@ -63,7 +63,9 @@ from .delete_transcode_by_transcode_job_id_response_default_type_1_errors import
 )
 from .edge_thumbnail_job_field_schema import EdgeThumbnailJobFieldSchema
 from .edge_transcode_endpoint_schema import EdgeTranscodeEndpointSchema
-from .edge_transcode_endpoint_schema_data import EdgeTranscodeEndpointSchemaData
+from .edge_transcode_endpoint_schema_data_type_0 import (
+    EdgeTranscodeEndpointSchemaDataType0,
+)
 from .edge_transcode_input_schema import EdgeTranscodeInputSchema
 from .edge_transcode_job_field_schema import EdgeTranscodeJobFieldSchema
 from .edge_transcode_job_schema import EdgeTranscodeJobSchema
@@ -72,8 +74,8 @@ from .edge_transcode_worker_schema import EdgeTranscodeWorkerSchema
 from .edge_transcode_worker_schema_status import EdgeTranscodeWorkerSchemaStatus
 from .edge_transcode_workers_schema import EdgeTranscodeWorkersSchema
 from .endpoint_schema import EndpointSchema
-from .endpoint_schema_data import EndpointSchemaData
-from .endpoint_schema_headers import EndpointSchemaHeaders
+from .endpoint_schema_data_type_0 import EndpointSchemaDataType0
+from .endpoint_schema_headers_type_0 import EndpointSchemaHeadersType0
 from .facet_bucket_schema import FacetBucketSchema
 from .facet_schema import FacetSchema
 from .generate_collection_keyframe_schema import GenerateCollectionKeyframeSchema
@@ -188,7 +190,7 @@ from .get_transcode_queue_system_response_default_type_1_errors import (
 from .input_schema import InputSchema
 from .job_base_schema import JobBaseSchema
 from .job_schema import JobSchema
-from .job_schema_analysis_data import JobSchemaAnalysisData
+from .job_schema_analysis_data_type_0 import JobSchemaAnalysisDataType0
 from .job_step import JobStep
 from .job_step_schema import JobStepSchema
 from .jobs_priority_schema import JobsPrioritySchema
@@ -196,32 +198,34 @@ from .jobs_state_schema import JobsStateSchema
 from .jobs_state_schema_action import JobsStateSchemaAction
 from .list_objects_schema import ListObjectsSchema
 from .llm_metadata_job_schema import LLMMetadataJobSchema
-from .llm_metadata_job_schema_analysis_data import LLMMetadataJobSchemaAnalysisData
+from .llm_metadata_job_schema_analysis_data_type_0 import (
+    LLMMetadataJobSchemaAnalysisDataType0,
+)
 from .local_storage_file_transcode_job_schema import LocalStorageFileTranscodeJobSchema
 from .local_storage_file_transcode_jobs_schema import (
     LocalStorageFileTranscodeJobsSchema,
 )
 from .local_transcode_input_schema import LocalTranscodeInputSchema
 from .local_transcode_job_schema import LocalTranscodeJobSchema
-from .local_transcode_job_schema_analysis_data import (
-    LocalTranscodeJobSchemaAnalysisData,
+from .local_transcode_job_schema_analysis_data_type_0 import (
+    LocalTranscodeJobSchemaAnalysisDataType0,
 )
 from .metadata_filling_proposal_by_asset_query_params_schema import (
     MetadataFillingProposalByAssetQueryParamsSchema,
 )
 from .metadata_filling_proposal_schema import MetadataFillingProposalSchema
-from .metadata_filling_proposal_schema_review_status import (
-    MetadataFillingProposalSchemaReviewStatus,
+from .metadata_filling_proposal_schema_review_status_type_1 import (
+    MetadataFillingProposalSchemaReviewStatusType1,
 )
 from .metadata_filling_response_schema import MetadataFillingResponseSchema
-from .metadata_filling_response_schema_metadata_values import (
-    MetadataFillingResponseSchemaMetadataValues,
+from .metadata_filling_response_schema_metadata_values_type_0 import (
+    MetadataFillingResponseSchemaMetadataValuesType0,
 )
 from .metadata_filling_schema import MetadataFillingSchema
 from .output_endpoint import OutputEndpoint
-from .output_endpoint_headers import OutputEndpointHeaders
+from .output_endpoint_headers_type_0 import OutputEndpointHeadersType0
 from .output_endpoint_schema import OutputEndpointSchema
-from .output_endpoint_schema_headers import OutputEndpointSchemaHeaders
+from .output_endpoint_schema_headers_type_0 import OutputEndpointSchemaHeadersType0
 from .patch_edge_transcode_workers_by_worker_id_response_default_type_0 import (
     PatchEdgeTranscodeWorkersByWorkerIdResponseDefaultType0,
 )
@@ -420,12 +424,12 @@ from .transcode_job_schema import TranscodeJobSchema
 from .transcode_queue_object_schema import TranscodeQueueObjectSchema
 from .transcode_queue_record_schema import TranscodeQueueRecordSchema
 from .transcode_queue_schema import TranscodeQueueSchema
-from .transcode_queue_schema_facets import TranscodeQueueSchemaFacets
+from .transcode_queue_schema_facets_type_0 import TranscodeQueueSchemaFacetsType0
 from .transcode_validate_media_info_schema import TranscodeValidateMediaInfoSchema
 from .transcoders import Transcoders
 from .transcoders_schema import TranscodersSchema
-from .transcoders_schema_settings import TranscodersSchemaSettings
-from .transcoders_settings import TranscodersSettings
+from .transcoders_schema_settings_type_0 import TranscodersSchemaSettingsType0
+from .transcoders_settings_type_0 import TranscodersSettingsType0
 from .transcribe_schema import TranscribeSchema
 from .wildmoka_pipeline_transcode import WildmokaPipelineTranscode
 from .wildmoka_pipeline_transcode_graph import WildmokaPipelineTranscodeGraph
@@ -441,13 +445,13 @@ from .wildmoka_protect_transcode_create_file_callback_payload import (
 __all__ = (
     "AbortStorageTranscodeJobsSchema",
     "AnalyzeSchema",
-    "AnalyzeSchemaForceType",
+    "AnalyzeSchemaForceTypeType1",
     "AssetLinkData",
     "AssetLinkURLSchema",
     "BulkActionSchema",
     "BulkActionSchemaObjectType",
     "BulkAnalyzeSchema",
-    "BulkAnalyzeSchemaForceType",
+    "BulkAnalyzeSchemaForceTypeType1",
     "BulkAnalyzeSchemaObjectType",
     "BulkMetadataFillingSchema",
     "BulkMetadataFillingSchemaObjectType",
@@ -470,7 +474,7 @@ __all__ = (
     "DeleteTranscodeByTranscodeJobIdResponseDefaultType1Errors",
     "EdgeThumbnailJobFieldSchema",
     "EdgeTranscodeEndpointSchema",
-    "EdgeTranscodeEndpointSchemaData",
+    "EdgeTranscodeEndpointSchemaDataType0",
     "EdgeTranscodeInputSchema",
     "EdgeTranscodeJobFieldSchema",
     "EdgeTranscodeJobSchema",
@@ -479,8 +483,8 @@ __all__ = (
     "EdgeTranscodeWorkerSchemaStatus",
     "EdgeTranscodeWorkersSchema",
     "EndpointSchema",
-    "EndpointSchemaData",
-    "EndpointSchemaHeaders",
+    "EndpointSchemaDataType0",
+    "EndpointSchemaHeadersType0",
     "FacetBucketSchema",
     "FacetSchema",
     "GenerateCollectionKeyframeSchema",
@@ -523,7 +527,7 @@ __all__ = (
     "InputSchema",
     "JobBaseSchema",
     "JobSchema",
-    "JobSchemaAnalysisData",
+    "JobSchemaAnalysisDataType0",
     "JobsPrioritySchema",
     "JobsStateSchema",
     "JobsStateSchemaAction",
@@ -531,22 +535,22 @@ __all__ = (
     "JobStepSchema",
     "ListObjectsSchema",
     "LLMMetadataJobSchema",
-    "LLMMetadataJobSchemaAnalysisData",
+    "LLMMetadataJobSchemaAnalysisDataType0",
     "LocalStorageFileTranscodeJobSchema",
     "LocalStorageFileTranscodeJobsSchema",
     "LocalTranscodeInputSchema",
     "LocalTranscodeJobSchema",
-    "LocalTranscodeJobSchemaAnalysisData",
+    "LocalTranscodeJobSchemaAnalysisDataType0",
     "MetadataFillingProposalByAssetQueryParamsSchema",
     "MetadataFillingProposalSchema",
-    "MetadataFillingProposalSchemaReviewStatus",
+    "MetadataFillingProposalSchemaReviewStatusType1",
     "MetadataFillingResponseSchema",
-    "MetadataFillingResponseSchemaMetadataValues",
+    "MetadataFillingResponseSchemaMetadataValuesType0",
     "MetadataFillingSchema",
     "OutputEndpoint",
-    "OutputEndpointHeaders",
+    "OutputEndpointHeadersType0",
     "OutputEndpointSchema",
-    "OutputEndpointSchemaHeaders",
+    "OutputEndpointSchemaHeadersType0",
     "PatchEdgeTranscodeWorkersByWorkerIdResponseDefaultType0",
     "PatchEdgeTranscodeWorkersByWorkerIdResponseDefaultType1",
     "PatchEdgeTranscodeWorkersByWorkerIdResponseDefaultType1Errors",
@@ -623,11 +627,11 @@ __all__ = (
     "TranscodeQueueObjectSchema",
     "TranscodeQueueRecordSchema",
     "TranscodeQueueSchema",
-    "TranscodeQueueSchemaFacets",
+    "TranscodeQueueSchemaFacetsType0",
     "Transcoders",
     "TranscodersSchema",
-    "TranscodersSchemaSettings",
-    "TranscodersSettings",
+    "TranscodersSchemaSettingsType0",
+    "TranscodersSettingsType0",
     "TranscodeValidateMediaInfoSchema",
     "TranscribeSchema",
     "WildmokaPipelineTranscode",

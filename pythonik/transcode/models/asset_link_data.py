@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,18 +15,26 @@ T = TypeVar("T", bound="AssetLinkData")
 class AssetLinkData:
     """
     Attributes:
-        site_name (str | Unset):
-        title (str | Unset):
+        site_name (None | str | Unset):
+        title (None | str | Unset):
     """
 
-    site_name: str | Unset = UNSET
-    title: str | Unset = UNSET
+    site_name: None | str | Unset = UNSET
+    title: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        site_name = self.site_name
+        site_name: None | str | Unset
+        if isinstance(self.site_name, Unset):
+            site_name = UNSET
+        else:
+            site_name = self.site_name
 
-        title = self.title
+        title: None | str | Unset
+        if isinstance(self.title, Unset):
+            title = UNSET
+        else:
+            title = self.title
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -41,9 +49,24 @@ class AssetLinkData:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        site_name = d.pop("site_name", UNSET)
 
-        title = d.pop("title", UNSET)
+        def _parse_site_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        site_name = _parse_site_name(d.pop("site_name", UNSET))
+
+        def _parse_title(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        title = _parse_title(d.pop("title", UNSET))
 
         asset_link_data = cls(
             site_name=site_name,

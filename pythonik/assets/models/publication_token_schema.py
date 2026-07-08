@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,22 +15,34 @@ T = TypeVar("T", bound="PublicationTokenSchema")
 class PublicationTokenSchema:
     """
     Attributes:
-        api_base_url (str | Unset):
-        token (str | Unset):
-        ui_base_url (str | Unset):
+        api_base_url (None | str | Unset):
+        token (None | str | Unset):
+        ui_base_url (None | str | Unset):
     """
 
-    api_base_url: str | Unset = UNSET
-    token: str | Unset = UNSET
-    ui_base_url: str | Unset = UNSET
+    api_base_url: None | str | Unset = UNSET
+    token: None | str | Unset = UNSET
+    ui_base_url: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        api_base_url = self.api_base_url
+        api_base_url: None | str | Unset
+        if isinstance(self.api_base_url, Unset):
+            api_base_url = UNSET
+        else:
+            api_base_url = self.api_base_url
 
-        token = self.token
+        token: None | str | Unset
+        if isinstance(self.token, Unset):
+            token = UNSET
+        else:
+            token = self.token
 
-        ui_base_url = self.ui_base_url
+        ui_base_url: None | str | Unset
+        if isinstance(self.ui_base_url, Unset):
+            ui_base_url = UNSET
+        else:
+            ui_base_url = self.ui_base_url
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -47,11 +59,33 @@ class PublicationTokenSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        api_base_url = d.pop("api_base_url", UNSET)
 
-        token = d.pop("token", UNSET)
+        def _parse_api_base_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        ui_base_url = d.pop("ui_base_url", UNSET)
+        api_base_url = _parse_api_base_url(d.pop("api_base_url", UNSET))
+
+        def _parse_token(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        token = _parse_token(d.pop("token", UNSET))
+
+        def _parse_ui_base_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        ui_base_url = _parse_ui_base_url(d.pop("ui_base_url", UNSET))
 
         publication_token_schema = cls(
             api_base_url=api_base_url,

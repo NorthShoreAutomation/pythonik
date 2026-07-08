@@ -9,7 +9,9 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.jobs_widget_option_schema_filters import JobsWidgetOptionSchemaFilters
+    from ..models.jobs_widget_option_schema_filters_type_0 import (
+        JobsWidgetOptionSchemaFiltersType0,
+    )
     from ..models.sort import Sort
 
 
@@ -20,35 +22,57 @@ T = TypeVar("T", bound="JobsWidgetOptionSchema")
 class JobsWidgetOptionSchema:
     """
     Attributes:
-        columns (list[str] | Unset):
-        filters (JobsWidgetOptionSchemaFilters | Unset):
-        limit (int | Unset):
-        sort (list[Sort] | Unset):
+        columns (list[str] | None | Unset):
+        filters (JobsWidgetOptionSchemaFiltersType0 | None | Unset):
+        limit (int | None | Unset):
+        sort (list[Sort] | None | Unset):
     """
 
-    columns: list[str] | Unset = UNSET
-    filters: JobsWidgetOptionSchemaFilters | Unset = UNSET
-    limit: int | Unset = UNSET
-    sort: list[Sort] | Unset = UNSET
+    columns: list[str] | None | Unset = UNSET
+    filters: JobsWidgetOptionSchemaFiltersType0 | None | Unset = UNSET
+    limit: int | None | Unset = UNSET
+    sort: list[Sort] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        columns: list[str] | Unset = UNSET
-        if not isinstance(self.columns, Unset):
+        from ..models.jobs_widget_option_schema_filters_type_0 import (
+            JobsWidgetOptionSchemaFiltersType0,
+        )
+
+        columns: list[str] | None | Unset
+        if isinstance(self.columns, Unset):
+            columns = UNSET
+        elif isinstance(self.columns, list):
             columns = self.columns
 
-        filters: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.filters, Unset):
+        else:
+            columns = self.columns
+
+        filters: dict[str, Any] | None | Unset
+        if isinstance(self.filters, Unset):
+            filters = UNSET
+        elif isinstance(self.filters, JobsWidgetOptionSchemaFiltersType0):
             filters = self.filters.to_dict()
+        else:
+            filters = self.filters
 
-        limit = self.limit
+        limit: int | None | Unset
+        if isinstance(self.limit, Unset):
+            limit = UNSET
+        else:
+            limit = self.limit
 
-        sort: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.sort, Unset):
+        sort: list[dict[str, Any]] | None | Unset
+        if isinstance(self.sort, Unset):
+            sort = UNSET
+        elif isinstance(self.sort, list):
             sort = []
-            for sort_item_data in self.sort:
-                sort_item = sort_item_data.to_dict()
-                sort.append(sort_item)
+            for sort_type_0_item_data in self.sort:
+                sort_type_0_item = sort_type_0_item_data.to_dict()
+                sort.append(sort_type_0_item)
+
+        else:
+            sort = self.sort
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -66,31 +90,79 @@ class JobsWidgetOptionSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.jobs_widget_option_schema_filters import (
-            JobsWidgetOptionSchemaFilters,
+        from ..models.jobs_widget_option_schema_filters_type_0 import (
+            JobsWidgetOptionSchemaFiltersType0,
         )
         from ..models.sort import Sort
 
         d = dict(src_dict)
-        columns = cast(list[str], d.pop("columns", UNSET))
 
-        _filters = d.pop("filters", UNSET)
-        filters: JobsWidgetOptionSchemaFilters | Unset
-        if isinstance(_filters, Unset):
-            filters = UNSET
-        else:
-            filters = JobsWidgetOptionSchemaFilters.from_dict(_filters)
+        def _parse_columns(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                columns_type_0 = cast(list[str], data)
 
-        limit = d.pop("limit", UNSET)
+                return columns_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
 
-        _sort = d.pop("sort", UNSET)
-        sort: list[Sort] | Unset = UNSET
-        if _sort is not UNSET:
-            sort = []
-            for sort_item_data in _sort:
-                sort_item = Sort.from_dict(sort_item_data)
+        columns = _parse_columns(d.pop("columns", UNSET))
 
-                sort.append(sort_item)
+        def _parse_filters(
+            data: object,
+        ) -> JobsWidgetOptionSchemaFiltersType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                filters_type_0 = JobsWidgetOptionSchemaFiltersType0.from_dict(data)
+
+                return filters_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(JobsWidgetOptionSchemaFiltersType0 | None | Unset, data)
+
+        filters = _parse_filters(d.pop("filters", UNSET))
+
+        def _parse_limit(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        limit = _parse_limit(d.pop("limit", UNSET))
+
+        def _parse_sort(data: object) -> list[Sort] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                sort_type_0 = []
+                _sort_type_0 = data
+                for sort_type_0_item_data in _sort_type_0:
+                    sort_type_0_item = Sort.from_dict(sort_type_0_item_data)
+
+                    sort_type_0.append(sort_type_0_item)
+
+                return sort_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[Sort] | None | Unset, data)
+
+        sort = _parse_sort(d.pop("sort", UNSET))
 
         jobs_widget_option_schema = cls(
             columns=columns,

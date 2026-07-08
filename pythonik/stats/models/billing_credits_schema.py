@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -17,43 +17,71 @@ class BillingCreditsSchema:
     """
     Attributes:
         credits_ (int):
-        auto_pay (bool | Unset):
-        country (str | Unset):
-        currency (str | Unset):
-        custom_message (str | Unset):
-        system_domain_id (UUID | Unset):
-        total (str | Unset):
-        vat (int | Unset):
+        auto_pay (bool | None | Unset):
+        country (None | str | Unset):
+        currency (None | str | Unset):
+        custom_message (None | str | Unset):
+        system_domain_id (None | Unset | UUID):
+        total (None | str | Unset):
+        vat (int | None | Unset):
     """
 
     credits_: int
-    auto_pay: bool | Unset = UNSET
-    country: str | Unset = UNSET
-    currency: str | Unset = UNSET
-    custom_message: str | Unset = UNSET
-    system_domain_id: UUID | Unset = UNSET
-    total: str | Unset = UNSET
-    vat: int | Unset = UNSET
+    auto_pay: bool | None | Unset = UNSET
+    country: None | str | Unset = UNSET
+    currency: None | str | Unset = UNSET
+    custom_message: None | str | Unset = UNSET
+    system_domain_id: None | Unset | UUID = UNSET
+    total: None | str | Unset = UNSET
+    vat: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         credits_ = self.credits_
 
-        auto_pay = self.auto_pay
+        auto_pay: bool | None | Unset
+        if isinstance(self.auto_pay, Unset):
+            auto_pay = UNSET
+        else:
+            auto_pay = self.auto_pay
 
-        country = self.country
+        country: None | str | Unset
+        if isinstance(self.country, Unset):
+            country = UNSET
+        else:
+            country = self.country
 
-        currency = self.currency
+        currency: None | str | Unset
+        if isinstance(self.currency, Unset):
+            currency = UNSET
+        else:
+            currency = self.currency
 
-        custom_message = self.custom_message
+        custom_message: None | str | Unset
+        if isinstance(self.custom_message, Unset):
+            custom_message = UNSET
+        else:
+            custom_message = self.custom_message
 
-        system_domain_id: str | Unset = UNSET
-        if not isinstance(self.system_domain_id, Unset):
+        system_domain_id: None | str | Unset
+        if isinstance(self.system_domain_id, Unset):
+            system_domain_id = UNSET
+        elif isinstance(self.system_domain_id, UUID):
             system_domain_id = str(self.system_domain_id)
+        else:
+            system_domain_id = self.system_domain_id
 
-        total = self.total
+        total: None | str | Unset
+        if isinstance(self.total, Unset):
+            total = UNSET
+        else:
+            total = self.total
 
-        vat = self.vat
+        vat: int | None | Unset
+        if isinstance(self.vat, Unset):
+            vat = UNSET
+        else:
+            vat = self.vat
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -84,24 +112,76 @@ class BillingCreditsSchema:
         d = dict(src_dict)
         credits_ = d.pop("credits")
 
-        auto_pay = d.pop("auto_pay", UNSET)
+        def _parse_auto_pay(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        country = d.pop("country", UNSET)
+        auto_pay = _parse_auto_pay(d.pop("auto_pay", UNSET))
 
-        currency = d.pop("currency", UNSET)
+        def _parse_country(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        custom_message = d.pop("custom_message", UNSET)
+        country = _parse_country(d.pop("country", UNSET))
 
-        _system_domain_id = d.pop("system_domain_id", UNSET)
-        system_domain_id: UUID | Unset
-        if isinstance(_system_domain_id, Unset):
-            system_domain_id = UNSET
-        else:
-            system_domain_id = UUID(_system_domain_id)
+        def _parse_currency(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        total = d.pop("total", UNSET)
+        currency = _parse_currency(d.pop("currency", UNSET))
 
-        vat = d.pop("vat", UNSET)
+        def _parse_custom_message(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        custom_message = _parse_custom_message(d.pop("custom_message", UNSET))
+
+        def _parse_system_domain_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                system_domain_id_type_0 = UUID(data)
+
+                return system_domain_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
+
+        def _parse_total(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        total = _parse_total(d.pop("total", UNSET))
+
+        def _parse_vat(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        vat = _parse_vat(d.pop("vat", UNSET))
 
         billing_credits_schema = cls(
             credits_=credits_,

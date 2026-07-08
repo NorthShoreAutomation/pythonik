@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -16,40 +16,68 @@ T = TypeVar("T", bound="UserSchema")
 class UserSchema:
     """
     Attributes:
-        email (str | Unset):
-        first_name (str | Unset):
-        id (UUID | Unset):
-        last_name (str | Unset):
-        photo (str | Unset):
-        photo_big (str | Unset):
-        photo_small (str | Unset):
+        email (None | str | Unset):
+        first_name (None | str | Unset):
+        id (None | Unset | UUID):
+        last_name (None | str | Unset):
+        photo (None | str | Unset):
+        photo_big (None | str | Unset):
+        photo_small (None | str | Unset):
     """
 
-    email: str | Unset = UNSET
-    first_name: str | Unset = UNSET
-    id: UUID | Unset = UNSET
-    last_name: str | Unset = UNSET
-    photo: str | Unset = UNSET
-    photo_big: str | Unset = UNSET
-    photo_small: str | Unset = UNSET
+    email: None | str | Unset = UNSET
+    first_name: None | str | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    last_name: None | str | Unset = UNSET
+    photo: None | str | Unset = UNSET
+    photo_big: None | str | Unset = UNSET
+    photo_small: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        email = self.email
+        email: None | str | Unset
+        if isinstance(self.email, Unset):
+            email = UNSET
+        else:
+            email = self.email
 
-        first_name = self.first_name
+        first_name: None | str | Unset
+        if isinstance(self.first_name, Unset):
+            first_name = UNSET
+        else:
+            first_name = self.first_name
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        last_name = self.last_name
+        last_name: None | str | Unset
+        if isinstance(self.last_name, Unset):
+            last_name = UNSET
+        else:
+            last_name = self.last_name
 
-        photo = self.photo
+        photo: None | str | Unset
+        if isinstance(self.photo, Unset):
+            photo = UNSET
+        else:
+            photo = self.photo
 
-        photo_big = self.photo_big
+        photo_big: None | str | Unset
+        if isinstance(self.photo_big, Unset):
+            photo_big = UNSET
+        else:
+            photo_big = self.photo_big
 
-        photo_small = self.photo_small
+        photo_small: None | str | Unset
+        if isinstance(self.photo_small, Unset):
+            photo_small = UNSET
+        else:
+            photo_small = self.photo_small
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -74,24 +102,77 @@ class UserSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        email = d.pop("email", UNSET)
 
-        first_name = d.pop("first_name", UNSET)
+        def _parse_email(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        email = _parse_email(d.pop("email", UNSET))
 
-        last_name = d.pop("last_name", UNSET)
+        def _parse_first_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        photo = d.pop("photo", UNSET)
+        first_name = _parse_first_name(d.pop("first_name", UNSET))
 
-        photo_big = d.pop("photo_big", UNSET)
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
 
-        photo_small = d.pop("photo_small", UNSET)
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_last_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        last_name = _parse_last_name(d.pop("last_name", UNSET))
+
+        def _parse_photo(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        photo = _parse_photo(d.pop("photo", UNSET))
+
+        def _parse_photo_big(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        photo_big = _parse_photo_big(d.pop("photo_big", UNSET))
+
+        def _parse_photo_small(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        photo_small = _parse_photo_small(d.pop("photo_small", UNSET))
 
         user_schema = cls(
             email=email,

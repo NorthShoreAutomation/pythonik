@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,29 +16,45 @@ class CountrySchema:
     """
     Attributes:
         name (str):
-        alpha2 (str | Unset):
-        alpha3 (str | Unset):
-        apolitical_name (str | Unset):
-        numeric (str | Unset):
+        alpha2 (None | str | Unset):
+        alpha3 (None | str | Unset):
+        apolitical_name (None | str | Unset):
+        numeric (None | str | Unset):
     """
 
     name: str
-    alpha2: str | Unset = UNSET
-    alpha3: str | Unset = UNSET
-    apolitical_name: str | Unset = UNSET
-    numeric: str | Unset = UNSET
+    alpha2: None | str | Unset = UNSET
+    alpha3: None | str | Unset = UNSET
+    apolitical_name: None | str | Unset = UNSET
+    numeric: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
 
-        alpha2 = self.alpha2
+        alpha2: None | str | Unset
+        if isinstance(self.alpha2, Unset):
+            alpha2 = UNSET
+        else:
+            alpha2 = self.alpha2
 
-        alpha3 = self.alpha3
+        alpha3: None | str | Unset
+        if isinstance(self.alpha3, Unset):
+            alpha3 = UNSET
+        else:
+            alpha3 = self.alpha3
 
-        apolitical_name = self.apolitical_name
+        apolitical_name: None | str | Unset
+        if isinstance(self.apolitical_name, Unset):
+            apolitical_name = UNSET
+        else:
+            apolitical_name = self.apolitical_name
 
-        numeric = self.numeric
+        numeric: None | str | Unset
+        if isinstance(self.numeric, Unset):
+            numeric = UNSET
+        else:
+            numeric = self.numeric
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -63,13 +79,41 @@ class CountrySchema:
         d = dict(src_dict)
         name = d.pop("name")
 
-        alpha2 = d.pop("alpha2", UNSET)
+        def _parse_alpha2(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        alpha3 = d.pop("alpha3", UNSET)
+        alpha2 = _parse_alpha2(d.pop("alpha2", UNSET))
 
-        apolitical_name = d.pop("apolitical_name", UNSET)
+        def _parse_alpha3(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        numeric = d.pop("numeric", UNSET)
+        alpha3 = _parse_alpha3(d.pop("alpha3", UNSET))
+
+        def _parse_apolitical_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        apolitical_name = _parse_apolitical_name(d.pop("apolitical_name", UNSET))
+
+        def _parse_numeric(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        numeric = _parse_numeric(d.pop("numeric", UNSET))
 
         country_schema = cls(
             name=name,

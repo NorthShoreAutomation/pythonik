@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -17,26 +17,38 @@ T = TypeVar("T", bound="AutomationRunSchema")
 class AutomationRunSchema:
     """
     Attributes:
-        count (int | Unset):
-        date (datetime.date | Unset):
-        system_domain_id (UUID | Unset):
+        count (int | None | Unset):
+        date (datetime.date | None | Unset):
+        system_domain_id (None | Unset | UUID):
     """
 
-    count: int | Unset = UNSET
-    date: datetime.date | Unset = UNSET
-    system_domain_id: UUID | Unset = UNSET
+    count: int | None | Unset = UNSET
+    date: datetime.date | None | Unset = UNSET
+    system_domain_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        count = self.count
+        count: int | None | Unset
+        if isinstance(self.count, Unset):
+            count = UNSET
+        else:
+            count = self.count
 
-        date: str | Unset = UNSET
-        if not isinstance(self.date, Unset):
+        date: None | str | Unset
+        if isinstance(self.date, Unset):
+            date = UNSET
+        elif isinstance(self.date, datetime.date):
             date = self.date.isoformat()
+        else:
+            date = self.date
 
-        system_domain_id: str | Unset = UNSET
-        if not isinstance(self.system_domain_id, Unset):
+        system_domain_id: None | str | Unset
+        if isinstance(self.system_domain_id, Unset):
+            system_domain_id = UNSET
+        elif isinstance(self.system_domain_id, UUID):
             system_domain_id = str(self.system_domain_id)
+        else:
+            system_domain_id = self.system_domain_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -53,21 +65,49 @@ class AutomationRunSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        count = d.pop("count", UNSET)
 
-        _date = d.pop("date", UNSET)
-        date: datetime.date | Unset
-        if isinstance(_date, Unset):
-            date = UNSET
-        else:
-            date = datetime.date.fromisoformat(_date)
+        def _parse_count(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        _system_domain_id = d.pop("system_domain_id", UNSET)
-        system_domain_id: UUID | Unset
-        if isinstance(_system_domain_id, Unset):
-            system_domain_id = UNSET
-        else:
-            system_domain_id = UUID(_system_domain_id)
+        count = _parse_count(d.pop("count", UNSET))
+
+        def _parse_date(data: object) -> datetime.date | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_type_0 = datetime.date.fromisoformat(data)
+
+                return date_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.date | None | Unset, data)
+
+        date = _parse_date(d.pop("date", UNSET))
+
+        def _parse_system_domain_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                system_domain_id_type_0 = UUID(data)
+
+                return system_domain_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
 
         automation_run_schema = cls(
             count=count,

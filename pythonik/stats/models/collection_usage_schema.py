@@ -2,19 +2,22 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.collection_usage_schema_operation_source import (
-    CollectionUsageSchemaOperationSource,
-)
 from ..models.collection_usage_schema_operation_type import (
     CollectionUsageSchemaOperationType,
 )
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.collection_usage_schema_operation_source_type_1 import (
+        CollectionUsageSchemaOperationSourceType1,
+    )
+
 
 T = TypeVar("T", bound="CollectionUsageSchema")
 
@@ -27,27 +30,31 @@ class CollectionUsageSchema:
         operation_type (CollectionUsageSchemaOperationType):
         system_name (str):
         user_id (UUID):
-        date (datetime.date | Unset):
-        id (UUID | Unset):
-        metadata (str | Unset):
-        operation_source (CollectionUsageSchemaOperationSource | Unset):
-        system_domain_id (UUID | Unset):
-        time (datetime.datetime | Unset):
+        date (datetime.date | None | Unset):
+        id (None | Unset | UUID):
+        metadata (None | str | Unset):
+        operation_source (CollectionUsageSchemaOperationSourceType1 | None | Unset):
+        system_domain_id (None | Unset | UUID):
+        time (datetime.datetime | None | Unset):
     """
 
     collection_id: UUID
     operation_type: CollectionUsageSchemaOperationType
     system_name: str
     user_id: UUID
-    date: datetime.date | Unset = UNSET
-    id: UUID | Unset = UNSET
-    metadata: str | Unset = UNSET
-    operation_source: CollectionUsageSchemaOperationSource | Unset = UNSET
-    system_domain_id: UUID | Unset = UNSET
-    time: datetime.datetime | Unset = UNSET
+    date: datetime.date | None | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    metadata: None | str | Unset = UNSET
+    operation_source: CollectionUsageSchemaOperationSourceType1 | None | Unset = UNSET
+    system_domain_id: None | Unset | UUID = UNSET
+    time: datetime.datetime | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.collection_usage_schema_operation_source_type_1 import (
+            CollectionUsageSchemaOperationSourceType1,
+        )
+
         collection_id = str(self.collection_id)
 
         operation_type = self.operation_type.value
@@ -56,27 +63,53 @@ class CollectionUsageSchema:
 
         user_id = str(self.user_id)
 
-        date: str | Unset = UNSET
-        if not isinstance(self.date, Unset):
+        date: None | str | Unset
+        if isinstance(self.date, Unset):
+            date = UNSET
+        elif isinstance(self.date, datetime.date):
             date = self.date.isoformat()
+        else:
+            date = self.date
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        metadata = self.metadata
+        metadata: None | str | Unset
+        if isinstance(self.metadata, Unset):
+            metadata = UNSET
+        else:
+            metadata = self.metadata
 
-        operation_source: str | Unset = UNSET
-        if not isinstance(self.operation_source, Unset):
-            operation_source = self.operation_source.value
+        operation_source: dict[str, Any] | None | Unset
+        if isinstance(self.operation_source, Unset):
+            operation_source = UNSET
+        elif isinstance(
+            self.operation_source, CollectionUsageSchemaOperationSourceType1
+        ):
+            operation_source = self.operation_source.to_dict()
+        else:
+            operation_source = self.operation_source
 
-        system_domain_id: str | Unset = UNSET
-        if not isinstance(self.system_domain_id, Unset):
+        system_domain_id: None | str | Unset
+        if isinstance(self.system_domain_id, Unset):
+            system_domain_id = UNSET
+        elif isinstance(self.system_domain_id, UUID):
             system_domain_id = str(self.system_domain_id)
+        else:
+            system_domain_id = self.system_domain_id
 
-        time: str | Unset = UNSET
-        if not isinstance(self.time, Unset):
+        time: None | str | Unset
+        if isinstance(self.time, Unset):
+            time = UNSET
+        elif isinstance(self.time, datetime.datetime):
             time = self.time.isoformat()
+        else:
+            time = self.time
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -105,6 +138,10 @@ class CollectionUsageSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.collection_usage_schema_operation_source_type_1 import (
+            CollectionUsageSchemaOperationSourceType1,
+        )
+
         d = dict(src_dict)
         collection_id = UUID(d.pop("collection_id"))
 
@@ -114,42 +151,103 @@ class CollectionUsageSchema:
 
         user_id = UUID(d.pop("user_id"))
 
-        _date = d.pop("date", UNSET)
-        date: datetime.date | Unset
-        if isinstance(_date, Unset):
-            date = UNSET
-        else:
-            date = datetime.date.fromisoformat(_date)
+        def _parse_date(data: object) -> datetime.date | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_type_0 = datetime.date.fromisoformat(data)
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+                return date_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.date | None | Unset, data)
 
-        metadata = d.pop("metadata", UNSET)
+        date = _parse_date(d.pop("date", UNSET))
 
-        _operation_source = d.pop("operation_source", UNSET)
-        operation_source: CollectionUsageSchemaOperationSource | Unset
-        if isinstance(_operation_source, Unset):
-            operation_source = UNSET
-        else:
-            operation_source = CollectionUsageSchemaOperationSource(_operation_source)
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
 
-        _system_domain_id = d.pop("system_domain_id", UNSET)
-        system_domain_id: UUID | Unset
-        if isinstance(_system_domain_id, Unset):
-            system_domain_id = UNSET
-        else:
-            system_domain_id = UUID(_system_domain_id)
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        _time = d.pop("time", UNSET)
-        time: datetime.datetime | Unset
-        if isinstance(_time, Unset):
-            time = UNSET
-        else:
-            time = datetime.datetime.fromisoformat(_time)
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_metadata(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        metadata = _parse_metadata(d.pop("metadata", UNSET))
+
+        def _parse_operation_source(
+            data: object,
+        ) -> CollectionUsageSchemaOperationSourceType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                operation_source_type_1 = (
+                    CollectionUsageSchemaOperationSourceType1.from_dict(data)
+                )
+
+                return operation_source_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(CollectionUsageSchemaOperationSourceType1 | None | Unset, data)
+
+        operation_source = _parse_operation_source(d.pop("operation_source", UNSET))
+
+        def _parse_system_domain_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                system_domain_id_type_0 = UUID(data)
+
+                return system_domain_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
+
+        def _parse_time(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                time_type_0 = datetime.datetime.fromisoformat(data)
+
+                return time_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        time = _parse_time(d.pop("time", UNSET))
 
         collection_usage_schema = cls(
             collection_id=collection_id,

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,22 +15,34 @@ T = TypeVar("T", bound="DashboardWidget")
 class DashboardWidget:
     """
     Attributes:
-        expanded (bool | Unset):
-        id (str | Unset):
-        visible (bool | Unset):
+        expanded (bool | None | Unset):
+        id (None | str | Unset):
+        visible (bool | None | Unset):
     """
 
-    expanded: bool | Unset = UNSET
-    id: str | Unset = UNSET
-    visible: bool | Unset = UNSET
+    expanded: bool | None | Unset = UNSET
+    id: None | str | Unset = UNSET
+    visible: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        expanded = self.expanded
+        expanded: bool | None | Unset
+        if isinstance(self.expanded, Unset):
+            expanded = UNSET
+        else:
+            expanded = self.expanded
 
-        id = self.id
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        else:
+            id = self.id
 
-        visible = self.visible
+        visible: bool | None | Unset
+        if isinstance(self.visible, Unset):
+            visible = UNSET
+        else:
+            visible = self.visible
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -47,11 +59,33 @@ class DashboardWidget:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        expanded = d.pop("expanded", UNSET)
 
-        id = d.pop("id", UNSET)
+        def _parse_expanded(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        visible = d.pop("visible", UNSET)
+        expanded = _parse_expanded(d.pop("expanded", UNSET))
+
+        def _parse_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_visible(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        visible = _parse_visible(d.pop("visible", UNSET))
 
         dashboard_widget = cls(
             expanded=expanded,

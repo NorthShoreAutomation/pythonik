@@ -21,18 +21,18 @@ class ReindexBulkActionSchema:
     Attributes:
         object_ids (list[UUID]):
         object_type (ReindexBulkActionSchemaObjectType):
-        include_assets (bool | Unset):
-        include_collections (bool | Unset):
+        include_assets (bool | None | Unset):
+        include_collections (bool | None | Unset):
         realms (list[str] | None | Unset):
-        sync_to_another_dc (bool | Unset):
+        sync_to_another_dc (bool | None | Unset):
     """
 
     object_ids: list[UUID]
     object_type: ReindexBulkActionSchemaObjectType
-    include_assets: bool | Unset = UNSET
-    include_collections: bool | Unset = UNSET
+    include_assets: bool | None | Unset = UNSET
+    include_collections: bool | None | Unset = UNSET
     realms: list[str] | None | Unset = UNSET
-    sync_to_another_dc: bool | Unset = UNSET
+    sync_to_another_dc: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -43,9 +43,17 @@ class ReindexBulkActionSchema:
 
         object_type = self.object_type.value
 
-        include_assets = self.include_assets
+        include_assets: bool | None | Unset
+        if isinstance(self.include_assets, Unset):
+            include_assets = UNSET
+        else:
+            include_assets = self.include_assets
 
-        include_collections = self.include_collections
+        include_collections: bool | None | Unset
+        if isinstance(self.include_collections, Unset):
+            include_collections = UNSET
+        else:
+            include_collections = self.include_collections
 
         realms: list[str] | None | Unset
         if isinstance(self.realms, Unset):
@@ -56,7 +64,11 @@ class ReindexBulkActionSchema:
         else:
             realms = self.realms
 
-        sync_to_another_dc = self.sync_to_another_dc
+        sync_to_another_dc: bool | None | Unset
+        if isinstance(self.sync_to_another_dc, Unset):
+            sync_to_another_dc = UNSET
+        else:
+            sync_to_another_dc = self.sync_to_another_dc
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -89,9 +101,25 @@ class ReindexBulkActionSchema:
 
         object_type = ReindexBulkActionSchemaObjectType(d.pop("object_type"))
 
-        include_assets = d.pop("include_assets", UNSET)
+        def _parse_include_assets(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        include_collections = d.pop("include_collections", UNSET)
+        include_assets = _parse_include_assets(d.pop("include_assets", UNSET))
+
+        def _parse_include_collections(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        include_collections = _parse_include_collections(
+            d.pop("include_collections", UNSET)
+        )
 
         def _parse_realms(data: object) -> list[str] | None | Unset:
             if data is None:
@@ -110,7 +138,16 @@ class ReindexBulkActionSchema:
 
         realms = _parse_realms(d.pop("realms", UNSET))
 
-        sync_to_another_dc = d.pop("sync_to_another_dc", UNSET)
+        def _parse_sync_to_another_dc(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        sync_to_another_dc = _parse_sync_to_another_dc(
+            d.pop("sync_to_another_dc", UNSET)
+        )
 
         reindex_bulk_action_schema = cls(
             object_ids=object_ids,

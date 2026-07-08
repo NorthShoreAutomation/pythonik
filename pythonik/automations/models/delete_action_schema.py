@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -10,7 +10,9 @@ from ..models.delete_action_schema_type import DeleteActionSchemaType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.delete_action_schema_parameters import DeleteActionSchemaParameters
+    from ..models.delete_action_schema_parameters_type_0 import (
+        DeleteActionSchemaParametersType0,
+    )
 
 
 T = TypeVar("T", bound="DeleteActionSchema")
@@ -21,19 +23,27 @@ class DeleteActionSchema:
     """
     Attributes:
         type_ (DeleteActionSchemaType):  Default: DeleteActionSchemaType.DELETE_ASSET.
-        parameters (DeleteActionSchemaParameters | Unset):
+        parameters (DeleteActionSchemaParametersType0 | None | Unset):
     """
 
     type_: DeleteActionSchemaType = DeleteActionSchemaType.DELETE_ASSET
-    parameters: DeleteActionSchemaParameters | Unset = UNSET
+    parameters: DeleteActionSchemaParametersType0 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.delete_action_schema_parameters_type_0 import (
+            DeleteActionSchemaParametersType0,
+        )
+
         type_ = self.type_.value
 
-        parameters: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.parameters, Unset):
+        parameters: dict[str, Any] | None | Unset
+        if isinstance(self.parameters, Unset):
+            parameters = UNSET
+        elif isinstance(self.parameters, DeleteActionSchemaParametersType0):
             parameters = self.parameters.to_dict()
+        else:
+            parameters = self.parameters
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -49,19 +59,31 @@ class DeleteActionSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.delete_action_schema_parameters import (
-            DeleteActionSchemaParameters,
+        from ..models.delete_action_schema_parameters_type_0 import (
+            DeleteActionSchemaParametersType0,
         )
 
         d = dict(src_dict)
         type_ = DeleteActionSchemaType(d.pop("type"))
 
-        _parameters = d.pop("parameters", UNSET)
-        parameters: DeleteActionSchemaParameters | Unset
-        if isinstance(_parameters, Unset):
-            parameters = UNSET
-        else:
-            parameters = DeleteActionSchemaParameters.from_dict(_parameters)
+        def _parse_parameters(
+            data: object,
+        ) -> DeleteActionSchemaParametersType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                parameters_type_0 = DeleteActionSchemaParametersType0.from_dict(data)
+
+                return parameters_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(DeleteActionSchemaParametersType0 | None | Unset, data)
+
+        parameters = _parse_parameters(d.pop("parameters", UNSET))
 
         delete_action_schema = cls(
             type_=type_,

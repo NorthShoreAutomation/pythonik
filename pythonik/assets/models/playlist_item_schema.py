@@ -19,7 +19,7 @@ class PlaylistItemSchema:
     Attributes:
         object_id (UUID):
         object_type (PlaylistItemSchemaObjectType):
-        id (UUID | Unset):
+        id (None | Unset | UUID):
         time_end_milliseconds (int | None | Unset):
         time_start_milliseconds (int | None | Unset):
         version_id (None | str | Unset): Version selector for this playlist item. Accepts: omitted/null/empty (all
@@ -29,7 +29,7 @@ class PlaylistItemSchema:
 
     object_id: UUID
     object_type: PlaylistItemSchemaObjectType
-    id: UUID | Unset = UNSET
+    id: None | Unset | UUID = UNSET
     time_end_milliseconds: int | None | Unset = UNSET
     time_start_milliseconds: int | None | Unset = UNSET
     version_id: None | str | Unset = UNSET
@@ -40,9 +40,13 @@ class PlaylistItemSchema:
 
         object_type = self.object_type.value
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
         time_end_milliseconds: int | None | Unset
         if isinstance(self.time_end_milliseconds, Unset):
@@ -88,12 +92,22 @@ class PlaylistItemSchema:
 
         object_type = PlaylistItemSchemaObjectType(d.pop("object_type"))
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
 
         def _parse_time_end_milliseconds(data: object) -> int | None | Unset:
             if data is None:

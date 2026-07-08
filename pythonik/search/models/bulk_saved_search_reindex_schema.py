@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -18,14 +18,14 @@ class BulkSavedSearchReindexSchema:
     Attributes:
         job_id (UUID):
         search_ids (list[UUID]):
-        include_assets (bool | Unset):
-        include_collections (bool | Unset):
+        include_assets (bool | None | Unset):
+        include_collections (bool | None | Unset):
     """
 
     job_id: UUID
     search_ids: list[UUID]
-    include_assets: bool | Unset = UNSET
-    include_collections: bool | Unset = UNSET
+    include_assets: bool | None | Unset = UNSET
+    include_collections: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -36,9 +36,17 @@ class BulkSavedSearchReindexSchema:
             search_ids_item = str(search_ids_item_data)
             search_ids.append(search_ids_item)
 
-        include_assets = self.include_assets
+        include_assets: bool | None | Unset
+        if isinstance(self.include_assets, Unset):
+            include_assets = UNSET
+        else:
+            include_assets = self.include_assets
 
-        include_collections = self.include_collections
+        include_collections: bool | None | Unset
+        if isinstance(self.include_collections, Unset):
+            include_collections = UNSET
+        else:
+            include_collections = self.include_collections
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -67,9 +75,25 @@ class BulkSavedSearchReindexSchema:
 
             search_ids.append(search_ids_item)
 
-        include_assets = d.pop("include_assets", UNSET)
+        def _parse_include_assets(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        include_collections = d.pop("include_collections", UNSET)
+        include_assets = _parse_include_assets(d.pop("include_assets", UNSET))
+
+        def _parse_include_collections(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        include_collections = _parse_include_collections(
+            d.pop("include_collections", UNSET)
+        )
 
         bulk_saved_search_reindex_schema = cls(
             job_id=job_id,

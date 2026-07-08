@@ -16,22 +16,26 @@ T = TypeVar("T", bound="GroupSettingSchema")
 class GroupSettingSchema:
     """
     Attributes:
-        group_id (UUID | Unset):
+        group_id (None | Unset | UUID):
         logo_storage_id (None | Unset | UUID):
         logo_url (None | str | Unset):
-        system_domain_id (UUID | Unset):
+        system_domain_id (None | Unset | UUID):
     """
 
-    group_id: UUID | Unset = UNSET
+    group_id: None | Unset | UUID = UNSET
     logo_storage_id: None | Unset | UUID = UNSET
     logo_url: None | str | Unset = UNSET
-    system_domain_id: UUID | Unset = UNSET
+    system_domain_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        group_id: str | Unset = UNSET
-        if not isinstance(self.group_id, Unset):
+        group_id: None | str | Unset
+        if isinstance(self.group_id, Unset):
+            group_id = UNSET
+        elif isinstance(self.group_id, UUID):
             group_id = str(self.group_id)
+        else:
+            group_id = self.group_id
 
         logo_storage_id: None | str | Unset
         if isinstance(self.logo_storage_id, Unset):
@@ -47,9 +51,13 @@ class GroupSettingSchema:
         else:
             logo_url = self.logo_url
 
-        system_domain_id: str | Unset = UNSET
-        if not isinstance(self.system_domain_id, Unset):
+        system_domain_id: None | str | Unset
+        if isinstance(self.system_domain_id, Unset):
+            system_domain_id = UNSET
+        elif isinstance(self.system_domain_id, UUID):
             system_domain_id = str(self.system_domain_id)
+        else:
+            system_domain_id = self.system_domain_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -68,12 +76,23 @@ class GroupSettingSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        _group_id = d.pop("group_id", UNSET)
-        group_id: UUID | Unset
-        if isinstance(_group_id, Unset):
-            group_id = UNSET
-        else:
-            group_id = UUID(_group_id)
+
+        def _parse_group_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                group_id_type_0 = UUID(data)
+
+                return group_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        group_id = _parse_group_id(d.pop("group_id", UNSET))
 
         def _parse_logo_storage_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -101,12 +120,22 @@ class GroupSettingSchema:
 
         logo_url = _parse_logo_url(d.pop("logo_url", UNSET))
 
-        _system_domain_id = d.pop("system_domain_id", UNSET)
-        system_domain_id: UUID | Unset
-        if isinstance(_system_domain_id, Unset):
-            system_domain_id = UNSET
-        else:
-            system_domain_id = UUID(_system_domain_id)
+        def _parse_system_domain_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                system_domain_id_type_0 = UUID(data)
+
+                return system_domain_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
 
         group_setting_schema = cls(
             group_id=group_id,

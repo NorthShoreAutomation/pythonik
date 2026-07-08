@@ -16,13 +16,13 @@ class StorageScanSchema:
     """
     Attributes:
         files (list[str] | None | Unset):
-        ignore_already_active (bool | Unset): Will force scanning even if the scan is already active if any of `paths`
-            or `files` are specified.
+        ignore_already_active (bool | None | Unset): Will force scanning even if the scan is already active if any of
+            `paths` or `files` are specified.
         paths (list[str] | None | Unset):
     """
 
     files: list[str] | None | Unset = UNSET
-    ignore_already_active: bool | Unset = UNSET
+    ignore_already_active: bool | None | Unset = UNSET
     paths: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -36,7 +36,11 @@ class StorageScanSchema:
         else:
             files = self.files
 
-        ignore_already_active = self.ignore_already_active
+        ignore_already_active: bool | None | Unset
+        if isinstance(self.ignore_already_active, Unset):
+            ignore_already_active = UNSET
+        else:
+            ignore_already_active = self.ignore_already_active
 
         paths: list[str] | None | Unset
         if isinstance(self.paths, Unset):
@@ -80,7 +84,16 @@ class StorageScanSchema:
 
         files = _parse_files(d.pop("files", UNSET))
 
-        ignore_already_active = d.pop("ignore_already_active", UNSET)
+        def _parse_ignore_already_active(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        ignore_already_active = _parse_ignore_already_active(
+            d.pop("ignore_already_active", UNSET)
+        )
 
         def _parse_paths(data: object) -> list[str] | None | Unset:
             if data is None:

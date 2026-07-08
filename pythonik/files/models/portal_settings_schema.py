@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,30 +15,50 @@ T = TypeVar("T", bound="PortalSettingsSchema")
 class PortalSettingsSchema:
     """
     Attributes:
-        delete (bool | Unset):
-        is_system (bool | Unset):
-        read (bool | Unset):
-        scan (bool | Unset):
-        write (bool | Unset):
+        delete (bool | None | Unset):
+        is_system (bool | None | Unset):
+        read (bool | None | Unset):
+        scan (bool | None | Unset):
+        write (bool | None | Unset):
     """
 
-    delete: bool | Unset = UNSET
-    is_system: bool | Unset = UNSET
-    read: bool | Unset = UNSET
-    scan: bool | Unset = UNSET
-    write: bool | Unset = UNSET
+    delete: bool | None | Unset = UNSET
+    is_system: bool | None | Unset = UNSET
+    read: bool | None | Unset = UNSET
+    scan: bool | None | Unset = UNSET
+    write: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        delete = self.delete
+        delete: bool | None | Unset
+        if isinstance(self.delete, Unset):
+            delete = UNSET
+        else:
+            delete = self.delete
 
-        is_system = self.is_system
+        is_system: bool | None | Unset
+        if isinstance(self.is_system, Unset):
+            is_system = UNSET
+        else:
+            is_system = self.is_system
 
-        read = self.read
+        read: bool | None | Unset
+        if isinstance(self.read, Unset):
+            read = UNSET
+        else:
+            read = self.read
 
-        scan = self.scan
+        scan: bool | None | Unset
+        if isinstance(self.scan, Unset):
+            scan = UNSET
+        else:
+            scan = self.scan
 
-        write = self.write
+        write: bool | None | Unset
+        if isinstance(self.write, Unset):
+            write = UNSET
+        else:
+            write = self.write
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -59,15 +79,51 @@ class PortalSettingsSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        delete = d.pop("delete", UNSET)
 
-        is_system = d.pop("is_system", UNSET)
+        def _parse_delete(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        read = d.pop("read", UNSET)
+        delete = _parse_delete(d.pop("delete", UNSET))
 
-        scan = d.pop("scan", UNSET)
+        def _parse_is_system(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        write = d.pop("write", UNSET)
+        is_system = _parse_is_system(d.pop("is_system", UNSET))
+
+        def _parse_read(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        read = _parse_read(d.pop("read", UNSET))
+
+        def _parse_scan(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        scan = _parse_scan(d.pop("scan", UNSET))
+
+        def _parse_write(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        write = _parse_write(d.pop("write", UNSET))
 
         portal_settings_schema = cls(
             delete=delete,

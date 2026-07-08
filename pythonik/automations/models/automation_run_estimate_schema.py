@@ -9,8 +9,8 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.automation_run_estimate_schema_facets import (
-        AutomationRunEstimateSchemaFacets,
+    from ..models.automation_run_estimate_schema_facets_type_0 import (
+        AutomationRunEstimateSchemaFacetsType0,
     )
 
 
@@ -21,26 +21,43 @@ T = TypeVar("T", bound="AutomationRunEstimateSchema")
 class AutomationRunEstimateSchema:
     """
     Attributes:
-        errors (list[str] | Unset):
-        facets (AutomationRunEstimateSchemaFacets | Unset):
-        total (int | Unset):
+        errors (list[str] | None | Unset):
+        facets (AutomationRunEstimateSchemaFacetsType0 | None | Unset):
+        total (int | None | Unset):
     """
 
-    errors: list[str] | Unset = UNSET
-    facets: AutomationRunEstimateSchemaFacets | Unset = UNSET
-    total: int | Unset = UNSET
+    errors: list[str] | None | Unset = UNSET
+    facets: AutomationRunEstimateSchemaFacetsType0 | None | Unset = UNSET
+    total: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        errors: list[str] | Unset = UNSET
-        if not isinstance(self.errors, Unset):
+        from ..models.automation_run_estimate_schema_facets_type_0 import (
+            AutomationRunEstimateSchemaFacetsType0,
+        )
+
+        errors: list[str] | None | Unset
+        if isinstance(self.errors, Unset):
+            errors = UNSET
+        elif isinstance(self.errors, list):
             errors = self.errors
 
-        facets: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.facets, Unset):
-            facets = self.facets.to_dict()
+        else:
+            errors = self.errors
 
-        total = self.total
+        facets: dict[str, Any] | None | Unset
+        if isinstance(self.facets, Unset):
+            facets = UNSET
+        elif isinstance(self.facets, AutomationRunEstimateSchemaFacetsType0):
+            facets = self.facets.to_dict()
+        else:
+            facets = self.facets
+
+        total: int | None | Unset
+        if isinstance(self.total, Unset):
+            total = UNSET
+        else:
+            total = self.total
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -56,21 +73,56 @@ class AutomationRunEstimateSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.automation_run_estimate_schema_facets import (
-            AutomationRunEstimateSchemaFacets,
+        from ..models.automation_run_estimate_schema_facets_type_0 import (
+            AutomationRunEstimateSchemaFacetsType0,
         )
 
         d = dict(src_dict)
-        errors = cast(list[str], d.pop("errors", UNSET))
 
-        _facets = d.pop("facets", UNSET)
-        facets: AutomationRunEstimateSchemaFacets | Unset
-        if isinstance(_facets, Unset):
-            facets = UNSET
-        else:
-            facets = AutomationRunEstimateSchemaFacets.from_dict(_facets)
+        def _parse_errors(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                errors_type_0 = cast(list[str], data)
 
-        total = d.pop("total", UNSET)
+                return errors_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        errors = _parse_errors(d.pop("errors", UNSET))
+
+        def _parse_facets(
+            data: object,
+        ) -> AutomationRunEstimateSchemaFacetsType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                facets_type_0 = AutomationRunEstimateSchemaFacetsType0.from_dict(data)
+
+                return facets_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(AutomationRunEstimateSchemaFacetsType0 | None | Unset, data)
+
+        facets = _parse_facets(d.pop("facets", UNSET))
+
+        def _parse_total(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        total = _parse_total(d.pop("total", UNSET))
 
         automation_run_estimate_schema = cls(
             errors=errors,

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -18,12 +18,12 @@ class ObjectCollectionTriggerParametersSchema:
     Attributes:
         collection_ids (list[UUID]):
         object_type (str):
-        include_subcollections (bool | Unset):  Default: False.
+        include_subcollections (bool | None | Unset):  Default: False.
     """
 
     collection_ids: list[UUID]
     object_type: str
-    include_subcollections: bool | Unset = False
+    include_subcollections: bool | None | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -34,7 +34,11 @@ class ObjectCollectionTriggerParametersSchema:
 
         object_type = self.object_type
 
-        include_subcollections = self.include_subcollections
+        include_subcollections: bool | None | Unset
+        if isinstance(self.include_subcollections, Unset):
+            include_subcollections = UNSET
+        else:
+            include_subcollections = self.include_subcollections
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -61,7 +65,16 @@ class ObjectCollectionTriggerParametersSchema:
 
         object_type = d.pop("object_type")
 
-        include_subcollections = d.pop("include_subcollections", UNSET)
+        def _parse_include_subcollections(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        include_subcollections = _parse_include_subcollections(
+            d.pop("include_subcollections", UNSET)
+        )
 
         object_collection_trigger_parameters_schema = cls(
             collection_ids=collection_ids,

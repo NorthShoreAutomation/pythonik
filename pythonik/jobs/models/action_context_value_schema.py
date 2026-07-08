@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,18 +15,26 @@ T = TypeVar("T", bound="ActionContextValueSchema")
 class ActionContextValueSchema:
     """
     Attributes:
-        bulk (bool | Unset):
-        url (str | Unset):
+        bulk (bool | None | Unset):
+        url (None | str | Unset):
     """
 
-    bulk: bool | Unset = UNSET
-    url: str | Unset = UNSET
+    bulk: bool | None | Unset = UNSET
+    url: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        bulk = self.bulk
+        bulk: bool | None | Unset
+        if isinstance(self.bulk, Unset):
+            bulk = UNSET
+        else:
+            bulk = self.bulk
 
-        url = self.url
+        url: None | str | Unset
+        if isinstance(self.url, Unset):
+            url = UNSET
+        else:
+            url = self.url
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -41,9 +49,24 @@ class ActionContextValueSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        bulk = d.pop("bulk", UNSET)
 
-        url = d.pop("url", UNSET)
+        def _parse_bulk(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        bulk = _parse_bulk(d.pop("bulk", UNSET))
+
+        def _parse_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        url = _parse_url(d.pop("url", UNSET))
 
         action_context_value_schema = cls(
             bulk=bulk,

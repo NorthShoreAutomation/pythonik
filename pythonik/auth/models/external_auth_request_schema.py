@@ -21,14 +21,14 @@ class ExternalAuthRequestSchema:
     """
     Attributes:
         secret (str):
-        app_id (UUID | Unset):
-        app_name (str | Unset):
+        app_id (None | Unset | UUID):
+        app_name (None | str | Unset):
         redirect_info (None | RedirectInfoType | Unset):
     """
 
     secret: str
-    app_id: UUID | Unset = UNSET
-    app_name: str | Unset = UNSET
+    app_id: None | Unset | UUID = UNSET
+    app_name: None | str | Unset = UNSET
     redirect_info: None | RedirectInfoType | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -37,11 +37,19 @@ class ExternalAuthRequestSchema:
 
         secret = self.secret
 
-        app_id: str | Unset = UNSET
-        if not isinstance(self.app_id, Unset):
+        app_id: None | str | Unset
+        if isinstance(self.app_id, Unset):
+            app_id = UNSET
+        elif isinstance(self.app_id, UUID):
             app_id = str(self.app_id)
+        else:
+            app_id = self.app_id
 
-        app_name = self.app_name
+        app_name: None | str | Unset
+        if isinstance(self.app_name, Unset):
+            app_name = UNSET
+        else:
+            app_name = self.app_name
 
         redirect_info: dict[str, Any] | None | Unset
         if isinstance(self.redirect_info, Unset):
@@ -74,14 +82,31 @@ class ExternalAuthRequestSchema:
         d = dict(src_dict)
         secret = d.pop("secret")
 
-        _app_id = d.pop("app_id", UNSET)
-        app_id: UUID | Unset
-        if isinstance(_app_id, Unset):
-            app_id = UNSET
-        else:
-            app_id = UUID(_app_id)
+        def _parse_app_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                app_id_type_0 = UUID(data)
 
-        app_name = d.pop("app_name", UNSET)
+                return app_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        app_id = _parse_app_id(d.pop("app_id", UNSET))
+
+        def _parse_app_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        app_name = _parse_app_name(d.pop("app_name", UNSET))
 
         def _parse_redirect_info(data: object) -> None | RedirectInfoType | Unset:
             if data is None:

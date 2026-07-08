@@ -17,12 +17,12 @@ class AssetsHistoryQueryParamsSchema:
     Attributes:
         page (int | None | Unset): Which page number to fetch Default: 1.
         per_page (int | None | Unset): The number of items for each page Default: 10.
-        sort (str | Unset): A comma separated list of fieldnames with order (asc/desc)
+        sort (None | str | Unset): A comma separated list of fieldnames with order (asc/desc)
     """
 
     page: int | None | Unset = 1
     per_page: int | None | Unset = 10
-    sort: str | Unset = UNSET
+    sort: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -38,7 +38,11 @@ class AssetsHistoryQueryParamsSchema:
         else:
             per_page = self.per_page
 
-        sort = self.sort
+        sort: None | str | Unset
+        if isinstance(self.sort, Unset):
+            sort = UNSET
+        else:
+            sort = self.sort
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -74,7 +78,14 @@ class AssetsHistoryQueryParamsSchema:
 
         per_page = _parse_per_page(d.pop("per_page", UNSET))
 
-        sort = d.pop("sort", UNSET)
+        def _parse_sort(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        sort = _parse_sort(d.pop("sort", UNSET))
 
         assets_history_query_params_schema = cls(
             page=page,

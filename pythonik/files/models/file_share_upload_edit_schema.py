@@ -1,15 +1,18 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.file_share_upload_edit_schema_status import (
-    FileShareUploadEditSchemaStatus,
-)
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.file_share_upload_edit_schema_status_type_1 import (
+        FileShareUploadEditSchemaStatusType1,
+    )
+
 
 T = TypeVar("T", bound="FileShareUploadEditSchema")
 
@@ -18,20 +21,32 @@ T = TypeVar("T", bound="FileShareUploadEditSchema")
 class FileShareUploadEditSchema:
     """
     Attributes:
-        size (int | Unset):
-        status (FileShareUploadEditSchemaStatus | Unset):
+        size (int | None | Unset):
+        status (FileShareUploadEditSchemaStatusType1 | None | Unset):
     """
 
-    size: int | Unset = UNSET
-    status: FileShareUploadEditSchemaStatus | Unset = UNSET
+    size: int | None | Unset = UNSET
+    status: FileShareUploadEditSchemaStatusType1 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        size = self.size
+        from ..models.file_share_upload_edit_schema_status_type_1 import (
+            FileShareUploadEditSchemaStatusType1,
+        )
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        size: int | None | Unset
+        if isinstance(self.size, Unset):
+            size = UNSET
+        else:
+            size = self.size
+
+        status: dict[str, Any] | None | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        elif isinstance(self.status, FileShareUploadEditSchemaStatusType1):
+            status = self.status.to_dict()
+        else:
+            status = self.status
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -45,15 +60,39 @@ class FileShareUploadEditSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        d = dict(src_dict)
-        size = d.pop("size", UNSET)
+        from ..models.file_share_upload_edit_schema_status_type_1 import (
+            FileShareUploadEditSchemaStatusType1,
+        )
 
-        _status = d.pop("status", UNSET)
-        status: FileShareUploadEditSchemaStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = FileShareUploadEditSchemaStatus(_status)
+        d = dict(src_dict)
+
+        def _parse_size(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        size = _parse_size(d.pop("size", UNSET))
+
+        def _parse_status(
+            data: object,
+        ) -> FileShareUploadEditSchemaStatusType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                status_type_1 = FileShareUploadEditSchemaStatusType1.from_dict(data)
+
+                return status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(FileShareUploadEditSchemaStatusType1 | None | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
 
         file_share_upload_edit_schema = cls(
             size=size,

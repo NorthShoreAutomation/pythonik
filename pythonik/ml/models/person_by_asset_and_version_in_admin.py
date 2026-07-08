@@ -34,8 +34,8 @@ class PersonByAssetAndVersionInAdmin:
         person_version_face_image_url (None | str):
         status (PersonByAssetAndVersionInAdminStatus):
         version_id (UUID):
-        system_domain_id (UUID | Unset):
-        version_number (str | Unset):
+        system_domain_id (None | Unset | UUID):
+        version_number (None | str | Unset):
     """
 
     asset_id: UUID
@@ -52,8 +52,8 @@ class PersonByAssetAndVersionInAdmin:
     person_version_face_image_url: None | str
     status: PersonByAssetAndVersionInAdminStatus
     version_id: UUID
-    system_domain_id: UUID | Unset = UNSET
-    version_number: str | Unset = UNSET
+    system_domain_id: None | Unset | UUID = UNSET
+    version_number: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -96,11 +96,19 @@ class PersonByAssetAndVersionInAdmin:
 
         version_id = str(self.version_id)
 
-        system_domain_id: str | Unset = UNSET
-        if not isinstance(self.system_domain_id, Unset):
+        system_domain_id: None | str | Unset
+        if isinstance(self.system_domain_id, Unset):
+            system_domain_id = UNSET
+        elif isinstance(self.system_domain_id, UUID):
             system_domain_id = str(self.system_domain_id)
+        else:
+            system_domain_id = self.system_domain_id
 
-        version_number = self.version_number
+        version_number: None | str | Unset
+        if isinstance(self.version_number, Unset):
+            version_number = UNSET
+        else:
+            version_number = self.version_number
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -203,14 +211,31 @@ class PersonByAssetAndVersionInAdmin:
 
         version_id = UUID(d.pop("version_id"))
 
-        _system_domain_id = d.pop("system_domain_id", UNSET)
-        system_domain_id: UUID | Unset
-        if isinstance(_system_domain_id, Unset):
-            system_domain_id = UNSET
-        else:
-            system_domain_id = UUID(_system_domain_id)
+        def _parse_system_domain_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                system_domain_id_type_0 = UUID(data)
 
-        version_number = d.pop("version_number", UNSET)
+                return system_domain_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
+
+        def _parse_version_number(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        version_number = _parse_version_number(d.pop("version_number", UNSET))
 
         person_by_asset_and_version_in_admin = cls(
             asset_id=asset_id,

@@ -10,7 +10,7 @@ from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.range_filter import RangeFilter
-    from ..models.term_external import TermExternal
+    from ..models.term_external_type_0 import TermExternalType0
 
 
 T = TypeVar("T", bound="Term")
@@ -21,42 +21,66 @@ class Term:
     """
     Attributes:
         name (str):
-        exists (bool | Unset):
-        external (TermExternal | Unset):
-        missing (bool | Unset):
-        range_ (RangeFilter | Unset):
+        exists (bool | None | Unset):
+        external (None | TermExternalType0 | Unset):
+        missing (bool | None | Unset):
+        range_ (None | RangeFilter | Unset):
         value (Any | Unset):
-        value_in (list[str] | Unset):
+        value_in (list[str] | None | Unset):
     """
 
     name: str
-    exists: bool | Unset = UNSET
-    external: TermExternal | Unset = UNSET
-    missing: bool | Unset = UNSET
-    range_: RangeFilter | Unset = UNSET
+    exists: bool | None | Unset = UNSET
+    external: None | TermExternalType0 | Unset = UNSET
+    missing: bool | None | Unset = UNSET
+    range_: None | RangeFilter | Unset = UNSET
     value: Any | Unset = UNSET
-    value_in: list[str] | Unset = UNSET
+    value_in: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.range_filter import RangeFilter
+        from ..models.term_external_type_0 import TermExternalType0
+
         name = self.name
 
-        exists = self.exists
+        exists: bool | None | Unset
+        if isinstance(self.exists, Unset):
+            exists = UNSET
+        else:
+            exists = self.exists
 
-        external: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.external, Unset):
+        external: dict[str, Any] | None | Unset
+        if isinstance(self.external, Unset):
+            external = UNSET
+        elif isinstance(self.external, TermExternalType0):
             external = self.external.to_dict()
+        else:
+            external = self.external
 
-        missing = self.missing
+        missing: bool | None | Unset
+        if isinstance(self.missing, Unset):
+            missing = UNSET
+        else:
+            missing = self.missing
 
-        range_: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.range_, Unset):
+        range_: dict[str, Any] | None | Unset
+        if isinstance(self.range_, Unset):
+            range_ = UNSET
+        elif isinstance(self.range_, RangeFilter):
             range_ = self.range_.to_dict()
+        else:
+            range_ = self.range_
 
         value = self.value
 
-        value_in: list[str] | Unset = UNSET
-        if not isinstance(self.value_in, Unset):
+        value_in: list[str] | None | Unset
+        if isinstance(self.value_in, Unset):
+            value_in = UNSET
+        elif isinstance(self.value_in, list):
+            value_in = self.value_in
+
+        else:
             value_in = self.value_in
 
         field_dict: dict[str, Any] = {}
@@ -84,32 +108,81 @@ class Term:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.range_filter import RangeFilter
-        from ..models.term_external import TermExternal
+        from ..models.term_external_type_0 import TermExternalType0
 
         d = dict(src_dict)
         name = d.pop("name")
 
-        exists = d.pop("exists", UNSET)
+        def _parse_exists(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        _external = d.pop("external", UNSET)
-        external: TermExternal | Unset
-        if isinstance(_external, Unset):
-            external = UNSET
-        else:
-            external = TermExternal.from_dict(_external)
+        exists = _parse_exists(d.pop("exists", UNSET))
 
-        missing = d.pop("missing", UNSET)
+        def _parse_external(data: object) -> None | TermExternalType0 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                external_type_0 = TermExternalType0.from_dict(data)
 
-        _range_ = d.pop("range", UNSET)
-        range_: RangeFilter | Unset
-        if isinstance(_range_, Unset):
-            range_ = UNSET
-        else:
-            range_ = RangeFilter.from_dict(_range_)
+                return external_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | TermExternalType0 | Unset, data)
+
+        external = _parse_external(d.pop("external", UNSET))
+
+        def _parse_missing(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        missing = _parse_missing(d.pop("missing", UNSET))
+
+        def _parse_range_(data: object) -> None | RangeFilter | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                range_type_1 = RangeFilter.from_dict(data)
+
+                return range_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | RangeFilter | Unset, data)
+
+        range_ = _parse_range_(d.pop("range", UNSET))
 
         value = d.pop("value", UNSET)
 
-        value_in = cast(list[str], d.pop("value_in", UNSET))
+        def _parse_value_in(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                value_in_type_0 = cast(list[str], data)
+
+                return value_in_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        value_in = _parse_value_in(d.pop("value_in", UNSET))
 
         term = cls(
             name=name,

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -14,8 +14,8 @@ from ..models.iconik_storage_gateway_event_schema_type import (
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.iconik_storage_gateway_event_schema_data import (
-        IconikStorageGatewayEventSchemaData,
+    from ..models.iconik_storage_gateway_event_schema_data_type_0 import (
+        IconikStorageGatewayEventSchemaDataType0,
     )
 
 
@@ -27,31 +27,47 @@ class IconikStorageGatewayEventSchema:
     """
     Attributes:
         type_ (IconikStorageGatewayEventSchemaType):
-        data (IconikStorageGatewayEventSchemaData | Unset):
-        date_created (datetime.datetime | Unset):
-        id (UUID | Unset):
+        data (IconikStorageGatewayEventSchemaDataType0 | None | Unset):
+        date_created (datetime.datetime | None | Unset):
+        id (None | Unset | UUID):
     """
 
     type_: IconikStorageGatewayEventSchemaType
-    data: IconikStorageGatewayEventSchemaData | Unset = UNSET
-    date_created: datetime.datetime | Unset = UNSET
-    id: UUID | Unset = UNSET
+    data: IconikStorageGatewayEventSchemaDataType0 | None | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.iconik_storage_gateway_event_schema_data_type_0 import (
+            IconikStorageGatewayEventSchemaDataType0,
+        )
+
         type_ = self.type_.value
 
-        data: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.data, Unset):
+        data: dict[str, Any] | None | Unset
+        if isinstance(self.data, Unset):
+            data = UNSET
+        elif isinstance(self.data, IconikStorageGatewayEventSchemaDataType0):
             data = self.data.to_dict()
+        else:
+            data = self.data
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -71,33 +87,65 @@ class IconikStorageGatewayEventSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.iconik_storage_gateway_event_schema_data import (
-            IconikStorageGatewayEventSchemaData,
+        from ..models.iconik_storage_gateway_event_schema_data_type_0 import (
+            IconikStorageGatewayEventSchemaDataType0,
         )
 
         d = dict(src_dict)
         type_ = IconikStorageGatewayEventSchemaType(d.pop("type"))
 
-        _data = d.pop("data", UNSET)
-        data: IconikStorageGatewayEventSchemaData | Unset
-        if isinstance(_data, Unset):
-            data = UNSET
-        else:
-            data = IconikStorageGatewayEventSchemaData.from_dict(_data)
+        def _parse_data(
+            data: object,
+        ) -> IconikStorageGatewayEventSchemaDataType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                data_type_0 = IconikStorageGatewayEventSchemaDataType0.from_dict(data)
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+                return data_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(IconikStorageGatewayEventSchemaDataType0 | None | Unset, data)
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        data = _parse_data(d.pop("data", UNSET))
+
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
+
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
 
         iconik_storage_gateway_event_schema = cls(
             type_=type_,

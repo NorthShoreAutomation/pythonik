@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -20,44 +20,63 @@ class Condition:
     """
     Attributes:
         operator (str):
-        conditions (list[Condition] | Unset):
-        filters (list[Condition] | Unset):
-        path (str | Unset):
-        terms (list[Term] | Unset):
+        conditions (list[Condition] | None | Unset):
+        filters (list[Condition] | None | Unset):
+        path (None | str | Unset):
+        terms (list[Term] | None | Unset):
     """
 
     operator: str
-    conditions: list[Condition] | Unset = UNSET
-    filters: list[Condition] | Unset = UNSET
-    path: str | Unset = UNSET
-    terms: list[Term] | Unset = UNSET
+    conditions: list[Condition] | None | Unset = UNSET
+    filters: list[Condition] | None | Unset = UNSET
+    path: None | str | Unset = UNSET
+    terms: list[Term] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         operator = self.operator
 
-        conditions: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.conditions, Unset):
+        conditions: list[dict[str, Any]] | None | Unset
+        if isinstance(self.conditions, Unset):
+            conditions = UNSET
+        elif isinstance(self.conditions, list):
             conditions = []
-            for conditions_item_data in self.conditions:
-                conditions_item = conditions_item_data.to_dict()
-                conditions.append(conditions_item)
+            for conditions_type_0_item_data in self.conditions:
+                conditions_type_0_item = conditions_type_0_item_data.to_dict()
+                conditions.append(conditions_type_0_item)
 
-        filters: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.filters, Unset):
+        else:
+            conditions = self.conditions
+
+        filters: list[dict[str, Any]] | None | Unset
+        if isinstance(self.filters, Unset):
+            filters = UNSET
+        elif isinstance(self.filters, list):
             filters = []
-            for filters_item_data in self.filters:
-                filters_item = filters_item_data.to_dict()
-                filters.append(filters_item)
+            for filters_type_0_item_data in self.filters:
+                filters_type_0_item = filters_type_0_item_data.to_dict()
+                filters.append(filters_type_0_item)
 
-        path = self.path
+        else:
+            filters = self.filters
 
-        terms: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.terms, Unset):
+        path: None | str | Unset
+        if isinstance(self.path, Unset):
+            path = UNSET
+        else:
+            path = self.path
+
+        terms: list[dict[str, Any]] | None | Unset
+        if isinstance(self.terms, Unset):
+            terms = UNSET
+        elif isinstance(self.terms, list):
             terms = []
-            for terms_item_data in self.terms:
-                terms_item = terms_item_data.to_dict()
-                terms.append(terms_item)
+            for terms_type_0_item_data in self.terms:
+                terms_type_0_item = terms_type_0_item_data.to_dict()
+                terms.append(terms_type_0_item)
+
+        else:
+            terms = self.terms
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -84,34 +103,82 @@ class Condition:
         d = dict(src_dict)
         operator = d.pop("operator")
 
-        _conditions = d.pop("conditions", UNSET)
-        conditions: list[Condition] | Unset = UNSET
-        if _conditions is not UNSET:
-            conditions = []
-            for conditions_item_data in _conditions:
-                conditions_item = Condition.from_dict(conditions_item_data)
+        def _parse_conditions(data: object) -> list[Condition] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                conditions_type_0 = []
+                _conditions_type_0 = data
+                for conditions_type_0_item_data in _conditions_type_0:
+                    conditions_type_0_item = Condition.from_dict(
+                        conditions_type_0_item_data
+                    )
 
-                conditions.append(conditions_item)
+                    conditions_type_0.append(conditions_type_0_item)
 
-        _filters = d.pop("filters", UNSET)
-        filters: list[Condition] | Unset = UNSET
-        if _filters is not UNSET:
-            filters = []
-            for filters_item_data in _filters:
-                filters_item = Condition.from_dict(filters_item_data)
+                return conditions_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[Condition] | None | Unset, data)
 
-                filters.append(filters_item)
+        conditions = _parse_conditions(d.pop("conditions", UNSET))
 
-        path = d.pop("path", UNSET)
+        def _parse_filters(data: object) -> list[Condition] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                filters_type_0 = []
+                _filters_type_0 = data
+                for filters_type_0_item_data in _filters_type_0:
+                    filters_type_0_item = Condition.from_dict(filters_type_0_item_data)
 
-        _terms = d.pop("terms", UNSET)
-        terms: list[Term] | Unset = UNSET
-        if _terms is not UNSET:
-            terms = []
-            for terms_item_data in _terms:
-                terms_item = Term.from_dict(terms_item_data)
+                    filters_type_0.append(filters_type_0_item)
 
-                terms.append(terms_item)
+                return filters_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[Condition] | None | Unset, data)
+
+        filters = _parse_filters(d.pop("filters", UNSET))
+
+        def _parse_path(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        path = _parse_path(d.pop("path", UNSET))
+
+        def _parse_terms(data: object) -> list[Term] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                terms_type_0 = []
+                _terms_type_0 = data
+                for terms_type_0_item_data in _terms_type_0:
+                    terms_type_0_item = Term.from_dict(terms_type_0_item_data)
+
+                    terms_type_0.append(terms_type_0_item)
+
+                return terms_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[Term] | None | Unset, data)
+
+        terms = _parse_terms(d.pop("terms", UNSET))
 
         condition = cls(
             operator=operator,

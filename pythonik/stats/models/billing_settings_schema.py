@@ -16,12 +16,12 @@ class BillingSettingsSchema:
     """
     Attributes:
         auto_refill_amount (int | None | Unset):
-        enable_auto_top_up (bool | Unset):
+        enable_auto_top_up (bool | None | Unset):
         low_balance_trigger (int | None | Unset):
     """
 
     auto_refill_amount: int | None | Unset = UNSET
-    enable_auto_top_up: bool | Unset = UNSET
+    enable_auto_top_up: bool | None | Unset = UNSET
     low_balance_trigger: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -32,7 +32,11 @@ class BillingSettingsSchema:
         else:
             auto_refill_amount = self.auto_refill_amount
 
-        enable_auto_top_up = self.enable_auto_top_up
+        enable_auto_top_up: bool | None | Unset
+        if isinstance(self.enable_auto_top_up, Unset):
+            enable_auto_top_up = UNSET
+        else:
+            enable_auto_top_up = self.enable_auto_top_up
 
         low_balance_trigger: int | None | Unset
         if isinstance(self.low_balance_trigger, Unset):
@@ -67,7 +71,16 @@ class BillingSettingsSchema:
             d.pop("auto_refill_amount", UNSET)
         )
 
-        enable_auto_top_up = d.pop("enable_auto_top_up", UNSET)
+        def _parse_enable_auto_top_up(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        enable_auto_top_up = _parse_enable_auto_top_up(
+            d.pop("enable_auto_top_up", UNSET)
+        )
 
         def _parse_low_balance_trigger(data: object) -> int | None | Unset:
             if data is None:

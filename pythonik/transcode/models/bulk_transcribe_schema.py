@@ -20,24 +20,24 @@ class BulkTranscribeSchema:
         object_ids (list[UUID]):
         object_type (BulkTranscribeSchemaObjectType):
         engine (None | str | Unset):
-        force (bool | Unset):  Default: False.
+        force (bool | None | Unset):  Default: False.
         language (None | str | Unset):
-        profile_id (UUID | Unset):
+        profile_id (None | Unset | UUID):
         speakers (int | None | Unset):
         summary (bool | None | Unset):
-        topics_extraction (bool | Unset):  Default: True.
+        topics_extraction (bool | None | Unset):  Default: True.
         translate_languages (list[str] | None | Unset):
     """
 
     object_ids: list[UUID]
     object_type: BulkTranscribeSchemaObjectType
     engine: None | str | Unset = UNSET
-    force: bool | Unset = False
+    force: bool | None | Unset = False
     language: None | str | Unset = UNSET
-    profile_id: UUID | Unset = UNSET
+    profile_id: None | Unset | UUID = UNSET
     speakers: int | None | Unset = UNSET
     summary: bool | None | Unset = UNSET
-    topics_extraction: bool | Unset = True
+    topics_extraction: bool | None | Unset = True
     translate_languages: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -55,7 +55,11 @@ class BulkTranscribeSchema:
         else:
             engine = self.engine
 
-        force = self.force
+        force: bool | None | Unset
+        if isinstance(self.force, Unset):
+            force = UNSET
+        else:
+            force = self.force
 
         language: None | str | Unset
         if isinstance(self.language, Unset):
@@ -63,9 +67,13 @@ class BulkTranscribeSchema:
         else:
             language = self.language
 
-        profile_id: str | Unset = UNSET
-        if not isinstance(self.profile_id, Unset):
+        profile_id: None | str | Unset
+        if isinstance(self.profile_id, Unset):
+            profile_id = UNSET
+        elif isinstance(self.profile_id, UUID):
             profile_id = str(self.profile_id)
+        else:
+            profile_id = self.profile_id
 
         speakers: int | None | Unset
         if isinstance(self.speakers, Unset):
@@ -79,7 +87,11 @@ class BulkTranscribeSchema:
         else:
             summary = self.summary
 
-        topics_extraction = self.topics_extraction
+        topics_extraction: bool | None | Unset
+        if isinstance(self.topics_extraction, Unset):
+            topics_extraction = UNSET
+        else:
+            topics_extraction = self.topics_extraction
 
         translate_languages: list[str] | None | Unset
         if isinstance(self.translate_languages, Unset):
@@ -138,7 +150,14 @@ class BulkTranscribeSchema:
 
         engine = _parse_engine(d.pop("engine", UNSET))
 
-        force = d.pop("force", UNSET)
+        def _parse_force(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        force = _parse_force(d.pop("force", UNSET))
 
         def _parse_language(data: object) -> None | str | Unset:
             if data is None:
@@ -149,12 +168,22 @@ class BulkTranscribeSchema:
 
         language = _parse_language(d.pop("language", UNSET))
 
-        _profile_id = d.pop("profile_id", UNSET)
-        profile_id: UUID | Unset
-        if isinstance(_profile_id, Unset):
-            profile_id = UNSET
-        else:
-            profile_id = UUID(_profile_id)
+        def _parse_profile_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                profile_id_type_0 = UUID(data)
+
+                return profile_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        profile_id = _parse_profile_id(d.pop("profile_id", UNSET))
 
         def _parse_speakers(data: object) -> int | None | Unset:
             if data is None:
@@ -174,7 +203,14 @@ class BulkTranscribeSchema:
 
         summary = _parse_summary(d.pop("summary", UNSET))
 
-        topics_extraction = d.pop("topics_extraction", UNSET)
+        def _parse_topics_extraction(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        topics_extraction = _parse_topics_extraction(d.pop("topics_extraction", UNSET))
 
         def _parse_translate_languages(data: object) -> list[str] | None | Unset:
             if data is None:

@@ -16,26 +16,30 @@ T = TypeVar("T", bound="PersonInstancesQueryParamsSchema")
 class PersonInstancesQueryParamsSchema:
     """
     Attributes:
-        include_admin_details (bool | Unset):  Default: True.
+        include_admin_details (bool | None | Unset):  Default: True.
         page (int | None | Unset): Which page number to fetch Default: 1.
         per_page (int | None | Unset): The number of items for each page Default: 10.
-        scroll (bool | Unset):
-        scroll_id (UUID | Unset):
-        sort (str | Unset): A comma separated list of fieldnames with order (asc/desc)
-        use_instance_as_main_face (bool | Unset):  Default: True.
+        scroll (bool | None | Unset):
+        scroll_id (None | Unset | UUID):
+        sort (None | str | Unset): A comma separated list of fieldnames with order (asc/desc)
+        use_instance_as_main_face (bool | None | Unset):  Default: True.
     """
 
-    include_admin_details: bool | Unset = True
+    include_admin_details: bool | None | Unset = True
     page: int | None | Unset = 1
     per_page: int | None | Unset = 10
-    scroll: bool | Unset = UNSET
-    scroll_id: UUID | Unset = UNSET
-    sort: str | Unset = UNSET
-    use_instance_as_main_face: bool | Unset = True
+    scroll: bool | None | Unset = UNSET
+    scroll_id: None | Unset | UUID = UNSET
+    sort: None | str | Unset = UNSET
+    use_instance_as_main_face: bool | None | Unset = True
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        include_admin_details = self.include_admin_details
+        include_admin_details: bool | None | Unset
+        if isinstance(self.include_admin_details, Unset):
+            include_admin_details = UNSET
+        else:
+            include_admin_details = self.include_admin_details
 
         page: int | None | Unset
         if isinstance(self.page, Unset):
@@ -49,15 +53,31 @@ class PersonInstancesQueryParamsSchema:
         else:
             per_page = self.per_page
 
-        scroll = self.scroll
+        scroll: bool | None | Unset
+        if isinstance(self.scroll, Unset):
+            scroll = UNSET
+        else:
+            scroll = self.scroll
 
-        scroll_id: str | Unset = UNSET
-        if not isinstance(self.scroll_id, Unset):
+        scroll_id: None | str | Unset
+        if isinstance(self.scroll_id, Unset):
+            scroll_id = UNSET
+        elif isinstance(self.scroll_id, UUID):
             scroll_id = str(self.scroll_id)
+        else:
+            scroll_id = self.scroll_id
 
-        sort = self.sort
+        sort: None | str | Unset
+        if isinstance(self.sort, Unset):
+            sort = UNSET
+        else:
+            sort = self.sort
 
-        use_instance_as_main_face = self.use_instance_as_main_face
+        use_instance_as_main_face: bool | None | Unset
+        if isinstance(self.use_instance_as_main_face, Unset):
+            use_instance_as_main_face = UNSET
+        else:
+            use_instance_as_main_face = self.use_instance_as_main_face
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -82,7 +102,17 @@ class PersonInstancesQueryParamsSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        include_admin_details = d.pop("include_admin_details", UNSET)
+
+        def _parse_include_admin_details(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        include_admin_details = _parse_include_admin_details(
+            d.pop("include_admin_details", UNSET)
+        )
 
         def _parse_page(data: object) -> int | None | Unset:
             if data is None:
@@ -102,18 +132,51 @@ class PersonInstancesQueryParamsSchema:
 
         per_page = _parse_per_page(d.pop("per_page", UNSET))
 
-        scroll = d.pop("scroll", UNSET)
+        def _parse_scroll(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        _scroll_id = d.pop("scroll_id", UNSET)
-        scroll_id: UUID | Unset
-        if isinstance(_scroll_id, Unset):
-            scroll_id = UNSET
-        else:
-            scroll_id = UUID(_scroll_id)
+        scroll = _parse_scroll(d.pop("scroll", UNSET))
 
-        sort = d.pop("sort", UNSET)
+        def _parse_scroll_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                scroll_id_type_0 = UUID(data)
 
-        use_instance_as_main_face = d.pop("use_instance_as_main_face", UNSET)
+                return scroll_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        scroll_id = _parse_scroll_id(d.pop("scroll_id", UNSET))
+
+        def _parse_sort(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        sort = _parse_sort(d.pop("sort", UNSET))
+
+        def _parse_use_instance_as_main_face(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        use_instance_as_main_face = _parse_use_instance_as_main_face(
+            d.pop("use_instance_as_main_face", UNSET)
+        )
 
         person_instances_query_params_schema = cls(
             include_admin_details=include_admin_details,

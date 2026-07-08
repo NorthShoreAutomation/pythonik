@@ -19,14 +19,14 @@ class TranscodeRequestSchema:
         job_id (None | Unset | UUID):
         priority (int | None | Unset):
         set_as_custom_keyframe (bool | None | Unset):
-        update_proxy_mediainfo (bool | Unset):
+        update_proxy_mediainfo (bool | None | Unset):
         use_storage_transcode_ignore_pattern (bool | None | Unset):
     """
 
     job_id: None | Unset | UUID = UNSET
     priority: int | None | Unset = UNSET
     set_as_custom_keyframe: bool | None | Unset = UNSET
-    update_proxy_mediainfo: bool | Unset = UNSET
+    update_proxy_mediainfo: bool | None | Unset = UNSET
     use_storage_transcode_ignore_pattern: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -51,7 +51,11 @@ class TranscodeRequestSchema:
         else:
             set_as_custom_keyframe = self.set_as_custom_keyframe
 
-        update_proxy_mediainfo = self.update_proxy_mediainfo
+        update_proxy_mediainfo: bool | None | Unset
+        if isinstance(self.update_proxy_mediainfo, Unset):
+            update_proxy_mediainfo = UNSET
+        else:
+            update_proxy_mediainfo = self.update_proxy_mediainfo
 
         use_storage_transcode_ignore_pattern: bool | None | Unset
         if isinstance(self.use_storage_transcode_ignore_pattern, Unset):
@@ -120,7 +124,16 @@ class TranscodeRequestSchema:
             d.pop("set_as_custom_keyframe", UNSET)
         )
 
-        update_proxy_mediainfo = d.pop("update_proxy_mediainfo", UNSET)
+        def _parse_update_proxy_mediainfo(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        update_proxy_mediainfo = _parse_update_proxy_mediainfo(
+            d.pop("update_proxy_mediainfo", UNSET)
+        )
 
         def _parse_use_storage_transcode_ignore_pattern(
             data: object,

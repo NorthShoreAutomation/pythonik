@@ -16,36 +16,52 @@ T = TypeVar("T", bound="ProxyContainerSchema")
 class ProxyContainerSchema:
     """
     Attributes:
-        drm (str | Unset):
-        frame_count (int | Unset):
-        frame_rate (float | Unset):
-        id (UUID | Unset):
+        drm (None | str | Unset):
+        frame_count (int | None | Unset):
+        frame_rate (float | None | Unset):
+        id (None | Unset | UUID):
         parent_container_id (None | Unset | UUID):
-        segment_duration (float | Unset):
+        segment_duration (float | None | Unset):
         user_id (None | Unset | UUID):
-        watermark (str | Unset):
+        watermark (None | str | Unset):
     """
 
-    drm: str | Unset = UNSET
-    frame_count: int | Unset = UNSET
-    frame_rate: float | Unset = UNSET
-    id: UUID | Unset = UNSET
+    drm: None | str | Unset = UNSET
+    frame_count: int | None | Unset = UNSET
+    frame_rate: float | None | Unset = UNSET
+    id: None | Unset | UUID = UNSET
     parent_container_id: None | Unset | UUID = UNSET
-    segment_duration: float | Unset = UNSET
+    segment_duration: float | None | Unset = UNSET
     user_id: None | Unset | UUID = UNSET
-    watermark: str | Unset = UNSET
+    watermark: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        drm = self.drm
+        drm: None | str | Unset
+        if isinstance(self.drm, Unset):
+            drm = UNSET
+        else:
+            drm = self.drm
 
-        frame_count = self.frame_count
+        frame_count: int | None | Unset
+        if isinstance(self.frame_count, Unset):
+            frame_count = UNSET
+        else:
+            frame_count = self.frame_count
 
-        frame_rate = self.frame_rate
+        frame_rate: float | None | Unset
+        if isinstance(self.frame_rate, Unset):
+            frame_rate = UNSET
+        else:
+            frame_rate = self.frame_rate
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
         parent_container_id: None | str | Unset
         if isinstance(self.parent_container_id, Unset):
@@ -55,7 +71,11 @@ class ProxyContainerSchema:
         else:
             parent_container_id = self.parent_container_id
 
-        segment_duration = self.segment_duration
+        segment_duration: float | None | Unset
+        if isinstance(self.segment_duration, Unset):
+            segment_duration = UNSET
+        else:
+            segment_duration = self.segment_duration
 
         user_id: None | str | Unset
         if isinstance(self.user_id, Unset):
@@ -65,7 +85,11 @@ class ProxyContainerSchema:
         else:
             user_id = self.user_id
 
-        watermark = self.watermark
+        watermark: None | str | Unset
+        if isinstance(self.watermark, Unset):
+            watermark = UNSET
+        else:
+            watermark = self.watermark
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -92,18 +116,50 @@ class ProxyContainerSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        drm = d.pop("drm", UNSET)
 
-        frame_count = d.pop("frame_count", UNSET)
+        def _parse_drm(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        frame_rate = d.pop("frame_rate", UNSET)
+        drm = _parse_drm(d.pop("drm", UNSET))
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        def _parse_frame_count(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        frame_count = _parse_frame_count(d.pop("frame_count", UNSET))
+
+        def _parse_frame_rate(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        frame_rate = _parse_frame_rate(d.pop("frame_rate", UNSET))
+
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
 
         def _parse_parent_container_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -124,7 +180,14 @@ class ProxyContainerSchema:
             d.pop("parent_container_id", UNSET)
         )
 
-        segment_duration = d.pop("segment_duration", UNSET)
+        def _parse_segment_duration(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        segment_duration = _parse_segment_duration(d.pop("segment_duration", UNSET))
 
         def _parse_user_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -143,7 +206,14 @@ class ProxyContainerSchema:
 
         user_id = _parse_user_id(d.pop("user_id", UNSET))
 
-        watermark = d.pop("watermark", UNSET)
+        def _parse_watermark(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        watermark = _parse_watermark(d.pop("watermark", UNSET))
 
         proxy_container_schema = cls(
             drm=drm,

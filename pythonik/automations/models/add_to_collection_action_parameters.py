@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -17,17 +17,21 @@ class AddToCollectionActionParameters:
     """
     Attributes:
         collection_id (UUID):
-        index_immediately (bool | Unset):
+        index_immediately (bool | None | Unset):
     """
 
     collection_id: UUID
-    index_immediately: bool | Unset = UNSET
+    index_immediately: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         collection_id = str(self.collection_id)
 
-        index_immediately = self.index_immediately
+        index_immediately: bool | None | Unset
+        if isinstance(self.index_immediately, Unset):
+            index_immediately = UNSET
+        else:
+            index_immediately = self.index_immediately
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -46,7 +50,14 @@ class AddToCollectionActionParameters:
         d = dict(src_dict)
         collection_id = UUID(d.pop("collection_id"))
 
-        index_immediately = d.pop("index_immediately", UNSET)
+        def _parse_index_immediately(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        index_immediately = _parse_index_immediately(d.pop("index_immediately", UNSET))
 
         add_to_collection_action_parameters = cls(
             collection_id=collection_id,

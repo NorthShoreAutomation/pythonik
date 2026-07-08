@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -19,12 +19,12 @@ class ApprovedAppInstanceSchema:
     Attributes:
         app_id (UUID):
         id (UUID):
-        date_created (datetime.datetime | Unset):
+        date_created (datetime.datetime | None | Unset):
     """
 
     app_id: UUID
     id: UUID
-    date_created: datetime.datetime | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -32,9 +32,13 @@ class ApprovedAppInstanceSchema:
 
         id = str(self.id)
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -56,12 +60,22 @@ class ApprovedAppInstanceSchema:
 
         id = UUID(d.pop("id"))
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
 
         approved_app_instance_schema = cls(
             app_id=app_id,

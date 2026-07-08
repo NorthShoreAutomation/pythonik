@@ -20,41 +20,61 @@ class ThumbnailJobSchema:
     """
     Attributes:
         output_endpoint (OutputEndpointSchema):
-        height (int | Unset):
-        id (str | Unset):
-        max_number (int | Unset):
-        min_interval (int | Unset):
-        set_as_custom_keyframe (bool | Unset):
+        height (int | None | Unset):
+        id (None | str | Unset):
+        max_number (int | None | Unset):
+        min_interval (int | None | Unset):
+        set_as_custom_keyframe (bool | None | Unset):
         time_end_milliseconds (int | None | Unset):
         time_start_milliseconds (int | None | Unset):
-        timestamp (int | Unset):
-        width (int | Unset):
+        timestamp (int | None | Unset):
+        width (int | None | Unset):
     """
 
     output_endpoint: OutputEndpointSchema
-    height: int | Unset = UNSET
-    id: str | Unset = UNSET
-    max_number: int | Unset = UNSET
-    min_interval: int | Unset = UNSET
-    set_as_custom_keyframe: bool | Unset = UNSET
+    height: int | None | Unset = UNSET
+    id: None | str | Unset = UNSET
+    max_number: int | None | Unset = UNSET
+    min_interval: int | None | Unset = UNSET
+    set_as_custom_keyframe: bool | None | Unset = UNSET
     time_end_milliseconds: int | None | Unset = UNSET
     time_start_milliseconds: int | None | Unset = UNSET
-    timestamp: int | Unset = UNSET
-    width: int | Unset = UNSET
+    timestamp: int | None | Unset = UNSET
+    width: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         output_endpoint = self.output_endpoint.to_dict()
 
-        height = self.height
+        height: int | None | Unset
+        if isinstance(self.height, Unset):
+            height = UNSET
+        else:
+            height = self.height
 
-        id = self.id
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        else:
+            id = self.id
 
-        max_number = self.max_number
+        max_number: int | None | Unset
+        if isinstance(self.max_number, Unset):
+            max_number = UNSET
+        else:
+            max_number = self.max_number
 
-        min_interval = self.min_interval
+        min_interval: int | None | Unset
+        if isinstance(self.min_interval, Unset):
+            min_interval = UNSET
+        else:
+            min_interval = self.min_interval
 
-        set_as_custom_keyframe = self.set_as_custom_keyframe
+        set_as_custom_keyframe: bool | None | Unset
+        if isinstance(self.set_as_custom_keyframe, Unset):
+            set_as_custom_keyframe = UNSET
+        else:
+            set_as_custom_keyframe = self.set_as_custom_keyframe
 
         time_end_milliseconds: int | None | Unset
         if isinstance(self.time_end_milliseconds, Unset):
@@ -68,9 +88,17 @@ class ThumbnailJobSchema:
         else:
             time_start_milliseconds = self.time_start_milliseconds
 
-        timestamp = self.timestamp
+        timestamp: int | None | Unset
+        if isinstance(self.timestamp, Unset):
+            timestamp = UNSET
+        else:
+            timestamp = self.timestamp
 
-        width = self.width
+        width: int | None | Unset
+        if isinstance(self.width, Unset):
+            width = UNSET
+        else:
+            width = self.width
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -107,15 +135,52 @@ class ThumbnailJobSchema:
         d = dict(src_dict)
         output_endpoint = OutputEndpointSchema.from_dict(d.pop("output_endpoint"))
 
-        height = d.pop("height", UNSET)
+        def _parse_height(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        id = d.pop("id", UNSET)
+        height = _parse_height(d.pop("height", UNSET))
 
-        max_number = d.pop("max_number", UNSET)
+        def _parse_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        min_interval = d.pop("min_interval", UNSET)
+        id = _parse_id(d.pop("id", UNSET))
 
-        set_as_custom_keyframe = d.pop("set_as_custom_keyframe", UNSET)
+        def _parse_max_number(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        max_number = _parse_max_number(d.pop("max_number", UNSET))
+
+        def _parse_min_interval(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        min_interval = _parse_min_interval(d.pop("min_interval", UNSET))
+
+        def _parse_set_as_custom_keyframe(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        set_as_custom_keyframe = _parse_set_as_custom_keyframe(
+            d.pop("set_as_custom_keyframe", UNSET)
+        )
 
         def _parse_time_end_milliseconds(data: object) -> int | None | Unset:
             if data is None:
@@ -139,9 +204,23 @@ class ThumbnailJobSchema:
             d.pop("time_start_milliseconds", UNSET)
         )
 
-        timestamp = d.pop("timestamp", UNSET)
+        def _parse_timestamp(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        width = d.pop("width", UNSET)
+        timestamp = _parse_timestamp(d.pop("timestamp", UNSET))
+
+        def _parse_width(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        width = _parse_width(d.pop("width", UNSET))
 
         thumbnail_job_schema = cls(
             output_endpoint=output_endpoint,

@@ -18,38 +18,38 @@ class EditProxySettingsSchema:
     Attributes:
         height (int):
         width (int):
-        audio_bitrate (int | Unset):
+        audio_bitrate (int | None | Unset):
         audio_codec (None | str | Unset):
-        bitrate (int | Unset):
-        codec (str | Unset):
-        data (str | Unset):
-        delete_after_upload (bool | Unset):
+        bitrate (int | None | Unset):
+        codec (None | str | Unset):
+        data (None | str | Unset):
+        delete_after_upload (bool | None | Unset):
         destination_path (None | str | Unset):
-        exclude_patterns (list[str] | Unset):
-        include_patterns (list[str] | Unset):
-        local (bool | Unset):
+        exclude_patterns (list[str] | None | Unset):
+        include_patterns (list[str] | None | Unset):
+        local (bool | None | Unset):
         local_destination_path (None | str | Unset):
-        min_height (int | Unset):
-        min_width (int | Unset):
+        min_height (int | None | Unset):
+        min_width (int | None | Unset):
         priority (int | None | Unset):
         storage_id (None | Unset | UUID):
     """
 
     height: int
     width: int
-    audio_bitrate: int | Unset = UNSET
+    audio_bitrate: int | None | Unset = UNSET
     audio_codec: None | str | Unset = UNSET
-    bitrate: int | Unset = UNSET
-    codec: str | Unset = UNSET
-    data: str | Unset = UNSET
-    delete_after_upload: bool | Unset = UNSET
+    bitrate: int | None | Unset = UNSET
+    codec: None | str | Unset = UNSET
+    data: None | str | Unset = UNSET
+    delete_after_upload: bool | None | Unset = UNSET
     destination_path: None | str | Unset = UNSET
-    exclude_patterns: list[str] | Unset = UNSET
-    include_patterns: list[str] | Unset = UNSET
-    local: bool | Unset = UNSET
+    exclude_patterns: list[str] | None | Unset = UNSET
+    include_patterns: list[str] | None | Unset = UNSET
+    local: bool | None | Unset = UNSET
     local_destination_path: None | str | Unset = UNSET
-    min_height: int | Unset = UNSET
-    min_width: int | Unset = UNSET
+    min_height: int | None | Unset = UNSET
+    min_width: int | None | Unset = UNSET
     priority: int | None | Unset = UNSET
     storage_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -59,7 +59,11 @@ class EditProxySettingsSchema:
 
         width = self.width
 
-        audio_bitrate = self.audio_bitrate
+        audio_bitrate: int | None | Unset
+        if isinstance(self.audio_bitrate, Unset):
+            audio_bitrate = UNSET
+        else:
+            audio_bitrate = self.audio_bitrate
 
         audio_codec: None | str | Unset
         if isinstance(self.audio_codec, Unset):
@@ -67,13 +71,29 @@ class EditProxySettingsSchema:
         else:
             audio_codec = self.audio_codec
 
-        bitrate = self.bitrate
+        bitrate: int | None | Unset
+        if isinstance(self.bitrate, Unset):
+            bitrate = UNSET
+        else:
+            bitrate = self.bitrate
 
-        codec = self.codec
+        codec: None | str | Unset
+        if isinstance(self.codec, Unset):
+            codec = UNSET
+        else:
+            codec = self.codec
 
-        data = self.data
+        data: None | str | Unset
+        if isinstance(self.data, Unset):
+            data = UNSET
+        else:
+            data = self.data
 
-        delete_after_upload = self.delete_after_upload
+        delete_after_upload: bool | None | Unset
+        if isinstance(self.delete_after_upload, Unset):
+            delete_after_upload = UNSET
+        else:
+            delete_after_upload = self.delete_after_upload
 
         destination_path: None | str | Unset
         if isinstance(self.destination_path, Unset):
@@ -81,15 +101,29 @@ class EditProxySettingsSchema:
         else:
             destination_path = self.destination_path
 
-        exclude_patterns: list[str] | Unset = UNSET
-        if not isinstance(self.exclude_patterns, Unset):
+        exclude_patterns: list[str] | None | Unset
+        if isinstance(self.exclude_patterns, Unset):
+            exclude_patterns = UNSET
+        elif isinstance(self.exclude_patterns, list):
             exclude_patterns = self.exclude_patterns
 
-        include_patterns: list[str] | Unset = UNSET
-        if not isinstance(self.include_patterns, Unset):
+        else:
+            exclude_patterns = self.exclude_patterns
+
+        include_patterns: list[str] | None | Unset
+        if isinstance(self.include_patterns, Unset):
+            include_patterns = UNSET
+        elif isinstance(self.include_patterns, list):
             include_patterns = self.include_patterns
 
-        local = self.local
+        else:
+            include_patterns = self.include_patterns
+
+        local: bool | None | Unset
+        if isinstance(self.local, Unset):
+            local = UNSET
+        else:
+            local = self.local
 
         local_destination_path: None | str | Unset
         if isinstance(self.local_destination_path, Unset):
@@ -97,9 +131,17 @@ class EditProxySettingsSchema:
         else:
             local_destination_path = self.local_destination_path
 
-        min_height = self.min_height
+        min_height: int | None | Unset
+        if isinstance(self.min_height, Unset):
+            min_height = UNSET
+        else:
+            min_height = self.min_height
 
-        min_width = self.min_width
+        min_width: int | None | Unset
+        if isinstance(self.min_width, Unset):
+            min_width = UNSET
+        else:
+            min_width = self.min_width
 
         priority: int | None | Unset
         if isinstance(self.priority, Unset):
@@ -163,7 +205,14 @@ class EditProxySettingsSchema:
 
         width = d.pop("width")
 
-        audio_bitrate = d.pop("audio_bitrate", UNSET)
+        def _parse_audio_bitrate(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        audio_bitrate = _parse_audio_bitrate(d.pop("audio_bitrate", UNSET))
 
         def _parse_audio_codec(data: object) -> None | str | Unset:
             if data is None:
@@ -174,13 +223,43 @@ class EditProxySettingsSchema:
 
         audio_codec = _parse_audio_codec(d.pop("audio_codec", UNSET))
 
-        bitrate = d.pop("bitrate", UNSET)
+        def _parse_bitrate(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        codec = d.pop("codec", UNSET)
+        bitrate = _parse_bitrate(d.pop("bitrate", UNSET))
 
-        data = d.pop("data", UNSET)
+        def _parse_codec(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        delete_after_upload = d.pop("delete_after_upload", UNSET)
+        codec = _parse_codec(d.pop("codec", UNSET))
+
+        def _parse_data(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        data = _parse_data(d.pop("data", UNSET))
+
+        def _parse_delete_after_upload(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        delete_after_upload = _parse_delete_after_upload(
+            d.pop("delete_after_upload", UNSET)
+        )
 
         def _parse_destination_path(data: object) -> None | str | Unset:
             if data is None:
@@ -191,11 +270,48 @@ class EditProxySettingsSchema:
 
         destination_path = _parse_destination_path(d.pop("destination_path", UNSET))
 
-        exclude_patterns = cast(list[str], d.pop("exclude_patterns", UNSET))
+        def _parse_exclude_patterns(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                exclude_patterns_type_0 = cast(list[str], data)
 
-        include_patterns = cast(list[str], d.pop("include_patterns", UNSET))
+                return exclude_patterns_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
 
-        local = d.pop("local", UNSET)
+        exclude_patterns = _parse_exclude_patterns(d.pop("exclude_patterns", UNSET))
+
+        def _parse_include_patterns(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                include_patterns_type_0 = cast(list[str], data)
+
+                return include_patterns_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        include_patterns = _parse_include_patterns(d.pop("include_patterns", UNSET))
+
+        def _parse_local(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        local = _parse_local(d.pop("local", UNSET))
 
         def _parse_local_destination_path(data: object) -> None | str | Unset:
             if data is None:
@@ -208,9 +324,23 @@ class EditProxySettingsSchema:
             d.pop("local_destination_path", UNSET)
         )
 
-        min_height = d.pop("min_height", UNSET)
+        def _parse_min_height(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        min_width = d.pop("min_width", UNSET)
+        min_height = _parse_min_height(d.pop("min_height", UNSET))
+
+        def _parse_min_width(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        min_width = _parse_min_width(d.pop("min_width", UNSET))
 
         def _parse_priority(data: object) -> int | None | Unset:
             if data is None:

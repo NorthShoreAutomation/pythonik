@@ -18,14 +18,14 @@ class TransferActionParameters:
     Attributes:
         destination_storage_id (UUID):
         format_name (str):
-        allow_host_transfer (bool | Unset):  Default: True.
+        allow_host_transfer (bool | None | Unset):  Default: True.
         destination_directory_path (None | str | Unset):
         preferred_original_storage_id (None | Unset | UUID):
     """
 
     destination_storage_id: UUID
     format_name: str
-    allow_host_transfer: bool | Unset = True
+    allow_host_transfer: bool | None | Unset = True
     destination_directory_path: None | str | Unset = UNSET
     preferred_original_storage_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -35,7 +35,11 @@ class TransferActionParameters:
 
         format_name = self.format_name
 
-        allow_host_transfer = self.allow_host_transfer
+        allow_host_transfer: bool | None | Unset
+        if isinstance(self.allow_host_transfer, Unset):
+            allow_host_transfer = UNSET
+        else:
+            allow_host_transfer = self.allow_host_transfer
 
         destination_directory_path: None | str | Unset
         if isinstance(self.destination_directory_path, Unset):
@@ -75,7 +79,16 @@ class TransferActionParameters:
 
         format_name = d.pop("format_name")
 
-        allow_host_transfer = d.pop("allow_host_transfer", UNSET)
+        def _parse_allow_host_transfer(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        allow_host_transfer = _parse_allow_host_transfer(
+            d.pop("allow_host_transfer", UNSET)
+        )
 
         def _parse_destination_directory_path(data: object) -> None | str | Unset:
             if data is None:

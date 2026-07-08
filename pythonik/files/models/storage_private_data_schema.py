@@ -10,12 +10,14 @@ from attrs import field as _attrs_field
 
 from ..models.storage_private_data_schema_method import StoragePrivateDataSchemaMethod
 from ..models.storage_private_data_schema_purpose import StoragePrivateDataSchemaPurpose
-from ..models.storage_private_data_schema_status import StoragePrivateDataSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.storage_private_data_schema_settings import (
         StoragePrivateDataSchemaSettings,
+    )
+    from ..models.storage_private_data_schema_status_type_1 import (
+        StoragePrivateDataSchemaStatusType1,
     )
 
 
@@ -30,33 +32,37 @@ class StoragePrivateDataSchema:
         name (str):
         purpose (StoragePrivateDataSchemaPurpose):
         settings (StoragePrivateDataSchemaSettings):
-        bucket_location (str | Unset):
-        default (bool | Unset):
+        bucket_location (None | str | Unset):
+        default (bool | None | Unset):
         description (None | str | Unset):
-        id (UUID | Unset):
+        id (None | Unset | UUID):
         last_scanned (datetime.datetime | None | Unset):
         scanner_status (None | str | Unset):
-        status (StoragePrivateDataSchemaStatus | Unset):
+        status (None | StoragePrivateDataSchemaStatusType1 | Unset):
         status_message (None | str | Unset):
-        version (str | Unset):
+        version (None | str | Unset):
     """
 
     method: StoragePrivateDataSchemaMethod
     name: str
     purpose: StoragePrivateDataSchemaPurpose
     settings: StoragePrivateDataSchemaSettings
-    bucket_location: str | Unset = UNSET
-    default: bool | Unset = UNSET
+    bucket_location: None | str | Unset = UNSET
+    default: bool | None | Unset = UNSET
     description: None | str | Unset = UNSET
-    id: UUID | Unset = UNSET
+    id: None | Unset | UUID = UNSET
     last_scanned: datetime.datetime | None | Unset = UNSET
     scanner_status: None | str | Unset = UNSET
-    status: StoragePrivateDataSchemaStatus | Unset = UNSET
+    status: None | StoragePrivateDataSchemaStatusType1 | Unset = UNSET
     status_message: None | str | Unset = UNSET
-    version: str | Unset = UNSET
+    version: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.storage_private_data_schema_status_type_1 import (
+            StoragePrivateDataSchemaStatusType1,
+        )
+
         method = self.method.value
 
         name = self.name
@@ -65,9 +71,17 @@ class StoragePrivateDataSchema:
 
         settings = self.settings.to_dict()
 
-        bucket_location = self.bucket_location
+        bucket_location: None | str | Unset
+        if isinstance(self.bucket_location, Unset):
+            bucket_location = UNSET
+        else:
+            bucket_location = self.bucket_location
 
-        default = self.default
+        default: bool | None | Unset
+        if isinstance(self.default, Unset):
+            default = UNSET
+        else:
+            default = self.default
 
         description: None | str | Unset
         if isinstance(self.description, Unset):
@@ -75,9 +89,13 @@ class StoragePrivateDataSchema:
         else:
             description = self.description
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
         last_scanned: None | str | Unset
         if isinstance(self.last_scanned, Unset):
@@ -93,9 +111,13 @@ class StoragePrivateDataSchema:
         else:
             scanner_status = self.scanner_status
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        status: dict[str, Any] | None | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        elif isinstance(self.status, StoragePrivateDataSchemaStatusType1):
+            status = self.status.to_dict()
+        else:
+            status = self.status
 
         status_message: None | str | Unset
         if isinstance(self.status_message, Unset):
@@ -103,7 +125,11 @@ class StoragePrivateDataSchema:
         else:
             status_message = self.status_message
 
-        version = self.version
+        version: None | str | Unset
+        if isinstance(self.version, Unset):
+            version = UNSET
+        else:
+            version = self.version
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -141,6 +167,9 @@ class StoragePrivateDataSchema:
         from ..models.storage_private_data_schema_settings import (
             StoragePrivateDataSchemaSettings,
         )
+        from ..models.storage_private_data_schema_status_type_1 import (
+            StoragePrivateDataSchemaStatusType1,
+        )
 
         d = dict(src_dict)
         method = StoragePrivateDataSchemaMethod(d.pop("method"))
@@ -151,9 +180,23 @@ class StoragePrivateDataSchema:
 
         settings = StoragePrivateDataSchemaSettings.from_dict(d.pop("settings"))
 
-        bucket_location = d.pop("bucket_location", UNSET)
+        def _parse_bucket_location(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        default = d.pop("default", UNSET)
+        bucket_location = _parse_bucket_location(d.pop("bucket_location", UNSET))
+
+        def _parse_default(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        default = _parse_default(d.pop("default", UNSET))
 
         def _parse_description(data: object) -> None | str | Unset:
             if data is None:
@@ -164,12 +207,22 @@ class StoragePrivateDataSchema:
 
         description = _parse_description(d.pop("description", UNSET))
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
 
         def _parse_last_scanned(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -197,12 +250,24 @@ class StoragePrivateDataSchema:
 
         scanner_status = _parse_scanner_status(d.pop("scanner_status", UNSET))
 
-        _status = d.pop("status", UNSET)
-        status: StoragePrivateDataSchemaStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = StoragePrivateDataSchemaStatus(_status)
+        def _parse_status(
+            data: object,
+        ) -> None | StoragePrivateDataSchemaStatusType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                status_type_1 = StoragePrivateDataSchemaStatusType1.from_dict(data)
+
+                return status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | StoragePrivateDataSchemaStatusType1 | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
 
         def _parse_status_message(data: object) -> None | str | Unset:
             if data is None:
@@ -213,7 +278,14 @@ class StoragePrivateDataSchema:
 
         status_message = _parse_status_message(d.pop("status_message", UNSET))
 
-        version = d.pop("version", UNSET)
+        def _parse_version(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        version = _parse_version(d.pop("version", UNSET))
 
         storage_private_data_schema = cls(
             method=method,

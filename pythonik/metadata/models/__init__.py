@@ -71,8 +71,8 @@ from .get_by_object_type_by_object_id_response_200 import (
 from .get_by_object_type_by_object_id_response_200_additional_property import (
     GetByObjectTypeByObjectIdResponse200AdditionalProperty,
 )
-from .get_by_object_type_by_object_id_response_200_additional_property_values_item import (
-    GetByObjectTypeByObjectIdResponse200AdditionalPropertyValuesItem,
+from .get_by_object_type_by_object_id_response_200_additional_property_values_type_0_item import (
+    GetByObjectTypeByObjectIdResponse200AdditionalPropertyValuesType0Item,
 )
 from .get_by_object_type_by_object_id_response_default_type_0 import (
     GetByObjectTypeByObjectIdResponseDefaultType0,
@@ -191,10 +191,10 @@ from .metadata_field_mapping_update_schema import MetadataFieldMappingUpdateSche
 from .metadata_field_mappings_schema import MetadataFieldMappingsSchema
 from .metadata_field_schema import MetadataFieldSchema
 from .metadata_field_value_schema import MetadataFieldValueSchema
-from .metadata_field_value_schema_field_values_item import (
-    MetadataFieldValueSchemaFieldValuesItem,
+from .metadata_field_value_schema_field_values_type_0_item import (
+    MetadataFieldValueSchemaFieldValuesType0Item,
 )
-from .metadata_field_value_schema_mode import MetadataFieldValueSchemaMode
+from .metadata_field_value_schema_mode_type_1 import MetadataFieldValueSchemaModeType1
 from .metadata_fields_schema import MetadataFieldsSchema
 from .metadata_values_batch_schema import MetadataValuesBatchSchema
 from .metadata_values_batch_schema_metadata_values import (
@@ -397,7 +397,7 @@ __all__ = (
     "GetAssetsByAssetIdVersionsByVersionIdViewsByViewIdResponseDefaultType1Errors",
     "GetByObjectTypeByObjectIdResponse200",
     "GetByObjectTypeByObjectIdResponse200AdditionalProperty",
-    "GetByObjectTypeByObjectIdResponse200AdditionalPropertyValuesItem",
+    "GetByObjectTypeByObjectIdResponse200AdditionalPropertyValuesType0Item",
     "GetByObjectTypeByObjectIdResponseDefaultType0",
     "GetByObjectTypeByObjectIdResponseDefaultType1",
     "GetByObjectTypeByObjectIdResponseDefaultType1Errors",
@@ -452,8 +452,8 @@ __all__ = (
     "MetadataFieldSchema",
     "MetadataFieldsSchema",
     "MetadataFieldValueSchema",
-    "MetadataFieldValueSchemaFieldValuesItem",
-    "MetadataFieldValueSchemaMode",
+    "MetadataFieldValueSchemaFieldValuesType0Item",
+    "MetadataFieldValueSchemaModeType1",
     "MetadataValuesBatchSchema",
     "MetadataValuesBatchSchemaMetadataValues",
     "MetadataValuesObjectId",

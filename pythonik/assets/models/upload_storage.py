@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -20,13 +20,13 @@ class UploadStorage:
         add_uuid_to_filenames (bool):
         id (UUID):
         method (UploadStorageMethod):
-        presign_md5_checksum (bool | Unset):
+        presign_md5_checksum (bool | None | Unset):
     """
 
     add_uuid_to_filenames: bool
     id: UUID
     method: UploadStorageMethod
-    presign_md5_checksum: bool | Unset = UNSET
+    presign_md5_checksum: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -36,7 +36,11 @@ class UploadStorage:
 
         method = self.method.value
 
-        presign_md5_checksum = self.presign_md5_checksum
+        presign_md5_checksum: bool | None | Unset
+        if isinstance(self.presign_md5_checksum, Unset):
+            presign_md5_checksum = UNSET
+        else:
+            presign_md5_checksum = self.presign_md5_checksum
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -61,7 +65,16 @@ class UploadStorage:
 
         method = UploadStorageMethod(d.pop("method"))
 
-        presign_md5_checksum = d.pop("presign_md5_checksum", UNSET)
+        def _parse_presign_md5_checksum(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        presign_md5_checksum = _parse_presign_md5_checksum(
+            d.pop("presign_md5_checksum", UNSET)
+        )
 
         upload_storage = cls(
             add_uuid_to_filenames=add_uuid_to_filenames,

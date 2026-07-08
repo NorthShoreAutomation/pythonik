@@ -10,7 +10,7 @@ from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.input_schema import InputSchema
-    from ..models.job_schema_analysis_data import JobSchemaAnalysisData
+    from ..models.job_schema_analysis_data_type_0 import JobSchemaAnalysisDataType0
     from ..models.job_step import JobStep
     from ..models.thumbnail_job import ThumbnailJob
     from ..models.transcode_job import TranscodeJob
@@ -24,95 +24,155 @@ T = TypeVar("T", bound="JobSchema")
 class JobSchema:
     """
     Attributes:
-        amazon_rekognition (bool | Unset):
-        analysis_data (JobSchemaAnalysisData | Unset):
-        analysis_query_default_service_account (bool | Unset):
-        analyzed_before (bool | Unset):
-        asset_id (str | Unset):
-        asset_link (str | Unset):
-        collection_id (str | Unset):
-        create_transcription (bool | Unset):
-        delete_old_transcriptions (bool | Unset):
-        force_transcoder (str | Unset):
-        google_cloud_video_intelligence (bool | Unset):
-        input_ (InputSchema | Unset):
-        job_id (str | Unset):
-        job_steps (list[JobStep] | Unset):
+        amazon_rekognition (bool | None | Unset):
+        analysis_data (JobSchemaAnalysisDataType0 | None | Unset):
+        analysis_query_default_service_account (bool | None | Unset):
+        analyzed_before (bool | None | Unset):
+        asset_id (None | str | Unset):
+        asset_link (None | str | Unset):
+        collection_id (None | str | Unset):
+        create_transcription (bool | None | Unset):
+        delete_old_transcriptions (bool | None | Unset):
+        force_transcoder (None | str | Unset):
+        google_cloud_video_intelligence (bool | None | Unset):
+        input_ (InputSchema | None | Unset):
+        job_id (None | str | Unset):
+        job_steps (list[JobStep] | None | Unset):
         language (None | str | Unset):
         media_info (None | str | Unset):
-        overwrite (bool | Unset):
-        priority (int | Unset):
+        overwrite (bool | None | Unset):
+        priority (int | None | Unset):
         speakers (int | None | Unset):
-        thumbnail (list[ThumbnailJob] | Unset):
-        transcode (list[TranscodeJob] | Unset):
-        valid_transcoders (list[Transcoders] | Unset):
-        version_id (str | Unset):
+        thumbnail (list[ThumbnailJob] | None | Unset):
+        transcode (list[TranscodeJob] | None | Unset):
+        valid_transcoders (list[Transcoders] | None | Unset):
+        version_id (None | str | Unset):
     """
 
-    amazon_rekognition: bool | Unset = UNSET
-    analysis_data: JobSchemaAnalysisData | Unset = UNSET
-    analysis_query_default_service_account: bool | Unset = UNSET
-    analyzed_before: bool | Unset = UNSET
-    asset_id: str | Unset = UNSET
-    asset_link: str | Unset = UNSET
-    collection_id: str | Unset = UNSET
-    create_transcription: bool | Unset = UNSET
-    delete_old_transcriptions: bool | Unset = UNSET
-    force_transcoder: str | Unset = UNSET
-    google_cloud_video_intelligence: bool | Unset = UNSET
-    input_: InputSchema | Unset = UNSET
-    job_id: str | Unset = UNSET
-    job_steps: list[JobStep] | Unset = UNSET
+    amazon_rekognition: bool | None | Unset = UNSET
+    analysis_data: JobSchemaAnalysisDataType0 | None | Unset = UNSET
+    analysis_query_default_service_account: bool | None | Unset = UNSET
+    analyzed_before: bool | None | Unset = UNSET
+    asset_id: None | str | Unset = UNSET
+    asset_link: None | str | Unset = UNSET
+    collection_id: None | str | Unset = UNSET
+    create_transcription: bool | None | Unset = UNSET
+    delete_old_transcriptions: bool | None | Unset = UNSET
+    force_transcoder: None | str | Unset = UNSET
+    google_cloud_video_intelligence: bool | None | Unset = UNSET
+    input_: InputSchema | None | Unset = UNSET
+    job_id: None | str | Unset = UNSET
+    job_steps: list[JobStep] | None | Unset = UNSET
     language: None | str | Unset = UNSET
     media_info: None | str | Unset = UNSET
-    overwrite: bool | Unset = UNSET
-    priority: int | Unset = UNSET
+    overwrite: bool | None | Unset = UNSET
+    priority: int | None | Unset = UNSET
     speakers: int | None | Unset = UNSET
-    thumbnail: list[ThumbnailJob] | Unset = UNSET
-    transcode: list[TranscodeJob] | Unset = UNSET
-    valid_transcoders: list[Transcoders] | Unset = UNSET
-    version_id: str | Unset = UNSET
+    thumbnail: list[ThumbnailJob] | None | Unset = UNSET
+    transcode: list[TranscodeJob] | None | Unset = UNSET
+    valid_transcoders: list[Transcoders] | None | Unset = UNSET
+    version_id: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        amazon_rekognition = self.amazon_rekognition
+        from ..models.input_schema import InputSchema
+        from ..models.job_schema_analysis_data_type_0 import JobSchemaAnalysisDataType0
 
-        analysis_data: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.analysis_data, Unset):
+        amazon_rekognition: bool | None | Unset
+        if isinstance(self.amazon_rekognition, Unset):
+            amazon_rekognition = UNSET
+        else:
+            amazon_rekognition = self.amazon_rekognition
+
+        analysis_data: dict[str, Any] | None | Unset
+        if isinstance(self.analysis_data, Unset):
+            analysis_data = UNSET
+        elif isinstance(self.analysis_data, JobSchemaAnalysisDataType0):
             analysis_data = self.analysis_data.to_dict()
+        else:
+            analysis_data = self.analysis_data
 
-        analysis_query_default_service_account = (
-            self.analysis_query_default_service_account
-        )
+        analysis_query_default_service_account: bool | None | Unset
+        if isinstance(self.analysis_query_default_service_account, Unset):
+            analysis_query_default_service_account = UNSET
+        else:
+            analysis_query_default_service_account = (
+                self.analysis_query_default_service_account
+            )
 
-        analyzed_before = self.analyzed_before
+        analyzed_before: bool | None | Unset
+        if isinstance(self.analyzed_before, Unset):
+            analyzed_before = UNSET
+        else:
+            analyzed_before = self.analyzed_before
 
-        asset_id = self.asset_id
+        asset_id: None | str | Unset
+        if isinstance(self.asset_id, Unset):
+            asset_id = UNSET
+        else:
+            asset_id = self.asset_id
 
-        asset_link = self.asset_link
+        asset_link: None | str | Unset
+        if isinstance(self.asset_link, Unset):
+            asset_link = UNSET
+        else:
+            asset_link = self.asset_link
 
-        collection_id = self.collection_id
+        collection_id: None | str | Unset
+        if isinstance(self.collection_id, Unset):
+            collection_id = UNSET
+        else:
+            collection_id = self.collection_id
 
-        create_transcription = self.create_transcription
+        create_transcription: bool | None | Unset
+        if isinstance(self.create_transcription, Unset):
+            create_transcription = UNSET
+        else:
+            create_transcription = self.create_transcription
 
-        delete_old_transcriptions = self.delete_old_transcriptions
+        delete_old_transcriptions: bool | None | Unset
+        if isinstance(self.delete_old_transcriptions, Unset):
+            delete_old_transcriptions = UNSET
+        else:
+            delete_old_transcriptions = self.delete_old_transcriptions
 
-        force_transcoder = self.force_transcoder
+        force_transcoder: None | str | Unset
+        if isinstance(self.force_transcoder, Unset):
+            force_transcoder = UNSET
+        else:
+            force_transcoder = self.force_transcoder
 
-        google_cloud_video_intelligence = self.google_cloud_video_intelligence
+        google_cloud_video_intelligence: bool | None | Unset
+        if isinstance(self.google_cloud_video_intelligence, Unset):
+            google_cloud_video_intelligence = UNSET
+        else:
+            google_cloud_video_intelligence = self.google_cloud_video_intelligence
 
-        input_: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.input_, Unset):
+        input_: dict[str, Any] | None | Unset
+        if isinstance(self.input_, Unset):
+            input_ = UNSET
+        elif isinstance(self.input_, InputSchema):
             input_ = self.input_.to_dict()
+        else:
+            input_ = self.input_
 
-        job_id = self.job_id
+        job_id: None | str | Unset
+        if isinstance(self.job_id, Unset):
+            job_id = UNSET
+        else:
+            job_id = self.job_id
 
-        job_steps: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.job_steps, Unset):
+        job_steps: list[dict[str, Any]] | None | Unset
+        if isinstance(self.job_steps, Unset):
+            job_steps = UNSET
+        elif isinstance(self.job_steps, list):
             job_steps = []
-            for job_steps_item_data in self.job_steps:
-                job_steps_item = job_steps_item_data.to_dict()
-                job_steps.append(job_steps_item)
+            for job_steps_type_0_item_data in self.job_steps:
+                job_steps_type_0_item = job_steps_type_0_item_data.to_dict()
+                job_steps.append(job_steps_type_0_item)
+
+        else:
+            job_steps = self.job_steps
 
         language: None | str | Unset
         if isinstance(self.language, Unset):
@@ -126,9 +186,17 @@ class JobSchema:
         else:
             media_info = self.media_info
 
-        overwrite = self.overwrite
+        overwrite: bool | None | Unset
+        if isinstance(self.overwrite, Unset):
+            overwrite = UNSET
+        else:
+            overwrite = self.overwrite
 
-        priority = self.priority
+        priority: int | None | Unset
+        if isinstance(self.priority, Unset):
+            priority = UNSET
+        else:
+            priority = self.priority
 
         speakers: int | None | Unset
         if isinstance(self.speakers, Unset):
@@ -136,28 +204,49 @@ class JobSchema:
         else:
             speakers = self.speakers
 
-        thumbnail: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.thumbnail, Unset):
+        thumbnail: list[dict[str, Any]] | None | Unset
+        if isinstance(self.thumbnail, Unset):
+            thumbnail = UNSET
+        elif isinstance(self.thumbnail, list):
             thumbnail = []
-            for thumbnail_item_data in self.thumbnail:
-                thumbnail_item = thumbnail_item_data.to_dict()
-                thumbnail.append(thumbnail_item)
+            for thumbnail_type_0_item_data in self.thumbnail:
+                thumbnail_type_0_item = thumbnail_type_0_item_data.to_dict()
+                thumbnail.append(thumbnail_type_0_item)
 
-        transcode: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.transcode, Unset):
+        else:
+            thumbnail = self.thumbnail
+
+        transcode: list[dict[str, Any]] | None | Unset
+        if isinstance(self.transcode, Unset):
+            transcode = UNSET
+        elif isinstance(self.transcode, list):
             transcode = []
-            for transcode_item_data in self.transcode:
-                transcode_item = transcode_item_data.to_dict()
-                transcode.append(transcode_item)
+            for transcode_type_0_item_data in self.transcode:
+                transcode_type_0_item = transcode_type_0_item_data.to_dict()
+                transcode.append(transcode_type_0_item)
 
-        valid_transcoders: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.valid_transcoders, Unset):
+        else:
+            transcode = self.transcode
+
+        valid_transcoders: list[dict[str, Any]] | None | Unset
+        if isinstance(self.valid_transcoders, Unset):
+            valid_transcoders = UNSET
+        elif isinstance(self.valid_transcoders, list):
             valid_transcoders = []
-            for valid_transcoders_item_data in self.valid_transcoders:
-                valid_transcoders_item = valid_transcoders_item_data.to_dict()
-                valid_transcoders.append(valid_transcoders_item)
+            for valid_transcoders_type_0_item_data in self.valid_transcoders:
+                valid_transcoders_type_0_item = (
+                    valid_transcoders_type_0_item_data.to_dict()
+                )
+                valid_transcoders.append(valid_transcoders_type_0_item)
 
-        version_id = self.version_id
+        else:
+            valid_transcoders = self.valid_transcoders
+
+        version_id: None | str | Unset
+        if isinstance(self.version_id, Unset):
+            version_id = UNSET
+        else:
+            version_id = self.version_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -218,61 +307,186 @@ class JobSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.input_schema import InputSchema
-        from ..models.job_schema_analysis_data import JobSchemaAnalysisData
+        from ..models.job_schema_analysis_data_type_0 import JobSchemaAnalysisDataType0
         from ..models.job_step import JobStep
         from ..models.thumbnail_job import ThumbnailJob
         from ..models.transcode_job import TranscodeJob
         from ..models.transcoders import Transcoders
 
         d = dict(src_dict)
-        amazon_rekognition = d.pop("amazon_rekognition", UNSET)
 
-        _analysis_data = d.pop("analysis_data", UNSET)
-        analysis_data: JobSchemaAnalysisData | Unset
-        if isinstance(_analysis_data, Unset):
-            analysis_data = UNSET
-        else:
-            analysis_data = JobSchemaAnalysisData.from_dict(_analysis_data)
+        def _parse_amazon_rekognition(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        analysis_query_default_service_account = d.pop(
-            "analysis_query_default_service_account", UNSET
+        amazon_rekognition = _parse_amazon_rekognition(
+            d.pop("amazon_rekognition", UNSET)
         )
 
-        analyzed_before = d.pop("analyzed_before", UNSET)
+        def _parse_analysis_data(
+            data: object,
+        ) -> JobSchemaAnalysisDataType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                analysis_data_type_0 = JobSchemaAnalysisDataType0.from_dict(data)
 
-        asset_id = d.pop("asset_id", UNSET)
+                return analysis_data_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(JobSchemaAnalysisDataType0 | None | Unset, data)
 
-        asset_link = d.pop("asset_link", UNSET)
+        analysis_data = _parse_analysis_data(d.pop("analysis_data", UNSET))
 
-        collection_id = d.pop("collection_id", UNSET)
+        def _parse_analysis_query_default_service_account(
+            data: object,
+        ) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        create_transcription = d.pop("create_transcription", UNSET)
-
-        delete_old_transcriptions = d.pop("delete_old_transcriptions", UNSET)
-
-        force_transcoder = d.pop("force_transcoder", UNSET)
-
-        google_cloud_video_intelligence = d.pop(
-            "google_cloud_video_intelligence", UNSET
+        analysis_query_default_service_account = (
+            _parse_analysis_query_default_service_account(
+                d.pop("analysis_query_default_service_account", UNSET)
+            )
         )
 
-        _input_ = d.pop("input", UNSET)
-        input_: InputSchema | Unset
-        if isinstance(_input_, Unset):
-            input_ = UNSET
-        else:
-            input_ = InputSchema.from_dict(_input_)
+        def _parse_analyzed_before(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        job_id = d.pop("job_id", UNSET)
+        analyzed_before = _parse_analyzed_before(d.pop("analyzed_before", UNSET))
 
-        _job_steps = d.pop("job_steps", UNSET)
-        job_steps: list[JobStep] | Unset = UNSET
-        if _job_steps is not UNSET:
-            job_steps = []
-            for job_steps_item_data in _job_steps:
-                job_steps_item = JobStep.from_dict(job_steps_item_data)
+        def _parse_asset_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-                job_steps.append(job_steps_item)
+        asset_id = _parse_asset_id(d.pop("asset_id", UNSET))
+
+        def _parse_asset_link(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        asset_link = _parse_asset_link(d.pop("asset_link", UNSET))
+
+        def _parse_collection_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        collection_id = _parse_collection_id(d.pop("collection_id", UNSET))
+
+        def _parse_create_transcription(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        create_transcription = _parse_create_transcription(
+            d.pop("create_transcription", UNSET)
+        )
+
+        def _parse_delete_old_transcriptions(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        delete_old_transcriptions = _parse_delete_old_transcriptions(
+            d.pop("delete_old_transcriptions", UNSET)
+        )
+
+        def _parse_force_transcoder(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        force_transcoder = _parse_force_transcoder(d.pop("force_transcoder", UNSET))
+
+        def _parse_google_cloud_video_intelligence(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        google_cloud_video_intelligence = _parse_google_cloud_video_intelligence(
+            d.pop("google_cloud_video_intelligence", UNSET)
+        )
+
+        def _parse_input_(data: object) -> InputSchema | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                input_type_1 = InputSchema.from_dict(data)
+
+                return input_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(InputSchema | None | Unset, data)
+
+        input_ = _parse_input_(d.pop("input", UNSET))
+
+        def _parse_job_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        job_id = _parse_job_id(d.pop("job_id", UNSET))
+
+        def _parse_job_steps(data: object) -> list[JobStep] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                job_steps_type_0 = []
+                _job_steps_type_0 = data
+                for job_steps_type_0_item_data in _job_steps_type_0:
+                    job_steps_type_0_item = JobStep.from_dict(
+                        job_steps_type_0_item_data
+                    )
+
+                    job_steps_type_0.append(job_steps_type_0_item)
+
+                return job_steps_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[JobStep] | None | Unset, data)
+
+        job_steps = _parse_job_steps(d.pop("job_steps", UNSET))
 
         def _parse_language(data: object) -> None | str | Unset:
             if data is None:
@@ -292,9 +506,23 @@ class JobSchema:
 
         media_info = _parse_media_info(d.pop("media_info", UNSET))
 
-        overwrite = d.pop("overwrite", UNSET)
+        def _parse_overwrite(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        priority = d.pop("priority", UNSET)
+        overwrite = _parse_overwrite(d.pop("overwrite", UNSET))
+
+        def _parse_priority(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        priority = _parse_priority(d.pop("priority", UNSET))
 
         def _parse_speakers(data: object) -> int | None | Unset:
             if data is None:
@@ -305,36 +533,86 @@ class JobSchema:
 
         speakers = _parse_speakers(d.pop("speakers", UNSET))
 
-        _thumbnail = d.pop("thumbnail", UNSET)
-        thumbnail: list[ThumbnailJob] | Unset = UNSET
-        if _thumbnail is not UNSET:
-            thumbnail = []
-            for thumbnail_item_data in _thumbnail:
-                thumbnail_item = ThumbnailJob.from_dict(thumbnail_item_data)
+        def _parse_thumbnail(data: object) -> list[ThumbnailJob] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                thumbnail_type_0 = []
+                _thumbnail_type_0 = data
+                for thumbnail_type_0_item_data in _thumbnail_type_0:
+                    thumbnail_type_0_item = ThumbnailJob.from_dict(
+                        thumbnail_type_0_item_data
+                    )
 
-                thumbnail.append(thumbnail_item)
+                    thumbnail_type_0.append(thumbnail_type_0_item)
 
-        _transcode = d.pop("transcode", UNSET)
-        transcode: list[TranscodeJob] | Unset = UNSET
-        if _transcode is not UNSET:
-            transcode = []
-            for transcode_item_data in _transcode:
-                transcode_item = TranscodeJob.from_dict(transcode_item_data)
+                return thumbnail_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[ThumbnailJob] | None | Unset, data)
 
-                transcode.append(transcode_item)
+        thumbnail = _parse_thumbnail(d.pop("thumbnail", UNSET))
 
-        _valid_transcoders = d.pop("valid_transcoders", UNSET)
-        valid_transcoders: list[Transcoders] | Unset = UNSET
-        if _valid_transcoders is not UNSET:
-            valid_transcoders = []
-            for valid_transcoders_item_data in _valid_transcoders:
-                valid_transcoders_item = Transcoders.from_dict(
-                    valid_transcoders_item_data
-                )
+        def _parse_transcode(data: object) -> list[TranscodeJob] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                transcode_type_0 = []
+                _transcode_type_0 = data
+                for transcode_type_0_item_data in _transcode_type_0:
+                    transcode_type_0_item = TranscodeJob.from_dict(
+                        transcode_type_0_item_data
+                    )
 
-                valid_transcoders.append(valid_transcoders_item)
+                    transcode_type_0.append(transcode_type_0_item)
 
-        version_id = d.pop("version_id", UNSET)
+                return transcode_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[TranscodeJob] | None | Unset, data)
+
+        transcode = _parse_transcode(d.pop("transcode", UNSET))
+
+        def _parse_valid_transcoders(data: object) -> list[Transcoders] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                valid_transcoders_type_0 = []
+                _valid_transcoders_type_0 = data
+                for valid_transcoders_type_0_item_data in _valid_transcoders_type_0:
+                    valid_transcoders_type_0_item = Transcoders.from_dict(
+                        valid_transcoders_type_0_item_data
+                    )
+
+                    valid_transcoders_type_0.append(valid_transcoders_type_0_item)
+
+                return valid_transcoders_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[Transcoders] | None | Unset, data)
+
+        valid_transcoders = _parse_valid_transcoders(d.pop("valid_transcoders", UNSET))
+
+        def _parse_version_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        version_id = _parse_version_id(d.pop("version_id", UNSET))
 
         job_schema = cls(
             amazon_rekognition=amazon_rekognition,

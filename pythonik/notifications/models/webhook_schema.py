@@ -12,7 +12,7 @@ from ..models.webhook_schema_status import WebhookSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.webhook_schema_headers import WebhookSchemaHeaders
+    from ..models.webhook_schema_headers_type_0 import WebhookSchemaHeadersType0
 
 
 T = TypeVar("T", bound="WebhookSchema")
@@ -26,21 +26,21 @@ class WebhookSchema:
         id (UUID):
         status (WebhookSchemaStatus):  Example: ENABLED.
         url (str): URL you want to be called when notification is appeared Example: https://example.com/webhook_handler.
-        date_created (datetime.datetime | Unset):
-        date_modified (datetime.datetime | Unset):
-        deleted_at (datetime.datetime | Unset):
-        description (str | Unset):
-        first_failed_at (datetime.datetime | Unset):
-        headers (WebhookSchemaHeaders | Unset): Define the key-value pairs your third party provider requires here
-            Example: {'AUTH-TOKEN': 'XYZ', 'S3_BUCKET_NAME': 'iconik-examples', 'S3_REGION': 'eu-west-1', 'SECRET':
-            'asdad'}.
-        last_error (str | Unset):
-        last_payload (str | Unset):
-        name (str | Unset):
+        date_created (datetime.datetime | None | Unset):
+        date_modified (datetime.datetime | None | Unset):
+        deleted_at (datetime.datetime | None | Unset):
+        description (None | str | Unset):
+        first_failed_at (datetime.datetime | None | Unset):
+        headers (None | Unset | WebhookSchemaHeadersType0): Define the key-value pairs your third party provider
+            requires here Example: {'AUTH-TOKEN': 'XYZ', 'S3_BUCKET_NAME': 'iconik-examples', 'S3_REGION': 'eu-west-1',
+            'SECRET': 'asdad'}.
+        last_error (None | str | Unset):
+        last_payload (None | str | Unset):
+        name (None | str | Unset):
         object_id (None | Unset | UUID): ID of a particular object you want to subscribe on Example:
             d7a5a7e8-4247-11ee-b3d8-a683e79fffaf.
         operation (None | str | Unset): Operation of event. Example create, update, delete Example: update.
-        query (str | Unset): Adding a query allows filtering out messages so webhooks will be called only if for
+        query (None | str | Unset): Adding a query allows filtering out messages so webhooks will be called only if for
             messages that match this query. Example: data.is_archived=false AND data.size>0 (data.status="CLOSED" OR
             data.status="DELETED") AND data.external_id!=null.
         realm (None | str | Unset): Realm of event. Example entity, contents, acls, metadata Example: metadata.
@@ -50,22 +50,24 @@ class WebhookSchema:
     id: UUID
     status: WebhookSchemaStatus
     url: str
-    date_created: datetime.datetime | Unset = UNSET
-    date_modified: datetime.datetime | Unset = UNSET
-    deleted_at: datetime.datetime | Unset = UNSET
-    description: str | Unset = UNSET
-    first_failed_at: datetime.datetime | Unset = UNSET
-    headers: WebhookSchemaHeaders | Unset = UNSET
-    last_error: str | Unset = UNSET
-    last_payload: str | Unset = UNSET
-    name: str | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_modified: datetime.datetime | None | Unset = UNSET
+    deleted_at: datetime.datetime | None | Unset = UNSET
+    description: None | str | Unset = UNSET
+    first_failed_at: datetime.datetime | None | Unset = UNSET
+    headers: None | Unset | WebhookSchemaHeadersType0 = UNSET
+    last_error: None | str | Unset = UNSET
+    last_payload: None | str | Unset = UNSET
+    name: None | str | Unset = UNSET
     object_id: None | Unset | UUID = UNSET
     operation: None | str | Unset = UNSET
-    query: str | Unset = UNSET
+    query: None | str | Unset = UNSET
     realm: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.webhook_schema_headers_type_0 import WebhookSchemaHeadersType0
+
         event_type = self.event_type
 
         id = str(self.id)
@@ -74,33 +76,69 @@ class WebhookSchema:
 
         url = self.url
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_modified: str | Unset = UNSET
-        if not isinstance(self.date_modified, Unset):
+        date_modified: None | str | Unset
+        if isinstance(self.date_modified, Unset):
+            date_modified = UNSET
+        elif isinstance(self.date_modified, datetime.datetime):
             date_modified = self.date_modified.isoformat()
+        else:
+            date_modified = self.date_modified
 
-        deleted_at: str | Unset = UNSET
-        if not isinstance(self.deleted_at, Unset):
+        deleted_at: None | str | Unset
+        if isinstance(self.deleted_at, Unset):
+            deleted_at = UNSET
+        elif isinstance(self.deleted_at, datetime.datetime):
             deleted_at = self.deleted_at.isoformat()
+        else:
+            deleted_at = self.deleted_at
 
-        description = self.description
+        description: None | str | Unset
+        if isinstance(self.description, Unset):
+            description = UNSET
+        else:
+            description = self.description
 
-        first_failed_at: str | Unset = UNSET
-        if not isinstance(self.first_failed_at, Unset):
+        first_failed_at: None | str | Unset
+        if isinstance(self.first_failed_at, Unset):
+            first_failed_at = UNSET
+        elif isinstance(self.first_failed_at, datetime.datetime):
             first_failed_at = self.first_failed_at.isoformat()
+        else:
+            first_failed_at = self.first_failed_at
 
-        headers: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.headers, Unset):
+        headers: dict[str, Any] | None | Unset
+        if isinstance(self.headers, Unset):
+            headers = UNSET
+        elif isinstance(self.headers, WebhookSchemaHeadersType0):
             headers = self.headers.to_dict()
+        else:
+            headers = self.headers
 
-        last_error = self.last_error
+        last_error: None | str | Unset
+        if isinstance(self.last_error, Unset):
+            last_error = UNSET
+        else:
+            last_error = self.last_error
 
-        last_payload = self.last_payload
+        last_payload: None | str | Unset
+        if isinstance(self.last_payload, Unset):
+            last_payload = UNSET
+        else:
+            last_payload = self.last_payload
 
-        name = self.name
+        name: None | str | Unset
+        if isinstance(self.name, Unset):
+            name = UNSET
+        else:
+            name = self.name
 
         object_id: None | str | Unset
         if isinstance(self.object_id, Unset):
@@ -116,7 +154,11 @@ class WebhookSchema:
         else:
             operation = self.operation
 
-        query = self.query
+        query: None | str | Unset
+        if isinstance(self.query, Unset):
+            query = UNSET
+        else:
+            query = self.query
 
         realm: None | str | Unset
         if isinstance(self.realm, Unset):
@@ -165,7 +207,7 @@ class WebhookSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.webhook_schema_headers import WebhookSchemaHeaders
+        from ..models.webhook_schema_headers_type_0 import WebhookSchemaHeadersType0
 
         d = dict(src_dict)
         event_type = d.pop("event_type")
@@ -176,48 +218,126 @@ class WebhookSchema:
 
         url = d.pop("url")
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        _date_modified = d.pop("date_modified", UNSET)
-        date_modified: datetime.datetime | Unset
-        if isinstance(_date_modified, Unset):
-            date_modified = UNSET
-        else:
-            date_modified = datetime.datetime.fromisoformat(_date_modified)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        _deleted_at = d.pop("deleted_at", UNSET)
-        deleted_at: datetime.datetime | Unset
-        if isinstance(_deleted_at, Unset):
-            deleted_at = UNSET
-        else:
-            deleted_at = datetime.datetime.fromisoformat(_deleted_at)
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
 
-        description = d.pop("description", UNSET)
+        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_modified_type_0 = datetime.datetime.fromisoformat(data)
 
-        _first_failed_at = d.pop("first_failed_at", UNSET)
-        first_failed_at: datetime.datetime | Unset
-        if isinstance(_first_failed_at, Unset):
-            first_failed_at = UNSET
-        else:
-            first_failed_at = datetime.datetime.fromisoformat(_first_failed_at)
+                return date_modified_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        _headers = d.pop("headers", UNSET)
-        headers: WebhookSchemaHeaders | Unset
-        if isinstance(_headers, Unset):
-            headers = UNSET
-        else:
-            headers = WebhookSchemaHeaders.from_dict(_headers)
+        date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
 
-        last_error = d.pop("last_error", UNSET)
+        def _parse_deleted_at(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                deleted_at_type_0 = datetime.datetime.fromisoformat(data)
 
-        last_payload = d.pop("last_payload", UNSET)
+                return deleted_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        name = d.pop("name", UNSET)
+        deleted_at = _parse_deleted_at(d.pop("deleted_at", UNSET))
+
+        def _parse_description(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        description = _parse_description(d.pop("description", UNSET))
+
+        def _parse_first_failed_at(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                first_failed_at_type_0 = datetime.datetime.fromisoformat(data)
+
+                return first_failed_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        first_failed_at = _parse_first_failed_at(d.pop("first_failed_at", UNSET))
+
+        def _parse_headers(data: object) -> None | Unset | WebhookSchemaHeadersType0:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                headers_type_0 = WebhookSchemaHeadersType0.from_dict(data)
+
+                return headers_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | WebhookSchemaHeadersType0, data)
+
+        headers = _parse_headers(d.pop("headers", UNSET))
+
+        def _parse_last_error(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        last_error = _parse_last_error(d.pop("last_error", UNSET))
+
+        def _parse_last_payload(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        last_payload = _parse_last_payload(d.pop("last_payload", UNSET))
+
+        def _parse_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        name = _parse_name(d.pop("name", UNSET))
 
         def _parse_object_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -245,7 +365,14 @@ class WebhookSchema:
 
         operation = _parse_operation(d.pop("operation", UNSET))
 
-        query = d.pop("query", UNSET)
+        def _parse_query(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        query = _parse_query(d.pop("query", UNSET))
 
         def _parse_realm(data: object) -> None | str | Unset:
             if data is None:

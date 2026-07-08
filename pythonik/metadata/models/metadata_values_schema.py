@@ -26,19 +26,19 @@ class MetadataValuesSchema:
         metadata_values (MetadataValuesSchemaMetadataValues):
         date_created (datetime.datetime | None | Unset):
         date_modified (datetime.datetime | None | Unset):
-        job_id (UUID | Unset):
-        object_id (UUID | Unset):
-        object_type (str | Unset):
-        version_id (UUID | Unset):
+        job_id (None | Unset | UUID):
+        object_id (None | Unset | UUID):
+        object_type (None | str | Unset):
+        version_id (None | Unset | UUID):
     """
 
     metadata_values: MetadataValuesSchemaMetadataValues
     date_created: datetime.datetime | None | Unset = UNSET
     date_modified: datetime.datetime | None | Unset = UNSET
-    job_id: UUID | Unset = UNSET
-    object_id: UUID | Unset = UNSET
-    object_type: str | Unset = UNSET
-    version_id: UUID | Unset = UNSET
+    job_id: None | Unset | UUID = UNSET
+    object_id: None | Unset | UUID = UNSET
+    object_type: None | str | Unset = UNSET
+    version_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -60,19 +60,35 @@ class MetadataValuesSchema:
         else:
             date_modified = self.date_modified
 
-        job_id: str | Unset = UNSET
-        if not isinstance(self.job_id, Unset):
+        job_id: None | str | Unset
+        if isinstance(self.job_id, Unset):
+            job_id = UNSET
+        elif isinstance(self.job_id, UUID):
             job_id = str(self.job_id)
+        else:
+            job_id = self.job_id
 
-        object_id: str | Unset = UNSET
-        if not isinstance(self.object_id, Unset):
+        object_id: None | str | Unset
+        if isinstance(self.object_id, Unset):
+            object_id = UNSET
+        elif isinstance(self.object_id, UUID):
             object_id = str(self.object_id)
+        else:
+            object_id = self.object_id
 
-        object_type = self.object_type
+        object_type: None | str | Unset
+        if isinstance(self.object_type, Unset):
+            object_type = UNSET
+        else:
+            object_type = self.object_type
 
-        version_id: str | Unset = UNSET
-        if not isinstance(self.version_id, Unset):
+        version_id: None | str | Unset
+        if isinstance(self.version_id, Unset):
+            version_id = UNSET
+        elif isinstance(self.version_id, UUID):
             version_id = str(self.version_id)
+        else:
+            version_id = self.version_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -141,28 +157,65 @@ class MetadataValuesSchema:
 
         date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
 
-        _job_id = d.pop("job_id", UNSET)
-        job_id: UUID | Unset
-        if isinstance(_job_id, Unset):
-            job_id = UNSET
-        else:
-            job_id = UUID(_job_id)
+        def _parse_job_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                job_id_type_0 = UUID(data)
 
-        _object_id = d.pop("object_id", UNSET)
-        object_id: UUID | Unset
-        if isinstance(_object_id, Unset):
-            object_id = UNSET
-        else:
-            object_id = UUID(_object_id)
+                return job_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        object_type = d.pop("object_type", UNSET)
+        job_id = _parse_job_id(d.pop("job_id", UNSET))
 
-        _version_id = d.pop("version_id", UNSET)
-        version_id: UUID | Unset
-        if isinstance(_version_id, Unset):
-            version_id = UNSET
-        else:
-            version_id = UUID(_version_id)
+        def _parse_object_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                object_id_type_0 = UUID(data)
+
+                return object_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        object_id = _parse_object_id(d.pop("object_id", UNSET))
+
+        def _parse_object_type(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        object_type = _parse_object_type(d.pop("object_type", UNSET))
+
+        def _parse_version_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                version_id_type_0 = UUID(data)
+
+                return version_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        version_id = _parse_version_id(d.pop("version_id", UNSET))
 
         metadata_values_schema = cls(
             metadata_values=metadata_values,

@@ -20,68 +20,114 @@ T = TypeVar("T", bound="AssetsSchema")
 class AssetsSchema:
     """
     Attributes:
-        first_url (str | Unset):
-        last_url (str | Unset):
-        next_url (str | Unset):
-        objects (list[AssetElasticSchema | AssetPostElastic] | Unset):
-        page (int | Unset):
-        pages (int | Unset):
-        per_page (int | Unset):
-        prev_url (str | Unset):
-        scroll_id (str | Unset):
-        search_after (list[Any] | Unset):
-        total (int | Unset):
+        first_url (None | str | Unset):
+        last_url (None | str | Unset):
+        next_url (None | str | Unset):
+        objects (list[AssetElasticSchema | AssetPostElastic] | None | Unset):
+        page (int | None | Unset):
+        pages (int | None | Unset):
+        per_page (int | None | Unset):
+        prev_url (None | str | Unset):
+        scroll_id (None | str | Unset):
+        search_after (list[Any] | None | Unset):
+        total (int | None | Unset):
     """
 
-    first_url: str | Unset = UNSET
-    last_url: str | Unset = UNSET
-    next_url: str | Unset = UNSET
-    objects: list[AssetElasticSchema | AssetPostElastic] | Unset = UNSET
-    page: int | Unset = UNSET
-    pages: int | Unset = UNSET
-    per_page: int | Unset = UNSET
-    prev_url: str | Unset = UNSET
-    scroll_id: str | Unset = UNSET
-    search_after: list[Any] | Unset = UNSET
-    total: int | Unset = UNSET
+    first_url: None | str | Unset = UNSET
+    last_url: None | str | Unset = UNSET
+    next_url: None | str | Unset = UNSET
+    objects: list[AssetElasticSchema | AssetPostElastic] | None | Unset = UNSET
+    page: int | None | Unset = UNSET
+    pages: int | None | Unset = UNSET
+    per_page: int | None | Unset = UNSET
+    prev_url: None | str | Unset = UNSET
+    scroll_id: None | str | Unset = UNSET
+    search_after: list[Any] | None | Unset = UNSET
+    total: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.asset_elastic_schema import AssetElasticSchema
 
-        first_url = self.first_url
+        first_url: None | str | Unset
+        if isinstance(self.first_url, Unset):
+            first_url = UNSET
+        else:
+            first_url = self.first_url
 
-        last_url = self.last_url
+        last_url: None | str | Unset
+        if isinstance(self.last_url, Unset):
+            last_url = UNSET
+        else:
+            last_url = self.last_url
 
-        next_url = self.next_url
+        next_url: None | str | Unset
+        if isinstance(self.next_url, Unset):
+            next_url = UNSET
+        else:
+            next_url = self.next_url
 
-        objects: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.objects, Unset):
+        objects: list[dict[str, Any]] | None | Unset
+        if isinstance(self.objects, Unset):
+            objects = UNSET
+        elif isinstance(self.objects, list):
             objects = []
-            for objects_item_data in self.objects:
-                objects_item: dict[str, Any]
-                if isinstance(objects_item_data, AssetElasticSchema):
-                    objects_item = objects_item_data.to_dict()
+            for objects_type_0_item_data in self.objects:
+                objects_type_0_item: dict[str, Any]
+                if isinstance(objects_type_0_item_data, AssetElasticSchema):
+                    objects_type_0_item = objects_type_0_item_data.to_dict()
                 else:
-                    objects_item = objects_item_data.to_dict()
+                    objects_type_0_item = objects_type_0_item_data.to_dict()
 
-                objects.append(objects_item)
+                objects.append(objects_type_0_item)
 
-        page = self.page
+        else:
+            objects = self.objects
 
-        pages = self.pages
+        page: int | None | Unset
+        if isinstance(self.page, Unset):
+            page = UNSET
+        else:
+            page = self.page
 
-        per_page = self.per_page
+        pages: int | None | Unset
+        if isinstance(self.pages, Unset):
+            pages = UNSET
+        else:
+            pages = self.pages
 
-        prev_url = self.prev_url
+        per_page: int | None | Unset
+        if isinstance(self.per_page, Unset):
+            per_page = UNSET
+        else:
+            per_page = self.per_page
 
-        scroll_id = self.scroll_id
+        prev_url: None | str | Unset
+        if isinstance(self.prev_url, Unset):
+            prev_url = UNSET
+        else:
+            prev_url = self.prev_url
 
-        search_after: list[Any] | Unset = UNSET
-        if not isinstance(self.search_after, Unset):
+        scroll_id: None | str | Unset
+        if isinstance(self.scroll_id, Unset):
+            scroll_id = UNSET
+        else:
+            scroll_id = self.scroll_id
+
+        search_after: list[Any] | None | Unset
+        if isinstance(self.search_after, Unset):
+            search_after = UNSET
+        elif isinstance(self.search_after, list):
             search_after = self.search_after
 
-        total = self.total
+        else:
+            search_after = self.search_after
+
+        total: int | None | Unset
+        if isinstance(self.total, Unset):
+            total = UNSET
+        else:
+            total = self.total
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -117,56 +163,154 @@ class AssetsSchema:
         from ..models.asset_post_elastic import AssetPostElastic
 
         d = dict(src_dict)
-        first_url = d.pop("first_url", UNSET)
 
-        last_url = d.pop("last_url", UNSET)
+        def _parse_first_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        next_url = d.pop("next_url", UNSET)
+        first_url = _parse_first_url(d.pop("first_url", UNSET))
 
-        _objects = d.pop("objects", UNSET)
-        objects: list[AssetElasticSchema | AssetPostElastic] | Unset = UNSET
-        if _objects is not UNSET:
-            objects = []
-            for objects_item_data in _objects:
+        def _parse_last_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-                def _parse_objects_item(
-                    data: object,
-                ) -> AssetElasticSchema | AssetPostElastic:
-                    try:
+        last_url = _parse_last_url(d.pop("last_url", UNSET))
+
+        def _parse_next_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        next_url = _parse_next_url(d.pop("next_url", UNSET))
+
+        def _parse_objects(
+            data: object,
+        ) -> list[AssetElasticSchema | AssetPostElastic] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                objects_type_0 = []
+                _objects_type_0 = data
+                for objects_type_0_item_data in _objects_type_0:
+
+                    def _parse_objects_type_0_item(
+                        data: object,
+                    ) -> AssetElasticSchema | AssetPostElastic:
+                        try:
+                            if not isinstance(data, dict):
+                                raise TypeError()
+                            componentsschemas_asset_elastic_schema_typed_type_0 = (
+                                AssetElasticSchema.from_dict(data)
+                            )
+
+                            return componentsschemas_asset_elastic_schema_typed_type_0
+                        except (TypeError, ValueError, AttributeError, KeyError):
+                            pass
                         if not isinstance(data, dict):
                             raise TypeError()
-                        componentsschemas_asset_elastic_schema_typed_type_0 = (
-                            AssetElasticSchema.from_dict(data)
+                        componentsschemas_asset_elastic_schema_typed_type_1 = (
+                            AssetPostElastic.from_dict(data)
                         )
 
-                        return componentsschemas_asset_elastic_schema_typed_type_0
-                    except (TypeError, ValueError, AttributeError, KeyError):
-                        pass
-                    if not isinstance(data, dict):
-                        raise TypeError()
-                    componentsschemas_asset_elastic_schema_typed_type_1 = (
-                        AssetPostElastic.from_dict(data)
+                        return componentsschemas_asset_elastic_schema_typed_type_1
+
+                    objects_type_0_item = _parse_objects_type_0_item(
+                        objects_type_0_item_data
                     )
 
-                    return componentsschemas_asset_elastic_schema_typed_type_1
+                    objects_type_0.append(objects_type_0_item)
 
-                objects_item = _parse_objects_item(objects_item_data)
+                return objects_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(
+                list[AssetElasticSchema | AssetPostElastic] | None | Unset, data
+            )
 
-                objects.append(objects_item)
+        objects = _parse_objects(d.pop("objects", UNSET))
 
-        page = d.pop("page", UNSET)
+        def _parse_page(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        pages = d.pop("pages", UNSET)
+        page = _parse_page(d.pop("page", UNSET))
 
-        per_page = d.pop("per_page", UNSET)
+        def _parse_pages(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        prev_url = d.pop("prev_url", UNSET)
+        pages = _parse_pages(d.pop("pages", UNSET))
 
-        scroll_id = d.pop("scroll_id", UNSET)
+        def _parse_per_page(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        search_after = cast(list[Any], d.pop("search_after", UNSET))
+        per_page = _parse_per_page(d.pop("per_page", UNSET))
 
-        total = d.pop("total", UNSET)
+        def _parse_prev_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        prev_url = _parse_prev_url(d.pop("prev_url", UNSET))
+
+        def _parse_scroll_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        scroll_id = _parse_scroll_id(d.pop("scroll_id", UNSET))
+
+        def _parse_search_after(data: object) -> list[Any] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                search_after_type_0 = cast(list[Any], data)
+
+                return search_after_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[Any] | None | Unset, data)
+
+        search_after = _parse_search_after(d.pop("search_after", UNSET))
+
+        def _parse_total(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        total = _parse_total(d.pop("total", UNSET))
 
         assets_schema = cls(
             first_url=first_url,

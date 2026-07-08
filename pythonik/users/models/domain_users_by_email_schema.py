@@ -1,19 +1,19 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.domain_users_by_email_schema_mfa_methods_item import (
-    DomainUsersByEmailSchemaMfaMethodsItem,
+from ..models.domain_users_by_email_schema_mfa_methods_type_0_item import (
+    DomainUsersByEmailSchemaMfaMethodsType0Item,
 )
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.domain_users_by_email_schema_facets import (
-        DomainUsersByEmailSchemaFacets,
+    from ..models.domain_users_by_email_schema_facets_type_0 import (
+        DomainUsersByEmailSchemaFacetsType0,
     )
     from ..models.user_elastic import UserElastic
 
@@ -25,70 +25,126 @@ T = TypeVar("T", bound="DomainUsersByEmailSchema")
 class DomainUsersByEmailSchema:
     """
     Attributes:
-        facets (DomainUsersByEmailSchemaFacets | Unset):
-        first_url (str | Unset):
-        last_url (str | Unset):
-        mfa_methods (list[DomainUsersByEmailSchemaMfaMethodsItem] | Unset):
-        mfa_required (bool | Unset):
-        next_url (str | Unset):
-        objects (list[UserElastic] | Unset):
-        page (int | Unset):
-        pages (int | Unset):
-        per_page (int | Unset):
-        prev_url (str | Unset):
-        total (int | Unset):
+        facets (DomainUsersByEmailSchemaFacetsType0 | None | Unset):
+        first_url (None | str | Unset):
+        last_url (None | str | Unset):
+        mfa_methods (list[DomainUsersByEmailSchemaMfaMethodsType0Item] | None | Unset):
+        mfa_required (bool | None | Unset):
+        next_url (None | str | Unset):
+        objects (list[UserElastic] | None | Unset):
+        page (int | None | Unset):
+        pages (int | None | Unset):
+        per_page (int | None | Unset):
+        prev_url (None | str | Unset):
+        total (int | None | Unset):
     """
 
-    facets: DomainUsersByEmailSchemaFacets | Unset = UNSET
-    first_url: str | Unset = UNSET
-    last_url: str | Unset = UNSET
-    mfa_methods: list[DomainUsersByEmailSchemaMfaMethodsItem] | Unset = UNSET
-    mfa_required: bool | Unset = UNSET
-    next_url: str | Unset = UNSET
-    objects: list[UserElastic] | Unset = UNSET
-    page: int | Unset = UNSET
-    pages: int | Unset = UNSET
-    per_page: int | Unset = UNSET
-    prev_url: str | Unset = UNSET
-    total: int | Unset = UNSET
+    facets: DomainUsersByEmailSchemaFacetsType0 | None | Unset = UNSET
+    first_url: None | str | Unset = UNSET
+    last_url: None | str | Unset = UNSET
+    mfa_methods: list[DomainUsersByEmailSchemaMfaMethodsType0Item] | None | Unset = (
+        UNSET
+    )
+    mfa_required: bool | None | Unset = UNSET
+    next_url: None | str | Unset = UNSET
+    objects: list[UserElastic] | None | Unset = UNSET
+    page: int | None | Unset = UNSET
+    pages: int | None | Unset = UNSET
+    per_page: int | None | Unset = UNSET
+    prev_url: None | str | Unset = UNSET
+    total: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        facets: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.facets, Unset):
+        from ..models.domain_users_by_email_schema_facets_type_0 import (
+            DomainUsersByEmailSchemaFacetsType0,
+        )
+
+        facets: dict[str, Any] | None | Unset
+        if isinstance(self.facets, Unset):
+            facets = UNSET
+        elif isinstance(self.facets, DomainUsersByEmailSchemaFacetsType0):
             facets = self.facets.to_dict()
+        else:
+            facets = self.facets
 
-        first_url = self.first_url
+        first_url: None | str | Unset
+        if isinstance(self.first_url, Unset):
+            first_url = UNSET
+        else:
+            first_url = self.first_url
 
-        last_url = self.last_url
+        last_url: None | str | Unset
+        if isinstance(self.last_url, Unset):
+            last_url = UNSET
+        else:
+            last_url = self.last_url
 
-        mfa_methods: list[str] | Unset = UNSET
-        if not isinstance(self.mfa_methods, Unset):
+        mfa_methods: list[str] | None | Unset
+        if isinstance(self.mfa_methods, Unset):
+            mfa_methods = UNSET
+        elif isinstance(self.mfa_methods, list):
             mfa_methods = []
-            for mfa_methods_item_data in self.mfa_methods:
-                mfa_methods_item = mfa_methods_item_data.value
-                mfa_methods.append(mfa_methods_item)
+            for mfa_methods_type_0_item_data in self.mfa_methods:
+                mfa_methods_type_0_item = mfa_methods_type_0_item_data.value
+                mfa_methods.append(mfa_methods_type_0_item)
 
-        mfa_required = self.mfa_required
+        else:
+            mfa_methods = self.mfa_methods
 
-        next_url = self.next_url
+        mfa_required: bool | None | Unset
+        if isinstance(self.mfa_required, Unset):
+            mfa_required = UNSET
+        else:
+            mfa_required = self.mfa_required
 
-        objects: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.objects, Unset):
+        next_url: None | str | Unset
+        if isinstance(self.next_url, Unset):
+            next_url = UNSET
+        else:
+            next_url = self.next_url
+
+        objects: list[dict[str, Any]] | None | Unset
+        if isinstance(self.objects, Unset):
+            objects = UNSET
+        elif isinstance(self.objects, list):
             objects = []
-            for objects_item_data in self.objects:
-                objects_item = objects_item_data.to_dict()
-                objects.append(objects_item)
+            for objects_type_0_item_data in self.objects:
+                objects_type_0_item = objects_type_0_item_data.to_dict()
+                objects.append(objects_type_0_item)
 
-        page = self.page
+        else:
+            objects = self.objects
 
-        pages = self.pages
+        page: int | None | Unset
+        if isinstance(self.page, Unset):
+            page = UNSET
+        else:
+            page = self.page
 
-        per_page = self.per_page
+        pages: int | None | Unset
+        if isinstance(self.pages, Unset):
+            pages = UNSET
+        else:
+            pages = self.pages
 
-        prev_url = self.prev_url
+        per_page: int | None | Unset
+        if isinstance(self.per_page, Unset):
+            per_page = UNSET
+        else:
+            per_page = self.per_page
 
-        total = self.total
+        prev_url: None | str | Unset
+        if isinstance(self.prev_url, Unset):
+            prev_url = UNSET
+        else:
+            prev_url = self.prev_url
+
+        total: int | None | Unset
+        if isinstance(self.total, Unset):
+            total = UNSET
+        else:
+            total = self.total
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -122,56 +178,166 @@ class DomainUsersByEmailSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.domain_users_by_email_schema_facets import (
-            DomainUsersByEmailSchemaFacets,
+        from ..models.domain_users_by_email_schema_facets_type_0 import (
+            DomainUsersByEmailSchemaFacetsType0,
         )
         from ..models.user_elastic import UserElastic
 
         d = dict(src_dict)
-        _facets = d.pop("facets", UNSET)
-        facets: DomainUsersByEmailSchemaFacets | Unset
-        if isinstance(_facets, Unset):
-            facets = UNSET
-        else:
-            facets = DomainUsersByEmailSchemaFacets.from_dict(_facets)
 
-        first_url = d.pop("first_url", UNSET)
+        def _parse_facets(
+            data: object,
+        ) -> DomainUsersByEmailSchemaFacetsType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                facets_type_0 = DomainUsersByEmailSchemaFacetsType0.from_dict(data)
 
-        last_url = d.pop("last_url", UNSET)
+                return facets_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(DomainUsersByEmailSchemaFacetsType0 | None | Unset, data)
 
-        _mfa_methods = d.pop("mfa_methods", UNSET)
-        mfa_methods: list[DomainUsersByEmailSchemaMfaMethodsItem] | Unset = UNSET
-        if _mfa_methods is not UNSET:
-            mfa_methods = []
-            for mfa_methods_item_data in _mfa_methods:
-                mfa_methods_item = DomainUsersByEmailSchemaMfaMethodsItem(
-                    mfa_methods_item_data
-                )
+        facets = _parse_facets(d.pop("facets", UNSET))
 
-                mfa_methods.append(mfa_methods_item)
+        def _parse_first_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        mfa_required = d.pop("mfa_required", UNSET)
+        first_url = _parse_first_url(d.pop("first_url", UNSET))
 
-        next_url = d.pop("next_url", UNSET)
+        def _parse_last_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        _objects = d.pop("objects", UNSET)
-        objects: list[UserElastic] | Unset = UNSET
-        if _objects is not UNSET:
-            objects = []
-            for objects_item_data in _objects:
-                objects_item = UserElastic.from_dict(objects_item_data)
+        last_url = _parse_last_url(d.pop("last_url", UNSET))
 
-                objects.append(objects_item)
+        def _parse_mfa_methods(
+            data: object,
+        ) -> list[DomainUsersByEmailSchemaMfaMethodsType0Item] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                mfa_methods_type_0 = []
+                _mfa_methods_type_0 = data
+                for mfa_methods_type_0_item_data in _mfa_methods_type_0:
+                    mfa_methods_type_0_item = (
+                        DomainUsersByEmailSchemaMfaMethodsType0Item(
+                            mfa_methods_type_0_item_data
+                        )
+                    )
 
-        page = d.pop("page", UNSET)
+                    mfa_methods_type_0.append(mfa_methods_type_0_item)
 
-        pages = d.pop("pages", UNSET)
+                return mfa_methods_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(
+                list[DomainUsersByEmailSchemaMfaMethodsType0Item] | None | Unset, data
+            )
 
-        per_page = d.pop("per_page", UNSET)
+        mfa_methods = _parse_mfa_methods(d.pop("mfa_methods", UNSET))
 
-        prev_url = d.pop("prev_url", UNSET)
+        def _parse_mfa_required(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        total = d.pop("total", UNSET)
+        mfa_required = _parse_mfa_required(d.pop("mfa_required", UNSET))
+
+        def _parse_next_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        next_url = _parse_next_url(d.pop("next_url", UNSET))
+
+        def _parse_objects(data: object) -> list[UserElastic] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                objects_type_0 = []
+                _objects_type_0 = data
+                for objects_type_0_item_data in _objects_type_0:
+                    objects_type_0_item = UserElastic.from_dict(
+                        objects_type_0_item_data
+                    )
+
+                    objects_type_0.append(objects_type_0_item)
+
+                return objects_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[UserElastic] | None | Unset, data)
+
+        objects = _parse_objects(d.pop("objects", UNSET))
+
+        def _parse_page(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        page = _parse_page(d.pop("page", UNSET))
+
+        def _parse_pages(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        pages = _parse_pages(d.pop("pages", UNSET))
+
+        def _parse_per_page(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        per_page = _parse_per_page(d.pop("per_page", UNSET))
+
+        def _parse_prev_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        prev_url = _parse_prev_url(d.pop("prev_url", UNSET))
+
+        def _parse_total(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        total = _parse_total(d.pop("total", UNSET))
 
         domain_users_by_email_schema = cls(
             facets=facets,

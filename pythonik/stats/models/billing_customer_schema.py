@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -20,25 +20,37 @@ class BillingCustomerSchema:
     """
     Attributes:
         shipping (BillingCustomerShipping):
-        business_vat_id (str | Unset):
-        email (str | Unset):
-        enable_subscription (bool | Unset):
+        business_vat_id (None | str | Unset):
+        email (None | str | Unset):
+        enable_subscription (bool | None | Unset):
     """
 
     shipping: BillingCustomerShipping
-    business_vat_id: str | Unset = UNSET
-    email: str | Unset = UNSET
-    enable_subscription: bool | Unset = UNSET
+    business_vat_id: None | str | Unset = UNSET
+    email: None | str | Unset = UNSET
+    enable_subscription: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         shipping = self.shipping.to_dict()
 
-        business_vat_id = self.business_vat_id
+        business_vat_id: None | str | Unset
+        if isinstance(self.business_vat_id, Unset):
+            business_vat_id = UNSET
+        else:
+            business_vat_id = self.business_vat_id
 
-        email = self.email
+        email: None | str | Unset
+        if isinstance(self.email, Unset):
+            email = UNSET
+        else:
+            email = self.email
 
-        enable_subscription = self.enable_subscription
+        enable_subscription: bool | None | Unset
+        if isinstance(self.enable_subscription, Unset):
+            enable_subscription = UNSET
+        else:
+            enable_subscription = self.enable_subscription
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -63,11 +75,34 @@ class BillingCustomerSchema:
         d = dict(src_dict)
         shipping = BillingCustomerShipping.from_dict(d.pop("shipping"))
 
-        business_vat_id = d.pop("business_vat_id", UNSET)
+        def _parse_business_vat_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        email = d.pop("email", UNSET)
+        business_vat_id = _parse_business_vat_id(d.pop("business_vat_id", UNSET))
 
-        enable_subscription = d.pop("enable_subscription", UNSET)
+        def _parse_email(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        email = _parse_email(d.pop("email", UNSET))
+
+        def _parse_enable_subscription(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        enable_subscription = _parse_enable_subscription(
+            d.pop("enable_subscription", UNSET)
+        )
 
         billing_customer_schema = cls(
             shipping=shipping,

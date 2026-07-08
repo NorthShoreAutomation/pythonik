@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,17 +16,21 @@ class CriteriaSortSchema:
     """
     Attributes:
         name (str):
-        order (str | Unset):
+        order (None | str | Unset):
     """
 
     name: str
-    order: str | Unset = UNSET
+    order: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
 
-        order = self.order
+        order: None | str | Unset
+        if isinstance(self.order, Unset):
+            order = UNSET
+        else:
+            order = self.order
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -45,7 +49,14 @@ class CriteriaSortSchema:
         d = dict(src_dict)
         name = d.pop("name")
 
-        order = d.pop("order", UNSET)
+        def _parse_order(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        order = _parse_order(d.pop("order", UNSET))
 
         criteria_sort_schema = cls(
             name=name,

@@ -6,11 +6,11 @@ from typing import TYPE_CHECKING, Any, TypeVar, cast
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.theme_schema_base import ThemeSchemaBase
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.theme_colors_schema import ThemeColorsSchema
+    from ..models.theme_schema_base_type_1 import ThemeSchemaBaseType1
     from ..models.theme_typography import ThemeTypography
 
 
@@ -21,23 +21,28 @@ T = TypeVar("T", bound="ThemeSchema")
 class ThemeSchema:
     """
     Attributes:
-        base (ThemeSchemaBase | Unset):
+        base (None | ThemeSchemaBaseType1 | Unset):
         colors (None | ThemeColorsSchema | Unset):
         typography (None | ThemeTypography | Unset):
     """
 
-    base: ThemeSchemaBase | Unset = UNSET
+    base: None | ThemeSchemaBaseType1 | Unset = UNSET
     colors: None | ThemeColorsSchema | Unset = UNSET
     typography: None | ThemeTypography | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.theme_colors_schema import ThemeColorsSchema
+        from ..models.theme_schema_base_type_1 import ThemeSchemaBaseType1
         from ..models.theme_typography import ThemeTypography
 
-        base: str | Unset = UNSET
-        if not isinstance(self.base, Unset):
-            base = self.base.value
+        base: dict[str, Any] | None | Unset
+        if isinstance(self.base, Unset):
+            base = UNSET
+        elif isinstance(self.base, ThemeSchemaBaseType1):
+            base = self.base.to_dict()
+        else:
+            base = self.base
 
         colors: dict[str, Any] | None | Unset
         if isinstance(self.colors, Unset):
@@ -70,15 +75,27 @@ class ThemeSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.theme_colors_schema import ThemeColorsSchema
+        from ..models.theme_schema_base_type_1 import ThemeSchemaBaseType1
         from ..models.theme_typography import ThemeTypography
 
         d = dict(src_dict)
-        _base = d.pop("base", UNSET)
-        base: ThemeSchemaBase | Unset
-        if isinstance(_base, Unset):
-            base = UNSET
-        else:
-            base = ThemeSchemaBase(_base)
+
+        def _parse_base(data: object) -> None | ThemeSchemaBaseType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                base_type_1 = ThemeSchemaBaseType1.from_dict(data)
+
+                return base_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | ThemeSchemaBaseType1 | Unset, data)
+
+        base = _parse_base(d.pop("base", UNSET))
 
         def _parse_colors(data: object) -> None | ThemeColorsSchema | Unset:
             if data is None:

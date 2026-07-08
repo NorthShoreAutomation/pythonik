@@ -1,20 +1,20 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.notification_setting_schema_protocol import (
-    NotificationSettingSchemaProtocol,
-)
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.notification_setting_schema_settings import (
-        NotificationSettingSchemaSettings,
+    from ..models.notification_setting_schema_protocol_type_1 import (
+        NotificationSettingSchemaProtocolType1,
+    )
+    from ..models.notification_setting_schema_settings_type_0 import (
+        NotificationSettingSchemaSettingsType0,
     )
 
 
@@ -28,47 +28,74 @@ class NotificationSettingSchema:
         enabled (bool):
         event_type (str):
         object_type (str):
-        protocol (NotificationSettingSchemaProtocol | Unset):
-        recipient_id (UUID | Unset):
-        settings (NotificationSettingSchemaSettings | Unset):
-        sub_object_type (str | Unset):
-        system_domain_id (UUID | Unset):
+        protocol (None | NotificationSettingSchemaProtocolType1 | Unset):
+        recipient_id (None | Unset | UUID):
+        settings (None | NotificationSettingSchemaSettingsType0 | Unset):
+        sub_object_type (None | str | Unset):
+        system_domain_id (None | Unset | UUID):
     """
 
     enabled: bool
     event_type: str
     object_type: str
-    protocol: NotificationSettingSchemaProtocol | Unset = UNSET
-    recipient_id: UUID | Unset = UNSET
-    settings: NotificationSettingSchemaSettings | Unset = UNSET
-    sub_object_type: str | Unset = UNSET
-    system_domain_id: UUID | Unset = UNSET
+    protocol: None | NotificationSettingSchemaProtocolType1 | Unset = UNSET
+    recipient_id: None | Unset | UUID = UNSET
+    settings: None | NotificationSettingSchemaSettingsType0 | Unset = UNSET
+    sub_object_type: None | str | Unset = UNSET
+    system_domain_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.notification_setting_schema_protocol_type_1 import (
+            NotificationSettingSchemaProtocolType1,
+        )
+        from ..models.notification_setting_schema_settings_type_0 import (
+            NotificationSettingSchemaSettingsType0,
+        )
+
         enabled = self.enabled
 
         event_type = self.event_type
 
         object_type = self.object_type
 
-        protocol: str | Unset = UNSET
-        if not isinstance(self.protocol, Unset):
-            protocol = self.protocol.value
+        protocol: dict[str, Any] | None | Unset
+        if isinstance(self.protocol, Unset):
+            protocol = UNSET
+        elif isinstance(self.protocol, NotificationSettingSchemaProtocolType1):
+            protocol = self.protocol.to_dict()
+        else:
+            protocol = self.protocol
 
-        recipient_id: str | Unset = UNSET
-        if not isinstance(self.recipient_id, Unset):
+        recipient_id: None | str | Unset
+        if isinstance(self.recipient_id, Unset):
+            recipient_id = UNSET
+        elif isinstance(self.recipient_id, UUID):
             recipient_id = str(self.recipient_id)
+        else:
+            recipient_id = self.recipient_id
 
-        settings: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.settings, Unset):
+        settings: dict[str, Any] | None | Unset
+        if isinstance(self.settings, Unset):
+            settings = UNSET
+        elif isinstance(self.settings, NotificationSettingSchemaSettingsType0):
             settings = self.settings.to_dict()
+        else:
+            settings = self.settings
 
-        sub_object_type = self.sub_object_type
+        sub_object_type: None | str | Unset
+        if isinstance(self.sub_object_type, Unset):
+            sub_object_type = UNSET
+        else:
+            sub_object_type = self.sub_object_type
 
-        system_domain_id: str | Unset = UNSET
-        if not isinstance(self.system_domain_id, Unset):
+        system_domain_id: None | str | Unset
+        if isinstance(self.system_domain_id, Unset):
+            system_domain_id = UNSET
+        elif isinstance(self.system_domain_id, UUID):
             system_domain_id = str(self.system_domain_id)
+        else:
+            system_domain_id = self.system_domain_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -94,8 +121,11 @@ class NotificationSettingSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.notification_setting_schema_settings import (
-            NotificationSettingSchemaSettings,
+        from ..models.notification_setting_schema_protocol_type_1 import (
+            NotificationSettingSchemaProtocolType1,
+        )
+        from ..models.notification_setting_schema_settings_type_0 import (
+            NotificationSettingSchemaSettingsType0,
         )
 
         d = dict(src_dict)
@@ -105,35 +135,86 @@ class NotificationSettingSchema:
 
         object_type = d.pop("object_type")
 
-        _protocol = d.pop("protocol", UNSET)
-        protocol: NotificationSettingSchemaProtocol | Unset
-        if isinstance(_protocol, Unset):
-            protocol = UNSET
-        else:
-            protocol = NotificationSettingSchemaProtocol(_protocol)
+        def _parse_protocol(
+            data: object,
+        ) -> None | NotificationSettingSchemaProtocolType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                protocol_type_1 = NotificationSettingSchemaProtocolType1.from_dict(data)
 
-        _recipient_id = d.pop("recipient_id", UNSET)
-        recipient_id: UUID | Unset
-        if isinstance(_recipient_id, Unset):
-            recipient_id = UNSET
-        else:
-            recipient_id = UUID(_recipient_id)
+                return protocol_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | NotificationSettingSchemaProtocolType1 | Unset, data)
 
-        _settings = d.pop("settings", UNSET)
-        settings: NotificationSettingSchemaSettings | Unset
-        if isinstance(_settings, Unset):
-            settings = UNSET
-        else:
-            settings = NotificationSettingSchemaSettings.from_dict(_settings)
+        protocol = _parse_protocol(d.pop("protocol", UNSET))
 
-        sub_object_type = d.pop("sub_object_type", UNSET)
+        def _parse_recipient_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                recipient_id_type_0 = UUID(data)
 
-        _system_domain_id = d.pop("system_domain_id", UNSET)
-        system_domain_id: UUID | Unset
-        if isinstance(_system_domain_id, Unset):
-            system_domain_id = UNSET
-        else:
-            system_domain_id = UUID(_system_domain_id)
+                return recipient_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        recipient_id = _parse_recipient_id(d.pop("recipient_id", UNSET))
+
+        def _parse_settings(
+            data: object,
+        ) -> None | NotificationSettingSchemaSettingsType0 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                settings_type_0 = NotificationSettingSchemaSettingsType0.from_dict(data)
+
+                return settings_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | NotificationSettingSchemaSettingsType0 | Unset, data)
+
+        settings = _parse_settings(d.pop("settings", UNSET))
+
+        def _parse_sub_object_type(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        sub_object_type = _parse_sub_object_type(d.pop("sub_object_type", UNSET))
+
+        def _parse_system_domain_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                system_domain_id_type_0 = UUID(data)
+
+                return system_domain_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
 
         notification_setting_schema = cls(
             enabled=enabled,

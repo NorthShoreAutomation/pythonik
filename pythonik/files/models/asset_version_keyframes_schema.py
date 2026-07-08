@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -22,12 +22,12 @@ class AssetVersionKeyframesSchema:
     Attributes:
         asset_id (UUID):
         version_id (str):
-        keyframes (list[Keyframe] | Unset):
+        keyframes (list[Keyframe] | None | Unset):
     """
 
     asset_id: UUID
     version_id: str
-    keyframes: list[Keyframe] | Unset = UNSET
+    keyframes: list[Keyframe] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -35,12 +35,17 @@ class AssetVersionKeyframesSchema:
 
         version_id = self.version_id
 
-        keyframes: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.keyframes, Unset):
+        keyframes: list[dict[str, Any]] | None | Unset
+        if isinstance(self.keyframes, Unset):
+            keyframes = UNSET
+        elif isinstance(self.keyframes, list):
             keyframes = []
-            for keyframes_item_data in self.keyframes:
-                keyframes_item = keyframes_item_data.to_dict()
-                keyframes.append(keyframes_item)
+            for keyframes_type_0_item_data in self.keyframes:
+                keyframes_type_0_item = keyframes_type_0_item_data.to_dict()
+                keyframes.append(keyframes_type_0_item)
+
+        else:
+            keyframes = self.keyframes
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -64,14 +69,29 @@ class AssetVersionKeyframesSchema:
 
         version_id = d.pop("version_id")
 
-        _keyframes = d.pop("keyframes", UNSET)
-        keyframes: list[Keyframe] | Unset = UNSET
-        if _keyframes is not UNSET:
-            keyframes = []
-            for keyframes_item_data in _keyframes:
-                keyframes_item = Keyframe.from_dict(keyframes_item_data)
+        def _parse_keyframes(data: object) -> list[Keyframe] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                keyframes_type_0 = []
+                _keyframes_type_0 = data
+                for keyframes_type_0_item_data in _keyframes_type_0:
+                    keyframes_type_0_item = Keyframe.from_dict(
+                        keyframes_type_0_item_data
+                    )
 
-                keyframes.append(keyframes_item)
+                    keyframes_type_0.append(keyframes_type_0_item)
+
+                return keyframes_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[Keyframe] | None | Unset, data)
+
+        keyframes = _parse_keyframes(d.pop("keyframes", UNSET))
 
         asset_version_keyframes_schema = cls(
             asset_id=asset_id,

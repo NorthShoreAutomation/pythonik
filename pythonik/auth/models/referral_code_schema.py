@@ -2,14 +2,19 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.referral_code_schema_billing_tier import ReferralCodeSchemaBillingTier
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.referral_code_schema_billing_tier_type_1 import (
+        ReferralCodeSchemaBillingTierType1,
+    )
+
 
 T = TypeVar("T", bound="ReferralCodeSchema")
 
@@ -21,7 +26,7 @@ class ReferralCodeSchema:
         code (str):
         valid_to (datetime.datetime):
         value (float):
-        billing_tier (ReferralCodeSchemaBillingTier | Unset):
+        billing_tier (None | ReferralCodeSchemaBillingTierType1 | Unset):
         credit_expiry_days (int | None | Unset):
         do_not_delete (bool | None | Unset):
         freeze_date (datetime.datetime | None | Unset):
@@ -34,7 +39,7 @@ class ReferralCodeSchema:
     code: str
     valid_to: datetime.datetime
     value: float
-    billing_tier: ReferralCodeSchemaBillingTier | Unset = UNSET
+    billing_tier: None | ReferralCodeSchemaBillingTierType1 | Unset = UNSET
     credit_expiry_days: int | None | Unset = UNSET
     do_not_delete: bool | None | Unset = UNSET
     freeze_date: datetime.datetime | None | Unset = UNSET
@@ -45,15 +50,23 @@ class ReferralCodeSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.referral_code_schema_billing_tier_type_1 import (
+            ReferralCodeSchemaBillingTierType1,
+        )
+
         code = self.code
 
         valid_to = self.valid_to.isoformat()
 
         value = self.value
 
-        billing_tier: str | Unset = UNSET
-        if not isinstance(self.billing_tier, Unset):
-            billing_tier = self.billing_tier.value
+        billing_tier: dict[str, Any] | None | Unset
+        if isinstance(self.billing_tier, Unset):
+            billing_tier = UNSET
+        elif isinstance(self.billing_tier, ReferralCodeSchemaBillingTierType1):
+            billing_tier = self.billing_tier.to_dict()
+        else:
+            billing_tier = self.billing_tier
 
         credit_expiry_days: int | None | Unset
         if isinstance(self.credit_expiry_days, Unset):
@@ -131,6 +144,10 @@ class ReferralCodeSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.referral_code_schema_billing_tier_type_1 import (
+            ReferralCodeSchemaBillingTierType1,
+        )
+
         d = dict(src_dict)
         code = d.pop("code")
 
@@ -138,12 +155,24 @@ class ReferralCodeSchema:
 
         value = d.pop("value")
 
-        _billing_tier = d.pop("billing_tier", UNSET)
-        billing_tier: ReferralCodeSchemaBillingTier | Unset
-        if isinstance(_billing_tier, Unset):
-            billing_tier = UNSET
-        else:
-            billing_tier = ReferralCodeSchemaBillingTier(_billing_tier)
+        def _parse_billing_tier(
+            data: object,
+        ) -> None | ReferralCodeSchemaBillingTierType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                billing_tier_type_1 = ReferralCodeSchemaBillingTierType1.from_dict(data)
+
+                return billing_tier_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | ReferralCodeSchemaBillingTierType1 | Unset, data)
+
+        billing_tier = _parse_billing_tier(d.pop("billing_tier", UNSET))
 
         def _parse_credit_expiry_days(data: object) -> int | None | Unset:
             if data is None:

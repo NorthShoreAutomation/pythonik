@@ -18,16 +18,16 @@ class JobsQueryParamsSchema:
     Attributes:
         page (int | None | Unset): Which page number to fetch Default: 1.
         per_page (int | None | Unset): The number of items for each page Default: 10.
-        scroll (bool | Unset):
-        scroll_id (UUID | Unset):
-        sort (str | Unset): A comma separated list of fieldnames with order (asc/desc)
+        scroll (bool | None | Unset):
+        scroll_id (None | Unset | UUID):
+        sort (None | str | Unset): A comma separated list of fieldnames with order (asc/desc)
     """
 
     page: int | None | Unset = 1
     per_page: int | None | Unset = 10
-    scroll: bool | Unset = UNSET
-    scroll_id: UUID | Unset = UNSET
-    sort: str | Unset = UNSET
+    scroll: bool | None | Unset = UNSET
+    scroll_id: None | Unset | UUID = UNSET
+    sort: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -43,13 +43,25 @@ class JobsQueryParamsSchema:
         else:
             per_page = self.per_page
 
-        scroll = self.scroll
+        scroll: bool | None | Unset
+        if isinstance(self.scroll, Unset):
+            scroll = UNSET
+        else:
+            scroll = self.scroll
 
-        scroll_id: str | Unset = UNSET
-        if not isinstance(self.scroll_id, Unset):
+        scroll_id: None | str | Unset
+        if isinstance(self.scroll_id, Unset):
+            scroll_id = UNSET
+        elif isinstance(self.scroll_id, UUID):
             scroll_id = str(self.scroll_id)
+        else:
+            scroll_id = self.scroll_id
 
-        sort = self.sort
+        sort: None | str | Unset
+        if isinstance(self.sort, Unset):
+            sort = UNSET
+        else:
+            sort = self.sort
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -89,16 +101,40 @@ class JobsQueryParamsSchema:
 
         per_page = _parse_per_page(d.pop("per_page", UNSET))
 
-        scroll = d.pop("scroll", UNSET)
+        def _parse_scroll(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        _scroll_id = d.pop("scroll_id", UNSET)
-        scroll_id: UUID | Unset
-        if isinstance(_scroll_id, Unset):
-            scroll_id = UNSET
-        else:
-            scroll_id = UUID(_scroll_id)
+        scroll = _parse_scroll(d.pop("scroll", UNSET))
 
-        sort = d.pop("sort", UNSET)
+        def _parse_scroll_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                scroll_id_type_0 = UUID(data)
+
+                return scroll_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        scroll_id = _parse_scroll_id(d.pop("scroll_id", UNSET))
+
+        def _parse_sort(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        sort = _parse_sort(d.pop("sort", UNSET))
 
         jobs_query_params_schema = cls(
             page=page,

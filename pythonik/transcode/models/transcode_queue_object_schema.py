@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -17,74 +17,126 @@ T = TypeVar("T", bound="TranscodeQueueObjectSchema")
 class TranscodeQueueObjectSchema:
     """
     Attributes:
-        date_created (datetime.datetime | Unset):
-        date_updated (datetime.datetime | Unset):
-        id (UUID | Unset):
-        job_id (UUID | Unset):
-        priority (int | Unset):
-        retry_count (int | Unset):
-        status (str | Unset):
-        system_domain (str | Unset):
-        system_domain_id (UUID | Unset):
-        system_domain_timestamp (float | Unset):
-        system_name (str | Unset):
-        type_ (str | Unset):
-        user_id (UUID | Unset):
+        date_created (datetime.datetime | None | Unset):
+        date_updated (datetime.datetime | None | Unset):
+        id (None | Unset | UUID):
+        job_id (None | Unset | UUID):
+        priority (int | None | Unset):
+        retry_count (int | None | Unset):
+        status (None | str | Unset):
+        system_domain (None | str | Unset):
+        system_domain_id (None | Unset | UUID):
+        system_domain_timestamp (float | None | Unset):
+        system_name (None | str | Unset):
+        type_ (None | str | Unset):
+        user_id (None | Unset | UUID):
     """
 
-    date_created: datetime.datetime | Unset = UNSET
-    date_updated: datetime.datetime | Unset = UNSET
-    id: UUID | Unset = UNSET
-    job_id: UUID | Unset = UNSET
-    priority: int | Unset = UNSET
-    retry_count: int | Unset = UNSET
-    status: str | Unset = UNSET
-    system_domain: str | Unset = UNSET
-    system_domain_id: UUID | Unset = UNSET
-    system_domain_timestamp: float | Unset = UNSET
-    system_name: str | Unset = UNSET
-    type_: str | Unset = UNSET
-    user_id: UUID | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_updated: datetime.datetime | None | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    job_id: None | Unset | UUID = UNSET
+    priority: int | None | Unset = UNSET
+    retry_count: int | None | Unset = UNSET
+    status: None | str | Unset = UNSET
+    system_domain: None | str | Unset = UNSET
+    system_domain_id: None | Unset | UUID = UNSET
+    system_domain_timestamp: float | None | Unset = UNSET
+    system_name: None | str | Unset = UNSET
+    type_: None | str | Unset = UNSET
+    user_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_updated: str | Unset = UNSET
-        if not isinstance(self.date_updated, Unset):
+        date_updated: None | str | Unset
+        if isinstance(self.date_updated, Unset):
+            date_updated = UNSET
+        elif isinstance(self.date_updated, datetime.datetime):
             date_updated = self.date_updated.isoformat()
+        else:
+            date_updated = self.date_updated
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        job_id: str | Unset = UNSET
-        if not isinstance(self.job_id, Unset):
+        job_id: None | str | Unset
+        if isinstance(self.job_id, Unset):
+            job_id = UNSET
+        elif isinstance(self.job_id, UUID):
             job_id = str(self.job_id)
+        else:
+            job_id = self.job_id
 
-        priority = self.priority
+        priority: int | None | Unset
+        if isinstance(self.priority, Unset):
+            priority = UNSET
+        else:
+            priority = self.priority
 
-        retry_count = self.retry_count
+        retry_count: int | None | Unset
+        if isinstance(self.retry_count, Unset):
+            retry_count = UNSET
+        else:
+            retry_count = self.retry_count
 
-        status = self.status
+        status: None | str | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        else:
+            status = self.status
 
-        system_domain = self.system_domain
+        system_domain: None | str | Unset
+        if isinstance(self.system_domain, Unset):
+            system_domain = UNSET
+        else:
+            system_domain = self.system_domain
 
-        system_domain_id: str | Unset = UNSET
-        if not isinstance(self.system_domain_id, Unset):
+        system_domain_id: None | str | Unset
+        if isinstance(self.system_domain_id, Unset):
+            system_domain_id = UNSET
+        elif isinstance(self.system_domain_id, UUID):
             system_domain_id = str(self.system_domain_id)
+        else:
+            system_domain_id = self.system_domain_id
 
-        system_domain_timestamp = self.system_domain_timestamp
+        system_domain_timestamp: float | None | Unset
+        if isinstance(self.system_domain_timestamp, Unset):
+            system_domain_timestamp = UNSET
+        else:
+            system_domain_timestamp = self.system_domain_timestamp
 
-        system_name = self.system_name
+        system_name: None | str | Unset
+        if isinstance(self.system_name, Unset):
+            system_name = UNSET
+        else:
+            system_name = self.system_name
 
-        type_ = self.type_
+        type_: None | str | Unset
+        if isinstance(self.type_, Unset):
+            type_ = UNSET
+        else:
+            type_ = self.type_
 
-        user_id: str | Unset = UNSET
-        if not isinstance(self.user_id, Unset):
+        user_id: None | str | Unset
+        if isinstance(self.user_id, Unset):
+            user_id = UNSET
+        elif isinstance(self.user_id, UUID):
             user_id = str(self.user_id)
+        else:
+            user_id = self.user_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -121,61 +173,173 @@ class TranscodeQueueObjectSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
 
-        _date_updated = d.pop("date_updated", UNSET)
-        date_updated: datetime.datetime | Unset
-        if isinstance(_date_updated, Unset):
-            date_updated = UNSET
-        else:
-            date_updated = datetime.datetime.fromisoformat(_date_updated)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        _job_id = d.pop("job_id", UNSET)
-        job_id: UUID | Unset
-        if isinstance(_job_id, Unset):
-            job_id = UNSET
-        else:
-            job_id = UUID(_job_id)
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
 
-        priority = d.pop("priority", UNSET)
+        def _parse_date_updated(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_updated_type_0 = datetime.datetime.fromisoformat(data)
 
-        retry_count = d.pop("retry_count", UNSET)
+                return date_updated_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        status = d.pop("status", UNSET)
+        date_updated = _parse_date_updated(d.pop("date_updated", UNSET))
 
-        system_domain = d.pop("system_domain", UNSET)
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
 
-        _system_domain_id = d.pop("system_domain_id", UNSET)
-        system_domain_id: UUID | Unset
-        if isinstance(_system_domain_id, Unset):
-            system_domain_id = UNSET
-        else:
-            system_domain_id = UUID(_system_domain_id)
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        system_domain_timestamp = d.pop("system_domain_timestamp", UNSET)
+        id = _parse_id(d.pop("id", UNSET))
 
-        system_name = d.pop("system_name", UNSET)
+        def _parse_job_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                job_id_type_0 = UUID(data)
 
-        type_ = d.pop("type", UNSET)
+                return job_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        _user_id = d.pop("user_id", UNSET)
-        user_id: UUID | Unset
-        if isinstance(_user_id, Unset):
-            user_id = UNSET
-        else:
-            user_id = UUID(_user_id)
+        job_id = _parse_job_id(d.pop("job_id", UNSET))
+
+        def _parse_priority(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        priority = _parse_priority(d.pop("priority", UNSET))
+
+        def _parse_retry_count(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        retry_count = _parse_retry_count(d.pop("retry_count", UNSET))
+
+        def _parse_status(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
+
+        def _parse_system_domain(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        system_domain = _parse_system_domain(d.pop("system_domain", UNSET))
+
+        def _parse_system_domain_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                system_domain_id_type_0 = UUID(data)
+
+                return system_domain_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
+
+        def _parse_system_domain_timestamp(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        system_domain_timestamp = _parse_system_domain_timestamp(
+            d.pop("system_domain_timestamp", UNSET)
+        )
+
+        def _parse_system_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        system_name = _parse_system_name(d.pop("system_name", UNSET))
+
+        def _parse_type_(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        type_ = _parse_type_(d.pop("type", UNSET))
+
+        def _parse_user_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                user_id_type_0 = UUID(data)
+
+                return user_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        user_id = _parse_user_id(d.pop("user_id", UNSET))
 
         transcode_queue_object_schema = cls(
             date_created=date_created,

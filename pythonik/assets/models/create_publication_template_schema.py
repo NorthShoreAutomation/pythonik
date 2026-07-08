@@ -12,8 +12,8 @@ if TYPE_CHECKING:
     from ..models.create_publication_template_schema_apply_type_1 import (
         CreatePublicationTemplateSchemaApplyType1,
     )
-    from ..models.create_publication_template_schema_data import (
-        CreatePublicationTemplateSchemaData,
+    from ..models.create_publication_template_schema_data_type_0 import (
+        CreatePublicationTemplateSchemaDataType0,
     )
 
 
@@ -25,23 +25,26 @@ class CreatePublicationTemplateSchema:
     """
     Attributes:
         id (str):
-        apply (bool | CreatePublicationTemplateSchemaApplyType1 | Unset):  Default: True.
-        data (CreatePublicationTemplateSchemaData | Unset):
+        apply (bool | CreatePublicationTemplateSchemaApplyType1 | None | Unset):  Default: True.
+        data (CreatePublicationTemplateSchemaDataType0 | None | Unset):
     """
 
     id: str
-    apply: bool | CreatePublicationTemplateSchemaApplyType1 | Unset = True
-    data: CreatePublicationTemplateSchemaData | Unset = UNSET
+    apply: bool | CreatePublicationTemplateSchemaApplyType1 | None | Unset = True
+    data: CreatePublicationTemplateSchemaDataType0 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.create_publication_template_schema_apply_type_1 import (
             CreatePublicationTemplateSchemaApplyType1,
         )
+        from ..models.create_publication_template_schema_data_type_0 import (
+            CreatePublicationTemplateSchemaDataType0,
+        )
 
         id = self.id
 
-        apply: bool | dict[str, Any] | Unset
+        apply: bool | dict[str, Any] | None | Unset
         if isinstance(self.apply, Unset):
             apply = UNSET
         elif isinstance(self.apply, CreatePublicationTemplateSchemaApplyType1):
@@ -49,9 +52,13 @@ class CreatePublicationTemplateSchema:
         else:
             apply = self.apply
 
-        data: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.data, Unset):
+        data: dict[str, Any] | None | Unset
+        if isinstance(self.data, Unset):
+            data = UNSET
+        elif isinstance(self.data, CreatePublicationTemplateSchemaDataType0):
             data = self.data.to_dict()
+        else:
+            data = self.data
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -72,8 +79,8 @@ class CreatePublicationTemplateSchema:
         from ..models.create_publication_template_schema_apply_type_1 import (
             CreatePublicationTemplateSchemaApplyType1,
         )
-        from ..models.create_publication_template_schema_data import (
-            CreatePublicationTemplateSchemaData,
+        from ..models.create_publication_template_schema_data_type_0 import (
+            CreatePublicationTemplateSchemaDataType0,
         )
 
         d = dict(src_dict)
@@ -81,7 +88,9 @@ class CreatePublicationTemplateSchema:
 
         def _parse_apply(
             data: object,
-        ) -> bool | CreatePublicationTemplateSchemaApplyType1 | Unset:
+        ) -> bool | CreatePublicationTemplateSchemaApplyType1 | None | Unset:
+            if data is None:
+                return data
             if isinstance(data, Unset):
                 return data
             try:
@@ -92,16 +101,30 @@ class CreatePublicationTemplateSchema:
                 return apply_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(bool | CreatePublicationTemplateSchemaApplyType1 | Unset, data)
+            return cast(
+                bool | CreatePublicationTemplateSchemaApplyType1 | None | Unset, data
+            )
 
         apply = _parse_apply(d.pop("apply", UNSET))
 
-        _data = d.pop("data", UNSET)
-        data: CreatePublicationTemplateSchemaData | Unset
-        if isinstance(_data, Unset):
-            data = UNSET
-        else:
-            data = CreatePublicationTemplateSchemaData.from_dict(_data)
+        def _parse_data(
+            data: object,
+        ) -> CreatePublicationTemplateSchemaDataType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                data_type_0 = CreatePublicationTemplateSchemaDataType0.from_dict(data)
+
+                return data_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(CreatePublicationTemplateSchemaDataType0 | None | Unset, data)
+
+        data = _parse_data(d.pop("data", UNSET))
 
         create_publication_template_schema = cls(
             id=id,

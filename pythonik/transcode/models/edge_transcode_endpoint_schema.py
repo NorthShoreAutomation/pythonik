@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -9,8 +9,8 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.edge_transcode_endpoint_schema_data import (
-        EdgeTranscodeEndpointSchemaData,
+    from ..models.edge_transcode_endpoint_schema_data_type_0 import (
+        EdgeTranscodeEndpointSchemaDataType0,
     )
 
 
@@ -22,31 +22,51 @@ class EdgeTranscodeEndpointSchema:
     """
     Attributes:
         url (str):
-        data (EdgeTranscodeEndpointSchemaData | Unset):
-        method (str | Unset):
-        storage_method (str | Unset):
-        type_ (str | Unset):
+        data (EdgeTranscodeEndpointSchemaDataType0 | None | Unset):
+        method (None | str | Unset):
+        storage_method (None | str | Unset):
+        type_ (None | str | Unset):
     """
 
     url: str
-    data: EdgeTranscodeEndpointSchemaData | Unset = UNSET
-    method: str | Unset = UNSET
-    storage_method: str | Unset = UNSET
-    type_: str | Unset = UNSET
+    data: EdgeTranscodeEndpointSchemaDataType0 | None | Unset = UNSET
+    method: None | str | Unset = UNSET
+    storage_method: None | str | Unset = UNSET
+    type_: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.edge_transcode_endpoint_schema_data_type_0 import (
+            EdgeTranscodeEndpointSchemaDataType0,
+        )
+
         url = self.url
 
-        data: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.data, Unset):
+        data: dict[str, Any] | None | Unset
+        if isinstance(self.data, Unset):
+            data = UNSET
+        elif isinstance(self.data, EdgeTranscodeEndpointSchemaDataType0):
             data = self.data.to_dict()
+        else:
+            data = self.data
 
-        method = self.method
+        method: None | str | Unset
+        if isinstance(self.method, Unset):
+            method = UNSET
+        else:
+            method = self.method
 
-        storage_method = self.storage_method
+        storage_method: None | str | Unset
+        if isinstance(self.storage_method, Unset):
+            storage_method = UNSET
+        else:
+            storage_method = self.storage_method
 
-        type_ = self.type_
+        type_: None | str | Unset
+        if isinstance(self.type_, Unset):
+            type_ = UNSET
+        else:
+            type_ = self.type_
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -68,25 +88,58 @@ class EdgeTranscodeEndpointSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.edge_transcode_endpoint_schema_data import (
-            EdgeTranscodeEndpointSchemaData,
+        from ..models.edge_transcode_endpoint_schema_data_type_0 import (
+            EdgeTranscodeEndpointSchemaDataType0,
         )
 
         d = dict(src_dict)
         url = d.pop("url")
 
-        _data = d.pop("data", UNSET)
-        data: EdgeTranscodeEndpointSchemaData | Unset
-        if isinstance(_data, Unset):
-            data = UNSET
-        else:
-            data = EdgeTranscodeEndpointSchemaData.from_dict(_data)
+        def _parse_data(
+            data: object,
+        ) -> EdgeTranscodeEndpointSchemaDataType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                data_type_0 = EdgeTranscodeEndpointSchemaDataType0.from_dict(data)
 
-        method = d.pop("method", UNSET)
+                return data_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(EdgeTranscodeEndpointSchemaDataType0 | None | Unset, data)
 
-        storage_method = d.pop("storage_method", UNSET)
+        data = _parse_data(d.pop("data", UNSET))
 
-        type_ = d.pop("type", UNSET)
+        def _parse_method(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        method = _parse_method(d.pop("method", UNSET))
+
+        def _parse_storage_method(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        storage_method = _parse_storage_method(d.pop("storage_method", UNSET))
+
+        def _parse_type_(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        type_ = _parse_type_(d.pop("type", UNSET))
 
         edge_transcode_endpoint_schema = cls(
             url=url,

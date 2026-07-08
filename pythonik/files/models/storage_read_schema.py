@@ -10,11 +10,11 @@ from attrs import field as _attrs_field
 
 from ..models.storage_read_schema_method import StorageReadSchemaMethod
 from ..models.storage_read_schema_purpose import StorageReadSchemaPurpose
-from ..models.storage_read_schema_status import StorageReadSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.storage_read_schema_settings import StorageReadSchemaSettings
+    from ..models.storage_read_schema_status_type_1 import StorageReadSchemaStatusType1
 
 
 T = TypeVar("T", bound="StorageReadSchema")
@@ -28,37 +28,41 @@ class StorageReadSchema:
         name (str):
         purpose (StorageReadSchemaPurpose):
         settings (StorageReadSchemaSettings):
-        default (bool | Unset):
+        default (bool | None | Unset):
         description (None | str | Unset):
-        id (UUID | Unset):
-        isg_version (str | Unset):
+        id (None | Unset | UUID):
+        isg_version (None | str | Unset):
         last_scanned (datetime.datetime | None | Unset):
         scanner_status (None | str | Unset):
-        status (StorageReadSchemaStatus | Unset):
+        status (None | StorageReadSchemaStatusType1 | Unset):
         status_message (None | str | Unset):
-        storage_gateway_cluster_id (UUID | Unset):
-        storage_gateway_ids (list[UUID] | Unset):
-        version (str | Unset):
+        storage_gateway_cluster_id (None | Unset | UUID):
+        storage_gateway_ids (list[UUID] | None | Unset):
+        version (None | str | Unset):
     """
 
     method: StorageReadSchemaMethod
     name: str
     purpose: StorageReadSchemaPurpose
     settings: StorageReadSchemaSettings
-    default: bool | Unset = UNSET
+    default: bool | None | Unset = UNSET
     description: None | str | Unset = UNSET
-    id: UUID | Unset = UNSET
-    isg_version: str | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    isg_version: None | str | Unset = UNSET
     last_scanned: datetime.datetime | None | Unset = UNSET
     scanner_status: None | str | Unset = UNSET
-    status: StorageReadSchemaStatus | Unset = UNSET
+    status: None | StorageReadSchemaStatusType1 | Unset = UNSET
     status_message: None | str | Unset = UNSET
-    storage_gateway_cluster_id: UUID | Unset = UNSET
-    storage_gateway_ids: list[UUID] | Unset = UNSET
-    version: str | Unset = UNSET
+    storage_gateway_cluster_id: None | Unset | UUID = UNSET
+    storage_gateway_ids: list[UUID] | None | Unset = UNSET
+    version: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.storage_read_schema_status_type_1 import (
+            StorageReadSchemaStatusType1,
+        )
+
         method = self.method.value
 
         name = self.name
@@ -67,7 +71,11 @@ class StorageReadSchema:
 
         settings = self.settings.to_dict()
 
-        default = self.default
+        default: bool | None | Unset
+        if isinstance(self.default, Unset):
+            default = UNSET
+        else:
+            default = self.default
 
         description: None | str | Unset
         if isinstance(self.description, Unset):
@@ -75,11 +83,19 @@ class StorageReadSchema:
         else:
             description = self.description
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        isg_version = self.isg_version
+        isg_version: None | str | Unset
+        if isinstance(self.isg_version, Unset):
+            isg_version = UNSET
+        else:
+            isg_version = self.isg_version
 
         last_scanned: None | str | Unset
         if isinstance(self.last_scanned, Unset):
@@ -95,9 +111,13 @@ class StorageReadSchema:
         else:
             scanner_status = self.scanner_status
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        status: dict[str, Any] | None | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        elif isinstance(self.status, StorageReadSchemaStatusType1):
+            status = self.status.to_dict()
+        else:
+            status = self.status
 
         status_message: None | str | Unset
         if isinstance(self.status_message, Unset):
@@ -105,18 +125,33 @@ class StorageReadSchema:
         else:
             status_message = self.status_message
 
-        storage_gateway_cluster_id: str | Unset = UNSET
-        if not isinstance(self.storage_gateway_cluster_id, Unset):
+        storage_gateway_cluster_id: None | str | Unset
+        if isinstance(self.storage_gateway_cluster_id, Unset):
+            storage_gateway_cluster_id = UNSET
+        elif isinstance(self.storage_gateway_cluster_id, UUID):
             storage_gateway_cluster_id = str(self.storage_gateway_cluster_id)
+        else:
+            storage_gateway_cluster_id = self.storage_gateway_cluster_id
 
-        storage_gateway_ids: list[str] | Unset = UNSET
-        if not isinstance(self.storage_gateway_ids, Unset):
+        storage_gateway_ids: list[str] | None | Unset
+        if isinstance(self.storage_gateway_ids, Unset):
+            storage_gateway_ids = UNSET
+        elif isinstance(self.storage_gateway_ids, list):
             storage_gateway_ids = []
-            for storage_gateway_ids_item_data in self.storage_gateway_ids:
-                storage_gateway_ids_item = str(storage_gateway_ids_item_data)
-                storage_gateway_ids.append(storage_gateway_ids_item)
+            for storage_gateway_ids_type_0_item_data in self.storage_gateway_ids:
+                storage_gateway_ids_type_0_item = str(
+                    storage_gateway_ids_type_0_item_data
+                )
+                storage_gateway_ids.append(storage_gateway_ids_type_0_item)
 
-        version = self.version
+        else:
+            storage_gateway_ids = self.storage_gateway_ids
+
+        version: None | str | Unset
+        if isinstance(self.version, Unset):
+            version = UNSET
+        else:
+            version = self.version
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -156,6 +191,9 @@ class StorageReadSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.storage_read_schema_settings import StorageReadSchemaSettings
+        from ..models.storage_read_schema_status_type_1 import (
+            StorageReadSchemaStatusType1,
+        )
 
         d = dict(src_dict)
         method = StorageReadSchemaMethod(d.pop("method"))
@@ -166,7 +204,14 @@ class StorageReadSchema:
 
         settings = StorageReadSchemaSettings.from_dict(d.pop("settings"))
 
-        default = d.pop("default", UNSET)
+        def _parse_default(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        default = _parse_default(d.pop("default", UNSET))
 
         def _parse_description(data: object) -> None | str | Unset:
             if data is None:
@@ -177,14 +222,31 @@ class StorageReadSchema:
 
         description = _parse_description(d.pop("description", UNSET))
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
 
-        isg_version = d.pop("isg_version", UNSET)
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_isg_version(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        isg_version = _parse_isg_version(d.pop("isg_version", UNSET))
 
         def _parse_last_scanned(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -212,12 +274,22 @@ class StorageReadSchema:
 
         scanner_status = _parse_scanner_status(d.pop("scanner_status", UNSET))
 
-        _status = d.pop("status", UNSET)
-        status: StorageReadSchemaStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = StorageReadSchemaStatus(_status)
+        def _parse_status(data: object) -> None | StorageReadSchemaStatusType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                status_type_1 = StorageReadSchemaStatusType1.from_dict(data)
+
+                return status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | StorageReadSchemaStatusType1 | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
 
         def _parse_status_message(data: object) -> None | str | Unset:
             if data is None:
@@ -228,23 +300,59 @@ class StorageReadSchema:
 
         status_message = _parse_status_message(d.pop("status_message", UNSET))
 
-        _storage_gateway_cluster_id = d.pop("storage_gateway_cluster_id", UNSET)
-        storage_gateway_cluster_id: UUID | Unset
-        if isinstance(_storage_gateway_cluster_id, Unset):
-            storage_gateway_cluster_id = UNSET
-        else:
-            storage_gateway_cluster_id = UUID(_storage_gateway_cluster_id)
+        def _parse_storage_gateway_cluster_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                storage_gateway_cluster_id_type_0 = UUID(data)
 
-        _storage_gateway_ids = d.pop("storage_gateway_ids", UNSET)
-        storage_gateway_ids: list[UUID] | Unset = UNSET
-        if _storage_gateway_ids is not UNSET:
-            storage_gateway_ids = []
-            for storage_gateway_ids_item_data in _storage_gateway_ids:
-                storage_gateway_ids_item = UUID(storage_gateway_ids_item_data)
+                return storage_gateway_cluster_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-                storage_gateway_ids.append(storage_gateway_ids_item)
+        storage_gateway_cluster_id = _parse_storage_gateway_cluster_id(
+            d.pop("storage_gateway_cluster_id", UNSET)
+        )
 
-        version = d.pop("version", UNSET)
+        def _parse_storage_gateway_ids(data: object) -> list[UUID] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                storage_gateway_ids_type_0 = []
+                _storage_gateway_ids_type_0 = data
+                for storage_gateway_ids_type_0_item_data in _storage_gateway_ids_type_0:
+                    storage_gateway_ids_type_0_item = UUID(
+                        storage_gateway_ids_type_0_item_data
+                    )
+
+                    storage_gateway_ids_type_0.append(storage_gateway_ids_type_0_item)
+
+                return storage_gateway_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[UUID] | None | Unset, data)
+
+        storage_gateway_ids = _parse_storage_gateway_ids(
+            d.pop("storage_gateway_ids", UNSET)
+        )
+
+        def _parse_version(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        version = _parse_version(d.pop("version", UNSET))
 
         storage_read_schema = cls(
             method=method,

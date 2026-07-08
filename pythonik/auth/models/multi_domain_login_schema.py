@@ -18,16 +18,16 @@ class MultiDomainLoginSchema:
     Attributes:
         email (str):
         system_domain_id (UUID):
-        app_name (str | Unset):
-        marketplace_signup_nonce (str | Unset):
+        app_name (None | str | Unset):
+        marketplace_signup_nonce (None | str | Unset):
         otp (None | str | Unset):
         otp_type (None | str | Unset):
     """
 
     email: str
     system_domain_id: UUID
-    app_name: str | Unset = UNSET
-    marketplace_signup_nonce: str | Unset = UNSET
+    app_name: None | str | Unset = UNSET
+    marketplace_signup_nonce: None | str | Unset = UNSET
     otp: None | str | Unset = UNSET
     otp_type: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -37,9 +37,17 @@ class MultiDomainLoginSchema:
 
         system_domain_id = str(self.system_domain_id)
 
-        app_name = self.app_name
+        app_name: None | str | Unset
+        if isinstance(self.app_name, Unset):
+            app_name = UNSET
+        else:
+            app_name = self.app_name
 
-        marketplace_signup_nonce = self.marketplace_signup_nonce
+        marketplace_signup_nonce: None | str | Unset
+        if isinstance(self.marketplace_signup_nonce, Unset):
+            marketplace_signup_nonce = UNSET
+        else:
+            marketplace_signup_nonce = self.marketplace_signup_nonce
 
         otp: None | str | Unset
         if isinstance(self.otp, Unset):
@@ -79,9 +87,25 @@ class MultiDomainLoginSchema:
 
         system_domain_id = UUID(d.pop("system_domain_id"))
 
-        app_name = d.pop("app_name", UNSET)
+        def _parse_app_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        marketplace_signup_nonce = d.pop("marketplace_signup_nonce", UNSET)
+        app_name = _parse_app_name(d.pop("app_name", UNSET))
+
+        def _parse_marketplace_signup_nonce(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        marketplace_signup_nonce = _parse_marketplace_signup_nonce(
+            d.pop("marketplace_signup_nonce", UNSET)
+        )
 
         def _parse_otp(data: object) -> None | str | Unset:
             if data is None:

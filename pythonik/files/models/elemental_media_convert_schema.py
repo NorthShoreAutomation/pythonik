@@ -26,15 +26,15 @@ class ElementalMediaConvertSchema:
         secret_key (str):
         edit_proxy_directory_path (None | str | Unset):
         edit_proxy_storage_id (None | Unset | UUID):
-        exclude_patterns (list[str] | Unset):
-        include_patterns (list[str] | Unset):
+        exclude_patterns (list[str] | None | Unset):
+        include_patterns (list[str] | None | Unset):
         keyframe_storage_id (None | Unset | UUID):
-        local (bool | Unset):
+        local (bool | None | Unset):
         priority (int | None | Unset):
         proxy_storage_id (None | Unset | UUID):
-        queue_name (str | Unset):
-        s3_region_name (str | Unset):
-        temp_upload_path (str | Unset):
+        queue_name (None | str | Unset):
+        s3_region_name (None | str | Unset):
+        temp_upload_path (None | str | Unset):
     """
 
     access_key: str
@@ -47,15 +47,15 @@ class ElementalMediaConvertSchema:
     secret_key: str
     edit_proxy_directory_path: None | str | Unset = UNSET
     edit_proxy_storage_id: None | Unset | UUID = UNSET
-    exclude_patterns: list[str] | Unset = UNSET
-    include_patterns: list[str] | Unset = UNSET
+    exclude_patterns: list[str] | None | Unset = UNSET
+    include_patterns: list[str] | None | Unset = UNSET
     keyframe_storage_id: None | Unset | UUID = UNSET
-    local: bool | Unset = UNSET
+    local: bool | None | Unset = UNSET
     priority: int | None | Unset = UNSET
     proxy_storage_id: None | Unset | UUID = UNSET
-    queue_name: str | Unset = UNSET
-    s3_region_name: str | Unset = UNSET
-    temp_upload_path: str | Unset = UNSET
+    queue_name: None | str | Unset = UNSET
+    s3_region_name: None | str | Unset = UNSET
+    temp_upload_path: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -89,12 +89,22 @@ class ElementalMediaConvertSchema:
         else:
             edit_proxy_storage_id = self.edit_proxy_storage_id
 
-        exclude_patterns: list[str] | Unset = UNSET
-        if not isinstance(self.exclude_patterns, Unset):
+        exclude_patterns: list[str] | None | Unset
+        if isinstance(self.exclude_patterns, Unset):
+            exclude_patterns = UNSET
+        elif isinstance(self.exclude_patterns, list):
             exclude_patterns = self.exclude_patterns
 
-        include_patterns: list[str] | Unset = UNSET
-        if not isinstance(self.include_patterns, Unset):
+        else:
+            exclude_patterns = self.exclude_patterns
+
+        include_patterns: list[str] | None | Unset
+        if isinstance(self.include_patterns, Unset):
+            include_patterns = UNSET
+        elif isinstance(self.include_patterns, list):
+            include_patterns = self.include_patterns
+
+        else:
             include_patterns = self.include_patterns
 
         keyframe_storage_id: None | str | Unset
@@ -105,7 +115,11 @@ class ElementalMediaConvertSchema:
         else:
             keyframe_storage_id = self.keyframe_storage_id
 
-        local = self.local
+        local: bool | None | Unset
+        if isinstance(self.local, Unset):
+            local = UNSET
+        else:
+            local = self.local
 
         priority: int | None | Unset
         if isinstance(self.priority, Unset):
@@ -121,11 +135,23 @@ class ElementalMediaConvertSchema:
         else:
             proxy_storage_id = self.proxy_storage_id
 
-        queue_name = self.queue_name
+        queue_name: None | str | Unset
+        if isinstance(self.queue_name, Unset):
+            queue_name = UNSET
+        else:
+            queue_name = self.queue_name
 
-        s3_region_name = self.s3_region_name
+        s3_region_name: None | str | Unset
+        if isinstance(self.s3_region_name, Unset):
+            s3_region_name = UNSET
+        else:
+            s3_region_name = self.s3_region_name
 
-        temp_upload_path = self.temp_upload_path
+        temp_upload_path: None | str | Unset
+        if isinstance(self.temp_upload_path, Unset):
+            temp_upload_path = UNSET
+        else:
+            temp_upload_path = self.temp_upload_path
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -215,9 +241,39 @@ class ElementalMediaConvertSchema:
             d.pop("edit_proxy_storage_id", UNSET)
         )
 
-        exclude_patterns = cast(list[str], d.pop("exclude_patterns", UNSET))
+        def _parse_exclude_patterns(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                exclude_patterns_type_0 = cast(list[str], data)
 
-        include_patterns = cast(list[str], d.pop("include_patterns", UNSET))
+                return exclude_patterns_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        exclude_patterns = _parse_exclude_patterns(d.pop("exclude_patterns", UNSET))
+
+        def _parse_include_patterns(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                include_patterns_type_0 = cast(list[str], data)
+
+                return include_patterns_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        include_patterns = _parse_include_patterns(d.pop("include_patterns", UNSET))
 
         def _parse_keyframe_storage_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -238,7 +294,14 @@ class ElementalMediaConvertSchema:
             d.pop("keyframe_storage_id", UNSET)
         )
 
-        local = d.pop("local", UNSET)
+        def _parse_local(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        local = _parse_local(d.pop("local", UNSET))
 
         def _parse_priority(data: object) -> int | None | Unset:
             if data is None:
@@ -266,11 +329,32 @@ class ElementalMediaConvertSchema:
 
         proxy_storage_id = _parse_proxy_storage_id(d.pop("proxy_storage_id", UNSET))
 
-        queue_name = d.pop("queue_name", UNSET)
+        def _parse_queue_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        s3_region_name = d.pop("s3_region_name", UNSET)
+        queue_name = _parse_queue_name(d.pop("queue_name", UNSET))
 
-        temp_upload_path = d.pop("temp_upload_path", UNSET)
+        def _parse_s3_region_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        s3_region_name = _parse_s3_region_name(d.pop("s3_region_name", UNSET))
+
+        def _parse_temp_upload_path(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        temp_upload_path = _parse_temp_upload_path(d.pop("temp_upload_path", UNSET))
 
         elemental_media_convert_schema = cls(
             access_key=access_key,

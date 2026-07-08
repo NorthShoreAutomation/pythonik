@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -9,7 +9,7 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.transcoders_settings import TranscodersSettings
+    from ..models.transcoders_settings_type_0 import TranscodersSettingsType0
 
 
 T = TypeVar("T", bound="Transcoders")
@@ -19,28 +19,46 @@ T = TypeVar("T", bound="Transcoders")
 class Transcoders:
     """
     Attributes:
-        id (str | Unset):
-        name (str | Unset):
-        settings (TranscodersSettings | Unset):
-        type_ (str | Unset):
+        id (None | str | Unset):
+        name (None | str | Unset):
+        settings (None | TranscodersSettingsType0 | Unset):
+        type_ (None | str | Unset):
     """
 
-    id: str | Unset = UNSET
-    name: str | Unset = UNSET
-    settings: TranscodersSettings | Unset = UNSET
-    type_: str | Unset = UNSET
+    id: None | str | Unset = UNSET
+    name: None | str | Unset = UNSET
+    settings: None | TranscodersSettingsType0 | Unset = UNSET
+    type_: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        id = self.id
+        from ..models.transcoders_settings_type_0 import TranscodersSettingsType0
 
-        name = self.name
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        else:
+            id = self.id
 
-        settings: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.settings, Unset):
+        name: None | str | Unset
+        if isinstance(self.name, Unset):
+            name = UNSET
+        else:
+            name = self.name
+
+        settings: dict[str, Any] | None | Unset
+        if isinstance(self.settings, Unset):
+            settings = UNSET
+        elif isinstance(self.settings, TranscodersSettingsType0):
             settings = self.settings.to_dict()
+        else:
+            settings = self.settings
 
-        type_ = self.type_
+        type_: None | str | Unset
+        if isinstance(self.type_, Unset):
+            type_ = UNSET
+        else:
+            type_ = self.type_
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -58,21 +76,53 @@ class Transcoders:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.transcoders_settings import TranscodersSettings
+        from ..models.transcoders_settings_type_0 import TranscodersSettingsType0
 
         d = dict(src_dict)
-        id = d.pop("id", UNSET)
 
-        name = d.pop("name", UNSET)
+        def _parse_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        _settings = d.pop("settings", UNSET)
-        settings: TranscodersSettings | Unset
-        if isinstance(_settings, Unset):
-            settings = UNSET
-        else:
-            settings = TranscodersSettings.from_dict(_settings)
+        id = _parse_id(d.pop("id", UNSET))
 
-        type_ = d.pop("type", UNSET)
+        def _parse_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        name = _parse_name(d.pop("name", UNSET))
+
+        def _parse_settings(data: object) -> None | TranscodersSettingsType0 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                settings_type_0 = TranscodersSettingsType0.from_dict(data)
+
+                return settings_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | TranscodersSettingsType0 | Unset, data)
+
+        settings = _parse_settings(d.pop("settings", UNSET))
+
+        def _parse_type_(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        type_ = _parse_type_(d.pop("type", UNSET))
 
         transcoders = cls(
             id=id,

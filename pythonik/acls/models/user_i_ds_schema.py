@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -16,19 +16,24 @@ T = TypeVar("T", bound="UserIDsSchema")
 class UserIDsSchema:
     """
     Attributes:
-        user_ids (list[UUID] | Unset):
+        user_ids (list[UUID] | None | Unset):
     """
 
-    user_ids: list[UUID] | Unset = UNSET
+    user_ids: list[UUID] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        user_ids: list[str] | Unset = UNSET
-        if not isinstance(self.user_ids, Unset):
+        user_ids: list[str] | None | Unset
+        if isinstance(self.user_ids, Unset):
+            user_ids = UNSET
+        elif isinstance(self.user_ids, list):
             user_ids = []
-            for user_ids_item_data in self.user_ids:
-                user_ids_item = str(user_ids_item_data)
-                user_ids.append(user_ids_item)
+            for user_ids_type_0_item_data in self.user_ids:
+                user_ids_type_0_item = str(user_ids_type_0_item_data)
+                user_ids.append(user_ids_type_0_item)
+
+        else:
+            user_ids = self.user_ids
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -41,14 +46,28 @@ class UserIDsSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        _user_ids = d.pop("user_ids", UNSET)
-        user_ids: list[UUID] | Unset = UNSET
-        if _user_ids is not UNSET:
-            user_ids = []
-            for user_ids_item_data in _user_ids:
-                user_ids_item = UUID(user_ids_item_data)
 
-                user_ids.append(user_ids_item)
+        def _parse_user_ids(data: object) -> list[UUID] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                user_ids_type_0 = []
+                _user_ids_type_0 = data
+                for user_ids_type_0_item_data in _user_ids_type_0:
+                    user_ids_type_0_item = UUID(user_ids_type_0_item_data)
+
+                    user_ids_type_0.append(user_ids_type_0_item)
+
+                return user_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[UUID] | None | Unset, data)
+
+        user_ids = _parse_user_ids(d.pop("user_ids", UNSET))
 
         user_i_ds_schema = cls(
             user_ids=user_ids,

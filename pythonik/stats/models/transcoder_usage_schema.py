@@ -2,20 +2,23 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.transcoder_usage_schema_operation_type import (
-    TranscoderUsageSchemaOperationType,
-)
 from ..models.transcoder_usage_schema_status import TranscoderUsageSchemaStatus
 from ..models.transcoder_usage_schema_transcoder_type import (
     TranscoderUsageSchemaTranscoderType,
 )
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.transcoder_usage_schema_operation_type_type_1 import (
+        TranscoderUsageSchemaOperationTypeType1,
+    )
+
 
 T = TypeVar("T", bound="TranscoderUsageSchema")
 
@@ -28,41 +31,45 @@ class TranscoderUsageSchema:
         system_name (str):
         transcoder_type (TranscoderUsageSchemaTranscoderType):
         adjusted_duration_seconds (int | None | Unset):
-        date (datetime.date | Unset):
+        date (datetime.date | None | Unset):
         destination_bytes (int | None | Unset):
         duration_seconds (int | None | Unset):
-        id (UUID | Unset):
-        is_user_transcoder (bool | Unset):
+        id (None | Unset | UUID):
+        is_user_transcoder (bool | None | Unset):
         job_id (None | Unset | UUID):
         object_id (None | Unset | UUID):
         object_type (None | str | Unset):
-        operation_type (TranscoderUsageSchemaOperationType | Unset):
+        operation_type (None | TranscoderUsageSchemaOperationTypeType1 | Unset):
         percent_done (int | None | Unset):
         source_bytes (int | None | Unset):
-        system_domain_id (UUID | Unset):
-        time (datetime.datetime | Unset):
+        system_domain_id (None | Unset | UUID):
+        time (datetime.datetime | None | Unset):
     """
 
     status: TranscoderUsageSchemaStatus
     system_name: str
     transcoder_type: TranscoderUsageSchemaTranscoderType
     adjusted_duration_seconds: int | None | Unset = UNSET
-    date: datetime.date | Unset = UNSET
+    date: datetime.date | None | Unset = UNSET
     destination_bytes: int | None | Unset = UNSET
     duration_seconds: int | None | Unset = UNSET
-    id: UUID | Unset = UNSET
-    is_user_transcoder: bool | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    is_user_transcoder: bool | None | Unset = UNSET
     job_id: None | Unset | UUID = UNSET
     object_id: None | Unset | UUID = UNSET
     object_type: None | str | Unset = UNSET
-    operation_type: TranscoderUsageSchemaOperationType | Unset = UNSET
+    operation_type: None | TranscoderUsageSchemaOperationTypeType1 | Unset = UNSET
     percent_done: int | None | Unset = UNSET
     source_bytes: int | None | Unset = UNSET
-    system_domain_id: UUID | Unset = UNSET
-    time: datetime.datetime | Unset = UNSET
+    system_domain_id: None | Unset | UUID = UNSET
+    time: datetime.datetime | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.transcoder_usage_schema_operation_type_type_1 import (
+            TranscoderUsageSchemaOperationTypeType1,
+        )
+
         status = self.status.value
 
         system_name = self.system_name
@@ -75,9 +82,13 @@ class TranscoderUsageSchema:
         else:
             adjusted_duration_seconds = self.adjusted_duration_seconds
 
-        date: str | Unset = UNSET
-        if not isinstance(self.date, Unset):
+        date: None | str | Unset
+        if isinstance(self.date, Unset):
+            date = UNSET
+        elif isinstance(self.date, datetime.date):
             date = self.date.isoformat()
+        else:
+            date = self.date
 
         destination_bytes: int | None | Unset
         if isinstance(self.destination_bytes, Unset):
@@ -91,11 +102,19 @@ class TranscoderUsageSchema:
         else:
             duration_seconds = self.duration_seconds
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        is_user_transcoder = self.is_user_transcoder
+        is_user_transcoder: bool | None | Unset
+        if isinstance(self.is_user_transcoder, Unset):
+            is_user_transcoder = UNSET
+        else:
+            is_user_transcoder = self.is_user_transcoder
 
         job_id: None | str | Unset
         if isinstance(self.job_id, Unset):
@@ -119,9 +138,13 @@ class TranscoderUsageSchema:
         else:
             object_type = self.object_type
 
-        operation_type: str | Unset = UNSET
-        if not isinstance(self.operation_type, Unset):
-            operation_type = self.operation_type.value
+        operation_type: dict[str, Any] | None | Unset
+        if isinstance(self.operation_type, Unset):
+            operation_type = UNSET
+        elif isinstance(self.operation_type, TranscoderUsageSchemaOperationTypeType1):
+            operation_type = self.operation_type.to_dict()
+        else:
+            operation_type = self.operation_type
 
         percent_done: int | None | Unset
         if isinstance(self.percent_done, Unset):
@@ -135,13 +158,21 @@ class TranscoderUsageSchema:
         else:
             source_bytes = self.source_bytes
 
-        system_domain_id: str | Unset = UNSET
-        if not isinstance(self.system_domain_id, Unset):
+        system_domain_id: None | str | Unset
+        if isinstance(self.system_domain_id, Unset):
+            system_domain_id = UNSET
+        elif isinstance(self.system_domain_id, UUID):
             system_domain_id = str(self.system_domain_id)
+        else:
+            system_domain_id = self.system_domain_id
 
-        time: str | Unset = UNSET
-        if not isinstance(self.time, Unset):
+        time: None | str | Unset
+        if isinstance(self.time, Unset):
+            time = UNSET
+        elif isinstance(self.time, datetime.datetime):
             time = self.time.isoformat()
+        else:
+            time = self.time
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -185,6 +216,10 @@ class TranscoderUsageSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.transcoder_usage_schema_operation_type_type_1 import (
+            TranscoderUsageSchemaOperationTypeType1,
+        )
+
         d = dict(src_dict)
         status = TranscoderUsageSchemaStatus(d.pop("status"))
 
@@ -203,12 +238,22 @@ class TranscoderUsageSchema:
             d.pop("adjusted_duration_seconds", UNSET)
         )
 
-        _date = d.pop("date", UNSET)
-        date: datetime.date | Unset
-        if isinstance(_date, Unset):
-            date = UNSET
-        else:
-            date = datetime.date.fromisoformat(_date)
+        def _parse_date(data: object) -> datetime.date | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_type_0 = datetime.date.fromisoformat(data)
+
+                return date_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.date | None | Unset, data)
+
+        date = _parse_date(d.pop("date", UNSET))
 
         def _parse_destination_bytes(data: object) -> int | None | Unset:
             if data is None:
@@ -228,14 +273,33 @@ class TranscoderUsageSchema:
 
         duration_seconds = _parse_duration_seconds(d.pop("duration_seconds", UNSET))
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
 
-        is_user_transcoder = d.pop("is_user_transcoder", UNSET)
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_is_user_transcoder(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        is_user_transcoder = _parse_is_user_transcoder(
+            d.pop("is_user_transcoder", UNSET)
+        )
 
         def _parse_job_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -280,12 +344,26 @@ class TranscoderUsageSchema:
 
         object_type = _parse_object_type(d.pop("object_type", UNSET))
 
-        _operation_type = d.pop("operation_type", UNSET)
-        operation_type: TranscoderUsageSchemaOperationType | Unset
-        if isinstance(_operation_type, Unset):
-            operation_type = UNSET
-        else:
-            operation_type = TranscoderUsageSchemaOperationType(_operation_type)
+        def _parse_operation_type(
+            data: object,
+        ) -> None | TranscoderUsageSchemaOperationTypeType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                operation_type_type_1 = (
+                    TranscoderUsageSchemaOperationTypeType1.from_dict(data)
+                )
+
+                return operation_type_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | TranscoderUsageSchemaOperationTypeType1 | Unset, data)
+
+        operation_type = _parse_operation_type(d.pop("operation_type", UNSET))
 
         def _parse_percent_done(data: object) -> int | None | Unset:
             if data is None:
@@ -305,19 +383,39 @@ class TranscoderUsageSchema:
 
         source_bytes = _parse_source_bytes(d.pop("source_bytes", UNSET))
 
-        _system_domain_id = d.pop("system_domain_id", UNSET)
-        system_domain_id: UUID | Unset
-        if isinstance(_system_domain_id, Unset):
-            system_domain_id = UNSET
-        else:
-            system_domain_id = UUID(_system_domain_id)
+        def _parse_system_domain_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                system_domain_id_type_0 = UUID(data)
 
-        _time = d.pop("time", UNSET)
-        time: datetime.datetime | Unset
-        if isinstance(_time, Unset):
-            time = UNSET
-        else:
-            time = datetime.datetime.fromisoformat(_time)
+                return system_domain_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
+
+        def _parse_time(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                time_type_0 = datetime.datetime.fromisoformat(data)
+
+                return time_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        time = _parse_time(d.pop("time", UNSET))
 
         transcoder_usage_schema = cls(
             status=status,

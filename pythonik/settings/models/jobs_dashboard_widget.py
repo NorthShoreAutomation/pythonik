@@ -6,10 +6,10 @@ from typing import TYPE_CHECKING, Any, TypeVar, cast
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.jobs_dashboard_widget_type import JobsDashboardWidgetType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
+    from ..models.jobs_dashboard_widget_type_type_1 import JobsDashboardWidgetTypeType1
     from ..models.jobs_widget_option import JobsWidgetOption
 
 
@@ -20,24 +20,37 @@ T = TypeVar("T", bound="JobsDashboardWidget")
 class JobsDashboardWidget:
     """
     Attributes:
-        id (str | Unset):
-        options (JobsWidgetOption | Unset):
+        id (None | str | Unset):
+        options (JobsWidgetOption | None | Unset):
         title (None | str | Unset):
-        type_ (JobsDashboardWidgetType | Unset):
+        type_ (JobsDashboardWidgetTypeType1 | None | Unset):
     """
 
-    id: str | Unset = UNSET
-    options: JobsWidgetOption | Unset = UNSET
+    id: None | str | Unset = UNSET
+    options: JobsWidgetOption | None | Unset = UNSET
     title: None | str | Unset = UNSET
-    type_: JobsDashboardWidgetType | Unset = UNSET
+    type_: JobsDashboardWidgetTypeType1 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        id = self.id
+        from ..models.jobs_dashboard_widget_type_type_1 import (
+            JobsDashboardWidgetTypeType1,
+        )
+        from ..models.jobs_widget_option import JobsWidgetOption
 
-        options: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.options, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        else:
+            id = self.id
+
+        options: dict[str, Any] | None | Unset
+        if isinstance(self.options, Unset):
+            options = UNSET
+        elif isinstance(self.options, JobsWidgetOption):
             options = self.options.to_dict()
+        else:
+            options = self.options
 
         title: None | str | Unset
         if isinstance(self.title, Unset):
@@ -45,9 +58,13 @@ class JobsDashboardWidget:
         else:
             title = self.title
 
-        type_: str | Unset = UNSET
-        if not isinstance(self.type_, Unset):
-            type_ = self.type_.value
+        type_: dict[str, Any] | None | Unset
+        if isinstance(self.type_, Unset):
+            type_ = UNSET
+        elif isinstance(self.type_, JobsDashboardWidgetTypeType1):
+            type_ = self.type_.to_dict()
+        else:
+            type_ = self.type_
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -65,17 +82,38 @@ class JobsDashboardWidget:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.jobs_dashboard_widget_type_type_1 import (
+            JobsDashboardWidgetTypeType1,
+        )
         from ..models.jobs_widget_option import JobsWidgetOption
 
         d = dict(src_dict)
-        id = d.pop("id", UNSET)
 
-        _options = d.pop("options", UNSET)
-        options: JobsWidgetOption | Unset
-        if isinstance(_options, Unset):
-            options = UNSET
-        else:
-            options = JobsWidgetOption.from_dict(_options)
+        def _parse_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_options(data: object) -> JobsWidgetOption | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                options_type_1 = JobsWidgetOption.from_dict(data)
+
+                return options_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(JobsWidgetOption | None | Unset, data)
+
+        options = _parse_options(d.pop("options", UNSET))
 
         def _parse_title(data: object) -> None | str | Unset:
             if data is None:
@@ -86,12 +124,22 @@ class JobsDashboardWidget:
 
         title = _parse_title(d.pop("title", UNSET))
 
-        _type_ = d.pop("type", UNSET)
-        type_: JobsDashboardWidgetType | Unset
-        if isinstance(_type_, Unset):
-            type_ = UNSET
-        else:
-            type_ = JobsDashboardWidgetType(_type_)
+        def _parse_type_(data: object) -> JobsDashboardWidgetTypeType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                type_type_1 = JobsDashboardWidgetTypeType1.from_dict(data)
+
+                return type_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(JobsDashboardWidgetTypeType1 | None | Unset, data)
+
+        type_ = _parse_type_(d.pop("type", UNSET))
 
         jobs_dashboard_widget = cls(
             id=id,

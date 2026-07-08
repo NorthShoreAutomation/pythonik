@@ -15,15 +15,20 @@ T = TypeVar("T", bound="CombinedPermissionsSchema")
 class CombinedPermissionsSchema:
     """
     Attributes:
-        permissions (list[str] | Unset):
+        permissions (list[str] | None | Unset):
     """
 
-    permissions: list[str] | Unset = UNSET
+    permissions: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        permissions: list[str] | Unset = UNSET
-        if not isinstance(self.permissions, Unset):
+        permissions: list[str] | None | Unset
+        if isinstance(self.permissions, Unset):
+            permissions = UNSET
+        elif isinstance(self.permissions, list):
+            permissions = self.permissions
+
+        else:
             permissions = self.permissions
 
         field_dict: dict[str, Any] = {}
@@ -37,7 +42,23 @@ class CombinedPermissionsSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        permissions = cast(list[str], d.pop("permissions", UNSET))
+
+        def _parse_permissions(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                permissions_type_0 = cast(list[str], data)
+
+                return permissions_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        permissions = _parse_permissions(d.pop("permissions", UNSET))
 
         combined_permissions_schema = cls(
             permissions=permissions,

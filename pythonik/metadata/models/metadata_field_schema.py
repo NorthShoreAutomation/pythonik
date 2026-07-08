@@ -26,22 +26,22 @@ class MetadataFieldSchema:
         ai_prompt_description (None | str | Unset): LLM prompt override used when generating values for this field. If
             unset, the LLM prompt falls back to `description`.
         auto_set (bool | None | Unset):
-        date_created (datetime.datetime | Unset):
-        date_modified (datetime.datetime | Unset):
-        description (str | Unset):
-        external_id (str | Unset):
+        date_created (datetime.datetime | None | Unset):
+        date_modified (datetime.datetime | None | Unset):
+        description (None | str | Unset):
+        external_id (None | str | Unset):
         hide_if_not_set (bool | None | Unset):
-        is_block_field (bool | Unset):
-        is_warning_field (bool | Unset):
-        mapped_field_name (str | Unset):
-        max_value (float | Unset):
-        min_value (float | Unset):
-        multi (bool | Unset):
-        options (list[FieldOptionsSchema] | Unset):
+        is_block_field (bool | None | Unset):
+        is_warning_field (bool | None | Unset):
+        mapped_field_name (None | str | Unset):
+        max_value (float | None | Unset):
+        min_value (float | None | Unset):
+        multi (bool | None | Unset):
+        options (list[FieldOptionsSchema] | None | Unset):
         read_only (bool | None | Unset):
-        representative (bool | Unset):
+        representative (bool | None | Unset):
         required (bool | None | Unset):
-        sortable (bool | Unset):
+        sortable (bool | None | Unset):
         source_url (None | str | Unset): Will be used to upload MetadataField's `options`. Cannot be set or used as long
             as `options` are set.  **Example**: The value is `https://external-url.com/foo/`. In that case `GET` request
             will be sent to `https://external-
@@ -51,7 +51,7 @@ class MetadataFieldSchema:
             identifier [system_domain_id] will be also passed in each request. *iconik* will successfully parse the response
             from that URL if it will be sent in JSON formatted string: `{"bar": [{"value": "1", "label": "1st"}, {"value":
             "2", "label": "2nd"}]}`
-        use_as_facet (bool | Unset):
+        use_as_facet (bool | None | Unset):
     """
 
     field_type: str
@@ -59,24 +59,24 @@ class MetadataFieldSchema:
     name: str
     ai_prompt_description: None | str | Unset = UNSET
     auto_set: bool | None | Unset = UNSET
-    date_created: datetime.datetime | Unset = UNSET
-    date_modified: datetime.datetime | Unset = UNSET
-    description: str | Unset = UNSET
-    external_id: str | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_modified: datetime.datetime | None | Unset = UNSET
+    description: None | str | Unset = UNSET
+    external_id: None | str | Unset = UNSET
     hide_if_not_set: bool | None | Unset = UNSET
-    is_block_field: bool | Unset = UNSET
-    is_warning_field: bool | Unset = UNSET
-    mapped_field_name: str | Unset = UNSET
-    max_value: float | Unset = UNSET
-    min_value: float | Unset = UNSET
-    multi: bool | Unset = UNSET
-    options: list[FieldOptionsSchema] | Unset = UNSET
+    is_block_field: bool | None | Unset = UNSET
+    is_warning_field: bool | None | Unset = UNSET
+    mapped_field_name: None | str | Unset = UNSET
+    max_value: float | None | Unset = UNSET
+    min_value: float | None | Unset = UNSET
+    multi: bool | None | Unset = UNSET
+    options: list[FieldOptionsSchema] | None | Unset = UNSET
     read_only: bool | None | Unset = UNSET
-    representative: bool | Unset = UNSET
+    representative: bool | None | Unset = UNSET
     required: bool | None | Unset = UNSET
-    sortable: bool | Unset = UNSET
+    sortable: bool | None | Unset = UNSET
     source_url: None | str | Unset = UNSET
-    use_as_facet: bool | Unset = UNSET
+    use_as_facet: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -98,17 +98,33 @@ class MetadataFieldSchema:
         else:
             auto_set = self.auto_set
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_modified: str | Unset = UNSET
-        if not isinstance(self.date_modified, Unset):
+        date_modified: None | str | Unset
+        if isinstance(self.date_modified, Unset):
+            date_modified = UNSET
+        elif isinstance(self.date_modified, datetime.datetime):
             date_modified = self.date_modified.isoformat()
+        else:
+            date_modified = self.date_modified
 
-        description = self.description
+        description: None | str | Unset
+        if isinstance(self.description, Unset):
+            description = UNSET
+        else:
+            description = self.description
 
-        external_id = self.external_id
+        external_id: None | str | Unset
+        if isinstance(self.external_id, Unset):
+            external_id = UNSET
+        else:
+            external_id = self.external_id
 
         hide_if_not_set: bool | None | Unset
         if isinstance(self.hide_if_not_set, Unset):
@@ -116,24 +132,53 @@ class MetadataFieldSchema:
         else:
             hide_if_not_set = self.hide_if_not_set
 
-        is_block_field = self.is_block_field
+        is_block_field: bool | None | Unset
+        if isinstance(self.is_block_field, Unset):
+            is_block_field = UNSET
+        else:
+            is_block_field = self.is_block_field
 
-        is_warning_field = self.is_warning_field
+        is_warning_field: bool | None | Unset
+        if isinstance(self.is_warning_field, Unset):
+            is_warning_field = UNSET
+        else:
+            is_warning_field = self.is_warning_field
 
-        mapped_field_name = self.mapped_field_name
+        mapped_field_name: None | str | Unset
+        if isinstance(self.mapped_field_name, Unset):
+            mapped_field_name = UNSET
+        else:
+            mapped_field_name = self.mapped_field_name
 
-        max_value = self.max_value
+        max_value: float | None | Unset
+        if isinstance(self.max_value, Unset):
+            max_value = UNSET
+        else:
+            max_value = self.max_value
 
-        min_value = self.min_value
+        min_value: float | None | Unset
+        if isinstance(self.min_value, Unset):
+            min_value = UNSET
+        else:
+            min_value = self.min_value
 
-        multi = self.multi
+        multi: bool | None | Unset
+        if isinstance(self.multi, Unset):
+            multi = UNSET
+        else:
+            multi = self.multi
 
-        options: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.options, Unset):
+        options: list[dict[str, Any]] | None | Unset
+        if isinstance(self.options, Unset):
+            options = UNSET
+        elif isinstance(self.options, list):
             options = []
-            for options_item_data in self.options:
-                options_item = options_item_data.to_dict()
-                options.append(options_item)
+            for options_type_0_item_data in self.options:
+                options_type_0_item = options_type_0_item_data.to_dict()
+                options.append(options_type_0_item)
+
+        else:
+            options = self.options
 
         read_only: bool | None | Unset
         if isinstance(self.read_only, Unset):
@@ -141,7 +186,11 @@ class MetadataFieldSchema:
         else:
             read_only = self.read_only
 
-        representative = self.representative
+        representative: bool | None | Unset
+        if isinstance(self.representative, Unset):
+            representative = UNSET
+        else:
+            representative = self.representative
 
         required: bool | None | Unset
         if isinstance(self.required, Unset):
@@ -149,7 +198,11 @@ class MetadataFieldSchema:
         else:
             required = self.required
 
-        sortable = self.sortable
+        sortable: bool | None | Unset
+        if isinstance(self.sortable, Unset):
+            sortable = UNSET
+        else:
+            sortable = self.sortable
 
         source_url: None | str | Unset
         if isinstance(self.source_url, Unset):
@@ -157,7 +210,11 @@ class MetadataFieldSchema:
         else:
             source_url = self.source_url
 
-        use_as_facet = self.use_as_facet
+        use_as_facet: bool | None | Unset
+        if isinstance(self.use_as_facet, Unset):
+            use_as_facet = UNSET
+        else:
+            use_as_facet = self.use_as_facet
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -242,23 +299,57 @@ class MetadataFieldSchema:
 
         auto_set = _parse_auto_set(d.pop("auto_set", UNSET))
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        _date_modified = d.pop("date_modified", UNSET)
-        date_modified: datetime.datetime | Unset
-        if isinstance(_date_modified, Unset):
-            date_modified = UNSET
-        else:
-            date_modified = datetime.datetime.fromisoformat(_date_modified)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        description = d.pop("description", UNSET)
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
 
-        external_id = d.pop("external_id", UNSET)
+        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_modified_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_modified_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
+
+        def _parse_description(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        description = _parse_description(d.pop("description", UNSET))
+
+        def _parse_external_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        external_id = _parse_external_id(d.pop("external_id", UNSET))
 
         def _parse_hide_if_not_set(data: object) -> bool | None | Unset:
             if data is None:
@@ -269,26 +360,83 @@ class MetadataFieldSchema:
 
         hide_if_not_set = _parse_hide_if_not_set(d.pop("hide_if_not_set", UNSET))
 
-        is_block_field = d.pop("is_block_field", UNSET)
+        def _parse_is_block_field(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        is_warning_field = d.pop("is_warning_field", UNSET)
+        is_block_field = _parse_is_block_field(d.pop("is_block_field", UNSET))
 
-        mapped_field_name = d.pop("mapped_field_name", UNSET)
+        def _parse_is_warning_field(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        max_value = d.pop("max_value", UNSET)
+        is_warning_field = _parse_is_warning_field(d.pop("is_warning_field", UNSET))
 
-        min_value = d.pop("min_value", UNSET)
+        def _parse_mapped_field_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        multi = d.pop("multi", UNSET)
+        mapped_field_name = _parse_mapped_field_name(d.pop("mapped_field_name", UNSET))
 
-        _options = d.pop("options", UNSET)
-        options: list[FieldOptionsSchema] | Unset = UNSET
-        if _options is not UNSET:
-            options = []
-            for options_item_data in _options:
-                options_item = FieldOptionsSchema.from_dict(options_item_data)
+        def _parse_max_value(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
 
-                options.append(options_item)
+        max_value = _parse_max_value(d.pop("max_value", UNSET))
+
+        def _parse_min_value(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        min_value = _parse_min_value(d.pop("min_value", UNSET))
+
+        def _parse_multi(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        multi = _parse_multi(d.pop("multi", UNSET))
+
+        def _parse_options(data: object) -> list[FieldOptionsSchema] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                options_type_0 = []
+                _options_type_0 = data
+                for options_type_0_item_data in _options_type_0:
+                    options_type_0_item = FieldOptionsSchema.from_dict(
+                        options_type_0_item_data
+                    )
+
+                    options_type_0.append(options_type_0_item)
+
+                return options_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[FieldOptionsSchema] | None | Unset, data)
+
+        options = _parse_options(d.pop("options", UNSET))
 
         def _parse_read_only(data: object) -> bool | None | Unset:
             if data is None:
@@ -299,7 +447,14 @@ class MetadataFieldSchema:
 
         read_only = _parse_read_only(d.pop("read_only", UNSET))
 
-        representative = d.pop("representative", UNSET)
+        def _parse_representative(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        representative = _parse_representative(d.pop("representative", UNSET))
 
         def _parse_required(data: object) -> bool | None | Unset:
             if data is None:
@@ -310,7 +465,14 @@ class MetadataFieldSchema:
 
         required = _parse_required(d.pop("required", UNSET))
 
-        sortable = d.pop("sortable", UNSET)
+        def _parse_sortable(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        sortable = _parse_sortable(d.pop("sortable", UNSET))
 
         def _parse_source_url(data: object) -> None | str | Unset:
             if data is None:
@@ -321,7 +483,14 @@ class MetadataFieldSchema:
 
         source_url = _parse_source_url(d.pop("source_url", UNSET))
 
-        use_as_facet = d.pop("use_as_facet", UNSET)
+        def _parse_use_as_facet(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        use_as_facet = _parse_use_as_facet(d.pop("use_as_facet", UNSET))
 
         metadata_field_schema = cls(
             field_type=field_type,

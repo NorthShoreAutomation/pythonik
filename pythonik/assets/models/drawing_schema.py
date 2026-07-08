@@ -19,21 +19,26 @@ T = TypeVar("T", bound="DrawingSchema")
 class DrawingSchema:
     """
     Attributes:
-        primitives (list[DrawingPrimitiveSchema] | Unset):
+        primitives (list[DrawingPrimitiveSchema] | None | Unset):
         version (int | None | Unset):
     """
 
-    primitives: list[DrawingPrimitiveSchema] | Unset = UNSET
+    primitives: list[DrawingPrimitiveSchema] | None | Unset = UNSET
     version: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        primitives: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.primitives, Unset):
+        primitives: list[dict[str, Any]] | None | Unset
+        if isinstance(self.primitives, Unset):
+            primitives = UNSET
+        elif isinstance(self.primitives, list):
             primitives = []
-            for primitives_item_data in self.primitives:
-                primitives_item = primitives_item_data.to_dict()
-                primitives.append(primitives_item)
+            for primitives_type_0_item_data in self.primitives:
+                primitives_type_0_item = primitives_type_0_item_data.to_dict()
+                primitives.append(primitives_type_0_item)
+
+        else:
+            primitives = self.primitives
 
         version: int | None | Unset
         if isinstance(self.version, Unset):
@@ -56,14 +61,32 @@ class DrawingSchema:
         from ..models.drawing_primitive_schema import DrawingPrimitiveSchema
 
         d = dict(src_dict)
-        _primitives = d.pop("primitives", UNSET)
-        primitives: list[DrawingPrimitiveSchema] | Unset = UNSET
-        if _primitives is not UNSET:
-            primitives = []
-            for primitives_item_data in _primitives:
-                primitives_item = DrawingPrimitiveSchema.from_dict(primitives_item_data)
 
-                primitives.append(primitives_item)
+        def _parse_primitives(
+            data: object,
+        ) -> list[DrawingPrimitiveSchema] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                primitives_type_0 = []
+                _primitives_type_0 = data
+                for primitives_type_0_item_data in _primitives_type_0:
+                    primitives_type_0_item = DrawingPrimitiveSchema.from_dict(
+                        primitives_type_0_item_data
+                    )
+
+                    primitives_type_0.append(primitives_type_0_item)
+
+                return primitives_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[DrawingPrimitiveSchema] | None | Unset, data)
+
+        primitives = _parse_primitives(d.pop("primitives", UNSET))
 
         def _parse_version(data: object) -> int | None | Unset:
             if data is None:

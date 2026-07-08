@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -26,13 +26,13 @@ class LogsRecipientReadSchema:
         method (LogsRecipientReadSchemaMethod):
         name (str):
         settings (LogsRecipientReadSchemaSettings):
-        id (UUID | Unset):
+        id (None | Unset | UUID):
     """
 
     method: LogsRecipientReadSchemaMethod
     name: str
     settings: LogsRecipientReadSchemaSettings
-    id: UUID | Unset = UNSET
+    id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -42,9 +42,13 @@ class LogsRecipientReadSchema:
 
         settings = self.settings.to_dict()
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -73,12 +77,22 @@ class LogsRecipientReadSchema:
 
         settings = LogsRecipientReadSchemaSettings.from_dict(d.pop("settings"))
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
 
         logs_recipient_read_schema = cls(
             method=method,

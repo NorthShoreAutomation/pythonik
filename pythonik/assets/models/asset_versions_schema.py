@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -21,28 +21,37 @@ class AssetVersionsSchema:
     """
     Attributes:
         asset_id (UUID):
-        system_domain_id (UUID | Unset):
-        versions (list[EditAssetVersion] | Unset):
+        system_domain_id (None | Unset | UUID):
+        versions (list[EditAssetVersion] | None | Unset):
     """
 
     asset_id: UUID
-    system_domain_id: UUID | Unset = UNSET
-    versions: list[EditAssetVersion] | Unset = UNSET
+    system_domain_id: None | Unset | UUID = UNSET
+    versions: list[EditAssetVersion] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         asset_id = str(self.asset_id)
 
-        system_domain_id: str | Unset = UNSET
-        if not isinstance(self.system_domain_id, Unset):
+        system_domain_id: None | str | Unset
+        if isinstance(self.system_domain_id, Unset):
+            system_domain_id = UNSET
+        elif isinstance(self.system_domain_id, UUID):
             system_domain_id = str(self.system_domain_id)
+        else:
+            system_domain_id = self.system_domain_id
 
-        versions: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.versions, Unset):
+        versions: list[dict[str, Any]] | None | Unset
+        if isinstance(self.versions, Unset):
+            versions = UNSET
+        elif isinstance(self.versions, list):
             versions = []
-            for versions_item_data in self.versions:
-                versions_item = versions_item_data.to_dict()
-                versions.append(versions_item)
+            for versions_type_0_item_data in self.versions:
+                versions_type_0_item = versions_type_0_item_data.to_dict()
+                versions.append(versions_type_0_item)
+
+        else:
+            versions = self.versions
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -65,21 +74,46 @@ class AssetVersionsSchema:
         d = dict(src_dict)
         asset_id = UUID(d.pop("asset_id"))
 
-        _system_domain_id = d.pop("system_domain_id", UNSET)
-        system_domain_id: UUID | Unset
-        if isinstance(_system_domain_id, Unset):
-            system_domain_id = UNSET
-        else:
-            system_domain_id = UUID(_system_domain_id)
+        def _parse_system_domain_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                system_domain_id_type_0 = UUID(data)
 
-        _versions = d.pop("versions", UNSET)
-        versions: list[EditAssetVersion] | Unset = UNSET
-        if _versions is not UNSET:
-            versions = []
-            for versions_item_data in _versions:
-                versions_item = EditAssetVersion.from_dict(versions_item_data)
+                return system_domain_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-                versions.append(versions_item)
+        system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
+
+        def _parse_versions(data: object) -> list[EditAssetVersion] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                versions_type_0 = []
+                _versions_type_0 = data
+                for versions_type_0_item_data in _versions_type_0:
+                    versions_type_0_item = EditAssetVersion.from_dict(
+                        versions_type_0_item_data
+                    )
+
+                    versions_type_0.append(versions_type_0_item)
+
+                return versions_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[EditAssetVersion] | None | Unset, data)
+
+        versions = _parse_versions(d.pop("versions", UNSET))
 
         asset_versions_schema = cls(
             asset_id=asset_id,

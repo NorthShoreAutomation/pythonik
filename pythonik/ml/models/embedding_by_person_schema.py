@@ -2,14 +2,19 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.embedding_by_person_schema_type import EmbeddingByPersonSchemaType
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.embedding_by_person_schema_type_type_1 import (
+        EmbeddingByPersonSchemaTypeType1,
+    )
+
 
 T = TypeVar("T", bound="EmbeddingByPersonSchema")
 
@@ -18,46 +23,75 @@ T = TypeVar("T", bound="EmbeddingByPersonSchema")
 class EmbeddingByPersonSchema:
     """
     Attributes:
-        date_created (datetime.datetime | Unset):
-        embedding_vector (list[float] | Unset):
-        id (UUID | Unset):
-        person_id (UUID | Unset):
-        system_domain_id (UUID | Unset):
-        type_ (EmbeddingByPersonSchemaType | Unset):
+        date_created (datetime.datetime | None | Unset):
+        embedding_vector (list[float] | None | Unset):
+        id (None | Unset | UUID):
+        person_id (None | Unset | UUID):
+        system_domain_id (None | Unset | UUID):
+        type_ (EmbeddingByPersonSchemaTypeType1 | None | Unset):
     """
 
-    date_created: datetime.datetime | Unset = UNSET
-    embedding_vector: list[float] | Unset = UNSET
-    id: UUID | Unset = UNSET
-    person_id: UUID | Unset = UNSET
-    system_domain_id: UUID | Unset = UNSET
-    type_: EmbeddingByPersonSchemaType | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    embedding_vector: list[float] | None | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    person_id: None | Unset | UUID = UNSET
+    system_domain_id: None | Unset | UUID = UNSET
+    type_: EmbeddingByPersonSchemaTypeType1 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
-            date_created = self.date_created.isoformat()
+        from ..models.embedding_by_person_schema_type_type_1 import (
+            EmbeddingByPersonSchemaTypeType1,
+        )
 
-        embedding_vector: list[float] | Unset = UNSET
-        if not isinstance(self.embedding_vector, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
+            date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
+
+        embedding_vector: list[float] | None | Unset
+        if isinstance(self.embedding_vector, Unset):
+            embedding_vector = UNSET
+        elif isinstance(self.embedding_vector, list):
             embedding_vector = self.embedding_vector
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        else:
+            embedding_vector = self.embedding_vector
+
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        person_id: str | Unset = UNSET
-        if not isinstance(self.person_id, Unset):
+        person_id: None | str | Unset
+        if isinstance(self.person_id, Unset):
+            person_id = UNSET
+        elif isinstance(self.person_id, UUID):
             person_id = str(self.person_id)
+        else:
+            person_id = self.person_id
 
-        system_domain_id: str | Unset = UNSET
-        if not isinstance(self.system_domain_id, Unset):
+        system_domain_id: None | str | Unset
+        if isinstance(self.system_domain_id, Unset):
+            system_domain_id = UNSET
+        elif isinstance(self.system_domain_id, UUID):
             system_domain_id = str(self.system_domain_id)
+        else:
+            system_domain_id = self.system_domain_id
 
-        type_: str | Unset = UNSET
-        if not isinstance(self.type_, Unset):
-            type_ = self.type_.value
+        type_: dict[str, Any] | None | Unset
+        if isinstance(self.type_, Unset):
+            type_ = UNSET
+        elif isinstance(self.type_, EmbeddingByPersonSchemaTypeType1):
+            type_ = self.type_.to_dict()
+        else:
+            type_ = self.type_
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -79,43 +113,115 @@ class EmbeddingByPersonSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.embedding_by_person_schema_type_type_1 import (
+            EmbeddingByPersonSchemaTypeType1,
+        )
+
         d = dict(src_dict)
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
 
-        embedding_vector = cast(list[float], d.pop("embedding_vector", UNSET))
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        _person_id = d.pop("person_id", UNSET)
-        person_id: UUID | Unset
-        if isinstance(_person_id, Unset):
-            person_id = UNSET
-        else:
-            person_id = UUID(_person_id)
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
 
-        _system_domain_id = d.pop("system_domain_id", UNSET)
-        system_domain_id: UUID | Unset
-        if isinstance(_system_domain_id, Unset):
-            system_domain_id = UNSET
-        else:
-            system_domain_id = UUID(_system_domain_id)
+        def _parse_embedding_vector(data: object) -> list[float] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                embedding_vector_type_0 = cast(list[float], data)
 
-        _type_ = d.pop("type", UNSET)
-        type_: EmbeddingByPersonSchemaType | Unset
-        if isinstance(_type_, Unset):
-            type_ = UNSET
-        else:
-            type_ = EmbeddingByPersonSchemaType(_type_)
+                return embedding_vector_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[float] | None | Unset, data)
+
+        embedding_vector = _parse_embedding_vector(d.pop("embedding_vector", UNSET))
+
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_person_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                person_id_type_0 = UUID(data)
+
+                return person_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        person_id = _parse_person_id(d.pop("person_id", UNSET))
+
+        def _parse_system_domain_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                system_domain_id_type_0 = UUID(data)
+
+                return system_domain_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
+
+        def _parse_type_(
+            data: object,
+        ) -> EmbeddingByPersonSchemaTypeType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                type_type_1 = EmbeddingByPersonSchemaTypeType1.from_dict(data)
+
+                return type_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(EmbeddingByPersonSchemaTypeType1 | None | Unset, data)
+
+        type_ = _parse_type_(d.pop("type", UNSET))
 
         embedding_by_person_schema = cls(
             date_created=date_created,

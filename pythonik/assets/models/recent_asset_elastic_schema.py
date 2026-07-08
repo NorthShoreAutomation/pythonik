@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -17,38 +17,58 @@ T = TypeVar("T", bound="RecentAssetElasticSchema")
 class RecentAssetElasticSchema:
     """
     Attributes:
-        date_viewed (datetime.datetime | Unset):
-        object_id (UUID | Unset):
-        object_type (str | Unset):
-        system_domain_id (UUID | Unset):
-        user_id (UUID | Unset):
+        date_viewed (datetime.datetime | None | Unset):
+        object_id (None | Unset | UUID):
+        object_type (None | str | Unset):
+        system_domain_id (None | Unset | UUID):
+        user_id (None | Unset | UUID):
     """
 
-    date_viewed: datetime.datetime | Unset = UNSET
-    object_id: UUID | Unset = UNSET
-    object_type: str | Unset = UNSET
-    system_domain_id: UUID | Unset = UNSET
-    user_id: UUID | Unset = UNSET
+    date_viewed: datetime.datetime | None | Unset = UNSET
+    object_id: None | Unset | UUID = UNSET
+    object_type: None | str | Unset = UNSET
+    system_domain_id: None | Unset | UUID = UNSET
+    user_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        date_viewed: str | Unset = UNSET
-        if not isinstance(self.date_viewed, Unset):
+        date_viewed: None | str | Unset
+        if isinstance(self.date_viewed, Unset):
+            date_viewed = UNSET
+        elif isinstance(self.date_viewed, datetime.datetime):
             date_viewed = self.date_viewed.isoformat()
+        else:
+            date_viewed = self.date_viewed
 
-        object_id: str | Unset = UNSET
-        if not isinstance(self.object_id, Unset):
+        object_id: None | str | Unset
+        if isinstance(self.object_id, Unset):
+            object_id = UNSET
+        elif isinstance(self.object_id, UUID):
             object_id = str(self.object_id)
+        else:
+            object_id = self.object_id
 
-        object_type = self.object_type
+        object_type: None | str | Unset
+        if isinstance(self.object_type, Unset):
+            object_type = UNSET
+        else:
+            object_type = self.object_type
 
-        system_domain_id: str | Unset = UNSET
-        if not isinstance(self.system_domain_id, Unset):
+        system_domain_id: None | str | Unset
+        if isinstance(self.system_domain_id, Unset):
+            system_domain_id = UNSET
+        elif isinstance(self.system_domain_id, UUID):
             system_domain_id = str(self.system_domain_id)
+        else:
+            system_domain_id = self.system_domain_id
 
-        user_id: str | Unset = UNSET
-        if not isinstance(self.user_id, Unset):
+        user_id: None | str | Unset
+        if isinstance(self.user_id, Unset):
+            user_id = UNSET
+        elif isinstance(self.user_id, UUID):
             user_id = str(self.user_id)
+        else:
+            user_id = self.user_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -69,35 +89,83 @@ class RecentAssetElasticSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        _date_viewed = d.pop("date_viewed", UNSET)
-        date_viewed: datetime.datetime | Unset
-        if isinstance(_date_viewed, Unset):
-            date_viewed = UNSET
-        else:
-            date_viewed = datetime.datetime.fromisoformat(_date_viewed)
 
-        _object_id = d.pop("object_id", UNSET)
-        object_id: UUID | Unset
-        if isinstance(_object_id, Unset):
-            object_id = UNSET
-        else:
-            object_id = UUID(_object_id)
+        def _parse_date_viewed(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_viewed_type_0 = datetime.datetime.fromisoformat(data)
 
-        object_type = d.pop("object_type", UNSET)
+                return date_viewed_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        _system_domain_id = d.pop("system_domain_id", UNSET)
-        system_domain_id: UUID | Unset
-        if isinstance(_system_domain_id, Unset):
-            system_domain_id = UNSET
-        else:
-            system_domain_id = UUID(_system_domain_id)
+        date_viewed = _parse_date_viewed(d.pop("date_viewed", UNSET))
 
-        _user_id = d.pop("user_id", UNSET)
-        user_id: UUID | Unset
-        if isinstance(_user_id, Unset):
-            user_id = UNSET
-        else:
-            user_id = UUID(_user_id)
+        def _parse_object_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                object_id_type_0 = UUID(data)
+
+                return object_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        object_id = _parse_object_id(d.pop("object_id", UNSET))
+
+        def _parse_object_type(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        object_type = _parse_object_type(d.pop("object_type", UNSET))
+
+        def _parse_system_domain_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                system_domain_id_type_0 = UUID(data)
+
+                return system_domain_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
+
+        def _parse_user_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                user_id_type_0 = UUID(data)
+
+                return user_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        user_id = _parse_user_id(d.pop("user_id", UNSET))
 
         recent_asset_elastic_schema = cls(
             date_viewed=date_viewed,

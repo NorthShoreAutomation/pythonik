@@ -1,16 +1,19 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.asset_transcription_from_subtitle_schema_format import (
-    AssetTranscriptionFromSubtitleSchemaFormat,
-)
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.asset_transcription_from_subtitle_schema_format_type_1 import (
+        AssetTranscriptionFromSubtitleSchemaFormatType1,
+    )
+
 
 T = TypeVar("T", bound="AssetTranscriptionFromSubtitleSchema")
 
@@ -19,34 +22,59 @@ T = TypeVar("T", bound="AssetTranscriptionFromSubtitleSchema")
 class AssetTranscriptionFromSubtitleSchema:
     """
     Attributes:
-        content (str | Unset):
-        delete_old_transcriptions (bool | Unset):
-        format_ (AssetTranscriptionFromSubtitleSchemaFormat | Unset):
-        language (str | Unset):
-        source_subtitle_id (UUID | Unset): Set to source subtitle_id or do not set and use the content fields instead
+        content (None | str | Unset):
+        delete_old_transcriptions (bool | None | Unset):
+        format_ (AssetTranscriptionFromSubtitleSchemaFormatType1 | None | Unset):
+        language (None | str | Unset):
+        source_subtitle_id (None | Unset | UUID): Set to source subtitle_id or do not set and use the content fields
+            instead
     """
 
-    content: str | Unset = UNSET
-    delete_old_transcriptions: bool | Unset = UNSET
-    format_: AssetTranscriptionFromSubtitleSchemaFormat | Unset = UNSET
-    language: str | Unset = UNSET
-    source_subtitle_id: UUID | Unset = UNSET
+    content: None | str | Unset = UNSET
+    delete_old_transcriptions: bool | None | Unset = UNSET
+    format_: AssetTranscriptionFromSubtitleSchemaFormatType1 | None | Unset = UNSET
+    language: None | str | Unset = UNSET
+    source_subtitle_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        content = self.content
+        from ..models.asset_transcription_from_subtitle_schema_format_type_1 import (
+            AssetTranscriptionFromSubtitleSchemaFormatType1,
+        )
 
-        delete_old_transcriptions = self.delete_old_transcriptions
+        content: None | str | Unset
+        if isinstance(self.content, Unset):
+            content = UNSET
+        else:
+            content = self.content
 
-        format_: str | Unset = UNSET
-        if not isinstance(self.format_, Unset):
-            format_ = self.format_.value
+        delete_old_transcriptions: bool | None | Unset
+        if isinstance(self.delete_old_transcriptions, Unset):
+            delete_old_transcriptions = UNSET
+        else:
+            delete_old_transcriptions = self.delete_old_transcriptions
 
-        language = self.language
+        format_: dict[str, Any] | None | Unset
+        if isinstance(self.format_, Unset):
+            format_ = UNSET
+        elif isinstance(self.format_, AssetTranscriptionFromSubtitleSchemaFormatType1):
+            format_ = self.format_.to_dict()
+        else:
+            format_ = self.format_
 
-        source_subtitle_id: str | Unset = UNSET
-        if not isinstance(self.source_subtitle_id, Unset):
+        language: None | str | Unset
+        if isinstance(self.language, Unset):
+            language = UNSET
+        else:
+            language = self.language
+
+        source_subtitle_id: None | str | Unset
+        if isinstance(self.source_subtitle_id, Unset):
+            source_subtitle_id = UNSET
+        elif isinstance(self.source_subtitle_id, UUID):
             source_subtitle_id = str(self.source_subtitle_id)
+        else:
+            source_subtitle_id = self.source_subtitle_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -66,26 +94,82 @@ class AssetTranscriptionFromSubtitleSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.asset_transcription_from_subtitle_schema_format_type_1 import (
+            AssetTranscriptionFromSubtitleSchemaFormatType1,
+        )
+
         d = dict(src_dict)
-        content = d.pop("content", UNSET)
 
-        delete_old_transcriptions = d.pop("delete_old_transcriptions", UNSET)
+        def _parse_content(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        _format_ = d.pop("format", UNSET)
-        format_: AssetTranscriptionFromSubtitleSchemaFormat | Unset
-        if isinstance(_format_, Unset):
-            format_ = UNSET
-        else:
-            format_ = AssetTranscriptionFromSubtitleSchemaFormat(_format_)
+        content = _parse_content(d.pop("content", UNSET))
 
-        language = d.pop("language", UNSET)
+        def _parse_delete_old_transcriptions(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        _source_subtitle_id = d.pop("source_subtitle_id", UNSET)
-        source_subtitle_id: UUID | Unset
-        if isinstance(_source_subtitle_id, Unset):
-            source_subtitle_id = UNSET
-        else:
-            source_subtitle_id = UUID(_source_subtitle_id)
+        delete_old_transcriptions = _parse_delete_old_transcriptions(
+            d.pop("delete_old_transcriptions", UNSET)
+        )
+
+        def _parse_format_(
+            data: object,
+        ) -> AssetTranscriptionFromSubtitleSchemaFormatType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                format_type_1 = (
+                    AssetTranscriptionFromSubtitleSchemaFormatType1.from_dict(data)
+                )
+
+                return format_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(
+                AssetTranscriptionFromSubtitleSchemaFormatType1 | None | Unset, data
+            )
+
+        format_ = _parse_format_(d.pop("format", UNSET))
+
+        def _parse_language(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        language = _parse_language(d.pop("language", UNSET))
+
+        def _parse_source_subtitle_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                source_subtitle_id_type_0 = UUID(data)
+
+                return source_subtitle_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        source_subtitle_id = _parse_source_subtitle_id(
+            d.pop("source_subtitle_id", UNSET)
+        )
 
         asset_transcription_from_subtitle_schema = cls(
             content=content,

@@ -2,13 +2,16 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.embedding_base_schema_type import EmbeddingBaseSchemaType
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.embedding_base_schema_type_type_1 import EmbeddingBaseSchemaTypeType1
+
 
 T = TypeVar("T", bound="EmbeddingBaseSchema")
 
@@ -17,28 +20,45 @@ T = TypeVar("T", bound="EmbeddingBaseSchema")
 class EmbeddingBaseSchema:
     """
     Attributes:
-        date_created (datetime.datetime | Unset):
-        embedding_vector (list[float] | Unset):
-        type_ (EmbeddingBaseSchemaType | Unset):
+        date_created (datetime.datetime | None | Unset):
+        embedding_vector (list[float] | None | Unset):
+        type_ (EmbeddingBaseSchemaTypeType1 | None | Unset):
     """
 
-    date_created: datetime.datetime | Unset = UNSET
-    embedding_vector: list[float] | Unset = UNSET
-    type_: EmbeddingBaseSchemaType | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    embedding_vector: list[float] | None | Unset = UNSET
+    type_: EmbeddingBaseSchemaTypeType1 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
-            date_created = self.date_created.isoformat()
+        from ..models.embedding_base_schema_type_type_1 import (
+            EmbeddingBaseSchemaTypeType1,
+        )
 
-        embedding_vector: list[float] | Unset = UNSET
-        if not isinstance(self.embedding_vector, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
+            date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
+
+        embedding_vector: list[float] | None | Unset
+        if isinstance(self.embedding_vector, Unset):
+            embedding_vector = UNSET
+        elif isinstance(self.embedding_vector, list):
             embedding_vector = self.embedding_vector
 
-        type_: str | Unset = UNSET
-        if not isinstance(self.type_, Unset):
-            type_ = self.type_.value
+        else:
+            embedding_vector = self.embedding_vector
+
+        type_: dict[str, Any] | None | Unset
+        if isinstance(self.type_, Unset):
+            type_ = UNSET
+        elif isinstance(self.type_, EmbeddingBaseSchemaTypeType1):
+            type_ = self.type_.to_dict()
+        else:
+            type_ = self.type_
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -54,22 +74,62 @@ class EmbeddingBaseSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.embedding_base_schema_type_type_1 import (
+            EmbeddingBaseSchemaTypeType1,
+        )
+
         d = dict(src_dict)
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
 
-        embedding_vector = cast(list[float], d.pop("embedding_vector", UNSET))
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        _type_ = d.pop("type", UNSET)
-        type_: EmbeddingBaseSchemaType | Unset
-        if isinstance(_type_, Unset):
-            type_ = UNSET
-        else:
-            type_ = EmbeddingBaseSchemaType(_type_)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
+
+        def _parse_embedding_vector(data: object) -> list[float] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                embedding_vector_type_0 = cast(list[float], data)
+
+                return embedding_vector_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[float] | None | Unset, data)
+
+        embedding_vector = _parse_embedding_vector(d.pop("embedding_vector", UNSET))
+
+        def _parse_type_(data: object) -> EmbeddingBaseSchemaTypeType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                type_type_1 = EmbeddingBaseSchemaTypeType1.from_dict(data)
+
+                return type_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(EmbeddingBaseSchemaTypeType1 | None | Unset, data)
+
+        type_ = _parse_type_(d.pop("type", UNSET))
 
         embedding_base_schema = cls(
             date_created=date_created,

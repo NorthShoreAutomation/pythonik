@@ -1,14 +1,19 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.create_bulk_ac_ls_schema_mode import CreateBulkACLsSchemaMode
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.create_bulk_ac_ls_schema_mode_type_1 import (
+        CreateBulkACLsSchemaModeType1,
+    )
+
 
 T = TypeVar("T", bound="CreateBulkACLsSchema")
 
@@ -20,57 +25,84 @@ class CreateBulkACLsSchema:
         include_assets (bool):
         include_collections (bool):
         permissions (list[str]):
-        group_ids (list[UUID] | Unset):
-        mode (CreateBulkACLsSchemaMode | Unset):  Default: CreateBulkACLsSchemaMode.OVERWRITE.
-        object_ids (list[UUID] | Unset): The number of object_ids in the list is limited to a minimum of 0 and a maximum
-            of 500
-        object_type (str | Unset):
-        user_ids (list[UUID] | Unset):
+        group_ids (list[UUID] | None | Unset):
+        mode (CreateBulkACLsSchemaModeType1 | None | Unset):
+        object_ids (list[UUID] | None | Unset): The number of object_ids in the list is limited to a minimum of 0 and a
+            maximum of 500
+        object_type (None | str | Unset):
+        user_ids (list[UUID] | None | Unset):
     """
 
     include_assets: bool
     include_collections: bool
     permissions: list[str]
-    group_ids: list[UUID] | Unset = UNSET
-    mode: CreateBulkACLsSchemaMode | Unset = CreateBulkACLsSchemaMode.OVERWRITE
-    object_ids: list[UUID] | Unset = UNSET
-    object_type: str | Unset = UNSET
-    user_ids: list[UUID] | Unset = UNSET
+    group_ids: list[UUID] | None | Unset = UNSET
+    mode: CreateBulkACLsSchemaModeType1 | None | Unset = UNSET
+    object_ids: list[UUID] | None | Unset = UNSET
+    object_type: None | str | Unset = UNSET
+    user_ids: list[UUID] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.create_bulk_ac_ls_schema_mode_type_1 import (
+            CreateBulkACLsSchemaModeType1,
+        )
+
         include_assets = self.include_assets
 
         include_collections = self.include_collections
 
         permissions = self.permissions
 
-        group_ids: list[str] | Unset = UNSET
-        if not isinstance(self.group_ids, Unset):
+        group_ids: list[str] | None | Unset
+        if isinstance(self.group_ids, Unset):
+            group_ids = UNSET
+        elif isinstance(self.group_ids, list):
             group_ids = []
-            for group_ids_item_data in self.group_ids:
-                group_ids_item = str(group_ids_item_data)
-                group_ids.append(group_ids_item)
+            for group_ids_type_0_item_data in self.group_ids:
+                group_ids_type_0_item = str(group_ids_type_0_item_data)
+                group_ids.append(group_ids_type_0_item)
 
-        mode: str | Unset = UNSET
-        if not isinstance(self.mode, Unset):
-            mode = self.mode.value
+        else:
+            group_ids = self.group_ids
 
-        object_ids: list[str] | Unset = UNSET
-        if not isinstance(self.object_ids, Unset):
+        mode: dict[str, Any] | None | Unset
+        if isinstance(self.mode, Unset):
+            mode = UNSET
+        elif isinstance(self.mode, CreateBulkACLsSchemaModeType1):
+            mode = self.mode.to_dict()
+        else:
+            mode = self.mode
+
+        object_ids: list[str] | None | Unset
+        if isinstance(self.object_ids, Unset):
+            object_ids = UNSET
+        elif isinstance(self.object_ids, list):
             object_ids = []
-            for object_ids_item_data in self.object_ids:
-                object_ids_item = str(object_ids_item_data)
-                object_ids.append(object_ids_item)
+            for object_ids_type_0_item_data in self.object_ids:
+                object_ids_type_0_item = str(object_ids_type_0_item_data)
+                object_ids.append(object_ids_type_0_item)
 
-        object_type = self.object_type
+        else:
+            object_ids = self.object_ids
 
-        user_ids: list[str] | Unset = UNSET
-        if not isinstance(self.user_ids, Unset):
+        object_type: None | str | Unset
+        if isinstance(self.object_type, Unset):
+            object_type = UNSET
+        else:
+            object_type = self.object_type
+
+        user_ids: list[str] | None | Unset
+        if isinstance(self.user_ids, Unset):
+            user_ids = UNSET
+        elif isinstance(self.user_ids, list):
             user_ids = []
-            for user_ids_item_data in self.user_ids:
-                user_ids_item = str(user_ids_item_data)
-                user_ids.append(user_ids_item)
+            for user_ids_type_0_item_data in self.user_ids:
+                user_ids_type_0_item = str(user_ids_type_0_item_data)
+                user_ids.append(user_ids_type_0_item)
+
+        else:
+            user_ids = self.user_ids
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -96,6 +128,10 @@ class CreateBulkACLsSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.create_bulk_ac_ls_schema_mode_type_1 import (
+            CreateBulkACLsSchemaModeType1,
+        )
+
         d = dict(src_dict)
         include_assets = d.pop("include_assets")
 
@@ -103,41 +139,97 @@ class CreateBulkACLsSchema:
 
         permissions = cast(list[str], d.pop("permissions"))
 
-        _group_ids = d.pop("group_ids", UNSET)
-        group_ids: list[UUID] | Unset = UNSET
-        if _group_ids is not UNSET:
-            group_ids = []
-            for group_ids_item_data in _group_ids:
-                group_ids_item = UUID(group_ids_item_data)
+        def _parse_group_ids(data: object) -> list[UUID] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                group_ids_type_0 = []
+                _group_ids_type_0 = data
+                for group_ids_type_0_item_data in _group_ids_type_0:
+                    group_ids_type_0_item = UUID(group_ids_type_0_item_data)
 
-                group_ids.append(group_ids_item)
+                    group_ids_type_0.append(group_ids_type_0_item)
 
-        _mode = d.pop("mode", UNSET)
-        mode: CreateBulkACLsSchemaMode | Unset
-        if isinstance(_mode, Unset):
-            mode = UNSET
-        else:
-            mode = CreateBulkACLsSchemaMode(_mode)
+                return group_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[UUID] | None | Unset, data)
 
-        _object_ids = d.pop("object_ids", UNSET)
-        object_ids: list[UUID] | Unset = UNSET
-        if _object_ids is not UNSET:
-            object_ids = []
-            for object_ids_item_data in _object_ids:
-                object_ids_item = UUID(object_ids_item_data)
+        group_ids = _parse_group_ids(d.pop("group_ids", UNSET))
 
-                object_ids.append(object_ids_item)
+        def _parse_mode(data: object) -> CreateBulkACLsSchemaModeType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                mode_type_1 = CreateBulkACLsSchemaModeType1.from_dict(data)
 
-        object_type = d.pop("object_type", UNSET)
+                return mode_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(CreateBulkACLsSchemaModeType1 | None | Unset, data)
 
-        _user_ids = d.pop("user_ids", UNSET)
-        user_ids: list[UUID] | Unset = UNSET
-        if _user_ids is not UNSET:
-            user_ids = []
-            for user_ids_item_data in _user_ids:
-                user_ids_item = UUID(user_ids_item_data)
+        mode = _parse_mode(d.pop("mode", UNSET))
 
-                user_ids.append(user_ids_item)
+        def _parse_object_ids(data: object) -> list[UUID] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                object_ids_type_0 = []
+                _object_ids_type_0 = data
+                for object_ids_type_0_item_data in _object_ids_type_0:
+                    object_ids_type_0_item = UUID(object_ids_type_0_item_data)
+
+                    object_ids_type_0.append(object_ids_type_0_item)
+
+                return object_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[UUID] | None | Unset, data)
+
+        object_ids = _parse_object_ids(d.pop("object_ids", UNSET))
+
+        def _parse_object_type(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        object_type = _parse_object_type(d.pop("object_type", UNSET))
+
+        def _parse_user_ids(data: object) -> list[UUID] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                user_ids_type_0 = []
+                _user_ids_type_0 = data
+                for user_ids_type_0_item_data in _user_ids_type_0:
+                    user_ids_type_0_item = UUID(user_ids_type_0_item_data)
+
+                    user_ids_type_0.append(user_ids_type_0_item)
+
+                return user_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[UUID] | None | Unset, data)
+
+        user_ids = _parse_user_ids(d.pop("user_ids", UNSET))
 
         create_bulk_ac_ls_schema = cls(
             include_assets=include_assets,

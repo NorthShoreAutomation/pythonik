@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -22,8 +22,8 @@ class AssetPersonChangeSchema:
         person_ids_after (list[UUID]):
         source_person_id (UUID):
         version_id (UUID):
-        delete_source_person_from_version (bool | Unset):
-        update_segments (bool | Unset):
+        delete_source_person_from_version (bool | None | Unset):
+        update_segments (bool | None | Unset):
     """
 
     asset_id: UUID
@@ -32,8 +32,8 @@ class AssetPersonChangeSchema:
     person_ids_after: list[UUID]
     source_person_id: UUID
     version_id: UUID
-    delete_source_person_from_version: bool | Unset = UNSET
-    update_segments: bool | Unset = UNSET
+    delete_source_person_from_version: bool | None | Unset = UNSET
+    update_segments: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -52,9 +52,17 @@ class AssetPersonChangeSchema:
 
         version_id = str(self.version_id)
 
-        delete_source_person_from_version = self.delete_source_person_from_version
+        delete_source_person_from_version: bool | None | Unset
+        if isinstance(self.delete_source_person_from_version, Unset):
+            delete_source_person_from_version = UNSET
+        else:
+            delete_source_person_from_version = self.delete_source_person_from_version
 
-        update_segments = self.update_segments
+        update_segments: bool | None | Unset
+        if isinstance(self.update_segments, Unset):
+            update_segments = UNSET
+        else:
+            update_segments = self.update_segments
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -97,11 +105,27 @@ class AssetPersonChangeSchema:
 
         version_id = UUID(d.pop("version_id"))
 
-        delete_source_person_from_version = d.pop(
-            "delete_source_person_from_version", UNSET
+        def _parse_delete_source_person_from_version(
+            data: object,
+        ) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        delete_source_person_from_version = _parse_delete_source_person_from_version(
+            d.pop("delete_source_person_from_version", UNSET)
         )
 
-        update_segments = d.pop("update_segments", UNSET)
+        def _parse_update_segments(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        update_segments = _parse_update_segments(d.pop("update_segments", UNSET))
 
         asset_person_change_schema = cls(
             asset_id=asset_id,

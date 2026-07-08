@@ -21,25 +21,25 @@ class BulkFilesetArchiveSchema:
     Attributes:
         object_ids (list[UUID]):
         object_type (BulkFilesetArchiveSchemaObjectType):
-        allow_duplicate_transfers (bool | Unset):  Default: False.
-        delete_only_from_source_folder (bool | Unset):  Default: False.
-        delete_original (bool | Unset):  Default: False.
+        allow_duplicate_transfers (bool | None | Unset):  Default: False.
+        delete_only_from_source_folder (bool | None | Unset):  Default: False.
+        delete_original (bool | None | Unset):  Default: False.
         destination_directory_path (None | str | Unset):
         destination_storage_id (None | str | Unset):
-        keep_collection_structure (bool | Unset):  Default: False.
-        keep_parent_collection_structure (bool | Unset):  Default: False.
+        keep_collection_structure (bool | None | Unset):  Default: False.
+        keep_parent_collection_structure (bool | None | Unset):  Default: False.
         preferred_original_storage_id (None | Unset | UUID):
     """
 
     object_ids: list[UUID]
     object_type: BulkFilesetArchiveSchemaObjectType
-    allow_duplicate_transfers: bool | Unset = False
-    delete_only_from_source_folder: bool | Unset = False
-    delete_original: bool | Unset = False
+    allow_duplicate_transfers: bool | None | Unset = False
+    delete_only_from_source_folder: bool | None | Unset = False
+    delete_original: bool | None | Unset = False
     destination_directory_path: None | str | Unset = UNSET
     destination_storage_id: None | str | Unset = UNSET
-    keep_collection_structure: bool | Unset = False
-    keep_parent_collection_structure: bool | Unset = False
+    keep_collection_structure: bool | None | Unset = False
+    keep_parent_collection_structure: bool | None | Unset = False
     preferred_original_storage_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -51,11 +51,23 @@ class BulkFilesetArchiveSchema:
 
         object_type = self.object_type.value
 
-        allow_duplicate_transfers = self.allow_duplicate_transfers
+        allow_duplicate_transfers: bool | None | Unset
+        if isinstance(self.allow_duplicate_transfers, Unset):
+            allow_duplicate_transfers = UNSET
+        else:
+            allow_duplicate_transfers = self.allow_duplicate_transfers
 
-        delete_only_from_source_folder = self.delete_only_from_source_folder
+        delete_only_from_source_folder: bool | None | Unset
+        if isinstance(self.delete_only_from_source_folder, Unset):
+            delete_only_from_source_folder = UNSET
+        else:
+            delete_only_from_source_folder = self.delete_only_from_source_folder
 
-        delete_original = self.delete_original
+        delete_original: bool | None | Unset
+        if isinstance(self.delete_original, Unset):
+            delete_original = UNSET
+        else:
+            delete_original = self.delete_original
 
         destination_directory_path: None | str | Unset
         if isinstance(self.destination_directory_path, Unset):
@@ -69,9 +81,17 @@ class BulkFilesetArchiveSchema:
         else:
             destination_storage_id = self.destination_storage_id
 
-        keep_collection_structure = self.keep_collection_structure
+        keep_collection_structure: bool | None | Unset
+        if isinstance(self.keep_collection_structure, Unset):
+            keep_collection_structure = UNSET
+        else:
+            keep_collection_structure = self.keep_collection_structure
 
-        keep_parent_collection_structure = self.keep_parent_collection_structure
+        keep_parent_collection_structure: bool | None | Unset
+        if isinstance(self.keep_parent_collection_structure, Unset):
+            keep_parent_collection_structure = UNSET
+        else:
+            keep_parent_collection_structure = self.keep_parent_collection_structure
 
         preferred_original_storage_id: None | str | Unset
         if isinstance(self.preferred_original_storage_id, Unset):
@@ -124,11 +144,36 @@ class BulkFilesetArchiveSchema:
 
         object_type = BulkFilesetArchiveSchemaObjectType(d.pop("object_type"))
 
-        allow_duplicate_transfers = d.pop("allow_duplicate_transfers", UNSET)
+        def _parse_allow_duplicate_transfers(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        delete_only_from_source_folder = d.pop("delete_only_from_source_folder", UNSET)
+        allow_duplicate_transfers = _parse_allow_duplicate_transfers(
+            d.pop("allow_duplicate_transfers", UNSET)
+        )
 
-        delete_original = d.pop("delete_original", UNSET)
+        def _parse_delete_only_from_source_folder(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        delete_only_from_source_folder = _parse_delete_only_from_source_folder(
+            d.pop("delete_only_from_source_folder", UNSET)
+        )
+
+        def _parse_delete_original(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        delete_original = _parse_delete_original(d.pop("delete_original", UNSET))
 
         def _parse_destination_directory_path(data: object) -> None | str | Unset:
             if data is None:
@@ -152,10 +197,28 @@ class BulkFilesetArchiveSchema:
             d.pop("destination_storage_id", UNSET)
         )
 
-        keep_collection_structure = d.pop("keep_collection_structure", UNSET)
+        def _parse_keep_collection_structure(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        keep_parent_collection_structure = d.pop(
-            "keep_parent_collection_structure", UNSET
+        keep_collection_structure = _parse_keep_collection_structure(
+            d.pop("keep_collection_structure", UNSET)
+        )
+
+        def _parse_keep_parent_collection_structure(
+            data: object,
+        ) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        keep_parent_collection_structure = _parse_keep_parent_collection_structure(
+            d.pop("keep_parent_collection_structure", UNSET)
         )
 
         def _parse_preferred_original_storage_id(data: object) -> None | Unset | UUID:

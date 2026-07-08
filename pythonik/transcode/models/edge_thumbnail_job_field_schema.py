@@ -15,34 +15,50 @@ T = TypeVar("T", bound="EdgeThumbnailJobFieldSchema")
 class EdgeThumbnailJobFieldSchema:
     """
     Attributes:
-        height (int | Unset):
-        id (str | Unset):
-        max_number (int | Unset):
-        min_interval (int | Unset):
+        height (int | None | Unset):
+        id (None | str | Unset):
+        max_number (int | None | Unset):
+        min_interval (int | None | Unset):
         time_end_milliseconds (int | None | Unset):
         time_start_milliseconds (int | None | Unset):
-        timestamp (int | Unset):
-        width (int | Unset):
+        timestamp (int | None | Unset):
+        width (int | None | Unset):
     """
 
-    height: int | Unset = UNSET
-    id: str | Unset = UNSET
-    max_number: int | Unset = UNSET
-    min_interval: int | Unset = UNSET
+    height: int | None | Unset = UNSET
+    id: None | str | Unset = UNSET
+    max_number: int | None | Unset = UNSET
+    min_interval: int | None | Unset = UNSET
     time_end_milliseconds: int | None | Unset = UNSET
     time_start_milliseconds: int | None | Unset = UNSET
-    timestamp: int | Unset = UNSET
-    width: int | Unset = UNSET
+    timestamp: int | None | Unset = UNSET
+    width: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        height = self.height
+        height: int | None | Unset
+        if isinstance(self.height, Unset):
+            height = UNSET
+        else:
+            height = self.height
 
-        id = self.id
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        else:
+            id = self.id
 
-        max_number = self.max_number
+        max_number: int | None | Unset
+        if isinstance(self.max_number, Unset):
+            max_number = UNSET
+        else:
+            max_number = self.max_number
 
-        min_interval = self.min_interval
+        min_interval: int | None | Unset
+        if isinstance(self.min_interval, Unset):
+            min_interval = UNSET
+        else:
+            min_interval = self.min_interval
 
         time_end_milliseconds: int | None | Unset
         if isinstance(self.time_end_milliseconds, Unset):
@@ -56,9 +72,17 @@ class EdgeThumbnailJobFieldSchema:
         else:
             time_start_milliseconds = self.time_start_milliseconds
 
-        timestamp = self.timestamp
+        timestamp: int | None | Unset
+        if isinstance(self.timestamp, Unset):
+            timestamp = UNSET
+        else:
+            timestamp = self.timestamp
 
-        width = self.width
+        width: int | None | Unset
+        if isinstance(self.width, Unset):
+            width = UNSET
+        else:
+            width = self.width
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -85,13 +109,42 @@ class EdgeThumbnailJobFieldSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        height = d.pop("height", UNSET)
 
-        id = d.pop("id", UNSET)
+        def _parse_height(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        max_number = d.pop("max_number", UNSET)
+        height = _parse_height(d.pop("height", UNSET))
 
-        min_interval = d.pop("min_interval", UNSET)
+        def _parse_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_max_number(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        max_number = _parse_max_number(d.pop("max_number", UNSET))
+
+        def _parse_min_interval(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        min_interval = _parse_min_interval(d.pop("min_interval", UNSET))
 
         def _parse_time_end_milliseconds(data: object) -> int | None | Unset:
             if data is None:
@@ -115,9 +168,23 @@ class EdgeThumbnailJobFieldSchema:
             d.pop("time_start_milliseconds", UNSET)
         )
 
-        timestamp = d.pop("timestamp", UNSET)
+        def _parse_timestamp(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        width = d.pop("width", UNSET)
+        timestamp = _parse_timestamp(d.pop("timestamp", UNSET))
+
+        def _parse_width(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        width = _parse_width(d.pop("width", UNSET))
 
         edge_thumbnail_job_field_schema = cls(
             height=height,

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -16,16 +16,20 @@ T = TypeVar("T", bound="FormatDeleteArchiveSchema")
 class FormatDeleteArchiveSchema:
     """
     Attributes:
-        file_set_id (UUID | Unset):
+        file_set_id (None | Unset | UUID):
     """
 
-    file_set_id: UUID | Unset = UNSET
+    file_set_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        file_set_id: str | Unset = UNSET
-        if not isinstance(self.file_set_id, Unset):
+        file_set_id: None | str | Unset
+        if isinstance(self.file_set_id, Unset):
+            file_set_id = UNSET
+        elif isinstance(self.file_set_id, UUID):
             file_set_id = str(self.file_set_id)
+        else:
+            file_set_id = self.file_set_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -38,12 +42,23 @@ class FormatDeleteArchiveSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        _file_set_id = d.pop("file_set_id", UNSET)
-        file_set_id: UUID | Unset
-        if isinstance(_file_set_id, Unset):
-            file_set_id = UNSET
-        else:
-            file_set_id = UUID(_file_set_id)
+
+        def _parse_file_set_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                file_set_id_type_0 = UUID(data)
+
+                return file_set_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        file_set_id = _parse_file_set_id(d.pop("file_set_id", UNSET))
 
         format_delete_archive_schema = cls(
             file_set_id=file_set_id,

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -18,14 +18,14 @@ class UserSystemDomainInviteSchema:
     Attributes:
         id (UUID):
         system_domain_id (UUID):
-        is_existing_user_invitation (bool | Unset):  Default: False.
-        is_initial_user_invitation (bool | Unset):  Default: False.
+        is_existing_user_invitation (bool | None | Unset):  Default: False.
+        is_initial_user_invitation (bool | None | Unset):  Default: False.
     """
 
     id: UUID
     system_domain_id: UUID
-    is_existing_user_invitation: bool | Unset = False
-    is_initial_user_invitation: bool | Unset = False
+    is_existing_user_invitation: bool | None | Unset = False
+    is_initial_user_invitation: bool | None | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -33,9 +33,17 @@ class UserSystemDomainInviteSchema:
 
         system_domain_id = str(self.system_domain_id)
 
-        is_existing_user_invitation = self.is_existing_user_invitation
+        is_existing_user_invitation: bool | None | Unset
+        if isinstance(self.is_existing_user_invitation, Unset):
+            is_existing_user_invitation = UNSET
+        else:
+            is_existing_user_invitation = self.is_existing_user_invitation
 
-        is_initial_user_invitation = self.is_initial_user_invitation
+        is_initial_user_invitation: bool | None | Unset
+        if isinstance(self.is_initial_user_invitation, Unset):
+            is_initial_user_invitation = UNSET
+        else:
+            is_initial_user_invitation = self.is_initial_user_invitation
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -59,9 +67,27 @@ class UserSystemDomainInviteSchema:
 
         system_domain_id = UUID(d.pop("system_domain_id"))
 
-        is_existing_user_invitation = d.pop("is_existing_user_invitation", UNSET)
+        def _parse_is_existing_user_invitation(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        is_initial_user_invitation = d.pop("is_initial_user_invitation", UNSET)
+        is_existing_user_invitation = _parse_is_existing_user_invitation(
+            d.pop("is_existing_user_invitation", UNSET)
+        )
+
+        def _parse_is_initial_user_invitation(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        is_initial_user_invitation = _parse_is_initial_user_invitation(
+            d.pop("is_initial_user_invitation", UNSET)
+        )
 
         user_system_domain_invite_schema = cls(
             id=id,

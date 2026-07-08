@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -10,7 +10,9 @@ from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.file_set_elastic_schema import FileSetElasticSchema
-    from ..models.file_sets_elastic_schema_facets import FileSetsElasticSchemaFacets
+    from ..models.file_sets_elastic_schema_facets_type_0 import (
+        FileSetsElasticSchemaFacetsType0,
+    )
 
 
 T = TypeVar("T", bound="FileSetsElasticSchema")
@@ -20,61 +22,110 @@ T = TypeVar("T", bound="FileSetsElasticSchema")
 class FileSetsElasticSchema:
     """
     Attributes:
-        facets (FileSetsElasticSchemaFacets | Unset):
-        first_url (str | Unset):
-        last_url (str | Unset):
-        next_url (str | Unset):
-        objects (list[FileSetElasticSchema] | Unset):
-        page (int | Unset):
-        pages (int | Unset):
-        per_page (int | Unset):
-        prev_url (str | Unset):
-        scroll_id (str | Unset):
-        total (int | Unset):
+        facets (FileSetsElasticSchemaFacetsType0 | None | Unset):
+        first_url (None | str | Unset):
+        last_url (None | str | Unset):
+        next_url (None | str | Unset):
+        objects (list[FileSetElasticSchema] | None | Unset):
+        page (int | None | Unset):
+        pages (int | None | Unset):
+        per_page (int | None | Unset):
+        prev_url (None | str | Unset):
+        scroll_id (None | str | Unset):
+        total (int | None | Unset):
     """
 
-    facets: FileSetsElasticSchemaFacets | Unset = UNSET
-    first_url: str | Unset = UNSET
-    last_url: str | Unset = UNSET
-    next_url: str | Unset = UNSET
-    objects: list[FileSetElasticSchema] | Unset = UNSET
-    page: int | Unset = UNSET
-    pages: int | Unset = UNSET
-    per_page: int | Unset = UNSET
-    prev_url: str | Unset = UNSET
-    scroll_id: str | Unset = UNSET
-    total: int | Unset = UNSET
+    facets: FileSetsElasticSchemaFacetsType0 | None | Unset = UNSET
+    first_url: None | str | Unset = UNSET
+    last_url: None | str | Unset = UNSET
+    next_url: None | str | Unset = UNSET
+    objects: list[FileSetElasticSchema] | None | Unset = UNSET
+    page: int | None | Unset = UNSET
+    pages: int | None | Unset = UNSET
+    per_page: int | None | Unset = UNSET
+    prev_url: None | str | Unset = UNSET
+    scroll_id: None | str | Unset = UNSET
+    total: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        facets: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.facets, Unset):
+        from ..models.file_sets_elastic_schema_facets_type_0 import (
+            FileSetsElasticSchemaFacetsType0,
+        )
+
+        facets: dict[str, Any] | None | Unset
+        if isinstance(self.facets, Unset):
+            facets = UNSET
+        elif isinstance(self.facets, FileSetsElasticSchemaFacetsType0):
             facets = self.facets.to_dict()
+        else:
+            facets = self.facets
 
-        first_url = self.first_url
+        first_url: None | str | Unset
+        if isinstance(self.first_url, Unset):
+            first_url = UNSET
+        else:
+            first_url = self.first_url
 
-        last_url = self.last_url
+        last_url: None | str | Unset
+        if isinstance(self.last_url, Unset):
+            last_url = UNSET
+        else:
+            last_url = self.last_url
 
-        next_url = self.next_url
+        next_url: None | str | Unset
+        if isinstance(self.next_url, Unset):
+            next_url = UNSET
+        else:
+            next_url = self.next_url
 
-        objects: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.objects, Unset):
+        objects: list[dict[str, Any]] | None | Unset
+        if isinstance(self.objects, Unset):
+            objects = UNSET
+        elif isinstance(self.objects, list):
             objects = []
-            for objects_item_data in self.objects:
-                objects_item = objects_item_data.to_dict()
-                objects.append(objects_item)
+            for objects_type_0_item_data in self.objects:
+                objects_type_0_item = objects_type_0_item_data.to_dict()
+                objects.append(objects_type_0_item)
 
-        page = self.page
+        else:
+            objects = self.objects
 
-        pages = self.pages
+        page: int | None | Unset
+        if isinstance(self.page, Unset):
+            page = UNSET
+        else:
+            page = self.page
 
-        per_page = self.per_page
+        pages: int | None | Unset
+        if isinstance(self.pages, Unset):
+            pages = UNSET
+        else:
+            pages = self.pages
 
-        prev_url = self.prev_url
+        per_page: int | None | Unset
+        if isinstance(self.per_page, Unset):
+            per_page = UNSET
+        else:
+            per_page = self.per_page
 
-        scroll_id = self.scroll_id
+        prev_url: None | str | Unset
+        if isinstance(self.prev_url, Unset):
+            prev_url = UNSET
+        else:
+            prev_url = self.prev_url
 
-        total = self.total
+        scroll_id: None | str | Unset
+        if isinstance(self.scroll_id, Unset):
+            scroll_id = UNSET
+        else:
+            scroll_id = self.scroll_id
+
+        total: int | None | Unset
+        if isinstance(self.total, Unset):
+            total = UNSET
+        else:
+            total = self.total
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -107,42 +158,135 @@ class FileSetsElasticSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.file_set_elastic_schema import FileSetElasticSchema
-        from ..models.file_sets_elastic_schema_facets import FileSetsElasticSchemaFacets
+        from ..models.file_sets_elastic_schema_facets_type_0 import (
+            FileSetsElasticSchemaFacetsType0,
+        )
 
         d = dict(src_dict)
-        _facets = d.pop("facets", UNSET)
-        facets: FileSetsElasticSchemaFacets | Unset
-        if isinstance(_facets, Unset):
-            facets = UNSET
-        else:
-            facets = FileSetsElasticSchemaFacets.from_dict(_facets)
 
-        first_url = d.pop("first_url", UNSET)
+        def _parse_facets(
+            data: object,
+        ) -> FileSetsElasticSchemaFacetsType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                facets_type_0 = FileSetsElasticSchemaFacetsType0.from_dict(data)
 
-        last_url = d.pop("last_url", UNSET)
+                return facets_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(FileSetsElasticSchemaFacetsType0 | None | Unset, data)
 
-        next_url = d.pop("next_url", UNSET)
+        facets = _parse_facets(d.pop("facets", UNSET))
 
-        _objects = d.pop("objects", UNSET)
-        objects: list[FileSetElasticSchema] | Unset = UNSET
-        if _objects is not UNSET:
-            objects = []
-            for objects_item_data in _objects:
-                objects_item = FileSetElasticSchema.from_dict(objects_item_data)
+        def _parse_first_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-                objects.append(objects_item)
+        first_url = _parse_first_url(d.pop("first_url", UNSET))
 
-        page = d.pop("page", UNSET)
+        def _parse_last_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        pages = d.pop("pages", UNSET)
+        last_url = _parse_last_url(d.pop("last_url", UNSET))
 
-        per_page = d.pop("per_page", UNSET)
+        def _parse_next_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        prev_url = d.pop("prev_url", UNSET)
+        next_url = _parse_next_url(d.pop("next_url", UNSET))
 
-        scroll_id = d.pop("scroll_id", UNSET)
+        def _parse_objects(data: object) -> list[FileSetElasticSchema] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                objects_type_0 = []
+                _objects_type_0 = data
+                for objects_type_0_item_data in _objects_type_0:
+                    objects_type_0_item = FileSetElasticSchema.from_dict(
+                        objects_type_0_item_data
+                    )
 
-        total = d.pop("total", UNSET)
+                    objects_type_0.append(objects_type_0_item)
+
+                return objects_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[FileSetElasticSchema] | None | Unset, data)
+
+        objects = _parse_objects(d.pop("objects", UNSET))
+
+        def _parse_page(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        page = _parse_page(d.pop("page", UNSET))
+
+        def _parse_pages(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        pages = _parse_pages(d.pop("pages", UNSET))
+
+        def _parse_per_page(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        per_page = _parse_per_page(d.pop("per_page", UNSET))
+
+        def _parse_prev_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        prev_url = _parse_prev_url(d.pop("prev_url", UNSET))
+
+        def _parse_scroll_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        scroll_id = _parse_scroll_id(d.pop("scroll_id", UNSET))
+
+        def _parse_total(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        total = _parse_total(d.pop("total", UNSET))
 
         file_sets_elastic_schema = cls(
             facets=facets,

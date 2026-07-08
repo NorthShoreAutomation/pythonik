@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,18 +15,26 @@ T = TypeVar("T", bound="PostSharesByShareIdMagicLinkRequestResponse200")
 class PostSharesByShareIdMagicLinkRequestResponse200:
     """
     Attributes:
-        expires_in_minutes (int | Unset):
-        message (str | Unset):
+        expires_in_minutes (int | None | Unset):
+        message (None | str | Unset):
     """
 
-    expires_in_minutes: int | Unset = UNSET
-    message: str | Unset = UNSET
+    expires_in_minutes: int | None | Unset = UNSET
+    message: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        expires_in_minutes = self.expires_in_minutes
+        expires_in_minutes: int | None | Unset
+        if isinstance(self.expires_in_minutes, Unset):
+            expires_in_minutes = UNSET
+        else:
+            expires_in_minutes = self.expires_in_minutes
 
-        message = self.message
+        message: None | str | Unset
+        if isinstance(self.message, Unset):
+            message = UNSET
+        else:
+            message = self.message
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -41,9 +49,26 @@ class PostSharesByShareIdMagicLinkRequestResponse200:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        expires_in_minutes = d.pop("expires_in_minutes", UNSET)
 
-        message = d.pop("message", UNSET)
+        def _parse_expires_in_minutes(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        expires_in_minutes = _parse_expires_in_minutes(
+            d.pop("expires_in_minutes", UNSET)
+        )
+
+        def _parse_message(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        message = _parse_message(d.pop("message", UNSET))
 
         post_shares_by_share_id_magic_link_request_response_200 = cls(
             expires_in_minutes=expires_in_minutes,

@@ -1,15 +1,18 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.multi_select_filter_group_schema_modifier import (
-    MultiSelectFilterGroupSchemaModifier,
-)
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.multi_select_filter_group_schema_modifier_type_1 import (
+        MultiSelectFilterGroupSchemaModifierType1,
+    )
+
 
 T = TypeVar("T", bound="MultiSelectFilterGroupSchema")
 
@@ -18,22 +21,35 @@ T = TypeVar("T", bound="MultiSelectFilterGroupSchema")
 class MultiSelectFilterGroupSchema:
     """
     Attributes:
-        items (list[str] | Unset):
-        modifier (MultiSelectFilterGroupSchemaModifier | Unset):
+        items (list[str] | None | Unset):
+        modifier (MultiSelectFilterGroupSchemaModifierType1 | None | Unset):
     """
 
-    items: list[str] | Unset = UNSET
-    modifier: MultiSelectFilterGroupSchemaModifier | Unset = UNSET
+    items: list[str] | None | Unset = UNSET
+    modifier: MultiSelectFilterGroupSchemaModifierType1 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        items: list[str] | Unset = UNSET
-        if not isinstance(self.items, Unset):
+        from ..models.multi_select_filter_group_schema_modifier_type_1 import (
+            MultiSelectFilterGroupSchemaModifierType1,
+        )
+
+        items: list[str] | None | Unset
+        if isinstance(self.items, Unset):
+            items = UNSET
+        elif isinstance(self.items, list):
             items = self.items
 
-        modifier: str | Unset = UNSET
-        if not isinstance(self.modifier, Unset):
-            modifier = self.modifier.value
+        else:
+            items = self.items
+
+        modifier: dict[str, Any] | None | Unset
+        if isinstance(self.modifier, Unset):
+            modifier = UNSET
+        elif isinstance(self.modifier, MultiSelectFilterGroupSchemaModifierType1):
+            modifier = self.modifier.to_dict()
+        else:
+            modifier = self.modifier
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -47,15 +63,49 @@ class MultiSelectFilterGroupSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        d = dict(src_dict)
-        items = cast(list[str], d.pop("items", UNSET))
+        from ..models.multi_select_filter_group_schema_modifier_type_1 import (
+            MultiSelectFilterGroupSchemaModifierType1,
+        )
 
-        _modifier = d.pop("modifier", UNSET)
-        modifier: MultiSelectFilterGroupSchemaModifier | Unset
-        if isinstance(_modifier, Unset):
-            modifier = UNSET
-        else:
-            modifier = MultiSelectFilterGroupSchemaModifier(_modifier)
+        d = dict(src_dict)
+
+        def _parse_items(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                items_type_0 = cast(list[str], data)
+
+                return items_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        items = _parse_items(d.pop("items", UNSET))
+
+        def _parse_modifier(
+            data: object,
+        ) -> MultiSelectFilterGroupSchemaModifierType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                modifier_type_1 = MultiSelectFilterGroupSchemaModifierType1.from_dict(
+                    data
+                )
+
+                return modifier_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(MultiSelectFilterGroupSchemaModifierType1 | None | Unset, data)
+
+        modifier = _parse_modifier(d.pop("modifier", UNSET))
 
         multi_select_filter_group_schema = cls(
             items=items,

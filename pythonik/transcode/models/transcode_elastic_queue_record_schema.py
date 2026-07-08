@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,78 +15,146 @@ T = TypeVar("T", bound="TranscodeElasticQueueRecordSchema")
 class TranscodeElasticQueueRecordSchema:
     """
     Attributes:
-        date_created (str | Unset):
-        date_updated (str | Unset):
-        id (str | Unset):
-        job_id (str | Unset):
-        object_id (str | Unset):
-        object_type (str | Unset):
-        priority (str | Unset):
-        queue (str | Unset):
-        retry_count (str | Unset):
-        status (str | Unset):
-        storage_id (str | Unset):
-        system_domain_id (str | Unset):
-        system_domain_timestamp (str | Unset):
-        system_name (str | Unset):
-        type_ (str | Unset):
-        user_id (str | Unset):
-        version_id (str | Unset):
+        date_created (None | str | Unset):
+        date_updated (None | str | Unset):
+        id (None | str | Unset):
+        job_id (None | str | Unset):
+        object_id (None | str | Unset):
+        object_type (None | str | Unset):
+        priority (None | str | Unset):
+        queue (None | str | Unset):
+        retry_count (None | str | Unset):
+        status (None | str | Unset):
+        storage_id (None | str | Unset):
+        system_domain_id (None | str | Unset):
+        system_domain_timestamp (None | str | Unset):
+        system_name (None | str | Unset):
+        type_ (None | str | Unset):
+        user_id (None | str | Unset):
+        version_id (None | str | Unset):
     """
 
-    date_created: str | Unset = UNSET
-    date_updated: str | Unset = UNSET
-    id: str | Unset = UNSET
-    job_id: str | Unset = UNSET
-    object_id: str | Unset = UNSET
-    object_type: str | Unset = UNSET
-    priority: str | Unset = UNSET
-    queue: str | Unset = UNSET
-    retry_count: str | Unset = UNSET
-    status: str | Unset = UNSET
-    storage_id: str | Unset = UNSET
-    system_domain_id: str | Unset = UNSET
-    system_domain_timestamp: str | Unset = UNSET
-    system_name: str | Unset = UNSET
-    type_: str | Unset = UNSET
-    user_id: str | Unset = UNSET
-    version_id: str | Unset = UNSET
+    date_created: None | str | Unset = UNSET
+    date_updated: None | str | Unset = UNSET
+    id: None | str | Unset = UNSET
+    job_id: None | str | Unset = UNSET
+    object_id: None | str | Unset = UNSET
+    object_type: None | str | Unset = UNSET
+    priority: None | str | Unset = UNSET
+    queue: None | str | Unset = UNSET
+    retry_count: None | str | Unset = UNSET
+    status: None | str | Unset = UNSET
+    storage_id: None | str | Unset = UNSET
+    system_domain_id: None | str | Unset = UNSET
+    system_domain_timestamp: None | str | Unset = UNSET
+    system_name: None | str | Unset = UNSET
+    type_: None | str | Unset = UNSET
+    user_id: None | str | Unset = UNSET
+    version_id: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        date_created = self.date_created
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        else:
+            date_created = self.date_created
 
-        date_updated = self.date_updated
+        date_updated: None | str | Unset
+        if isinstance(self.date_updated, Unset):
+            date_updated = UNSET
+        else:
+            date_updated = self.date_updated
 
-        id = self.id
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        else:
+            id = self.id
 
-        job_id = self.job_id
+        job_id: None | str | Unset
+        if isinstance(self.job_id, Unset):
+            job_id = UNSET
+        else:
+            job_id = self.job_id
 
-        object_id = self.object_id
+        object_id: None | str | Unset
+        if isinstance(self.object_id, Unset):
+            object_id = UNSET
+        else:
+            object_id = self.object_id
 
-        object_type = self.object_type
+        object_type: None | str | Unset
+        if isinstance(self.object_type, Unset):
+            object_type = UNSET
+        else:
+            object_type = self.object_type
 
-        priority = self.priority
+        priority: None | str | Unset
+        if isinstance(self.priority, Unset):
+            priority = UNSET
+        else:
+            priority = self.priority
 
-        queue = self.queue
+        queue: None | str | Unset
+        if isinstance(self.queue, Unset):
+            queue = UNSET
+        else:
+            queue = self.queue
 
-        retry_count = self.retry_count
+        retry_count: None | str | Unset
+        if isinstance(self.retry_count, Unset):
+            retry_count = UNSET
+        else:
+            retry_count = self.retry_count
 
-        status = self.status
+        status: None | str | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        else:
+            status = self.status
 
-        storage_id = self.storage_id
+        storage_id: None | str | Unset
+        if isinstance(self.storage_id, Unset):
+            storage_id = UNSET
+        else:
+            storage_id = self.storage_id
 
-        system_domain_id = self.system_domain_id
+        system_domain_id: None | str | Unset
+        if isinstance(self.system_domain_id, Unset):
+            system_domain_id = UNSET
+        else:
+            system_domain_id = self.system_domain_id
 
-        system_domain_timestamp = self.system_domain_timestamp
+        system_domain_timestamp: None | str | Unset
+        if isinstance(self.system_domain_timestamp, Unset):
+            system_domain_timestamp = UNSET
+        else:
+            system_domain_timestamp = self.system_domain_timestamp
 
-        system_name = self.system_name
+        system_name: None | str | Unset
+        if isinstance(self.system_name, Unset):
+            system_name = UNSET
+        else:
+            system_name = self.system_name
 
-        type_ = self.type_
+        type_: None | str | Unset
+        if isinstance(self.type_, Unset):
+            type_ = UNSET
+        else:
+            type_ = self.type_
 
-        user_id = self.user_id
+        user_id: None | str | Unset
+        if isinstance(self.user_id, Unset):
+            user_id = UNSET
+        else:
+            user_id = self.user_id
 
-        version_id = self.version_id
+        version_id: None | str | Unset
+        if isinstance(self.version_id, Unset):
+            version_id = UNSET
+        else:
+            version_id = self.version_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -131,39 +199,161 @@ class TranscodeElasticQueueRecordSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        date_created = d.pop("date_created", UNSET)
 
-        date_updated = d.pop("date_updated", UNSET)
+        def _parse_date_created(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        id = d.pop("id", UNSET)
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
 
-        job_id = d.pop("job_id", UNSET)
+        def _parse_date_updated(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        object_id = d.pop("object_id", UNSET)
+        date_updated = _parse_date_updated(d.pop("date_updated", UNSET))
 
-        object_type = d.pop("object_type", UNSET)
+        def _parse_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        priority = d.pop("priority", UNSET)
+        id = _parse_id(d.pop("id", UNSET))
 
-        queue = d.pop("queue", UNSET)
+        def _parse_job_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        retry_count = d.pop("retry_count", UNSET)
+        job_id = _parse_job_id(d.pop("job_id", UNSET))
 
-        status = d.pop("status", UNSET)
+        def _parse_object_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        storage_id = d.pop("storage_id", UNSET)
+        object_id = _parse_object_id(d.pop("object_id", UNSET))
 
-        system_domain_id = d.pop("system_domain_id", UNSET)
+        def _parse_object_type(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        system_domain_timestamp = d.pop("system_domain_timestamp", UNSET)
+        object_type = _parse_object_type(d.pop("object_type", UNSET))
 
-        system_name = d.pop("system_name", UNSET)
+        def _parse_priority(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        type_ = d.pop("type", UNSET)
+        priority = _parse_priority(d.pop("priority", UNSET))
 
-        user_id = d.pop("user_id", UNSET)
+        def _parse_queue(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        version_id = d.pop("version_id", UNSET)
+        queue = _parse_queue(d.pop("queue", UNSET))
+
+        def _parse_retry_count(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        retry_count = _parse_retry_count(d.pop("retry_count", UNSET))
+
+        def _parse_status(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
+
+        def _parse_storage_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        storage_id = _parse_storage_id(d.pop("storage_id", UNSET))
+
+        def _parse_system_domain_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
+
+        def _parse_system_domain_timestamp(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        system_domain_timestamp = _parse_system_domain_timestamp(
+            d.pop("system_domain_timestamp", UNSET)
+        )
+
+        def _parse_system_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        system_name = _parse_system_name(d.pop("system_name", UNSET))
+
+        def _parse_type_(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        type_ = _parse_type_(d.pop("type", UNSET))
+
+        def _parse_user_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        user_id = _parse_user_id(d.pop("user_id", UNSET))
+
+        def _parse_version_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        version_id = _parse_version_id(d.pop("version_id", UNSET))
 
         transcode_elastic_queue_record_schema = cls(
             date_created=date_created,

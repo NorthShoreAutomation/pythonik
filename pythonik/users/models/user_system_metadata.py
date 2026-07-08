@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,14 +15,18 @@ T = TypeVar("T", bound="UserSystemMetadata")
 class UserSystemMetadata:
     """
     Attributes:
-        saml_created (bool | Unset):
+        saml_created (bool | None | Unset):
     """
 
-    saml_created: bool | Unset = UNSET
+    saml_created: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        saml_created = self.saml_created
+        saml_created: bool | None | Unset
+        if isinstance(self.saml_created, Unset):
+            saml_created = UNSET
+        else:
+            saml_created = self.saml_created
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -35,7 +39,15 @@ class UserSystemMetadata:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        saml_created = d.pop("saml_created", UNSET)
+
+        def _parse_saml_created(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        saml_created = _parse_saml_created(d.pop("saml_created", UNSET))
 
         user_system_metadata = cls(
             saml_created=saml_created,

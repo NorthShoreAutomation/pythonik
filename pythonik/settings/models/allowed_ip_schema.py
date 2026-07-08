@@ -17,11 +17,11 @@ class AllowedIPSchema:
     """
     Attributes:
         app_id (None | Unset | UUID):
-        ip (str | Unset):
+        ip (None | str | Unset):
     """
 
     app_id: None | Unset | UUID = UNSET
-    ip: str | Unset = UNSET
+    ip: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -33,7 +33,11 @@ class AllowedIPSchema:
         else:
             app_id = self.app_id
 
-        ip = self.ip
+        ip: None | str | Unset
+        if isinstance(self.ip, Unset):
+            ip = UNSET
+        else:
+            ip = self.ip
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -66,7 +70,14 @@ class AllowedIPSchema:
 
         app_id = _parse_app_id(d.pop("app_id", UNSET))
 
-        ip = d.pop("ip", UNSET)
+        def _parse_ip(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        ip = _parse_ip(d.pop("ip", UNSET))
 
         allowed_ip_schema = cls(
             app_id=app_id,

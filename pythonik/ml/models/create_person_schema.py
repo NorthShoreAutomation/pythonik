@@ -16,18 +16,22 @@ T = TypeVar("T", bound="CreatePersonSchema")
 class CreatePersonSchema:
     """
     Attributes:
-        main_face_id (UUID | Unset):
+        main_face_id (None | Unset | UUID):
         name (None | str | Unset):
     """
 
-    main_face_id: UUID | Unset = UNSET
+    main_face_id: None | Unset | UUID = UNSET
     name: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        main_face_id: str | Unset = UNSET
-        if not isinstance(self.main_face_id, Unset):
+        main_face_id: None | str | Unset
+        if isinstance(self.main_face_id, Unset):
+            main_face_id = UNSET
+        elif isinstance(self.main_face_id, UUID):
             main_face_id = str(self.main_face_id)
+        else:
+            main_face_id = self.main_face_id
 
         name: None | str | Unset
         if isinstance(self.name, Unset):
@@ -48,12 +52,23 @@ class CreatePersonSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        _main_face_id = d.pop("main_face_id", UNSET)
-        main_face_id: UUID | Unset
-        if isinstance(_main_face_id, Unset):
-            main_face_id = UNSET
-        else:
-            main_face_id = UUID(_main_face_id)
+
+        def _parse_main_face_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                main_face_id_type_0 = UUID(data)
+
+                return main_face_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        main_face_id = _parse_main_face_id(d.pop("main_face_id", UNSET))
 
         def _parse_name(data: object) -> None | str | Unset:
             if data is None:

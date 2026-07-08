@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 from io import BytesIO
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,16 +16,21 @@ T = TypeVar("T", bound="PostTeamsByTeamIdLogoBody")
 class PostTeamsByTeamIdLogoBody:
     """
     Attributes:
-        logo (File | Unset):
+        logo (File | None | Unset):
     """
 
-    logo: File | Unset = UNSET
+    logo: File | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        logo: FileTypes | Unset = UNSET
-        if not isinstance(self.logo, Unset):
+        logo: FileTypes | None | Unset
+        if isinstance(self.logo, Unset):
+            logo = UNSET
+        elif isinstance(self.logo, File):
             logo = self.logo.to_tuple()
+
+        else:
+            logo = self.logo
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -38,12 +43,23 @@ class PostTeamsByTeamIdLogoBody:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        _logo = d.pop("logo", UNSET)
-        logo: File | Unset
-        if isinstance(_logo, Unset):
-            logo = UNSET
-        else:
-            logo = File(payload=BytesIO(_logo))
+
+        def _parse_logo(data: object) -> File | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, bytes):
+                    raise TypeError()
+                logo_type_0 = File(payload=BytesIO(data))
+
+                return logo_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(File | None | Unset, data)
+
+        logo = _parse_logo(d.pop("logo", UNSET))
 
         post_teams_by_team_id_logo_body = cls(
             logo=logo,

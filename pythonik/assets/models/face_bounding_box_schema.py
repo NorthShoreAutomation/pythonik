@@ -21,22 +21,27 @@ class FaceBoundingBoxSchema:
     """
     Attributes:
         person_version_face_id (UUID):
-        bounding_box (list[float] | Unset):
+        bounding_box (list[float] | None | Unset):
         landmarks (list[FaceLandmark] | None | Unset):
-        timestamp_ms (int | Unset):
+        timestamp_ms (int | None | Unset):
     """
 
     person_version_face_id: UUID
-    bounding_box: list[float] | Unset = UNSET
+    bounding_box: list[float] | None | Unset = UNSET
     landmarks: list[FaceLandmark] | None | Unset = UNSET
-    timestamp_ms: int | Unset = UNSET
+    timestamp_ms: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         person_version_face_id = str(self.person_version_face_id)
 
-        bounding_box: list[float] | Unset = UNSET
-        if not isinstance(self.bounding_box, Unset):
+        bounding_box: list[float] | None | Unset
+        if isinstance(self.bounding_box, Unset):
+            bounding_box = UNSET
+        elif isinstance(self.bounding_box, list):
+            bounding_box = self.bounding_box
+
+        else:
             bounding_box = self.bounding_box
 
         landmarks: list[dict[str, Any]] | None | Unset
@@ -51,7 +56,11 @@ class FaceBoundingBoxSchema:
         else:
             landmarks = self.landmarks
 
-        timestamp_ms = self.timestamp_ms
+        timestamp_ms: int | None | Unset
+        if isinstance(self.timestamp_ms, Unset):
+            timestamp_ms = UNSET
+        else:
+            timestamp_ms = self.timestamp_ms
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -76,7 +85,22 @@ class FaceBoundingBoxSchema:
         d = dict(src_dict)
         person_version_face_id = UUID(d.pop("person_version_face_id"))
 
-        bounding_box = cast(list[float], d.pop("bounding_box", UNSET))
+        def _parse_bounding_box(data: object) -> list[float] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                bounding_box_type_0 = cast(list[float], data)
+
+                return bounding_box_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[float] | None | Unset, data)
+
+        bounding_box = _parse_bounding_box(d.pop("bounding_box", UNSET))
 
         def _parse_landmarks(data: object) -> list[FaceLandmark] | None | Unset:
             if data is None:
@@ -102,7 +126,14 @@ class FaceBoundingBoxSchema:
 
         landmarks = _parse_landmarks(d.pop("landmarks", UNSET))
 
-        timestamp_ms = d.pop("timestamp_ms", UNSET)
+        def _parse_timestamp_ms(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        timestamp_ms = _parse_timestamp_ms(d.pop("timestamp_ms", UNSET))
 
         face_bounding_box_schema = cls(
             person_version_face_id=person_version_face_id,

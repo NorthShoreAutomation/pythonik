@@ -2,14 +2,14 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.automation_search_criteria_schema_doc_types_item import (
-    AutomationSearchCriteriaSchemaDocTypesItem,
+from ..models.automation_search_criteria_schema_doc_types_type_0_item import (
+    AutomationSearchCriteriaSchemaDocTypesType0Item,
 )
 from ..types import UNSET, Unset
 
@@ -25,37 +25,54 @@ class AutomationSearchCriteriaSchema:
     """
     Attributes:
         automation_ids (list[UUID]):
-        doc_types (list[AutomationSearchCriteriaSchemaDocTypesItem] | Unset):
-        execution_time (datetime.datetime | Unset):
-        filter_ (CriteriaFilter | Unset):
+        doc_types (list[AutomationSearchCriteriaSchemaDocTypesType0Item] | None | Unset):
+        execution_time (datetime.datetime | None | Unset):
+        filter_ (CriteriaFilter | None | Unset):
     """
 
     automation_ids: list[UUID]
-    doc_types: list[AutomationSearchCriteriaSchemaDocTypesItem] | Unset = UNSET
-    execution_time: datetime.datetime | Unset = UNSET
-    filter_: CriteriaFilter | Unset = UNSET
+    doc_types: list[AutomationSearchCriteriaSchemaDocTypesType0Item] | None | Unset = (
+        UNSET
+    )
+    execution_time: datetime.datetime | None | Unset = UNSET
+    filter_: CriteriaFilter | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.criteria_filter import CriteriaFilter
+
         automation_ids = []
         for automation_ids_item_data in self.automation_ids:
             automation_ids_item = str(automation_ids_item_data)
             automation_ids.append(automation_ids_item)
 
-        doc_types: list[str] | Unset = UNSET
-        if not isinstance(self.doc_types, Unset):
+        doc_types: list[str] | None | Unset
+        if isinstance(self.doc_types, Unset):
+            doc_types = UNSET
+        elif isinstance(self.doc_types, list):
             doc_types = []
-            for doc_types_item_data in self.doc_types:
-                doc_types_item = doc_types_item_data.value
-                doc_types.append(doc_types_item)
+            for doc_types_type_0_item_data in self.doc_types:
+                doc_types_type_0_item = doc_types_type_0_item_data.value
+                doc_types.append(doc_types_type_0_item)
 
-        execution_time: str | Unset = UNSET
-        if not isinstance(self.execution_time, Unset):
+        else:
+            doc_types = self.doc_types
+
+        execution_time: None | str | Unset
+        if isinstance(self.execution_time, Unset):
+            execution_time = UNSET
+        elif isinstance(self.execution_time, datetime.datetime):
             execution_time = self.execution_time.isoformat()
+        else:
+            execution_time = self.execution_time
 
-        filter_: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.filter_, Unset):
+        filter_: dict[str, Any] | None | Unset
+        if isinstance(self.filter_, Unset):
+            filter_ = UNSET
+        elif isinstance(self.filter_, CriteriaFilter):
             filter_ = self.filter_.to_dict()
+        else:
+            filter_ = self.filter_
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -85,30 +102,70 @@ class AutomationSearchCriteriaSchema:
 
             automation_ids.append(automation_ids_item)
 
-        _doc_types = d.pop("doc_types", UNSET)
-        doc_types: list[AutomationSearchCriteriaSchemaDocTypesItem] | Unset = UNSET
-        if _doc_types is not UNSET:
-            doc_types = []
-            for doc_types_item_data in _doc_types:
-                doc_types_item = AutomationSearchCriteriaSchemaDocTypesItem(
-                    doc_types_item_data
-                )
+        def _parse_doc_types(
+            data: object,
+        ) -> list[AutomationSearchCriteriaSchemaDocTypesType0Item] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                doc_types_type_0 = []
+                _doc_types_type_0 = data
+                for doc_types_type_0_item_data in _doc_types_type_0:
+                    doc_types_type_0_item = (
+                        AutomationSearchCriteriaSchemaDocTypesType0Item(
+                            doc_types_type_0_item_data
+                        )
+                    )
 
-                doc_types.append(doc_types_item)
+                    doc_types_type_0.append(doc_types_type_0_item)
 
-        _execution_time = d.pop("execution_time", UNSET)
-        execution_time: datetime.datetime | Unset
-        if isinstance(_execution_time, Unset):
-            execution_time = UNSET
-        else:
-            execution_time = datetime.datetime.fromisoformat(_execution_time)
+                return doc_types_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(
+                list[AutomationSearchCriteriaSchemaDocTypesType0Item] | None | Unset,
+                data,
+            )
 
-        _filter_ = d.pop("filter", UNSET)
-        filter_: CriteriaFilter | Unset
-        if isinstance(_filter_, Unset):
-            filter_ = UNSET
-        else:
-            filter_ = CriteriaFilter.from_dict(_filter_)
+        doc_types = _parse_doc_types(d.pop("doc_types", UNSET))
+
+        def _parse_execution_time(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                execution_time_type_0 = datetime.datetime.fromisoformat(data)
+
+                return execution_time_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        execution_time = _parse_execution_time(d.pop("execution_time", UNSET))
+
+        def _parse_filter_(data: object) -> CriteriaFilter | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                filter_type_1 = CriteriaFilter.from_dict(data)
+
+                return filter_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(CriteriaFilter | None | Unset, data)
+
+        filter_ = _parse_filter_(d.pop("filter", UNSET))
 
         automation_search_criteria_schema = cls(
             automation_ids=automation_ids,

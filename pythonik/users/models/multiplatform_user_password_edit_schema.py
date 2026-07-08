@@ -17,13 +17,13 @@ class MultiplatformUserPasswordEditSchema:
     Attributes:
         email (str):
         password (str):
-        current_password (str | Unset):
+        current_password (None | str | Unset):
         ignore_current_password (bool | None | Unset):
     """
 
     email: str
     password: str
-    current_password: str | Unset = UNSET
+    current_password: None | str | Unset = UNSET
     ignore_current_password: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -32,7 +32,11 @@ class MultiplatformUserPasswordEditSchema:
 
         password = self.password
 
-        current_password = self.current_password
+        current_password: None | str | Unset
+        if isinstance(self.current_password, Unset):
+            current_password = UNSET
+        else:
+            current_password = self.current_password
 
         ignore_current_password: bool | None | Unset
         if isinstance(self.ignore_current_password, Unset):
@@ -62,7 +66,14 @@ class MultiplatformUserPasswordEditSchema:
 
         password = d.pop("password")
 
-        current_password = d.pop("current_password", UNSET)
+        def _parse_current_password(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        current_password = _parse_current_password(d.pop("current_password", UNSET))
 
         def _parse_ignore_current_password(data: object) -> bool | None | Unset:
             if data is None:

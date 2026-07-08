@@ -16,13 +16,13 @@ class MultiPartS3UrlPartSchema:
     """
     Attributes:
         checksum (None | str | Unset): base64-encoded md5 digest
-        part_number (int | Unset):
-        url (str | Unset):
+        part_number (int | None | Unset):
+        url (None | str | Unset):
     """
 
     checksum: None | str | Unset = UNSET
-    part_number: int | Unset = UNSET
-    url: str | Unset = UNSET
+    part_number: int | None | Unset = UNSET
+    url: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -32,9 +32,17 @@ class MultiPartS3UrlPartSchema:
         else:
             checksum = self.checksum
 
-        part_number = self.part_number
+        part_number: int | None | Unset
+        if isinstance(self.part_number, Unset):
+            part_number = UNSET
+        else:
+            part_number = self.part_number
 
-        url = self.url
+        url: None | str | Unset
+        if isinstance(self.url, Unset):
+            url = UNSET
+        else:
+            url = self.url
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -61,9 +69,23 @@ class MultiPartS3UrlPartSchema:
 
         checksum = _parse_checksum(d.pop("checksum", UNSET))
 
-        part_number = d.pop("part_number", UNSET)
+        def _parse_part_number(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        url = d.pop("url", UNSET)
+        part_number = _parse_part_number(d.pop("part_number", UNSET))
+
+        def _parse_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        url = _parse_url(d.pop("url", UNSET))
 
         multi_part_s3_url_part_schema = cls(
             checksum=checksum,

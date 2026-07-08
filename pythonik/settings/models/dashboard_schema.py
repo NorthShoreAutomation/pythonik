@@ -6,7 +6,6 @@ from typing import TYPE_CHECKING, Any, TypeVar, cast
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.dashboard_schema_view_type import DashboardSchemaViewType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -15,6 +14,7 @@ if TYPE_CHECKING:
     )
     from ..models.dashboard_comments_feed_schema import DashboardCommentsFeedSchema
     from ..models.dashboard_header_schema import DashboardHeaderSchema
+    from ..models.dashboard_schema_view_type_type_1 import DashboardSchemaViewTypeType1
     from ..models.dashboard_widget import DashboardWidget
 
 
@@ -28,15 +28,15 @@ class DashboardSchema:
         collections_tree (DashboardCollectionsTreeSchema | None | Unset):
         comments_feed (DashboardCommentsFeedSchema | None | Unset):
         header (DashboardHeaderSchema | None | Unset):
-        view_type (DashboardSchemaViewType | Unset):
-        widgets (list[DashboardWidget] | Unset):
+        view_type (DashboardSchemaViewTypeType1 | None | Unset):
+        widgets (list[DashboardWidget] | None | Unset):
     """
 
     collections_tree: DashboardCollectionsTreeSchema | None | Unset = UNSET
     comments_feed: DashboardCommentsFeedSchema | None | Unset = UNSET
     header: DashboardHeaderSchema | None | Unset = UNSET
-    view_type: DashboardSchemaViewType | Unset = UNSET
-    widgets: list[DashboardWidget] | Unset = UNSET
+    view_type: DashboardSchemaViewTypeType1 | None | Unset = UNSET
+    widgets: list[DashboardWidget] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -45,6 +45,9 @@ class DashboardSchema:
         )
         from ..models.dashboard_comments_feed_schema import DashboardCommentsFeedSchema
         from ..models.dashboard_header_schema import DashboardHeaderSchema
+        from ..models.dashboard_schema_view_type_type_1 import (
+            DashboardSchemaViewTypeType1,
+        )
 
         collections_tree: dict[str, Any] | None | Unset
         if isinstance(self.collections_tree, Unset):
@@ -70,16 +73,25 @@ class DashboardSchema:
         else:
             header = self.header
 
-        view_type: str | Unset = UNSET
-        if not isinstance(self.view_type, Unset):
-            view_type = self.view_type.value
+        view_type: dict[str, Any] | None | Unset
+        if isinstance(self.view_type, Unset):
+            view_type = UNSET
+        elif isinstance(self.view_type, DashboardSchemaViewTypeType1):
+            view_type = self.view_type.to_dict()
+        else:
+            view_type = self.view_type
 
-        widgets: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.widgets, Unset):
+        widgets: list[dict[str, Any]] | None | Unset
+        if isinstance(self.widgets, Unset):
+            widgets = UNSET
+        elif isinstance(self.widgets, list):
             widgets = []
-            for widgets_item_data in self.widgets:
-                widgets_item = widgets_item_data.to_dict()
-                widgets.append(widgets_item)
+            for widgets_type_0_item_data in self.widgets:
+                widgets_type_0_item = widgets_type_0_item_data.to_dict()
+                widgets.append(widgets_type_0_item)
+
+        else:
+            widgets = self.widgets
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -104,6 +116,9 @@ class DashboardSchema:
         )
         from ..models.dashboard_comments_feed_schema import DashboardCommentsFeedSchema
         from ..models.dashboard_header_schema import DashboardHeaderSchema
+        from ..models.dashboard_schema_view_type_type_1 import (
+            DashboardSchemaViewTypeType1,
+        )
         from ..models.dashboard_widget import DashboardWidget
 
         d = dict(src_dict)
@@ -163,21 +178,48 @@ class DashboardSchema:
 
         header = _parse_header(d.pop("header", UNSET))
 
-        _view_type = d.pop("view_type", UNSET)
-        view_type: DashboardSchemaViewType | Unset
-        if isinstance(_view_type, Unset):
-            view_type = UNSET
-        else:
-            view_type = DashboardSchemaViewType(_view_type)
+        def _parse_view_type(
+            data: object,
+        ) -> DashboardSchemaViewTypeType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                view_type_type_1 = DashboardSchemaViewTypeType1.from_dict(data)
 
-        _widgets = d.pop("widgets", UNSET)
-        widgets: list[DashboardWidget] | Unset = UNSET
-        if _widgets is not UNSET:
-            widgets = []
-            for widgets_item_data in _widgets:
-                widgets_item = DashboardWidget.from_dict(widgets_item_data)
+                return view_type_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(DashboardSchemaViewTypeType1 | None | Unset, data)
 
-                widgets.append(widgets_item)
+        view_type = _parse_view_type(d.pop("view_type", UNSET))
+
+        def _parse_widgets(data: object) -> list[DashboardWidget] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                widgets_type_0 = []
+                _widgets_type_0 = data
+                for widgets_type_0_item_data in _widgets_type_0:
+                    widgets_type_0_item = DashboardWidget.from_dict(
+                        widgets_type_0_item_data
+                    )
+
+                    widgets_type_0.append(widgets_type_0_item)
+
+                return widgets_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[DashboardWidget] | None | Unset, data)
+
+        widgets = _parse_widgets(d.pop("widgets", UNSET))
 
         dashboard_schema = cls(
             collections_tree=collections_tree,

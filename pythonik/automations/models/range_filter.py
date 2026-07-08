@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,22 +15,34 @@ T = TypeVar("T", bound="RangeFilter")
 class RangeFilter:
     """
     Attributes:
-        max_ (str | Unset):
-        min_ (str | Unset):
-        timezone (str | Unset): Format: +02:00. Results returned in UTC by default
+        max_ (None | str | Unset):
+        min_ (None | str | Unset):
+        timezone (None | str | Unset): Format: +02:00. Results returned in UTC by default
     """
 
-    max_: str | Unset = UNSET
-    min_: str | Unset = UNSET
-    timezone: str | Unset = UNSET
+    max_: None | str | Unset = UNSET
+    min_: None | str | Unset = UNSET
+    timezone: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        max_ = self.max_
+        max_: None | str | Unset
+        if isinstance(self.max_, Unset):
+            max_ = UNSET
+        else:
+            max_ = self.max_
 
-        min_ = self.min_
+        min_: None | str | Unset
+        if isinstance(self.min_, Unset):
+            min_ = UNSET
+        else:
+            min_ = self.min_
 
-        timezone = self.timezone
+        timezone: None | str | Unset
+        if isinstance(self.timezone, Unset):
+            timezone = UNSET
+        else:
+            timezone = self.timezone
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -47,11 +59,33 @@ class RangeFilter:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        max_ = d.pop("max", UNSET)
 
-        min_ = d.pop("min", UNSET)
+        def _parse_max_(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        timezone = d.pop("timezone", UNSET)
+        max_ = _parse_max_(d.pop("max", UNSET))
+
+        def _parse_min_(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        min_ = _parse_min_(d.pop("min", UNSET))
+
+        def _parse_timezone(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        timezone = _parse_timezone(d.pop("timezone", UNSET))
 
         range_filter = cls(
             max_=max_,

@@ -8,12 +8,14 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.approval_schema_status import ApprovalSchemaStatus
-from ..models.approval_schema_user_status import ApprovalSchemaUserStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.approval_by_schema import ApprovalBySchema
+    from ..models.approval_schema_status_type_1 import ApprovalSchemaStatusType1
+    from ..models.approval_schema_user_status_type_1 import (
+        ApprovalSchemaUserStatusType1,
+    )
     from ..models.user import User
 
 
@@ -25,40 +27,45 @@ class ApprovalSchema:
     """
     Attributes:
         approvals_by (list[ApprovalBySchema] | None | Unset):
-        change_date (datetime.datetime | Unset):
-        externals (list[str] | Unset):
-        groups (list[UUID] | Unset):
-        min_number (int | Unset):  Default: 1.
-        object_id (UUID | Unset):
-        object_type (str | Unset):
-        request_date (datetime.datetime | Unset):
-        requested_by (UUID | Unset):
+        change_date (datetime.datetime | None | Unset):
+        externals (list[str] | None | Unset):
+        groups (list[UUID] | None | Unset):
+        min_number (int | None | Unset):  Default: 1.
+        object_id (None | Unset | UUID):
+        object_type (None | str | Unset):
+        request_date (datetime.datetime | None | Unset):
+        requested_by (None | Unset | UUID):
         share_id (None | Unset | UUID):
-        status (ApprovalSchemaStatus | Unset):
-        user_status (ApprovalSchemaUserStatus | Unset):
-        users (list[UUID] | Unset):
-        users_info (list[User] | Unset):
-        version_id (UUID | Unset):
+        status (ApprovalSchemaStatusType1 | None | Unset):
+        user_status (ApprovalSchemaUserStatusType1 | None | Unset):
+        users (list[UUID] | None | Unset):
+        users_info (list[User] | None | Unset):
+        version_id (None | Unset | UUID):
     """
 
     approvals_by: list[ApprovalBySchema] | None | Unset = UNSET
-    change_date: datetime.datetime | Unset = UNSET
-    externals: list[str] | Unset = UNSET
-    groups: list[UUID] | Unset = UNSET
-    min_number: int | Unset = 1
-    object_id: UUID | Unset = UNSET
-    object_type: str | Unset = UNSET
-    request_date: datetime.datetime | Unset = UNSET
-    requested_by: UUID | Unset = UNSET
+    change_date: datetime.datetime | None | Unset = UNSET
+    externals: list[str] | None | Unset = UNSET
+    groups: list[UUID] | None | Unset = UNSET
+    min_number: int | None | Unset = 1
+    object_id: None | Unset | UUID = UNSET
+    object_type: None | str | Unset = UNSET
+    request_date: datetime.datetime | None | Unset = UNSET
+    requested_by: None | Unset | UUID = UNSET
     share_id: None | Unset | UUID = UNSET
-    status: ApprovalSchemaStatus | Unset = UNSET
-    user_status: ApprovalSchemaUserStatus | Unset = UNSET
-    users: list[UUID] | Unset = UNSET
-    users_info: list[User] | Unset = UNSET
-    version_id: UUID | Unset = UNSET
+    status: ApprovalSchemaStatusType1 | None | Unset = UNSET
+    user_status: ApprovalSchemaUserStatusType1 | None | Unset = UNSET
+    users: list[UUID] | None | Unset = UNSET
+    users_info: list[User] | None | Unset = UNSET
+    version_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.approval_schema_status_type_1 import ApprovalSchemaStatusType1
+        from ..models.approval_schema_user_status_type_1 import (
+            ApprovalSchemaUserStatusType1,
+        )
+
         approvals_by: list[dict[str, Any]] | None | Unset
         if isinstance(self.approvals_by, Unset):
             approvals_by = UNSET
@@ -71,36 +78,70 @@ class ApprovalSchema:
         else:
             approvals_by = self.approvals_by
 
-        change_date: str | Unset = UNSET
-        if not isinstance(self.change_date, Unset):
+        change_date: None | str | Unset
+        if isinstance(self.change_date, Unset):
+            change_date = UNSET
+        elif isinstance(self.change_date, datetime.datetime):
             change_date = self.change_date.isoformat()
+        else:
+            change_date = self.change_date
 
-        externals: list[str] | Unset = UNSET
-        if not isinstance(self.externals, Unset):
+        externals: list[str] | None | Unset
+        if isinstance(self.externals, Unset):
+            externals = UNSET
+        elif isinstance(self.externals, list):
             externals = self.externals
 
-        groups: list[str] | Unset = UNSET
-        if not isinstance(self.groups, Unset):
+        else:
+            externals = self.externals
+
+        groups: list[str] | None | Unset
+        if isinstance(self.groups, Unset):
+            groups = UNSET
+        elif isinstance(self.groups, list):
             groups = []
-            for groups_item_data in self.groups:
-                groups_item = str(groups_item_data)
-                groups.append(groups_item)
+            for groups_type_0_item_data in self.groups:
+                groups_type_0_item = str(groups_type_0_item_data)
+                groups.append(groups_type_0_item)
 
-        min_number = self.min_number
+        else:
+            groups = self.groups
 
-        object_id: str | Unset = UNSET
-        if not isinstance(self.object_id, Unset):
+        min_number: int | None | Unset
+        if isinstance(self.min_number, Unset):
+            min_number = UNSET
+        else:
+            min_number = self.min_number
+
+        object_id: None | str | Unset
+        if isinstance(self.object_id, Unset):
+            object_id = UNSET
+        elif isinstance(self.object_id, UUID):
             object_id = str(self.object_id)
+        else:
+            object_id = self.object_id
 
-        object_type = self.object_type
+        object_type: None | str | Unset
+        if isinstance(self.object_type, Unset):
+            object_type = UNSET
+        else:
+            object_type = self.object_type
 
-        request_date: str | Unset = UNSET
-        if not isinstance(self.request_date, Unset):
+        request_date: None | str | Unset
+        if isinstance(self.request_date, Unset):
+            request_date = UNSET
+        elif isinstance(self.request_date, datetime.datetime):
             request_date = self.request_date.isoformat()
+        else:
+            request_date = self.request_date
 
-        requested_by: str | Unset = UNSET
-        if not isinstance(self.requested_by, Unset):
+        requested_by: None | str | Unset
+        if isinstance(self.requested_by, Unset):
+            requested_by = UNSET
+        elif isinstance(self.requested_by, UUID):
             requested_by = str(self.requested_by)
+        else:
+            requested_by = self.requested_by
 
         share_id: None | str | Unset
         if isinstance(self.share_id, Unset):
@@ -110,31 +151,53 @@ class ApprovalSchema:
         else:
             share_id = self.share_id
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        status: dict[str, Any] | None | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        elif isinstance(self.status, ApprovalSchemaStatusType1):
+            status = self.status.to_dict()
+        else:
+            status = self.status
 
-        user_status: str | Unset = UNSET
-        if not isinstance(self.user_status, Unset):
-            user_status = self.user_status.value
+        user_status: dict[str, Any] | None | Unset
+        if isinstance(self.user_status, Unset):
+            user_status = UNSET
+        elif isinstance(self.user_status, ApprovalSchemaUserStatusType1):
+            user_status = self.user_status.to_dict()
+        else:
+            user_status = self.user_status
 
-        users: list[str] | Unset = UNSET
-        if not isinstance(self.users, Unset):
+        users: list[str] | None | Unset
+        if isinstance(self.users, Unset):
+            users = UNSET
+        elif isinstance(self.users, list):
             users = []
-            for users_item_data in self.users:
-                users_item = str(users_item_data)
-                users.append(users_item)
+            for users_type_0_item_data in self.users:
+                users_type_0_item = str(users_type_0_item_data)
+                users.append(users_type_0_item)
 
-        users_info: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.users_info, Unset):
+        else:
+            users = self.users
+
+        users_info: list[dict[str, Any]] | None | Unset
+        if isinstance(self.users_info, Unset):
+            users_info = UNSET
+        elif isinstance(self.users_info, list):
             users_info = []
-            for users_info_item_data in self.users_info:
-                users_info_item = users_info_item_data.to_dict()
-                users_info.append(users_info_item)
+            for users_info_type_0_item_data in self.users_info:
+                users_info_type_0_item = users_info_type_0_item_data.to_dict()
+                users_info.append(users_info_type_0_item)
 
-        version_id: str | Unset = UNSET
-        if not isinstance(self.version_id, Unset):
+        else:
+            users_info = self.users_info
+
+        version_id: None | str | Unset
+        if isinstance(self.version_id, Unset):
+            version_id = UNSET
+        elif isinstance(self.version_id, UUID):
             version_id = str(self.version_id)
+        else:
+            version_id = self.version_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -175,6 +238,10 @@ class ApprovalSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.approval_by_schema import ApprovalBySchema
+        from ..models.approval_schema_status_type_1 import ApprovalSchemaStatusType1
+        from ..models.approval_schema_user_status_type_1 import (
+            ApprovalSchemaUserStatusType1,
+        )
         from ..models.user import User
 
         d = dict(src_dict)
@@ -203,48 +270,130 @@ class ApprovalSchema:
 
         approvals_by = _parse_approvals_by(d.pop("approvals_by", UNSET))
 
-        _change_date = d.pop("change_date", UNSET)
-        change_date: datetime.datetime | Unset
-        if isinstance(_change_date, Unset):
-            change_date = UNSET
-        else:
-            change_date = datetime.datetime.fromisoformat(_change_date)
+        def _parse_change_date(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                change_date_type_0 = datetime.datetime.fromisoformat(data)
 
-        externals = cast(list[str], d.pop("externals", UNSET))
+                return change_date_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        _groups = d.pop("groups", UNSET)
-        groups: list[UUID] | Unset = UNSET
-        if _groups is not UNSET:
-            groups = []
-            for groups_item_data in _groups:
-                groups_item = UUID(groups_item_data)
+        change_date = _parse_change_date(d.pop("change_date", UNSET))
 
-                groups.append(groups_item)
+        def _parse_externals(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                externals_type_0 = cast(list[str], data)
 
-        min_number = d.pop("min_number", UNSET)
+                return externals_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
 
-        _object_id = d.pop("object_id", UNSET)
-        object_id: UUID | Unset
-        if isinstance(_object_id, Unset):
-            object_id = UNSET
-        else:
-            object_id = UUID(_object_id)
+        externals = _parse_externals(d.pop("externals", UNSET))
 
-        object_type = d.pop("object_type", UNSET)
+        def _parse_groups(data: object) -> list[UUID] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                groups_type_0 = []
+                _groups_type_0 = data
+                for groups_type_0_item_data in _groups_type_0:
+                    groups_type_0_item = UUID(groups_type_0_item_data)
 
-        _request_date = d.pop("request_date", UNSET)
-        request_date: datetime.datetime | Unset
-        if isinstance(_request_date, Unset):
-            request_date = UNSET
-        else:
-            request_date = datetime.datetime.fromisoformat(_request_date)
+                    groups_type_0.append(groups_type_0_item)
 
-        _requested_by = d.pop("requested_by", UNSET)
-        requested_by: UUID | Unset
-        if isinstance(_requested_by, Unset):
-            requested_by = UNSET
-        else:
-            requested_by = UUID(_requested_by)
+                return groups_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[UUID] | None | Unset, data)
+
+        groups = _parse_groups(d.pop("groups", UNSET))
+
+        def _parse_min_number(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        min_number = _parse_min_number(d.pop("min_number", UNSET))
+
+        def _parse_object_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                object_id_type_0 = UUID(data)
+
+                return object_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        object_id = _parse_object_id(d.pop("object_id", UNSET))
+
+        def _parse_object_type(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        object_type = _parse_object_type(d.pop("object_type", UNSET))
+
+        def _parse_request_date(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                request_date_type_0 = datetime.datetime.fromisoformat(data)
+
+                return request_date_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        request_date = _parse_request_date(d.pop("request_date", UNSET))
+
+        def _parse_requested_by(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                requested_by_type_0 = UUID(data)
+
+                return requested_by_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        requested_by = _parse_requested_by(d.pop("requested_by", UNSET))
 
         def _parse_share_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -263,44 +412,102 @@ class ApprovalSchema:
 
         share_id = _parse_share_id(d.pop("share_id", UNSET))
 
-        _status = d.pop("status", UNSET)
-        status: ApprovalSchemaStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = ApprovalSchemaStatus(_status)
+        def _parse_status(data: object) -> ApprovalSchemaStatusType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                status_type_1 = ApprovalSchemaStatusType1.from_dict(data)
 
-        _user_status = d.pop("user_status", UNSET)
-        user_status: ApprovalSchemaUserStatus | Unset
-        if isinstance(_user_status, Unset):
-            user_status = UNSET
-        else:
-            user_status = ApprovalSchemaUserStatus(_user_status)
+                return status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(ApprovalSchemaStatusType1 | None | Unset, data)
 
-        _users = d.pop("users", UNSET)
-        users: list[UUID] | Unset = UNSET
-        if _users is not UNSET:
-            users = []
-            for users_item_data in _users:
-                users_item = UUID(users_item_data)
+        status = _parse_status(d.pop("status", UNSET))
 
-                users.append(users_item)
+        def _parse_user_status(
+            data: object,
+        ) -> ApprovalSchemaUserStatusType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                user_status_type_1 = ApprovalSchemaUserStatusType1.from_dict(data)
 
-        _users_info = d.pop("users_info", UNSET)
-        users_info: list[User] | Unset = UNSET
-        if _users_info is not UNSET:
-            users_info = []
-            for users_info_item_data in _users_info:
-                users_info_item = User.from_dict(users_info_item_data)
+                return user_status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(ApprovalSchemaUserStatusType1 | None | Unset, data)
 
-                users_info.append(users_info_item)
+        user_status = _parse_user_status(d.pop("user_status", UNSET))
 
-        _version_id = d.pop("version_id", UNSET)
-        version_id: UUID | Unset
-        if isinstance(_version_id, Unset):
-            version_id = UNSET
-        else:
-            version_id = UUID(_version_id)
+        def _parse_users(data: object) -> list[UUID] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                users_type_0 = []
+                _users_type_0 = data
+                for users_type_0_item_data in _users_type_0:
+                    users_type_0_item = UUID(users_type_0_item_data)
+
+                    users_type_0.append(users_type_0_item)
+
+                return users_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[UUID] | None | Unset, data)
+
+        users = _parse_users(d.pop("users", UNSET))
+
+        def _parse_users_info(data: object) -> list[User] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                users_info_type_0 = []
+                _users_info_type_0 = data
+                for users_info_type_0_item_data in _users_info_type_0:
+                    users_info_type_0_item = User.from_dict(users_info_type_0_item_data)
+
+                    users_info_type_0.append(users_info_type_0_item)
+
+                return users_info_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[User] | None | Unset, data)
+
+        users_info = _parse_users_info(d.pop("users_info", UNSET))
+
+        def _parse_version_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                version_id_type_0 = UUID(data)
+
+                return version_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        version_id = _parse_version_id(d.pop("version_id", UNSET))
 
         approval_schema = cls(
             approvals_by=approvals_by,

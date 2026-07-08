@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,38 +16,62 @@ T = TypeVar("T", bound="JobStep")
 class JobStep:
     """
     Attributes:
-        date_created (datetime.datetime | Unset):
-        date_updated (datetime.datetime | Unset):
-        id (str | Unset):
-        label (str | Unset):
-        message (str | Unset):
-        status (str | Unset):
+        date_created (datetime.datetime | None | Unset):
+        date_updated (datetime.datetime | None | Unset):
+        id (None | str | Unset):
+        label (None | str | Unset):
+        message (None | str | Unset):
+        status (None | str | Unset):
     """
 
-    date_created: datetime.datetime | Unset = UNSET
-    date_updated: datetime.datetime | Unset = UNSET
-    id: str | Unset = UNSET
-    label: str | Unset = UNSET
-    message: str | Unset = UNSET
-    status: str | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_updated: datetime.datetime | None | Unset = UNSET
+    id: None | str | Unset = UNSET
+    label: None | str | Unset = UNSET
+    message: None | str | Unset = UNSET
+    status: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_updated: str | Unset = UNSET
-        if not isinstance(self.date_updated, Unset):
+        date_updated: None | str | Unset
+        if isinstance(self.date_updated, Unset):
+            date_updated = UNSET
+        elif isinstance(self.date_updated, datetime.datetime):
             date_updated = self.date_updated.isoformat()
+        else:
+            date_updated = self.date_updated
 
-        id = self.id
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        else:
+            id = self.id
 
-        label = self.label
+        label: None | str | Unset
+        if isinstance(self.label, Unset):
+            label = UNSET
+        else:
+            label = self.label
 
-        message = self.message
+        message: None | str | Unset
+        if isinstance(self.message, Unset):
+            message = UNSET
+        else:
+            message = self.message
 
-        status = self.status
+        status: None | str | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        else:
+            status = self.status
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -70,27 +94,76 @@ class JobStep:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
 
-        _date_updated = d.pop("date_updated", UNSET)
-        date_updated: datetime.datetime | Unset
-        if isinstance(_date_updated, Unset):
-            date_updated = UNSET
-        else:
-            date_updated = datetime.datetime.fromisoformat(_date_updated)
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
 
-        id = d.pop("id", UNSET)
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        label = d.pop("label", UNSET)
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
 
-        message = d.pop("message", UNSET)
+        def _parse_date_updated(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_updated_type_0 = datetime.datetime.fromisoformat(data)
 
-        status = d.pop("status", UNSET)
+                return date_updated_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_updated = _parse_date_updated(d.pop("date_updated", UNSET))
+
+        def _parse_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_label(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        label = _parse_label(d.pop("label", UNSET))
+
+        def _parse_message(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        message = _parse_message(d.pop("message", UNSET))
+
+        def _parse_status(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
 
         job_step = cls(
             date_created=date_created,

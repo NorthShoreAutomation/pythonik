@@ -2,14 +2,17 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.billing_schema_currency import BillingSchemaCurrency
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.billing_schema_currency_type_1 import BillingSchemaCurrencyType1
+
 
 T = TypeVar("T", bound="BillingSchema")
 
@@ -21,49 +24,71 @@ class BillingSchema:
         label (str):
         system_domain_id (UUID):
         value (float):
-        balance (float | Unset):
-        consumption_subtype (str | Unset):
-        consumption_type (str | Unset):
-        currency (BillingSchemaCurrency | Unset):
-        date (datetime.datetime | Unset):
+        balance (float | None | Unset):
+        consumption_subtype (None | str | Unset):
+        consumption_type (None | str | Unset):
+        currency (BillingSchemaCurrencyType1 | None | Unset):
+        date (datetime.datetime | None | Unset):
         expiration_date (datetime.datetime | None | Unset):
-        id (UUID | Unset):
+        id (None | Unset | UUID):
         price_list (None | str | Unset):
     """
 
     label: str
     system_domain_id: UUID
     value: float
-    balance: float | Unset = UNSET
-    consumption_subtype: str | Unset = UNSET
-    consumption_type: str | Unset = UNSET
-    currency: BillingSchemaCurrency | Unset = UNSET
-    date: datetime.datetime | Unset = UNSET
+    balance: float | None | Unset = UNSET
+    consumption_subtype: None | str | Unset = UNSET
+    consumption_type: None | str | Unset = UNSET
+    currency: BillingSchemaCurrencyType1 | None | Unset = UNSET
+    date: datetime.datetime | None | Unset = UNSET
     expiration_date: datetime.datetime | None | Unset = UNSET
-    id: UUID | Unset = UNSET
+    id: None | Unset | UUID = UNSET
     price_list: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.billing_schema_currency_type_1 import BillingSchemaCurrencyType1
+
         label = self.label
 
         system_domain_id = str(self.system_domain_id)
 
         value = self.value
 
-        balance = self.balance
+        balance: float | None | Unset
+        if isinstance(self.balance, Unset):
+            balance = UNSET
+        else:
+            balance = self.balance
 
-        consumption_subtype = self.consumption_subtype
+        consumption_subtype: None | str | Unset
+        if isinstance(self.consumption_subtype, Unset):
+            consumption_subtype = UNSET
+        else:
+            consumption_subtype = self.consumption_subtype
 
-        consumption_type = self.consumption_type
+        consumption_type: None | str | Unset
+        if isinstance(self.consumption_type, Unset):
+            consumption_type = UNSET
+        else:
+            consumption_type = self.consumption_type
 
-        currency: str | Unset = UNSET
-        if not isinstance(self.currency, Unset):
-            currency = self.currency.value
+        currency: dict[str, Any] | None | Unset
+        if isinstance(self.currency, Unset):
+            currency = UNSET
+        elif isinstance(self.currency, BillingSchemaCurrencyType1):
+            currency = self.currency.to_dict()
+        else:
+            currency = self.currency
 
-        date: str | Unset = UNSET
-        if not isinstance(self.date, Unset):
+        date: None | str | Unset
+        if isinstance(self.date, Unset):
+            date = UNSET
+        elif isinstance(self.date, datetime.datetime):
             date = self.date.isoformat()
+        else:
+            date = self.date
 
         expiration_date: None | str | Unset
         if isinstance(self.expiration_date, Unset):
@@ -73,9 +98,13 @@ class BillingSchema:
         else:
             expiration_date = self.expiration_date
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
         price_list: None | str | Unset
         if isinstance(self.price_list, Unset):
@@ -113,6 +142,8 @@ class BillingSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.billing_schema_currency_type_1 import BillingSchemaCurrencyType1
+
         d = dict(src_dict)
         label = d.pop("label")
 
@@ -120,25 +151,68 @@ class BillingSchema:
 
         value = d.pop("value")
 
-        balance = d.pop("balance", UNSET)
+        def _parse_balance(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
 
-        consumption_subtype = d.pop("consumption_subtype", UNSET)
+        balance = _parse_balance(d.pop("balance", UNSET))
 
-        consumption_type = d.pop("consumption_type", UNSET)
+        def _parse_consumption_subtype(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        _currency = d.pop("currency", UNSET)
-        currency: BillingSchemaCurrency | Unset
-        if isinstance(_currency, Unset):
-            currency = UNSET
-        else:
-            currency = BillingSchemaCurrency(_currency)
+        consumption_subtype = _parse_consumption_subtype(
+            d.pop("consumption_subtype", UNSET)
+        )
 
-        _date = d.pop("date", UNSET)
-        date: datetime.datetime | Unset
-        if isinstance(_date, Unset):
-            date = UNSET
-        else:
-            date = datetime.datetime.fromisoformat(_date)
+        def _parse_consumption_type(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        consumption_type = _parse_consumption_type(d.pop("consumption_type", UNSET))
+
+        def _parse_currency(data: object) -> BillingSchemaCurrencyType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                currency_type_1 = BillingSchemaCurrencyType1.from_dict(data)
+
+                return currency_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(BillingSchemaCurrencyType1 | None | Unset, data)
+
+        currency = _parse_currency(d.pop("currency", UNSET))
+
+        def _parse_date(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date = _parse_date(d.pop("date", UNSET))
 
         def _parse_expiration_date(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -157,12 +231,22 @@ class BillingSchema:
 
         expiration_date = _parse_expiration_date(d.pop("expiration_date", UNSET))
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
 
         def _parse_price_list(data: object) -> None | str | Unset:
             if data is None:

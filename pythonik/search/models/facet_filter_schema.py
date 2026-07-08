@@ -16,18 +16,23 @@ class FacetFilterSchema:
     """
     Attributes:
         name (str):
-        value_in (list[str] | Unset):
+        value_in (list[str] | None | Unset):
     """
 
     name: str
-    value_in: list[str] | Unset = UNSET
+    value_in: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
 
-        value_in: list[str] | Unset = UNSET
-        if not isinstance(self.value_in, Unset):
+        value_in: list[str] | None | Unset
+        if isinstance(self.value_in, Unset):
+            value_in = UNSET
+        elif isinstance(self.value_in, list):
+            value_in = self.value_in
+
+        else:
             value_in = self.value_in
 
         field_dict: dict[str, Any] = {}
@@ -47,7 +52,22 @@ class FacetFilterSchema:
         d = dict(src_dict)
         name = d.pop("name")
 
-        value_in = cast(list[str], d.pop("value_in", UNSET))
+        def _parse_value_in(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                value_in_type_0 = cast(list[str], data)
+
+                return value_in_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        value_in = _parse_value_in(d.pop("value_in", UNSET))
 
         facet_filter_schema = cls(
             name=name,

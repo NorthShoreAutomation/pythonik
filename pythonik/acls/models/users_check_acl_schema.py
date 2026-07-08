@@ -16,22 +16,31 @@ T = TypeVar("T", bound="UsersCheckAclSchema")
 class UsersCheckAclSchema:
     """
     Attributes:
-        group_ids (list[str] | Unset):
-        user_id (UUID | Unset):
+        group_ids (list[str] | None | Unset):
+        user_id (None | Unset | UUID):
     """
 
-    group_ids: list[str] | Unset = UNSET
-    user_id: UUID | Unset = UNSET
+    group_ids: list[str] | None | Unset = UNSET
+    user_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        group_ids: list[str] | Unset = UNSET
-        if not isinstance(self.group_ids, Unset):
+        group_ids: list[str] | None | Unset
+        if isinstance(self.group_ids, Unset):
+            group_ids = UNSET
+        elif isinstance(self.group_ids, list):
             group_ids = self.group_ids
 
-        user_id: str | Unset = UNSET
-        if not isinstance(self.user_id, Unset):
+        else:
+            group_ids = self.group_ids
+
+        user_id: None | str | Unset
+        if isinstance(self.user_id, Unset):
+            user_id = UNSET
+        elif isinstance(self.user_id, UUID):
             user_id = str(self.user_id)
+        else:
+            user_id = self.user_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -46,14 +55,40 @@ class UsersCheckAclSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        group_ids = cast(list[str], d.pop("group_ids", UNSET))
 
-        _user_id = d.pop("user_id", UNSET)
-        user_id: UUID | Unset
-        if isinstance(_user_id, Unset):
-            user_id = UNSET
-        else:
-            user_id = UUID(_user_id)
+        def _parse_group_ids(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                group_ids_type_0 = cast(list[str], data)
+
+                return group_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        group_ids = _parse_group_ids(d.pop("group_ids", UNSET))
+
+        def _parse_user_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                user_id_type_0 = UUID(data)
+
+                return user_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        user_id = _parse_user_id(d.pop("user_id", UNSET))
 
         users_check_acl_schema = cls(
             group_ids=group_ids,

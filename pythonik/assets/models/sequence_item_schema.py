@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -19,17 +19,17 @@ class SequenceItemSchema:
     Attributes:
         object_id (UUID):
         object_type (SequenceItemSchemaObjectType):
-        id (UUID | Unset):
-        position (int | Unset): Position of the item in the sequence.If not provided, the item will be appended to the
-            end of the sequence
-        version_id (UUID | Unset):
+        id (None | Unset | UUID):
+        position (int | None | Unset): Position of the item in the sequence.If not provided, the item will be appended
+            to the end of the sequence
+        version_id (None | Unset | UUID):
     """
 
     object_id: UUID
     object_type: SequenceItemSchemaObjectType
-    id: UUID | Unset = UNSET
-    position: int | Unset = UNSET
-    version_id: UUID | Unset = UNSET
+    id: None | Unset | UUID = UNSET
+    position: int | None | Unset = UNSET
+    version_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -37,15 +37,27 @@ class SequenceItemSchema:
 
         object_type = self.object_type.value
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
-        position = self.position
+        position: int | None | Unset
+        if isinstance(self.position, Unset):
+            position = UNSET
+        else:
+            position = self.position
 
-        version_id: str | Unset = UNSET
-        if not isinstance(self.version_id, Unset):
+        version_id: None | str | Unset
+        if isinstance(self.version_id, Unset):
+            version_id = UNSET
+        elif isinstance(self.version_id, UUID):
             version_id = str(self.version_id)
+        else:
+            version_id = self.version_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -71,21 +83,48 @@ class SequenceItemSchema:
 
         object_type = SequenceItemSchemaObjectType(d.pop("object_type"))
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
 
-        position = d.pop("position", UNSET)
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        _version_id = d.pop("version_id", UNSET)
-        version_id: UUID | Unset
-        if isinstance(_version_id, Unset):
-            version_id = UNSET
-        else:
-            version_id = UUID(_version_id)
+        id = _parse_id(d.pop("id", UNSET))
+
+        def _parse_position(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        position = _parse_position(d.pop("position", UNSET))
+
+        def _parse_version_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                version_id_type_0 = UUID(data)
+
+                return version_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        version_id = _parse_version_id(d.pop("version_id", UNSET))
 
         sequence_item_schema = cls(
             object_id=object_id,

@@ -23,7 +23,7 @@ class MetadataViewFieldSchema:
         auto_set (bool | None | Unset):
         hide_if_not_set (bool | None | Unset):
         label (None | str | Unset):
-        mapped_field_name (str | Unset):
+        mapped_field_name (None | str | Unset):
         options (list[FieldOptionsSchema] | None | Unset):
         read_only (bool | None | Unset):
         required (bool | None | Unset):
@@ -42,7 +42,7 @@ class MetadataViewFieldSchema:
     auto_set: bool | None | Unset = UNSET
     hide_if_not_set: bool | None | Unset = UNSET
     label: None | str | Unset = UNSET
-    mapped_field_name: str | Unset = UNSET
+    mapped_field_name: None | str | Unset = UNSET
     options: list[FieldOptionsSchema] | None | Unset = UNSET
     read_only: bool | None | Unset = UNSET
     required: bool | None | Unset = UNSET
@@ -70,7 +70,11 @@ class MetadataViewFieldSchema:
         else:
             label = self.label
 
-        mapped_field_name = self.mapped_field_name
+        mapped_field_name: None | str | Unset
+        if isinstance(self.mapped_field_name, Unset):
+            mapped_field_name = UNSET
+        else:
+            mapped_field_name = self.mapped_field_name
 
         options: list[dict[str, Any]] | None | Unset
         if isinstance(self.options, Unset):
@@ -162,7 +166,14 @@ class MetadataViewFieldSchema:
 
         label = _parse_label(d.pop("label", UNSET))
 
-        mapped_field_name = d.pop("mapped_field_name", UNSET)
+        def _parse_mapped_field_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        mapped_field_name = _parse_mapped_field_name(d.pop("mapped_field_name", UNSET))
 
         def _parse_options(data: object) -> list[FieldOptionsSchema] | None | Unset:
             if data is None:

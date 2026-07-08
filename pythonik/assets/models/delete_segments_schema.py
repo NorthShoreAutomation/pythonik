@@ -1,14 +1,19 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.delete_segments_schema_segment_type import DeleteSegmentsSchemaSegmentType
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.delete_segments_schema_segment_type_type_1 import (
+        DeleteSegmentsSchemaSegmentTypeType1,
+    )
+
 
 T = TypeVar("T", bound="DeleteSegmentsSchema")
 
@@ -17,27 +22,40 @@ T = TypeVar("T", bound="DeleteSegmentsSchema")
 class DeleteSegmentsSchema:
     """
     Attributes:
-        segment_ids (list[UUID] | Unset):
-        segment_type (DeleteSegmentsSchemaSegmentType | Unset):
+        segment_ids (list[UUID] | None | Unset):
+        segment_type (DeleteSegmentsSchemaSegmentTypeType1 | None | Unset):
         version_id (None | Unset | UUID):
     """
 
-    segment_ids: list[UUID] | Unset = UNSET
-    segment_type: DeleteSegmentsSchemaSegmentType | Unset = UNSET
+    segment_ids: list[UUID] | None | Unset = UNSET
+    segment_type: DeleteSegmentsSchemaSegmentTypeType1 | None | Unset = UNSET
     version_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        segment_ids: list[str] | Unset = UNSET
-        if not isinstance(self.segment_ids, Unset):
-            segment_ids = []
-            for segment_ids_item_data in self.segment_ids:
-                segment_ids_item = str(segment_ids_item_data)
-                segment_ids.append(segment_ids_item)
+        from ..models.delete_segments_schema_segment_type_type_1 import (
+            DeleteSegmentsSchemaSegmentTypeType1,
+        )
 
-        segment_type: str | Unset = UNSET
-        if not isinstance(self.segment_type, Unset):
-            segment_type = self.segment_type.value
+        segment_ids: list[str] | None | Unset
+        if isinstance(self.segment_ids, Unset):
+            segment_ids = UNSET
+        elif isinstance(self.segment_ids, list):
+            segment_ids = []
+            for segment_ids_type_0_item_data in self.segment_ids:
+                segment_ids_type_0_item = str(segment_ids_type_0_item_data)
+                segment_ids.append(segment_ids_type_0_item)
+
+        else:
+            segment_ids = self.segment_ids
+
+        segment_type: dict[str, Any] | None | Unset
+        if isinstance(self.segment_type, Unset):
+            segment_type = UNSET
+        elif isinstance(self.segment_type, DeleteSegmentsSchemaSegmentTypeType1):
+            segment_type = self.segment_type.to_dict()
+        else:
+            segment_type = self.segment_type
 
         version_id: None | str | Unset
         if isinstance(self.version_id, Unset):
@@ -61,22 +79,54 @@ class DeleteSegmentsSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.delete_segments_schema_segment_type_type_1 import (
+            DeleteSegmentsSchemaSegmentTypeType1,
+        )
+
         d = dict(src_dict)
-        _segment_ids = d.pop("segment_ids", UNSET)
-        segment_ids: list[UUID] | Unset = UNSET
-        if _segment_ids is not UNSET:
-            segment_ids = []
-            for segment_ids_item_data in _segment_ids:
-                segment_ids_item = UUID(segment_ids_item_data)
 
-                segment_ids.append(segment_ids_item)
+        def _parse_segment_ids(data: object) -> list[UUID] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                segment_ids_type_0 = []
+                _segment_ids_type_0 = data
+                for segment_ids_type_0_item_data in _segment_ids_type_0:
+                    segment_ids_type_0_item = UUID(segment_ids_type_0_item_data)
 
-        _segment_type = d.pop("segment_type", UNSET)
-        segment_type: DeleteSegmentsSchemaSegmentType | Unset
-        if isinstance(_segment_type, Unset):
-            segment_type = UNSET
-        else:
-            segment_type = DeleteSegmentsSchemaSegmentType(_segment_type)
+                    segment_ids_type_0.append(segment_ids_type_0_item)
+
+                return segment_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[UUID] | None | Unset, data)
+
+        segment_ids = _parse_segment_ids(d.pop("segment_ids", UNSET))
+
+        def _parse_segment_type(
+            data: object,
+        ) -> DeleteSegmentsSchemaSegmentTypeType1 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                segment_type_type_1 = DeleteSegmentsSchemaSegmentTypeType1.from_dict(
+                    data
+                )
+
+                return segment_type_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(DeleteSegmentsSchemaSegmentTypeType1 | None | Unset, data)
+
+        segment_type = _parse_segment_type(d.pop("segment_type", UNSET))
 
         def _parse_version_id(data: object) -> None | Unset | UUID:
             if data is None:

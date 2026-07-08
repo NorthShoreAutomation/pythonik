@@ -7,13 +7,13 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.request_review_action_parameters_status import (
-    RequestReviewActionParametersStatus,
-)
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.create_share_action_parameters import CreateShareActionParameters
+    from ..models.request_review_action_parameters_status_type_1 import (
+        RequestReviewActionParametersStatusType1,
+    )
 
 
 T = TypeVar("T", bound="RequestReviewActionParameters")
@@ -24,47 +24,74 @@ class RequestReviewActionParameters:
     """
     Attributes:
         share (CreateShareActionParameters):
-        externals (list[str] | Unset):
-        groups (list[UUID] | Unset):
-        min_number (int | Unset):  Default: 1.
-        status (RequestReviewActionParametersStatus | Unset):
-        users (list[UUID] | Unset):
+        externals (list[str] | None | Unset):
+        groups (list[UUID] | None | Unset):
+        min_number (int | None | Unset):  Default: 1.
+        status (None | RequestReviewActionParametersStatusType1 | Unset):
+        users (list[UUID] | None | Unset):
     """
 
     share: CreateShareActionParameters
-    externals: list[str] | Unset = UNSET
-    groups: list[UUID] | Unset = UNSET
-    min_number: int | Unset = 1
-    status: RequestReviewActionParametersStatus | Unset = UNSET
-    users: list[UUID] | Unset = UNSET
+    externals: list[str] | None | Unset = UNSET
+    groups: list[UUID] | None | Unset = UNSET
+    min_number: int | None | Unset = 1
+    status: None | RequestReviewActionParametersStatusType1 | Unset = UNSET
+    users: list[UUID] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.request_review_action_parameters_status_type_1 import (
+            RequestReviewActionParametersStatusType1,
+        )
+
         share = self.share.to_dict()
 
-        externals: list[str] | Unset = UNSET
-        if not isinstance(self.externals, Unset):
+        externals: list[str] | None | Unset
+        if isinstance(self.externals, Unset):
+            externals = UNSET
+        elif isinstance(self.externals, list):
             externals = self.externals
 
-        groups: list[str] | Unset = UNSET
-        if not isinstance(self.groups, Unset):
+        else:
+            externals = self.externals
+
+        groups: list[str] | None | Unset
+        if isinstance(self.groups, Unset):
+            groups = UNSET
+        elif isinstance(self.groups, list):
             groups = []
-            for groups_item_data in self.groups:
-                groups_item = str(groups_item_data)
-                groups.append(groups_item)
+            for groups_type_0_item_data in self.groups:
+                groups_type_0_item = str(groups_type_0_item_data)
+                groups.append(groups_type_0_item)
 
-        min_number = self.min_number
+        else:
+            groups = self.groups
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        min_number: int | None | Unset
+        if isinstance(self.min_number, Unset):
+            min_number = UNSET
+        else:
+            min_number = self.min_number
 
-        users: list[str] | Unset = UNSET
-        if not isinstance(self.users, Unset):
+        status: dict[str, Any] | None | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        elif isinstance(self.status, RequestReviewActionParametersStatusType1):
+            status = self.status.to_dict()
+        else:
+            status = self.status
+
+        users: list[str] | None | Unset
+        if isinstance(self.users, Unset):
+            users = UNSET
+        elif isinstance(self.users, list):
             users = []
-            for users_item_data in self.users:
-                users_item = str(users_item_data)
-                users.append(users_item)
+            for users_type_0_item_data in self.users:
+                users_type_0_item = str(users_type_0_item_data)
+                users.append(users_type_0_item)
+
+        else:
+            users = self.users
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -89,38 +116,101 @@ class RequestReviewActionParameters:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.create_share_action_parameters import CreateShareActionParameters
+        from ..models.request_review_action_parameters_status_type_1 import (
+            RequestReviewActionParametersStatusType1,
+        )
 
         d = dict(src_dict)
         share = CreateShareActionParameters.from_dict(d.pop("share"))
 
-        externals = cast(list[str], d.pop("externals", UNSET))
+        def _parse_externals(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                externals_type_0 = cast(list[str], data)
 
-        _groups = d.pop("groups", UNSET)
-        groups: list[UUID] | Unset = UNSET
-        if _groups is not UNSET:
-            groups = []
-            for groups_item_data in _groups:
-                groups_item = UUID(groups_item_data)
+                return externals_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
 
-                groups.append(groups_item)
+        externals = _parse_externals(d.pop("externals", UNSET))
 
-        min_number = d.pop("min_number", UNSET)
+        def _parse_groups(data: object) -> list[UUID] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                groups_type_0 = []
+                _groups_type_0 = data
+                for groups_type_0_item_data in _groups_type_0:
+                    groups_type_0_item = UUID(groups_type_0_item_data)
 
-        _status = d.pop("status", UNSET)
-        status: RequestReviewActionParametersStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = RequestReviewActionParametersStatus(_status)
+                    groups_type_0.append(groups_type_0_item)
 
-        _users = d.pop("users", UNSET)
-        users: list[UUID] | Unset = UNSET
-        if _users is not UNSET:
-            users = []
-            for users_item_data in _users:
-                users_item = UUID(users_item_data)
+                return groups_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[UUID] | None | Unset, data)
 
-                users.append(users_item)
+        groups = _parse_groups(d.pop("groups", UNSET))
+
+        def _parse_min_number(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        min_number = _parse_min_number(d.pop("min_number", UNSET))
+
+        def _parse_status(
+            data: object,
+        ) -> None | RequestReviewActionParametersStatusType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                status_type_1 = RequestReviewActionParametersStatusType1.from_dict(data)
+
+                return status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | RequestReviewActionParametersStatusType1 | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
+
+        def _parse_users(data: object) -> list[UUID] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                users_type_0 = []
+                _users_type_0 = data
+                for users_type_0_item_data in _users_type_0:
+                    users_type_0_item = UUID(users_type_0_item_data)
+
+                    users_type_0.append(users_type_0_item)
+
+                return users_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[UUID] | None | Unset, data)
+
+        users = _parse_users(d.pop("users", UNSET))
 
         request_review_action_parameters = cls(
             share=share,

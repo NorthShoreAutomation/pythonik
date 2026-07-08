@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,12 +17,12 @@ class MetadataFieldMappingSchema:
     Attributes:
         mapped_field_name (str):
         name (str):
-        field_type (str | Unset):
+        field_type (None | str | Unset):
     """
 
     mapped_field_name: str
     name: str
-    field_type: str | Unset = UNSET
+    field_type: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -30,7 +30,11 @@ class MetadataFieldMappingSchema:
 
         name = self.name
 
-        field_type = self.field_type
+        field_type: None | str | Unset
+        if isinstance(self.field_type, Unset):
+            field_type = UNSET
+        else:
+            field_type = self.field_type
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -52,7 +56,14 @@ class MetadataFieldMappingSchema:
 
         name = d.pop("name")
 
-        field_type = d.pop("field_type", UNSET)
+        def _parse_field_type(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        field_type = _parse_field_type(d.pop("field_type", UNSET))
 
         metadata_field_mapping_schema = cls(
             mapped_field_name=mapped_field_name,

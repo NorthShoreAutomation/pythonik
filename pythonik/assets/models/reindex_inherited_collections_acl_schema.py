@@ -17,13 +17,13 @@ class ReindexInheritedCollectionsACLSchema:
     """
     Attributes:
         collection_ids (list[UUID] | None):
-        content (bool | Unset):  Default: True.
-        recursive (bool | Unset):  Default: True.
+        content (bool | None | Unset):  Default: True.
+        recursive (bool | None | Unset):  Default: True.
     """
 
     collection_ids: list[UUID] | None
-    content: bool | Unset = True
-    recursive: bool | Unset = True
+    content: bool | None | Unset = True
+    recursive: bool | None | Unset = True
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -37,9 +37,17 @@ class ReindexInheritedCollectionsACLSchema:
         else:
             collection_ids = self.collection_ids
 
-        content = self.content
+        content: bool | None | Unset
+        if isinstance(self.content, Unset):
+            content = UNSET
+        else:
+            content = self.content
 
-        recursive = self.recursive
+        recursive: bool | None | Unset
+        if isinstance(self.recursive, Unset):
+            recursive = UNSET
+        else:
+            recursive = self.recursive
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -79,9 +87,23 @@ class ReindexInheritedCollectionsACLSchema:
 
         collection_ids = _parse_collection_ids(d.pop("collection_ids"))
 
-        content = d.pop("content", UNSET)
+        def _parse_content(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        recursive = d.pop("recursive", UNSET)
+        content = _parse_content(d.pop("content", UNSET))
+
+        def _parse_recursive(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        recursive = _parse_recursive(d.pop("recursive", UNSET))
 
         reindex_inherited_collections_acl_schema = cls(
             collection_ids=collection_ids,

@@ -20,36 +20,59 @@ class CriteriaTerm:
     """
     Attributes:
         name (str):
-        exists (bool | Unset):
-        missing (bool | Unset):
-        range_ (CriteriaRangeFilter | Unset):
-        value (str | Unset):
-        value_in (list[str] | Unset):
+        exists (bool | None | Unset):
+        missing (bool | None | Unset):
+        range_ (CriteriaRangeFilter | None | Unset):
+        value (None | str | Unset):
+        value_in (list[str] | None | Unset):
     """
 
     name: str
-    exists: bool | Unset = UNSET
-    missing: bool | Unset = UNSET
-    range_: CriteriaRangeFilter | Unset = UNSET
-    value: str | Unset = UNSET
-    value_in: list[str] | Unset = UNSET
+    exists: bool | None | Unset = UNSET
+    missing: bool | None | Unset = UNSET
+    range_: CriteriaRangeFilter | None | Unset = UNSET
+    value: None | str | Unset = UNSET
+    value_in: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.criteria_range_filter import CriteriaRangeFilter
+
         name = self.name
 
-        exists = self.exists
+        exists: bool | None | Unset
+        if isinstance(self.exists, Unset):
+            exists = UNSET
+        else:
+            exists = self.exists
 
-        missing = self.missing
+        missing: bool | None | Unset
+        if isinstance(self.missing, Unset):
+            missing = UNSET
+        else:
+            missing = self.missing
 
-        range_: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.range_, Unset):
+        range_: dict[str, Any] | None | Unset
+        if isinstance(self.range_, Unset):
+            range_ = UNSET
+        elif isinstance(self.range_, CriteriaRangeFilter):
             range_ = self.range_.to_dict()
+        else:
+            range_ = self.range_
 
-        value = self.value
+        value: None | str | Unset
+        if isinstance(self.value, Unset):
+            value = UNSET
+        else:
+            value = self.value
 
-        value_in: list[str] | Unset = UNSET
-        if not isinstance(self.value_in, Unset):
+        value_in: list[str] | None | Unset
+        if isinstance(self.value_in, Unset):
+            value_in = UNSET
+        elif isinstance(self.value_in, list):
+            value_in = self.value_in
+
+        else:
             value_in = self.value_in
 
         field_dict: dict[str, Any] = {}
@@ -79,20 +102,66 @@ class CriteriaTerm:
         d = dict(src_dict)
         name = d.pop("name")
 
-        exists = d.pop("exists", UNSET)
+        def _parse_exists(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        missing = d.pop("missing", UNSET)
+        exists = _parse_exists(d.pop("exists", UNSET))
 
-        _range_ = d.pop("range", UNSET)
-        range_: CriteriaRangeFilter | Unset
-        if isinstance(_range_, Unset):
-            range_ = UNSET
-        else:
-            range_ = CriteriaRangeFilter.from_dict(_range_)
+        def _parse_missing(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        value = d.pop("value", UNSET)
+        missing = _parse_missing(d.pop("missing", UNSET))
 
-        value_in = cast(list[str], d.pop("value_in", UNSET))
+        def _parse_range_(data: object) -> CriteriaRangeFilter | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                range_type_1 = CriteriaRangeFilter.from_dict(data)
+
+                return range_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(CriteriaRangeFilter | None | Unset, data)
+
+        range_ = _parse_range_(d.pop("range", UNSET))
+
+        def _parse_value(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        value = _parse_value(d.pop("value", UNSET))
+
+        def _parse_value_in(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                value_in_type_0 = cast(list[str], data)
+
+                return value_in_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        value_in = _parse_value_in(d.pop("value_in", UNSET))
 
         criteria_term = cls(
             name=name,

@@ -8,12 +8,14 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.system_notification_schema_status import SystemNotificationSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.system_notification_schema_context import (
-        SystemNotificationSchemaContext,
+    from ..models.system_notification_schema_context_type_0 import (
+        SystemNotificationSchemaContextType0,
+    )
+    from ..models.system_notification_schema_status_type_1 import (
+        SystemNotificationSchemaStatusType1,
     )
 
 
@@ -31,18 +33,18 @@ class SystemNotificationSchema:
         recipient_id (UUID):
         sender_id (UUID):
         system_domain_id (UUID):
-        context (SystemNotificationSchemaContext | Unset):
-        date_created (datetime.datetime | Unset):
-        date_modified (datetime.datetime | Unset):
+        context (None | SystemNotificationSchemaContextType0 | Unset):
+        date_created (datetime.datetime | None | Unset):
+        date_modified (datetime.datetime | None | Unset):
         exclude_users (list[UUID] | None | Unset):
-        id (UUID | Unset):
+        id (None | Unset | UUID):
         object_id (None | Unset | UUID):
-        share_id (UUID | Unset):
-        share_user_id (UUID | Unset):
-        status (SystemNotificationSchemaStatus | Unset):
-        sub_object_id (UUID | Unset):
-        sub_object_type (str | Unset):
-        user_id (UUID | Unset):
+        share_id (None | Unset | UUID):
+        share_user_id (None | Unset | UUID):
+        status (None | SystemNotificationSchemaStatusType1 | Unset):
+        sub_object_id (None | Unset | UUID):
+        sub_object_type (None | str | Unset):
+        user_id (None | Unset | UUID):
     """
 
     event_type: str
@@ -52,21 +54,28 @@ class SystemNotificationSchema:
     recipient_id: UUID
     sender_id: UUID
     system_domain_id: UUID
-    context: SystemNotificationSchemaContext | Unset = UNSET
-    date_created: datetime.datetime | Unset = UNSET
-    date_modified: datetime.datetime | Unset = UNSET
+    context: None | SystemNotificationSchemaContextType0 | Unset = UNSET
+    date_created: datetime.datetime | None | Unset = UNSET
+    date_modified: datetime.datetime | None | Unset = UNSET
     exclude_users: list[UUID] | None | Unset = UNSET
-    id: UUID | Unset = UNSET
+    id: None | Unset | UUID = UNSET
     object_id: None | Unset | UUID = UNSET
-    share_id: UUID | Unset = UNSET
-    share_user_id: UUID | Unset = UNSET
-    status: SystemNotificationSchemaStatus | Unset = UNSET
-    sub_object_id: UUID | Unset = UNSET
-    sub_object_type: str | Unset = UNSET
-    user_id: UUID | Unset = UNSET
+    share_id: None | Unset | UUID = UNSET
+    share_user_id: None | Unset | UUID = UNSET
+    status: None | SystemNotificationSchemaStatusType1 | Unset = UNSET
+    sub_object_id: None | Unset | UUID = UNSET
+    sub_object_type: None | str | Unset = UNSET
+    user_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.system_notification_schema_context_type_0 import (
+            SystemNotificationSchemaContextType0,
+        )
+        from ..models.system_notification_schema_status_type_1 import (
+            SystemNotificationSchemaStatusType1,
+        )
+
         event_type = self.event_type
 
         message_long = self.message_long
@@ -81,17 +90,29 @@ class SystemNotificationSchema:
 
         system_domain_id = str(self.system_domain_id)
 
-        context: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.context, Unset):
+        context: dict[str, Any] | None | Unset
+        if isinstance(self.context, Unset):
+            context = UNSET
+        elif isinstance(self.context, SystemNotificationSchemaContextType0):
             context = self.context.to_dict()
+        else:
+            context = self.context
 
-        date_created: str | Unset = UNSET
-        if not isinstance(self.date_created, Unset):
+        date_created: None | str | Unset
+        if isinstance(self.date_created, Unset):
+            date_created = UNSET
+        elif isinstance(self.date_created, datetime.datetime):
             date_created = self.date_created.isoformat()
+        else:
+            date_created = self.date_created
 
-        date_modified: str | Unset = UNSET
-        if not isinstance(self.date_modified, Unset):
+        date_modified: None | str | Unset
+        if isinstance(self.date_modified, Unset):
+            date_modified = UNSET
+        elif isinstance(self.date_modified, datetime.datetime):
             date_modified = self.date_modified.isoformat()
+        else:
+            date_modified = self.date_modified
 
         exclude_users: list[str] | None | Unset
         if isinstance(self.exclude_users, Unset):
@@ -105,9 +126,13 @@ class SystemNotificationSchema:
         else:
             exclude_users = self.exclude_users
 
-        id: str | Unset = UNSET
-        if not isinstance(self.id, Unset):
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
+        elif isinstance(self.id, UUID):
             id = str(self.id)
+        else:
+            id = self.id
 
         object_id: None | str | Unset
         if isinstance(self.object_id, Unset):
@@ -117,27 +142,51 @@ class SystemNotificationSchema:
         else:
             object_id = self.object_id
 
-        share_id: str | Unset = UNSET
-        if not isinstance(self.share_id, Unset):
+        share_id: None | str | Unset
+        if isinstance(self.share_id, Unset):
+            share_id = UNSET
+        elif isinstance(self.share_id, UUID):
             share_id = str(self.share_id)
+        else:
+            share_id = self.share_id
 
-        share_user_id: str | Unset = UNSET
-        if not isinstance(self.share_user_id, Unset):
+        share_user_id: None | str | Unset
+        if isinstance(self.share_user_id, Unset):
+            share_user_id = UNSET
+        elif isinstance(self.share_user_id, UUID):
             share_user_id = str(self.share_user_id)
+        else:
+            share_user_id = self.share_user_id
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        status: dict[str, Any] | None | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        elif isinstance(self.status, SystemNotificationSchemaStatusType1):
+            status = self.status.to_dict()
+        else:
+            status = self.status
 
-        sub_object_id: str | Unset = UNSET
-        if not isinstance(self.sub_object_id, Unset):
+        sub_object_id: None | str | Unset
+        if isinstance(self.sub_object_id, Unset):
+            sub_object_id = UNSET
+        elif isinstance(self.sub_object_id, UUID):
             sub_object_id = str(self.sub_object_id)
+        else:
+            sub_object_id = self.sub_object_id
 
-        sub_object_type = self.sub_object_type
+        sub_object_type: None | str | Unset
+        if isinstance(self.sub_object_type, Unset):
+            sub_object_type = UNSET
+        else:
+            sub_object_type = self.sub_object_type
 
-        user_id: str | Unset = UNSET
-        if not isinstance(self.user_id, Unset):
+        user_id: None | str | Unset
+        if isinstance(self.user_id, Unset):
+            user_id = UNSET
+        elif isinstance(self.user_id, UUID):
             user_id = str(self.user_id)
+        else:
+            user_id = self.user_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -181,8 +230,11 @@ class SystemNotificationSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.system_notification_schema_context import (
-            SystemNotificationSchemaContext,
+        from ..models.system_notification_schema_context_type_0 import (
+            SystemNotificationSchemaContextType0,
+        )
+        from ..models.system_notification_schema_status_type_1 import (
+            SystemNotificationSchemaStatusType1,
         )
 
         d = dict(src_dict)
@@ -200,26 +252,58 @@ class SystemNotificationSchema:
 
         system_domain_id = UUID(d.pop("system_domain_id"))
 
-        _context = d.pop("context", UNSET)
-        context: SystemNotificationSchemaContext | Unset
-        if isinstance(_context, Unset):
-            context = UNSET
-        else:
-            context = SystemNotificationSchemaContext.from_dict(_context)
+        def _parse_context(
+            data: object,
+        ) -> None | SystemNotificationSchemaContextType0 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                context_type_0 = SystemNotificationSchemaContextType0.from_dict(data)
 
-        _date_created = d.pop("date_created", UNSET)
-        date_created: datetime.datetime | Unset
-        if isinstance(_date_created, Unset):
-            date_created = UNSET
-        else:
-            date_created = datetime.datetime.fromisoformat(_date_created)
+                return context_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | SystemNotificationSchemaContextType0 | Unset, data)
 
-        _date_modified = d.pop("date_modified", UNSET)
-        date_modified: datetime.datetime | Unset
-        if isinstance(_date_modified, Unset):
-            date_modified = UNSET
-        else:
-            date_modified = datetime.datetime.fromisoformat(_date_modified)
+        context = _parse_context(d.pop("context", UNSET))
+
+        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_created_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_created_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_created = _parse_date_created(d.pop("date_created", UNSET))
+
+        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                date_modified_type_0 = datetime.datetime.fromisoformat(data)
+
+                return date_modified_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
 
         def _parse_exclude_users(data: object) -> list[UUID] | None | Unset:
             if data is None:
@@ -243,12 +327,22 @@ class SystemNotificationSchema:
 
         exclude_users = _parse_exclude_users(d.pop("exclude_users", UNSET))
 
-        _id = d.pop("id", UNSET)
-        id: UUID | Unset
-        if isinstance(_id, Unset):
-            id = UNSET
-        else:
-            id = UUID(_id)
+        def _parse_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                id_type_0 = UUID(data)
+
+                return id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        id = _parse_id(d.pop("id", UNSET))
 
         def _parse_object_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -267,42 +361,101 @@ class SystemNotificationSchema:
 
         object_id = _parse_object_id(d.pop("object_id", UNSET))
 
-        _share_id = d.pop("share_id", UNSET)
-        share_id: UUID | Unset
-        if isinstance(_share_id, Unset):
-            share_id = UNSET
-        else:
-            share_id = UUID(_share_id)
+        def _parse_share_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                share_id_type_0 = UUID(data)
 
-        _share_user_id = d.pop("share_user_id", UNSET)
-        share_user_id: UUID | Unset
-        if isinstance(_share_user_id, Unset):
-            share_user_id = UNSET
-        else:
-            share_user_id = UUID(_share_user_id)
+                return share_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        _status = d.pop("status", UNSET)
-        status: SystemNotificationSchemaStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = SystemNotificationSchemaStatus(_status)
+        share_id = _parse_share_id(d.pop("share_id", UNSET))
 
-        _sub_object_id = d.pop("sub_object_id", UNSET)
-        sub_object_id: UUID | Unset
-        if isinstance(_sub_object_id, Unset):
-            sub_object_id = UNSET
-        else:
-            sub_object_id = UUID(_sub_object_id)
+        def _parse_share_user_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                share_user_id_type_0 = UUID(data)
 
-        sub_object_type = d.pop("sub_object_type", UNSET)
+                return share_user_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
 
-        _user_id = d.pop("user_id", UNSET)
-        user_id: UUID | Unset
-        if isinstance(_user_id, Unset):
-            user_id = UNSET
-        else:
-            user_id = UUID(_user_id)
+        share_user_id = _parse_share_user_id(d.pop("share_user_id", UNSET))
+
+        def _parse_status(
+            data: object,
+        ) -> None | SystemNotificationSchemaStatusType1 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                status_type_1 = SystemNotificationSchemaStatusType1.from_dict(data)
+
+                return status_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | SystemNotificationSchemaStatusType1 | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
+
+        def _parse_sub_object_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                sub_object_id_type_0 = UUID(data)
+
+                return sub_object_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        sub_object_id = _parse_sub_object_id(d.pop("sub_object_id", UNSET))
+
+        def _parse_sub_object_type(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        sub_object_type = _parse_sub_object_type(d.pop("sub_object_type", UNSET))
+
+        def _parse_user_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                user_id_type_0 = UUID(data)
+
+                return user_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        user_id = _parse_user_id(d.pop("user_id", UNSET))
 
         system_notification_schema = cls(
             event_type=event_type,

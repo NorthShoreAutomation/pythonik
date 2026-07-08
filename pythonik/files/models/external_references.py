@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,25 +16,37 @@ class ExternalReferences:
     """
     Attributes:
         uri (str):
-        action (str | Unset):
-        display_name (str | Unset):
-        icon (str | Unset):
+        action (None | str | Unset):
+        display_name (None | str | Unset):
+        icon (None | str | Unset):
     """
 
     uri: str
-    action: str | Unset = UNSET
-    display_name: str | Unset = UNSET
-    icon: str | Unset = UNSET
+    action: None | str | Unset = UNSET
+    display_name: None | str | Unset = UNSET
+    icon: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         uri = self.uri
 
-        action = self.action
+        action: None | str | Unset
+        if isinstance(self.action, Unset):
+            action = UNSET
+        else:
+            action = self.action
 
-        display_name = self.display_name
+        display_name: None | str | Unset
+        if isinstance(self.display_name, Unset):
+            display_name = UNSET
+        else:
+            display_name = self.display_name
 
-        icon = self.icon
+        icon: None | str | Unset
+        if isinstance(self.icon, Unset):
+            icon = UNSET
+        else:
+            icon = self.icon
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -57,11 +69,32 @@ class ExternalReferences:
         d = dict(src_dict)
         uri = d.pop("uri")
 
-        action = d.pop("action", UNSET)
+        def _parse_action(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        display_name = d.pop("display_name", UNSET)
+        action = _parse_action(d.pop("action", UNSET))
 
-        icon = d.pop("icon", UNSET)
+        def _parse_display_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        display_name = _parse_display_name(d.pop("display_name", UNSET))
+
+        def _parse_icon(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        icon = _parse_icon(d.pop("icon", UNSET))
 
         external_references = cls(
             uri=uri,

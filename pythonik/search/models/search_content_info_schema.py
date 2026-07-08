@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -19,39 +19,64 @@ T = TypeVar("T", bound="SearchContentInfoSchema")
 class SearchContentInfoSchema:
     """
     Attributes:
-        assets_count (int | Unset):
-        collections_count (int | Unset):
-        storage_info (list[StorageContentInfo] | Unset):
-        title (str | Unset):
-        total_duration_milliseconds (int | Unset):
-        total_size (int | Unset):
+        assets_count (int | None | Unset):
+        collections_count (int | None | Unset):
+        storage_info (list[StorageContentInfo] | None | Unset):
+        title (None | str | Unset):
+        total_duration_milliseconds (int | None | Unset):
+        total_size (int | None | Unset):
     """
 
-    assets_count: int | Unset = UNSET
-    collections_count: int | Unset = UNSET
-    storage_info: list[StorageContentInfo] | Unset = UNSET
-    title: str | Unset = UNSET
-    total_duration_milliseconds: int | Unset = UNSET
-    total_size: int | Unset = UNSET
+    assets_count: int | None | Unset = UNSET
+    collections_count: int | None | Unset = UNSET
+    storage_info: list[StorageContentInfo] | None | Unset = UNSET
+    title: None | str | Unset = UNSET
+    total_duration_milliseconds: int | None | Unset = UNSET
+    total_size: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        assets_count = self.assets_count
+        assets_count: int | None | Unset
+        if isinstance(self.assets_count, Unset):
+            assets_count = UNSET
+        else:
+            assets_count = self.assets_count
 
-        collections_count = self.collections_count
+        collections_count: int | None | Unset
+        if isinstance(self.collections_count, Unset):
+            collections_count = UNSET
+        else:
+            collections_count = self.collections_count
 
-        storage_info: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.storage_info, Unset):
+        storage_info: list[dict[str, Any]] | None | Unset
+        if isinstance(self.storage_info, Unset):
+            storage_info = UNSET
+        elif isinstance(self.storage_info, list):
             storage_info = []
-            for storage_info_item_data in self.storage_info:
-                storage_info_item = storage_info_item_data.to_dict()
-                storage_info.append(storage_info_item)
+            for storage_info_type_0_item_data in self.storage_info:
+                storage_info_type_0_item = storage_info_type_0_item_data.to_dict()
+                storage_info.append(storage_info_type_0_item)
 
-        title = self.title
+        else:
+            storage_info = self.storage_info
 
-        total_duration_milliseconds = self.total_duration_milliseconds
+        title: None | str | Unset
+        if isinstance(self.title, Unset):
+            title = UNSET
+        else:
+            title = self.title
 
-        total_size = self.total_size
+        total_duration_milliseconds: int | None | Unset
+        if isinstance(self.total_duration_milliseconds, Unset):
+            total_duration_milliseconds = UNSET
+        else:
+            total_duration_milliseconds = self.total_duration_milliseconds
+
+        total_size: int | None | Unset
+        if isinstance(self.total_size, Unset):
+            total_size = UNSET
+        else:
+            total_size = self.total_size
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -76,24 +101,79 @@ class SearchContentInfoSchema:
         from ..models.storage_content_info import StorageContentInfo
 
         d = dict(src_dict)
-        assets_count = d.pop("assets_count", UNSET)
 
-        collections_count = d.pop("collections_count", UNSET)
+        def _parse_assets_count(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        _storage_info = d.pop("storage_info", UNSET)
-        storage_info: list[StorageContentInfo] | Unset = UNSET
-        if _storage_info is not UNSET:
-            storage_info = []
-            for storage_info_item_data in _storage_info:
-                storage_info_item = StorageContentInfo.from_dict(storage_info_item_data)
+        assets_count = _parse_assets_count(d.pop("assets_count", UNSET))
 
-                storage_info.append(storage_info_item)
+        def _parse_collections_count(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
 
-        title = d.pop("title", UNSET)
+        collections_count = _parse_collections_count(d.pop("collections_count", UNSET))
 
-        total_duration_milliseconds = d.pop("total_duration_milliseconds", UNSET)
+        def _parse_storage_info(
+            data: object,
+        ) -> list[StorageContentInfo] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                storage_info_type_0 = []
+                _storage_info_type_0 = data
+                for storage_info_type_0_item_data in _storage_info_type_0:
+                    storage_info_type_0_item = StorageContentInfo.from_dict(
+                        storage_info_type_0_item_data
+                    )
 
-        total_size = d.pop("total_size", UNSET)
+                    storage_info_type_0.append(storage_info_type_0_item)
+
+                return storage_info_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[StorageContentInfo] | None | Unset, data)
+
+        storage_info = _parse_storage_info(d.pop("storage_info", UNSET))
+
+        def _parse_title(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        title = _parse_title(d.pop("title", UNSET))
+
+        def _parse_total_duration_milliseconds(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        total_duration_milliseconds = _parse_total_duration_milliseconds(
+            d.pop("total_duration_milliseconds", UNSET)
+        )
+
+        def _parse_total_size(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        total_size = _parse_total_size(d.pop("total_size", UNSET))
 
         search_content_info_schema = cls(
             assets_count=assets_count,

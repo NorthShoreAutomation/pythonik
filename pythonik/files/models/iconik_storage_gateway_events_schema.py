@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -21,19 +21,24 @@ T = TypeVar("T", bound="IconikStorageGatewayEventsSchema")
 class IconikStorageGatewayEventsSchema:
     """
     Attributes:
-        objects (list[IconikStorageGatewayEventSchema] | Unset):
+        objects (list[IconikStorageGatewayEventSchema] | None | Unset):
     """
 
-    objects: list[IconikStorageGatewayEventSchema] | Unset = UNSET
+    objects: list[IconikStorageGatewayEventSchema] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        objects: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.objects, Unset):
+        objects: list[dict[str, Any]] | None | Unset
+        if isinstance(self.objects, Unset):
+            objects = UNSET
+        elif isinstance(self.objects, list):
             objects = []
-            for objects_item_data in self.objects:
-                objects_item = objects_item_data.to_dict()
-                objects.append(objects_item)
+            for objects_type_0_item_data in self.objects:
+                objects_type_0_item = objects_type_0_item_data.to_dict()
+                objects.append(objects_type_0_item)
+
+        else:
+            objects = self.objects
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -50,16 +55,32 @@ class IconikStorageGatewayEventsSchema:
         )
 
         d = dict(src_dict)
-        _objects = d.pop("objects", UNSET)
-        objects: list[IconikStorageGatewayEventSchema] | Unset = UNSET
-        if _objects is not UNSET:
-            objects = []
-            for objects_item_data in _objects:
-                objects_item = IconikStorageGatewayEventSchema.from_dict(
-                    objects_item_data
-                )
 
-                objects.append(objects_item)
+        def _parse_objects(
+            data: object,
+        ) -> list[IconikStorageGatewayEventSchema] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                objects_type_0 = []
+                _objects_type_0 = data
+                for objects_type_0_item_data in _objects_type_0:
+                    objects_type_0_item = IconikStorageGatewayEventSchema.from_dict(
+                        objects_type_0_item_data
+                    )
+
+                    objects_type_0.append(objects_type_0_item)
+
+                return objects_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[IconikStorageGatewayEventSchema] | None | Unset, data)
+
+        objects = _parse_objects(d.pop("objects", UNSET))
 
         iconik_storage_gateway_events_schema = cls(
             objects=objects,

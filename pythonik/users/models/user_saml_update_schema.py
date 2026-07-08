@@ -17,33 +17,50 @@ class UserSamlUpdateSchema:
     """
     Attributes:
         email (str):
-        first_name (str | Unset):
-        group_names (list[str] | Unset):
-        identity_provider_id (UUID | Unset):
-        last_name (str | Unset):
+        first_name (None | str | Unset):
+        group_names (list[str] | None | Unset):
+        identity_provider_id (None | Unset | UUID):
+        last_name (None | str | Unset):
     """
 
     email: str
-    first_name: str | Unset = UNSET
-    group_names: list[str] | Unset = UNSET
-    identity_provider_id: UUID | Unset = UNSET
-    last_name: str | Unset = UNSET
+    first_name: None | str | Unset = UNSET
+    group_names: list[str] | None | Unset = UNSET
+    identity_provider_id: None | Unset | UUID = UNSET
+    last_name: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         email = self.email
 
-        first_name = self.first_name
+        first_name: None | str | Unset
+        if isinstance(self.first_name, Unset):
+            first_name = UNSET
+        else:
+            first_name = self.first_name
 
-        group_names: list[str] | Unset = UNSET
-        if not isinstance(self.group_names, Unset):
+        group_names: list[str] | None | Unset
+        if isinstance(self.group_names, Unset):
+            group_names = UNSET
+        elif isinstance(self.group_names, list):
             group_names = self.group_names
 
-        identity_provider_id: str | Unset = UNSET
-        if not isinstance(self.identity_provider_id, Unset):
-            identity_provider_id = str(self.identity_provider_id)
+        else:
+            group_names = self.group_names
 
-        last_name = self.last_name
+        identity_provider_id: None | str | Unset
+        if isinstance(self.identity_provider_id, Unset):
+            identity_provider_id = UNSET
+        elif isinstance(self.identity_provider_id, UUID):
+            identity_provider_id = str(self.identity_provider_id)
+        else:
+            identity_provider_id = self.identity_provider_id
+
+        last_name: None | str | Unset
+        if isinstance(self.last_name, Unset):
+            last_name = UNSET
+        else:
+            last_name = self.last_name
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -68,18 +85,59 @@ class UserSamlUpdateSchema:
         d = dict(src_dict)
         email = d.pop("email")
 
-        first_name = d.pop("first_name", UNSET)
+        def _parse_first_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        group_names = cast(list[str], d.pop("group_names", UNSET))
+        first_name = _parse_first_name(d.pop("first_name", UNSET))
 
-        _identity_provider_id = d.pop("identity_provider_id", UNSET)
-        identity_provider_id: UUID | Unset
-        if isinstance(_identity_provider_id, Unset):
-            identity_provider_id = UNSET
-        else:
-            identity_provider_id = UUID(_identity_provider_id)
+        def _parse_group_names(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                group_names_type_0 = cast(list[str], data)
 
-        last_name = d.pop("last_name", UNSET)
+                return group_names_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        group_names = _parse_group_names(d.pop("group_names", UNSET))
+
+        def _parse_identity_provider_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                identity_provider_id_type_0 = UUID(data)
+
+                return identity_provider_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        identity_provider_id = _parse_identity_provider_id(
+            d.pop("identity_provider_id", UNSET)
+        )
+
+        def _parse_last_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        last_name = _parse_last_name(d.pop("last_name", UNSET))
 
         user_saml_update_schema = cls(
             email=email,

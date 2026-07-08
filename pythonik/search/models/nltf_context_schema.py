@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -19,16 +19,22 @@ T = TypeVar("T", bound="NltfContextSchema")
 class NltfContextSchema:
     """
     Attributes:
-        displayed_filters (NltfDisplayedFilters | Unset):
+        displayed_filters (NltfDisplayedFilters | None | Unset):
     """
 
-    displayed_filters: NltfDisplayedFilters | Unset = UNSET
+    displayed_filters: NltfDisplayedFilters | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        displayed_filters: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.displayed_filters, Unset):
+        from ..models.nltf_displayed_filters import NltfDisplayedFilters
+
+        displayed_filters: dict[str, Any] | None | Unset
+        if isinstance(self.displayed_filters, Unset):
+            displayed_filters = UNSET
+        elif isinstance(self.displayed_filters, NltfDisplayedFilters):
             displayed_filters = self.displayed_filters.to_dict()
+        else:
+            displayed_filters = self.displayed_filters
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -43,12 +49,25 @@ class NltfContextSchema:
         from ..models.nltf_displayed_filters import NltfDisplayedFilters
 
         d = dict(src_dict)
-        _displayed_filters = d.pop("displayed_filters", UNSET)
-        displayed_filters: NltfDisplayedFilters | Unset
-        if isinstance(_displayed_filters, Unset):
-            displayed_filters = UNSET
-        else:
-            displayed_filters = NltfDisplayedFilters.from_dict(_displayed_filters)
+
+        def _parse_displayed_filters(
+            data: object,
+        ) -> NltfDisplayedFilters | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                displayed_filters_type_1 = NltfDisplayedFilters.from_dict(data)
+
+                return displayed_filters_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(NltfDisplayedFilters | None | Unset, data)
+
+        displayed_filters = _parse_displayed_filters(d.pop("displayed_filters", UNSET))
 
         nltf_context_schema = cls(
             displayed_filters=displayed_filters,

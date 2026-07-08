@@ -9,7 +9,7 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.collection_usages_elastic_schema import CollectionUsagesElasticSchema
+    from ..models.collection_usage_schema import CollectionUsageSchema
 
 
 T = TypeVar("T", bound="CollectionUsagesSchema")
@@ -22,7 +22,7 @@ class CollectionUsagesSchema:
         first_url (None | str | Unset):
         last_url (None | str | Unset):
         next_url (None | str | Unset):
-        objects (list[CollectionUsagesElasticSchema] | None | Unset):
+        objects (list[CollectionUsageSchema] | None | Unset):
         page (int | None | Unset):
         pages (int | None | Unset):
         per_page (int | None | Unset):
@@ -33,7 +33,7 @@ class CollectionUsagesSchema:
     first_url: None | str | Unset = UNSET
     last_url: None | str | Unset = UNSET
     next_url: None | str | Unset = UNSET
-    objects: list[CollectionUsagesElasticSchema] | None | Unset = UNSET
+    objects: list[CollectionUsageSchema] | None | Unset = UNSET
     page: int | None | Unset = UNSET
     pages: int | None | Unset = UNSET
     per_page: int | None | Unset = UNSET
@@ -128,9 +128,7 @@ class CollectionUsagesSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.collection_usages_elastic_schema import (
-            CollectionUsagesElasticSchema,
-        )
+        from ..models.collection_usage_schema import CollectionUsageSchema
 
         d = dict(src_dict)
 
@@ -161,9 +159,7 @@ class CollectionUsagesSchema:
 
         next_url = _parse_next_url(d.pop("next_url", UNSET))
 
-        def _parse_objects(
-            data: object,
-        ) -> list[CollectionUsagesElasticSchema] | None | Unset:
+        def _parse_objects(data: object) -> list[CollectionUsageSchema] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -174,7 +170,7 @@ class CollectionUsagesSchema:
                 objects_type_0 = []
                 _objects_type_0 = data
                 for objects_type_0_item_data in _objects_type_0:
-                    objects_type_0_item = CollectionUsagesElasticSchema.from_dict(
+                    objects_type_0_item = CollectionUsageSchema.from_dict(
                         objects_type_0_item_data
                     )
 
@@ -183,7 +179,7 @@ class CollectionUsagesSchema:
                 return objects_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(list[CollectionUsagesElasticSchema] | None | Unset, data)
+            return cast(list[CollectionUsageSchema] | None | Unset, data)
 
         objects = _parse_objects(d.pop("objects", UNSET))
 

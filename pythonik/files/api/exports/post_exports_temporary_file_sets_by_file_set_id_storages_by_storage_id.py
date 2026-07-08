@@ -8,11 +8,8 @@ from ...client import AuthenticatedClient, Client
 from ...models.complete_export_to_local_storage_schema import (
     CompleteExportToLocalStorageSchema,
 )
-from ...models.post_exports_temporary_file_sets_by_file_set_id_storages_by_storage_id_response_default_type_0 import (
-    PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType0,
-)
-from ...models.post_exports_temporary_file_sets_by_file_set_id_storages_by_storage_id_response_default_type_1 import (
-    PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType1,
+from ...models.post_exports_temporary_file_sets_by_file_set_id_storages_by_storage_id_response_default import (
+    PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefault,
 )
 from ...types import Response
 
@@ -43,11 +40,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType0
-    | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType1
-):
+) -> Any | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -68,31 +61,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType0
-        | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -100,9 +71,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType0
-    | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType1
+    Any | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -119,9 +88,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: CompleteExportToLocalStorageSchema,
 ) -> Response[
-    Any
-    | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType0
-    | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType1
+    Any | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefault
 ]:
     """Queue export job completion between local storages
 
@@ -140,7 +107,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType0 | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType1]
+        Response[Any | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -164,8 +131,7 @@ def sync(
     body: CompleteExportToLocalStorageSchema,
 ) -> (
     Any
-    | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType0
-    | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType1
+    | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefault
     | None
 ):
     """Queue export job completion between local storages
@@ -185,7 +151,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType0 | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType1
+        Any | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefault
     """
 
     return sync_detailed(
@@ -203,9 +169,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: CompleteExportToLocalStorageSchema,
 ) -> Response[
-    Any
-    | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType0
-    | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType1
+    Any | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefault
 ]:
     """Queue export job completion between local storages
 
@@ -224,7 +188,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType0 | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType1]
+        Response[Any | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -246,8 +210,7 @@ async def asyncio(
     body: CompleteExportToLocalStorageSchema,
 ) -> (
     Any
-    | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType0
-    | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType1
+    | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefault
     | None
 ):
     """Queue export job completion between local storages
@@ -267,7 +230,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType0 | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType1
+        Any | PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefault
     """
 
     return (

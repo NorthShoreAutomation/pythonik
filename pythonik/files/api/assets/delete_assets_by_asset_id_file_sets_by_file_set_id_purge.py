@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_assets_by_asset_id_file_sets_by_file_set_id_purge_response_default_type_0 import (
-    DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType0,
-)
-from ...models.delete_assets_by_asset_id_file_sets_by_file_set_id_purge_response_default_type_1 import (
-    DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType1,
+from ...models.delete_assets_by_asset_id_file_sets_by_file_set_id_purge_response_default import (
+    DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefault,
 )
 from ...types import Response
 
@@ -32,11 +29,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType0
-    | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType1
-):
+) -> Any | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -53,44 +46,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType0
-        | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType0
-    | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -104,11 +71,7 @@ def sync_detailed(
     file_set_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType0
-    | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefault]:
     """Purge deleted asset's file set, file entries, and actual files.
 
 
@@ -124,7 +87,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType0 | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType1]
+        Response[Any | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -144,12 +107,7 @@ def sync(
     file_set_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType0
-    | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefault | None:
     """Purge deleted asset's file set, file entries, and actual files.
 
 
@@ -165,7 +123,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType0 | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType1
+        Any | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefault
     """
 
     return sync_detailed(
@@ -180,11 +138,7 @@ async def asyncio_detailed(
     file_set_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType0
-    | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefault]:
     """Purge deleted asset's file set, file entries, and actual files.
 
 
@@ -200,7 +154,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType0 | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType1]
+        Response[Any | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -218,12 +172,7 @@ async def asyncio(
     file_set_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType0
-    | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefault | None:
     """Purge deleted asset's file set, file entries, and actual files.
 
 
@@ -239,7 +188,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType0 | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType1
+        Any | DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefault
     """
 
     return (

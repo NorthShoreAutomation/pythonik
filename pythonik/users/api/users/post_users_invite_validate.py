@@ -7,11 +7,8 @@ from ...client import AuthenticatedClient, Client
 from ...models.post_users_invite_validate_response_200 import (
     PostUsersInviteValidateResponse200,
 )
-from ...models.post_users_invite_validate_response_default_type_0 import (
-    PostUsersInviteValidateResponseDefaultType0,
-)
-from ...models.post_users_invite_validate_response_default_type_1 import (
-    PostUsersInviteValidateResponseDefaultType1,
+from ...models.post_users_invite_validate_response_default import (
+    PostUsersInviteValidateResponseDefault,
 )
 from ...types import UNSET, Response
 
@@ -38,12 +35,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostUsersInviteValidateResponse200
-    | PostUsersInviteValidateResponseDefaultType0
-    | PostUsersInviteValidateResponseDefaultType1
-):
+) -> Any | PostUsersInviteValidateResponse200 | PostUsersInviteValidateResponseDefault:
     if response.status_code == 200:
         response_200 = PostUsersInviteValidateResponse200.from_dict(response.json())
 
@@ -53,31 +45,7 @@ def _parse_response(
         response_400 = cast(Any, None)
         return response_400
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostUsersInviteValidateResponseDefaultType0
-        | PostUsersInviteValidateResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostUsersInviteValidateResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostUsersInviteValidateResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostUsersInviteValidateResponseDefault.from_dict(response.json())
 
     return response_default
 
@@ -85,10 +53,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | PostUsersInviteValidateResponse200
-    | PostUsersInviteValidateResponseDefaultType0
-    | PostUsersInviteValidateResponseDefaultType1
+    Any | PostUsersInviteValidateResponse200 | PostUsersInviteValidateResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -103,10 +68,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     hash_: str,
 ) -> Response[
-    Any
-    | PostUsersInviteValidateResponse200
-    | PostUsersInviteValidateResponseDefaultType0
-    | PostUsersInviteValidateResponseDefaultType1
+    Any | PostUsersInviteValidateResponse200 | PostUsersInviteValidateResponseDefault
 ]:
     """Validate an invite link for user invitation.
 
@@ -118,7 +80,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostUsersInviteValidateResponse200 | PostUsersInviteValidateResponseDefaultType0 | PostUsersInviteValidateResponseDefaultType1]
+        Response[Any | PostUsersInviteValidateResponse200 | PostUsersInviteValidateResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -139,8 +101,7 @@ def sync(
 ) -> (
     Any
     | PostUsersInviteValidateResponse200
-    | PostUsersInviteValidateResponseDefaultType0
-    | PostUsersInviteValidateResponseDefaultType1
+    | PostUsersInviteValidateResponseDefault
     | None
 ):
     """Validate an invite link for user invitation.
@@ -153,7 +114,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostUsersInviteValidateResponse200 | PostUsersInviteValidateResponseDefaultType0 | PostUsersInviteValidateResponseDefaultType1
+        Any | PostUsersInviteValidateResponse200 | PostUsersInviteValidateResponseDefault
     """
 
     return sync_detailed(
@@ -167,10 +128,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     hash_: str,
 ) -> Response[
-    Any
-    | PostUsersInviteValidateResponse200
-    | PostUsersInviteValidateResponseDefaultType0
-    | PostUsersInviteValidateResponseDefaultType1
+    Any | PostUsersInviteValidateResponse200 | PostUsersInviteValidateResponseDefault
 ]:
     """Validate an invite link for user invitation.
 
@@ -182,7 +140,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostUsersInviteValidateResponse200 | PostUsersInviteValidateResponseDefaultType0 | PostUsersInviteValidateResponseDefaultType1]
+        Response[Any | PostUsersInviteValidateResponse200 | PostUsersInviteValidateResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -201,8 +159,7 @@ async def asyncio(
 ) -> (
     Any
     | PostUsersInviteValidateResponse200
-    | PostUsersInviteValidateResponseDefaultType0
-    | PostUsersInviteValidateResponseDefaultType1
+    | PostUsersInviteValidateResponseDefault
     | None
 ):
     """Validate an invite link for user invitation.
@@ -215,7 +172,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostUsersInviteValidateResponse200 | PostUsersInviteValidateResponseDefaultType0 | PostUsersInviteValidateResponseDefaultType1
+        Any | PostUsersInviteValidateResponse200 | PostUsersInviteValidateResponseDefault
     """
 
     return (

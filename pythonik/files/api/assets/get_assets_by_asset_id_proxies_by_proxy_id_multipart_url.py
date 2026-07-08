@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_assets_by_asset_id_proxies_by_proxy_id_multipart_url_response_default_type_0 import (
-    GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType0,
-)
-from ...models.get_assets_by_asset_id_proxies_by_proxy_id_multipart_url_response_default_type_1 import (
-    GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType1,
+from ...models.get_assets_by_asset_id_proxies_by_proxy_id_multipart_url_response_default import (
+    GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefault,
 )
 from ...models.multi_part_ur_ls_schema import MultiPartURLsSchema
 from ...types import UNSET, Response, Unset
@@ -50,8 +47,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType0
-    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType1
+    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefault
     | MultiPartURLsSchema
 ):
     if response.status_code == 200:
@@ -67,31 +63,11 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType0
-        | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -100,8 +76,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType0
-    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType1
+    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefault
     | MultiPartURLsSchema
 ]:
     return Response(
@@ -122,8 +97,7 @@ def sync_detailed(
     max_part_number: int | Unset = UNSET,
 ) -> Response[
     Any
-    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType0
-    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType1
+    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefault
     | MultiPartURLsSchema
 ]:
     """Get presigned urls for S3 multipart upload.
@@ -144,7 +118,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType0 | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType1 | MultiPartURLsSchema]
+        Response[Any | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefault | MultiPartURLsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -172,8 +146,7 @@ def sync(
     max_part_number: int | Unset = UNSET,
 ) -> (
     Any
-    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType0
-    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType1
+    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefault
     | MultiPartURLsSchema
     | None
 ):
@@ -195,7 +168,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType0 | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType1 | MultiPartURLsSchema
+        Any | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefault | MultiPartURLsSchema
     """
 
     return sync_detailed(
@@ -218,8 +191,7 @@ async def asyncio_detailed(
     max_part_number: int | Unset = UNSET,
 ) -> Response[
     Any
-    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType0
-    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType1
+    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefault
     | MultiPartURLsSchema
 ]:
     """Get presigned urls for S3 multipart upload.
@@ -240,7 +212,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType0 | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType1 | MultiPartURLsSchema]
+        Response[Any | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefault | MultiPartURLsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -266,8 +238,7 @@ async def asyncio(
     max_part_number: int | Unset = UNSET,
 ) -> (
     Any
-    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType0
-    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType1
+    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefault
     | MultiPartURLsSchema
     | None
 ):
@@ -289,7 +260,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType0 | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType1 | MultiPartURLsSchema
+        Any | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefault | MultiPartURLsSchema
     """
 
     return (

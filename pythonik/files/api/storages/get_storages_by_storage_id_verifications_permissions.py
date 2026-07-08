@@ -8,11 +8,8 @@ from ...client import AuthenticatedClient, Client
 from ...models.get_storages_by_storage_id_verifications_permissions_response_200 import (
     GetStoragesByStorageIdVerificationsPermissionsResponse200,
 )
-from ...models.get_storages_by_storage_id_verifications_permissions_response_default_type_0 import (
-    GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType0,
-)
-from ...models.get_storages_by_storage_id_verifications_permissions_response_default_type_1 import (
-    GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType1,
+from ...models.get_storages_by_storage_id_verifications_permissions_response_default import (
+    GetStoragesByStorageIdVerificationsPermissionsResponseDefault,
 )
 from ...types import Response
 
@@ -36,8 +33,7 @@ def _parse_response(
 ) -> (
     Any
     | GetStoragesByStorageIdVerificationsPermissionsResponse200
-    | GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType0
-    | GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType1
+    | GetStoragesByStorageIdVerificationsPermissionsResponseDefault
 ):
     if response.status_code == 200:
         response_200 = (
@@ -60,31 +56,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType0
-        | GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        GetStoragesByStorageIdVerificationsPermissionsResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -94,8 +70,7 @@ def _build_response(
 ) -> Response[
     Any
     | GetStoragesByStorageIdVerificationsPermissionsResponse200
-    | GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType0
-    | GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType1
+    | GetStoragesByStorageIdVerificationsPermissionsResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -112,8 +87,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | GetStoragesByStorageIdVerificationsPermissionsResponse200
-    | GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType0
-    | GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType1
+    | GetStoragesByStorageIdVerificationsPermissionsResponseDefault
 ]:
     """Verify storage permissions
 
@@ -129,7 +103,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetStoragesByStorageIdVerificationsPermissionsResponse200 | GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType0 | GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType1]
+        Response[Any | GetStoragesByStorageIdVerificationsPermissionsResponse200 | GetStoragesByStorageIdVerificationsPermissionsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -150,8 +124,7 @@ def sync(
 ) -> (
     Any
     | GetStoragesByStorageIdVerificationsPermissionsResponse200
-    | GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType0
-    | GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType1
+    | GetStoragesByStorageIdVerificationsPermissionsResponseDefault
     | None
 ):
     """Verify storage permissions
@@ -168,7 +141,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetStoragesByStorageIdVerificationsPermissionsResponse200 | GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType0 | GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType1
+        Any | GetStoragesByStorageIdVerificationsPermissionsResponse200 | GetStoragesByStorageIdVerificationsPermissionsResponseDefault
     """
 
     return sync_detailed(
@@ -184,8 +157,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | GetStoragesByStorageIdVerificationsPermissionsResponse200
-    | GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType0
-    | GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType1
+    | GetStoragesByStorageIdVerificationsPermissionsResponseDefault
 ]:
     """Verify storage permissions
 
@@ -201,7 +173,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetStoragesByStorageIdVerificationsPermissionsResponse200 | GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType0 | GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType1]
+        Response[Any | GetStoragesByStorageIdVerificationsPermissionsResponse200 | GetStoragesByStorageIdVerificationsPermissionsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -220,8 +192,7 @@ async def asyncio(
 ) -> (
     Any
     | GetStoragesByStorageIdVerificationsPermissionsResponse200
-    | GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType0
-    | GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType1
+    | GetStoragesByStorageIdVerificationsPermissionsResponseDefault
     | None
 ):
     """Verify storage permissions
@@ -238,7 +209,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetStoragesByStorageIdVerificationsPermissionsResponse200 | GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType0 | GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType1
+        Any | GetStoragesByStorageIdVerificationsPermissionsResponse200 | GetStoragesByStorageIdVerificationsPermissionsResponseDefault
     """
 
     return (

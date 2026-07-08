@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_face_recognition_embeddings_reindex_response_default_type_0 import (
-    PostFaceRecognitionEmbeddingsReindexResponseDefaultType0,
-)
-from ...models.post_face_recognition_embeddings_reindex_response_default_type_1 import (
-    PostFaceRecognitionEmbeddingsReindexResponseDefaultType1,
+from ...models.post_face_recognition_embeddings_reindex_response_default import (
+    PostFaceRecognitionEmbeddingsReindexResponseDefault,
 )
 from ...models.reindex_all_embeddings_schema import ReindexAllEmbeddingsSchema
 from ...types import UNSET, Response, Unset
@@ -36,11 +33,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostFaceRecognitionEmbeddingsReindexResponseDefaultType0
-    | PostFaceRecognitionEmbeddingsReindexResponseDefaultType1
-):
+) -> Any | PostFaceRecognitionEmbeddingsReindexResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -49,42 +42,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostFaceRecognitionEmbeddingsReindexResponseDefaultType0
-        | PostFaceRecognitionEmbeddingsReindexResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostFaceRecognitionEmbeddingsReindexResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostFaceRecognitionEmbeddingsReindexResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostFaceRecognitionEmbeddingsReindexResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostFaceRecognitionEmbeddingsReindexResponseDefaultType0
-    | PostFaceRecognitionEmbeddingsReindexResponseDefaultType1
-]:
+) -> Response[Any | PostFaceRecognitionEmbeddingsReindexResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -97,11 +64,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexAllEmbeddingsSchema | Unset = UNSET,
-) -> Response[
-    Any
-    | PostFaceRecognitionEmbeddingsReindexResponseDefaultType0
-    | PostFaceRecognitionEmbeddingsReindexResponseDefaultType1
-]:
+) -> Response[Any | PostFaceRecognitionEmbeddingsReindexResponseDefault]:
     """Trigger reindexing of all embeddings
 
 
@@ -116,7 +79,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostFaceRecognitionEmbeddingsReindexResponseDefaultType0 | PostFaceRecognitionEmbeddingsReindexResponseDefaultType1]
+        Response[Any | PostFaceRecognitionEmbeddingsReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -134,12 +97,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexAllEmbeddingsSchema | Unset = UNSET,
-) -> (
-    Any
-    | PostFaceRecognitionEmbeddingsReindexResponseDefaultType0
-    | PostFaceRecognitionEmbeddingsReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostFaceRecognitionEmbeddingsReindexResponseDefault | None:
     """Trigger reindexing of all embeddings
 
 
@@ -154,7 +112,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostFaceRecognitionEmbeddingsReindexResponseDefaultType0 | PostFaceRecognitionEmbeddingsReindexResponseDefaultType1
+        Any | PostFaceRecognitionEmbeddingsReindexResponseDefault
     """
 
     return sync_detailed(
@@ -167,11 +125,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexAllEmbeddingsSchema | Unset = UNSET,
-) -> Response[
-    Any
-    | PostFaceRecognitionEmbeddingsReindexResponseDefaultType0
-    | PostFaceRecognitionEmbeddingsReindexResponseDefaultType1
-]:
+) -> Response[Any | PostFaceRecognitionEmbeddingsReindexResponseDefault]:
     """Trigger reindexing of all embeddings
 
 
@@ -186,7 +140,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostFaceRecognitionEmbeddingsReindexResponseDefaultType0 | PostFaceRecognitionEmbeddingsReindexResponseDefaultType1]
+        Response[Any | PostFaceRecognitionEmbeddingsReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -202,12 +156,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexAllEmbeddingsSchema | Unset = UNSET,
-) -> (
-    Any
-    | PostFaceRecognitionEmbeddingsReindexResponseDefaultType0
-    | PostFaceRecognitionEmbeddingsReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostFaceRecognitionEmbeddingsReindexResponseDefault | None:
     """Trigger reindexing of all embeddings
 
 
@@ -222,7 +171,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostFaceRecognitionEmbeddingsReindexResponseDefaultType0 | PostFaceRecognitionEmbeddingsReindexResponseDefaultType1
+        Any | PostFaceRecognitionEmbeddingsReindexResponseDefault
     """
 
     return (

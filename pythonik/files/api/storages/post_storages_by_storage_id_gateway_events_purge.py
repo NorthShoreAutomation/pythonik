@@ -8,11 +8,8 @@ from ...client import AuthenticatedClient, Client
 from ...models.iconik_storage_gateway_events_purge_schema import (
     IconikStorageGatewayEventsPurgeSchema,
 )
-from ...models.post_storages_by_storage_id_gateway_events_purge_response_default_type_0 import (
-    PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType0,
-)
-from ...models.post_storages_by_storage_id_gateway_events_purge_response_default_type_1 import (
-    PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType1,
+from ...models.post_storages_by_storage_id_gateway_events_purge_response_default import (
+    PostStoragesByStorageIdGatewayEventsPurgeResponseDefault,
 )
 from ...types import Response
 
@@ -41,11 +38,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType0
-    | PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType1
-):
+) -> Any | PostStoragesByStorageIdGatewayEventsPurgeResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -58,46 +51,18 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType0
-        | PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PostStoragesByStorageIdGatewayEventsPurgeResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType0
-    | PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType1
-]:
+) -> Response[Any | PostStoragesByStorageIdGatewayEventsPurgeResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -111,11 +76,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: IconikStorageGatewayEventsPurgeSchema,
-) -> Response[
-    Any
-    | PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType0
-    | PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType1
-]:
+) -> Response[Any | PostStoragesByStorageIdGatewayEventsPurgeResponseDefault]:
     """Delete storage gateway events in bulk
 
     Args:
@@ -127,7 +88,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType0 | PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType1]
+        Response[Any | PostStoragesByStorageIdGatewayEventsPurgeResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -147,12 +108,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: IconikStorageGatewayEventsPurgeSchema,
-) -> (
-    Any
-    | PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType0
-    | PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType1
-    | None
-):
+) -> Any | PostStoragesByStorageIdGatewayEventsPurgeResponseDefault | None:
     """Delete storage gateway events in bulk
 
     Args:
@@ -164,7 +120,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType0 | PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType1
+        Any | PostStoragesByStorageIdGatewayEventsPurgeResponseDefault
     """
 
     return sync_detailed(
@@ -179,11 +135,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: IconikStorageGatewayEventsPurgeSchema,
-) -> Response[
-    Any
-    | PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType0
-    | PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType1
-]:
+) -> Response[Any | PostStoragesByStorageIdGatewayEventsPurgeResponseDefault]:
     """Delete storage gateway events in bulk
 
     Args:
@@ -195,7 +147,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType0 | PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType1]
+        Response[Any | PostStoragesByStorageIdGatewayEventsPurgeResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -213,12 +165,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: IconikStorageGatewayEventsPurgeSchema,
-) -> (
-    Any
-    | PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType0
-    | PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType1
-    | None
-):
+) -> Any | PostStoragesByStorageIdGatewayEventsPurgeResponseDefault | None:
     """Delete storage gateway events in bulk
 
     Args:
@@ -230,7 +177,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType0 | PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType1
+        Any | PostStoragesByStorageIdGatewayEventsPurgeResponseDefault
     """
 
     return (

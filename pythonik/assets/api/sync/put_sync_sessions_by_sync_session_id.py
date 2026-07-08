@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.put_sync_sessions_by_sync_session_id_response_default_type_0 import (
-    PutSyncSessionsBySyncSessionIdResponseDefaultType0,
-)
-from ...models.put_sync_sessions_by_sync_session_id_response_default_type_1 import (
-    PutSyncSessionsBySyncSessionIdResponseDefaultType1,
+from ...models.put_sync_sessions_by_sync_session_id_response_default import (
+    PutSyncSessionsBySyncSessionIdResponseDefault,
 )
 from ...models.sync_session_schema import SyncSessionSchema
 from ...types import UNSET, Response, Unset
@@ -19,7 +16,7 @@ def _get_kwargs(
     sync_session_id: str,
     *,
     body: SyncSessionSchema,
-    update_if_none: bool | Unset = False,
+    update_if_none: bool | Unset = UNSET,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -47,12 +44,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PutSyncSessionsBySyncSessionIdResponseDefaultType0
-    | PutSyncSessionsBySyncSessionIdResponseDefaultType1
-    | SyncSessionSchema
-):
+) -> Any | PutSyncSessionsBySyncSessionIdResponseDefault | SyncSessionSchema:
     if response.status_code == 200:
         response_200 = SyncSessionSchema.from_dict(response.json())
 
@@ -71,43 +63,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutSyncSessionsBySyncSessionIdResponseDefaultType0
-        | PutSyncSessionsBySyncSessionIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PutSyncSessionsBySyncSessionIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PutSyncSessionsBySyncSessionIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutSyncSessionsBySyncSessionIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PutSyncSessionsBySyncSessionIdResponseDefaultType0
-    | PutSyncSessionsBySyncSessionIdResponseDefaultType1
-    | SyncSessionSchema
-]:
+) -> Response[Any | PutSyncSessionsBySyncSessionIdResponseDefault | SyncSessionSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -121,18 +86,13 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: SyncSessionSchema,
-    update_if_none: bool | Unset = False,
-) -> Response[
-    Any
-    | PutSyncSessionsBySyncSessionIdResponseDefaultType0
-    | PutSyncSessionsBySyncSessionIdResponseDefaultType1
-    | SyncSessionSchema
-]:
+    update_if_none: bool | Unset = UNSET,
+) -> Response[Any | PutSyncSessionsBySyncSessionIdResponseDefault | SyncSessionSchema]:
     """Edit a sync session. If the session doesn't exist, a new one is created
 
     Args:
         sync_session_id (str):
-        update_if_none (bool | Unset):  Default: False.
+        update_if_none (bool | Unset):
         body (SyncSessionSchema):
 
     Raises:
@@ -140,7 +100,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutSyncSessionsBySyncSessionIdResponseDefaultType0 | PutSyncSessionsBySyncSessionIdResponseDefaultType1 | SyncSessionSchema]
+        Response[Any | PutSyncSessionsBySyncSessionIdResponseDefault | SyncSessionSchema]
     """
 
     kwargs = _get_kwargs(
@@ -161,19 +121,13 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: SyncSessionSchema,
-    update_if_none: bool | Unset = False,
-) -> (
-    Any
-    | PutSyncSessionsBySyncSessionIdResponseDefaultType0
-    | PutSyncSessionsBySyncSessionIdResponseDefaultType1
-    | SyncSessionSchema
-    | None
-):
+    update_if_none: bool | Unset = UNSET,
+) -> Any | PutSyncSessionsBySyncSessionIdResponseDefault | SyncSessionSchema | None:
     """Edit a sync session. If the session doesn't exist, a new one is created
 
     Args:
         sync_session_id (str):
-        update_if_none (bool | Unset):  Default: False.
+        update_if_none (bool | Unset):
         body (SyncSessionSchema):
 
     Raises:
@@ -181,7 +135,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutSyncSessionsBySyncSessionIdResponseDefaultType0 | PutSyncSessionsBySyncSessionIdResponseDefaultType1 | SyncSessionSchema
+        Any | PutSyncSessionsBySyncSessionIdResponseDefault | SyncSessionSchema
     """
 
     return sync_detailed(
@@ -197,18 +151,13 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: SyncSessionSchema,
-    update_if_none: bool | Unset = False,
-) -> Response[
-    Any
-    | PutSyncSessionsBySyncSessionIdResponseDefaultType0
-    | PutSyncSessionsBySyncSessionIdResponseDefaultType1
-    | SyncSessionSchema
-]:
+    update_if_none: bool | Unset = UNSET,
+) -> Response[Any | PutSyncSessionsBySyncSessionIdResponseDefault | SyncSessionSchema]:
     """Edit a sync session. If the session doesn't exist, a new one is created
 
     Args:
         sync_session_id (str):
-        update_if_none (bool | Unset):  Default: False.
+        update_if_none (bool | Unset):
         body (SyncSessionSchema):
 
     Raises:
@@ -216,7 +165,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutSyncSessionsBySyncSessionIdResponseDefaultType0 | PutSyncSessionsBySyncSessionIdResponseDefaultType1 | SyncSessionSchema]
+        Response[Any | PutSyncSessionsBySyncSessionIdResponseDefault | SyncSessionSchema]
     """
 
     kwargs = _get_kwargs(
@@ -235,19 +184,13 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: SyncSessionSchema,
-    update_if_none: bool | Unset = False,
-) -> (
-    Any
-    | PutSyncSessionsBySyncSessionIdResponseDefaultType0
-    | PutSyncSessionsBySyncSessionIdResponseDefaultType1
-    | SyncSessionSchema
-    | None
-):
+    update_if_none: bool | Unset = UNSET,
+) -> Any | PutSyncSessionsBySyncSessionIdResponseDefault | SyncSessionSchema | None:
     """Edit a sync session. If the session doesn't exist, a new one is created
 
     Args:
         sync_session_id (str):
-        update_if_none (bool | Unset):  Default: False.
+        update_if_none (bool | Unset):
         body (SyncSessionSchema):
 
     Raises:
@@ -255,7 +198,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutSyncSessionsBySyncSessionIdResponseDefaultType0 | PutSyncSessionsBySyncSessionIdResponseDefaultType1 | SyncSessionSchema
+        Any | PutSyncSessionsBySyncSessionIdResponseDefault | SyncSessionSchema
     """
 
     return (

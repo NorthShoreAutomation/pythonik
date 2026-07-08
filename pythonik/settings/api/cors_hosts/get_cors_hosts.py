@@ -5,12 +5,7 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.cors_hosts_schema import CORSHostsSchema
-from ...models.get_cors_hosts_response_default_type_0 import (
-    GetCorsHostsResponseDefaultType0,
-)
-from ...models.get_cors_hosts_response_default_type_1 import (
-    GetCorsHostsResponseDefaultType1,
-)
+from ...models.get_cors_hosts_response_default import GetCorsHostsResponseDefault
 from ...types import Response
 
 
@@ -26,12 +21,7 @@ def _get_kwargs() -> dict[str, Any]:
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | CORSHostsSchema
-    | GetCorsHostsResponseDefaultType0
-    | GetCorsHostsResponseDefaultType1
-):
+) -> Any | CORSHostsSchema | GetCorsHostsResponseDefault:
     if response.status_code == 200:
         response_200 = CORSHostsSchema.from_dict(response.json())
 
@@ -49,36 +39,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> GetCorsHostsResponseDefaultType0 | GetCorsHostsResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetCorsHostsResponseDefaultType0.from_dict(data)
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetCorsHostsResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetCorsHostsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | CORSHostsSchema
-    | GetCorsHostsResponseDefaultType0
-    | GetCorsHostsResponseDefaultType1
-]:
+) -> Response[Any | CORSHostsSchema | GetCorsHostsResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -90,12 +58,7 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | CORSHostsSchema
-    | GetCorsHostsResponseDefaultType0
-    | GetCorsHostsResponseDefaultType1
-]:
+) -> Response[Any | CORSHostsSchema | GetCorsHostsResponseDefault]:
     """List of CORS hosts
 
 
@@ -107,7 +70,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CORSHostsSchema | GetCorsHostsResponseDefaultType0 | GetCorsHostsResponseDefaultType1]
+        Response[Any | CORSHostsSchema | GetCorsHostsResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -122,13 +85,7 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | CORSHostsSchema
-    | GetCorsHostsResponseDefaultType0
-    | GetCorsHostsResponseDefaultType1
-    | None
-):
+) -> Any | CORSHostsSchema | GetCorsHostsResponseDefault | None:
     """List of CORS hosts
 
 
@@ -140,7 +97,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CORSHostsSchema | GetCorsHostsResponseDefaultType0 | GetCorsHostsResponseDefaultType1
+        Any | CORSHostsSchema | GetCorsHostsResponseDefault
     """
 
     return sync_detailed(
@@ -151,12 +108,7 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | CORSHostsSchema
-    | GetCorsHostsResponseDefaultType0
-    | GetCorsHostsResponseDefaultType1
-]:
+) -> Response[Any | CORSHostsSchema | GetCorsHostsResponseDefault]:
     """List of CORS hosts
 
 
@@ -168,7 +120,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CORSHostsSchema | GetCorsHostsResponseDefaultType0 | GetCorsHostsResponseDefaultType1]
+        Response[Any | CORSHostsSchema | GetCorsHostsResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -181,13 +133,7 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | CORSHostsSchema
-    | GetCorsHostsResponseDefaultType0
-    | GetCorsHostsResponseDefaultType1
-    | None
-):
+) -> Any | CORSHostsSchema | GetCorsHostsResponseDefault | None:
     """List of CORS hosts
 
 
@@ -199,7 +145,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CORSHostsSchema | GetCorsHostsResponseDefaultType0 | GetCorsHostsResponseDefaultType1
+        Any | CORSHostsSchema | GetCorsHostsResponseDefault
     """
 
     return (

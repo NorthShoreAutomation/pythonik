@@ -5,42 +5,25 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.billing_schema import BillingSchema
-from ...models.get_billing_customer_response_default_type_0 import (
-    GetBillingCustomerResponseDefaultType0,
-)
-from ...models.get_billing_customer_response_default_type_1 import (
-    GetBillingCustomerResponseDefaultType1,
+from ...models.get_billing_customer_response_default import (
+    GetBillingCustomerResponseDefault,
 )
 from ...types import Response
 
 
-def _get_kwargs(
-    *,
-    body: BillingSchema,
-) -> dict[str, Any]:
-    headers: dict[str, Any] = {}
+def _get_kwargs() -> dict[str, Any]:
 
     _kwargs: dict[str, Any] = {
         "method": "get",
         "url": "/v1/billing/customer/",
     }
 
-    _kwargs["json"] = body.to_dict()
-
-    headers["Content-Type"] = "application/json"
-
-    _kwargs["headers"] = headers
     return _kwargs
 
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | BillingSchema
-    | GetBillingCustomerResponseDefaultType0
-    | GetBillingCustomerResponseDefaultType1
-):
+) -> Any | BillingSchema | GetBillingCustomerResponseDefault:
     if response.status_code == 200:
         response_200 = BillingSchema.from_dict(response.json())
 
@@ -58,40 +41,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetBillingCustomerResponseDefaultType0 | GetBillingCustomerResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetBillingCustomerResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetBillingCustomerResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetBillingCustomerResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | BillingSchema
-    | GetBillingCustomerResponseDefaultType0
-    | GetBillingCustomerResponseDefaultType1
-]:
+) -> Response[Any | BillingSchema | GetBillingCustomerResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -103,33 +60,22 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-    body: BillingSchema,
-) -> Response[
-    Any
-    | BillingSchema
-    | GetBillingCustomerResponseDefaultType0
-    | GetBillingCustomerResponseDefaultType1
-]:
+) -> Response[Any | BillingSchema | GetBillingCustomerResponseDefault]:
     """Returns billing customer
 
 
     Required roles:
      - can_read_billing
 
-    Args:
-        body (BillingSchema):
-
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | BillingSchema | GetBillingCustomerResponseDefaultType0 | GetBillingCustomerResponseDefaultType1]
+        Response[Any | BillingSchema | GetBillingCustomerResponseDefault]
     """
 
-    kwargs = _get_kwargs(
-        body=body,
-    )
+    kwargs = _get_kwargs()
 
     response = client.get_httpx_client().request(
         **kwargs,
@@ -141,67 +87,45 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-    body: BillingSchema,
-) -> (
-    Any
-    | BillingSchema
-    | GetBillingCustomerResponseDefaultType0
-    | GetBillingCustomerResponseDefaultType1
-    | None
-):
+) -> Any | BillingSchema | GetBillingCustomerResponseDefault | None:
     """Returns billing customer
 
 
     Required roles:
      - can_read_billing
 
-    Args:
-        body (BillingSchema):
-
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | BillingSchema | GetBillingCustomerResponseDefaultType0 | GetBillingCustomerResponseDefaultType1
+        Any | BillingSchema | GetBillingCustomerResponseDefault
     """
 
     return sync_detailed(
         client=client,
-        body=body,
     ).parsed
 
 
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-    body: BillingSchema,
-) -> Response[
-    Any
-    | BillingSchema
-    | GetBillingCustomerResponseDefaultType0
-    | GetBillingCustomerResponseDefaultType1
-]:
+) -> Response[Any | BillingSchema | GetBillingCustomerResponseDefault]:
     """Returns billing customer
 
 
     Required roles:
      - can_read_billing
 
-    Args:
-        body (BillingSchema):
-
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | BillingSchema | GetBillingCustomerResponseDefaultType0 | GetBillingCustomerResponseDefaultType1]
+        Response[Any | BillingSchema | GetBillingCustomerResponseDefault]
     """
 
-    kwargs = _get_kwargs(
-        body=body,
-    )
+    kwargs = _get_kwargs()
 
     response = await client.get_async_httpx_client().request(**kwargs)
 
@@ -211,34 +135,23 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-    body: BillingSchema,
-) -> (
-    Any
-    | BillingSchema
-    | GetBillingCustomerResponseDefaultType0
-    | GetBillingCustomerResponseDefaultType1
-    | None
-):
+) -> Any | BillingSchema | GetBillingCustomerResponseDefault | None:
     """Returns billing customer
 
 
     Required roles:
      - can_read_billing
 
-    Args:
-        body (BillingSchema):
-
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | BillingSchema | GetBillingCustomerResponseDefaultType0 | GetBillingCustomerResponseDefaultType1
+        Any | BillingSchema | GetBillingCustomerResponseDefault
     """
 
     return (
         await asyncio_detailed(
             client=client,
-            body=body,
         )
     ).parsed

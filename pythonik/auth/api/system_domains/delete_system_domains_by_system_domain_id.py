@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_system_domains_by_system_domain_id_response_default_type_0 import (
-    DeleteSystemDomainsBySystemDomainIdResponseDefaultType0,
-)
-from ...models.delete_system_domains_by_system_domain_id_response_default_type_1 import (
-    DeleteSystemDomainsBySystemDomainIdResponseDefaultType1,
+from ...models.delete_system_domains_by_system_domain_id_response_default import (
+    DeleteSystemDomainsBySystemDomainIdResponseDefault,
 )
 from ...types import Response
 
@@ -30,11 +27,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteSystemDomainsBySystemDomainIdResponseDefaultType0
-    | DeleteSystemDomainsBySystemDomainIdResponseDefaultType1
-):
+) -> Any | DeleteSystemDomainsBySystemDomainIdResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -47,42 +40,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteSystemDomainsBySystemDomainIdResponseDefaultType0
-        | DeleteSystemDomainsBySystemDomainIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteSystemDomainsBySystemDomainIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteSystemDomainsBySystemDomainIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteSystemDomainsBySystemDomainIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteSystemDomainsBySystemDomainIdResponseDefaultType0
-    | DeleteSystemDomainsBySystemDomainIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteSystemDomainsBySystemDomainIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -95,11 +62,7 @@ def sync_detailed(
     system_domain_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteSystemDomainsBySystemDomainIdResponseDefaultType0
-    | DeleteSystemDomainsBySystemDomainIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteSystemDomainsBySystemDomainIdResponseDefault]:
     """Delete a particular system_domain by id
 
     Args:
@@ -110,7 +73,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteSystemDomainsBySystemDomainIdResponseDefaultType0 | DeleteSystemDomainsBySystemDomainIdResponseDefaultType1]
+        Response[Any | DeleteSystemDomainsBySystemDomainIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -128,12 +91,7 @@ def sync(
     system_domain_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteSystemDomainsBySystemDomainIdResponseDefaultType0
-    | DeleteSystemDomainsBySystemDomainIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteSystemDomainsBySystemDomainIdResponseDefault | None:
     """Delete a particular system_domain by id
 
     Args:
@@ -144,7 +102,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteSystemDomainsBySystemDomainIdResponseDefaultType0 | DeleteSystemDomainsBySystemDomainIdResponseDefaultType1
+        Any | DeleteSystemDomainsBySystemDomainIdResponseDefault
     """
 
     return sync_detailed(
@@ -157,11 +115,7 @@ async def asyncio_detailed(
     system_domain_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteSystemDomainsBySystemDomainIdResponseDefaultType0
-    | DeleteSystemDomainsBySystemDomainIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteSystemDomainsBySystemDomainIdResponseDefault]:
     """Delete a particular system_domain by id
 
     Args:
@@ -172,7 +126,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteSystemDomainsBySystemDomainIdResponseDefaultType0 | DeleteSystemDomainsBySystemDomainIdResponseDefaultType1]
+        Response[Any | DeleteSystemDomainsBySystemDomainIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -188,12 +142,7 @@ async def asyncio(
     system_domain_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteSystemDomainsBySystemDomainIdResponseDefaultType0
-    | DeleteSystemDomainsBySystemDomainIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteSystemDomainsBySystemDomainIdResponseDefault | None:
     """Delete a particular system_domain by id
 
     Args:
@@ -204,7 +153,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteSystemDomainsBySystemDomainIdResponseDefaultType0 | DeleteSystemDomainsBySystemDomainIdResponseDefaultType1
+        Any | DeleteSystemDomainsBySystemDomainIdResponseDefault
     """
 
     return (

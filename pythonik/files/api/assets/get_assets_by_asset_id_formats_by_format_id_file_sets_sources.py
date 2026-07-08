@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.file_set_sources_schema import FileSetSourcesSchema
-from ...models.get_assets_by_asset_id_formats_by_format_id_file_sets_sources_response_default_type_0 import (
-    GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType0,
-)
-from ...models.get_assets_by_asset_id_formats_by_format_id_file_sets_sources_response_default_type_1 import (
-    GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType1,
+from ...models.get_assets_by_asset_id_formats_by_format_id_file_sets_sources_response_default import (
+    GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefault,
 )
 from ...types import Response
 
@@ -36,8 +33,7 @@ def _parse_response(
 ) -> (
     Any
     | FileSetSourcesSchema
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType0
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType1
+    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefault
 ):
     if response.status_code == 200:
         response_200 = FileSetSourcesSchema.from_dict(response.json())
@@ -48,31 +44,11 @@ def _parse_response(
         response_400 = cast(Any, None)
         return response_400
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType0
-        | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -82,8 +58,7 @@ def _build_response(
 ) -> Response[
     Any
     | FileSetSourcesSchema
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType0
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType1
+    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -101,8 +76,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | FileSetSourcesSchema
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType0
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType1
+    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefault
 ]:
     """Get all file sets with matching format and storage method
 
@@ -119,7 +93,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | FileSetSourcesSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType0 | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType1]
+        Response[Any | FileSetSourcesSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -142,8 +116,7 @@ def sync(
 ) -> (
     Any
     | FileSetSourcesSchema
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType0
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType1
+    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefault
     | None
 ):
     """Get all file sets with matching format and storage method
@@ -161,7 +134,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | FileSetSourcesSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType0 | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType1
+        Any | FileSetSourcesSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefault
     """
 
     return sync_detailed(
@@ -179,8 +152,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | FileSetSourcesSchema
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType0
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType1
+    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefault
 ]:
     """Get all file sets with matching format and storage method
 
@@ -197,7 +169,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | FileSetSourcesSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType0 | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType1]
+        Response[Any | FileSetSourcesSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -218,8 +190,7 @@ async def asyncio(
 ) -> (
     Any
     | FileSetSourcesSchema
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType0
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType1
+    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefault
     | None
 ):
     """Get all file sets with matching format and storage method
@@ -237,7 +208,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | FileSetSourcesSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType0 | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType1
+        Any | FileSetSourcesSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefault
     """
 
     return (

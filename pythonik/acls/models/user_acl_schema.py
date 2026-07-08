@@ -17,25 +17,23 @@ T = TypeVar("T", bound="UserACLSchema")
 class UserACLSchema:
     """
     Attributes:
-        permissions (list[str]):
         date_created (datetime.datetime | None | Unset):
         date_modified (datetime.datetime | None | Unset):
         object_key (None | str | Unset):
         object_type (None | str | Unset):
+        permissions (list[str] | None | Unset):
         user_id (None | Unset | UUID):
     """
 
-    permissions: list[str]
     date_created: datetime.datetime | None | Unset = UNSET
     date_modified: datetime.datetime | None | Unset = UNSET
     object_key: None | str | Unset = UNSET
     object_type: None | str | Unset = UNSET
+    permissions: list[str] | None | Unset = UNSET
     user_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        permissions = self.permissions
-
         date_created: None | str | Unset
         if isinstance(self.date_created, Unset):
             date_created = UNSET
@@ -64,6 +62,15 @@ class UserACLSchema:
         else:
             object_type = self.object_type
 
+        permissions: list[str] | None | Unset
+        if isinstance(self.permissions, Unset):
+            permissions = UNSET
+        elif isinstance(self.permissions, list):
+            permissions = self.permissions
+
+        else:
+            permissions = self.permissions
+
         user_id: None | str | Unset
         if isinstance(self.user_id, Unset):
             user_id = UNSET
@@ -74,11 +81,7 @@ class UserACLSchema:
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "permissions": permissions,
-            }
-        )
+        field_dict.update({})
         if date_created is not UNSET:
             field_dict["date_created"] = date_created
         if date_modified is not UNSET:
@@ -87,6 +90,8 @@ class UserACLSchema:
             field_dict["object_key"] = object_key
         if object_type is not UNSET:
             field_dict["object_type"] = object_type
+        if permissions is not UNSET:
+            field_dict["permissions"] = permissions
         if user_id is not UNSET:
             field_dict["user_id"] = user_id
 
@@ -95,7 +100,6 @@ class UserACLSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        permissions = cast(list[str], d.pop("permissions"))
 
         def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -149,6 +153,23 @@ class UserACLSchema:
 
         object_type = _parse_object_type(d.pop("object_type", UNSET))
 
+        def _parse_permissions(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                permissions_type_0 = cast(list[str], data)
+
+                return permissions_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        permissions = _parse_permissions(d.pop("permissions", UNSET))
+
         def _parse_user_id(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
@@ -167,11 +188,11 @@ class UserACLSchema:
         user_id = _parse_user_id(d.pop("user_id", UNSET))
 
         user_acl_schema = cls(
-            permissions=permissions,
             date_created=date_created,
             date_modified=date_modified,
             object_key=object_key,
             object_type=object_type,
+            permissions=permissions,
             user_id=user_id,
         )
 

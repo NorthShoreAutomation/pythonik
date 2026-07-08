@@ -8,11 +8,8 @@ from ...client import AuthenticatedClient, Client
 from ...models.bulk_delete_persons_by_versions_schema import (
     BulkDeletePersonsByVersionsSchema,
 )
-from ...models.delete_face_recognition_assets_by_asset_id_persons_bulk_response_default_type_0 import (
-    DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType0,
-)
-from ...models.delete_face_recognition_assets_by_asset_id_persons_bulk_response_default_type_1 import (
-    DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType1,
+from ...models.delete_face_recognition_assets_by_asset_id_persons_bulk_response_default import (
+    DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefault,
 )
 from ...types import Response
 
@@ -41,14 +38,14 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType0
-    | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType1
-):
+) -> Any | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefault:
     if response.status_code == 201:
         response_201 = cast(Any, None)
         return response_201
+
+    if response.status_code == 204:
+        response_204 = cast(Any, None)
+        return response_204
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -62,42 +59,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType0
-        | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType0
-    | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType1
-]:
+) -> Response[Any | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -111,11 +84,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: BulkDeletePersonsByVersionsSchema,
-) -> Response[
-    Any
-    | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType0
-    | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType1
-]:
+) -> Response[Any | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefault]:
     """Delete all persons by asset and versions
 
 
@@ -131,7 +100,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType0 | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType1]
+        Response[Any | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -151,12 +120,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: BulkDeletePersonsByVersionsSchema,
-) -> (
-    Any
-    | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType0
-    | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType1
-    | None
-):
+) -> Any | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefault | None:
     """Delete all persons by asset and versions
 
 
@@ -172,7 +136,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType0 | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType1
+        Any | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefault
     """
 
     return sync_detailed(
@@ -187,11 +151,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: BulkDeletePersonsByVersionsSchema,
-) -> Response[
-    Any
-    | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType0
-    | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType1
-]:
+) -> Response[Any | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefault]:
     """Delete all persons by asset and versions
 
 
@@ -207,7 +167,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType0 | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType1]
+        Response[Any | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -225,12 +185,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: BulkDeletePersonsByVersionsSchema,
-) -> (
-    Any
-    | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType0
-    | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType1
-    | None
-):
+) -> Any | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefault | None:
     """Delete all persons by asset and versions
 
 
@@ -246,7 +201,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType0 | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType1
+        Any | DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefault
     """
 
     return (

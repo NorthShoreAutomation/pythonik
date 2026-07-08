@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_jobs_by_job_id_reindex_response_default_type_0 import (
-    PostJobsByJobIdReindexResponseDefaultType0,
-)
-from ...models.post_jobs_by_job_id_reindex_response_default_type_1 import (
-    PostJobsByJobIdReindexResponseDefaultType1,
+from ...models.post_jobs_by_job_id_reindex_response_default import (
+    PostJobsByJobIdReindexResponseDefault,
 )
 from ...models.reindex_job_schema import ReindexJobSchema
 from ...types import Response
@@ -39,11 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostJobsByJobIdReindexResponseDefaultType0
-    | PostJobsByJobIdReindexResponseDefaultType1
-):
+) -> Any | PostJobsByJobIdReindexResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -56,42 +49,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostJobsByJobIdReindexResponseDefaultType0
-        | PostJobsByJobIdReindexResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostJobsByJobIdReindexResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostJobsByJobIdReindexResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostJobsByJobIdReindexResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostJobsByJobIdReindexResponseDefaultType0
-    | PostJobsByJobIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostJobsByJobIdReindexResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -105,11 +70,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexJobSchema,
-) -> Response[
-    Any
-    | PostJobsByJobIdReindexResponseDefaultType0
-    | PostJobsByJobIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostJobsByJobIdReindexResponseDefault]:
     """Reindex job
 
 
@@ -125,7 +86,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostJobsByJobIdReindexResponseDefaultType0 | PostJobsByJobIdReindexResponseDefaultType1]
+        Response[Any | PostJobsByJobIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -145,12 +106,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexJobSchema,
-) -> (
-    Any
-    | PostJobsByJobIdReindexResponseDefaultType0
-    | PostJobsByJobIdReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostJobsByJobIdReindexResponseDefault | None:
     """Reindex job
 
 
@@ -166,7 +122,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostJobsByJobIdReindexResponseDefaultType0 | PostJobsByJobIdReindexResponseDefaultType1
+        Any | PostJobsByJobIdReindexResponseDefault
     """
 
     return sync_detailed(
@@ -181,11 +137,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexJobSchema,
-) -> Response[
-    Any
-    | PostJobsByJobIdReindexResponseDefaultType0
-    | PostJobsByJobIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostJobsByJobIdReindexResponseDefault]:
     """Reindex job
 
 
@@ -201,7 +153,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostJobsByJobIdReindexResponseDefaultType0 | PostJobsByJobIdReindexResponseDefaultType1]
+        Response[Any | PostJobsByJobIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -219,12 +171,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexJobSchema,
-) -> (
-    Any
-    | PostJobsByJobIdReindexResponseDefaultType0
-    | PostJobsByJobIdReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostJobsByJobIdReindexResponseDefault | None:
     """Reindex job
 
 
@@ -240,7 +187,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostJobsByJobIdReindexResponseDefaultType0 | PostJobsByJobIdReindexResponseDefaultType1
+        Any | PostJobsByJobIdReindexResponseDefault
     """
 
     return (

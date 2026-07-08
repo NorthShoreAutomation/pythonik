@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.keyframe_schema import KeyframeSchema
-from ...models.post_assets_by_asset_id_custom_keyframe_response_default_type_0 import (
-    PostAssetsByAssetIdCustomKeyframeResponseDefaultType0,
-)
-from ...models.post_assets_by_asset_id_custom_keyframe_response_default_type_1 import (
-    PostAssetsByAssetIdCustomKeyframeResponseDefaultType1,
+from ...models.post_assets_by_asset_id_custom_keyframe_response_default import (
+    PostAssetsByAssetIdCustomKeyframeResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -40,12 +37,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | KeyframeSchema
-    | PostAssetsByAssetIdCustomKeyframeResponseDefaultType0
-    | PostAssetsByAssetIdCustomKeyframeResponseDefaultType1
-):
+) -> Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeResponseDefault:
     if response.status_code == 201:
         response_201 = KeyframeSchema.from_dict(response.json())
 
@@ -59,43 +51,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsByAssetIdCustomKeyframeResponseDefaultType0
-        | PostAssetsByAssetIdCustomKeyframeResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostAssetsByAssetIdCustomKeyframeResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostAssetsByAssetIdCustomKeyframeResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostAssetsByAssetIdCustomKeyframeResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | KeyframeSchema
-    | PostAssetsByAssetIdCustomKeyframeResponseDefaultType0
-    | PostAssetsByAssetIdCustomKeyframeResponseDefaultType1
-]:
+) -> Response[Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -109,12 +74,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     content_type: str | Unset = UNSET,
-) -> Response[
-    Any
-    | KeyframeSchema
-    | PostAssetsByAssetIdCustomKeyframeResponseDefaultType0
-    | PostAssetsByAssetIdCustomKeyframeResponseDefaultType1
-]:
+) -> Response[Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeResponseDefault]:
     """Create keyframe of type poster for asset
 
 
@@ -130,7 +90,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeResponseDefaultType0 | PostAssetsByAssetIdCustomKeyframeResponseDefaultType1]
+        Response[Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -150,13 +110,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     content_type: str | Unset = UNSET,
-) -> (
-    Any
-    | KeyframeSchema
-    | PostAssetsByAssetIdCustomKeyframeResponseDefaultType0
-    | PostAssetsByAssetIdCustomKeyframeResponseDefaultType1
-    | None
-):
+) -> Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeResponseDefault | None:
     """Create keyframe of type poster for asset
 
 
@@ -172,7 +126,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeResponseDefaultType0 | PostAssetsByAssetIdCustomKeyframeResponseDefaultType1
+        Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeResponseDefault
     """
 
     return sync_detailed(
@@ -187,12 +141,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     content_type: str | Unset = UNSET,
-) -> Response[
-    Any
-    | KeyframeSchema
-    | PostAssetsByAssetIdCustomKeyframeResponseDefaultType0
-    | PostAssetsByAssetIdCustomKeyframeResponseDefaultType1
-]:
+) -> Response[Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeResponseDefault]:
     """Create keyframe of type poster for asset
 
 
@@ -208,7 +157,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeResponseDefaultType0 | PostAssetsByAssetIdCustomKeyframeResponseDefaultType1]
+        Response[Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -226,13 +175,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     content_type: str | Unset = UNSET,
-) -> (
-    Any
-    | KeyframeSchema
-    | PostAssetsByAssetIdCustomKeyframeResponseDefaultType0
-    | PostAssetsByAssetIdCustomKeyframeResponseDefaultType1
-    | None
-):
+) -> Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeResponseDefault | None:
     """Create keyframe of type poster for asset
 
 
@@ -248,7 +191,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeResponseDefaultType0 | PostAssetsByAssetIdCustomKeyframeResponseDefaultType1
+        Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeResponseDefault
     """
 
     return (

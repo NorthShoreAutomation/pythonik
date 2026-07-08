@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.patch_playlists_by_playlist_id_keyframes_by_keyframe_id_response_default_type_0 import (
-    PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType0,
-)
-from ...models.patch_playlists_by_playlist_id_keyframes_by_keyframe_id_response_default_type_1 import (
-    PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1,
+from ...models.patch_playlists_by_playlist_id_keyframes_by_keyframe_id_response_default import (
+    PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault,
 )
 from ...models.playlist_keyframe_schema import PlaylistKeyframeSchema
 from ...types import Response
@@ -43,8 +40,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType0
-    | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1
+    | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault
     | PlaylistKeyframeSchema
 ):
     if response.status_code == 200:
@@ -64,31 +60,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType0
-        | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -97,8 +73,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType0
-    | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1
+    | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault
     | PlaylistKeyframeSchema
 ]:
     return Response(
@@ -117,8 +92,7 @@ def sync_detailed(
     body: PlaylistKeyframeSchema,
 ) -> Response[
     Any
-    | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType0
-    | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1
+    | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault
     | PlaylistKeyframeSchema
 ]:
     """Update keyframe information
@@ -137,7 +111,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType0 | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1 | PlaylistKeyframeSchema]
+        Response[Any | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault | PlaylistKeyframeSchema]
     """
 
     kwargs = _get_kwargs(
@@ -161,8 +135,7 @@ def sync(
     body: PlaylistKeyframeSchema,
 ) -> (
     Any
-    | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType0
-    | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1
+    | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault
     | PlaylistKeyframeSchema
     | None
 ):
@@ -182,7 +155,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType0 | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1 | PlaylistKeyframeSchema
+        Any | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault | PlaylistKeyframeSchema
     """
 
     return sync_detailed(
@@ -201,8 +174,7 @@ async def asyncio_detailed(
     body: PlaylistKeyframeSchema,
 ) -> Response[
     Any
-    | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType0
-    | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1
+    | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault
     | PlaylistKeyframeSchema
 ]:
     """Update keyframe information
@@ -221,7 +193,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType0 | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1 | PlaylistKeyframeSchema]
+        Response[Any | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault | PlaylistKeyframeSchema]
     """
 
     kwargs = _get_kwargs(
@@ -243,8 +215,7 @@ async def asyncio(
     body: PlaylistKeyframeSchema,
 ) -> (
     Any
-    | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType0
-    | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1
+    | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault
     | PlaylistKeyframeSchema
     | None
 ):
@@ -264,7 +235,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType0 | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1 | PlaylistKeyframeSchema
+        Any | PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault | PlaylistKeyframeSchema
     """
 
     return (

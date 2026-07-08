@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_storages_by_storage_id_auto_scan_response_default_type_0 import (
-    GetStoragesByStorageIdAutoScanResponseDefaultType0,
-)
-from ...models.get_storages_by_storage_id_auto_scan_response_default_type_1 import (
-    GetStoragesByStorageIdAutoScanResponseDefaultType1,
+from ...models.get_storages_by_storage_id_auto_scan_response_default import (
+    GetStoragesByStorageIdAutoScanResponseDefault,
 )
 from ...models.storage_auto_scan_schema import StorageAutoScanSchema
 from ...types import Response
@@ -31,12 +28,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetStoragesByStorageIdAutoScanResponseDefaultType0
-    | GetStoragesByStorageIdAutoScanResponseDefaultType1
-    | StorageAutoScanSchema
-):
+) -> Any | GetStoragesByStorageIdAutoScanResponseDefault | StorageAutoScanSchema:
     if response.status_code == 200:
         response_200 = StorageAutoScanSchema.from_dict(response.json())
 
@@ -50,31 +42,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetStoragesByStorageIdAutoScanResponseDefaultType0
-        | GetStoragesByStorageIdAutoScanResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetStoragesByStorageIdAutoScanResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetStoragesByStorageIdAutoScanResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetStoragesByStorageIdAutoScanResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -82,10 +52,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | GetStoragesByStorageIdAutoScanResponseDefaultType0
-    | GetStoragesByStorageIdAutoScanResponseDefaultType1
-    | StorageAutoScanSchema
+    Any | GetStoragesByStorageIdAutoScanResponseDefault | StorageAutoScanSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -100,10 +67,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | GetStoragesByStorageIdAutoScanResponseDefaultType0
-    | GetStoragesByStorageIdAutoScanResponseDefaultType1
-    | StorageAutoScanSchema
+    Any | GetStoragesByStorageIdAutoScanResponseDefault | StorageAutoScanSchema
 ]:
     """Get cloud storage auto scan settings
 
@@ -119,7 +83,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetStoragesByStorageIdAutoScanResponseDefaultType0 | GetStoragesByStorageIdAutoScanResponseDefaultType1 | StorageAutoScanSchema]
+        Response[Any | GetStoragesByStorageIdAutoScanResponseDefault | StorageAutoScanSchema]
     """
 
     kwargs = _get_kwargs(
@@ -137,13 +101,7 @@ def sync(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetStoragesByStorageIdAutoScanResponseDefaultType0
-    | GetStoragesByStorageIdAutoScanResponseDefaultType1
-    | StorageAutoScanSchema
-    | None
-):
+) -> Any | GetStoragesByStorageIdAutoScanResponseDefault | StorageAutoScanSchema | None:
     """Get cloud storage auto scan settings
 
 
@@ -158,7 +116,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetStoragesByStorageIdAutoScanResponseDefaultType0 | GetStoragesByStorageIdAutoScanResponseDefaultType1 | StorageAutoScanSchema
+        Any | GetStoragesByStorageIdAutoScanResponseDefault | StorageAutoScanSchema
     """
 
     return sync_detailed(
@@ -172,10 +130,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | GetStoragesByStorageIdAutoScanResponseDefaultType0
-    | GetStoragesByStorageIdAutoScanResponseDefaultType1
-    | StorageAutoScanSchema
+    Any | GetStoragesByStorageIdAutoScanResponseDefault | StorageAutoScanSchema
 ]:
     """Get cloud storage auto scan settings
 
@@ -191,7 +146,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetStoragesByStorageIdAutoScanResponseDefaultType0 | GetStoragesByStorageIdAutoScanResponseDefaultType1 | StorageAutoScanSchema]
+        Response[Any | GetStoragesByStorageIdAutoScanResponseDefault | StorageAutoScanSchema]
     """
 
     kwargs = _get_kwargs(
@@ -207,13 +162,7 @@ async def asyncio(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetStoragesByStorageIdAutoScanResponseDefaultType0
-    | GetStoragesByStorageIdAutoScanResponseDefaultType1
-    | StorageAutoScanSchema
-    | None
-):
+) -> Any | GetStoragesByStorageIdAutoScanResponseDefault | StorageAutoScanSchema | None:
     """Get cloud storage auto scan settings
 
 
@@ -228,7 +177,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetStoragesByStorageIdAutoScanResponseDefaultType0 | GetStoragesByStorageIdAutoScanResponseDefaultType1 | StorageAutoScanSchema
+        Any | GetStoragesByStorageIdAutoScanResponseDefault | StorageAutoScanSchema
     """
 
     return (

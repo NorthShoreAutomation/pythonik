@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_assets_by_asset_id_proxies_by_proxy_id_keyframes_response_default_type_0 import (
-    PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType0,
-)
-from ...models.post_assets_by_asset_id_proxies_by_proxy_id_keyframes_response_default_type_1 import (
-    PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType1,
+from ...models.post_assets_by_asset_id_proxies_by_proxy_id_keyframes_response_default import (
+    PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefault,
 )
 from ...models.transcode_request_schema import TranscodeRequestSchema
 from ...models.transcode_response_schema import TranscodeResponseSchema
@@ -44,8 +41,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType0
-    | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType1
+    | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefault
     | TranscodeResponseSchema
 ):
     if response.status_code == 200:
@@ -65,33 +61,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType0
-        | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -100,8 +74,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType0
-    | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType1
+    | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefault
     | TranscodeResponseSchema
 ]:
     return Response(
@@ -120,8 +93,7 @@ def sync_detailed(
     body: TranscodeRequestSchema,
 ) -> Response[
     Any
-    | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType0
-    | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType1
+    | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefault
     | TranscodeResponseSchema
 ]:
     """Create a transcode job for keyframes from a proxy
@@ -140,7 +112,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType0 | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType1 | TranscodeResponseSchema]
+        Response[Any | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefault | TranscodeResponseSchema]
     """
 
     kwargs = _get_kwargs(
@@ -164,8 +136,7 @@ def sync(
     body: TranscodeRequestSchema,
 ) -> (
     Any
-    | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType0
-    | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType1
+    | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefault
     | TranscodeResponseSchema
     | None
 ):
@@ -185,7 +156,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType0 | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType1 | TranscodeResponseSchema
+        Any | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefault | TranscodeResponseSchema
     """
 
     return sync_detailed(
@@ -204,8 +175,7 @@ async def asyncio_detailed(
     body: TranscodeRequestSchema,
 ) -> Response[
     Any
-    | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType0
-    | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType1
+    | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefault
     | TranscodeResponseSchema
 ]:
     """Create a transcode job for keyframes from a proxy
@@ -224,7 +194,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType0 | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType1 | TranscodeResponseSchema]
+        Response[Any | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefault | TranscodeResponseSchema]
     """
 
     kwargs = _get_kwargs(
@@ -246,8 +216,7 @@ async def asyncio(
     body: TranscodeRequestSchema,
 ) -> (
     Any
-    | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType0
-    | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType1
+    | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefault
     | TranscodeResponseSchema
     | None
 ):
@@ -267,7 +236,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType0 | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType1 | TranscodeResponseSchema
+        Any | PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefault | TranscodeResponseSchema
     """
 
     return (

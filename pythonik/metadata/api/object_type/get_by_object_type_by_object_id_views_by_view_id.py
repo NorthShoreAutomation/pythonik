@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_by_object_type_by_object_id_views_by_view_id_response_default_type_0 import (
-    GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0,
-)
-from ...models.get_by_object_type_by_object_id_views_by_view_id_response_default_type_1 import (
-    GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1,
+from ...models.get_by_object_type_by_object_id_views_by_view_id_response_default import (
+    GetByObjectTypeByObjectIdViewsByViewIdResponseDefault,
 )
 from ...models.metadata_values_schema import MetadataValuesSchema
 from ...types import UNSET, Response, Unset
@@ -21,7 +18,7 @@ def _get_kwargs(
     view_id: str,
     *,
     check_if_subclip: bool | Unset = UNSET,
-    reencode_values_to_string: bool | Unset = False,
+    reencode_values_to_string: bool | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -47,12 +44,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-    | GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
-    | MetadataValuesSchema
-):
+) -> Any | GetByObjectTypeByObjectIdViewsByViewIdResponseDefault | MetadataValuesSchema:
     if response.status_code == 200:
         response_200 = MetadataValuesSchema.from_dict(response.json())
 
@@ -70,33 +62,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-        | GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetByObjectTypeByObjectIdViewsByViewIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -104,10 +72,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-    | GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
-    | MetadataValuesSchema
+    Any | GetByObjectTypeByObjectIdViewsByViewIdResponseDefault | MetadataValuesSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -124,12 +89,9 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     check_if_subclip: bool | Unset = UNSET,
-    reencode_values_to_string: bool | Unset = False,
+    reencode_values_to_string: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-    | GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
-    | MetadataValuesSchema
+    Any | GetByObjectTypeByObjectIdViewsByViewIdResponseDefault | MetadataValuesSchema
 ]:
     """Get object metadata by object type, object ID and view ID
 
@@ -142,14 +104,14 @@ def sync_detailed(
         object_id (str):
         view_id (str):
         check_if_subclip (bool | Unset):
-        reencode_values_to_string (bool | Unset):  Default: False.
+        reencode_values_to_string (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0 | GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1 | MetadataValuesSchema]
+        Response[Any | GetByObjectTypeByObjectIdViewsByViewIdResponseDefault | MetadataValuesSchema]
     """
 
     kwargs = _get_kwargs(
@@ -174,11 +136,10 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     check_if_subclip: bool | Unset = UNSET,
-    reencode_values_to_string: bool | Unset = False,
+    reencode_values_to_string: bool | Unset = UNSET,
 ) -> (
     Any
-    | GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-    | GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
+    | GetByObjectTypeByObjectIdViewsByViewIdResponseDefault
     | MetadataValuesSchema
     | None
 ):
@@ -193,14 +154,14 @@ def sync(
         object_id (str):
         view_id (str):
         check_if_subclip (bool | Unset):
-        reencode_values_to_string (bool | Unset):  Default: False.
+        reencode_values_to_string (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0 | GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1 | MetadataValuesSchema
+        Any | GetByObjectTypeByObjectIdViewsByViewIdResponseDefault | MetadataValuesSchema
     """
 
     return sync_detailed(
@@ -220,12 +181,9 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     check_if_subclip: bool | Unset = UNSET,
-    reencode_values_to_string: bool | Unset = False,
+    reencode_values_to_string: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-    | GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
-    | MetadataValuesSchema
+    Any | GetByObjectTypeByObjectIdViewsByViewIdResponseDefault | MetadataValuesSchema
 ]:
     """Get object metadata by object type, object ID and view ID
 
@@ -238,14 +196,14 @@ async def asyncio_detailed(
         object_id (str):
         view_id (str):
         check_if_subclip (bool | Unset):
-        reencode_values_to_string (bool | Unset):  Default: False.
+        reencode_values_to_string (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0 | GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1 | MetadataValuesSchema]
+        Response[Any | GetByObjectTypeByObjectIdViewsByViewIdResponseDefault | MetadataValuesSchema]
     """
 
     kwargs = _get_kwargs(
@@ -268,11 +226,10 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     check_if_subclip: bool | Unset = UNSET,
-    reencode_values_to_string: bool | Unset = False,
+    reencode_values_to_string: bool | Unset = UNSET,
 ) -> (
     Any
-    | GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-    | GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
+    | GetByObjectTypeByObjectIdViewsByViewIdResponseDefault
     | MetadataValuesSchema
     | None
 ):
@@ -287,14 +244,14 @@ async def asyncio(
         object_id (str):
         view_id (str):
         check_if_subclip (bool | Unset):
-        reencode_values_to_string (bool | Unset):  Default: False.
+        reencode_values_to_string (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0 | GetByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1 | MetadataValuesSchema
+        Any | GetByObjectTypeByObjectIdViewsByViewIdResponseDefault | MetadataValuesSchema
     """
 
     return (

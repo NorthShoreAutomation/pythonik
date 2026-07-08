@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_analysis_profiles_by_profile_id_default_response_default_type_0 import (
-    PostAnalysisProfilesByProfileIdDefaultResponseDefaultType0,
-)
-from ...models.post_analysis_profiles_by_profile_id_default_response_default_type_1 import (
-    PostAnalysisProfilesByProfileIdDefaultResponseDefaultType1,
+from ...models.post_analysis_profiles_by_profile_id_default_response_default import (
+    PostAnalysisProfilesByProfileIdDefaultResponseDefault,
 )
 from ...types import Response
 
@@ -30,11 +27,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostAnalysisProfilesByProfileIdDefaultResponseDefaultType0
-    | PostAnalysisProfilesByProfileIdDefaultResponseDefaultType1
-):
+) -> Any | PostAnalysisProfilesByProfileIdDefaultResponseDefault:
     if response.status_code == 201:
         response_201 = cast(Any, None)
         return response_201
@@ -47,44 +40,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAnalysisProfilesByProfileIdDefaultResponseDefaultType0
-        | PostAnalysisProfilesByProfileIdDefaultResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostAnalysisProfilesByProfileIdDefaultResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostAnalysisProfilesByProfileIdDefaultResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostAnalysisProfilesByProfileIdDefaultResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostAnalysisProfilesByProfileIdDefaultResponseDefaultType0
-    | PostAnalysisProfilesByProfileIdDefaultResponseDefaultType1
-]:
+) -> Response[Any | PostAnalysisProfilesByProfileIdDefaultResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -97,11 +62,7 @@ def sync_detailed(
     profile_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostAnalysisProfilesByProfileIdDefaultResponseDefaultType0
-    | PostAnalysisProfilesByProfileIdDefaultResponseDefaultType1
-]:
+) -> Response[Any | PostAnalysisProfilesByProfileIdDefaultResponseDefault]:
     """Set an analysis profile to the default of its media type
 
 
@@ -116,7 +77,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAnalysisProfilesByProfileIdDefaultResponseDefaultType0 | PostAnalysisProfilesByProfileIdDefaultResponseDefaultType1]
+        Response[Any | PostAnalysisProfilesByProfileIdDefaultResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -134,12 +95,7 @@ def sync(
     profile_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostAnalysisProfilesByProfileIdDefaultResponseDefaultType0
-    | PostAnalysisProfilesByProfileIdDefaultResponseDefaultType1
-    | None
-):
+) -> Any | PostAnalysisProfilesByProfileIdDefaultResponseDefault | None:
     """Set an analysis profile to the default of its media type
 
 
@@ -154,7 +110,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAnalysisProfilesByProfileIdDefaultResponseDefaultType0 | PostAnalysisProfilesByProfileIdDefaultResponseDefaultType1
+        Any | PostAnalysisProfilesByProfileIdDefaultResponseDefault
     """
 
     return sync_detailed(
@@ -167,11 +123,7 @@ async def asyncio_detailed(
     profile_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostAnalysisProfilesByProfileIdDefaultResponseDefaultType0
-    | PostAnalysisProfilesByProfileIdDefaultResponseDefaultType1
-]:
+) -> Response[Any | PostAnalysisProfilesByProfileIdDefaultResponseDefault]:
     """Set an analysis profile to the default of its media type
 
 
@@ -186,7 +138,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAnalysisProfilesByProfileIdDefaultResponseDefaultType0 | PostAnalysisProfilesByProfileIdDefaultResponseDefaultType1]
+        Response[Any | PostAnalysisProfilesByProfileIdDefaultResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -202,12 +154,7 @@ async def asyncio(
     profile_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostAnalysisProfilesByProfileIdDefaultResponseDefaultType0
-    | PostAnalysisProfilesByProfileIdDefaultResponseDefaultType1
-    | None
-):
+) -> Any | PostAnalysisProfilesByProfileIdDefaultResponseDefault | None:
     """Set an analysis profile to the default of its media type
 
 
@@ -222,7 +169,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAnalysisProfilesByProfileIdDefaultResponseDefaultType0 | PostAnalysisProfilesByProfileIdDefaultResponseDefaultType1
+        Any | PostAnalysisProfilesByProfileIdDefaultResponseDefault
     """
 
     return (

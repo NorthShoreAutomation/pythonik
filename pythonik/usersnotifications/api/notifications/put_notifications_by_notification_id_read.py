@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.notification_schema import NotificationSchema
-from ...models.put_notifications_by_notification_id_read_response_default_type_0 import (
-    PutNotificationsByNotificationIdReadResponseDefaultType0,
-)
-from ...models.put_notifications_by_notification_id_read_response_default_type_1 import (
-    PutNotificationsByNotificationIdReadResponseDefaultType1,
+from ...models.put_notifications_by_notification_id_read_response_default import (
+    PutNotificationsByNotificationIdReadResponseDefault,
 )
 from ...types import Response
 
@@ -31,12 +28,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | NotificationSchema
-    | PutNotificationsByNotificationIdReadResponseDefaultType0
-    | PutNotificationsByNotificationIdReadResponseDefaultType1
-):
+) -> Any | NotificationSchema | PutNotificationsByNotificationIdReadResponseDefault:
     if response.status_code == 200:
         response_200 = NotificationSchema.from_dict(response.json())
 
@@ -54,31 +46,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutNotificationsByNotificationIdReadResponseDefaultType0
-        | PutNotificationsByNotificationIdReadResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PutNotificationsByNotificationIdReadResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PutNotificationsByNotificationIdReadResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutNotificationsByNotificationIdReadResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -86,10 +56,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | NotificationSchema
-    | PutNotificationsByNotificationIdReadResponseDefaultType0
-    | PutNotificationsByNotificationIdReadResponseDefaultType1
+    Any | NotificationSchema | PutNotificationsByNotificationIdReadResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -104,10 +71,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | NotificationSchema
-    | PutNotificationsByNotificationIdReadResponseDefaultType0
-    | PutNotificationsByNotificationIdReadResponseDefaultType1
+    Any | NotificationSchema | PutNotificationsByNotificationIdReadResponseDefault
 ]:
     """Mark a particular notification as read
 
@@ -123,7 +87,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | NotificationSchema | PutNotificationsByNotificationIdReadResponseDefaultType0 | PutNotificationsByNotificationIdReadResponseDefaultType1]
+        Response[Any | NotificationSchema | PutNotificationsByNotificationIdReadResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -144,8 +108,7 @@ def sync(
 ) -> (
     Any
     | NotificationSchema
-    | PutNotificationsByNotificationIdReadResponseDefaultType0
-    | PutNotificationsByNotificationIdReadResponseDefaultType1
+    | PutNotificationsByNotificationIdReadResponseDefault
     | None
 ):
     """Mark a particular notification as read
@@ -162,7 +125,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | NotificationSchema | PutNotificationsByNotificationIdReadResponseDefaultType0 | PutNotificationsByNotificationIdReadResponseDefaultType1
+        Any | NotificationSchema | PutNotificationsByNotificationIdReadResponseDefault
     """
 
     return sync_detailed(
@@ -176,10 +139,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | NotificationSchema
-    | PutNotificationsByNotificationIdReadResponseDefaultType0
-    | PutNotificationsByNotificationIdReadResponseDefaultType1
+    Any | NotificationSchema | PutNotificationsByNotificationIdReadResponseDefault
 ]:
     """Mark a particular notification as read
 
@@ -195,7 +155,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | NotificationSchema | PutNotificationsByNotificationIdReadResponseDefaultType0 | PutNotificationsByNotificationIdReadResponseDefaultType1]
+        Response[Any | NotificationSchema | PutNotificationsByNotificationIdReadResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -214,8 +174,7 @@ async def asyncio(
 ) -> (
     Any
     | NotificationSchema
-    | PutNotificationsByNotificationIdReadResponseDefaultType0
-    | PutNotificationsByNotificationIdReadResponseDefaultType1
+    | PutNotificationsByNotificationIdReadResponseDefault
     | None
 ):
     """Mark a particular notification as read
@@ -232,7 +191,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | NotificationSchema | PutNotificationsByNotificationIdReadResponseDefaultType0 | PutNotificationsByNotificationIdReadResponseDefaultType1
+        Any | NotificationSchema | PutNotificationsByNotificationIdReadResponseDefault
     """
 
     return (

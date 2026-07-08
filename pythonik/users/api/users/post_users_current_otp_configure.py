@@ -5,11 +5,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.otp_edit_schema import OtpEditSchema
-from ...models.post_users_current_otp_configure_response_default_type_0 import (
-    PostUsersCurrentOtpConfigureResponseDefaultType0,
-)
-from ...models.post_users_current_otp_configure_response_default_type_1 import (
-    PostUsersCurrentOtpConfigureResponseDefaultType1,
+from ...models.post_users_current_otp_configure_response_default import (
+    PostUsersCurrentOtpConfigureResponseDefault,
 )
 from ...types import Response
 
@@ -35,11 +32,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostUsersCurrentOtpConfigureResponseDefaultType0
-    | PostUsersCurrentOtpConfigureResponseDefaultType1
-):
+) -> Any | PostUsersCurrentOtpConfigureResponseDefault:
     if response.status_code == 200:
         response_200 = cast(Any, None)
         return response_200
@@ -52,42 +45,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostUsersCurrentOtpConfigureResponseDefaultType0
-        | PostUsersCurrentOtpConfigureResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostUsersCurrentOtpConfigureResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostUsersCurrentOtpConfigureResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostUsersCurrentOtpConfigureResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostUsersCurrentOtpConfigureResponseDefaultType0
-    | PostUsersCurrentOtpConfigureResponseDefaultType1
-]:
+) -> Response[Any | PostUsersCurrentOtpConfigureResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -100,11 +67,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: OtpEditSchema,
-) -> Response[
-    Any
-    | PostUsersCurrentOtpConfigureResponseDefaultType0
-    | PostUsersCurrentOtpConfigureResponseDefaultType1
-]:
+) -> Response[Any | PostUsersCurrentOtpConfigureResponseDefault]:
     """Configure OTP settings.
 
     Args:
@@ -115,7 +78,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostUsersCurrentOtpConfigureResponseDefaultType0 | PostUsersCurrentOtpConfigureResponseDefaultType1]
+        Response[Any | PostUsersCurrentOtpConfigureResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -133,12 +96,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: OtpEditSchema,
-) -> (
-    Any
-    | PostUsersCurrentOtpConfigureResponseDefaultType0
-    | PostUsersCurrentOtpConfigureResponseDefaultType1
-    | None
-):
+) -> Any | PostUsersCurrentOtpConfigureResponseDefault | None:
     """Configure OTP settings.
 
     Args:
@@ -149,7 +107,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostUsersCurrentOtpConfigureResponseDefaultType0 | PostUsersCurrentOtpConfigureResponseDefaultType1
+        Any | PostUsersCurrentOtpConfigureResponseDefault
     """
 
     return sync_detailed(
@@ -162,11 +120,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: OtpEditSchema,
-) -> Response[
-    Any
-    | PostUsersCurrentOtpConfigureResponseDefaultType0
-    | PostUsersCurrentOtpConfigureResponseDefaultType1
-]:
+) -> Response[Any | PostUsersCurrentOtpConfigureResponseDefault]:
     """Configure OTP settings.
 
     Args:
@@ -177,7 +131,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostUsersCurrentOtpConfigureResponseDefaultType0 | PostUsersCurrentOtpConfigureResponseDefaultType1]
+        Response[Any | PostUsersCurrentOtpConfigureResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -193,12 +147,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: OtpEditSchema,
-) -> (
-    Any
-    | PostUsersCurrentOtpConfigureResponseDefaultType0
-    | PostUsersCurrentOtpConfigureResponseDefaultType1
-    | None
-):
+) -> Any | PostUsersCurrentOtpConfigureResponseDefault | None:
     """Configure OTP settings.
 
     Args:
@@ -209,7 +158,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostUsersCurrentOtpConfigureResponseDefaultType0 | PostUsersCurrentOtpConfigureResponseDefaultType1
+        Any | PostUsersCurrentOtpConfigureResponseDefault
     """
 
     return (

@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_billing_invoices_response_default_type_0 import (
-    GetBillingInvoicesResponseDefaultType0,
-)
-from ...models.get_billing_invoices_response_default_type_1 import (
-    GetBillingInvoicesResponseDefaultType1,
+from ...models.get_billing_invoices_response_default import (
+    GetBillingInvoicesResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -38,11 +35,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetBillingInvoicesResponseDefaultType0
-    | GetBillingInvoicesResponseDefaultType1
-):
+) -> Any | GetBillingInvoicesResponseDefault:
     if response.status_code == 200:
         response_200 = cast(Any, None)
         return response_200
@@ -55,39 +48,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetBillingInvoicesResponseDefaultType0 | GetBillingInvoicesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetBillingInvoicesResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetBillingInvoicesResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetBillingInvoicesResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetBillingInvoicesResponseDefaultType0
-    | GetBillingInvoicesResponseDefaultType1
-]:
+) -> Response[Any | GetBillingInvoicesResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -101,11 +69,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     starting_after: str | Unset = UNSET,
     limit: int | Unset = UNSET,
-) -> Response[
-    Any
-    | GetBillingInvoicesResponseDefaultType0
-    | GetBillingInvoicesResponseDefaultType1
-]:
+) -> Response[Any | GetBillingInvoicesResponseDefault]:
     """Returns billing invoices
 
 
@@ -121,7 +85,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetBillingInvoicesResponseDefaultType0 | GetBillingInvoicesResponseDefaultType1]
+        Response[Any | GetBillingInvoicesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -141,12 +105,7 @@ def sync(
     client: AuthenticatedClient | Client,
     starting_after: str | Unset = UNSET,
     limit: int | Unset = UNSET,
-) -> (
-    Any
-    | GetBillingInvoicesResponseDefaultType0
-    | GetBillingInvoicesResponseDefaultType1
-    | None
-):
+) -> Any | GetBillingInvoicesResponseDefault | None:
     """Returns billing invoices
 
 
@@ -162,7 +121,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetBillingInvoicesResponseDefaultType0 | GetBillingInvoicesResponseDefaultType1
+        Any | GetBillingInvoicesResponseDefault
     """
 
     return sync_detailed(
@@ -177,11 +136,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     starting_after: str | Unset = UNSET,
     limit: int | Unset = UNSET,
-) -> Response[
-    Any
-    | GetBillingInvoicesResponseDefaultType0
-    | GetBillingInvoicesResponseDefaultType1
-]:
+) -> Response[Any | GetBillingInvoicesResponseDefault]:
     """Returns billing invoices
 
 
@@ -197,7 +152,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetBillingInvoicesResponseDefaultType0 | GetBillingInvoicesResponseDefaultType1]
+        Response[Any | GetBillingInvoicesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -215,12 +170,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     starting_after: str | Unset = UNSET,
     limit: int | Unset = UNSET,
-) -> (
-    Any
-    | GetBillingInvoicesResponseDefaultType0
-    | GetBillingInvoicesResponseDefaultType1
-    | None
-):
+) -> Any | GetBillingInvoicesResponseDefault | None:
     """Returns billing invoices
 
 
@@ -236,7 +186,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetBillingInvoicesResponseDefaultType0 | GetBillingInvoicesResponseDefaultType1
+        Any | GetBillingInvoicesResponseDefault
     """
 
     return (

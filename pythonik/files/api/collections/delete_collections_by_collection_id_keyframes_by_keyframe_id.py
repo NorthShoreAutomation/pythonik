@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_collections_by_collection_id_keyframes_by_keyframe_id_response_default_type_0 import (
-    DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0,
-)
-from ...models.delete_collections_by_collection_id_keyframes_by_keyframe_id_response_default_type_1 import (
-    DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1,
+from ...models.delete_collections_by_collection_id_keyframes_by_keyframe_id_response_default import (
+    DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -41,11 +38,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0
-    | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1
-):
+) -> Any | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -62,31 +55,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0
-        | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -94,9 +67,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0
-    | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1
+    Any | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -113,9 +84,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     regenerate_keyframes: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0
-    | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1
+    Any | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault
 ]:
     """Delete collection's keyframe
 
@@ -133,7 +102,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0 | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1]
+        Response[Any | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -155,12 +124,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     regenerate_keyframes: bool | Unset = UNSET,
-) -> (
-    Any
-    | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0
-    | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault | None:
     """Delete collection's keyframe
 
 
@@ -177,7 +141,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0 | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1
+        Any | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault
     """
 
     return sync_detailed(
@@ -195,9 +159,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     regenerate_keyframes: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0
-    | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1
+    Any | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault
 ]:
     """Delete collection's keyframe
 
@@ -215,7 +177,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0 | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1]
+        Response[Any | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -235,12 +197,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     regenerate_keyframes: bool | Unset = UNSET,
-) -> (
-    Any
-    | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0
-    | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault | None:
     """Delete collection's keyframe
 
 
@@ -257,7 +214,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0 | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1
+        Any | DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault
     """
 
     return (

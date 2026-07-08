@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_assets_by_asset_id_versions_by_version_id_proxies_by_proxy_id_by_manifest_type_response_default_type_0 import (
-    GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType0,
-)
-from ...models.get_assets_by_asset_id_versions_by_version_id_proxies_by_proxy_id_by_manifest_type_response_default_type_1 import (
-    GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType1,
+from ...models.get_assets_by_asset_id_versions_by_version_id_proxies_by_proxy_id_by_manifest_type_response_default import (
+    GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -65,8 +62,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType0
-    | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType1
+    | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefault
 ):
     if response.status_code == 200:
         response_200 = cast(Any, None)
@@ -88,31 +84,9 @@ def _parse_response(
         response_425 = cast(Any, None)
         return response_425
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType0
-        | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -121,8 +95,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType0
-    | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType1
+    | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -147,8 +120,7 @@ def sync_detailed(
     watermark: str | Unset = UNSET,
 ) -> Response[
     Any
-    | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType0
-    | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType1
+    | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefault
 ]:
     """Retrieve manifest/playlist for asset proxy
 
@@ -173,7 +145,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType0 | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType1]
+        Response[Any | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -211,8 +183,7 @@ def sync(
     watermark: str | Unset = UNSET,
 ) -> (
     Any
-    | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType0
-    | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType1
+    | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefault
     | None
 ):
     """Retrieve manifest/playlist for asset proxy
@@ -238,7 +209,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType0 | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType1
+        Any | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefault
     """
 
     return sync_detailed(
@@ -271,8 +242,7 @@ async def asyncio_detailed(
     watermark: str | Unset = UNSET,
 ) -> Response[
     Any
-    | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType0
-    | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType1
+    | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefault
 ]:
     """Retrieve manifest/playlist for asset proxy
 
@@ -297,7 +267,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType0 | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType1]
+        Response[Any | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -333,8 +303,7 @@ async def asyncio(
     watermark: str | Unset = UNSET,
 ) -> (
     Any
-    | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType0
-    | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType1
+    | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefault
     | None
 ):
     """Retrieve manifest/playlist for asset proxy
@@ -360,7 +329,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType0 | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType1
+        Any | GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefault
     """
 
     return (

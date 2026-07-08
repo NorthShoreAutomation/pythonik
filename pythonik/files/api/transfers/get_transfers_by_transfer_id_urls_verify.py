@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_transfers_by_transfer_id_urls_verify_response_default_type_0 import (
-    GetTransfersByTransferIdUrlsVerifyResponseDefaultType0,
-)
-from ...models.get_transfers_by_transfer_id_urls_verify_response_default_type_1 import (
-    GetTransfersByTransferIdUrlsVerifyResponseDefaultType1,
+from ...models.get_transfers_by_transfer_id_urls_verify_response_default import (
+    GetTransfersByTransferIdUrlsVerifyResponseDefault,
 )
 from ...types import UNSET, Response
 
@@ -42,11 +39,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetTransfersByTransferIdUrlsVerifyResponseDefaultType0
-    | GetTransfersByTransferIdUrlsVerifyResponseDefaultType1
-):
+) -> Any | GetTransfersByTransferIdUrlsVerifyResponseDefault:
     if response.status_code == 200:
         response_200 = cast(Any, None)
         return response_200
@@ -55,42 +48,16 @@ def _parse_response(
         response_400 = cast(Any, None)
         return response_400
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetTransfersByTransferIdUrlsVerifyResponseDefaultType0
-        | GetTransfersByTransferIdUrlsVerifyResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetTransfersByTransferIdUrlsVerifyResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetTransfersByTransferIdUrlsVerifyResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetTransfersByTransferIdUrlsVerifyResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetTransfersByTransferIdUrlsVerifyResponseDefaultType0
-    | GetTransfersByTransferIdUrlsVerifyResponseDefaultType1
-]:
+) -> Response[Any | GetTransfersByTransferIdUrlsVerifyResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -105,11 +72,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     user_id: str,
     signature: str,
-) -> Response[
-    Any
-    | GetTransfersByTransferIdUrlsVerifyResponseDefaultType0
-    | GetTransfersByTransferIdUrlsVerifyResponseDefaultType1
-]:
+) -> Response[Any | GetTransfersByTransferIdUrlsVerifyResponseDefault]:
     """Verifies the signature of a url
 
     Args:
@@ -122,7 +85,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetTransfersByTransferIdUrlsVerifyResponseDefaultType0 | GetTransfersByTransferIdUrlsVerifyResponseDefaultType1]
+        Response[Any | GetTransfersByTransferIdUrlsVerifyResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -144,12 +107,7 @@ def sync(
     client: AuthenticatedClient | Client,
     user_id: str,
     signature: str,
-) -> (
-    Any
-    | GetTransfersByTransferIdUrlsVerifyResponseDefaultType0
-    | GetTransfersByTransferIdUrlsVerifyResponseDefaultType1
-    | None
-):
+) -> Any | GetTransfersByTransferIdUrlsVerifyResponseDefault | None:
     """Verifies the signature of a url
 
     Args:
@@ -162,7 +120,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetTransfersByTransferIdUrlsVerifyResponseDefaultType0 | GetTransfersByTransferIdUrlsVerifyResponseDefaultType1
+        Any | GetTransfersByTransferIdUrlsVerifyResponseDefault
     """
 
     return sync_detailed(
@@ -179,11 +137,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     user_id: str,
     signature: str,
-) -> Response[
-    Any
-    | GetTransfersByTransferIdUrlsVerifyResponseDefaultType0
-    | GetTransfersByTransferIdUrlsVerifyResponseDefaultType1
-]:
+) -> Response[Any | GetTransfersByTransferIdUrlsVerifyResponseDefault]:
     """Verifies the signature of a url
 
     Args:
@@ -196,7 +150,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetTransfersByTransferIdUrlsVerifyResponseDefaultType0 | GetTransfersByTransferIdUrlsVerifyResponseDefaultType1]
+        Response[Any | GetTransfersByTransferIdUrlsVerifyResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -216,12 +170,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     user_id: str,
     signature: str,
-) -> (
-    Any
-    | GetTransfersByTransferIdUrlsVerifyResponseDefaultType0
-    | GetTransfersByTransferIdUrlsVerifyResponseDefaultType1
-    | None
-):
+) -> Any | GetTransfersByTransferIdUrlsVerifyResponseDefault | None:
     """Verifies the signature of a url
 
     Args:
@@ -234,7 +183,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetTransfersByTransferIdUrlsVerifyResponseDefaultType0 | GetTransfersByTransferIdUrlsVerifyResponseDefaultType1
+        Any | GetTransfersByTransferIdUrlsVerifyResponseDefault
     """
 
     return (

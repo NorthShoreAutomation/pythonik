@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_by_object_type_by_object_id_shares_by_share_id_users_response_default_type_0 import (
-    GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType0,
-)
-from ...models.get_by_object_type_by_object_id_shares_by_share_id_users_response_default_type_1 import (
-    GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType1,
+from ...models.get_by_object_type_by_object_id_shares_by_share_id_users_response_default import (
+    GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefault,
 )
 from ...models.share_users_schema import ShareUsersSchema
 from ...types import UNSET, Response, Unset
@@ -49,8 +46,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType0
-    | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType1
+    | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefault
     | ShareUsersSchema
 ):
     if response.status_code == 200:
@@ -70,33 +66,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType0
-        | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -105,8 +79,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType0
-    | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType1
+    | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefault
     | ShareUsersSchema
 ]:
     return Response(
@@ -127,8 +100,7 @@ def sync_detailed(
     last_id: str | Unset = UNSET,
 ) -> Response[
     Any
-    | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType0
-    | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType1
+    | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefault
     | ShareUsersSchema
 ]:
     """Get list of share users
@@ -149,7 +121,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType0 | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType1 | ShareUsersSchema]
+        Response[Any | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefault | ShareUsersSchema]
     """
 
     kwargs = _get_kwargs(
@@ -177,8 +149,7 @@ def sync(
     last_id: str | Unset = UNSET,
 ) -> (
     Any
-    | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType0
-    | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType1
+    | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefault
     | ShareUsersSchema
     | None
 ):
@@ -200,7 +171,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType0 | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType1 | ShareUsersSchema
+        Any | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefault | ShareUsersSchema
     """
 
     return sync_detailed(
@@ -223,8 +194,7 @@ async def asyncio_detailed(
     last_id: str | Unset = UNSET,
 ) -> Response[
     Any
-    | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType0
-    | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType1
+    | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefault
     | ShareUsersSchema
 ]:
     """Get list of share users
@@ -245,7 +215,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType0 | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType1 | ShareUsersSchema]
+        Response[Any | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefault | ShareUsersSchema]
     """
 
     kwargs = _get_kwargs(
@@ -271,8 +241,7 @@ async def asyncio(
     last_id: str | Unset = UNSET,
 ) -> (
     Any
-    | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType0
-    | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType1
+    | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefault
     | ShareUsersSchema
     | None
 ):
@@ -294,7 +263,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType0 | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefaultType1 | ShareUsersSchema
+        Any | GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefault | ShareUsersSchema
     """
 
     return (

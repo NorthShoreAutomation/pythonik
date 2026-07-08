@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_assets_by_asset_id_versions_by_version_id_transcriptions_by_transcription_id_properties_response_default_type_0 import (
-    DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType0,
-)
-from ...models.delete_assets_by_asset_id_versions_by_version_id_transcriptions_by_transcription_id_properties_response_default_type_1 import (
-    DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType1,
+from ...models.delete_assets_by_asset_id_versions_by_version_id_transcriptions_by_transcription_id_properties_response_default import (
+    DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefault,
 )
 from ...types import Response
 
@@ -36,8 +33,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType1
+    | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefault
 ):
     if response.status_code == 204:
         response_204 = cast(Any, None)
@@ -55,31 +51,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType0
-        | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -88,8 +62,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType1
+    | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -107,8 +80,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
 ) -> Response[
     Any
-    | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType1
+    | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefault
 ]:
     """Delete transcription properties by ID
 
@@ -126,7 +98,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType0 | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType1]
+        Response[Any | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -150,8 +122,7 @@ def sync(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType1
+    | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefault
     | None
 ):
     """Delete transcription properties by ID
@@ -170,7 +141,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType0 | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType1
+        Any | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefault
     """
 
     return sync_detailed(
@@ -189,8 +160,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
 ) -> Response[
     Any
-    | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType1
+    | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefault
 ]:
     """Delete transcription properties by ID
 
@@ -208,7 +178,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType0 | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType1]
+        Response[Any | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -230,8 +200,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType1
+    | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefault
     | None
 ):
     """Delete transcription properties by ID
@@ -250,7 +219,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType0 | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefaultType1
+        Any | DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefault
     """
 
     return (

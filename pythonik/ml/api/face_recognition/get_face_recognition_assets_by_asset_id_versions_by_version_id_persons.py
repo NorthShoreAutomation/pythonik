@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_face_recognition_assets_by_asset_id_versions_by_version_id_persons_response_default_type_0 import (
-    GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType0,
-)
-from ...models.get_face_recognition_assets_by_asset_id_versions_by_version_id_persons_response_default_type_1 import (
-    GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType1,
+from ...models.get_face_recognition_assets_by_asset_id_versions_by_version_id_persons_response_default import (
+    GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefault,
 )
 from ...models.person_by_asset_and_version_list_schema import (
     PersonByAssetAndVersionListSchema,
@@ -46,8 +43,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType0
-    | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType1
+    | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefault
     | PersonByAssetAndVersionListSchema
 ):
     if response.status_code == 200:
@@ -63,31 +59,9 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType0
-        | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -96,8 +70,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType0
-    | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType1
+    | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefault
     | PersonByAssetAndVersionListSchema
 ]:
     return Response(
@@ -116,8 +89,7 @@ def sync_detailed(
     fetch_image_url: bool | Unset = UNSET,
 ) -> Response[
     Any
-    | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType0
-    | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType1
+    | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefault
     | PersonByAssetAndVersionListSchema
 ]:
     """List all persons associated with a specific asset version
@@ -136,7 +108,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType0 | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType1 | PersonByAssetAndVersionListSchema]
+        Response[Any | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefault | PersonByAssetAndVersionListSchema]
     """
 
     kwargs = _get_kwargs(
@@ -160,8 +132,7 @@ def sync(
     fetch_image_url: bool | Unset = UNSET,
 ) -> (
     Any
-    | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType0
-    | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType1
+    | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefault
     | PersonByAssetAndVersionListSchema
     | None
 ):
@@ -181,7 +152,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType0 | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType1 | PersonByAssetAndVersionListSchema
+        Any | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefault | PersonByAssetAndVersionListSchema
     """
 
     return sync_detailed(
@@ -200,8 +171,7 @@ async def asyncio_detailed(
     fetch_image_url: bool | Unset = UNSET,
 ) -> Response[
     Any
-    | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType0
-    | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType1
+    | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefault
     | PersonByAssetAndVersionListSchema
 ]:
     """List all persons associated with a specific asset version
@@ -220,7 +190,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType0 | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType1 | PersonByAssetAndVersionListSchema]
+        Response[Any | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefault | PersonByAssetAndVersionListSchema]
     """
 
     kwargs = _get_kwargs(
@@ -242,8 +212,7 @@ async def asyncio(
     fetch_image_url: bool | Unset = UNSET,
 ) -> (
     Any
-    | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType0
-    | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType1
+    | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefault
     | PersonByAssetAndVersionListSchema
     | None
 ):
@@ -263,7 +232,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType0 | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType1 | PersonByAssetAndVersionListSchema
+        Any | GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefault | PersonByAssetAndVersionListSchema
     """
 
     return (

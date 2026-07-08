@@ -4,20 +4,15 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_teams_basic_response_default_type_0 import (
-    GetTeamsBasicResponseDefaultType0,
-)
-from ...models.get_teams_basic_response_default_type_1 import (
-    GetTeamsBasicResponseDefaultType1,
-)
+from ...models.get_teams_basic_response_default import GetTeamsBasicResponseDefault
 from ...models.groups_schema import GroupsSchema
 from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     *,
-    page: int | Unset = 1,
-    per_page: int | Unset = 10,
+    page: int | Unset = UNSET,
+    per_page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
     alias: str | Unset = UNSET,
     description: str | Unset = UNSET,
@@ -63,12 +58,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetTeamsBasicResponseDefaultType0
-    | GetTeamsBasicResponseDefaultType1
-    | GroupsSchema
-):
+) -> Any | GetTeamsBasicResponseDefault | GroupsSchema:
     if response.status_code == 200:
         response_200 = GroupsSchema.from_dict(response.json())
 
@@ -86,36 +76,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> GetTeamsBasicResponseDefaultType0 | GetTeamsBasicResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetTeamsBasicResponseDefaultType0.from_dict(data)
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetTeamsBasicResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetTeamsBasicResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetTeamsBasicResponseDefaultType0
-    | GetTeamsBasicResponseDefaultType1
-    | GroupsSchema
-]:
+) -> Response[Any | GetTeamsBasicResponseDefault | GroupsSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -127,8 +95,8 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-    page: int | Unset = 1,
-    per_page: int | Unset = 10,
+    page: int | Unset = UNSET,
+    per_page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
     alias: str | Unset = UNSET,
     description: str | Unset = UNSET,
@@ -137,17 +105,12 @@ def sync_detailed(
     date_modified: str | Unset = UNSET,
     query: str | Unset = UNSET,
     ids: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetTeamsBasicResponseDefaultType0
-    | GetTeamsBasicResponseDefaultType1
-    | GroupsSchema
-]:
+) -> Response[Any | GetTeamsBasicResponseDefault | GroupsSchema]:
     """List teams info without details
 
     Args:
-        page (int | Unset):  Default: 1.
-        per_page (int | Unset):  Default: 10.
+        page (int | Unset):
+        per_page (int | Unset):
         sort (str | Unset):
         alias (str | Unset):
         description (str | Unset):
@@ -162,7 +125,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetTeamsBasicResponseDefaultType0 | GetTeamsBasicResponseDefaultType1 | GroupsSchema]
+        Response[Any | GetTeamsBasicResponseDefault | GroupsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -188,8 +151,8 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-    page: int | Unset = 1,
-    per_page: int | Unset = 10,
+    page: int | Unset = UNSET,
+    per_page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
     alias: str | Unset = UNSET,
     description: str | Unset = UNSET,
@@ -198,18 +161,12 @@ def sync(
     date_modified: str | Unset = UNSET,
     query: str | Unset = UNSET,
     ids: str | Unset = UNSET,
-) -> (
-    Any
-    | GetTeamsBasicResponseDefaultType0
-    | GetTeamsBasicResponseDefaultType1
-    | GroupsSchema
-    | None
-):
+) -> Any | GetTeamsBasicResponseDefault | GroupsSchema | None:
     """List teams info without details
 
     Args:
-        page (int | Unset):  Default: 1.
-        per_page (int | Unset):  Default: 10.
+        page (int | Unset):
+        per_page (int | Unset):
         sort (str | Unset):
         alias (str | Unset):
         description (str | Unset):
@@ -224,7 +181,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetTeamsBasicResponseDefaultType0 | GetTeamsBasicResponseDefaultType1 | GroupsSchema
+        Any | GetTeamsBasicResponseDefault | GroupsSchema
     """
 
     return sync_detailed(
@@ -245,8 +202,8 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-    page: int | Unset = 1,
-    per_page: int | Unset = 10,
+    page: int | Unset = UNSET,
+    per_page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
     alias: str | Unset = UNSET,
     description: str | Unset = UNSET,
@@ -255,17 +212,12 @@ async def asyncio_detailed(
     date_modified: str | Unset = UNSET,
     query: str | Unset = UNSET,
     ids: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetTeamsBasicResponseDefaultType0
-    | GetTeamsBasicResponseDefaultType1
-    | GroupsSchema
-]:
+) -> Response[Any | GetTeamsBasicResponseDefault | GroupsSchema]:
     """List teams info without details
 
     Args:
-        page (int | Unset):  Default: 1.
-        per_page (int | Unset):  Default: 10.
+        page (int | Unset):
+        per_page (int | Unset):
         sort (str | Unset):
         alias (str | Unset):
         description (str | Unset):
@@ -280,7 +232,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetTeamsBasicResponseDefaultType0 | GetTeamsBasicResponseDefaultType1 | GroupsSchema]
+        Response[Any | GetTeamsBasicResponseDefault | GroupsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -304,8 +256,8 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-    page: int | Unset = 1,
-    per_page: int | Unset = 10,
+    page: int | Unset = UNSET,
+    per_page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
     alias: str | Unset = UNSET,
     description: str | Unset = UNSET,
@@ -314,18 +266,12 @@ async def asyncio(
     date_modified: str | Unset = UNSET,
     query: str | Unset = UNSET,
     ids: str | Unset = UNSET,
-) -> (
-    Any
-    | GetTeamsBasicResponseDefaultType0
-    | GetTeamsBasicResponseDefaultType1
-    | GroupsSchema
-    | None
-):
+) -> Any | GetTeamsBasicResponseDefault | GroupsSchema | None:
     """List teams info without details
 
     Args:
-        page (int | Unset):  Default: 1.
-        per_page (int | Unset):  Default: 10.
+        page (int | Unset):
+        per_page (int | Unset):
         sort (str | Unset):
         alias (str | Unset):
         description (str | Unset):
@@ -340,7 +286,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetTeamsBasicResponseDefaultType0 | GetTeamsBasicResponseDefaultType1 | GroupsSchema
+        Any | GetTeamsBasicResponseDefault | GroupsSchema
     """
 
     return (

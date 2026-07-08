@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_assets_by_asset_id_formats_by_format_id_storages_by_storage_id_response_default_type_0 import (
-    PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType0,
-)
-from ...models.post_assets_by_asset_id_formats_by_format_id_storages_by_storage_id_response_default_type_1 import (
-    PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType1,
+from ...models.post_assets_by_asset_id_formats_by_format_id_storages_by_storage_id_response_default import (
+    PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefault,
 )
 from ...models.transfer_format_to_storage_schema import TransferFormatToStorageSchema
 from ...types import UNSET, Response, Unset
@@ -51,11 +48,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType0
-    | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType1
-):
+) -> Any | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -80,31 +73,9 @@ def _parse_response(
         response_409 = cast(Any, None)
         return response_409
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType0
-        | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -112,9 +83,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType0
-    | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType1
+    Any | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -133,9 +102,7 @@ def sync_detailed(
     body: TransferFormatToStorageSchema,
     allow_host_transfer: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType0
-    | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType1
+    Any | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefault
 ]:
     """Transfer formats file sets to another storage.
 
@@ -155,7 +122,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType0 | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType1]
+        Response[Any | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -182,10 +149,7 @@ def sync(
     body: TransferFormatToStorageSchema,
     allow_host_transfer: bool | Unset = UNSET,
 ) -> (
-    Any
-    | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType0
-    | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType1
-    | None
+    Any | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefault | None
 ):
     """Transfer formats file sets to another storage.
 
@@ -205,7 +169,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType0 | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType1
+        Any | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefault
     """
 
     return sync_detailed(
@@ -227,9 +191,7 @@ async def asyncio_detailed(
     body: TransferFormatToStorageSchema,
     allow_host_transfer: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType0
-    | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType1
+    Any | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefault
 ]:
     """Transfer formats file sets to another storage.
 
@@ -249,7 +211,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType0 | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType1]
+        Response[Any | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -274,10 +236,7 @@ async def asyncio(
     body: TransferFormatToStorageSchema,
     allow_host_transfer: bool | Unset = UNSET,
 ) -> (
-    Any
-    | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType0
-    | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType1
-    | None
+    Any | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefault | None
 ):
     """Transfer formats file sets to another storage.
 
@@ -297,7 +256,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType0 | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType1
+        Any | PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefault
     """
 
     return (

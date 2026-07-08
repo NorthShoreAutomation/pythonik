@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_user_licensed_by_response_default_type_0 import (
-    GetUserLicensedByResponseDefaultType0,
-)
-from ...models.get_user_licensed_by_response_default_type_1 import (
-    GetUserLicensedByResponseDefaultType1,
+from ...models.get_user_licensed_by_response_default import (
+    GetUserLicensedByResponseDefault,
 )
 from ...models.user_usages_schema import UserUsagesSchema
 from ...types import UNSET, Response, Unset
@@ -42,12 +39,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetUserLicensedByResponseDefaultType0
-    | GetUserLicensedByResponseDefaultType1
-    | UserUsagesSchema
-):
+) -> Any | GetUserLicensedByResponseDefault | UserUsagesSchema:
     if response.status_code == 200:
         response_200 = UserUsagesSchema.from_dict(response.json())
 
@@ -65,38 +57,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> GetUserLicensedByResponseDefaultType0 | GetUserLicensedByResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetUserLicensedByResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetUserLicensedByResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetUserLicensedByResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetUserLicensedByResponseDefaultType0
-    | GetUserLicensedByResponseDefaultType1
-    | UserUsagesSchema
-]:
+) -> Response[Any | GetUserLicensedByResponseDefault | UserUsagesSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -111,12 +79,7 @@ def sync_detailed(
     from_date: str | Unset = UNSET,
     to_date: str | Unset = UNSET,
     system_domain_id: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetUserLicensedByResponseDefaultType0
-    | GetUserLicensedByResponseDefaultType1
-    | UserUsagesSchema
-]:
+) -> Response[Any | GetUserLicensedByResponseDefault | UserUsagesSchema]:
     """Returns licensed user usage
 
 
@@ -133,7 +96,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetUserLicensedByResponseDefaultType0 | GetUserLicensedByResponseDefaultType1 | UserUsagesSchema]
+        Response[Any | GetUserLicensedByResponseDefault | UserUsagesSchema]
     """
 
     kwargs = _get_kwargs(
@@ -155,13 +118,7 @@ def sync(
     from_date: str | Unset = UNSET,
     to_date: str | Unset = UNSET,
     system_domain_id: str | Unset = UNSET,
-) -> (
-    Any
-    | GetUserLicensedByResponseDefaultType0
-    | GetUserLicensedByResponseDefaultType1
-    | UserUsagesSchema
-    | None
-):
+) -> Any | GetUserLicensedByResponseDefault | UserUsagesSchema | None:
     """Returns licensed user usage
 
 
@@ -178,7 +135,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetUserLicensedByResponseDefaultType0 | GetUserLicensedByResponseDefaultType1 | UserUsagesSchema
+        Any | GetUserLicensedByResponseDefault | UserUsagesSchema
     """
 
     return sync_detailed(
@@ -195,12 +152,7 @@ async def asyncio_detailed(
     from_date: str | Unset = UNSET,
     to_date: str | Unset = UNSET,
     system_domain_id: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetUserLicensedByResponseDefaultType0
-    | GetUserLicensedByResponseDefaultType1
-    | UserUsagesSchema
-]:
+) -> Response[Any | GetUserLicensedByResponseDefault | UserUsagesSchema]:
     """Returns licensed user usage
 
 
@@ -217,7 +169,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetUserLicensedByResponseDefaultType0 | GetUserLicensedByResponseDefaultType1 | UserUsagesSchema]
+        Response[Any | GetUserLicensedByResponseDefault | UserUsagesSchema]
     """
 
     kwargs = _get_kwargs(
@@ -237,13 +189,7 @@ async def asyncio(
     from_date: str | Unset = UNSET,
     to_date: str | Unset = UNSET,
     system_domain_id: str | Unset = UNSET,
-) -> (
-    Any
-    | GetUserLicensedByResponseDefaultType0
-    | GetUserLicensedByResponseDefaultType1
-    | UserUsagesSchema
-    | None
-):
+) -> Any | GetUserLicensedByResponseDefault | UserUsagesSchema | None:
     """Returns licensed user usage
 
 
@@ -260,7 +206,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetUserLicensedByResponseDefaultType0 | GetUserLicensedByResponseDefaultType1 | UserUsagesSchema
+        Any | GetUserLicensedByResponseDefault | UserUsagesSchema
     """
 
     return (

@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.metadata_category_schema import MetadataCategorySchema
-from ...models.put_by_object_type_categories_by_name_response_default_type_0 import (
-    PutByObjectTypeCategoriesByNameResponseDefaultType0,
-)
-from ...models.put_by_object_type_categories_by_name_response_default_type_1 import (
-    PutByObjectTypeCategoriesByNameResponseDefaultType1,
+from ...models.put_by_object_type_categories_by_name_response_default import (
+    PutByObjectTypeCategoriesByNameResponseDefault,
 )
 from ...types import Response
 
@@ -41,12 +38,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | MetadataCategorySchema
-    | PutByObjectTypeCategoriesByNameResponseDefaultType0
-    | PutByObjectTypeCategoriesByNameResponseDefaultType1
-):
+) -> Any | MetadataCategorySchema | PutByObjectTypeCategoriesByNameResponseDefault:
     if response.status_code == 200:
         response_200 = MetadataCategorySchema.from_dict(response.json())
 
@@ -64,31 +56,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutByObjectTypeCategoriesByNameResponseDefaultType0
-        | PutByObjectTypeCategoriesByNameResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PutByObjectTypeCategoriesByNameResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PutByObjectTypeCategoriesByNameResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutByObjectTypeCategoriesByNameResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -96,10 +66,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | MetadataCategorySchema
-    | PutByObjectTypeCategoriesByNameResponseDefaultType0
-    | PutByObjectTypeCategoriesByNameResponseDefaultType1
+    Any | MetadataCategorySchema | PutByObjectTypeCategoriesByNameResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -116,10 +83,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: MetadataCategorySchema,
 ) -> Response[
-    Any
-    | MetadataCategorySchema
-    | PutByObjectTypeCategoriesByNameResponseDefaultType0
-    | PutByObjectTypeCategoriesByNameResponseDefaultType1
+    Any | MetadataCategorySchema | PutByObjectTypeCategoriesByNameResponseDefault
 ]:
     """Edit metadata category for an object type
 
@@ -137,7 +101,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | MetadataCategorySchema | PutByObjectTypeCategoriesByNameResponseDefaultType0 | PutByObjectTypeCategoriesByNameResponseDefaultType1]
+        Response[Any | MetadataCategorySchema | PutByObjectTypeCategoriesByNameResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -160,11 +124,7 @@ def sync(
     client: AuthenticatedClient | Client,
     body: MetadataCategorySchema,
 ) -> (
-    Any
-    | MetadataCategorySchema
-    | PutByObjectTypeCategoriesByNameResponseDefaultType0
-    | PutByObjectTypeCategoriesByNameResponseDefaultType1
-    | None
+    Any | MetadataCategorySchema | PutByObjectTypeCategoriesByNameResponseDefault | None
 ):
     """Edit metadata category for an object type
 
@@ -182,7 +142,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | MetadataCategorySchema | PutByObjectTypeCategoriesByNameResponseDefaultType0 | PutByObjectTypeCategoriesByNameResponseDefaultType1
+        Any | MetadataCategorySchema | PutByObjectTypeCategoriesByNameResponseDefault
     """
 
     return sync_detailed(
@@ -200,10 +160,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: MetadataCategorySchema,
 ) -> Response[
-    Any
-    | MetadataCategorySchema
-    | PutByObjectTypeCategoriesByNameResponseDefaultType0
-    | PutByObjectTypeCategoriesByNameResponseDefaultType1
+    Any | MetadataCategorySchema | PutByObjectTypeCategoriesByNameResponseDefault
 ]:
     """Edit metadata category for an object type
 
@@ -221,7 +178,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | MetadataCategorySchema | PutByObjectTypeCategoriesByNameResponseDefaultType0 | PutByObjectTypeCategoriesByNameResponseDefaultType1]
+        Response[Any | MetadataCategorySchema | PutByObjectTypeCategoriesByNameResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -242,11 +199,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     body: MetadataCategorySchema,
 ) -> (
-    Any
-    | MetadataCategorySchema
-    | PutByObjectTypeCategoriesByNameResponseDefaultType0
-    | PutByObjectTypeCategoriesByNameResponseDefaultType1
-    | None
+    Any | MetadataCategorySchema | PutByObjectTypeCategoriesByNameResponseDefault | None
 ):
     """Edit metadata category for an object type
 
@@ -264,7 +217,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | MetadataCategorySchema | PutByObjectTypeCategoriesByNameResponseDefaultType0 | PutByObjectTypeCategoriesByNameResponseDefaultType1
+        Any | MetadataCategorySchema | PutByObjectTypeCategoriesByNameResponseDefault
     """
 
     return (

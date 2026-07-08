@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.files_schema import FilesSchema
-from ...models.get_storages_by_storage_id_temporary_files_response_default_type_0 import (
-    GetStoragesByStorageIdTemporaryFilesResponseDefaultType0,
-)
-from ...models.get_storages_by_storage_id_temporary_files_response_default_type_1 import (
-    GetStoragesByStorageIdTemporaryFilesResponseDefaultType1,
+from ...models.get_storages_by_storage_id_temporary_files_response_default import (
+    GetStoragesByStorageIdTemporaryFilesResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -18,7 +15,7 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     storage_id: str,
     *,
-    per_page: int | Unset = 100,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> dict[str, Any]:
 
@@ -43,12 +40,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | FilesSchema
-    | GetStoragesByStorageIdTemporaryFilesResponseDefaultType0
-    | GetStoragesByStorageIdTemporaryFilesResponseDefaultType1
-):
+) -> Any | FilesSchema | GetStoragesByStorageIdTemporaryFilesResponseDefault:
     if response.status_code == 200:
         response_200 = FilesSchema.from_dict(response.json())
 
@@ -66,43 +58,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetStoragesByStorageIdTemporaryFilesResponseDefaultType0
-        | GetStoragesByStorageIdTemporaryFilesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetStoragesByStorageIdTemporaryFilesResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetStoragesByStorageIdTemporaryFilesResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetStoragesByStorageIdTemporaryFilesResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | FilesSchema
-    | GetStoragesByStorageIdTemporaryFilesResponseDefaultType0
-    | GetStoragesByStorageIdTemporaryFilesResponseDefaultType1
-]:
+) -> Response[Any | FilesSchema | GetStoragesByStorageIdTemporaryFilesResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -115,14 +80,9 @@ def sync_detailed(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 100,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> Response[
-    Any
-    | FilesSchema
-    | GetStoragesByStorageIdTemporaryFilesResponseDefaultType0
-    | GetStoragesByStorageIdTemporaryFilesResponseDefaultType1
-]:
+) -> Response[Any | FilesSchema | GetStoragesByStorageIdTemporaryFilesResponseDefault]:
     """Get storage's exported files
 
 
@@ -131,7 +91,7 @@ def sync_detailed(
 
     Args:
         storage_id (str):
-        per_page (int | Unset):  Default: 100.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -139,7 +99,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | FilesSchema | GetStoragesByStorageIdTemporaryFilesResponseDefaultType0 | GetStoragesByStorageIdTemporaryFilesResponseDefaultType1]
+        Response[Any | FilesSchema | GetStoragesByStorageIdTemporaryFilesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -159,15 +119,9 @@ def sync(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 100,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> (
-    Any
-    | FilesSchema
-    | GetStoragesByStorageIdTemporaryFilesResponseDefaultType0
-    | GetStoragesByStorageIdTemporaryFilesResponseDefaultType1
-    | None
-):
+) -> Any | FilesSchema | GetStoragesByStorageIdTemporaryFilesResponseDefault | None:
     """Get storage's exported files
 
 
@@ -176,7 +130,7 @@ def sync(
 
     Args:
         storage_id (str):
-        per_page (int | Unset):  Default: 100.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -184,7 +138,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | FilesSchema | GetStoragesByStorageIdTemporaryFilesResponseDefaultType0 | GetStoragesByStorageIdTemporaryFilesResponseDefaultType1
+        Any | FilesSchema | GetStoragesByStorageIdTemporaryFilesResponseDefault
     """
 
     return sync_detailed(
@@ -199,14 +153,9 @@ async def asyncio_detailed(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 100,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> Response[
-    Any
-    | FilesSchema
-    | GetStoragesByStorageIdTemporaryFilesResponseDefaultType0
-    | GetStoragesByStorageIdTemporaryFilesResponseDefaultType1
-]:
+) -> Response[Any | FilesSchema | GetStoragesByStorageIdTemporaryFilesResponseDefault]:
     """Get storage's exported files
 
 
@@ -215,7 +164,7 @@ async def asyncio_detailed(
 
     Args:
         storage_id (str):
-        per_page (int | Unset):  Default: 100.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -223,7 +172,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | FilesSchema | GetStoragesByStorageIdTemporaryFilesResponseDefaultType0 | GetStoragesByStorageIdTemporaryFilesResponseDefaultType1]
+        Response[Any | FilesSchema | GetStoragesByStorageIdTemporaryFilesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -241,15 +190,9 @@ async def asyncio(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 100,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> (
-    Any
-    | FilesSchema
-    | GetStoragesByStorageIdTemporaryFilesResponseDefaultType0
-    | GetStoragesByStorageIdTemporaryFilesResponseDefaultType1
-    | None
-):
+) -> Any | FilesSchema | GetStoragesByStorageIdTemporaryFilesResponseDefault | None:
     """Get storage's exported files
 
 
@@ -258,7 +201,7 @@ async def asyncio(
 
     Args:
         storage_id (str):
-        per_page (int | Unset):  Default: 100.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -266,7 +209,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | FilesSchema | GetStoragesByStorageIdTemporaryFilesResponseDefaultType0 | GetStoragesByStorageIdTemporaryFilesResponseDefaultType1
+        Any | FilesSchema | GetStoragesByStorageIdTemporaryFilesResponseDefault
     """
 
     return (

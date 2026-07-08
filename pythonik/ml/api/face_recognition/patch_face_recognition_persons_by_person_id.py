@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.patch_face_recognition_persons_by_person_id_response_default_type_0 import (
-    PatchFaceRecognitionPersonsByPersonIdResponseDefaultType0,
-)
-from ...models.patch_face_recognition_persons_by_person_id_response_default_type_1 import (
-    PatchFaceRecognitionPersonsByPersonIdResponseDefaultType1,
+from ...models.patch_face_recognition_persons_by_person_id_response_default import (
+    PatchFaceRecognitionPersonsByPersonIdResponseDefault,
 )
 from ...models.person_schema import PersonSchema
 from ...models.update_person_schema import UpdatePersonSchema
@@ -40,12 +37,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PatchFaceRecognitionPersonsByPersonIdResponseDefaultType0
-    | PatchFaceRecognitionPersonsByPersonIdResponseDefaultType1
-    | PersonSchema
-):
+) -> Any | PatchFaceRecognitionPersonsByPersonIdResponseDefault | PersonSchema:
     if response.status_code == 200:
         response_200 = PersonSchema.from_dict(response.json())
 
@@ -63,33 +55,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PatchFaceRecognitionPersonsByPersonIdResponseDefaultType0
-        | PatchFaceRecognitionPersonsByPersonIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PatchFaceRecognitionPersonsByPersonIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PatchFaceRecognitionPersonsByPersonIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PatchFaceRecognitionPersonsByPersonIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -97,10 +65,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | PatchFaceRecognitionPersonsByPersonIdResponseDefaultType0
-    | PatchFaceRecognitionPersonsByPersonIdResponseDefaultType1
-    | PersonSchema
+    Any | PatchFaceRecognitionPersonsByPersonIdResponseDefault | PersonSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -116,10 +81,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: UpdatePersonSchema,
 ) -> Response[
-    Any
-    | PatchFaceRecognitionPersonsByPersonIdResponseDefaultType0
-    | PatchFaceRecognitionPersonsByPersonIdResponseDefaultType1
-    | PersonSchema
+    Any | PatchFaceRecognitionPersonsByPersonIdResponseDefault | PersonSchema
 ]:
     """Update an existing person
 
@@ -136,7 +98,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PatchFaceRecognitionPersonsByPersonIdResponseDefaultType0 | PatchFaceRecognitionPersonsByPersonIdResponseDefaultType1 | PersonSchema]
+        Response[Any | PatchFaceRecognitionPersonsByPersonIdResponseDefault | PersonSchema]
     """
 
     kwargs = _get_kwargs(
@@ -156,13 +118,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: UpdatePersonSchema,
-) -> (
-    Any
-    | PatchFaceRecognitionPersonsByPersonIdResponseDefaultType0
-    | PatchFaceRecognitionPersonsByPersonIdResponseDefaultType1
-    | PersonSchema
-    | None
-):
+) -> Any | PatchFaceRecognitionPersonsByPersonIdResponseDefault | PersonSchema | None:
     """Update an existing person
 
 
@@ -178,7 +134,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PatchFaceRecognitionPersonsByPersonIdResponseDefaultType0 | PatchFaceRecognitionPersonsByPersonIdResponseDefaultType1 | PersonSchema
+        Any | PatchFaceRecognitionPersonsByPersonIdResponseDefault | PersonSchema
     """
 
     return sync_detailed(
@@ -194,10 +150,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: UpdatePersonSchema,
 ) -> Response[
-    Any
-    | PatchFaceRecognitionPersonsByPersonIdResponseDefaultType0
-    | PatchFaceRecognitionPersonsByPersonIdResponseDefaultType1
-    | PersonSchema
+    Any | PatchFaceRecognitionPersonsByPersonIdResponseDefault | PersonSchema
 ]:
     """Update an existing person
 
@@ -214,7 +167,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PatchFaceRecognitionPersonsByPersonIdResponseDefaultType0 | PatchFaceRecognitionPersonsByPersonIdResponseDefaultType1 | PersonSchema]
+        Response[Any | PatchFaceRecognitionPersonsByPersonIdResponseDefault | PersonSchema]
     """
 
     kwargs = _get_kwargs(
@@ -232,13 +185,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: UpdatePersonSchema,
-) -> (
-    Any
-    | PatchFaceRecognitionPersonsByPersonIdResponseDefaultType0
-    | PatchFaceRecognitionPersonsByPersonIdResponseDefaultType1
-    | PersonSchema
-    | None
-):
+) -> Any | PatchFaceRecognitionPersonsByPersonIdResponseDefault | PersonSchema | None:
     """Update an existing person
 
 
@@ -254,7 +201,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PatchFaceRecognitionPersonsByPersonIdResponseDefaultType0 | PatchFaceRecognitionPersonsByPersonIdResponseDefaultType1 | PersonSchema
+        Any | PatchFaceRecognitionPersonsByPersonIdResponseDefault | PersonSchema
     """
 
     return (

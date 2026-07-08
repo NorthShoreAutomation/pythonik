@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_transcoders_by_transcoder_id_storages_response_default_type_0 import (
-    GetTranscodersByTranscoderIdStoragesResponseDefaultType0,
-)
-from ...models.get_transcoders_by_transcoder_id_storages_response_default_type_1 import (
-    GetTranscodersByTranscoderIdStoragesResponseDefaultType1,
+from ...models.get_transcoders_by_transcoder_id_storages_response_default import (
+    GetTranscodersByTranscoderIdStoragesResponseDefault,
 )
 from ...models.storages_read_schema import StoragesReadSchema
 from ...types import UNSET, Response, Unset
@@ -18,7 +15,7 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     transcoder_id: str,
     *,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> dict[str, Any]:
 
@@ -43,12 +40,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetTranscodersByTranscoderIdStoragesResponseDefaultType0
-    | GetTranscodersByTranscoderIdStoragesResponseDefaultType1
-    | StoragesReadSchema
-):
+) -> Any | GetTranscodersByTranscoderIdStoragesResponseDefault | StoragesReadSchema:
     if response.status_code == 200:
         response_200 = StoragesReadSchema.from_dict(response.json())
 
@@ -58,31 +50,9 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetTranscodersByTranscoderIdStoragesResponseDefaultType0
-        | GetTranscodersByTranscoderIdStoragesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetTranscodersByTranscoderIdStoragesResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetTranscodersByTranscoderIdStoragesResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetTranscodersByTranscoderIdStoragesResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -90,10 +60,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | GetTranscodersByTranscoderIdStoragesResponseDefaultType0
-    | GetTranscodersByTranscoderIdStoragesResponseDefaultType1
-    | StoragesReadSchema
+    Any | GetTranscodersByTranscoderIdStoragesResponseDefault | StoragesReadSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -107,13 +74,10 @@ def sync_detailed(
     transcoder_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> Response[
-    Any
-    | GetTranscodersByTranscoderIdStoragesResponseDefaultType0
-    | GetTranscodersByTranscoderIdStoragesResponseDefaultType1
-    | StoragesReadSchema
+    Any | GetTranscodersByTranscoderIdStoragesResponseDefault | StoragesReadSchema
 ]:
     """Get storages linked to a transcoder
 
@@ -123,7 +87,7 @@ def sync_detailed(
 
     Args:
         transcoder_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -131,7 +95,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetTranscodersByTranscoderIdStoragesResponseDefaultType0 | GetTranscodersByTranscoderIdStoragesResponseDefaultType1 | StoragesReadSchema]
+        Response[Any | GetTranscodersByTranscoderIdStoragesResponseDefault | StoragesReadSchema]
     """
 
     kwargs = _get_kwargs(
@@ -151,12 +115,11 @@ def sync(
     transcoder_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> (
     Any
-    | GetTranscodersByTranscoderIdStoragesResponseDefaultType0
-    | GetTranscodersByTranscoderIdStoragesResponseDefaultType1
+    | GetTranscodersByTranscoderIdStoragesResponseDefault
     | StoragesReadSchema
     | None
 ):
@@ -168,7 +131,7 @@ def sync(
 
     Args:
         transcoder_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -176,7 +139,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetTranscodersByTranscoderIdStoragesResponseDefaultType0 | GetTranscodersByTranscoderIdStoragesResponseDefaultType1 | StoragesReadSchema
+        Any | GetTranscodersByTranscoderIdStoragesResponseDefault | StoragesReadSchema
     """
 
     return sync_detailed(
@@ -191,13 +154,10 @@ async def asyncio_detailed(
     transcoder_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> Response[
-    Any
-    | GetTranscodersByTranscoderIdStoragesResponseDefaultType0
-    | GetTranscodersByTranscoderIdStoragesResponseDefaultType1
-    | StoragesReadSchema
+    Any | GetTranscodersByTranscoderIdStoragesResponseDefault | StoragesReadSchema
 ]:
     """Get storages linked to a transcoder
 
@@ -207,7 +167,7 @@ async def asyncio_detailed(
 
     Args:
         transcoder_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -215,7 +175,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetTranscodersByTranscoderIdStoragesResponseDefaultType0 | GetTranscodersByTranscoderIdStoragesResponseDefaultType1 | StoragesReadSchema]
+        Response[Any | GetTranscodersByTranscoderIdStoragesResponseDefault | StoragesReadSchema]
     """
 
     kwargs = _get_kwargs(
@@ -233,12 +193,11 @@ async def asyncio(
     transcoder_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> (
     Any
-    | GetTranscodersByTranscoderIdStoragesResponseDefaultType0
-    | GetTranscodersByTranscoderIdStoragesResponseDefaultType1
+    | GetTranscodersByTranscoderIdStoragesResponseDefault
     | StoragesReadSchema
     | None
 ):
@@ -250,7 +209,7 @@ async def asyncio(
 
     Args:
         transcoder_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -258,7 +217,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetTranscodersByTranscoderIdStoragesResponseDefaultType0 | GetTranscodersByTranscoderIdStoragesResponseDefaultType1 | StoragesReadSchema
+        Any | GetTranscodersByTranscoderIdStoragesResponseDefault | StoragesReadSchema
     """
 
     return (

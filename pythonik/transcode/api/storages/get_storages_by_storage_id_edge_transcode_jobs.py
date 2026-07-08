@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.edge_transcode_jobs_schema import EdgeTranscodeJobsSchema
-from ...models.get_storages_by_storage_id_edge_transcode_jobs_response_default_type_0 import (
-    GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType0,
-)
-from ...models.get_storages_by_storage_id_edge_transcode_jobs_response_default_type_1 import (
-    GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType1,
+from ...models.get_storages_by_storage_id_edge_transcode_jobs_response_default import (
+    GetStoragesByStorageIdEdgeTranscodeJobsResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -18,7 +15,7 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     storage_id: str,
     *,
-    limit: int | Unset = 10,
+    limit: int | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -43,8 +40,7 @@ def _parse_response(
 ) -> (
     Any
     | EdgeTranscodeJobsSchema
-    | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType0
-    | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType1
+    | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefault
 ):
     if response.status_code == 200:
         response_200 = EdgeTranscodeJobsSchema.from_dict(response.json())
@@ -59,33 +55,9 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType0
-        | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetStoragesByStorageIdEdgeTranscodeJobsResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -95,8 +67,7 @@ def _build_response(
 ) -> Response[
     Any
     | EdgeTranscodeJobsSchema
-    | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType0
-    | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType1
+    | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -110,12 +81,11 @@ def sync_detailed(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-    limit: int | Unset = 10,
+    limit: int | Unset = UNSET,
 ) -> Response[
     Any
     | EdgeTranscodeJobsSchema
-    | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType0
-    | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType1
+    | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefault
 ]:
     """Get a edge transcode jobs from the job queue
 
@@ -125,14 +95,14 @@ def sync_detailed(
 
     Args:
         storage_id (str):
-        limit (int | Unset):  Default: 10.
+        limit (int | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | EdgeTranscodeJobsSchema | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType0 | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType1]
+        Response[Any | EdgeTranscodeJobsSchema | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -151,12 +121,11 @@ def sync(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-    limit: int | Unset = 10,
+    limit: int | Unset = UNSET,
 ) -> (
     Any
     | EdgeTranscodeJobsSchema
-    | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType0
-    | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType1
+    | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefault
     | None
 ):
     """Get a edge transcode jobs from the job queue
@@ -167,14 +136,14 @@ def sync(
 
     Args:
         storage_id (str):
-        limit (int | Unset):  Default: 10.
+        limit (int | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | EdgeTranscodeJobsSchema | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType0 | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType1
+        Any | EdgeTranscodeJobsSchema | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefault
     """
 
     return sync_detailed(
@@ -188,12 +157,11 @@ async def asyncio_detailed(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-    limit: int | Unset = 10,
+    limit: int | Unset = UNSET,
 ) -> Response[
     Any
     | EdgeTranscodeJobsSchema
-    | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType0
-    | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType1
+    | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefault
 ]:
     """Get a edge transcode jobs from the job queue
 
@@ -203,14 +171,14 @@ async def asyncio_detailed(
 
     Args:
         storage_id (str):
-        limit (int | Unset):  Default: 10.
+        limit (int | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | EdgeTranscodeJobsSchema | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType0 | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType1]
+        Response[Any | EdgeTranscodeJobsSchema | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -227,12 +195,11 @@ async def asyncio(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-    limit: int | Unset = 10,
+    limit: int | Unset = UNSET,
 ) -> (
     Any
     | EdgeTranscodeJobsSchema
-    | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType0
-    | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType1
+    | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefault
     | None
 ):
     """Get a edge transcode jobs from the job queue
@@ -243,14 +210,14 @@ async def asyncio(
 
     Args:
         storage_id (str):
-        limit (int | Unset):  Default: 10.
+        limit (int | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | EdgeTranscodeJobsSchema | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType0 | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType1
+        Any | EdgeTranscodeJobsSchema | GetStoragesByStorageIdEdgeTranscodeJobsResponseDefault
     """
 
     return (

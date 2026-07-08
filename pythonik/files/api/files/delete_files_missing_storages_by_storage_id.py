@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_files_missing_storages_by_storage_id_response_default_type_0 import (
-    DeleteFilesMissingStoragesByStorageIdResponseDefaultType0,
-)
-from ...models.delete_files_missing_storages_by_storage_id_response_default_type_1 import (
-    DeleteFilesMissingStoragesByStorageIdResponseDefaultType1,
+from ...models.delete_files_missing_storages_by_storage_id_response_default import (
+    DeleteFilesMissingStoragesByStorageIdResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -39,14 +36,14 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteFilesMissingStoragesByStorageIdResponseDefaultType0
-    | DeleteFilesMissingStoragesByStorageIdResponseDefaultType1
-):
+) -> Any | DeleteFilesMissingStoragesByStorageIdResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
+
+    if response.status_code == 204:
+        response_204 = cast(Any, None)
+        return response_204
 
     if response.status_code == 401:
         response_401 = cast(Any, None)
@@ -56,44 +53,16 @@ def _parse_response(
         response_403 = cast(Any, None)
         return response_403
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteFilesMissingStoragesByStorageIdResponseDefaultType0
-        | DeleteFilesMissingStoragesByStorageIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteFilesMissingStoragesByStorageIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteFilesMissingStoragesByStorageIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteFilesMissingStoragesByStorageIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteFilesMissingStoragesByStorageIdResponseDefaultType0
-    | DeleteFilesMissingStoragesByStorageIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteFilesMissingStoragesByStorageIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -107,11 +76,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     remove_assets: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | DeleteFilesMissingStoragesByStorageIdResponseDefaultType0
-    | DeleteFilesMissingStoragesByStorageIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteFilesMissingStoragesByStorageIdResponseDefault]:
     """Delete all missing files from storage
 
 
@@ -127,7 +92,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteFilesMissingStoragesByStorageIdResponseDefaultType0 | DeleteFilesMissingStoragesByStorageIdResponseDefaultType1]
+        Response[Any | DeleteFilesMissingStoragesByStorageIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -147,12 +112,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     remove_assets: bool | Unset = UNSET,
-) -> (
-    Any
-    | DeleteFilesMissingStoragesByStorageIdResponseDefaultType0
-    | DeleteFilesMissingStoragesByStorageIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteFilesMissingStoragesByStorageIdResponseDefault | None:
     """Delete all missing files from storage
 
 
@@ -168,7 +128,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteFilesMissingStoragesByStorageIdResponseDefaultType0 | DeleteFilesMissingStoragesByStorageIdResponseDefaultType1
+        Any | DeleteFilesMissingStoragesByStorageIdResponseDefault
     """
 
     return sync_detailed(
@@ -183,11 +143,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     remove_assets: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | DeleteFilesMissingStoragesByStorageIdResponseDefaultType0
-    | DeleteFilesMissingStoragesByStorageIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteFilesMissingStoragesByStorageIdResponseDefault]:
     """Delete all missing files from storage
 
 
@@ -203,7 +159,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteFilesMissingStoragesByStorageIdResponseDefaultType0 | DeleteFilesMissingStoragesByStorageIdResponseDefaultType1]
+        Response[Any | DeleteFilesMissingStoragesByStorageIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -221,12 +177,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     remove_assets: bool | Unset = UNSET,
-) -> (
-    Any
-    | DeleteFilesMissingStoragesByStorageIdResponseDefaultType0
-    | DeleteFilesMissingStoragesByStorageIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteFilesMissingStoragesByStorageIdResponseDefault | None:
     """Delete all missing files from storage
 
 
@@ -242,7 +193,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteFilesMissingStoragesByStorageIdResponseDefaultType0 | DeleteFilesMissingStoragesByStorageIdResponseDefaultType1
+        Any | DeleteFilesMissingStoragesByStorageIdResponseDefault
     """
 
     return (

@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.approval_schema import ApprovalSchema
-from ...models.put_by_object_type_by_object_id_approvals_request_response_default_type_0 import (
-    PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0,
-)
-from ...models.put_by_object_type_by_object_id_approvals_request_response_default_type_1 import (
-    PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1,
+from ...models.put_by_object_type_by_object_id_approvals_request_response_default import (
+    PutByObjectTypeByObjectIdApprovalsRequestResponseDefault,
 )
 from ...types import Response
 
@@ -41,12 +38,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | ApprovalSchema
-    | PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0
-    | PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1
-):
+) -> Any | ApprovalSchema | PutByObjectTypeByObjectIdApprovalsRequestResponseDefault:
     if response.status_code == 200:
         response_200 = ApprovalSchema.from_dict(response.json())
 
@@ -64,35 +56,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0
-        | PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PutByObjectTypeByObjectIdApprovalsRequestResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -100,10 +68,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | ApprovalSchema
-    | PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0
-    | PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1
+    Any | ApprovalSchema | PutByObjectTypeByObjectIdApprovalsRequestResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -120,10 +85,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: ApprovalSchema,
 ) -> Response[
-    Any
-    | ApprovalSchema
-    | PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0
-    | PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1
+    Any | ApprovalSchema | PutByObjectTypeByObjectIdApprovalsRequestResponseDefault
 ]:
     """Edits an approval request
 
@@ -141,7 +103,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | ApprovalSchema | PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0 | PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1]
+        Response[Any | ApprovalSchema | PutByObjectTypeByObjectIdApprovalsRequestResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -166,8 +128,7 @@ def sync(
 ) -> (
     Any
     | ApprovalSchema
-    | PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0
-    | PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1
+    | PutByObjectTypeByObjectIdApprovalsRequestResponseDefault
     | None
 ):
     """Edits an approval request
@@ -186,7 +147,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | ApprovalSchema | PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0 | PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1
+        Any | ApprovalSchema | PutByObjectTypeByObjectIdApprovalsRequestResponseDefault
     """
 
     return sync_detailed(
@@ -204,10 +165,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: ApprovalSchema,
 ) -> Response[
-    Any
-    | ApprovalSchema
-    | PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0
-    | PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1
+    Any | ApprovalSchema | PutByObjectTypeByObjectIdApprovalsRequestResponseDefault
 ]:
     """Edits an approval request
 
@@ -225,7 +183,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | ApprovalSchema | PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0 | PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1]
+        Response[Any | ApprovalSchema | PutByObjectTypeByObjectIdApprovalsRequestResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -248,8 +206,7 @@ async def asyncio(
 ) -> (
     Any
     | ApprovalSchema
-    | PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0
-    | PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1
+    | PutByObjectTypeByObjectIdApprovalsRequestResponseDefault
     | None
 ):
     """Edits an approval request
@@ -268,7 +225,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | ApprovalSchema | PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0 | PutByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1
+        Any | ApprovalSchema | PutByObjectTypeByObjectIdApprovalsRequestResponseDefault
     """
 
     return (

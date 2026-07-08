@@ -4,19 +4,14 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_notifications_response_default_type_0 import (
-    GetNotificationsResponseDefaultType0,
-)
-from ...models.get_notifications_response_default_type_1 import (
-    GetNotificationsResponseDefaultType1,
-)
+from ...models.get_notifications_response_default import GetNotificationsResponseDefault
 from ...models.notifications_schema import NotificationsSchema
 from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     *,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> dict[str, Any]:
 
@@ -39,12 +34,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetNotificationsResponseDefaultType0
-    | GetNotificationsResponseDefaultType1
-    | NotificationsSchema
-):
+) -> Any | GetNotificationsResponseDefault | NotificationsSchema:
     if response.status_code == 200:
         response_200 = NotificationsSchema.from_dict(response.json())
 
@@ -62,38 +52,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> GetNotificationsResponseDefaultType0 | GetNotificationsResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetNotificationsResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetNotificationsResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetNotificationsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetNotificationsResponseDefaultType0
-    | GetNotificationsResponseDefaultType1
-    | NotificationsSchema
-]:
+) -> Response[Any | GetNotificationsResponseDefault | NotificationsSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -105,14 +71,9 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetNotificationsResponseDefaultType0
-    | GetNotificationsResponseDefaultType1
-    | NotificationsSchema
-]:
+) -> Response[Any | GetNotificationsResponseDefault | NotificationsSchema]:
     """Returns a list of notifications
 
 
@@ -120,7 +81,7 @@ def sync_detailed(
      - can_read_notifications
 
     Args:
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -128,7 +89,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetNotificationsResponseDefaultType0 | GetNotificationsResponseDefaultType1 | NotificationsSchema]
+        Response[Any | GetNotificationsResponseDefault | NotificationsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -146,15 +107,9 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> (
-    Any
-    | GetNotificationsResponseDefaultType0
-    | GetNotificationsResponseDefaultType1
-    | NotificationsSchema
-    | None
-):
+) -> Any | GetNotificationsResponseDefault | NotificationsSchema | None:
     """Returns a list of notifications
 
 
@@ -162,7 +117,7 @@ def sync(
      - can_read_notifications
 
     Args:
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -170,7 +125,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetNotificationsResponseDefaultType0 | GetNotificationsResponseDefaultType1 | NotificationsSchema
+        Any | GetNotificationsResponseDefault | NotificationsSchema
     """
 
     return sync_detailed(
@@ -183,14 +138,9 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetNotificationsResponseDefaultType0
-    | GetNotificationsResponseDefaultType1
-    | NotificationsSchema
-]:
+) -> Response[Any | GetNotificationsResponseDefault | NotificationsSchema]:
     """Returns a list of notifications
 
 
@@ -198,7 +148,7 @@ async def asyncio_detailed(
      - can_read_notifications
 
     Args:
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -206,7 +156,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetNotificationsResponseDefaultType0 | GetNotificationsResponseDefaultType1 | NotificationsSchema]
+        Response[Any | GetNotificationsResponseDefault | NotificationsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -222,15 +172,9 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> (
-    Any
-    | GetNotificationsResponseDefaultType0
-    | GetNotificationsResponseDefaultType1
-    | NotificationsSchema
-    | None
-):
+) -> Any | GetNotificationsResponseDefault | NotificationsSchema | None:
     """Returns a list of notifications
 
 
@@ -238,7 +182,7 @@ async def asyncio(
      - can_read_notifications
 
     Args:
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -246,7 +190,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetNotificationsResponseDefaultType0 | GetNotificationsResponseDefaultType1 | NotificationsSchema
+        Any | GetNotificationsResponseDefault | NotificationsSchema
     """
 
     return (

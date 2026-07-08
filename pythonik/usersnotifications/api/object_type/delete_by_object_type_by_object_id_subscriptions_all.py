@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_by_object_type_by_object_id_subscriptions_all_response_default_type_0 import (
-    DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType0,
-)
-from ...models.delete_by_object_type_by_object_id_subscriptions_all_response_default_type_1 import (
-    DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType1,
+from ...models.delete_by_object_type_by_object_id_subscriptions_all_response_default import (
+    DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefault,
 )
 from ...models.subscription_schema import SubscriptionSchema
 from ...types import Response
@@ -35,14 +32,17 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType0
-    | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType1
+    | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefault
     | SubscriptionSchema
 ):
     if response.status_code == 200:
         response_200 = SubscriptionSchema.from_dict(response.json())
 
         return response_200
+
+    if response.status_code == 204:
+        response_204 = cast(Any, None)
+        return response_204
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -56,33 +56,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType0
-        | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -91,8 +69,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType0
-    | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType1
+    | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefault
     | SubscriptionSchema
 ]:
     return Response(
@@ -110,8 +87,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
 ) -> Response[
     Any
-    | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType0
-    | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType1
+    | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefault
     | SubscriptionSchema
 ]:
     """Delete all user subscriptions for a specific object_type and object_id
@@ -129,7 +105,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType0 | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType1 | SubscriptionSchema]
+        Response[Any | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefault | SubscriptionSchema]
     """
 
     kwargs = _get_kwargs(
@@ -151,8 +127,7 @@ def sync(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType0
-    | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType1
+    | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefault
     | SubscriptionSchema
     | None
 ):
@@ -171,7 +146,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType0 | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType1 | SubscriptionSchema
+        Any | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefault | SubscriptionSchema
     """
 
     return sync_detailed(
@@ -188,8 +163,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
 ) -> Response[
     Any
-    | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType0
-    | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType1
+    | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefault
     | SubscriptionSchema
 ]:
     """Delete all user subscriptions for a specific object_type and object_id
@@ -207,7 +181,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType0 | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType1 | SubscriptionSchema]
+        Response[Any | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefault | SubscriptionSchema]
     """
 
     kwargs = _get_kwargs(
@@ -227,8 +201,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType0
-    | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType1
+    | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefault
     | SubscriptionSchema
     | None
 ):
@@ -247,7 +220,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType0 | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefaultType1 | SubscriptionSchema
+        Any | DeleteByObjectTypeByObjectIdSubscriptionsAllResponseDefault | SubscriptionSchema
     """
 
     return (

@@ -5,11 +5,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.bulk_delete_persons_by_ids_schema import BulkDeletePersonsByIdsSchema
-from ...models.delete_face_recognition_persons_bulk_delete_response_default_type_0 import (
-    DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType0,
-)
-from ...models.delete_face_recognition_persons_bulk_delete_response_default_type_1 import (
-    DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType1,
+from ...models.delete_face_recognition_persons_bulk_delete_response_default import (
+    DeleteFaceRecognitionPersonsBulkDeleteResponseDefault,
 )
 from ...types import Response
 
@@ -35,14 +32,14 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType0
-    | DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType1
-):
+) -> Any | DeleteFaceRecognitionPersonsBulkDeleteResponseDefault:
     if response.status_code == 201:
         response_201 = cast(Any, None)
         return response_201
+
+    if response.status_code == 204:
+        response_204 = cast(Any, None)
+        return response_204
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -52,44 +49,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType0
-        | DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteFaceRecognitionPersonsBulkDeleteResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType0
-    | DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType1
-]:
+) -> Response[Any | DeleteFaceRecognitionPersonsBulkDeleteResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -102,11 +71,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: BulkDeletePersonsByIdsSchema,
-) -> Response[
-    Any
-    | DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType0
-    | DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType1
-]:
+) -> Response[Any | DeleteFaceRecognitionPersonsBulkDeleteResponseDefault]:
     """Bulk delete multiple persons by ID
 
 
@@ -121,7 +86,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType0 | DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType1]
+        Response[Any | DeleteFaceRecognitionPersonsBulkDeleteResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -139,12 +104,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: BulkDeletePersonsByIdsSchema,
-) -> (
-    Any
-    | DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType0
-    | DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType1
-    | None
-):
+) -> Any | DeleteFaceRecognitionPersonsBulkDeleteResponseDefault | None:
     """Bulk delete multiple persons by ID
 
 
@@ -159,7 +119,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType0 | DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType1
+        Any | DeleteFaceRecognitionPersonsBulkDeleteResponseDefault
     """
 
     return sync_detailed(
@@ -172,11 +132,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: BulkDeletePersonsByIdsSchema,
-) -> Response[
-    Any
-    | DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType0
-    | DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType1
-]:
+) -> Response[Any | DeleteFaceRecognitionPersonsBulkDeleteResponseDefault]:
     """Bulk delete multiple persons by ID
 
 
@@ -191,7 +147,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType0 | DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType1]
+        Response[Any | DeleteFaceRecognitionPersonsBulkDeleteResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -207,12 +163,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: BulkDeletePersonsByIdsSchema,
-) -> (
-    Any
-    | DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType0
-    | DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType1
-    | None
-):
+) -> Any | DeleteFaceRecognitionPersonsBulkDeleteResponseDefault | None:
     """Bulk delete multiple persons by ID
 
 
@@ -227,7 +178,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType0 | DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType1
+        Any | DeleteFaceRecognitionPersonsBulkDeleteResponseDefault
     """
 
     return (

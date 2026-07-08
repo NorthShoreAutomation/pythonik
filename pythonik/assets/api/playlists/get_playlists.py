@@ -4,12 +4,7 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_playlists_response_default_type_0 import (
-    GetPlaylistsResponseDefaultType0,
-)
-from ...models.get_playlists_response_default_type_1 import (
-    GetPlaylistsResponseDefaultType1,
-)
+from ...models.get_playlists_response_default import GetPlaylistsResponseDefault
 from ...models.playlists_schema import PlaylistsSchema
 from ...types import UNSET, Response, Unset
 
@@ -17,7 +12,7 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     *,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
     sort: str | Unset = UNSET,
@@ -54,12 +49,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetPlaylistsResponseDefaultType0
-    | GetPlaylistsResponseDefaultType1
-    | PlaylistsSchema
-):
+) -> Any | GetPlaylistsResponseDefault | PlaylistsSchema:
     if response.status_code == 200:
         response_200 = PlaylistsSchema.from_dict(response.json())
 
@@ -77,36 +67,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> GetPlaylistsResponseDefaultType0 | GetPlaylistsResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetPlaylistsResponseDefaultType0.from_dict(data)
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetPlaylistsResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetPlaylistsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetPlaylistsResponseDefaultType0
-    | GetPlaylistsResponseDefaultType1
-    | PlaylistsSchema
-]:
+) -> Response[Any | GetPlaylistsResponseDefault | PlaylistsSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -119,18 +87,13 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
     sort: str | Unset = UNSET,
     status: str | Unset = UNSET,
     ids: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetPlaylistsResponseDefaultType0
-    | GetPlaylistsResponseDefaultType1
-    | PlaylistsSchema
-]:
+) -> Response[Any | GetPlaylistsResponseDefault | PlaylistsSchema]:
     """Get list of playlists
 
 
@@ -139,7 +102,7 @@ def sync_detailed(
 
     Args:
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
         sort (str | Unset):
@@ -151,7 +114,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetPlaylistsResponseDefaultType0 | GetPlaylistsResponseDefaultType1 | PlaylistsSchema]
+        Response[Any | GetPlaylistsResponseDefault | PlaylistsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -175,19 +138,13 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
     sort: str | Unset = UNSET,
     status: str | Unset = UNSET,
     ids: str | Unset = UNSET,
-) -> (
-    Any
-    | GetPlaylistsResponseDefaultType0
-    | GetPlaylistsResponseDefaultType1
-    | PlaylistsSchema
-    | None
-):
+) -> Any | GetPlaylistsResponseDefault | PlaylistsSchema | None:
     """Get list of playlists
 
 
@@ -196,7 +153,7 @@ def sync(
 
     Args:
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
         sort (str | Unset):
@@ -208,7 +165,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetPlaylistsResponseDefaultType0 | GetPlaylistsResponseDefaultType1 | PlaylistsSchema
+        Any | GetPlaylistsResponseDefault | PlaylistsSchema
     """
 
     return sync_detailed(
@@ -227,18 +184,13 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
     sort: str | Unset = UNSET,
     status: str | Unset = UNSET,
     ids: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetPlaylistsResponseDefaultType0
-    | GetPlaylistsResponseDefaultType1
-    | PlaylistsSchema
-]:
+) -> Response[Any | GetPlaylistsResponseDefault | PlaylistsSchema]:
     """Get list of playlists
 
 
@@ -247,7 +199,7 @@ async def asyncio_detailed(
 
     Args:
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
         sort (str | Unset):
@@ -259,7 +211,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetPlaylistsResponseDefaultType0 | GetPlaylistsResponseDefaultType1 | PlaylistsSchema]
+        Response[Any | GetPlaylistsResponseDefault | PlaylistsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -281,19 +233,13 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
     sort: str | Unset = UNSET,
     status: str | Unset = UNSET,
     ids: str | Unset = UNSET,
-) -> (
-    Any
-    | GetPlaylistsResponseDefaultType0
-    | GetPlaylistsResponseDefaultType1
-    | PlaylistsSchema
-    | None
-):
+) -> Any | GetPlaylistsResponseDefault | PlaylistsSchema | None:
     """Get list of playlists
 
 
@@ -302,7 +248,7 @@ async def asyncio(
 
     Args:
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
         sort (str | Unset):
@@ -314,7 +260,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetPlaylistsResponseDefaultType0 | GetPlaylistsResponseDefaultType1 | PlaylistsSchema
+        Any | GetPlaylistsResponseDefault | PlaylistsSchema
     """
 
     return (

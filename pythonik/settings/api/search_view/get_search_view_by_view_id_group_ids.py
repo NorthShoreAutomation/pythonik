@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_search_view_by_view_id_group_ids_response_default_type_0 import (
-    GetSearchViewByViewIdGroupIdsResponseDefaultType0,
-)
-from ...models.get_search_view_by_view_id_group_ids_response_default_type_1 import (
-    GetSearchViewByViewIdGroupIdsResponseDefaultType1,
+from ...models.get_search_view_by_view_id_group_ids_response_default import (
+    GetSearchViewByViewIdGroupIdsResponseDefault,
 )
 from ...models.group_settings_id_schema import GroupSettingsIDSchema
 from ...types import Response
@@ -31,12 +28,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetSearchViewByViewIdGroupIdsResponseDefaultType0
-    | GetSearchViewByViewIdGroupIdsResponseDefaultType1
-    | GroupSettingsIDSchema
-):
+) -> Any | GetSearchViewByViewIdGroupIdsResponseDefault | GroupSettingsIDSchema:
     if response.status_code == 200:
         response_200 = GroupSettingsIDSchema.from_dict(response.json())
 
@@ -50,31 +42,9 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetSearchViewByViewIdGroupIdsResponseDefaultType0
-        | GetSearchViewByViewIdGroupIdsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetSearchViewByViewIdGroupIdsResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetSearchViewByViewIdGroupIdsResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetSearchViewByViewIdGroupIdsResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -82,10 +52,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | GetSearchViewByViewIdGroupIdsResponseDefaultType0
-    | GetSearchViewByViewIdGroupIdsResponseDefaultType1
-    | GroupSettingsIDSchema
+    Any | GetSearchViewByViewIdGroupIdsResponseDefault | GroupSettingsIDSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -100,10 +67,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | GetSearchViewByViewIdGroupIdsResponseDefaultType0
-    | GetSearchViewByViewIdGroupIdsResponseDefaultType1
-    | GroupSettingsIDSchema
+    Any | GetSearchViewByViewIdGroupIdsResponseDefault | GroupSettingsIDSchema
 ]:
     """Get a list of Group IDs that use the given Search View ID
 
@@ -115,7 +79,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetSearchViewByViewIdGroupIdsResponseDefaultType0 | GetSearchViewByViewIdGroupIdsResponseDefaultType1 | GroupSettingsIDSchema]
+        Response[Any | GetSearchViewByViewIdGroupIdsResponseDefault | GroupSettingsIDSchema]
     """
 
     kwargs = _get_kwargs(
@@ -133,13 +97,7 @@ def sync(
     view_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetSearchViewByViewIdGroupIdsResponseDefaultType0
-    | GetSearchViewByViewIdGroupIdsResponseDefaultType1
-    | GroupSettingsIDSchema
-    | None
-):
+) -> Any | GetSearchViewByViewIdGroupIdsResponseDefault | GroupSettingsIDSchema | None:
     """Get a list of Group IDs that use the given Search View ID
 
     Args:
@@ -150,7 +108,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetSearchViewByViewIdGroupIdsResponseDefaultType0 | GetSearchViewByViewIdGroupIdsResponseDefaultType1 | GroupSettingsIDSchema
+        Any | GetSearchViewByViewIdGroupIdsResponseDefault | GroupSettingsIDSchema
     """
 
     return sync_detailed(
@@ -164,10 +122,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | GetSearchViewByViewIdGroupIdsResponseDefaultType0
-    | GetSearchViewByViewIdGroupIdsResponseDefaultType1
-    | GroupSettingsIDSchema
+    Any | GetSearchViewByViewIdGroupIdsResponseDefault | GroupSettingsIDSchema
 ]:
     """Get a list of Group IDs that use the given Search View ID
 
@@ -179,7 +134,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetSearchViewByViewIdGroupIdsResponseDefaultType0 | GetSearchViewByViewIdGroupIdsResponseDefaultType1 | GroupSettingsIDSchema]
+        Response[Any | GetSearchViewByViewIdGroupIdsResponseDefault | GroupSettingsIDSchema]
     """
 
     kwargs = _get_kwargs(
@@ -195,13 +150,7 @@ async def asyncio(
     view_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetSearchViewByViewIdGroupIdsResponseDefaultType0
-    | GetSearchViewByViewIdGroupIdsResponseDefaultType1
-    | GroupSettingsIDSchema
-    | None
-):
+) -> Any | GetSearchViewByViewIdGroupIdsResponseDefault | GroupSettingsIDSchema | None:
     """Get a list of Group IDs that use the given Search View ID
 
     Args:
@@ -212,7 +161,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetSearchViewByViewIdGroupIdsResponseDefaultType0 | GetSearchViewByViewIdGroupIdsResponseDefaultType1 | GroupSettingsIDSchema
+        Any | GetSearchViewByViewIdGroupIdsResponseDefault | GroupSettingsIDSchema
     """
 
     return (

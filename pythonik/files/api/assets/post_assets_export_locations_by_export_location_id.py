@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.asset_batch_export_schema import AssetBatchExportSchema
-from ...models.post_assets_export_locations_by_export_location_id_response_default_type_0 import (
-    PostAssetsExportLocationsByExportLocationIdResponseDefaultType0,
-)
-from ...models.post_assets_export_locations_by_export_location_id_response_default_type_1 import (
-    PostAssetsExportLocationsByExportLocationIdResponseDefaultType1,
+from ...models.post_assets_export_locations_by_export_location_id_response_default import (
+    PostAssetsExportLocationsByExportLocationIdResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -47,11 +44,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostAssetsExportLocationsByExportLocationIdResponseDefaultType0
-    | PostAssetsExportLocationsByExportLocationIdResponseDefaultType1
-):
+) -> Any | PostAssetsExportLocationsByExportLocationIdResponseDefault:
     if response.status_code == 200:
         response_200 = cast(Any, None)
         return response_200
@@ -64,44 +57,18 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsExportLocationsByExportLocationIdResponseDefaultType0
-        | PostAssetsExportLocationsByExportLocationIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostAssetsExportLocationsByExportLocationIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostAssetsExportLocationsByExportLocationIdResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PostAssetsExportLocationsByExportLocationIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostAssetsExportLocationsByExportLocationIdResponseDefaultType0
-    | PostAssetsExportLocationsByExportLocationIdResponseDefaultType1
-]:
+) -> Response[Any | PostAssetsExportLocationsByExportLocationIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -116,11 +83,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: AssetBatchExportSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | PostAssetsExportLocationsByExportLocationIdResponseDefaultType0
-    | PostAssetsExportLocationsByExportLocationIdResponseDefaultType1
-]:
+) -> Response[Any | PostAssetsExportLocationsByExportLocationIdResponseDefault]:
     """Export multiple assets to export location
 
 
@@ -137,7 +100,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsExportLocationsByExportLocationIdResponseDefaultType0 | PostAssetsExportLocationsByExportLocationIdResponseDefaultType1]
+        Response[Any | PostAssetsExportLocationsByExportLocationIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -159,12 +122,7 @@ def sync(
     client: AuthenticatedClient | Client,
     body: AssetBatchExportSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> (
-    Any
-    | PostAssetsExportLocationsByExportLocationIdResponseDefaultType0
-    | PostAssetsExportLocationsByExportLocationIdResponseDefaultType1
-    | None
-):
+) -> Any | PostAssetsExportLocationsByExportLocationIdResponseDefault | None:
     """Export multiple assets to export location
 
 
@@ -181,7 +139,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsExportLocationsByExportLocationIdResponseDefaultType0 | PostAssetsExportLocationsByExportLocationIdResponseDefaultType1
+        Any | PostAssetsExportLocationsByExportLocationIdResponseDefault
     """
 
     return sync_detailed(
@@ -198,11 +156,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: AssetBatchExportSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | PostAssetsExportLocationsByExportLocationIdResponseDefaultType0
-    | PostAssetsExportLocationsByExportLocationIdResponseDefaultType1
-]:
+) -> Response[Any | PostAssetsExportLocationsByExportLocationIdResponseDefault]:
     """Export multiple assets to export location
 
 
@@ -219,7 +173,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsExportLocationsByExportLocationIdResponseDefaultType0 | PostAssetsExportLocationsByExportLocationIdResponseDefaultType1]
+        Response[Any | PostAssetsExportLocationsByExportLocationIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -239,12 +193,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     body: AssetBatchExportSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> (
-    Any
-    | PostAssetsExportLocationsByExportLocationIdResponseDefaultType0
-    | PostAssetsExportLocationsByExportLocationIdResponseDefaultType1
-    | None
-):
+) -> Any | PostAssetsExportLocationsByExportLocationIdResponseDefault | None:
     """Export multiple assets to export location
 
 
@@ -261,7 +210,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsExportLocationsByExportLocationIdResponseDefaultType0 | PostAssetsExportLocationsByExportLocationIdResponseDefaultType1
+        Any | PostAssetsExportLocationsByExportLocationIdResponseDefault
     """
 
     return (

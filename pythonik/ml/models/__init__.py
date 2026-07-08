@@ -18,50 +18,20 @@ from .change_person_instance_schema import ChangePersonInstanceSchema
 from .check_persons_status_schema import CheckPersonsStatusSchema
 from .copy_persons_schema import CopyPersonsSchema
 from .create_person_schema import CreatePersonSchema
-from .delete_face_recognition_assets_by_asset_id_persons_bulk_response_default_type_0 import (
-    DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType0,
+from .delete_face_recognition_assets_by_asset_id_persons_bulk_response_default import (
+    DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefault,
 )
-from .delete_face_recognition_assets_by_asset_id_persons_bulk_response_default_type_1 import (
-    DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType1,
+from .delete_face_recognition_persons_bulk_delete_response_default import (
+    DeleteFaceRecognitionPersonsBulkDeleteResponseDefault,
 )
-from .delete_face_recognition_assets_by_asset_id_persons_bulk_response_default_type_1_errors import (
-    DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType1Errors,
+from .delete_face_recognition_persons_by_person_id_assets_by_asset_id_versions_by_version_id_response_default import (
+    DeleteFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdResponseDefault,
 )
-from .delete_face_recognition_persons_bulk_delete_response_default_type_0 import (
-    DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType0,
+from .delete_face_recognition_persons_by_person_id_bulk_response_default import (
+    DeleteFaceRecognitionPersonsByPersonIdBulkResponseDefault,
 )
-from .delete_face_recognition_persons_bulk_delete_response_default_type_1 import (
-    DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType1,
-)
-from .delete_face_recognition_persons_bulk_delete_response_default_type_1_errors import (
-    DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType1Errors,
-)
-from .delete_face_recognition_persons_by_person_id_assets_by_asset_id_versions_by_version_id_response_default_type_0 import (
-    DeleteFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdResponseDefaultType0,
-)
-from .delete_face_recognition_persons_by_person_id_assets_by_asset_id_versions_by_version_id_response_default_type_1 import (
-    DeleteFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdResponseDefaultType1,
-)
-from .delete_face_recognition_persons_by_person_id_assets_by_asset_id_versions_by_version_id_response_default_type_1_errors import (
-    DeleteFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdResponseDefaultType1Errors,
-)
-from .delete_face_recognition_persons_by_person_id_bulk_response_default_type_0 import (
-    DeleteFaceRecognitionPersonsByPersonIdBulkResponseDefaultType0,
-)
-from .delete_face_recognition_persons_by_person_id_bulk_response_default_type_1 import (
-    DeleteFaceRecognitionPersonsByPersonIdBulkResponseDefaultType1,
-)
-from .delete_face_recognition_persons_by_person_id_bulk_response_default_type_1_errors import (
-    DeleteFaceRecognitionPersonsByPersonIdBulkResponseDefaultType1Errors,
-)
-from .delete_face_recognition_persons_by_person_id_response_default_type_0 import (
-    DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType0,
-)
-from .delete_face_recognition_persons_by_person_id_response_default_type_1 import (
-    DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType1,
-)
-from .delete_face_recognition_persons_by_person_id_response_default_type_1_errors import (
-    DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType1Errors,
+from .delete_face_recognition_persons_by_person_id_response_default import (
+    DeleteFaceRecognitionPersonsByPersonIdResponseDefault,
 )
 from .delete_person import DeletePerson
 from .delete_person_by_version import DeletePersonByVersion
@@ -91,64 +61,28 @@ from .face_list_schema import FaceListSchema
 from .face_schema import FaceSchema
 from .face_schema_status import FaceSchemaStatus
 from .face_status import FaceStatus
-from .get_face_recognition_assets_by_asset_id_versions_by_version_id_persons_response_default_type_0 import (
-    GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType0,
+from .get_face_recognition_assets_by_asset_id_versions_by_version_id_persons_response_default import (
+    GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefault,
 )
-from .get_face_recognition_assets_by_asset_id_versions_by_version_id_persons_response_default_type_1 import (
-    GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType1,
+from .get_face_recognition_persons_by_person_id_faces_by_face_id_image_url_response_default import (
+    GetFaceRecognitionPersonsByPersonIdFacesByFaceIdImageUrlResponseDefault,
 )
-from .get_face_recognition_assets_by_asset_id_versions_by_version_id_persons_response_default_type_1_errors import (
-    GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType1Errors,
+from .get_face_recognition_persons_by_person_id_response_default import (
+    GetFaceRecognitionPersonsByPersonIdResponseDefault,
 )
-from .get_face_recognition_persons_by_person_id_faces_by_face_id_image_url_response_default_type_0 import (
-    GetFaceRecognitionPersonsByPersonIdFacesByFaceIdImageUrlResponseDefaultType0,
+from .get_face_recognition_persons_by_person_id_versions_response_default import (
+    GetFaceRecognitionPersonsByPersonIdVersionsResponseDefault,
 )
-from .get_face_recognition_persons_by_person_id_faces_by_face_id_image_url_response_default_type_1 import (
-    GetFaceRecognitionPersonsByPersonIdFacesByFaceIdImageUrlResponseDefaultType1,
-)
-from .get_face_recognition_persons_by_person_id_faces_by_face_id_image_url_response_default_type_1_errors import (
-    GetFaceRecognitionPersonsByPersonIdFacesByFaceIdImageUrlResponseDefaultType1Errors,
-)
-from .get_face_recognition_persons_by_person_id_response_default_type_0 import (
-    GetFaceRecognitionPersonsByPersonIdResponseDefaultType0,
-)
-from .get_face_recognition_persons_by_person_id_response_default_type_1 import (
-    GetFaceRecognitionPersonsByPersonIdResponseDefaultType1,
-)
-from .get_face_recognition_persons_by_person_id_response_default_type_1_errors import (
-    GetFaceRecognitionPersonsByPersonIdResponseDefaultType1Errors,
-)
-from .get_face_recognition_persons_by_person_id_versions_response_default_type_0 import (
-    GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType0,
-)
-from .get_face_recognition_persons_by_person_id_versions_response_default_type_1 import (
-    GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType1,
-)
-from .get_face_recognition_persons_by_person_id_versions_response_default_type_1_errors import (
-    GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType1Errors,
-)
-from .get_face_recognition_persons_response_default_type_0 import (
-    GetFaceRecognitionPersonsResponseDefaultType0,
-)
-from .get_face_recognition_persons_response_default_type_1 import (
-    GetFaceRecognitionPersonsResponseDefaultType1,
-)
-from .get_face_recognition_persons_response_default_type_1_errors import (
-    GetFaceRecognitionPersonsResponseDefaultType1Errors,
+from .get_face_recognition_persons_response_default import (
+    GetFaceRecognitionPersonsResponseDefault,
 )
 from .jobs_priority_schema import JobsPrioritySchema
 from .jobs_state_schema import JobsStateSchema
 from .jobs_state_schema_action import JobsStateSchemaAction
 from .list_objects_schema import ListObjectsSchema
 from .ml_detection_queue_record_schema import MLDetectionQueueRecordSchema
-from .patch_face_recognition_persons_by_person_id_response_default_type_0 import (
-    PatchFaceRecognitionPersonsByPersonIdResponseDefaultType0,
-)
-from .patch_face_recognition_persons_by_person_id_response_default_type_1 import (
-    PatchFaceRecognitionPersonsByPersonIdResponseDefaultType1,
-)
-from .patch_face_recognition_persons_by_person_id_response_default_type_1_errors import (
-    PatchFaceRecognitionPersonsByPersonIdResponseDefaultType1Errors,
+from .patch_face_recognition_persons_by_person_id_response_default import (
+    PatchFaceRecognitionPersonsByPersonIdResponseDefault,
 )
 from .person import Person
 from .person_assets_versions_list_schema import PersonAssetsVersionsListSchema
@@ -176,140 +110,50 @@ from .person_schema import PersonSchema
 from .person_schema_status import PersonSchemaStatus
 from .person_status import PersonStatus
 from .persons_query_params_schema import PersonsQueryParamsSchema
-from .post_face_recognition_bulk_extract_response_default_type_0 import (
-    PostFaceRecognitionBulkExtractResponseDefaultType0,
+from .post_face_recognition_bulk_extract_response_default import (
+    PostFaceRecognitionBulkExtractResponseDefault,
 )
-from .post_face_recognition_bulk_extract_response_default_type_1 import (
-    PostFaceRecognitionBulkExtractResponseDefaultType1,
+from .post_face_recognition_embeddings_by_embedding_id_reindex_response_default import (
+    PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefault,
 )
-from .post_face_recognition_bulk_extract_response_default_type_1_errors import (
-    PostFaceRecognitionBulkExtractResponseDefaultType1Errors,
+from .post_face_recognition_embeddings_reindex_response_default import (
+    PostFaceRecognitionEmbeddingsReindexResponseDefault,
 )
-from .post_face_recognition_embeddings_by_embedding_id_reindex_response_default_type_0 import (
-    PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType0,
+from .post_face_recognition_extract_assets_by_asset_id_versions_by_version_id_response_default import (
+    PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefault,
 )
-from .post_face_recognition_embeddings_by_embedding_id_reindex_response_default_type_1 import (
-    PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType1,
+from .post_face_recognition_persons_by_person_id_assets_by_asset_id_versions_by_version_id_change_person_response_default import (
+    PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdChangePersonResponseDefault,
 )
-from .post_face_recognition_embeddings_by_embedding_id_reindex_response_default_type_1_errors import (
-    PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType1Errors,
+from .post_face_recognition_persons_by_person_id_assets_by_asset_id_versions_by_version_id_confirm_person_response_default import (
+    PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefault,
 )
-from .post_face_recognition_embeddings_reindex_response_default_type_0 import (
-    PostFaceRecognitionEmbeddingsReindexResponseDefaultType0,
+from .post_face_recognition_persons_by_person_id_confirm_person_response_default import (
+    PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefault,
 )
-from .post_face_recognition_embeddings_reindex_response_default_type_1 import (
-    PostFaceRecognitionEmbeddingsReindexResponseDefaultType1,
+from .post_face_recognition_persons_by_person_id_merge_by_new_person_id_response_default import (
+    PostFaceRecognitionPersonsByPersonIdMergeByNewPersonIdResponseDefault,
 )
-from .post_face_recognition_embeddings_reindex_response_default_type_1_errors import (
-    PostFaceRecognitionEmbeddingsReindexResponseDefaultType1Errors,
+from .post_face_recognition_persons_by_person_id_reindex_response_default import (
+    PostFaceRecognitionPersonsByPersonIdReindexResponseDefault,
 )
-from .post_face_recognition_extract_assets_by_asset_id_versions_by_version_id_response_default_type_0 import (
-    PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType0,
+from .post_face_recognition_persons_by_person_id_update_and_confirm_response_default import (
+    PostFaceRecognitionPersonsByPersonIdUpdateAndConfirmResponseDefault,
 )
-from .post_face_recognition_extract_assets_by_asset_id_versions_by_version_id_response_default_type_1 import (
-    PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType1,
+from .post_face_recognition_persons_reindex_response_default import (
+    PostFaceRecognitionPersonsReindexResponseDefault,
 )
-from .post_face_recognition_extract_assets_by_asset_id_versions_by_version_id_response_default_type_1_errors import (
-    PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType1Errors,
+from .put_face_recognition_change_person_jobs_state_response_default import (
+    PutFaceRecognitionChangePersonJobsStateResponseDefault,
 )
-from .post_face_recognition_persons_by_person_id_assets_by_asset_id_versions_by_version_id_change_person_response_default_type_0 import (
-    PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdChangePersonResponseDefaultType0,
+from .put_face_recognition_jobs_priority_response_default import (
+    PutFaceRecognitionJobsPriorityResponseDefault,
 )
-from .post_face_recognition_persons_by_person_id_assets_by_asset_id_versions_by_version_id_change_person_response_default_type_1 import (
-    PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdChangePersonResponseDefaultType1,
+from .put_face_recognition_jobs_state_response_default import (
+    PutFaceRecognitionJobsStateResponseDefault,
 )
-from .post_face_recognition_persons_by_person_id_assets_by_asset_id_versions_by_version_id_change_person_response_default_type_1_errors import (
-    PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdChangePersonResponseDefaultType1Errors,
-)
-from .post_face_recognition_persons_by_person_id_assets_by_asset_id_versions_by_version_id_confirm_person_response_default_type_0 import (
-    PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType0,
-)
-from .post_face_recognition_persons_by_person_id_assets_by_asset_id_versions_by_version_id_confirm_person_response_default_type_1 import (
-    PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType1,
-)
-from .post_face_recognition_persons_by_person_id_assets_by_asset_id_versions_by_version_id_confirm_person_response_default_type_1_errors import (
-    PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType1Errors,
-)
-from .post_face_recognition_persons_by_person_id_confirm_person_response_default_type_0 import (
-    PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType0,
-)
-from .post_face_recognition_persons_by_person_id_confirm_person_response_default_type_1 import (
-    PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType1,
-)
-from .post_face_recognition_persons_by_person_id_confirm_person_response_default_type_1_errors import (
-    PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType1Errors,
-)
-from .post_face_recognition_persons_by_person_id_merge_by_new_person_id_response_default_type_0 import (
-    PostFaceRecognitionPersonsByPersonIdMergeByNewPersonIdResponseDefaultType0,
-)
-from .post_face_recognition_persons_by_person_id_merge_by_new_person_id_response_default_type_1 import (
-    PostFaceRecognitionPersonsByPersonIdMergeByNewPersonIdResponseDefaultType1,
-)
-from .post_face_recognition_persons_by_person_id_merge_by_new_person_id_response_default_type_1_errors import (
-    PostFaceRecognitionPersonsByPersonIdMergeByNewPersonIdResponseDefaultType1Errors,
-)
-from .post_face_recognition_persons_by_person_id_reindex_response_default_type_0 import (
-    PostFaceRecognitionPersonsByPersonIdReindexResponseDefaultType0,
-)
-from .post_face_recognition_persons_by_person_id_reindex_response_default_type_1 import (
-    PostFaceRecognitionPersonsByPersonIdReindexResponseDefaultType1,
-)
-from .post_face_recognition_persons_by_person_id_reindex_response_default_type_1_errors import (
-    PostFaceRecognitionPersonsByPersonIdReindexResponseDefaultType1Errors,
-)
-from .post_face_recognition_persons_by_person_id_update_and_confirm_response_default_type_0 import (
-    PostFaceRecognitionPersonsByPersonIdUpdateAndConfirmResponseDefaultType0,
-)
-from .post_face_recognition_persons_by_person_id_update_and_confirm_response_default_type_1 import (
-    PostFaceRecognitionPersonsByPersonIdUpdateAndConfirmResponseDefaultType1,
-)
-from .post_face_recognition_persons_by_person_id_update_and_confirm_response_default_type_1_errors import (
-    PostFaceRecognitionPersonsByPersonIdUpdateAndConfirmResponseDefaultType1Errors,
-)
-from .post_face_recognition_persons_reindex_response_default_type_0 import (
-    PostFaceRecognitionPersonsReindexResponseDefaultType0,
-)
-from .post_face_recognition_persons_reindex_response_default_type_1 import (
-    PostFaceRecognitionPersonsReindexResponseDefaultType1,
-)
-from .post_face_recognition_persons_reindex_response_default_type_1_errors import (
-    PostFaceRecognitionPersonsReindexResponseDefaultType1Errors,
-)
-from .put_face_recognition_change_person_jobs_state_response_default_type_0 import (
-    PutFaceRecognitionChangePersonJobsStateResponseDefaultType0,
-)
-from .put_face_recognition_change_person_jobs_state_response_default_type_1 import (
-    PutFaceRecognitionChangePersonJobsStateResponseDefaultType1,
-)
-from .put_face_recognition_change_person_jobs_state_response_default_type_1_errors import (
-    PutFaceRecognitionChangePersonJobsStateResponseDefaultType1Errors,
-)
-from .put_face_recognition_jobs_priority_response_default_type_0 import (
-    PutFaceRecognitionJobsPriorityResponseDefaultType0,
-)
-from .put_face_recognition_jobs_priority_response_default_type_1 import (
-    PutFaceRecognitionJobsPriorityResponseDefaultType1,
-)
-from .put_face_recognition_jobs_priority_response_default_type_1_errors import (
-    PutFaceRecognitionJobsPriorityResponseDefaultType1Errors,
-)
-from .put_face_recognition_jobs_state_response_default_type_0 import (
-    PutFaceRecognitionJobsStateResponseDefaultType0,
-)
-from .put_face_recognition_jobs_state_response_default_type_1 import (
-    PutFaceRecognitionJobsStateResponseDefaultType1,
-)
-from .put_face_recognition_jobs_state_response_default_type_1_errors import (
-    PutFaceRecognitionJobsStateResponseDefaultType1Errors,
-)
-from .put_face_recognition_persons_by_person_id_response_default_type_0 import (
-    PutFaceRecognitionPersonsByPersonIdResponseDefaultType0,
-)
-from .put_face_recognition_persons_by_person_id_response_default_type_1 import (
-    PutFaceRecognitionPersonsByPersonIdResponseDefaultType1,
-)
-from .put_face_recognition_persons_by_person_id_response_default_type_1_errors import (
-    PutFaceRecognitionPersonsByPersonIdResponseDefaultType1Errors,
+from .put_face_recognition_persons_by_person_id_response_default import (
+    PutFaceRecognitionPersonsByPersonIdResponseDefault,
 )
 from .reindex_all_embeddings_schema import ReindexAllEmbeddingsSchema
 from .reindex_embedding_schema import ReindexEmbeddingSchema
@@ -337,21 +181,11 @@ __all__ = (
     "CheckPersonsStatusSchema",
     "CopyPersonsSchema",
     "CreatePersonSchema",
-    "DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType0",
-    "DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType1",
-    "DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefaultType1Errors",
-    "DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType0",
-    "DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType1",
-    "DeleteFaceRecognitionPersonsBulkDeleteResponseDefaultType1Errors",
-    "DeleteFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdResponseDefaultType0",
-    "DeleteFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdResponseDefaultType1",
-    "DeleteFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdResponseDefaultType1Errors",
-    "DeleteFaceRecognitionPersonsByPersonIdBulkResponseDefaultType0",
-    "DeleteFaceRecognitionPersonsByPersonIdBulkResponseDefaultType1",
-    "DeleteFaceRecognitionPersonsByPersonIdBulkResponseDefaultType1Errors",
-    "DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType0",
-    "DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType1",
-    "DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType1Errors",
+    "DeleteFaceRecognitionAssetsByAssetIdPersonsBulkResponseDefault",
+    "DeleteFaceRecognitionPersonsBulkDeleteResponseDefault",
+    "DeleteFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdResponseDefault",
+    "DeleteFaceRecognitionPersonsByPersonIdBulkResponseDefault",
+    "DeleteFaceRecognitionPersonsByPersonIdResponseDefault",
     "DeletePerson",
     "DeletePersonByVersion",
     "DeletePersonByVersionSchema",
@@ -380,29 +214,17 @@ __all__ = (
     "FaceSchema",
     "FaceSchemaStatus",
     "FaceStatus",
-    "GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType0",
-    "GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType1",
-    "GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType1Errors",
-    "GetFaceRecognitionPersonsByPersonIdFacesByFaceIdImageUrlResponseDefaultType0",
-    "GetFaceRecognitionPersonsByPersonIdFacesByFaceIdImageUrlResponseDefaultType1",
-    "GetFaceRecognitionPersonsByPersonIdFacesByFaceIdImageUrlResponseDefaultType1Errors",
-    "GetFaceRecognitionPersonsByPersonIdResponseDefaultType0",
-    "GetFaceRecognitionPersonsByPersonIdResponseDefaultType1",
-    "GetFaceRecognitionPersonsByPersonIdResponseDefaultType1Errors",
-    "GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType0",
-    "GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType1",
-    "GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType1Errors",
-    "GetFaceRecognitionPersonsResponseDefaultType0",
-    "GetFaceRecognitionPersonsResponseDefaultType1",
-    "GetFaceRecognitionPersonsResponseDefaultType1Errors",
+    "GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefault",
+    "GetFaceRecognitionPersonsByPersonIdFacesByFaceIdImageUrlResponseDefault",
+    "GetFaceRecognitionPersonsByPersonIdResponseDefault",
+    "GetFaceRecognitionPersonsByPersonIdVersionsResponseDefault",
+    "GetFaceRecognitionPersonsResponseDefault",
     "JobsPrioritySchema",
     "JobsStateSchema",
     "JobsStateSchemaAction",
     "ListObjectsSchema",
     "MLDetectionQueueRecordSchema",
-    "PatchFaceRecognitionPersonsByPersonIdResponseDefaultType0",
-    "PatchFaceRecognitionPersonsByPersonIdResponseDefaultType1",
-    "PatchFaceRecognitionPersonsByPersonIdResponseDefaultType1Errors",
+    "PatchFaceRecognitionPersonsByPersonIdResponseDefault",
     "Person",
     "PersonAssetsVersionsListSchema",
     "PersonByAssetAndVersion",
@@ -421,51 +243,21 @@ __all__ = (
     "PersonSchemaStatus",
     "PersonsQueryParamsSchema",
     "PersonStatus",
-    "PostFaceRecognitionBulkExtractResponseDefaultType0",
-    "PostFaceRecognitionBulkExtractResponseDefaultType1",
-    "PostFaceRecognitionBulkExtractResponseDefaultType1Errors",
-    "PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType0",
-    "PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType1",
-    "PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType1Errors",
-    "PostFaceRecognitionEmbeddingsReindexResponseDefaultType0",
-    "PostFaceRecognitionEmbeddingsReindexResponseDefaultType1",
-    "PostFaceRecognitionEmbeddingsReindexResponseDefaultType1Errors",
-    "PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType0",
-    "PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType1",
-    "PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType1Errors",
-    "PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdChangePersonResponseDefaultType0",
-    "PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdChangePersonResponseDefaultType1",
-    "PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdChangePersonResponseDefaultType1Errors",
-    "PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType0",
-    "PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType1",
-    "PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType1Errors",
-    "PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType0",
-    "PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType1",
-    "PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType1Errors",
-    "PostFaceRecognitionPersonsByPersonIdMergeByNewPersonIdResponseDefaultType0",
-    "PostFaceRecognitionPersonsByPersonIdMergeByNewPersonIdResponseDefaultType1",
-    "PostFaceRecognitionPersonsByPersonIdMergeByNewPersonIdResponseDefaultType1Errors",
-    "PostFaceRecognitionPersonsByPersonIdReindexResponseDefaultType0",
-    "PostFaceRecognitionPersonsByPersonIdReindexResponseDefaultType1",
-    "PostFaceRecognitionPersonsByPersonIdReindexResponseDefaultType1Errors",
-    "PostFaceRecognitionPersonsByPersonIdUpdateAndConfirmResponseDefaultType0",
-    "PostFaceRecognitionPersonsByPersonIdUpdateAndConfirmResponseDefaultType1",
-    "PostFaceRecognitionPersonsByPersonIdUpdateAndConfirmResponseDefaultType1Errors",
-    "PostFaceRecognitionPersonsReindexResponseDefaultType0",
-    "PostFaceRecognitionPersonsReindexResponseDefaultType1",
-    "PostFaceRecognitionPersonsReindexResponseDefaultType1Errors",
-    "PutFaceRecognitionChangePersonJobsStateResponseDefaultType0",
-    "PutFaceRecognitionChangePersonJobsStateResponseDefaultType1",
-    "PutFaceRecognitionChangePersonJobsStateResponseDefaultType1Errors",
-    "PutFaceRecognitionJobsPriorityResponseDefaultType0",
-    "PutFaceRecognitionJobsPriorityResponseDefaultType1",
-    "PutFaceRecognitionJobsPriorityResponseDefaultType1Errors",
-    "PutFaceRecognitionJobsStateResponseDefaultType0",
-    "PutFaceRecognitionJobsStateResponseDefaultType1",
-    "PutFaceRecognitionJobsStateResponseDefaultType1Errors",
-    "PutFaceRecognitionPersonsByPersonIdResponseDefaultType0",
-    "PutFaceRecognitionPersonsByPersonIdResponseDefaultType1",
-    "PutFaceRecognitionPersonsByPersonIdResponseDefaultType1Errors",
+    "PostFaceRecognitionBulkExtractResponseDefault",
+    "PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefault",
+    "PostFaceRecognitionEmbeddingsReindexResponseDefault",
+    "PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefault",
+    "PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdChangePersonResponseDefault",
+    "PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefault",
+    "PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefault",
+    "PostFaceRecognitionPersonsByPersonIdMergeByNewPersonIdResponseDefault",
+    "PostFaceRecognitionPersonsByPersonIdReindexResponseDefault",
+    "PostFaceRecognitionPersonsByPersonIdUpdateAndConfirmResponseDefault",
+    "PostFaceRecognitionPersonsReindexResponseDefault",
+    "PutFaceRecognitionChangePersonJobsStateResponseDefault",
+    "PutFaceRecognitionJobsPriorityResponseDefault",
+    "PutFaceRecognitionJobsStateResponseDefault",
+    "PutFaceRecognitionPersonsByPersonIdResponseDefault",
     "ReindexAllEmbeddingsSchema",
     "ReindexEmbeddingSchema",
     "ReindexPersonSchema",

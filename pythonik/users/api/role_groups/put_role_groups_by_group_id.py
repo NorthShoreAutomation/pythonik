@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.put_role_groups_by_group_id_response_default_type_0 import (
-    PutRoleGroupsByGroupIdResponseDefaultType0,
-)
-from ...models.put_role_groups_by_group_id_response_default_type_1 import (
-    PutRoleGroupsByGroupIdResponseDefaultType1,
+from ...models.put_role_groups_by_group_id_response_default import (
+    PutRoleGroupsByGroupIdResponseDefault,
 )
 from ...models.role_group_schema import RoleGroupSchema
 from ...types import Response
@@ -39,12 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PutRoleGroupsByGroupIdResponseDefaultType0
-    | PutRoleGroupsByGroupIdResponseDefaultType1
-    | RoleGroupSchema
-):
+) -> Any | PutRoleGroupsByGroupIdResponseDefault | RoleGroupSchema:
     if response.status_code == 200:
         response_200 = RoleGroupSchema.from_dict(response.json())
 
@@ -62,43 +54,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutRoleGroupsByGroupIdResponseDefaultType0
-        | PutRoleGroupsByGroupIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PutRoleGroupsByGroupIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PutRoleGroupsByGroupIdResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutRoleGroupsByGroupIdResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PutRoleGroupsByGroupIdResponseDefaultType0
-    | PutRoleGroupsByGroupIdResponseDefaultType1
-    | RoleGroupSchema
-]:
+) -> Response[Any | PutRoleGroupsByGroupIdResponseDefault | RoleGroupSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -112,12 +75,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: RoleGroupSchema,
-) -> Response[
-    Any
-    | PutRoleGroupsByGroupIdResponseDefaultType0
-    | PutRoleGroupsByGroupIdResponseDefaultType1
-    | RoleGroupSchema
-]:
+) -> Response[Any | PutRoleGroupsByGroupIdResponseDefault | RoleGroupSchema]:
     """Update role group
 
 
@@ -133,7 +91,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutRoleGroupsByGroupIdResponseDefaultType0 | PutRoleGroupsByGroupIdResponseDefaultType1 | RoleGroupSchema]
+        Response[Any | PutRoleGroupsByGroupIdResponseDefault | RoleGroupSchema]
     """
 
     kwargs = _get_kwargs(
@@ -153,13 +111,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: RoleGroupSchema,
-) -> (
-    Any
-    | PutRoleGroupsByGroupIdResponseDefaultType0
-    | PutRoleGroupsByGroupIdResponseDefaultType1
-    | RoleGroupSchema
-    | None
-):
+) -> Any | PutRoleGroupsByGroupIdResponseDefault | RoleGroupSchema | None:
     """Update role group
 
 
@@ -175,7 +127,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutRoleGroupsByGroupIdResponseDefaultType0 | PutRoleGroupsByGroupIdResponseDefaultType1 | RoleGroupSchema
+        Any | PutRoleGroupsByGroupIdResponseDefault | RoleGroupSchema
     """
 
     return sync_detailed(
@@ -190,12 +142,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: RoleGroupSchema,
-) -> Response[
-    Any
-    | PutRoleGroupsByGroupIdResponseDefaultType0
-    | PutRoleGroupsByGroupIdResponseDefaultType1
-    | RoleGroupSchema
-]:
+) -> Response[Any | PutRoleGroupsByGroupIdResponseDefault | RoleGroupSchema]:
     """Update role group
 
 
@@ -211,7 +158,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutRoleGroupsByGroupIdResponseDefaultType0 | PutRoleGroupsByGroupIdResponseDefaultType1 | RoleGroupSchema]
+        Response[Any | PutRoleGroupsByGroupIdResponseDefault | RoleGroupSchema]
     """
 
     kwargs = _get_kwargs(
@@ -229,13 +176,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: RoleGroupSchema,
-) -> (
-    Any
-    | PutRoleGroupsByGroupIdResponseDefaultType0
-    | PutRoleGroupsByGroupIdResponseDefaultType1
-    | RoleGroupSchema
-    | None
-):
+) -> Any | PutRoleGroupsByGroupIdResponseDefault | RoleGroupSchema | None:
     """Update role group
 
 
@@ -251,7 +192,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutRoleGroupsByGroupIdResponseDefaultType0 | PutRoleGroupsByGroupIdResponseDefaultType1 | RoleGroupSchema
+        Any | PutRoleGroupsByGroupIdResponseDefault | RoleGroupSchema
     """
 
     return (

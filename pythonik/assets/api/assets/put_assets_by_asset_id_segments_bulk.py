@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.bulk_edit_asset_segments_schema import BulkEditAssetSegmentsSchema
-from ...models.put_assets_by_asset_id_segments_bulk_response_default_type_0 import (
-    PutAssetsByAssetIdSegmentsBulkResponseDefaultType0,
-)
-from ...models.put_assets_by_asset_id_segments_bulk_response_default_type_1 import (
-    PutAssetsByAssetIdSegmentsBulkResponseDefaultType1,
+from ...models.put_assets_by_asset_id_segments_bulk_response_default import (
+    PutAssetsByAssetIdSegmentsBulkResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -19,7 +16,7 @@ def _get_kwargs(
     asset_id: str,
     *,
     body: BulkEditAssetSegmentsSchema,
-    generate_subclip_keyframes: bool | Unset = True,
+    generate_subclip_keyframes: bool | Unset = UNSET,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -47,11 +44,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PutAssetsByAssetIdSegmentsBulkResponseDefaultType0
-    | PutAssetsByAssetIdSegmentsBulkResponseDefaultType1
-):
+) -> Any | PutAssetsByAssetIdSegmentsBulkResponseDefault:
     if response.status_code == 201:
         response_201 = cast(Any, None)
         return response_201
@@ -64,42 +57,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutAssetsByAssetIdSegmentsBulkResponseDefaultType0
-        | PutAssetsByAssetIdSegmentsBulkResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PutAssetsByAssetIdSegmentsBulkResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PutAssetsByAssetIdSegmentsBulkResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutAssetsByAssetIdSegmentsBulkResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PutAssetsByAssetIdSegmentsBulkResponseDefaultType0
-    | PutAssetsByAssetIdSegmentsBulkResponseDefaultType1
-]:
+) -> Response[Any | PutAssetsByAssetIdSegmentsBulkResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -113,12 +80,8 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: BulkEditAssetSegmentsSchema,
-    generate_subclip_keyframes: bool | Unset = True,
-) -> Response[
-    Any
-    | PutAssetsByAssetIdSegmentsBulkResponseDefaultType0
-    | PutAssetsByAssetIdSegmentsBulkResponseDefaultType1
-]:
+    generate_subclip_keyframes: bool | Unset = UNSET,
+) -> Response[Any | PutAssetsByAssetIdSegmentsBulkResponseDefault]:
     """Edit multiple asset segments
 
 
@@ -127,7 +90,7 @@ def sync_detailed(
 
     Args:
         asset_id (str):
-        generate_subclip_keyframes (bool | Unset):  Default: True.
+        generate_subclip_keyframes (bool | Unset):
         body (BulkEditAssetSegmentsSchema):
 
     Raises:
@@ -135,7 +98,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutAssetsByAssetIdSegmentsBulkResponseDefaultType0 | PutAssetsByAssetIdSegmentsBulkResponseDefaultType1]
+        Response[Any | PutAssetsByAssetIdSegmentsBulkResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -156,13 +119,8 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: BulkEditAssetSegmentsSchema,
-    generate_subclip_keyframes: bool | Unset = True,
-) -> (
-    Any
-    | PutAssetsByAssetIdSegmentsBulkResponseDefaultType0
-    | PutAssetsByAssetIdSegmentsBulkResponseDefaultType1
-    | None
-):
+    generate_subclip_keyframes: bool | Unset = UNSET,
+) -> Any | PutAssetsByAssetIdSegmentsBulkResponseDefault | None:
     """Edit multiple asset segments
 
 
@@ -171,7 +129,7 @@ def sync(
 
     Args:
         asset_id (str):
-        generate_subclip_keyframes (bool | Unset):  Default: True.
+        generate_subclip_keyframes (bool | Unset):
         body (BulkEditAssetSegmentsSchema):
 
     Raises:
@@ -179,7 +137,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutAssetsByAssetIdSegmentsBulkResponseDefaultType0 | PutAssetsByAssetIdSegmentsBulkResponseDefaultType1
+        Any | PutAssetsByAssetIdSegmentsBulkResponseDefault
     """
 
     return sync_detailed(
@@ -195,12 +153,8 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: BulkEditAssetSegmentsSchema,
-    generate_subclip_keyframes: bool | Unset = True,
-) -> Response[
-    Any
-    | PutAssetsByAssetIdSegmentsBulkResponseDefaultType0
-    | PutAssetsByAssetIdSegmentsBulkResponseDefaultType1
-]:
+    generate_subclip_keyframes: bool | Unset = UNSET,
+) -> Response[Any | PutAssetsByAssetIdSegmentsBulkResponseDefault]:
     """Edit multiple asset segments
 
 
@@ -209,7 +163,7 @@ async def asyncio_detailed(
 
     Args:
         asset_id (str):
-        generate_subclip_keyframes (bool | Unset):  Default: True.
+        generate_subclip_keyframes (bool | Unset):
         body (BulkEditAssetSegmentsSchema):
 
     Raises:
@@ -217,7 +171,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutAssetsByAssetIdSegmentsBulkResponseDefaultType0 | PutAssetsByAssetIdSegmentsBulkResponseDefaultType1]
+        Response[Any | PutAssetsByAssetIdSegmentsBulkResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -236,13 +190,8 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: BulkEditAssetSegmentsSchema,
-    generate_subclip_keyframes: bool | Unset = True,
-) -> (
-    Any
-    | PutAssetsByAssetIdSegmentsBulkResponseDefaultType0
-    | PutAssetsByAssetIdSegmentsBulkResponseDefaultType1
-    | None
-):
+    generate_subclip_keyframes: bool | Unset = UNSET,
+) -> Any | PutAssetsByAssetIdSegmentsBulkResponseDefault | None:
     """Edit multiple asset segments
 
 
@@ -251,7 +200,7 @@ async def asyncio(
 
     Args:
         asset_id (str):
-        generate_subclip_keyframes (bool | Unset):  Default: True.
+        generate_subclip_keyframes (bool | Unset):
         body (BulkEditAssetSegmentsSchema):
 
     Raises:
@@ -259,7 +208,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutAssetsByAssetIdSegmentsBulkResponseDefaultType0 | PutAssetsByAssetIdSegmentsBulkResponseDefaultType1
+        Any | PutAssetsByAssetIdSegmentsBulkResponseDefault
     """
 
     return (

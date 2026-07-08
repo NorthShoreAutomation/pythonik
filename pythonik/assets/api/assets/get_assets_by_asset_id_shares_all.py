@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_assets_by_asset_id_shares_all_response_default_type_0 import (
-    GetAssetsByAssetIdSharesAllResponseDefaultType0,
-)
-from ...models.get_assets_by_asset_id_shares_all_response_default_type_1 import (
-    GetAssetsByAssetIdSharesAllResponseDefaultType1,
+from ...models.get_assets_by_asset_id_shares_all_response_default import (
+    GetAssetsByAssetIdSharesAllResponseDefault,
 )
 from ...models.shares_elastic_schema import SharesElasticSchema
 from ...types import Response
@@ -31,12 +28,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetAssetsByAssetIdSharesAllResponseDefaultType0
-    | GetAssetsByAssetIdSharesAllResponseDefaultType1
-    | SharesElasticSchema
-):
+) -> Any | GetAssetsByAssetIdSharesAllResponseDefault | SharesElasticSchema:
     if response.status_code == 200:
         response_200 = SharesElasticSchema.from_dict(response.json())
 
@@ -54,43 +46,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsByAssetIdSharesAllResponseDefaultType0
-        | GetAssetsByAssetIdSharesAllResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetAssetsByAssetIdSharesAllResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetAssetsByAssetIdSharesAllResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAssetsByAssetIdSharesAllResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetAssetsByAssetIdSharesAllResponseDefaultType0
-    | GetAssetsByAssetIdSharesAllResponseDefaultType1
-    | SharesElasticSchema
-]:
+) -> Response[Any | GetAssetsByAssetIdSharesAllResponseDefault | SharesElasticSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -103,12 +68,7 @@ def sync_detailed(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetAssetsByAssetIdSharesAllResponseDefaultType0
-    | GetAssetsByAssetIdSharesAllResponseDefaultType1
-    | SharesElasticSchema
-]:
+) -> Response[Any | GetAssetsByAssetIdSharesAllResponseDefault | SharesElasticSchema]:
     """Get list of asset's shares including all direct and indirect shares that were made by sharing
 
      collections and playlists that contain the assetcollections and playlists that contain the asset
@@ -123,7 +83,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdSharesAllResponseDefaultType0 | GetAssetsByAssetIdSharesAllResponseDefaultType1 | SharesElasticSchema]
+        Response[Any | GetAssetsByAssetIdSharesAllResponseDefault | SharesElasticSchema]
     """
 
     kwargs = _get_kwargs(
@@ -141,13 +101,7 @@ def sync(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetAssetsByAssetIdSharesAllResponseDefaultType0
-    | GetAssetsByAssetIdSharesAllResponseDefaultType1
-    | SharesElasticSchema
-    | None
-):
+) -> Any | GetAssetsByAssetIdSharesAllResponseDefault | SharesElasticSchema | None:
     """Get list of asset's shares including all direct and indirect shares that were made by sharing
 
      collections and playlists that contain the assetcollections and playlists that contain the asset
@@ -162,7 +116,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdSharesAllResponseDefaultType0 | GetAssetsByAssetIdSharesAllResponseDefaultType1 | SharesElasticSchema
+        Any | GetAssetsByAssetIdSharesAllResponseDefault | SharesElasticSchema
     """
 
     return sync_detailed(
@@ -175,12 +129,7 @@ async def asyncio_detailed(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetAssetsByAssetIdSharesAllResponseDefaultType0
-    | GetAssetsByAssetIdSharesAllResponseDefaultType1
-    | SharesElasticSchema
-]:
+) -> Response[Any | GetAssetsByAssetIdSharesAllResponseDefault | SharesElasticSchema]:
     """Get list of asset's shares including all direct and indirect shares that were made by sharing
 
      collections and playlists that contain the assetcollections and playlists that contain the asset
@@ -195,7 +144,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdSharesAllResponseDefaultType0 | GetAssetsByAssetIdSharesAllResponseDefaultType1 | SharesElasticSchema]
+        Response[Any | GetAssetsByAssetIdSharesAllResponseDefault | SharesElasticSchema]
     """
 
     kwargs = _get_kwargs(
@@ -211,13 +160,7 @@ async def asyncio(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetAssetsByAssetIdSharesAllResponseDefaultType0
-    | GetAssetsByAssetIdSharesAllResponseDefaultType1
-    | SharesElasticSchema
-    | None
-):
+) -> Any | GetAssetsByAssetIdSharesAllResponseDefault | SharesElasticSchema | None:
     """Get list of asset's shares including all direct and indirect shares that were made by sharing
 
      collections and playlists that contain the assetcollections and playlists that contain the asset
@@ -232,7 +175,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdSharesAllResponseDefaultType0 | GetAssetsByAssetIdSharesAllResponseDefaultType1 | SharesElasticSchema
+        Any | GetAssetsByAssetIdSharesAllResponseDefault | SharesElasticSchema
     """
 
     return (

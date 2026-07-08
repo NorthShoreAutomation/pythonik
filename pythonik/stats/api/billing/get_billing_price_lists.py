@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_billing_price_lists_response_default_type_0 import (
-    GetBillingPriceListsResponseDefaultType0,
-)
-from ...models.get_billing_price_lists_response_default_type_1 import (
-    GetBillingPriceListsResponseDefaultType1,
+from ...models.get_billing_price_lists_response_default import (
+    GetBillingPriceListsResponseDefault,
 )
 from ...models.prices_schema import PricesSchema
 from ...types import Response
@@ -26,12 +23,7 @@ def _get_kwargs() -> dict[str, Any]:
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetBillingPriceListsResponseDefaultType0
-    | GetBillingPriceListsResponseDefaultType1
-    | PricesSchema
-):
+) -> Any | GetBillingPriceListsResponseDefault | PricesSchema:
     if response.status_code == 200:
         response_200 = PricesSchema.from_dict(response.json())
 
@@ -49,43 +41,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetBillingPriceListsResponseDefaultType0
-        | GetBillingPriceListsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetBillingPriceListsResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetBillingPriceListsResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetBillingPriceListsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetBillingPriceListsResponseDefaultType0
-    | GetBillingPriceListsResponseDefaultType1
-    | PricesSchema
-]:
+) -> Response[Any | GetBillingPriceListsResponseDefault | PricesSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -97,12 +60,7 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetBillingPriceListsResponseDefaultType0
-    | GetBillingPriceListsResponseDefaultType1
-    | PricesSchema
-]:
+) -> Response[Any | GetBillingPriceListsResponseDefault | PricesSchema]:
     """Get All Price Lists
 
     Raises:
@@ -110,7 +68,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetBillingPriceListsResponseDefaultType0 | GetBillingPriceListsResponseDefaultType1 | PricesSchema]
+        Response[Any | GetBillingPriceListsResponseDefault | PricesSchema]
     """
 
     kwargs = _get_kwargs()
@@ -125,13 +83,7 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetBillingPriceListsResponseDefaultType0
-    | GetBillingPriceListsResponseDefaultType1
-    | PricesSchema
-    | None
-):
+) -> Any | GetBillingPriceListsResponseDefault | PricesSchema | None:
     """Get All Price Lists
 
     Raises:
@@ -139,7 +91,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetBillingPriceListsResponseDefaultType0 | GetBillingPriceListsResponseDefaultType1 | PricesSchema
+        Any | GetBillingPriceListsResponseDefault | PricesSchema
     """
 
     return sync_detailed(
@@ -150,12 +102,7 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetBillingPriceListsResponseDefaultType0
-    | GetBillingPriceListsResponseDefaultType1
-    | PricesSchema
-]:
+) -> Response[Any | GetBillingPriceListsResponseDefault | PricesSchema]:
     """Get All Price Lists
 
     Raises:
@@ -163,7 +110,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetBillingPriceListsResponseDefaultType0 | GetBillingPriceListsResponseDefaultType1 | PricesSchema]
+        Response[Any | GetBillingPriceListsResponseDefault | PricesSchema]
     """
 
     kwargs = _get_kwargs()
@@ -176,13 +123,7 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetBillingPriceListsResponseDefaultType0
-    | GetBillingPriceListsResponseDefaultType1
-    | PricesSchema
-    | None
-):
+) -> Any | GetBillingPriceListsResponseDefault | PricesSchema | None:
     """Get All Price Lists
 
     Raises:
@@ -190,7 +131,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetBillingPriceListsResponseDefaultType0 | GetBillingPriceListsResponseDefaultType1 | PricesSchema
+        Any | GetBillingPriceListsResponseDefault | PricesSchema
     """
 
     return (

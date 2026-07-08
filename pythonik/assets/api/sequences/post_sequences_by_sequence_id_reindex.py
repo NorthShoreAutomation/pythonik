@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_sequences_by_sequence_id_reindex_response_default_type_0 import (
-    PostSequencesBySequenceIdReindexResponseDefaultType0,
-)
-from ...models.post_sequences_by_sequence_id_reindex_response_default_type_1 import (
-    PostSequencesBySequenceIdReindexResponseDefaultType1,
+from ...models.post_sequences_by_sequence_id_reindex_response_default import (
+    PostSequencesBySequenceIdReindexResponseDefault,
 )
 from ...models.reindex_sequence_schema import ReindexSequenceSchema
 from ...types import Response
@@ -39,11 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostSequencesBySequenceIdReindexResponseDefaultType0
-    | PostSequencesBySequenceIdReindexResponseDefaultType1
-):
+) -> Any | PostSequencesBySequenceIdReindexResponseDefault:
     if response.status_code == 201:
         response_201 = cast(Any, None)
         return response_201
@@ -60,42 +53,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostSequencesBySequenceIdReindexResponseDefaultType0
-        | PostSequencesBySequenceIdReindexResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostSequencesBySequenceIdReindexResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostSequencesBySequenceIdReindexResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostSequencesBySequenceIdReindexResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostSequencesBySequenceIdReindexResponseDefaultType0
-    | PostSequencesBySequenceIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostSequencesBySequenceIdReindexResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -109,11 +76,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexSequenceSchema,
-) -> Response[
-    Any
-    | PostSequencesBySequenceIdReindexResponseDefaultType0
-    | PostSequencesBySequenceIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostSequencesBySequenceIdReindexResponseDefault]:
     """Reindex the sequence
 
 
@@ -129,7 +92,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSequencesBySequenceIdReindexResponseDefaultType0 | PostSequencesBySequenceIdReindexResponseDefaultType1]
+        Response[Any | PostSequencesBySequenceIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -149,12 +112,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexSequenceSchema,
-) -> (
-    Any
-    | PostSequencesBySequenceIdReindexResponseDefaultType0
-    | PostSequencesBySequenceIdReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostSequencesBySequenceIdReindexResponseDefault | None:
     """Reindex the sequence
 
 
@@ -170,7 +128,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSequencesBySequenceIdReindexResponseDefaultType0 | PostSequencesBySequenceIdReindexResponseDefaultType1
+        Any | PostSequencesBySequenceIdReindexResponseDefault
     """
 
     return sync_detailed(
@@ -185,11 +143,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexSequenceSchema,
-) -> Response[
-    Any
-    | PostSequencesBySequenceIdReindexResponseDefaultType0
-    | PostSequencesBySequenceIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostSequencesBySequenceIdReindexResponseDefault]:
     """Reindex the sequence
 
 
@@ -205,7 +159,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSequencesBySequenceIdReindexResponseDefaultType0 | PostSequencesBySequenceIdReindexResponseDefaultType1]
+        Response[Any | PostSequencesBySequenceIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -223,12 +177,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexSequenceSchema,
-) -> (
-    Any
-    | PostSequencesBySequenceIdReindexResponseDefaultType0
-    | PostSequencesBySequenceIdReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostSequencesBySequenceIdReindexResponseDefault | None:
     """Reindex the sequence
 
 
@@ -244,7 +193,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSequencesBySequenceIdReindexResponseDefaultType0 | PostSequencesBySequenceIdReindexResponseDefaultType1
+        Any | PostSequencesBySequenceIdReindexResponseDefault
     """
 
     return (

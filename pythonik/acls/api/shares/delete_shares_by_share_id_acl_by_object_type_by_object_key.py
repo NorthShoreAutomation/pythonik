@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_shares_by_share_id_acl_by_object_type_by_object_key_response_default_type_0 import (
-    DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType0,
-)
-from ...models.delete_shares_by_share_id_acl_by_object_type_by_object_key_response_default_type_1 import (
-    DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType1,
+from ...models.delete_shares_by_share_id_acl_by_object_type_by_object_key_response_default import (
+    DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefault,
 )
 from ...types import Response
 
@@ -34,11 +31,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType0
-    | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType1
-):
+) -> Any | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -55,42 +48,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType0
-        | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType0
-    | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType1
-]:
+) -> Response[Any | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -105,11 +74,7 @@ def sync_detailed(
     object_key: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType0
-    | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType1
-]:
+) -> Response[Any | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefault]:
     """Delete a share acl for an object
 
 
@@ -126,7 +91,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType0 | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType1]
+        Response[Any | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -148,12 +113,7 @@ def sync(
     object_key: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType0
-    | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType1
-    | None
-):
+) -> Any | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefault | None:
     """Delete a share acl for an object
 
 
@@ -170,7 +130,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType0 | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType1
+        Any | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefault
     """
 
     return sync_detailed(
@@ -187,11 +147,7 @@ async def asyncio_detailed(
     object_key: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType0
-    | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType1
-]:
+) -> Response[Any | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefault]:
     """Delete a share acl for an object
 
 
@@ -208,7 +164,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType0 | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType1]
+        Response[Any | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -228,12 +184,7 @@ async def asyncio(
     object_key: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType0
-    | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType1
-    | None
-):
+) -> Any | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefault | None:
     """Delete a share acl for an object
 
 
@@ -250,7 +201,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType0 | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefaultType1
+        Any | DeleteSharesByShareIdAclByObjectTypeByObjectKeyResponseDefault
     """
 
     return (

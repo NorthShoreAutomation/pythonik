@@ -5,11 +5,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.marketplace_google_link_schema import MarketplaceGoogleLinkSchema
-from ...models.post_marketplace_google_link_response_default_type_0 import (
-    PostMarketplaceGoogleLinkResponseDefaultType0,
-)
-from ...models.post_marketplace_google_link_response_default_type_1 import (
-    PostMarketplaceGoogleLinkResponseDefaultType1,
+from ...models.post_marketplace_google_link_response_default import (
+    PostMarketplaceGoogleLinkResponseDefault,
 )
 from ...types import Response
 
@@ -35,11 +32,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostMarketplaceGoogleLinkResponseDefaultType0
-    | PostMarketplaceGoogleLinkResponseDefaultType1
-):
+) -> Any | PostMarketplaceGoogleLinkResponseDefault:
     if response.status_code == 200:
         response_200 = cast(Any, None)
         return response_200
@@ -48,42 +41,16 @@ def _parse_response(
         response_400 = cast(Any, None)
         return response_400
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostMarketplaceGoogleLinkResponseDefaultType0
-        | PostMarketplaceGoogleLinkResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostMarketplaceGoogleLinkResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostMarketplaceGoogleLinkResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostMarketplaceGoogleLinkResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostMarketplaceGoogleLinkResponseDefaultType0
-    | PostMarketplaceGoogleLinkResponseDefaultType1
-]:
+) -> Response[Any | PostMarketplaceGoogleLinkResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -96,11 +63,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: MarketplaceGoogleLinkSchema,
-) -> Response[
-    Any
-    | PostMarketplaceGoogleLinkResponseDefaultType0
-    | PostMarketplaceGoogleLinkResponseDefaultType1
-]:
+) -> Response[Any | PostMarketplaceGoogleLinkResponseDefault]:
     """Google cloud marketplace link to existing system domain
 
     Args:
@@ -111,7 +74,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostMarketplaceGoogleLinkResponseDefaultType0 | PostMarketplaceGoogleLinkResponseDefaultType1]
+        Response[Any | PostMarketplaceGoogleLinkResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -129,12 +92,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: MarketplaceGoogleLinkSchema,
-) -> (
-    Any
-    | PostMarketplaceGoogleLinkResponseDefaultType0
-    | PostMarketplaceGoogleLinkResponseDefaultType1
-    | None
-):
+) -> Any | PostMarketplaceGoogleLinkResponseDefault | None:
     """Google cloud marketplace link to existing system domain
 
     Args:
@@ -145,7 +103,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostMarketplaceGoogleLinkResponseDefaultType0 | PostMarketplaceGoogleLinkResponseDefaultType1
+        Any | PostMarketplaceGoogleLinkResponseDefault
     """
 
     return sync_detailed(
@@ -158,11 +116,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: MarketplaceGoogleLinkSchema,
-) -> Response[
-    Any
-    | PostMarketplaceGoogleLinkResponseDefaultType0
-    | PostMarketplaceGoogleLinkResponseDefaultType1
-]:
+) -> Response[Any | PostMarketplaceGoogleLinkResponseDefault]:
     """Google cloud marketplace link to existing system domain
 
     Args:
@@ -173,7 +127,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostMarketplaceGoogleLinkResponseDefaultType0 | PostMarketplaceGoogleLinkResponseDefaultType1]
+        Response[Any | PostMarketplaceGoogleLinkResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -189,12 +143,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: MarketplaceGoogleLinkSchema,
-) -> (
-    Any
-    | PostMarketplaceGoogleLinkResponseDefaultType0
-    | PostMarketplaceGoogleLinkResponseDefaultType1
-    | None
-):
+) -> Any | PostMarketplaceGoogleLinkResponseDefault | None:
     """Google cloud marketplace link to existing system domain
 
     Args:
@@ -205,7 +154,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostMarketplaceGoogleLinkResponseDefaultType0 | PostMarketplaceGoogleLinkResponseDefaultType1
+        Any | PostMarketplaceGoogleLinkResponseDefault
     """
 
     return (

@@ -8,11 +8,8 @@ from ...models.otp_schema import OtpSchema
 from ...models.post_users_current_totp_configure_response_201 import (
     PostUsersCurrentTotpConfigureResponse201,
 )
-from ...models.post_users_current_totp_configure_response_default_type_0 import (
-    PostUsersCurrentTotpConfigureResponseDefaultType0,
-)
-from ...models.post_users_current_totp_configure_response_default_type_1 import (
-    PostUsersCurrentTotpConfigureResponseDefaultType1,
+from ...models.post_users_current_totp_configure_response_default import (
+    PostUsersCurrentTotpConfigureResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -42,8 +39,7 @@ def _parse_response(
 ) -> (
     Any
     | PostUsersCurrentTotpConfigureResponse201
-    | PostUsersCurrentTotpConfigureResponseDefaultType0
-    | PostUsersCurrentTotpConfigureResponseDefaultType1
+    | PostUsersCurrentTotpConfigureResponseDefault
 ):
     if response.status_code == 201:
         response_201 = PostUsersCurrentTotpConfigureResponse201.from_dict(
@@ -56,31 +52,9 @@ def _parse_response(
         response_400 = cast(Any, None)
         return response_400
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostUsersCurrentTotpConfigureResponseDefaultType0
-        | PostUsersCurrentTotpConfigureResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostUsersCurrentTotpConfigureResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostUsersCurrentTotpConfigureResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostUsersCurrentTotpConfigureResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -90,8 +64,7 @@ def _build_response(
 ) -> Response[
     Any
     | PostUsersCurrentTotpConfigureResponse201
-    | PostUsersCurrentTotpConfigureResponseDefaultType0
-    | PostUsersCurrentTotpConfigureResponseDefaultType1
+    | PostUsersCurrentTotpConfigureResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -108,8 +81,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | PostUsersCurrentTotpConfigureResponse201
-    | PostUsersCurrentTotpConfigureResponseDefaultType0
-    | PostUsersCurrentTotpConfigureResponseDefaultType1
+    | PostUsersCurrentTotpConfigureResponseDefault
 ]:
     """Setup totp
 
@@ -121,7 +93,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostUsersCurrentTotpConfigureResponse201 | PostUsersCurrentTotpConfigureResponseDefaultType0 | PostUsersCurrentTotpConfigureResponseDefaultType1]
+        Response[Any | PostUsersCurrentTotpConfigureResponse201 | PostUsersCurrentTotpConfigureResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -142,8 +114,7 @@ def sync(
 ) -> (
     Any
     | PostUsersCurrentTotpConfigureResponse201
-    | PostUsersCurrentTotpConfigureResponseDefaultType0
-    | PostUsersCurrentTotpConfigureResponseDefaultType1
+    | PostUsersCurrentTotpConfigureResponseDefault
     | None
 ):
     """Setup totp
@@ -156,7 +127,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostUsersCurrentTotpConfigureResponse201 | PostUsersCurrentTotpConfigureResponseDefaultType0 | PostUsersCurrentTotpConfigureResponseDefaultType1
+        Any | PostUsersCurrentTotpConfigureResponse201 | PostUsersCurrentTotpConfigureResponseDefault
     """
 
     return sync_detailed(
@@ -172,8 +143,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | PostUsersCurrentTotpConfigureResponse201
-    | PostUsersCurrentTotpConfigureResponseDefaultType0
-    | PostUsersCurrentTotpConfigureResponseDefaultType1
+    | PostUsersCurrentTotpConfigureResponseDefault
 ]:
     """Setup totp
 
@@ -185,7 +155,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostUsersCurrentTotpConfigureResponse201 | PostUsersCurrentTotpConfigureResponseDefaultType0 | PostUsersCurrentTotpConfigureResponseDefaultType1]
+        Response[Any | PostUsersCurrentTotpConfigureResponse201 | PostUsersCurrentTotpConfigureResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -204,8 +174,7 @@ async def asyncio(
 ) -> (
     Any
     | PostUsersCurrentTotpConfigureResponse201
-    | PostUsersCurrentTotpConfigureResponseDefaultType0
-    | PostUsersCurrentTotpConfigureResponseDefaultType1
+    | PostUsersCurrentTotpConfigureResponseDefault
     | None
 ):
     """Setup totp
@@ -218,7 +187,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostUsersCurrentTotpConfigureResponse201 | PostUsersCurrentTotpConfigureResponseDefaultType0 | PostUsersCurrentTotpConfigureResponseDefaultType1
+        Any | PostUsersCurrentTotpConfigureResponse201 | PostUsersCurrentTotpConfigureResponseDefault
     """
 
     return (

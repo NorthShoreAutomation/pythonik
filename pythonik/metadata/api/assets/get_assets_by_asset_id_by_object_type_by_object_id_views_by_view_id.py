@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_assets_by_asset_id_by_object_type_by_object_id_views_by_view_id_response_default_type_0 import (
-    GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0,
-)
-from ...models.get_assets_by_asset_id_by_object_type_by_object_id_views_by_view_id_response_default_type_1 import (
-    GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1,
+from ...models.get_assets_by_asset_id_by_object_type_by_object_id_views_by_view_id_response_default import (
+    GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefault,
 )
 from ...models.metadata_values_schema import MetadataValuesSchema
 from ...types import UNSET, Response, Unset
@@ -21,7 +18,7 @@ def _get_kwargs(
     object_id: str,
     view_id: str,
     *,
-    reencode_values_to_string: bool | Unset = False,
+    reencode_values_to_string: bool | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -48,8 +45,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-    | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
+    | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefault
     | MetadataValuesSchema
 ):
     if response.status_code == 200:
@@ -69,31 +65,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-        | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -102,8 +78,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-    | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
+    | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefault
     | MetadataValuesSchema
 ]:
     return Response(
@@ -121,11 +96,10 @@ def sync_detailed(
     view_id: str,
     *,
     client: AuthenticatedClient | Client,
-    reencode_values_to_string: bool | Unset = False,
+    reencode_values_to_string: bool | Unset = UNSET,
 ) -> Response[
     Any
-    | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-    | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
+    | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefault
     | MetadataValuesSchema
 ]:
     """Get asset metadata by object type, object ID and view ID
@@ -139,14 +113,14 @@ def sync_detailed(
         object_type (str):
         object_id (str):
         view_id (str):
-        reencode_values_to_string (bool | Unset):  Default: False.
+        reencode_values_to_string (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0 | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1 | MetadataValuesSchema]
+        Response[Any | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefault | MetadataValuesSchema]
     """
 
     kwargs = _get_kwargs(
@@ -171,11 +145,10 @@ def sync(
     view_id: str,
     *,
     client: AuthenticatedClient | Client,
-    reencode_values_to_string: bool | Unset = False,
+    reencode_values_to_string: bool | Unset = UNSET,
 ) -> (
     Any
-    | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-    | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
+    | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefault
     | MetadataValuesSchema
     | None
 ):
@@ -190,14 +163,14 @@ def sync(
         object_type (str):
         object_id (str):
         view_id (str):
-        reencode_values_to_string (bool | Unset):  Default: False.
+        reencode_values_to_string (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0 | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1 | MetadataValuesSchema
+        Any | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefault | MetadataValuesSchema
     """
 
     return sync_detailed(
@@ -217,11 +190,10 @@ async def asyncio_detailed(
     view_id: str,
     *,
     client: AuthenticatedClient | Client,
-    reencode_values_to_string: bool | Unset = False,
+    reencode_values_to_string: bool | Unset = UNSET,
 ) -> Response[
     Any
-    | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-    | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
+    | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefault
     | MetadataValuesSchema
 ]:
     """Get asset metadata by object type, object ID and view ID
@@ -235,14 +207,14 @@ async def asyncio_detailed(
         object_type (str):
         object_id (str):
         view_id (str):
-        reencode_values_to_string (bool | Unset):  Default: False.
+        reencode_values_to_string (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0 | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1 | MetadataValuesSchema]
+        Response[Any | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefault | MetadataValuesSchema]
     """
 
     kwargs = _get_kwargs(
@@ -265,11 +237,10 @@ async def asyncio(
     view_id: str,
     *,
     client: AuthenticatedClient | Client,
-    reencode_values_to_string: bool | Unset = False,
+    reencode_values_to_string: bool | Unset = UNSET,
 ) -> (
     Any
-    | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-    | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
+    | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefault
     | MetadataValuesSchema
     | None
 ):
@@ -284,14 +255,14 @@ async def asyncio(
         object_type (str):
         object_id (str):
         view_id (str):
-        reencode_values_to_string (bool | Unset):  Default: False.
+        reencode_values_to_string (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0 | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1 | MetadataValuesSchema
+        Any | GetAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefault | MetadataValuesSchema
     """
 
     return (

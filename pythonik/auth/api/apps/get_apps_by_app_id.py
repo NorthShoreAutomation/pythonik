@@ -6,12 +6,7 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.app_schema import AppSchema
-from ...models.get_apps_by_app_id_response_default_type_0 import (
-    GetAppsByAppIdResponseDefaultType0,
-)
-from ...models.get_apps_by_app_id_response_default_type_1 import (
-    GetAppsByAppIdResponseDefaultType1,
-)
+from ...models.get_apps_by_app_id_response_default import GetAppsByAppIdResponseDefault
 from ...types import Response
 
 
@@ -31,12 +26,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | AppSchema
-    | GetAppsByAppIdResponseDefaultType0
-    | GetAppsByAppIdResponseDefaultType1
-):
+) -> Any | AppSchema | GetAppsByAppIdResponseDefault:
     if response.status_code == 200:
         response_200 = AppSchema.from_dict(response.json())
 
@@ -50,36 +40,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> GetAppsByAppIdResponseDefaultType0 | GetAppsByAppIdResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetAppsByAppIdResponseDefaultType0.from_dict(data)
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetAppsByAppIdResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAppsByAppIdResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | AppSchema
-    | GetAppsByAppIdResponseDefaultType0
-    | GetAppsByAppIdResponseDefaultType1
-]:
+) -> Response[Any | AppSchema | GetAppsByAppIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -92,12 +60,7 @@ def sync_detailed(
     app_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | AppSchema
-    | GetAppsByAppIdResponseDefaultType0
-    | GetAppsByAppIdResponseDefaultType1
-]:
+) -> Response[Any | AppSchema | GetAppsByAppIdResponseDefault]:
     """Returns a particular app by id
 
 
@@ -112,7 +75,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AppSchema | GetAppsByAppIdResponseDefaultType0 | GetAppsByAppIdResponseDefaultType1]
+        Response[Any | AppSchema | GetAppsByAppIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -130,13 +93,7 @@ def sync(
     app_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | AppSchema
-    | GetAppsByAppIdResponseDefaultType0
-    | GetAppsByAppIdResponseDefaultType1
-    | None
-):
+) -> Any | AppSchema | GetAppsByAppIdResponseDefault | None:
     """Returns a particular app by id
 
 
@@ -151,7 +108,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AppSchema | GetAppsByAppIdResponseDefaultType0 | GetAppsByAppIdResponseDefaultType1
+        Any | AppSchema | GetAppsByAppIdResponseDefault
     """
 
     return sync_detailed(
@@ -164,12 +121,7 @@ async def asyncio_detailed(
     app_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | AppSchema
-    | GetAppsByAppIdResponseDefaultType0
-    | GetAppsByAppIdResponseDefaultType1
-]:
+) -> Response[Any | AppSchema | GetAppsByAppIdResponseDefault]:
     """Returns a particular app by id
 
 
@@ -184,7 +136,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AppSchema | GetAppsByAppIdResponseDefaultType0 | GetAppsByAppIdResponseDefaultType1]
+        Response[Any | AppSchema | GetAppsByAppIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -200,13 +152,7 @@ async def asyncio(
     app_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | AppSchema
-    | GetAppsByAppIdResponseDefaultType0
-    | GetAppsByAppIdResponseDefaultType1
-    | None
-):
+) -> Any | AppSchema | GetAppsByAppIdResponseDefault | None:
     """Returns a particular app by id
 
 
@@ -221,7 +167,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AppSchema | GetAppsByAppIdResponseDefaultType0 | GetAppsByAppIdResponseDefaultType1
+        Any | AppSchema | GetAppsByAppIdResponseDefault
     """
 
     return (

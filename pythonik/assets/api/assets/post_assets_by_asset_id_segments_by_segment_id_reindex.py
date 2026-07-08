@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_assets_by_asset_id_segments_by_segment_id_reindex_response_default_type_0 import (
-    PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType0,
-)
-from ...models.post_assets_by_asset_id_segments_by_segment_id_reindex_response_default_type_1 import (
-    PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType1,
+from ...models.post_assets_by_asset_id_segments_by_segment_id_reindex_response_default import (
+    PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefault,
 )
 from ...models.reindex_segment_schema import ReindexSegmentSchema
 from ...types import Response
@@ -41,11 +38,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType0
-    | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType1
-):
+) -> Any | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefault:
     if response.status_code == 201:
         response_201 = cast(Any, None)
         return response_201
@@ -58,44 +51,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType0
-        | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType0
-    | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -110,11 +77,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexSegmentSchema,
-) -> Response[
-    Any
-    | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType0
-    | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefault]:
     """Reindex assets segment
 
 
@@ -131,7 +94,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType0 | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType1]
+        Response[Any | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -153,12 +116,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexSegmentSchema,
-) -> (
-    Any
-    | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType0
-    | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefault | None:
     """Reindex assets segment
 
 
@@ -175,7 +133,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType0 | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType1
+        Any | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefault
     """
 
     return sync_detailed(
@@ -192,11 +150,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexSegmentSchema,
-) -> Response[
-    Any
-    | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType0
-    | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefault]:
     """Reindex assets segment
 
 
@@ -213,7 +167,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType0 | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType1]
+        Response[Any | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -233,12 +187,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexSegmentSchema,
-) -> (
-    Any
-    | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType0
-    | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefault | None:
     """Reindex assets segment
 
 
@@ -255,7 +204,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType0 | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefaultType1
+        Any | PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefault
     """
 
     return (

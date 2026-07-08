@@ -4,12 +4,7 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_role_groups_response_default_type_0 import (
-    PostRoleGroupsResponseDefaultType0,
-)
-from ...models.post_role_groups_response_default_type_1 import (
-    PostRoleGroupsResponseDefaultType1,
-)
+from ...models.post_role_groups_response_default import PostRoleGroupsResponseDefault
 from ...models.role_group_schema import RoleGroupSchema
 from ...types import Response
 
@@ -35,12 +30,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostRoleGroupsResponseDefaultType0
-    | PostRoleGroupsResponseDefaultType1
-    | RoleGroupSchema
-):
+) -> Any | PostRoleGroupsResponseDefault | RoleGroupSchema:
     if response.status_code == 201:
         response_201 = RoleGroupSchema.from_dict(response.json())
 
@@ -54,36 +44,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> PostRoleGroupsResponseDefaultType0 | PostRoleGroupsResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostRoleGroupsResponseDefaultType0.from_dict(data)
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostRoleGroupsResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostRoleGroupsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostRoleGroupsResponseDefaultType0
-    | PostRoleGroupsResponseDefaultType1
-    | RoleGroupSchema
-]:
+) -> Response[Any | PostRoleGroupsResponseDefault | RoleGroupSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -96,12 +64,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: RoleGroupSchema,
-) -> Response[
-    Any
-    | PostRoleGroupsResponseDefaultType0
-    | PostRoleGroupsResponseDefaultType1
-    | RoleGroupSchema
-]:
+) -> Response[Any | PostRoleGroupsResponseDefault | RoleGroupSchema]:
     """Create a new role group
 
 
@@ -116,7 +79,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostRoleGroupsResponseDefaultType0 | PostRoleGroupsResponseDefaultType1 | RoleGroupSchema]
+        Response[Any | PostRoleGroupsResponseDefault | RoleGroupSchema]
     """
 
     kwargs = _get_kwargs(
@@ -134,13 +97,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: RoleGroupSchema,
-) -> (
-    Any
-    | PostRoleGroupsResponseDefaultType0
-    | PostRoleGroupsResponseDefaultType1
-    | RoleGroupSchema
-    | None
-):
+) -> Any | PostRoleGroupsResponseDefault | RoleGroupSchema | None:
     """Create a new role group
 
 
@@ -155,7 +112,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostRoleGroupsResponseDefaultType0 | PostRoleGroupsResponseDefaultType1 | RoleGroupSchema
+        Any | PostRoleGroupsResponseDefault | RoleGroupSchema
     """
 
     return sync_detailed(
@@ -168,12 +125,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: RoleGroupSchema,
-) -> Response[
-    Any
-    | PostRoleGroupsResponseDefaultType0
-    | PostRoleGroupsResponseDefaultType1
-    | RoleGroupSchema
-]:
+) -> Response[Any | PostRoleGroupsResponseDefault | RoleGroupSchema]:
     """Create a new role group
 
 
@@ -188,7 +140,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostRoleGroupsResponseDefaultType0 | PostRoleGroupsResponseDefaultType1 | RoleGroupSchema]
+        Response[Any | PostRoleGroupsResponseDefault | RoleGroupSchema]
     """
 
     kwargs = _get_kwargs(
@@ -204,13 +156,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: RoleGroupSchema,
-) -> (
-    Any
-    | PostRoleGroupsResponseDefaultType0
-    | PostRoleGroupsResponseDefaultType1
-    | RoleGroupSchema
-    | None
-):
+) -> Any | PostRoleGroupsResponseDefault | RoleGroupSchema | None:
     """Create a new role group
 
 
@@ -225,7 +171,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostRoleGroupsResponseDefaultType0 | PostRoleGroupsResponseDefaultType1 | RoleGroupSchema
+        Any | PostRoleGroupsResponseDefault | RoleGroupSchema
     """
 
     return (

@@ -9,11 +9,8 @@ from ...models.post_teams_by_team_id_logo_body import PostTeamsByTeamIdLogoBody
 from ...models.post_teams_by_team_id_logo_response_200 import (
     PostTeamsByTeamIdLogoResponse200,
 )
-from ...models.post_teams_by_team_id_logo_response_default_type_0 import (
-    PostTeamsByTeamIdLogoResponseDefaultType0,
-)
-from ...models.post_teams_by_team_id_logo_response_default_type_1 import (
-    PostTeamsByTeamIdLogoResponseDefaultType1,
+from ...models.post_teams_by_team_id_logo_response_default import (
+    PostTeamsByTeamIdLogoResponseDefault,
 )
 from ...types import Response
 
@@ -41,12 +38,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostTeamsByTeamIdLogoResponse200
-    | PostTeamsByTeamIdLogoResponseDefaultType0
-    | PostTeamsByTeamIdLogoResponseDefaultType1
-):
+) -> Any | PostTeamsByTeamIdLogoResponse200 | PostTeamsByTeamIdLogoResponseDefault:
     if response.status_code == 200:
         response_200 = PostTeamsByTeamIdLogoResponse200.from_dict(response.json())
 
@@ -60,31 +52,7 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostTeamsByTeamIdLogoResponseDefaultType0
-        | PostTeamsByTeamIdLogoResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostTeamsByTeamIdLogoResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostTeamsByTeamIdLogoResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostTeamsByTeamIdLogoResponseDefault.from_dict(response.json())
 
     return response_default
 
@@ -92,10 +60,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | PostTeamsByTeamIdLogoResponse200
-    | PostTeamsByTeamIdLogoResponseDefaultType0
-    | PostTeamsByTeamIdLogoResponseDefaultType1
+    Any | PostTeamsByTeamIdLogoResponse200 | PostTeamsByTeamIdLogoResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -111,10 +76,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: PostTeamsByTeamIdLogoBody,
 ) -> Response[
-    Any
-    | PostTeamsByTeamIdLogoResponse200
-    | PostTeamsByTeamIdLogoResponseDefaultType0
-    | PostTeamsByTeamIdLogoResponseDefaultType1
+    Any | PostTeamsByTeamIdLogoResponse200 | PostTeamsByTeamIdLogoResponseDefault
 ]:
     """Upload team logo image
 
@@ -131,7 +93,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostTeamsByTeamIdLogoResponse200 | PostTeamsByTeamIdLogoResponseDefaultType0 | PostTeamsByTeamIdLogoResponseDefaultType1]
+        Response[Any | PostTeamsByTeamIdLogoResponse200 | PostTeamsByTeamIdLogoResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -152,11 +114,7 @@ def sync(
     client: AuthenticatedClient | Client,
     body: PostTeamsByTeamIdLogoBody,
 ) -> (
-    Any
-    | PostTeamsByTeamIdLogoResponse200
-    | PostTeamsByTeamIdLogoResponseDefaultType0
-    | PostTeamsByTeamIdLogoResponseDefaultType1
-    | None
+    Any | PostTeamsByTeamIdLogoResponse200 | PostTeamsByTeamIdLogoResponseDefault | None
 ):
     """Upload team logo image
 
@@ -173,7 +131,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostTeamsByTeamIdLogoResponse200 | PostTeamsByTeamIdLogoResponseDefaultType0 | PostTeamsByTeamIdLogoResponseDefaultType1
+        Any | PostTeamsByTeamIdLogoResponse200 | PostTeamsByTeamIdLogoResponseDefault
     """
 
     return sync_detailed(
@@ -189,10 +147,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: PostTeamsByTeamIdLogoBody,
 ) -> Response[
-    Any
-    | PostTeamsByTeamIdLogoResponse200
-    | PostTeamsByTeamIdLogoResponseDefaultType0
-    | PostTeamsByTeamIdLogoResponseDefaultType1
+    Any | PostTeamsByTeamIdLogoResponse200 | PostTeamsByTeamIdLogoResponseDefault
 ]:
     """Upload team logo image
 
@@ -209,7 +164,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostTeamsByTeamIdLogoResponse200 | PostTeamsByTeamIdLogoResponseDefaultType0 | PostTeamsByTeamIdLogoResponseDefaultType1]
+        Response[Any | PostTeamsByTeamIdLogoResponse200 | PostTeamsByTeamIdLogoResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -228,11 +183,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     body: PostTeamsByTeamIdLogoBody,
 ) -> (
-    Any
-    | PostTeamsByTeamIdLogoResponse200
-    | PostTeamsByTeamIdLogoResponseDefaultType0
-    | PostTeamsByTeamIdLogoResponseDefaultType1
-    | None
+    Any | PostTeamsByTeamIdLogoResponse200 | PostTeamsByTeamIdLogoResponseDefault | None
 ):
     """Upload team logo image
 
@@ -249,7 +200,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostTeamsByTeamIdLogoResponse200 | PostTeamsByTeamIdLogoResponseDefaultType0 | PostTeamsByTeamIdLogoResponseDefaultType1
+        Any | PostTeamsByTeamIdLogoResponse200 | PostTeamsByTeamIdLogoResponseDefault
     """
 
     return (

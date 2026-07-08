@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_delete_queue_formats_response_default_type_0 import (
-    DeleteDeleteQueueFormatsResponseDefaultType0,
-)
-from ...models.delete_delete_queue_formats_response_default_type_1 import (
-    DeleteDeleteQueueFormatsResponseDefaultType1,
+from ...models.delete_delete_queue_formats_response_default import (
+    DeleteDeleteQueueFormatsResponseDefault,
 )
 from ...models.delete_queue_schema import DeleteQueueSchema
 from ...types import Response
@@ -35,11 +32,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteDeleteQueueFormatsResponseDefaultType0
-    | DeleteDeleteQueueFormatsResponseDefaultType1
-):
+) -> Any | DeleteDeleteQueueFormatsResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -52,42 +45,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteDeleteQueueFormatsResponseDefaultType0
-        | DeleteDeleteQueueFormatsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteDeleteQueueFormatsResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteDeleteQueueFormatsResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteDeleteQueueFormatsResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteDeleteQueueFormatsResponseDefaultType0
-    | DeleteDeleteQueueFormatsResponseDefaultType1
-]:
+) -> Response[Any | DeleteDeleteQueueFormatsResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -100,11 +67,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: DeleteQueueSchema,
-) -> Response[
-    Any
-    | DeleteDeleteQueueFormatsResponseDefaultType0
-    | DeleteDeleteQueueFormatsResponseDefaultType1
-]:
+) -> Response[Any | DeleteDeleteQueueFormatsResponseDefault]:
     """Restore formats from delete queue
 
 
@@ -119,7 +82,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteDeleteQueueFormatsResponseDefaultType0 | DeleteDeleteQueueFormatsResponseDefaultType1]
+        Response[Any | DeleteDeleteQueueFormatsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -137,12 +100,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: DeleteQueueSchema,
-) -> (
-    Any
-    | DeleteDeleteQueueFormatsResponseDefaultType0
-    | DeleteDeleteQueueFormatsResponseDefaultType1
-    | None
-):
+) -> Any | DeleteDeleteQueueFormatsResponseDefault | None:
     """Restore formats from delete queue
 
 
@@ -157,7 +115,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteDeleteQueueFormatsResponseDefaultType0 | DeleteDeleteQueueFormatsResponseDefaultType1
+        Any | DeleteDeleteQueueFormatsResponseDefault
     """
 
     return sync_detailed(
@@ -170,11 +128,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: DeleteQueueSchema,
-) -> Response[
-    Any
-    | DeleteDeleteQueueFormatsResponseDefaultType0
-    | DeleteDeleteQueueFormatsResponseDefaultType1
-]:
+) -> Response[Any | DeleteDeleteQueueFormatsResponseDefault]:
     """Restore formats from delete queue
 
 
@@ -189,7 +143,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteDeleteQueueFormatsResponseDefaultType0 | DeleteDeleteQueueFormatsResponseDefaultType1]
+        Response[Any | DeleteDeleteQueueFormatsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -205,12 +159,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: DeleteQueueSchema,
-) -> (
-    Any
-    | DeleteDeleteQueueFormatsResponseDefaultType0
-    | DeleteDeleteQueueFormatsResponseDefaultType1
-    | None
-):
+) -> Any | DeleteDeleteQueueFormatsResponseDefault | None:
     """Restore formats from delete queue
 
 
@@ -225,7 +174,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteDeleteQueueFormatsResponseDefaultType0 | DeleteDeleteQueueFormatsResponseDefaultType1
+        Any | DeleteDeleteQueueFormatsResponseDefault
     """
 
     return (

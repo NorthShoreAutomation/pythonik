@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_assets_by_asset_id_segments_response_default_type_0 import (
-    GetAssetsByAssetIdSegmentsResponseDefaultType0,
-)
-from ...models.get_assets_by_asset_id_segments_response_default_type_1 import (
-    GetAssetsByAssetIdSegmentsResponseDefaultType1,
+from ...models.get_assets_by_asset_id_segments_response_default import (
+    GetAssetsByAssetIdSegmentsResponseDefault,
 )
 from ...models.segments_schema import SegmentsSchema
 from ...types import UNSET, Response, Unset
@@ -23,7 +20,7 @@ def _get_kwargs(
     query: str | Unset = UNSET,
     includes: str | Unset = UNSET,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
     transcription_id: str | Unset = UNSET,
@@ -103,12 +100,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetAssetsByAssetIdSegmentsResponseDefaultType0
-    | GetAssetsByAssetIdSegmentsResponseDefaultType1
-    | SegmentsSchema
-):
+) -> Any | GetAssetsByAssetIdSegmentsResponseDefault | SegmentsSchema:
     if response.status_code == 200:
         response_200 = SegmentsSchema.from_dict(response.json())
 
@@ -126,43 +118,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsByAssetIdSegmentsResponseDefaultType0
-        | GetAssetsByAssetIdSegmentsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetAssetsByAssetIdSegmentsResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetAssetsByAssetIdSegmentsResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAssetsByAssetIdSegmentsResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetAssetsByAssetIdSegmentsResponseDefaultType0
-    | GetAssetsByAssetIdSegmentsResponseDefaultType1
-    | SegmentsSchema
-]:
+) -> Response[Any | GetAssetsByAssetIdSegmentsResponseDefault | SegmentsSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -180,7 +145,7 @@ def sync_detailed(
     query: str | Unset = UNSET,
     includes: str | Unset = UNSET,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
     transcription_id: str | Unset = UNSET,
@@ -197,12 +162,7 @@ def sync_detailed(
     project_id: str | Unset = UNSET,
     include_users: bool | Unset = UNSET,
     include_all_versions: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | GetAssetsByAssetIdSegmentsResponseDefaultType0
-    | GetAssetsByAssetIdSegmentsResponseDefaultType1
-    | SegmentsSchema
-]:
+) -> Response[Any | GetAssetsByAssetIdSegmentsResponseDefault | SegmentsSchema]:
     """List of segments
 
 
@@ -216,7 +176,7 @@ def sync_detailed(
         query (str | Unset):
         includes (str | Unset):
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
         transcription_id (str | Unset):
@@ -239,7 +199,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdSegmentsResponseDefaultType0 | GetAssetsByAssetIdSegmentsResponseDefaultType1 | SegmentsSchema]
+        Response[Any | GetAssetsByAssetIdSegmentsResponseDefault | SegmentsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -284,7 +244,7 @@ def sync(
     query: str | Unset = UNSET,
     includes: str | Unset = UNSET,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
     transcription_id: str | Unset = UNSET,
@@ -301,13 +261,7 @@ def sync(
     project_id: str | Unset = UNSET,
     include_users: bool | Unset = UNSET,
     include_all_versions: bool | Unset = UNSET,
-) -> (
-    Any
-    | GetAssetsByAssetIdSegmentsResponseDefaultType0
-    | GetAssetsByAssetIdSegmentsResponseDefaultType1
-    | SegmentsSchema
-    | None
-):
+) -> Any | GetAssetsByAssetIdSegmentsResponseDefault | SegmentsSchema | None:
     """List of segments
 
 
@@ -321,7 +275,7 @@ def sync(
         query (str | Unset):
         includes (str | Unset):
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
         transcription_id (str | Unset):
@@ -344,7 +298,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdSegmentsResponseDefaultType0 | GetAssetsByAssetIdSegmentsResponseDefaultType1 | SegmentsSchema
+        Any | GetAssetsByAssetIdSegmentsResponseDefault | SegmentsSchema
     """
 
     return sync_detailed(
@@ -384,7 +338,7 @@ async def asyncio_detailed(
     query: str | Unset = UNSET,
     includes: str | Unset = UNSET,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
     transcription_id: str | Unset = UNSET,
@@ -401,12 +355,7 @@ async def asyncio_detailed(
     project_id: str | Unset = UNSET,
     include_users: bool | Unset = UNSET,
     include_all_versions: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | GetAssetsByAssetIdSegmentsResponseDefaultType0
-    | GetAssetsByAssetIdSegmentsResponseDefaultType1
-    | SegmentsSchema
-]:
+) -> Response[Any | GetAssetsByAssetIdSegmentsResponseDefault | SegmentsSchema]:
     """List of segments
 
 
@@ -420,7 +369,7 @@ async def asyncio_detailed(
         query (str | Unset):
         includes (str | Unset):
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
         transcription_id (str | Unset):
@@ -443,7 +392,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdSegmentsResponseDefaultType0 | GetAssetsByAssetIdSegmentsResponseDefaultType1 | SegmentsSchema]
+        Response[Any | GetAssetsByAssetIdSegmentsResponseDefault | SegmentsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -486,7 +435,7 @@ async def asyncio(
     query: str | Unset = UNSET,
     includes: str | Unset = UNSET,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
     transcription_id: str | Unset = UNSET,
@@ -503,13 +452,7 @@ async def asyncio(
     project_id: str | Unset = UNSET,
     include_users: bool | Unset = UNSET,
     include_all_versions: bool | Unset = UNSET,
-) -> (
-    Any
-    | GetAssetsByAssetIdSegmentsResponseDefaultType0
-    | GetAssetsByAssetIdSegmentsResponseDefaultType1
-    | SegmentsSchema
-    | None
-):
+) -> Any | GetAssetsByAssetIdSegmentsResponseDefault | SegmentsSchema | None:
     """List of segments
 
 
@@ -523,7 +466,7 @@ async def asyncio(
         query (str | Unset):
         includes (str | Unset):
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
         transcription_id (str | Unset):
@@ -546,7 +489,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdSegmentsResponseDefaultType0 | GetAssetsByAssetIdSegmentsResponseDefaultType1 | SegmentsSchema
+        Any | GetAssetsByAssetIdSegmentsResponseDefault | SegmentsSchema
     """
 
     return (

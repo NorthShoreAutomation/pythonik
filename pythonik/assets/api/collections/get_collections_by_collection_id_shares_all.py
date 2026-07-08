@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_collections_by_collection_id_shares_all_response_default_type_0 import (
-    GetCollectionsByCollectionIdSharesAllResponseDefaultType0,
-)
-from ...models.get_collections_by_collection_id_shares_all_response_default_type_1 import (
-    GetCollectionsByCollectionIdSharesAllResponseDefaultType1,
+from ...models.get_collections_by_collection_id_shares_all_response_default import (
+    GetCollectionsByCollectionIdSharesAllResponseDefault,
 )
 from ...models.shares_elastic_schema import SharesElasticSchema
 from ...types import Response
@@ -31,12 +28,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetCollectionsByCollectionIdSharesAllResponseDefaultType0
-    | GetCollectionsByCollectionIdSharesAllResponseDefaultType1
-    | SharesElasticSchema
-):
+) -> Any | GetCollectionsByCollectionIdSharesAllResponseDefault | SharesElasticSchema:
     if response.status_code == 200:
         response_200 = SharesElasticSchema.from_dict(response.json())
 
@@ -50,33 +42,9 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetCollectionsByCollectionIdSharesAllResponseDefaultType0
-        | GetCollectionsByCollectionIdSharesAllResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetCollectionsByCollectionIdSharesAllResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetCollectionsByCollectionIdSharesAllResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetCollectionsByCollectionIdSharesAllResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -84,10 +52,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | GetCollectionsByCollectionIdSharesAllResponseDefaultType0
-    | GetCollectionsByCollectionIdSharesAllResponseDefaultType1
-    | SharesElasticSchema
+    Any | GetCollectionsByCollectionIdSharesAllResponseDefault | SharesElasticSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -102,10 +67,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | GetCollectionsByCollectionIdSharesAllResponseDefaultType0
-    | GetCollectionsByCollectionIdSharesAllResponseDefaultType1
-    | SharesElasticSchema
+    Any | GetCollectionsByCollectionIdSharesAllResponseDefault | SharesElasticSchema
 ]:
     """Get list of collection's shares including all direct and indirect shares that were made by
 
@@ -121,7 +83,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetCollectionsByCollectionIdSharesAllResponseDefaultType0 | GetCollectionsByCollectionIdSharesAllResponseDefaultType1 | SharesElasticSchema]
+        Response[Any | GetCollectionsByCollectionIdSharesAllResponseDefault | SharesElasticSchema]
     """
 
     kwargs = _get_kwargs(
@@ -141,8 +103,7 @@ def sync(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetCollectionsByCollectionIdSharesAllResponseDefaultType0
-    | GetCollectionsByCollectionIdSharesAllResponseDefaultType1
+    | GetCollectionsByCollectionIdSharesAllResponseDefault
     | SharesElasticSchema
     | None
 ):
@@ -160,7 +121,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetCollectionsByCollectionIdSharesAllResponseDefaultType0 | GetCollectionsByCollectionIdSharesAllResponseDefaultType1 | SharesElasticSchema
+        Any | GetCollectionsByCollectionIdSharesAllResponseDefault | SharesElasticSchema
     """
 
     return sync_detailed(
@@ -174,10 +135,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | GetCollectionsByCollectionIdSharesAllResponseDefaultType0
-    | GetCollectionsByCollectionIdSharesAllResponseDefaultType1
-    | SharesElasticSchema
+    Any | GetCollectionsByCollectionIdSharesAllResponseDefault | SharesElasticSchema
 ]:
     """Get list of collection's shares including all direct and indirect shares that were made by
 
@@ -193,7 +151,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetCollectionsByCollectionIdSharesAllResponseDefaultType0 | GetCollectionsByCollectionIdSharesAllResponseDefaultType1 | SharesElasticSchema]
+        Response[Any | GetCollectionsByCollectionIdSharesAllResponseDefault | SharesElasticSchema]
     """
 
     kwargs = _get_kwargs(
@@ -211,8 +169,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetCollectionsByCollectionIdSharesAllResponseDefaultType0
-    | GetCollectionsByCollectionIdSharesAllResponseDefaultType1
+    | GetCollectionsByCollectionIdSharesAllResponseDefault
     | SharesElasticSchema
     | None
 ):
@@ -230,7 +187,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetCollectionsByCollectionIdSharesAllResponseDefaultType0 | GetCollectionsByCollectionIdSharesAllResponseDefaultType1 | SharesElasticSchema
+        Any | GetCollectionsByCollectionIdSharesAllResponseDefault | SharesElasticSchema
     """
 
     return (

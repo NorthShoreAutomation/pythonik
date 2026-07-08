@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_storages_by_storage_id_transfers_to_response_default_type_0 import (
-    GetStoragesByStorageIdTransfersToResponseDefaultType0,
-)
-from ...models.get_storages_by_storage_id_transfers_to_response_default_type_1 import (
-    GetStoragesByStorageIdTransfersToResponseDefaultType1,
+from ...models.get_storages_by_storage_id_transfers_to_response_default import (
+    GetStoragesByStorageIdTransfersToResponseDefault,
 )
 from ...models.transfers_to_storage_schema import TransfersToStorageSchema
 from ...types import UNSET, Response, Unset
@@ -18,7 +15,7 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     storage_id: str,
     *,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> dict[str, Any]:
 
@@ -43,41 +40,15 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    GetStoragesByStorageIdTransfersToResponseDefaultType0
-    | GetStoragesByStorageIdTransfersToResponseDefaultType1
-    | TransfersToStorageSchema
-):
+) -> GetStoragesByStorageIdTransfersToResponseDefault | TransfersToStorageSchema:
     if response.status_code == 200:
         response_200 = TransfersToStorageSchema.from_dict(response.json())
 
         return response_200
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetStoragesByStorageIdTransfersToResponseDefaultType0
-        | GetStoragesByStorageIdTransfersToResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetStoragesByStorageIdTransfersToResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetStoragesByStorageIdTransfersToResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetStoragesByStorageIdTransfersToResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -85,9 +56,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    GetStoragesByStorageIdTransfersToResponseDefaultType0
-    | GetStoragesByStorageIdTransfersToResponseDefaultType1
-    | TransfersToStorageSchema
+    GetStoragesByStorageIdTransfersToResponseDefault | TransfersToStorageSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -101,12 +70,10 @@ def sync_detailed(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> Response[
-    GetStoragesByStorageIdTransfersToResponseDefaultType0
-    | GetStoragesByStorageIdTransfersToResponseDefaultType1
-    | TransfersToStorageSchema
+    GetStoragesByStorageIdTransfersToResponseDefault | TransfersToStorageSchema
 ]:
     """Get pending transfers of file sets to a local storage
 
@@ -116,7 +83,7 @@ def sync_detailed(
 
     Args:
         storage_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -124,7 +91,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[GetStoragesByStorageIdTransfersToResponseDefaultType0 | GetStoragesByStorageIdTransfersToResponseDefaultType1 | TransfersToStorageSchema]
+        Response[GetStoragesByStorageIdTransfersToResponseDefault | TransfersToStorageSchema]
     """
 
     kwargs = _get_kwargs(
@@ -144,14 +111,9 @@ def sync(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> (
-    GetStoragesByStorageIdTransfersToResponseDefaultType0
-    | GetStoragesByStorageIdTransfersToResponseDefaultType1
-    | TransfersToStorageSchema
-    | None
-):
+) -> GetStoragesByStorageIdTransfersToResponseDefault | TransfersToStorageSchema | None:
     """Get pending transfers of file sets to a local storage
 
 
@@ -160,7 +122,7 @@ def sync(
 
     Args:
         storage_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -168,7 +130,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        GetStoragesByStorageIdTransfersToResponseDefaultType0 | GetStoragesByStorageIdTransfersToResponseDefaultType1 | TransfersToStorageSchema
+        GetStoragesByStorageIdTransfersToResponseDefault | TransfersToStorageSchema
     """
 
     return sync_detailed(
@@ -183,12 +145,10 @@ async def asyncio_detailed(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> Response[
-    GetStoragesByStorageIdTransfersToResponseDefaultType0
-    | GetStoragesByStorageIdTransfersToResponseDefaultType1
-    | TransfersToStorageSchema
+    GetStoragesByStorageIdTransfersToResponseDefault | TransfersToStorageSchema
 ]:
     """Get pending transfers of file sets to a local storage
 
@@ -198,7 +158,7 @@ async def asyncio_detailed(
 
     Args:
         storage_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -206,7 +166,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[GetStoragesByStorageIdTransfersToResponseDefaultType0 | GetStoragesByStorageIdTransfersToResponseDefaultType1 | TransfersToStorageSchema]
+        Response[GetStoragesByStorageIdTransfersToResponseDefault | TransfersToStorageSchema]
     """
 
     kwargs = _get_kwargs(
@@ -224,14 +184,9 @@ async def asyncio(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> (
-    GetStoragesByStorageIdTransfersToResponseDefaultType0
-    | GetStoragesByStorageIdTransfersToResponseDefaultType1
-    | TransfersToStorageSchema
-    | None
-):
+) -> GetStoragesByStorageIdTransfersToResponseDefault | TransfersToStorageSchema | None:
     """Get pending transfers of file sets to a local storage
 
 
@@ -240,7 +195,7 @@ async def asyncio(
 
     Args:
         storage_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -248,7 +203,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        GetStoragesByStorageIdTransfersToResponseDefaultType0 | GetStoragesByStorageIdTransfersToResponseDefaultType1 | TransfersToStorageSchema
+        GetStoragesByStorageIdTransfersToResponseDefault | TransfersToStorageSchema
     """
 
     return (

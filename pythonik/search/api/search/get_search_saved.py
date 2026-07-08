@@ -4,12 +4,7 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_search_saved_response_default_type_0 import (
-    GetSearchSavedResponseDefaultType0,
-)
-from ...models.get_search_saved_response_default_type_1 import (
-    GetSearchSavedResponseDefaultType1,
-)
+from ...models.get_search_saved_response_default import GetSearchSavedResponseDefault
 from ...models.saved_searches_schema import SavedSearchesSchema
 from ...types import UNSET, Response, Unset
 
@@ -17,7 +12,7 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     *,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
     sort: str | Unset = UNSET,
@@ -60,12 +55,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetSearchSavedResponseDefaultType0
-    | GetSearchSavedResponseDefaultType1
-    | SavedSearchesSchema
-):
+) -> Any | GetSearchSavedResponseDefault | SavedSearchesSchema:
     if response.status_code == 200:
         response_200 = SavedSearchesSchema.from_dict(response.json())
 
@@ -83,36 +73,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> GetSearchSavedResponseDefaultType0 | GetSearchSavedResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetSearchSavedResponseDefaultType0.from_dict(data)
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetSearchSavedResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetSearchSavedResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetSearchSavedResponseDefaultType0
-    | GetSearchSavedResponseDefaultType1
-    | SavedSearchesSchema
-]:
+) -> Response[Any | GetSearchSavedResponseDefault | SavedSearchesSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -125,7 +93,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
     sort: str | Unset = UNSET,
@@ -133,12 +101,7 @@ def sync_detailed(
     ids: str | Unset = UNSET,
     query: str | Unset = UNSET,
     favorites: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | GetSearchSavedResponseDefaultType0
-    | GetSearchSavedResponseDefaultType1
-    | SavedSearchesSchema
-]:
+) -> Response[Any | GetSearchSavedResponseDefault | SavedSearchesSchema]:
     """Returns list of saved searches
 
 
@@ -147,7 +110,7 @@ def sync_detailed(
 
     Args:
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
         sort (str | Unset):
@@ -161,7 +124,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetSearchSavedResponseDefaultType0 | GetSearchSavedResponseDefaultType1 | SavedSearchesSchema]
+        Response[Any | GetSearchSavedResponseDefault | SavedSearchesSchema]
     """
 
     kwargs = _get_kwargs(
@@ -187,7 +150,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
     sort: str | Unset = UNSET,
@@ -195,13 +158,7 @@ def sync(
     ids: str | Unset = UNSET,
     query: str | Unset = UNSET,
     favorites: bool | Unset = UNSET,
-) -> (
-    Any
-    | GetSearchSavedResponseDefaultType0
-    | GetSearchSavedResponseDefaultType1
-    | SavedSearchesSchema
-    | None
-):
+) -> Any | GetSearchSavedResponseDefault | SavedSearchesSchema | None:
     """Returns list of saved searches
 
 
@@ -210,7 +167,7 @@ def sync(
 
     Args:
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
         sort (str | Unset):
@@ -224,7 +181,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetSearchSavedResponseDefaultType0 | GetSearchSavedResponseDefaultType1 | SavedSearchesSchema
+        Any | GetSearchSavedResponseDefault | SavedSearchesSchema
     """
 
     return sync_detailed(
@@ -245,7 +202,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
     sort: str | Unset = UNSET,
@@ -253,12 +210,7 @@ async def asyncio_detailed(
     ids: str | Unset = UNSET,
     query: str | Unset = UNSET,
     favorites: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | GetSearchSavedResponseDefaultType0
-    | GetSearchSavedResponseDefaultType1
-    | SavedSearchesSchema
-]:
+) -> Response[Any | GetSearchSavedResponseDefault | SavedSearchesSchema]:
     """Returns list of saved searches
 
 
@@ -267,7 +219,7 @@ async def asyncio_detailed(
 
     Args:
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
         sort (str | Unset):
@@ -281,7 +233,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetSearchSavedResponseDefaultType0 | GetSearchSavedResponseDefaultType1 | SavedSearchesSchema]
+        Response[Any | GetSearchSavedResponseDefault | SavedSearchesSchema]
     """
 
     kwargs = _get_kwargs(
@@ -305,7 +257,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
     sort: str | Unset = UNSET,
@@ -313,13 +265,7 @@ async def asyncio(
     ids: str | Unset = UNSET,
     query: str | Unset = UNSET,
     favorites: bool | Unset = UNSET,
-) -> (
-    Any
-    | GetSearchSavedResponseDefaultType0
-    | GetSearchSavedResponseDefaultType1
-    | SavedSearchesSchema
-    | None
-):
+) -> Any | GetSearchSavedResponseDefault | SavedSearchesSchema | None:
     """Returns list of saved searches
 
 
@@ -328,7 +274,7 @@ async def asyncio(
 
     Args:
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
         sort (str | Unset):
@@ -342,7 +288,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetSearchSavedResponseDefaultType0 | GetSearchSavedResponseDefaultType1 | SavedSearchesSchema
+        Any | GetSearchSavedResponseDefault | SavedSearchesSchema
     """
 
     return (

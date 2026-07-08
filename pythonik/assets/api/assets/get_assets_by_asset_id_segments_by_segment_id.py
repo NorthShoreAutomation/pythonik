@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_assets_by_asset_id_segments_by_segment_id_response_default_type_0 import (
-    GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0,
-)
-from ...models.get_assets_by_asset_id_segments_by_segment_id_response_default_type_1 import (
-    GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1,
+from ...models.get_assets_by_asset_id_segments_by_segment_id_response_default import (
+    GetAssetsByAssetIdSegmentsBySegmentIdResponseDefault,
 )
 from ...models.segment_schema import SegmentSchema
 from ...types import UNSET, Response, Unset
@@ -45,12 +42,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0
-    | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1
-    | SegmentSchema
-):
+) -> Any | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefault | SegmentSchema:
     if response.status_code == 200:
         response_200 = SegmentSchema.from_dict(response.json())
 
@@ -68,33 +60,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0
-        | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAssetsByAssetIdSegmentsBySegmentIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -102,10 +70,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0
-    | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1
-    | SegmentSchema
+    Any | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefault | SegmentSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -123,10 +88,7 @@ def sync_detailed(
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
 ) -> Response[
-    Any
-    | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0
-    | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1
-    | SegmentSchema
+    Any | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefault | SegmentSchema
 ]:
     """Get a segment by ID
 
@@ -145,7 +107,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0 | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1 | SegmentSchema]
+        Response[Any | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefault | SegmentSchema]
     """
 
     kwargs = _get_kwargs(
@@ -169,13 +131,7 @@ def sync(
     client: AuthenticatedClient | Client,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
-) -> (
-    Any
-    | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0
-    | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1
-    | SegmentSchema
-    | None
-):
+) -> Any | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefault | SegmentSchema | None:
     """Get a segment by ID
 
 
@@ -193,7 +149,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0 | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1 | SegmentSchema
+        Any | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefault | SegmentSchema
     """
 
     return sync_detailed(
@@ -213,10 +169,7 @@ async def asyncio_detailed(
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
 ) -> Response[
-    Any
-    | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0
-    | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1
-    | SegmentSchema
+    Any | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefault | SegmentSchema
 ]:
     """Get a segment by ID
 
@@ -235,7 +188,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0 | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1 | SegmentSchema]
+        Response[Any | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefault | SegmentSchema]
     """
 
     kwargs = _get_kwargs(
@@ -257,13 +210,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
-) -> (
-    Any
-    | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0
-    | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1
-    | SegmentSchema
-    | None
-):
+) -> Any | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefault | SegmentSchema | None:
     """Get a segment by ID
 
 
@@ -281,7 +228,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0 | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1 | SegmentSchema
+        Any | GetAssetsByAssetIdSegmentsBySegmentIdResponseDefault | SegmentSchema
     """
 
     return (

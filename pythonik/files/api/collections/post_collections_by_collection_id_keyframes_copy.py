@@ -11,11 +11,8 @@ from ...models.collection_copy_keyframes_request_schema import (
 from ...models.collection_copy_keyframes_response_schema import (
     CollectionCopyKeyframesResponseSchema,
 )
-from ...models.post_collections_by_collection_id_keyframes_copy_response_default_type_0 import (
-    PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType0,
-)
-from ...models.post_collections_by_collection_id_keyframes_copy_response_default_type_1 import (
-    PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType1,
+from ...models.post_collections_by_collection_id_keyframes_copy_response_default import (
+    PostCollectionsByCollectionIdKeyframesCopyResponseDefault,
 )
 from ...types import Response
 
@@ -47,8 +44,7 @@ def _parse_response(
 ) -> (
     Any
     | CollectionCopyKeyframesResponseSchema
-    | PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType0
-    | PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType1
+    | PostCollectionsByCollectionIdKeyframesCopyResponseDefault
 ):
     if response.status_code == 201:
         response_201 = CollectionCopyKeyframesResponseSchema.from_dict(response.json())
@@ -63,33 +59,11 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType0
-        | PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PostCollectionsByCollectionIdKeyframesCopyResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -99,8 +73,7 @@ def _build_response(
 ) -> Response[
     Any
     | CollectionCopyKeyframesResponseSchema
-    | PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType0
-    | PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType1
+    | PostCollectionsByCollectionIdKeyframesCopyResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -118,8 +91,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | CollectionCopyKeyframesResponseSchema
-    | PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType0
-    | PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType1
+    | PostCollectionsByCollectionIdKeyframesCopyResponseDefault
 ]:
     """Copy collection keyframe to another collection
 
@@ -136,7 +108,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CollectionCopyKeyframesResponseSchema | PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType0 | PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType1]
+        Response[Any | CollectionCopyKeyframesResponseSchema | PostCollectionsByCollectionIdKeyframesCopyResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -159,8 +131,7 @@ def sync(
 ) -> (
     Any
     | CollectionCopyKeyframesResponseSchema
-    | PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType0
-    | PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType1
+    | PostCollectionsByCollectionIdKeyframesCopyResponseDefault
     | None
 ):
     """Copy collection keyframe to another collection
@@ -178,7 +149,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CollectionCopyKeyframesResponseSchema | PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType0 | PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType1
+        Any | CollectionCopyKeyframesResponseSchema | PostCollectionsByCollectionIdKeyframesCopyResponseDefault
     """
 
     return sync_detailed(
@@ -196,8 +167,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | CollectionCopyKeyframesResponseSchema
-    | PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType0
-    | PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType1
+    | PostCollectionsByCollectionIdKeyframesCopyResponseDefault
 ]:
     """Copy collection keyframe to another collection
 
@@ -214,7 +184,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CollectionCopyKeyframesResponseSchema | PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType0 | PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType1]
+        Response[Any | CollectionCopyKeyframesResponseSchema | PostCollectionsByCollectionIdKeyframesCopyResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -235,8 +205,7 @@ async def asyncio(
 ) -> (
     Any
     | CollectionCopyKeyframesResponseSchema
-    | PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType0
-    | PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType1
+    | PostCollectionsByCollectionIdKeyframesCopyResponseDefault
     | None
 ):
     """Copy collection keyframe to another collection
@@ -254,7 +223,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CollectionCopyKeyframesResponseSchema | PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType0 | PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType1
+        Any | CollectionCopyKeyframesResponseSchema | PostCollectionsByCollectionIdKeyframesCopyResponseDefault
     """
 
     return (

@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_users_by_user_id_acl_by_object_type_by_object_key_by_permission_response_default_type_0 import (
-    GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0,
-)
-from ...models.get_users_by_user_id_acl_by_object_type_by_object_key_by_permission_response_default_type_1 import (
-    GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1,
+from ...models.get_users_by_user_id_acl_by_object_type_by_object_key_by_permission_response_default import (
+    GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefault,
 )
 from ...models.user_acl_schema import UserACLSchema
 from ...types import Response
@@ -39,8 +36,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0
-    | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1
+    | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefault
     | UserACLSchema
 ):
     if response.status_code == 200:
@@ -60,31 +56,11 @@ def _parse_response(
         response_403 = cast(Any, None)
         return response_403
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0
-        | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -93,8 +69,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0
-    | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1
+    | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefault
     | UserACLSchema
 ]:
     return Response(
@@ -114,8 +89,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
 ) -> Response[
     Any
-    | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0
-    | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1
+    | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefault
     | UserACLSchema
 ]:
     """Returns a user acl for an object
@@ -135,7 +109,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0 | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1 | UserACLSchema]
+        Response[Any | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefault | UserACLSchema]
     """
 
     kwargs = _get_kwargs(
@@ -161,8 +135,7 @@ def sync(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0
-    | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1
+    | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefault
     | UserACLSchema
     | None
 ):
@@ -183,7 +156,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0 | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1 | UserACLSchema
+        Any | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefault | UserACLSchema
     """
 
     return sync_detailed(
@@ -204,8 +177,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
 ) -> Response[
     Any
-    | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0
-    | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1
+    | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefault
     | UserACLSchema
 ]:
     """Returns a user acl for an object
@@ -225,7 +197,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0 | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1 | UserACLSchema]
+        Response[Any | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefault | UserACLSchema]
     """
 
     kwargs = _get_kwargs(
@@ -249,8 +221,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0
-    | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1
+    | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefault
     | UserACLSchema
     | None
 ):
@@ -271,7 +242,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0 | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1 | UserACLSchema
+        Any | GetUsersByUserIdAclByObjectTypeByObjectKeyByPermissionResponseDefault | UserACLSchema
     """
 
     return (

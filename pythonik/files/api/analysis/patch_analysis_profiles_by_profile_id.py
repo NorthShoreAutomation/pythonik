@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.analysis_profile_schema import AnalysisProfileSchema
-from ...models.patch_analysis_profiles_by_profile_id_response_default_type_0 import (
-    PatchAnalysisProfilesByProfileIdResponseDefaultType0,
-)
-from ...models.patch_analysis_profiles_by_profile_id_response_default_type_1 import (
-    PatchAnalysisProfilesByProfileIdResponseDefaultType1,
+from ...models.patch_analysis_profiles_by_profile_id_response_default import (
+    PatchAnalysisProfilesByProfileIdResponseDefault,
 )
 from ...types import Response
 
@@ -39,12 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    AnalysisProfileSchema
-    | Any
-    | PatchAnalysisProfilesByProfileIdResponseDefaultType0
-    | PatchAnalysisProfilesByProfileIdResponseDefaultType1
-):
+) -> AnalysisProfileSchema | Any | PatchAnalysisProfilesByProfileIdResponseDefault:
     if response.status_code == 200:
         response_200 = AnalysisProfileSchema.from_dict(response.json())
 
@@ -62,31 +54,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PatchAnalysisProfilesByProfileIdResponseDefaultType0
-        | PatchAnalysisProfilesByProfileIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PatchAnalysisProfilesByProfileIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PatchAnalysisProfilesByProfileIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PatchAnalysisProfilesByProfileIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -94,10 +64,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    AnalysisProfileSchema
-    | Any
-    | PatchAnalysisProfilesByProfileIdResponseDefaultType0
-    | PatchAnalysisProfilesByProfileIdResponseDefaultType1
+    AnalysisProfileSchema | Any | PatchAnalysisProfilesByProfileIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -113,10 +80,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: AnalysisProfileSchema,
 ) -> Response[
-    AnalysisProfileSchema
-    | Any
-    | PatchAnalysisProfilesByProfileIdResponseDefaultType0
-    | PatchAnalysisProfilesByProfileIdResponseDefaultType1
+    AnalysisProfileSchema | Any | PatchAnalysisProfilesByProfileIdResponseDefault
 ]:
     """Update an analysis profile information
 
@@ -133,7 +97,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[AnalysisProfileSchema | Any | PatchAnalysisProfilesByProfileIdResponseDefaultType0 | PatchAnalysisProfilesByProfileIdResponseDefaultType1]
+        Response[AnalysisProfileSchema | Any | PatchAnalysisProfilesByProfileIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -154,11 +118,7 @@ def sync(
     client: AuthenticatedClient | Client,
     body: AnalysisProfileSchema,
 ) -> (
-    AnalysisProfileSchema
-    | Any
-    | PatchAnalysisProfilesByProfileIdResponseDefaultType0
-    | PatchAnalysisProfilesByProfileIdResponseDefaultType1
-    | None
+    AnalysisProfileSchema | Any | PatchAnalysisProfilesByProfileIdResponseDefault | None
 ):
     """Update an analysis profile information
 
@@ -175,7 +135,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        AnalysisProfileSchema | Any | PatchAnalysisProfilesByProfileIdResponseDefaultType0 | PatchAnalysisProfilesByProfileIdResponseDefaultType1
+        AnalysisProfileSchema | Any | PatchAnalysisProfilesByProfileIdResponseDefault
     """
 
     return sync_detailed(
@@ -191,10 +151,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: AnalysisProfileSchema,
 ) -> Response[
-    AnalysisProfileSchema
-    | Any
-    | PatchAnalysisProfilesByProfileIdResponseDefaultType0
-    | PatchAnalysisProfilesByProfileIdResponseDefaultType1
+    AnalysisProfileSchema | Any | PatchAnalysisProfilesByProfileIdResponseDefault
 ]:
     """Update an analysis profile information
 
@@ -211,7 +168,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[AnalysisProfileSchema | Any | PatchAnalysisProfilesByProfileIdResponseDefaultType0 | PatchAnalysisProfilesByProfileIdResponseDefaultType1]
+        Response[AnalysisProfileSchema | Any | PatchAnalysisProfilesByProfileIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -230,11 +187,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     body: AnalysisProfileSchema,
 ) -> (
-    AnalysisProfileSchema
-    | Any
-    | PatchAnalysisProfilesByProfileIdResponseDefaultType0
-    | PatchAnalysisProfilesByProfileIdResponseDefaultType1
-    | None
+    AnalysisProfileSchema | Any | PatchAnalysisProfilesByProfileIdResponseDefault | None
 ):
     """Update an analysis profile information
 
@@ -251,7 +204,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        AnalysisProfileSchema | Any | PatchAnalysisProfilesByProfileIdResponseDefaultType0 | PatchAnalysisProfilesByProfileIdResponseDefaultType1
+        AnalysisProfileSchema | Any | PatchAnalysisProfilesByProfileIdResponseDefault
     """
 
     return (

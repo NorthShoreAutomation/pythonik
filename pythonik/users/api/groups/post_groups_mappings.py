@@ -5,11 +5,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.group_mapping_schema import GroupMappingSchema
-from ...models.post_groups_mappings_response_default_type_0 import (
-    PostGroupsMappingsResponseDefaultType0,
-)
-from ...models.post_groups_mappings_response_default_type_1 import (
-    PostGroupsMappingsResponseDefaultType1,
+from ...models.post_groups_mappings_response_default import (
+    PostGroupsMappingsResponseDefault,
 )
 from ...types import Response
 
@@ -35,12 +32,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GroupMappingSchema
-    | PostGroupsMappingsResponseDefaultType0
-    | PostGroupsMappingsResponseDefaultType1
-):
+) -> Any | GroupMappingSchema | PostGroupsMappingsResponseDefault:
     if response.status_code == 201:
         response_201 = GroupMappingSchema.from_dict(response.json())
 
@@ -58,40 +50,14 @@ def _parse_response(
         response_409 = cast(Any, None)
         return response_409
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostGroupsMappingsResponseDefaultType0 | PostGroupsMappingsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostGroupsMappingsResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostGroupsMappingsResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostGroupsMappingsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GroupMappingSchema
-    | PostGroupsMappingsResponseDefaultType0
-    | PostGroupsMappingsResponseDefaultType1
-]:
+) -> Response[Any | GroupMappingSchema | PostGroupsMappingsResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -104,12 +70,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: GroupMappingSchema,
-) -> Response[
-    Any
-    | GroupMappingSchema
-    | PostGroupsMappingsResponseDefaultType0
-    | PostGroupsMappingsResponseDefaultType1
-]:
+) -> Response[Any | GroupMappingSchema | PostGroupsMappingsResponseDefault]:
     """Create a new group mapping
 
 
@@ -124,7 +85,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GroupMappingSchema | PostGroupsMappingsResponseDefaultType0 | PostGroupsMappingsResponseDefaultType1]
+        Response[Any | GroupMappingSchema | PostGroupsMappingsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -142,13 +103,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: GroupMappingSchema,
-) -> (
-    Any
-    | GroupMappingSchema
-    | PostGroupsMappingsResponseDefaultType0
-    | PostGroupsMappingsResponseDefaultType1
-    | None
-):
+) -> Any | GroupMappingSchema | PostGroupsMappingsResponseDefault | None:
     """Create a new group mapping
 
 
@@ -163,7 +118,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GroupMappingSchema | PostGroupsMappingsResponseDefaultType0 | PostGroupsMappingsResponseDefaultType1
+        Any | GroupMappingSchema | PostGroupsMappingsResponseDefault
     """
 
     return sync_detailed(
@@ -176,12 +131,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: GroupMappingSchema,
-) -> Response[
-    Any
-    | GroupMappingSchema
-    | PostGroupsMappingsResponseDefaultType0
-    | PostGroupsMappingsResponseDefaultType1
-]:
+) -> Response[Any | GroupMappingSchema | PostGroupsMappingsResponseDefault]:
     """Create a new group mapping
 
 
@@ -196,7 +146,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GroupMappingSchema | PostGroupsMappingsResponseDefaultType0 | PostGroupsMappingsResponseDefaultType1]
+        Response[Any | GroupMappingSchema | PostGroupsMappingsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -212,13 +162,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: GroupMappingSchema,
-) -> (
-    Any
-    | GroupMappingSchema
-    | PostGroupsMappingsResponseDefaultType0
-    | PostGroupsMappingsResponseDefaultType1
-    | None
-):
+) -> Any | GroupMappingSchema | PostGroupsMappingsResponseDefault | None:
     """Create a new group mapping
 
 
@@ -233,7 +177,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GroupMappingSchema | PostGroupsMappingsResponseDefaultType0 | PostGroupsMappingsResponseDefaultType1
+        Any | GroupMappingSchema | PostGroupsMappingsResponseDefault
     """
 
     return (

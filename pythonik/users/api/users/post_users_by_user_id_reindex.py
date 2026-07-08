@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_users_by_user_id_reindex_response_default_type_0 import (
-    PostUsersByUserIdReindexResponseDefaultType0,
-)
-from ...models.post_users_by_user_id_reindex_response_default_type_1 import (
-    PostUsersByUserIdReindexResponseDefaultType1,
+from ...models.post_users_by_user_id_reindex_response_default import (
+    PostUsersByUserIdReindexResponseDefault,
 )
 from ...models.user_schema import UserSchema
 from ...types import Response
@@ -31,12 +28,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostUsersByUserIdReindexResponseDefaultType0
-    | PostUsersByUserIdReindexResponseDefaultType1
-    | UserSchema
-):
+) -> Any | PostUsersByUserIdReindexResponseDefault | UserSchema:
     if response.status_code == 200:
         response_200 = UserSchema.from_dict(response.json())
 
@@ -54,43 +46,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostUsersByUserIdReindexResponseDefaultType0
-        | PostUsersByUserIdReindexResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostUsersByUserIdReindexResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostUsersByUserIdReindexResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostUsersByUserIdReindexResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostUsersByUserIdReindexResponseDefaultType0
-    | PostUsersByUserIdReindexResponseDefaultType1
-    | UserSchema
-]:
+) -> Response[Any | PostUsersByUserIdReindexResponseDefault | UserSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -103,12 +68,7 @@ def sync_detailed(
     user_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostUsersByUserIdReindexResponseDefaultType0
-    | PostUsersByUserIdReindexResponseDefaultType1
-    | UserSchema
-]:
+) -> Response[Any | PostUsersByUserIdReindexResponseDefault | UserSchema]:
     """Reindex a particular user by id
 
 
@@ -123,7 +83,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostUsersByUserIdReindexResponseDefaultType0 | PostUsersByUserIdReindexResponseDefaultType1 | UserSchema]
+        Response[Any | PostUsersByUserIdReindexResponseDefault | UserSchema]
     """
 
     kwargs = _get_kwargs(
@@ -141,13 +101,7 @@ def sync(
     user_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostUsersByUserIdReindexResponseDefaultType0
-    | PostUsersByUserIdReindexResponseDefaultType1
-    | UserSchema
-    | None
-):
+) -> Any | PostUsersByUserIdReindexResponseDefault | UserSchema | None:
     """Reindex a particular user by id
 
 
@@ -162,7 +116,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostUsersByUserIdReindexResponseDefaultType0 | PostUsersByUserIdReindexResponseDefaultType1 | UserSchema
+        Any | PostUsersByUserIdReindexResponseDefault | UserSchema
     """
 
     return sync_detailed(
@@ -175,12 +129,7 @@ async def asyncio_detailed(
     user_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostUsersByUserIdReindexResponseDefaultType0
-    | PostUsersByUserIdReindexResponseDefaultType1
-    | UserSchema
-]:
+) -> Response[Any | PostUsersByUserIdReindexResponseDefault | UserSchema]:
     """Reindex a particular user by id
 
 
@@ -195,7 +144,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostUsersByUserIdReindexResponseDefaultType0 | PostUsersByUserIdReindexResponseDefaultType1 | UserSchema]
+        Response[Any | PostUsersByUserIdReindexResponseDefault | UserSchema]
     """
 
     kwargs = _get_kwargs(
@@ -211,13 +160,7 @@ async def asyncio(
     user_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostUsersByUserIdReindexResponseDefaultType0
-    | PostUsersByUserIdReindexResponseDefaultType1
-    | UserSchema
-    | None
-):
+) -> Any | PostUsersByUserIdReindexResponseDefault | UserSchema | None:
     """Reindex a particular user by id
 
 
@@ -232,7 +175,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostUsersByUserIdReindexResponseDefaultType0 | PostUsersByUserIdReindexResponseDefaultType1 | UserSchema
+        Any | PostUsersByUserIdReindexResponseDefault | UserSchema
     """
 
     return (

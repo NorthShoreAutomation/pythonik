@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_system_logs_recipients_by_logs_recipient_id_response_default_type_0 import (
-    GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0,
-)
-from ...models.get_system_logs_recipients_by_logs_recipient_id_response_default_type_1 import (
-    GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1,
+from ...models.get_system_logs_recipients_by_logs_recipient_id_response_default import (
+    GetSystemLogsRecipientsByLogsRecipientIdResponseDefault,
 )
 from ...models.logs_recipient_read_schema import LogsRecipientReadSchema
 from ...types import Response
@@ -33,8 +30,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0
-    | GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1
+    | GetSystemLogsRecipientsByLogsRecipientIdResponseDefault
     | LogsRecipientReadSchema
 ):
     if response.status_code == 200:
@@ -50,33 +46,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0
-        | GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1.from_dict(data)
+    response_default = (
+        GetSystemLogsRecipientsByLogsRecipientIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -85,8 +59,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0
-    | GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1
+    | GetSystemLogsRecipientsByLogsRecipientIdResponseDefault
     | LogsRecipientReadSchema
 ]:
     return Response(
@@ -103,8 +76,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
 ) -> Response[
     Any
-    | GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0
-    | GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1
+    | GetSystemLogsRecipientsByLogsRecipientIdResponseDefault
     | LogsRecipientReadSchema
 ]:
     """Get settings of a logs recipient
@@ -121,7 +93,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0 | GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1 | LogsRecipientReadSchema]
+        Response[Any | GetSystemLogsRecipientsByLogsRecipientIdResponseDefault | LogsRecipientReadSchema]
     """
 
     kwargs = _get_kwargs(
@@ -141,8 +113,7 @@ def sync(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0
-    | GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1
+    | GetSystemLogsRecipientsByLogsRecipientIdResponseDefault
     | LogsRecipientReadSchema
     | None
 ):
@@ -160,7 +131,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0 | GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1 | LogsRecipientReadSchema
+        Any | GetSystemLogsRecipientsByLogsRecipientIdResponseDefault | LogsRecipientReadSchema
     """
 
     return sync_detailed(
@@ -175,8 +146,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
 ) -> Response[
     Any
-    | GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0
-    | GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1
+    | GetSystemLogsRecipientsByLogsRecipientIdResponseDefault
     | LogsRecipientReadSchema
 ]:
     """Get settings of a logs recipient
@@ -193,7 +163,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0 | GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1 | LogsRecipientReadSchema]
+        Response[Any | GetSystemLogsRecipientsByLogsRecipientIdResponseDefault | LogsRecipientReadSchema]
     """
 
     kwargs = _get_kwargs(
@@ -211,8 +181,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0
-    | GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1
+    | GetSystemLogsRecipientsByLogsRecipientIdResponseDefault
     | LogsRecipientReadSchema
     | None
 ):
@@ -230,7 +199,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0 | GetSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1 | LogsRecipientReadSchema
+        Any | GetSystemLogsRecipientsByLogsRecipientIdResponseDefault | LogsRecipientReadSchema
     """
 
     return (

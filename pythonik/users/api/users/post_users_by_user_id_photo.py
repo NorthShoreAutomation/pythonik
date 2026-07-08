@@ -9,11 +9,8 @@ from ...models.post_users_by_user_id_photo_body import PostUsersByUserIdPhotoBod
 from ...models.post_users_by_user_id_photo_response_201 import (
     PostUsersByUserIdPhotoResponse201,
 )
-from ...models.post_users_by_user_id_photo_response_default_type_0 import (
-    PostUsersByUserIdPhotoResponseDefaultType0,
-)
-from ...models.post_users_by_user_id_photo_response_default_type_1 import (
-    PostUsersByUserIdPhotoResponseDefaultType1,
+from ...models.post_users_by_user_id_photo_response_default import (
+    PostUsersByUserIdPhotoResponseDefault,
 )
 from ...types import Response
 
@@ -41,12 +38,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostUsersByUserIdPhotoResponse201
-    | PostUsersByUserIdPhotoResponseDefaultType0
-    | PostUsersByUserIdPhotoResponseDefaultType1
-):
+) -> Any | PostUsersByUserIdPhotoResponse201 | PostUsersByUserIdPhotoResponseDefault:
     if response.status_code == 201:
         response_201 = PostUsersByUserIdPhotoResponse201.from_dict(response.json())
 
@@ -60,31 +52,7 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostUsersByUserIdPhotoResponseDefaultType0
-        | PostUsersByUserIdPhotoResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostUsersByUserIdPhotoResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostUsersByUserIdPhotoResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostUsersByUserIdPhotoResponseDefault.from_dict(response.json())
 
     return response_default
 
@@ -92,10 +60,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | PostUsersByUserIdPhotoResponse201
-    | PostUsersByUserIdPhotoResponseDefaultType0
-    | PostUsersByUserIdPhotoResponseDefaultType1
+    Any | PostUsersByUserIdPhotoResponse201 | PostUsersByUserIdPhotoResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -111,10 +76,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: PostUsersByUserIdPhotoBody,
 ) -> Response[
-    Any
-    | PostUsersByUserIdPhotoResponse201
-    | PostUsersByUserIdPhotoResponseDefaultType0
-    | PostUsersByUserIdPhotoResponseDefaultType1
+    Any | PostUsersByUserIdPhotoResponse201 | PostUsersByUserIdPhotoResponseDefault
 ]:
     """Upload user photo image.
 
@@ -131,7 +93,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostUsersByUserIdPhotoResponse201 | PostUsersByUserIdPhotoResponseDefaultType0 | PostUsersByUserIdPhotoResponseDefaultType1]
+        Response[Any | PostUsersByUserIdPhotoResponse201 | PostUsersByUserIdPhotoResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -154,8 +116,7 @@ def sync(
 ) -> (
     Any
     | PostUsersByUserIdPhotoResponse201
-    | PostUsersByUserIdPhotoResponseDefaultType0
-    | PostUsersByUserIdPhotoResponseDefaultType1
+    | PostUsersByUserIdPhotoResponseDefault
     | None
 ):
     """Upload user photo image.
@@ -173,7 +134,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostUsersByUserIdPhotoResponse201 | PostUsersByUserIdPhotoResponseDefaultType0 | PostUsersByUserIdPhotoResponseDefaultType1
+        Any | PostUsersByUserIdPhotoResponse201 | PostUsersByUserIdPhotoResponseDefault
     """
 
     return sync_detailed(
@@ -189,10 +150,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: PostUsersByUserIdPhotoBody,
 ) -> Response[
-    Any
-    | PostUsersByUserIdPhotoResponse201
-    | PostUsersByUserIdPhotoResponseDefaultType0
-    | PostUsersByUserIdPhotoResponseDefaultType1
+    Any | PostUsersByUserIdPhotoResponse201 | PostUsersByUserIdPhotoResponseDefault
 ]:
     """Upload user photo image.
 
@@ -209,7 +167,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostUsersByUserIdPhotoResponse201 | PostUsersByUserIdPhotoResponseDefaultType0 | PostUsersByUserIdPhotoResponseDefaultType1]
+        Response[Any | PostUsersByUserIdPhotoResponse201 | PostUsersByUserIdPhotoResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -230,8 +188,7 @@ async def asyncio(
 ) -> (
     Any
     | PostUsersByUserIdPhotoResponse201
-    | PostUsersByUserIdPhotoResponseDefaultType0
-    | PostUsersByUserIdPhotoResponseDefaultType1
+    | PostUsersByUserIdPhotoResponseDefault
     | None
 ):
     """Upload user photo image.
@@ -249,7 +206,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostUsersByUserIdPhotoResponse201 | PostUsersByUserIdPhotoResponseDefaultType0 | PostUsersByUserIdPhotoResponseDefaultType1
+        Any | PostUsersByUserIdPhotoResponse201 | PostUsersByUserIdPhotoResponseDefault
     """
 
     return (

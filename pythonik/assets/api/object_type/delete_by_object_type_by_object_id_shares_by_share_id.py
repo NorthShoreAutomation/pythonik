@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_by_object_type_by_object_id_shares_by_share_id_response_default_type_0 import (
-    DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType0,
-)
-from ...models.delete_by_object_type_by_object_id_shares_by_share_id_response_default_type_1 import (
-    DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType1,
+from ...models.delete_by_object_type_by_object_id_shares_by_share_id_response_default import (
+    DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefault,
 )
 from ...types import Response
 
@@ -34,11 +31,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType0
-    | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType1
-):
+) -> Any | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -55,44 +48,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType0
-        | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType0
-    | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -107,11 +74,7 @@ def sync_detailed(
     share_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType0
-    | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefault]:
     """Delete a particular share by id
 
 
@@ -128,7 +91,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType0 | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType1]
+        Response[Any | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -150,12 +113,7 @@ def sync(
     share_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType0
-    | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefault | None:
     """Delete a particular share by id
 
 
@@ -172,7 +130,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType0 | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType1
+        Any | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefault
     """
 
     return sync_detailed(
@@ -189,11 +147,7 @@ async def asyncio_detailed(
     share_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType0
-    | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefault]:
     """Delete a particular share by id
 
 
@@ -210,7 +164,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType0 | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType1]
+        Response[Any | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -230,12 +184,7 @@ async def asyncio(
     share_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType0
-    | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefault | None:
     """Delete a particular share by id
 
 
@@ -252,7 +201,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType0 | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefaultType1
+        Any | DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefault
     """
 
     return (

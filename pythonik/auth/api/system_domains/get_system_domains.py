@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_system_domains_response_default_type_0 import (
-    GetSystemDomainsResponseDefaultType0,
-)
-from ...models.get_system_domains_response_default_type_1 import (
-    GetSystemDomainsResponseDefaultType1,
+from ...models.get_system_domains_response_default import (
+    GetSystemDomainsResponseDefault,
 )
 from ...models.system_domains_schema import SystemDomainsSchema
 from ...types import UNSET, Response, Unset
@@ -39,12 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetSystemDomainsResponseDefaultType0
-    | GetSystemDomainsResponseDefaultType1
-    | SystemDomainsSchema
-):
+) -> Any | GetSystemDomainsResponseDefault | SystemDomainsSchema:
     if response.status_code == 200:
         response_200 = SystemDomainsSchema.from_dict(response.json())
 
@@ -54,38 +46,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> GetSystemDomainsResponseDefaultType0 | GetSystemDomainsResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetSystemDomainsResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetSystemDomainsResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetSystemDomainsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetSystemDomainsResponseDefaultType0
-    | GetSystemDomainsResponseDefaultType1
-    | SystemDomainsSchema
-]:
+) -> Response[Any | GetSystemDomainsResponseDefault | SystemDomainsSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -99,12 +67,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     query: str | Unset = UNSET,
     statuses: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetSystemDomainsResponseDefaultType0
-    | GetSystemDomainsResponseDefaultType1
-    | SystemDomainsSchema
-]:
+) -> Response[Any | GetSystemDomainsResponseDefault | SystemDomainsSchema]:
     """List of system domains
 
     Args:
@@ -116,7 +79,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetSystemDomainsResponseDefaultType0 | GetSystemDomainsResponseDefaultType1 | SystemDomainsSchema]
+        Response[Any | GetSystemDomainsResponseDefault | SystemDomainsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -136,13 +99,7 @@ def sync(
     client: AuthenticatedClient | Client,
     query: str | Unset = UNSET,
     statuses: str | Unset = UNSET,
-) -> (
-    Any
-    | GetSystemDomainsResponseDefaultType0
-    | GetSystemDomainsResponseDefaultType1
-    | SystemDomainsSchema
-    | None
-):
+) -> Any | GetSystemDomainsResponseDefault | SystemDomainsSchema | None:
     """List of system domains
 
     Args:
@@ -154,7 +111,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetSystemDomainsResponseDefaultType0 | GetSystemDomainsResponseDefaultType1 | SystemDomainsSchema
+        Any | GetSystemDomainsResponseDefault | SystemDomainsSchema
     """
 
     return sync_detailed(
@@ -169,12 +126,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     query: str | Unset = UNSET,
     statuses: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetSystemDomainsResponseDefaultType0
-    | GetSystemDomainsResponseDefaultType1
-    | SystemDomainsSchema
-]:
+) -> Response[Any | GetSystemDomainsResponseDefault | SystemDomainsSchema]:
     """List of system domains
 
     Args:
@@ -186,7 +138,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetSystemDomainsResponseDefaultType0 | GetSystemDomainsResponseDefaultType1 | SystemDomainsSchema]
+        Response[Any | GetSystemDomainsResponseDefault | SystemDomainsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -204,13 +156,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     query: str | Unset = UNSET,
     statuses: str | Unset = UNSET,
-) -> (
-    Any
-    | GetSystemDomainsResponseDefaultType0
-    | GetSystemDomainsResponseDefaultType1
-    | SystemDomainsSchema
-    | None
-):
+) -> Any | GetSystemDomainsResponseDefault | SystemDomainsSchema | None:
     """List of system domains
 
     Args:
@@ -222,7 +168,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetSystemDomainsResponseDefaultType0 | GetSystemDomainsResponseDefaultType1 | SystemDomainsSchema
+        Any | GetSystemDomainsResponseDefault | SystemDomainsSchema
     """
 
     return (

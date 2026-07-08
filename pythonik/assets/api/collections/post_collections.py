@@ -7,21 +7,16 @@ import httpx
 from ...client import AuthenticatedClient, Client
 from ...models.collection_input_schema import CollectionInputSchema
 from ...models.collection_schema import CollectionSchema
-from ...models.post_collections_response_default_type_0 import (
-    PostCollectionsResponseDefaultType0,
-)
-from ...models.post_collections_response_default_type_1 import (
-    PostCollectionsResponseDefaultType1,
-)
+from ...models.post_collections_response_default import PostCollectionsResponseDefault
 from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     *,
     body: CollectionInputSchema,
-    apply_default_acls: bool | Unset = True,
-    apply_collection_acls: bool | Unset = False,
-    restrict_collection_acls: bool | Unset = False,
+    apply_default_acls: bool | Unset = UNSET,
+    apply_collection_acls: bool | Unset = UNSET,
+    restrict_collection_acls: bool | Unset = UNSET,
     apply_acl_template_id: UUID | Unset = UNSET,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
@@ -57,12 +52,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | CollectionSchema
-    | PostCollectionsResponseDefaultType0
-    | PostCollectionsResponseDefaultType1
-):
+) -> Any | CollectionSchema | PostCollectionsResponseDefault:
     if response.status_code == 201:
         response_201 = CollectionSchema.from_dict(response.json())
 
@@ -76,38 +66,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> PostCollectionsResponseDefaultType0 | PostCollectionsResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostCollectionsResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostCollectionsResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostCollectionsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | CollectionSchema
-    | PostCollectionsResponseDefaultType0
-    | PostCollectionsResponseDefaultType1
-]:
+) -> Response[Any | CollectionSchema | PostCollectionsResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -120,16 +86,11 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: CollectionInputSchema,
-    apply_default_acls: bool | Unset = True,
-    apply_collection_acls: bool | Unset = False,
-    restrict_collection_acls: bool | Unset = False,
+    apply_default_acls: bool | Unset = UNSET,
+    apply_collection_acls: bool | Unset = UNSET,
+    restrict_collection_acls: bool | Unset = UNSET,
     apply_acl_template_id: UUID | Unset = UNSET,
-) -> Response[
-    Any
-    | CollectionSchema
-    | PostCollectionsResponseDefaultType0
-    | PostCollectionsResponseDefaultType1
-]:
+) -> Response[Any | CollectionSchema | PostCollectionsResponseDefault]:
     """Create a new collection
 
 
@@ -137,9 +98,9 @@ def sync_detailed(
      - can_create_collections
 
     Args:
-        apply_default_acls (bool | Unset):  Default: True.
-        apply_collection_acls (bool | Unset):  Default: False.
-        restrict_collection_acls (bool | Unset):  Default: False.
+        apply_default_acls (bool | Unset):
+        apply_collection_acls (bool | Unset):
+        restrict_collection_acls (bool | Unset):
         apply_acl_template_id (UUID | Unset):
         body (CollectionInputSchema):
 
@@ -148,7 +109,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CollectionSchema | PostCollectionsResponseDefaultType0 | PostCollectionsResponseDefaultType1]
+        Response[Any | CollectionSchema | PostCollectionsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -170,17 +131,11 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: CollectionInputSchema,
-    apply_default_acls: bool | Unset = True,
-    apply_collection_acls: bool | Unset = False,
-    restrict_collection_acls: bool | Unset = False,
+    apply_default_acls: bool | Unset = UNSET,
+    apply_collection_acls: bool | Unset = UNSET,
+    restrict_collection_acls: bool | Unset = UNSET,
     apply_acl_template_id: UUID | Unset = UNSET,
-) -> (
-    Any
-    | CollectionSchema
-    | PostCollectionsResponseDefaultType0
-    | PostCollectionsResponseDefaultType1
-    | None
-):
+) -> Any | CollectionSchema | PostCollectionsResponseDefault | None:
     """Create a new collection
 
 
@@ -188,9 +143,9 @@ def sync(
      - can_create_collections
 
     Args:
-        apply_default_acls (bool | Unset):  Default: True.
-        apply_collection_acls (bool | Unset):  Default: False.
-        restrict_collection_acls (bool | Unset):  Default: False.
+        apply_default_acls (bool | Unset):
+        apply_collection_acls (bool | Unset):
+        restrict_collection_acls (bool | Unset):
         apply_acl_template_id (UUID | Unset):
         body (CollectionInputSchema):
 
@@ -199,7 +154,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CollectionSchema | PostCollectionsResponseDefaultType0 | PostCollectionsResponseDefaultType1
+        Any | CollectionSchema | PostCollectionsResponseDefault
     """
 
     return sync_detailed(
@@ -216,16 +171,11 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: CollectionInputSchema,
-    apply_default_acls: bool | Unset = True,
-    apply_collection_acls: bool | Unset = False,
-    restrict_collection_acls: bool | Unset = False,
+    apply_default_acls: bool | Unset = UNSET,
+    apply_collection_acls: bool | Unset = UNSET,
+    restrict_collection_acls: bool | Unset = UNSET,
     apply_acl_template_id: UUID | Unset = UNSET,
-) -> Response[
-    Any
-    | CollectionSchema
-    | PostCollectionsResponseDefaultType0
-    | PostCollectionsResponseDefaultType1
-]:
+) -> Response[Any | CollectionSchema | PostCollectionsResponseDefault]:
     """Create a new collection
 
 
@@ -233,9 +183,9 @@ async def asyncio_detailed(
      - can_create_collections
 
     Args:
-        apply_default_acls (bool | Unset):  Default: True.
-        apply_collection_acls (bool | Unset):  Default: False.
-        restrict_collection_acls (bool | Unset):  Default: False.
+        apply_default_acls (bool | Unset):
+        apply_collection_acls (bool | Unset):
+        restrict_collection_acls (bool | Unset):
         apply_acl_template_id (UUID | Unset):
         body (CollectionInputSchema):
 
@@ -244,7 +194,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CollectionSchema | PostCollectionsResponseDefaultType0 | PostCollectionsResponseDefaultType1]
+        Response[Any | CollectionSchema | PostCollectionsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -264,17 +214,11 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: CollectionInputSchema,
-    apply_default_acls: bool | Unset = True,
-    apply_collection_acls: bool | Unset = False,
-    restrict_collection_acls: bool | Unset = False,
+    apply_default_acls: bool | Unset = UNSET,
+    apply_collection_acls: bool | Unset = UNSET,
+    restrict_collection_acls: bool | Unset = UNSET,
     apply_acl_template_id: UUID | Unset = UNSET,
-) -> (
-    Any
-    | CollectionSchema
-    | PostCollectionsResponseDefaultType0
-    | PostCollectionsResponseDefaultType1
-    | None
-):
+) -> Any | CollectionSchema | PostCollectionsResponseDefault | None:
     """Create a new collection
 
 
@@ -282,9 +226,9 @@ async def asyncio(
      - can_create_collections
 
     Args:
-        apply_default_acls (bool | Unset):  Default: True.
-        apply_collection_acls (bool | Unset):  Default: False.
-        restrict_collection_acls (bool | Unset):  Default: False.
+        apply_default_acls (bool | Unset):
+        apply_collection_acls (bool | Unset):
+        restrict_collection_acls (bool | Unset):
         apply_acl_template_id (UUID | Unset):
         body (CollectionInputSchema):
 
@@ -293,7 +237,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CollectionSchema | PostCollectionsResponseDefaultType0 | PostCollectionsResponseDefaultType1
+        Any | CollectionSchema | PostCollectionsResponseDefault
     """
 
     return (

@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_password_by_reset_hash_checks_response_default_type_0 import (
-    GetPasswordByResetHashChecksResponseDefaultType0,
-)
-from ...models.get_password_by_reset_hash_checks_response_default_type_1 import (
-    GetPasswordByResetHashChecksResponseDefaultType1,
+from ...models.get_password_by_reset_hash_checks_response_default import (
+    GetPasswordByResetHashChecksResponseDefault,
 )
 from ...models.password_checks_schema import PasswordChecksSchema
 from ...types import Response
@@ -31,12 +28,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetPasswordByResetHashChecksResponseDefaultType0
-    | GetPasswordByResetHashChecksResponseDefaultType1
-    | PasswordChecksSchema
-):
+) -> Any | GetPasswordByResetHashChecksResponseDefault | PasswordChecksSchema:
     if response.status_code == 200:
         response_200 = PasswordChecksSchema.from_dict(response.json())
 
@@ -50,43 +42,16 @@ def _parse_response(
         response_419 = cast(Any, None)
         return response_419
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetPasswordByResetHashChecksResponseDefaultType0
-        | GetPasswordByResetHashChecksResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetPasswordByResetHashChecksResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetPasswordByResetHashChecksResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetPasswordByResetHashChecksResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetPasswordByResetHashChecksResponseDefaultType0
-    | GetPasswordByResetHashChecksResponseDefaultType1
-    | PasswordChecksSchema
-]:
+) -> Response[Any | GetPasswordByResetHashChecksResponseDefault | PasswordChecksSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -99,12 +64,7 @@ def sync_detailed(
     reset_hash: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetPasswordByResetHashChecksResponseDefaultType0
-    | GetPasswordByResetHashChecksResponseDefaultType1
-    | PasswordChecksSchema
-]:
+) -> Response[Any | GetPasswordByResetHashChecksResponseDefault | PasswordChecksSchema]:
     """Returns a list of password checks required for the password to be safe
 
     Args:
@@ -115,7 +75,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetPasswordByResetHashChecksResponseDefaultType0 | GetPasswordByResetHashChecksResponseDefaultType1 | PasswordChecksSchema]
+        Response[Any | GetPasswordByResetHashChecksResponseDefault | PasswordChecksSchema]
     """
 
     kwargs = _get_kwargs(
@@ -133,13 +93,7 @@ def sync(
     reset_hash: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetPasswordByResetHashChecksResponseDefaultType0
-    | GetPasswordByResetHashChecksResponseDefaultType1
-    | PasswordChecksSchema
-    | None
-):
+) -> Any | GetPasswordByResetHashChecksResponseDefault | PasswordChecksSchema | None:
     """Returns a list of password checks required for the password to be safe
 
     Args:
@@ -150,7 +104,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetPasswordByResetHashChecksResponseDefaultType0 | GetPasswordByResetHashChecksResponseDefaultType1 | PasswordChecksSchema
+        Any | GetPasswordByResetHashChecksResponseDefault | PasswordChecksSchema
     """
 
     return sync_detailed(
@@ -163,12 +117,7 @@ async def asyncio_detailed(
     reset_hash: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetPasswordByResetHashChecksResponseDefaultType0
-    | GetPasswordByResetHashChecksResponseDefaultType1
-    | PasswordChecksSchema
-]:
+) -> Response[Any | GetPasswordByResetHashChecksResponseDefault | PasswordChecksSchema]:
     """Returns a list of password checks required for the password to be safe
 
     Args:
@@ -179,7 +128,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetPasswordByResetHashChecksResponseDefaultType0 | GetPasswordByResetHashChecksResponseDefaultType1 | PasswordChecksSchema]
+        Response[Any | GetPasswordByResetHashChecksResponseDefault | PasswordChecksSchema]
     """
 
     kwargs = _get_kwargs(
@@ -195,13 +144,7 @@ async def asyncio(
     reset_hash: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetPasswordByResetHashChecksResponseDefaultType0
-    | GetPasswordByResetHashChecksResponseDefaultType1
-    | PasswordChecksSchema
-    | None
-):
+) -> Any | GetPasswordByResetHashChecksResponseDefault | PasswordChecksSchema | None:
     """Returns a list of password checks required for the password to be safe
 
     Args:
@@ -212,7 +155,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetPasswordByResetHashChecksResponseDefaultType0 | GetPasswordByResetHashChecksResponseDefaultType1 | PasswordChecksSchema
+        Any | GetPasswordByResetHashChecksResponseDefault | PasswordChecksSchema
     """
 
     return (

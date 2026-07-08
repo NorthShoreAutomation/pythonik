@@ -9,11 +9,8 @@ from ...models.multi_part_upload_compose_url_schema import (
     MultiPartUploadComposeURLSchema,
 )
 from ...models.multipart_upload_compose_schema import MultipartUploadComposeSchema
-from ...models.post_assets_by_asset_id_files_by_file_id_multipart_gcs_compose_url_response_default_type_0 import (
-    PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType0,
-)
-from ...models.post_assets_by_asset_id_files_by_file_id_multipart_gcs_compose_url_response_default_type_1 import (
-    PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType1,
+from ...models.post_assets_by_asset_id_files_by_file_id_multipart_gcs_compose_url_response_default import (
+    PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -23,7 +20,7 @@ def _get_kwargs(
     file_id: str,
     *,
     body: MultipartUploadComposeSchema,
-    temporary: bool | Unset = False,
+    temporary: bool | Unset = UNSET,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -55,8 +52,7 @@ def _parse_response(
 ) -> (
     Any
     | MultiPartUploadComposeURLSchema
-    | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefault
 ):
     if response.status_code == 200:
         response_200 = MultiPartUploadComposeURLSchema.from_dict(response.json())
@@ -71,31 +67,11 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType0
-        | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -105,8 +81,7 @@ def _build_response(
 ) -> Response[
     Any
     | MultiPartUploadComposeURLSchema
-    | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -122,12 +97,11 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: MultipartUploadComposeSchema,
-    temporary: bool | Unset = False,
+    temporary: bool | Unset = UNSET,
 ) -> Response[
     Any
     | MultiPartUploadComposeURLSchema
-    | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefault
 ]:
     """Get object compose url for GCS parallel upload.
 
@@ -138,7 +112,7 @@ def sync_detailed(
     Args:
         asset_id (str):
         file_id (str):
-        temporary (bool | Unset):  Default: False.
+        temporary (bool | Unset):
         body (MultipartUploadComposeSchema):
 
     Raises:
@@ -146,7 +120,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | MultiPartUploadComposeURLSchema | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType0 | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType1]
+        Response[Any | MultiPartUploadComposeURLSchema | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -169,12 +143,11 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: MultipartUploadComposeSchema,
-    temporary: bool | Unset = False,
+    temporary: bool | Unset = UNSET,
 ) -> (
     Any
     | MultiPartUploadComposeURLSchema
-    | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefault
     | None
 ):
     """Get object compose url for GCS parallel upload.
@@ -186,7 +159,7 @@ def sync(
     Args:
         asset_id (str):
         file_id (str):
-        temporary (bool | Unset):  Default: False.
+        temporary (bool | Unset):
         body (MultipartUploadComposeSchema):
 
     Raises:
@@ -194,7 +167,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | MultiPartUploadComposeURLSchema | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType0 | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType1
+        Any | MultiPartUploadComposeURLSchema | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefault
     """
 
     return sync_detailed(
@@ -212,12 +185,11 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: MultipartUploadComposeSchema,
-    temporary: bool | Unset = False,
+    temporary: bool | Unset = UNSET,
 ) -> Response[
     Any
     | MultiPartUploadComposeURLSchema
-    | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefault
 ]:
     """Get object compose url for GCS parallel upload.
 
@@ -228,7 +200,7 @@ async def asyncio_detailed(
     Args:
         asset_id (str):
         file_id (str):
-        temporary (bool | Unset):  Default: False.
+        temporary (bool | Unset):
         body (MultipartUploadComposeSchema):
 
     Raises:
@@ -236,7 +208,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | MultiPartUploadComposeURLSchema | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType0 | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType1]
+        Response[Any | MultiPartUploadComposeURLSchema | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -257,12 +229,11 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: MultipartUploadComposeSchema,
-    temporary: bool | Unset = False,
+    temporary: bool | Unset = UNSET,
 ) -> (
     Any
     | MultiPartUploadComposeURLSchema
-    | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefault
     | None
 ):
     """Get object compose url for GCS parallel upload.
@@ -274,7 +245,7 @@ async def asyncio(
     Args:
         asset_id (str):
         file_id (str):
-        temporary (bool | Unset):  Default: False.
+        temporary (bool | Unset):
         body (MultipartUploadComposeSchema):
 
     Raises:
@@ -282,7 +253,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | MultiPartUploadComposeURLSchema | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType0 | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType1
+        Any | MultiPartUploadComposeURLSchema | PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefault
     """
 
     return (

@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_assets_by_asset_id_segments_by_segment_id_response_default_type_0 import (
-    DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0,
-)
-from ...models.delete_assets_by_asset_id_segments_by_segment_id_response_default_type_1 import (
-    DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1,
+from ...models.delete_assets_by_asset_id_segments_by_segment_id_response_default import (
+    DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -41,11 +38,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0
-    | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1
-):
+) -> Any | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -58,44 +51,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0
-        | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1.from_dict(data)
+    response_default = (
+        DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0
-    | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -110,11 +77,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     soft_delete: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0
-    | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefault]:
     """Delete a particular segment from an asset by id
 
 
@@ -131,7 +94,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0 | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1]
+        Response[Any | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -153,12 +116,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     soft_delete: bool | Unset = UNSET,
-) -> (
-    Any
-    | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0
-    | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefault | None:
     """Delete a particular segment from an asset by id
 
 
@@ -175,7 +133,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0 | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1
+        Any | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefault
     """
 
     return sync_detailed(
@@ -192,11 +150,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     soft_delete: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0
-    | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefault]:
     """Delete a particular segment from an asset by id
 
 
@@ -213,7 +167,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0 | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1]
+        Response[Any | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -233,12 +187,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     soft_delete: bool | Unset = UNSET,
-) -> (
-    Any
-    | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0
-    | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefault | None:
     """Delete a particular segment from an asset by id
 
 
@@ -255,7 +204,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0 | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1
+        Any | DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefault
     """
 
     return (

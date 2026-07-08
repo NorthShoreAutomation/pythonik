@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_assets_by_asset_id_files_by_file_id_multipart_url_response_default_type_0 import (
-    GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType0,
-)
-from ...models.get_assets_by_asset_id_files_by_file_id_multipart_url_response_default_type_1 import (
-    GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType1,
+from ...models.get_assets_by_asset_id_files_by_file_id_multipart_url_response_default import (
+    GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefault,
 )
 from ...models.multi_part_ur_ls_schema import MultiPartURLsSchema
 from ...types import UNSET, Response, Unset
@@ -22,7 +19,7 @@ def _get_kwargs(
     upload_id: str,
     type_: str | Unset = UNSET,
     max_part_number: int | Unset = UNSET,
-    temporary: bool | Unset = False,
+    temporary: bool | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -53,8 +50,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType0
-    | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType1
+    | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefault
     | MultiPartURLsSchema
 ):
     if response.status_code == 200:
@@ -70,33 +66,11 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType0
-        | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -105,8 +79,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType0
-    | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType1
+    | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefault
     | MultiPartURLsSchema
 ]:
     return Response(
@@ -125,11 +98,10 @@ def sync_detailed(
     upload_id: str,
     type_: str | Unset = UNSET,
     max_part_number: int | Unset = UNSET,
-    temporary: bool | Unset = False,
+    temporary: bool | Unset = UNSET,
 ) -> Response[
     Any
-    | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType0
-    | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType1
+    | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefault
     | MultiPartURLsSchema
 ]:
     """Get presigned urls for multipart upload (S3).
@@ -144,14 +116,14 @@ def sync_detailed(
         upload_id (str):
         type_ (str | Unset):
         max_part_number (int | Unset):
-        temporary (bool | Unset):  Default: False.
+        temporary (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType0 | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType1 | MultiPartURLsSchema]
+        Response[Any | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefault | MultiPartURLsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -178,11 +150,10 @@ def sync(
     upload_id: str,
     type_: str | Unset = UNSET,
     max_part_number: int | Unset = UNSET,
-    temporary: bool | Unset = False,
+    temporary: bool | Unset = UNSET,
 ) -> (
     Any
-    | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType0
-    | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType1
+    | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefault
     | MultiPartURLsSchema
     | None
 ):
@@ -198,14 +169,14 @@ def sync(
         upload_id (str):
         type_ (str | Unset):
         max_part_number (int | Unset):
-        temporary (bool | Unset):  Default: False.
+        temporary (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType0 | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType1 | MultiPartURLsSchema
+        Any | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefault | MultiPartURLsSchema
     """
 
     return sync_detailed(
@@ -227,11 +198,10 @@ async def asyncio_detailed(
     upload_id: str,
     type_: str | Unset = UNSET,
     max_part_number: int | Unset = UNSET,
-    temporary: bool | Unset = False,
+    temporary: bool | Unset = UNSET,
 ) -> Response[
     Any
-    | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType0
-    | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType1
+    | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefault
     | MultiPartURLsSchema
 ]:
     """Get presigned urls for multipart upload (S3).
@@ -246,14 +216,14 @@ async def asyncio_detailed(
         upload_id (str):
         type_ (str | Unset):
         max_part_number (int | Unset):
-        temporary (bool | Unset):  Default: False.
+        temporary (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType0 | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType1 | MultiPartURLsSchema]
+        Response[Any | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefault | MultiPartURLsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -278,11 +248,10 @@ async def asyncio(
     upload_id: str,
     type_: str | Unset = UNSET,
     max_part_number: int | Unset = UNSET,
-    temporary: bool | Unset = False,
+    temporary: bool | Unset = UNSET,
 ) -> (
     Any
-    | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType0
-    | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType1
+    | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefault
     | MultiPartURLsSchema
     | None
 ):
@@ -298,14 +267,14 @@ async def asyncio(
         upload_id (str):
         type_ (str | Unset):
         max_part_number (int | Unset):
-        temporary (bool | Unset):  Default: False.
+        temporary (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType0 | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType1 | MultiPartURLsSchema
+        Any | GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefault | MultiPartURLsSchema
     """
 
     return (

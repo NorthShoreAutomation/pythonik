@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_users_current_photo_response_default_type_0 import (
-    DeleteUsersCurrentPhotoResponseDefaultType0,
-)
-from ...models.delete_users_current_photo_response_default_type_1 import (
-    DeleteUsersCurrentPhotoResponseDefaultType1,
+from ...models.delete_users_current_photo_response_default import (
+    DeleteUsersCurrentPhotoResponseDefault,
 )
 from ...types import Response
 
@@ -25,11 +22,7 @@ def _get_kwargs() -> dict[str, Any]:
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteUsersCurrentPhotoResponseDefaultType0
-    | DeleteUsersCurrentPhotoResponseDefaultType1
-):
+) -> Any | DeleteUsersCurrentPhotoResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -46,42 +39,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteUsersCurrentPhotoResponseDefaultType0
-        | DeleteUsersCurrentPhotoResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteUsersCurrentPhotoResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = DeleteUsersCurrentPhotoResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteUsersCurrentPhotoResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteUsersCurrentPhotoResponseDefaultType0
-    | DeleteUsersCurrentPhotoResponseDefaultType1
-]:
+) -> Response[Any | DeleteUsersCurrentPhotoResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -93,11 +58,7 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteUsersCurrentPhotoResponseDefaultType0
-    | DeleteUsersCurrentPhotoResponseDefaultType1
-]:
+) -> Response[Any | DeleteUsersCurrentPhotoResponseDefault]:
     """Delete current user photo image.
 
     Raises:
@@ -105,7 +66,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteUsersCurrentPhotoResponseDefaultType0 | DeleteUsersCurrentPhotoResponseDefaultType1]
+        Response[Any | DeleteUsersCurrentPhotoResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -120,12 +81,7 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteUsersCurrentPhotoResponseDefaultType0
-    | DeleteUsersCurrentPhotoResponseDefaultType1
-    | None
-):
+) -> Any | DeleteUsersCurrentPhotoResponseDefault | None:
     """Delete current user photo image.
 
     Raises:
@@ -133,7 +89,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteUsersCurrentPhotoResponseDefaultType0 | DeleteUsersCurrentPhotoResponseDefaultType1
+        Any | DeleteUsersCurrentPhotoResponseDefault
     """
 
     return sync_detailed(
@@ -144,11 +100,7 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteUsersCurrentPhotoResponseDefaultType0
-    | DeleteUsersCurrentPhotoResponseDefaultType1
-]:
+) -> Response[Any | DeleteUsersCurrentPhotoResponseDefault]:
     """Delete current user photo image.
 
     Raises:
@@ -156,7 +108,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteUsersCurrentPhotoResponseDefaultType0 | DeleteUsersCurrentPhotoResponseDefaultType1]
+        Response[Any | DeleteUsersCurrentPhotoResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -169,12 +121,7 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteUsersCurrentPhotoResponseDefaultType0
-    | DeleteUsersCurrentPhotoResponseDefaultType1
-    | None
-):
+) -> Any | DeleteUsersCurrentPhotoResponseDefault | None:
     """Delete current user photo image.
 
     Raises:
@@ -182,7 +129,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteUsersCurrentPhotoResponseDefaultType0 | DeleteUsersCurrentPhotoResponseDefaultType1
+        Any | DeleteUsersCurrentPhotoResponseDefault
     """
 
     return (

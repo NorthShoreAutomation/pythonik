@@ -8,11 +8,8 @@ from ...client import AuthenticatedClient, Client
 from ...models.post_system_logs_recipients_by_logs_recipient_id_response_200 import (
     PostSystemLogsRecipientsByLogsRecipientIdResponse200,
 )
-from ...models.post_system_logs_recipients_by_logs_recipient_id_response_default_type_0 import (
-    PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0,
-)
-from ...models.post_system_logs_recipients_by_logs_recipient_id_response_default_type_1 import (
-    PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1,
+from ...models.post_system_logs_recipients_by_logs_recipient_id_response_default import (
+    PostSystemLogsRecipientsByLogsRecipientIdResponseDefault,
 )
 from ...types import Response
 
@@ -36,8 +33,7 @@ def _parse_response(
 ) -> (
     Any
     | PostSystemLogsRecipientsByLogsRecipientIdResponse200
-    | PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0
-    | PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1
+    | PostSystemLogsRecipientsByLogsRecipientIdResponseDefault
 ):
     if response.status_code == 200:
         response_200 = PostSystemLogsRecipientsByLogsRecipientIdResponse200.from_dict(
@@ -58,35 +54,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0
-        | PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PostSystemLogsRecipientsByLogsRecipientIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -96,8 +68,7 @@ def _build_response(
 ) -> Response[
     Any
     | PostSystemLogsRecipientsByLogsRecipientIdResponse200
-    | PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0
-    | PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1
+    | PostSystemLogsRecipientsByLogsRecipientIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -114,8 +85,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | PostSystemLogsRecipientsByLogsRecipientIdResponse200
-    | PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0
-    | PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1
+    | PostSystemLogsRecipientsByLogsRecipientIdResponseDefault
 ]:
     """Test logs recipient connection
 
@@ -131,7 +101,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSystemLogsRecipientsByLogsRecipientIdResponse200 | PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0 | PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1]
+        Response[Any | PostSystemLogsRecipientsByLogsRecipientIdResponse200 | PostSystemLogsRecipientsByLogsRecipientIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -152,8 +122,7 @@ def sync(
 ) -> (
     Any
     | PostSystemLogsRecipientsByLogsRecipientIdResponse200
-    | PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0
-    | PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1
+    | PostSystemLogsRecipientsByLogsRecipientIdResponseDefault
     | None
 ):
     """Test logs recipient connection
@@ -170,7 +139,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSystemLogsRecipientsByLogsRecipientIdResponse200 | PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0 | PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1
+        Any | PostSystemLogsRecipientsByLogsRecipientIdResponse200 | PostSystemLogsRecipientsByLogsRecipientIdResponseDefault
     """
 
     return sync_detailed(
@@ -186,8 +155,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | PostSystemLogsRecipientsByLogsRecipientIdResponse200
-    | PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0
-    | PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1
+    | PostSystemLogsRecipientsByLogsRecipientIdResponseDefault
 ]:
     """Test logs recipient connection
 
@@ -203,7 +171,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSystemLogsRecipientsByLogsRecipientIdResponse200 | PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0 | PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1]
+        Response[Any | PostSystemLogsRecipientsByLogsRecipientIdResponse200 | PostSystemLogsRecipientsByLogsRecipientIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -222,8 +190,7 @@ async def asyncio(
 ) -> (
     Any
     | PostSystemLogsRecipientsByLogsRecipientIdResponse200
-    | PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0
-    | PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1
+    | PostSystemLogsRecipientsByLogsRecipientIdResponseDefault
     | None
 ):
     """Test logs recipient connection
@@ -240,7 +207,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSystemLogsRecipientsByLogsRecipientIdResponse200 | PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0 | PostSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1
+        Any | PostSystemLogsRecipientsByLogsRecipientIdResponse200 | PostSystemLogsRecipientsByLogsRecipientIdResponseDefault
     """
 
     return (

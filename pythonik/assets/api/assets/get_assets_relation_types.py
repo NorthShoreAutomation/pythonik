@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_assets_relation_types_response_default_type_0 import (
-    GetAssetsRelationTypesResponseDefaultType0,
-)
-from ...models.get_assets_relation_types_response_default_type_1 import (
-    GetAssetsRelationTypesResponseDefaultType1,
+from ...models.get_assets_relation_types_response_default import (
+    GetAssetsRelationTypesResponseDefault,
 )
 from ...models.relation_types_schema import RelationTypesSchema
 from ...types import Response
@@ -26,12 +23,7 @@ def _get_kwargs() -> dict[str, Any]:
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetAssetsRelationTypesResponseDefaultType0
-    | GetAssetsRelationTypesResponseDefaultType1
-    | RelationTypesSchema
-):
+) -> Any | GetAssetsRelationTypesResponseDefault | RelationTypesSchema:
     if response.status_code == 200:
         response_200 = RelationTypesSchema.from_dict(response.json())
 
@@ -45,43 +37,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsRelationTypesResponseDefaultType0
-        | GetAssetsRelationTypesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetAssetsRelationTypesResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetAssetsRelationTypesResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAssetsRelationTypesResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetAssetsRelationTypesResponseDefaultType0
-    | GetAssetsRelationTypesResponseDefaultType1
-    | RelationTypesSchema
-]:
+) -> Response[Any | GetAssetsRelationTypesResponseDefault | RelationTypesSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -93,12 +56,7 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetAssetsRelationTypesResponseDefaultType0
-    | GetAssetsRelationTypesResponseDefaultType1
-    | RelationTypesSchema
-]:
+) -> Response[Any | GetAssetsRelationTypesResponseDefault | RelationTypesSchema]:
     """Create a new asset relation type
 
 
@@ -110,7 +68,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsRelationTypesResponseDefaultType0 | GetAssetsRelationTypesResponseDefaultType1 | RelationTypesSchema]
+        Response[Any | GetAssetsRelationTypesResponseDefault | RelationTypesSchema]
     """
 
     kwargs = _get_kwargs()
@@ -125,13 +83,7 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetAssetsRelationTypesResponseDefaultType0
-    | GetAssetsRelationTypesResponseDefaultType1
-    | RelationTypesSchema
-    | None
-):
+) -> Any | GetAssetsRelationTypesResponseDefault | RelationTypesSchema | None:
     """Create a new asset relation type
 
 
@@ -143,7 +95,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsRelationTypesResponseDefaultType0 | GetAssetsRelationTypesResponseDefaultType1 | RelationTypesSchema
+        Any | GetAssetsRelationTypesResponseDefault | RelationTypesSchema
     """
 
     return sync_detailed(
@@ -154,12 +106,7 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetAssetsRelationTypesResponseDefaultType0
-    | GetAssetsRelationTypesResponseDefaultType1
-    | RelationTypesSchema
-]:
+) -> Response[Any | GetAssetsRelationTypesResponseDefault | RelationTypesSchema]:
     """Create a new asset relation type
 
 
@@ -171,7 +118,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsRelationTypesResponseDefaultType0 | GetAssetsRelationTypesResponseDefaultType1 | RelationTypesSchema]
+        Response[Any | GetAssetsRelationTypesResponseDefault | RelationTypesSchema]
     """
 
     kwargs = _get_kwargs()
@@ -184,13 +131,7 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetAssetsRelationTypesResponseDefaultType0
-    | GetAssetsRelationTypesResponseDefaultType1
-    | RelationTypesSchema
-    | None
-):
+) -> Any | GetAssetsRelationTypesResponseDefault | RelationTypesSchema | None:
     """Create a new asset relation type
 
 
@@ -202,7 +143,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsRelationTypesResponseDefaultType0 | GetAssetsRelationTypesResponseDefaultType1 | RelationTypesSchema
+        Any | GetAssetsRelationTypesResponseDefault | RelationTypesSchema
     """
 
     return (

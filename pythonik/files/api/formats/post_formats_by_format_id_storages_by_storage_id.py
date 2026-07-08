@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_formats_by_format_id_storages_by_storage_id_response_default_type_0 import (
-    PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType0,
-)
-from ...models.post_formats_by_format_id_storages_by_storage_id_response_default_type_1 import (
-    PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType1,
+from ...models.post_formats_by_format_id_storages_by_storage_id_response_default import (
+    PostFormatsByFormatIdStoragesByStorageIdResponseDefault,
 )
 from ...models.transfer_from_storage_schema import TransferFromStorageSchema
 from ...types import Response
@@ -41,11 +38,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType0
-    | PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType1
-):
+) -> Any | PostFormatsByFormatIdStoragesByStorageIdResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -70,44 +63,18 @@ def _parse_response(
         response_409 = cast(Any, None)
         return response_409
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType0
-        | PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType1.from_dict(data)
+    response_default = (
+        PostFormatsByFormatIdStoragesByStorageIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType0
-    | PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType1
-]:
+) -> Response[Any | PostFormatsByFormatIdStoragesByStorageIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -122,11 +89,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: TransferFromStorageSchema,
-) -> Response[
-    Any
-    | PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType0
-    | PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType1
-]:
+) -> Response[Any | PostFormatsByFormatIdStoragesByStorageIdResponseDefault]:
     """Queue copying of a formats file sets with files from one storage to another
 
 
@@ -144,7 +107,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType0 | PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType1]
+        Response[Any | PostFormatsByFormatIdStoragesByStorageIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -166,12 +129,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: TransferFromStorageSchema,
-) -> (
-    Any
-    | PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType0
-    | PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType1
-    | None
-):
+) -> Any | PostFormatsByFormatIdStoragesByStorageIdResponseDefault | None:
     """Queue copying of a formats file sets with files from one storage to another
 
 
@@ -189,7 +147,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType0 | PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType1
+        Any | PostFormatsByFormatIdStoragesByStorageIdResponseDefault
     """
 
     return sync_detailed(
@@ -206,11 +164,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: TransferFromStorageSchema,
-) -> Response[
-    Any
-    | PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType0
-    | PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType1
-]:
+) -> Response[Any | PostFormatsByFormatIdStoragesByStorageIdResponseDefault]:
     """Queue copying of a formats file sets with files from one storage to another
 
 
@@ -228,7 +182,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType0 | PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType1]
+        Response[Any | PostFormatsByFormatIdStoragesByStorageIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -248,12 +202,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: TransferFromStorageSchema,
-) -> (
-    Any
-    | PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType0
-    | PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType1
-    | None
-):
+) -> Any | PostFormatsByFormatIdStoragesByStorageIdResponseDefault | None:
     """Queue copying of a formats file sets with files from one storage to another
 
 
@@ -271,7 +220,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType0 | PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType1
+        Any | PostFormatsByFormatIdStoragesByStorageIdResponseDefault
     """
 
     return (

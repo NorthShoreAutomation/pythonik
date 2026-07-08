@@ -9,11 +9,8 @@ from ...models.magic_link_request_schema import MagicLinkRequestSchema
 from ...models.post_shares_by_share_id_magic_link_request_response_200 import (
     PostSharesByShareIdMagicLinkRequestResponse200,
 )
-from ...models.post_shares_by_share_id_magic_link_request_response_default_type_0 import (
-    PostSharesByShareIdMagicLinkRequestResponseDefaultType0,
-)
-from ...models.post_shares_by_share_id_magic_link_request_response_default_type_1 import (
-    PostSharesByShareIdMagicLinkRequestResponseDefaultType1,
+from ...models.post_shares_by_share_id_magic_link_request_response_default import (
+    PostSharesByShareIdMagicLinkRequestResponseDefault,
 )
 from ...types import Response
 
@@ -45,8 +42,7 @@ def _parse_response(
 ) -> (
     Any
     | PostSharesByShareIdMagicLinkRequestResponse200
-    | PostSharesByShareIdMagicLinkRequestResponseDefaultType0
-    | PostSharesByShareIdMagicLinkRequestResponseDefaultType1
+    | PostSharesByShareIdMagicLinkRequestResponseDefault
 ):
     if response.status_code == 200:
         response_200 = PostSharesByShareIdMagicLinkRequestResponse200.from_dict(
@@ -67,31 +63,9 @@ def _parse_response(
         response_429 = cast(Any, None)
         return response_429
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostSharesByShareIdMagicLinkRequestResponseDefaultType0
-        | PostSharesByShareIdMagicLinkRequestResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostSharesByShareIdMagicLinkRequestResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostSharesByShareIdMagicLinkRequestResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostSharesByShareIdMagicLinkRequestResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -101,8 +75,7 @@ def _build_response(
 ) -> Response[
     Any
     | PostSharesByShareIdMagicLinkRequestResponse200
-    | PostSharesByShareIdMagicLinkRequestResponseDefaultType0
-    | PostSharesByShareIdMagicLinkRequestResponseDefaultType1
+    | PostSharesByShareIdMagicLinkRequestResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -120,8 +93,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | PostSharesByShareIdMagicLinkRequestResponse200
-    | PostSharesByShareIdMagicLinkRequestResponseDefaultType0
-    | PostSharesByShareIdMagicLinkRequestResponseDefaultType1
+    | PostSharesByShareIdMagicLinkRequestResponseDefault
 ]:
     """Request a magic link for share access.
 
@@ -136,7 +108,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSharesByShareIdMagicLinkRequestResponse200 | PostSharesByShareIdMagicLinkRequestResponseDefaultType0 | PostSharesByShareIdMagicLinkRequestResponseDefaultType1]
+        Response[Any | PostSharesByShareIdMagicLinkRequestResponse200 | PostSharesByShareIdMagicLinkRequestResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -159,8 +131,7 @@ def sync(
 ) -> (
     Any
     | PostSharesByShareIdMagicLinkRequestResponse200
-    | PostSharesByShareIdMagicLinkRequestResponseDefaultType0
-    | PostSharesByShareIdMagicLinkRequestResponseDefaultType1
+    | PostSharesByShareIdMagicLinkRequestResponseDefault
     | None
 ):
     """Request a magic link for share access.
@@ -176,7 +147,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSharesByShareIdMagicLinkRequestResponse200 | PostSharesByShareIdMagicLinkRequestResponseDefaultType0 | PostSharesByShareIdMagicLinkRequestResponseDefaultType1
+        Any | PostSharesByShareIdMagicLinkRequestResponse200 | PostSharesByShareIdMagicLinkRequestResponseDefault
     """
 
     return sync_detailed(
@@ -194,8 +165,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | PostSharesByShareIdMagicLinkRequestResponse200
-    | PostSharesByShareIdMagicLinkRequestResponseDefaultType0
-    | PostSharesByShareIdMagicLinkRequestResponseDefaultType1
+    | PostSharesByShareIdMagicLinkRequestResponseDefault
 ]:
     """Request a magic link for share access.
 
@@ -210,7 +180,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSharesByShareIdMagicLinkRequestResponse200 | PostSharesByShareIdMagicLinkRequestResponseDefaultType0 | PostSharesByShareIdMagicLinkRequestResponseDefaultType1]
+        Response[Any | PostSharesByShareIdMagicLinkRequestResponse200 | PostSharesByShareIdMagicLinkRequestResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -231,8 +201,7 @@ async def asyncio(
 ) -> (
     Any
     | PostSharesByShareIdMagicLinkRequestResponse200
-    | PostSharesByShareIdMagicLinkRequestResponseDefaultType0
-    | PostSharesByShareIdMagicLinkRequestResponseDefaultType1
+    | PostSharesByShareIdMagicLinkRequestResponseDefault
     | None
 ):
     """Request a magic link for share access.
@@ -248,7 +217,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSharesByShareIdMagicLinkRequestResponse200 | PostSharesByShareIdMagicLinkRequestResponseDefaultType0 | PostSharesByShareIdMagicLinkRequestResponseDefaultType1
+        Any | PostSharesByShareIdMagicLinkRequestResponse200 | PostSharesByShareIdMagicLinkRequestResponseDefault
     """
 
     return (

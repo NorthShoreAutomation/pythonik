@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.file_sets_schema import FileSetsSchema
-from ...models.get_assets_by_asset_id_formats_by_format_id_file_sets_sources_by_storage_method_response_default_type_0 import (
-    GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType0,
-)
-from ...models.get_assets_by_asset_id_formats_by_format_id_file_sets_sources_by_storage_method_response_default_type_1 import (
-    GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType1,
+from ...models.get_assets_by_asset_id_formats_by_format_id_file_sets_sources_by_storage_method_response_default import (
+    GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefault,
 )
 from ...types import Response
 
@@ -38,8 +35,7 @@ def _parse_response(
 ) -> (
     Any
     | FileSetsSchema
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType0
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType1
+    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefault
 ):
     if response.status_code == 200:
         response_200 = FileSetsSchema.from_dict(response.json())
@@ -50,31 +46,9 @@ def _parse_response(
         response_400 = cast(Any, None)
         return response_400
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType0
-        | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -84,8 +58,7 @@ def _build_response(
 ) -> Response[
     Any
     | FileSetsSchema
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType0
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType1
+    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -104,8 +77,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | FileSetsSchema
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType0
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType1
+    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefault
 ]:
     """Get all file sets with matching format and storage method
 
@@ -123,7 +95,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | FileSetsSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType0 | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType1]
+        Response[Any | FileSetsSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -148,8 +120,7 @@ def sync(
 ) -> (
     Any
     | FileSetsSchema
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType0
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType1
+    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefault
     | None
 ):
     """Get all file sets with matching format and storage method
@@ -168,7 +139,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | FileSetsSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType0 | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType1
+        Any | FileSetsSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefault
     """
 
     return sync_detailed(
@@ -188,8 +159,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | FileSetsSchema
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType0
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType1
+    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefault
 ]:
     """Get all file sets with matching format and storage method
 
@@ -207,7 +177,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | FileSetsSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType0 | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType1]
+        Response[Any | FileSetsSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -230,8 +200,7 @@ async def asyncio(
 ) -> (
     Any
     | FileSetsSchema
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType0
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType1
+    | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefault
     | None
 ):
     """Get all file sets with matching format and storage method
@@ -250,7 +219,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | FileSetsSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType0 | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType1
+        Any | FileSetsSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefault
     """
 
     return (

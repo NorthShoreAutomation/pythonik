@@ -5,8 +5,7 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.group_schema import GroupSchema
-from ...models.post_groups_response_default_type_0 import PostGroupsResponseDefaultType0
-from ...models.post_groups_response_default_type_1 import PostGroupsResponseDefaultType1
+from ...models.post_groups_response_default import PostGroupsResponseDefault
 from ...types import Response
 
 
@@ -31,9 +30,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any | GroupSchema | PostGroupsResponseDefaultType0 | PostGroupsResponseDefaultType1
-):
+) -> Any | GroupSchema | PostGroupsResponseDefault:
     if response.status_code == 201:
         response_201 = GroupSchema.from_dict(response.json())
 
@@ -47,33 +44,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> PostGroupsResponseDefaultType0 | PostGroupsResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostGroupsResponseDefaultType0.from_dict(data)
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostGroupsResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostGroupsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any | GroupSchema | PostGroupsResponseDefaultType0 | PostGroupsResponseDefaultType1
-]:
+) -> Response[Any | GroupSchema | PostGroupsResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -86,9 +64,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: GroupSchema,
-) -> Response[
-    Any | GroupSchema | PostGroupsResponseDefaultType0 | PostGroupsResponseDefaultType1
-]:
+) -> Response[Any | GroupSchema | PostGroupsResponseDefault]:
     """Create a new group
 
 
@@ -103,7 +79,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GroupSchema | PostGroupsResponseDefaultType0 | PostGroupsResponseDefaultType1]
+        Response[Any | GroupSchema | PostGroupsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -121,13 +97,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: GroupSchema,
-) -> (
-    Any
-    | GroupSchema
-    | PostGroupsResponseDefaultType0
-    | PostGroupsResponseDefaultType1
-    | None
-):
+) -> Any | GroupSchema | PostGroupsResponseDefault | None:
     """Create a new group
 
 
@@ -142,7 +112,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GroupSchema | PostGroupsResponseDefaultType0 | PostGroupsResponseDefaultType1
+        Any | GroupSchema | PostGroupsResponseDefault
     """
 
     return sync_detailed(
@@ -155,9 +125,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: GroupSchema,
-) -> Response[
-    Any | GroupSchema | PostGroupsResponseDefaultType0 | PostGroupsResponseDefaultType1
-]:
+) -> Response[Any | GroupSchema | PostGroupsResponseDefault]:
     """Create a new group
 
 
@@ -172,7 +140,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GroupSchema | PostGroupsResponseDefaultType0 | PostGroupsResponseDefaultType1]
+        Response[Any | GroupSchema | PostGroupsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -188,13 +156,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: GroupSchema,
-) -> (
-    Any
-    | GroupSchema
-    | PostGroupsResponseDefaultType0
-    | PostGroupsResponseDefaultType1
-    | None
-):
+) -> Any | GroupSchema | PostGroupsResponseDefault | None:
     """Create a new group
 
 
@@ -209,7 +171,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GroupSchema | PostGroupsResponseDefaultType0 | PostGroupsResponseDefaultType1
+        Any | GroupSchema | PostGroupsResponseDefault
     """
 
     return (

@@ -8,11 +8,8 @@ from ...client import AuthenticatedClient, Client
 from ...models.post_storage_gateways_by_storage_gateway_id_logs_response_201 import (
     PostStorageGatewaysByStorageGatewayIdLogsResponse201,
 )
-from ...models.post_storage_gateways_by_storage_gateway_id_logs_response_default_type_0 import (
-    PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType0,
-)
-from ...models.post_storage_gateways_by_storage_gateway_id_logs_response_default_type_1 import (
-    PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType1,
+from ...models.post_storage_gateways_by_storage_gateway_id_logs_response_default import (
+    PostStorageGatewaysByStorageGatewayIdLogsResponseDefault,
 )
 from ...models.upload_iconik_storage_gateway_logs_schema import (
     UploadIconikStorageGatewayLogsSchema,
@@ -47,8 +44,7 @@ def _parse_response(
 ) -> (
     Any
     | PostStorageGatewaysByStorageGatewayIdLogsResponse201
-    | PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType0
-    | PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType1
+    | PostStorageGatewaysByStorageGatewayIdLogsResponseDefault
 ):
     if response.status_code == 201:
         response_201 = PostStorageGatewaysByStorageGatewayIdLogsResponse201.from_dict(
@@ -77,35 +73,11 @@ def _parse_response(
         response_503 = cast(Any, None)
         return response_503
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType0
-        | PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PostStorageGatewaysByStorageGatewayIdLogsResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -115,8 +87,7 @@ def _build_response(
 ) -> Response[
     Any
     | PostStorageGatewaysByStorageGatewayIdLogsResponse201
-    | PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType0
-    | PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType1
+    | PostStorageGatewaysByStorageGatewayIdLogsResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -134,8 +105,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | PostStorageGatewaysByStorageGatewayIdLogsResponse201
-    | PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType0
-    | PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType1
+    | PostStorageGatewaysByStorageGatewayIdLogsResponseDefault
 ]:
     """Upload storage logs
 
@@ -152,7 +122,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostStorageGatewaysByStorageGatewayIdLogsResponse201 | PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType0 | PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType1]
+        Response[Any | PostStorageGatewaysByStorageGatewayIdLogsResponse201 | PostStorageGatewaysByStorageGatewayIdLogsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -175,8 +145,7 @@ def sync(
 ) -> (
     Any
     | PostStorageGatewaysByStorageGatewayIdLogsResponse201
-    | PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType0
-    | PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType1
+    | PostStorageGatewaysByStorageGatewayIdLogsResponseDefault
     | None
 ):
     """Upload storage logs
@@ -194,7 +163,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostStorageGatewaysByStorageGatewayIdLogsResponse201 | PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType0 | PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType1
+        Any | PostStorageGatewaysByStorageGatewayIdLogsResponse201 | PostStorageGatewaysByStorageGatewayIdLogsResponseDefault
     """
 
     return sync_detailed(
@@ -212,8 +181,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | PostStorageGatewaysByStorageGatewayIdLogsResponse201
-    | PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType0
-    | PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType1
+    | PostStorageGatewaysByStorageGatewayIdLogsResponseDefault
 ]:
     """Upload storage logs
 
@@ -230,7 +198,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostStorageGatewaysByStorageGatewayIdLogsResponse201 | PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType0 | PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType1]
+        Response[Any | PostStorageGatewaysByStorageGatewayIdLogsResponse201 | PostStorageGatewaysByStorageGatewayIdLogsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -251,8 +219,7 @@ async def asyncio(
 ) -> (
     Any
     | PostStorageGatewaysByStorageGatewayIdLogsResponse201
-    | PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType0
-    | PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType1
+    | PostStorageGatewaysByStorageGatewayIdLogsResponseDefault
     | None
 ):
     """Upload storage logs
@@ -270,7 +237,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostStorageGatewaysByStorageGatewayIdLogsResponse201 | PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType0 | PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType1
+        Any | PostStorageGatewaysByStorageGatewayIdLogsResponse201 | PostStorageGatewaysByStorageGatewayIdLogsResponseDefault
     """
 
     return (

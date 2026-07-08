@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_user_attributes_response_default_type_0 import (
-    DeleteUserAttributesResponseDefaultType0,
-)
-from ...models.delete_user_attributes_response_default_type_1 import (
-    DeleteUserAttributesResponseDefaultType1,
+from ...models.delete_user_attributes_response_default import (
+    DeleteUserAttributesResponseDefault,
 )
 from ...models.user_setting_remove_attributes_schema import (
     UserSettingRemoveAttributesSchema,
@@ -37,14 +34,14 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteUserAttributesResponseDefaultType0
-    | DeleteUserAttributesResponseDefaultType1
-):
+) -> Any | DeleteUserAttributesResponseDefault:
     if response.status_code == 200:
         response_200 = cast(Any, None)
         return response_200
+
+    if response.status_code == 204:
+        response_204 = cast(Any, None)
+        return response_204
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -54,42 +51,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteUserAttributesResponseDefaultType0
-        | DeleteUserAttributesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteUserAttributesResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = DeleteUserAttributesResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteUserAttributesResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteUserAttributesResponseDefaultType0
-    | DeleteUserAttributesResponseDefaultType1
-]:
+) -> Response[Any | DeleteUserAttributesResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -102,11 +71,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: UserSettingRemoveAttributesSchema,
-) -> Response[
-    Any
-    | DeleteUserAttributesResponseDefaultType0
-    | DeleteUserAttributesResponseDefaultType1
-]:
+) -> Response[Any | DeleteUserAttributesResponseDefault]:
     """Remove attributes from user settings
 
     Args:
@@ -117,7 +82,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteUserAttributesResponseDefaultType0 | DeleteUserAttributesResponseDefaultType1]
+        Response[Any | DeleteUserAttributesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -135,12 +100,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: UserSettingRemoveAttributesSchema,
-) -> (
-    Any
-    | DeleteUserAttributesResponseDefaultType0
-    | DeleteUserAttributesResponseDefaultType1
-    | None
-):
+) -> Any | DeleteUserAttributesResponseDefault | None:
     """Remove attributes from user settings
 
     Args:
@@ -151,7 +111,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteUserAttributesResponseDefaultType0 | DeleteUserAttributesResponseDefaultType1
+        Any | DeleteUserAttributesResponseDefault
     """
 
     return sync_detailed(
@@ -164,11 +124,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: UserSettingRemoveAttributesSchema,
-) -> Response[
-    Any
-    | DeleteUserAttributesResponseDefaultType0
-    | DeleteUserAttributesResponseDefaultType1
-]:
+) -> Response[Any | DeleteUserAttributesResponseDefault]:
     """Remove attributes from user settings
 
     Args:
@@ -179,7 +135,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteUserAttributesResponseDefaultType0 | DeleteUserAttributesResponseDefaultType1]
+        Response[Any | DeleteUserAttributesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -195,12 +151,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: UserSettingRemoveAttributesSchema,
-) -> (
-    Any
-    | DeleteUserAttributesResponseDefaultType0
-    | DeleteUserAttributesResponseDefaultType1
-    | None
-):
+) -> Any | DeleteUserAttributesResponseDefault | None:
     """Remove attributes from user settings
 
     Args:
@@ -211,7 +162,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteUserAttributesResponseDefaultType0 | DeleteUserAttributesResponseDefaultType1
+        Any | DeleteUserAttributesResponseDefault
     """
 
     return (

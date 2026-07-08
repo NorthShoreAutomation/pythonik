@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.file_set_schema import FileSetSchema
-from ...models.put_assets_by_asset_id_file_sets_by_file_set_id_response_default_type_0 import (
-    PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0,
-)
-from ...models.put_assets_by_asset_id_file_sets_by_file_set_id_response_default_type_1 import (
-    PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1,
+from ...models.put_assets_by_asset_id_file_sets_by_file_set_id_response_default import (
+    PutAssetsByAssetIdFileSetsByFileSetIdResponseDefault,
 )
 from ...types import Response
 
@@ -41,12 +38,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | FileSetSchema
-    | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0
-    | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1
-):
+) -> Any | FileSetSchema | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefault:
     if response.status_code == 200:
         response_200 = FileSetSchema.from_dict(response.json())
 
@@ -64,33 +56,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0
-        | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutAssetsByAssetIdFileSetsByFileSetIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -98,10 +66,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | FileSetSchema
-    | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0
-    | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1
+    Any | FileSetSchema | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -118,10 +83,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: FileSetSchema,
 ) -> Response[
-    Any
-    | FileSetSchema
-    | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0
-    | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1
+    Any | FileSetSchema | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefault
 ]:
     """Update file set information
 
@@ -139,7 +101,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | FileSetSchema | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0 | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1]
+        Response[Any | FileSetSchema | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -161,13 +123,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: FileSetSchema,
-) -> (
-    Any
-    | FileSetSchema
-    | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0
-    | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1
-    | None
-):
+) -> Any | FileSetSchema | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefault | None:
     """Update file set information
 
 
@@ -184,7 +140,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | FileSetSchema | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0 | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1
+        Any | FileSetSchema | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefault
     """
 
     return sync_detailed(
@@ -202,10 +158,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: FileSetSchema,
 ) -> Response[
-    Any
-    | FileSetSchema
-    | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0
-    | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1
+    Any | FileSetSchema | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefault
 ]:
     """Update file set information
 
@@ -223,7 +176,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | FileSetSchema | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0 | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1]
+        Response[Any | FileSetSchema | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -243,13 +196,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: FileSetSchema,
-) -> (
-    Any
-    | FileSetSchema
-    | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0
-    | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1
-    | None
-):
+) -> Any | FileSetSchema | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefault | None:
     """Update file set information
 
 
@@ -266,7 +213,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | FileSetSchema | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0 | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1
+        Any | FileSetSchema | PutAssetsByAssetIdFileSetsByFileSetIdResponseDefault
     """
 
     return (

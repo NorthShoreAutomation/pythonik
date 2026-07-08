@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_delete_queue_purge_all_response_default_type_0 import (
-    PostDeleteQueuePurgeAllResponseDefaultType0,
-)
-from ...models.post_delete_queue_purge_all_response_default_type_1 import (
-    PostDeleteQueuePurgeAllResponseDefaultType1,
+from ...models.post_delete_queue_purge_all_response_default import (
+    PostDeleteQueuePurgeAllResponseDefault,
 )
 from ...types import Response
 
@@ -25,11 +22,7 @@ def _get_kwargs() -> dict[str, Any]:
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostDeleteQueuePurgeAllResponseDefaultType0
-    | PostDeleteQueuePurgeAllResponseDefaultType1
-):
+) -> Any | PostDeleteQueuePurgeAllResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -42,42 +35,14 @@ def _parse_response(
         response_403 = cast(Any, None)
         return response_403
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostDeleteQueuePurgeAllResponseDefaultType0
-        | PostDeleteQueuePurgeAllResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostDeleteQueuePurgeAllResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostDeleteQueuePurgeAllResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostDeleteQueuePurgeAllResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostDeleteQueuePurgeAllResponseDefaultType0
-    | PostDeleteQueuePurgeAllResponseDefaultType1
-]:
+) -> Response[Any | PostDeleteQueuePurgeAllResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -89,11 +54,7 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostDeleteQueuePurgeAllResponseDefaultType0
-    | PostDeleteQueuePurgeAllResponseDefaultType1
-]:
+) -> Response[Any | PostDeleteQueuePurgeAllResponseDefault]:
     """Purge all assets and collections from delete queue (Permanently delete)
 
 
@@ -106,7 +67,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostDeleteQueuePurgeAllResponseDefaultType0 | PostDeleteQueuePurgeAllResponseDefaultType1]
+        Response[Any | PostDeleteQueuePurgeAllResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -121,12 +82,7 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostDeleteQueuePurgeAllResponseDefaultType0
-    | PostDeleteQueuePurgeAllResponseDefaultType1
-    | None
-):
+) -> Any | PostDeleteQueuePurgeAllResponseDefault | None:
     """Purge all assets and collections from delete queue (Permanently delete)
 
 
@@ -139,7 +95,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostDeleteQueuePurgeAllResponseDefaultType0 | PostDeleteQueuePurgeAllResponseDefaultType1
+        Any | PostDeleteQueuePurgeAllResponseDefault
     """
 
     return sync_detailed(
@@ -150,11 +106,7 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostDeleteQueuePurgeAllResponseDefaultType0
-    | PostDeleteQueuePurgeAllResponseDefaultType1
-]:
+) -> Response[Any | PostDeleteQueuePurgeAllResponseDefault]:
     """Purge all assets and collections from delete queue (Permanently delete)
 
 
@@ -167,7 +119,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostDeleteQueuePurgeAllResponseDefaultType0 | PostDeleteQueuePurgeAllResponseDefaultType1]
+        Response[Any | PostDeleteQueuePurgeAllResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -180,12 +132,7 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostDeleteQueuePurgeAllResponseDefaultType0
-    | PostDeleteQueuePurgeAllResponseDefaultType1
-    | None
-):
+) -> Any | PostDeleteQueuePurgeAllResponseDefault | None:
     """Purge all assets and collections from delete queue (Permanently delete)
 
 
@@ -198,7 +145,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostDeleteQueuePurgeAllResponseDefaultType0 | PostDeleteQueuePurgeAllResponseDefaultType1
+        Any | PostDeleteQueuePurgeAllResponseDefault
     """
 
     return (

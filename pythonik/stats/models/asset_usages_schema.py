@@ -9,7 +9,7 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.asset_usages_elastic_schema import AssetUsagesElasticSchema
+    from ..models.asset_usage_schema import AssetUsageSchema
 
 
 T = TypeVar("T", bound="AssetUsagesSchema")
@@ -22,7 +22,7 @@ class AssetUsagesSchema:
         first_url (None | str | Unset):
         last_url (None | str | Unset):
         next_url (None | str | Unset):
-        objects (list[AssetUsagesElasticSchema] | None | Unset):
+        objects (list[AssetUsageSchema] | None | Unset):
         page (int | None | Unset):
         pages (int | None | Unset):
         per_page (int | None | Unset):
@@ -33,7 +33,7 @@ class AssetUsagesSchema:
     first_url: None | str | Unset = UNSET
     last_url: None | str | Unset = UNSET
     next_url: None | str | Unset = UNSET
-    objects: list[AssetUsagesElasticSchema] | None | Unset = UNSET
+    objects: list[AssetUsageSchema] | None | Unset = UNSET
     page: int | None | Unset = UNSET
     pages: int | None | Unset = UNSET
     per_page: int | None | Unset = UNSET
@@ -128,7 +128,7 @@ class AssetUsagesSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.asset_usages_elastic_schema import AssetUsagesElasticSchema
+        from ..models.asset_usage_schema import AssetUsageSchema
 
         d = dict(src_dict)
 
@@ -159,9 +159,7 @@ class AssetUsagesSchema:
 
         next_url = _parse_next_url(d.pop("next_url", UNSET))
 
-        def _parse_objects(
-            data: object,
-        ) -> list[AssetUsagesElasticSchema] | None | Unset:
+        def _parse_objects(data: object) -> list[AssetUsageSchema] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -172,7 +170,7 @@ class AssetUsagesSchema:
                 objects_type_0 = []
                 _objects_type_0 = data
                 for objects_type_0_item_data in _objects_type_0:
-                    objects_type_0_item = AssetUsagesElasticSchema.from_dict(
+                    objects_type_0_item = AssetUsageSchema.from_dict(
                         objects_type_0_item_data
                     )
 
@@ -181,7 +179,7 @@ class AssetUsagesSchema:
                 return objects_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(list[AssetUsagesElasticSchema] | None | Unset, data)
+            return cast(list[AssetUsageSchema] | None | Unset, data)
 
         objects = _parse_objects(d.pop("objects", UNSET))
 

@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.create_bulk_ac_ls_schema import CreateBulkACLsSchema
-from ...models.put_acl_by_object_type_content_response_default_type_0 import (
-    PutAclByObjectTypeContentResponseDefaultType0,
-)
-from ...models.put_acl_by_object_type_content_response_default_type_1 import (
-    PutAclByObjectTypeContentResponseDefaultType1,
+from ...models.put_acl_by_object_type_content_response_default import (
+    PutAclByObjectTypeContentResponseDefault,
 )
 from ...types import Response
 
@@ -39,11 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PutAclByObjectTypeContentResponseDefaultType0
-    | PutAclByObjectTypeContentResponseDefaultType1
-):
+) -> Any | PutAclByObjectTypeContentResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -60,42 +53,16 @@ def _parse_response(
         response_501 = cast(Any, None)
         return response_501
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutAclByObjectTypeContentResponseDefaultType0
-        | PutAclByObjectTypeContentResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PutAclByObjectTypeContentResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PutAclByObjectTypeContentResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutAclByObjectTypeContentResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PutAclByObjectTypeContentResponseDefaultType0
-    | PutAclByObjectTypeContentResponseDefaultType1
-]:
+) -> Response[Any | PutAclByObjectTypeContentResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -109,11 +76,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: CreateBulkACLsSchema,
-) -> Response[
-    Any
-    | PutAclByObjectTypeContentResponseDefaultType0
-    | PutAclByObjectTypeContentResponseDefaultType1
-]:
+) -> Response[Any | PutAclByObjectTypeContentResponseDefault]:
     """Create a new acl for content of multiple objects
 
 
@@ -129,7 +92,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutAclByObjectTypeContentResponseDefaultType0 | PutAclByObjectTypeContentResponseDefaultType1]
+        Response[Any | PutAclByObjectTypeContentResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -149,12 +112,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: CreateBulkACLsSchema,
-) -> (
-    Any
-    | PutAclByObjectTypeContentResponseDefaultType0
-    | PutAclByObjectTypeContentResponseDefaultType1
-    | None
-):
+) -> Any | PutAclByObjectTypeContentResponseDefault | None:
     """Create a new acl for content of multiple objects
 
 
@@ -170,7 +128,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutAclByObjectTypeContentResponseDefaultType0 | PutAclByObjectTypeContentResponseDefaultType1
+        Any | PutAclByObjectTypeContentResponseDefault
     """
 
     return sync_detailed(
@@ -185,11 +143,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: CreateBulkACLsSchema,
-) -> Response[
-    Any
-    | PutAclByObjectTypeContentResponseDefaultType0
-    | PutAclByObjectTypeContentResponseDefaultType1
-]:
+) -> Response[Any | PutAclByObjectTypeContentResponseDefault]:
     """Create a new acl for content of multiple objects
 
 
@@ -205,7 +159,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutAclByObjectTypeContentResponseDefaultType0 | PutAclByObjectTypeContentResponseDefaultType1]
+        Response[Any | PutAclByObjectTypeContentResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -223,12 +177,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: CreateBulkACLsSchema,
-) -> (
-    Any
-    | PutAclByObjectTypeContentResponseDefaultType0
-    | PutAclByObjectTypeContentResponseDefaultType1
-    | None
-):
+) -> Any | PutAclByObjectTypeContentResponseDefault | None:
     """Create a new acl for content of multiple objects
 
 
@@ -244,7 +193,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutAclByObjectTypeContentResponseDefaultType0 | PutAclByObjectTypeContentResponseDefaultType1
+        Any | PutAclByObjectTypeContentResponseDefault
     """
 
     return (

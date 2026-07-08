@@ -8,11 +8,8 @@ from ...client import AuthenticatedClient, Client
 from ...models.iconik_storage_gateway_cluster_schema import (
     IconikStorageGatewayClusterSchema,
 )
-from ...models.patch_storage_gateway_clusters_by_cluster_id_response_default_type_0 import (
-    PatchStorageGatewayClustersByClusterIdResponseDefaultType0,
-)
-from ...models.patch_storage_gateway_clusters_by_cluster_id_response_default_type_1 import (
-    PatchStorageGatewayClustersByClusterIdResponseDefaultType1,
+from ...models.patch_storage_gateway_clusters_by_cluster_id_response_default import (
+    PatchStorageGatewayClustersByClusterIdResponseDefault,
 )
 from ...types import Response
 
@@ -44,8 +41,7 @@ def _parse_response(
 ) -> (
     Any
     | IconikStorageGatewayClusterSchema
-    | PatchStorageGatewayClustersByClusterIdResponseDefaultType0
-    | PatchStorageGatewayClustersByClusterIdResponseDefaultType1
+    | PatchStorageGatewayClustersByClusterIdResponseDefault
 ):
     if response.status_code == 200:
         response_200 = IconikStorageGatewayClusterSchema.from_dict(response.json())
@@ -64,33 +60,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PatchStorageGatewayClustersByClusterIdResponseDefaultType0
-        | PatchStorageGatewayClustersByClusterIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PatchStorageGatewayClustersByClusterIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PatchStorageGatewayClustersByClusterIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PatchStorageGatewayClustersByClusterIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -100,8 +72,7 @@ def _build_response(
 ) -> Response[
     Any
     | IconikStorageGatewayClusterSchema
-    | PatchStorageGatewayClustersByClusterIdResponseDefaultType0
-    | PatchStorageGatewayClustersByClusterIdResponseDefaultType1
+    | PatchStorageGatewayClustersByClusterIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -119,8 +90,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | IconikStorageGatewayClusterSchema
-    | PatchStorageGatewayClustersByClusterIdResponseDefaultType0
-    | PatchStorageGatewayClustersByClusterIdResponseDefaultType1
+    | PatchStorageGatewayClustersByClusterIdResponseDefault
 ]:
     """Update a storage gateway cluster
 
@@ -133,7 +103,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | IconikStorageGatewayClusterSchema | PatchStorageGatewayClustersByClusterIdResponseDefaultType0 | PatchStorageGatewayClustersByClusterIdResponseDefaultType1]
+        Response[Any | IconikStorageGatewayClusterSchema | PatchStorageGatewayClustersByClusterIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -156,8 +126,7 @@ def sync(
 ) -> (
     Any
     | IconikStorageGatewayClusterSchema
-    | PatchStorageGatewayClustersByClusterIdResponseDefaultType0
-    | PatchStorageGatewayClustersByClusterIdResponseDefaultType1
+    | PatchStorageGatewayClustersByClusterIdResponseDefault
     | None
 ):
     """Update a storage gateway cluster
@@ -171,7 +140,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | IconikStorageGatewayClusterSchema | PatchStorageGatewayClustersByClusterIdResponseDefaultType0 | PatchStorageGatewayClustersByClusterIdResponseDefaultType1
+        Any | IconikStorageGatewayClusterSchema | PatchStorageGatewayClustersByClusterIdResponseDefault
     """
 
     return sync_detailed(
@@ -189,8 +158,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | IconikStorageGatewayClusterSchema
-    | PatchStorageGatewayClustersByClusterIdResponseDefaultType0
-    | PatchStorageGatewayClustersByClusterIdResponseDefaultType1
+    | PatchStorageGatewayClustersByClusterIdResponseDefault
 ]:
     """Update a storage gateway cluster
 
@@ -203,7 +171,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | IconikStorageGatewayClusterSchema | PatchStorageGatewayClustersByClusterIdResponseDefaultType0 | PatchStorageGatewayClustersByClusterIdResponseDefaultType1]
+        Response[Any | IconikStorageGatewayClusterSchema | PatchStorageGatewayClustersByClusterIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -224,8 +192,7 @@ async def asyncio(
 ) -> (
     Any
     | IconikStorageGatewayClusterSchema
-    | PatchStorageGatewayClustersByClusterIdResponseDefaultType0
-    | PatchStorageGatewayClustersByClusterIdResponseDefaultType1
+    | PatchStorageGatewayClustersByClusterIdResponseDefault
     | None
 ):
     """Update a storage gateway cluster
@@ -239,7 +206,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | IconikStorageGatewayClusterSchema | PatchStorageGatewayClustersByClusterIdResponseDefaultType0 | PatchStorageGatewayClustersByClusterIdResponseDefaultType1
+        Any | IconikStorageGatewayClusterSchema | PatchStorageGatewayClustersByClusterIdResponseDefault
     """
 
     return (

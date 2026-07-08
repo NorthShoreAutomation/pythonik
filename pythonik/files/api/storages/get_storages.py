@@ -4,20 +4,15 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_storages_response_default_type_0 import (
-    GetStoragesResponseDefaultType0,
-)
-from ...models.get_storages_response_default_type_1 import (
-    GetStoragesResponseDefaultType1,
-)
+from ...models.get_storages_response_default import GetStoragesResponseDefault
 from ...models.storages_read_schema import StoragesReadSchema
 from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     *,
-    page: int | Unset = 1,
-    per_page: int | Unset = 10,
+    page: int | Unset = UNSET,
+    per_page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
     id: str | Unset = UNSET,
     name: str | Unset = UNSET,
@@ -69,12 +64,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetStoragesResponseDefaultType0
-    | GetStoragesResponseDefaultType1
-    | StoragesReadSchema
-):
+) -> Any | GetStoragesResponseDefault | StoragesReadSchema:
     if response.status_code == 200:
         response_200 = StoragesReadSchema.from_dict(response.json())
 
@@ -84,36 +74,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> GetStoragesResponseDefaultType0 | GetStoragesResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetStoragesResponseDefaultType0.from_dict(data)
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetStoragesResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetStoragesResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetStoragesResponseDefaultType0
-    | GetStoragesResponseDefaultType1
-    | StoragesReadSchema
-]:
+) -> Response[Any | GetStoragesResponseDefault | StoragesReadSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -125,8 +93,8 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-    page: int | Unset = 1,
-    per_page: int | Unset = 10,
+    page: int | Unset = UNSET,
+    per_page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
     id: str | Unset = UNSET,
     name: str | Unset = UNSET,
@@ -137,12 +105,7 @@ def sync_detailed(
     scanner_status: str | Unset = UNSET,
     query: str | Unset = UNSET,
     ids: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetStoragesResponseDefaultType0
-    | GetStoragesResponseDefaultType1
-    | StoragesReadSchema
-]:
+) -> Response[Any | GetStoragesResponseDefault | StoragesReadSchema]:
     """Get all storages
 
 
@@ -150,8 +113,8 @@ def sync_detailed(
      - can_read_storages
 
     Args:
-        page (int | Unset):  Default: 1.
-        per_page (int | Unset):  Default: 10.
+        page (int | Unset):
+        per_page (int | Unset):
         sort (str | Unset):
         id (str | Unset):
         name (str | Unset):
@@ -168,7 +131,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetStoragesResponseDefaultType0 | GetStoragesResponseDefaultType1 | StoragesReadSchema]
+        Response[Any | GetStoragesResponseDefault | StoragesReadSchema]
     """
 
     kwargs = _get_kwargs(
@@ -196,8 +159,8 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-    page: int | Unset = 1,
-    per_page: int | Unset = 10,
+    page: int | Unset = UNSET,
+    per_page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
     id: str | Unset = UNSET,
     name: str | Unset = UNSET,
@@ -208,13 +171,7 @@ def sync(
     scanner_status: str | Unset = UNSET,
     query: str | Unset = UNSET,
     ids: str | Unset = UNSET,
-) -> (
-    Any
-    | GetStoragesResponseDefaultType0
-    | GetStoragesResponseDefaultType1
-    | StoragesReadSchema
-    | None
-):
+) -> Any | GetStoragesResponseDefault | StoragesReadSchema | None:
     """Get all storages
 
 
@@ -222,8 +179,8 @@ def sync(
      - can_read_storages
 
     Args:
-        page (int | Unset):  Default: 1.
-        per_page (int | Unset):  Default: 10.
+        page (int | Unset):
+        per_page (int | Unset):
         sort (str | Unset):
         id (str | Unset):
         name (str | Unset):
@@ -240,7 +197,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetStoragesResponseDefaultType0 | GetStoragesResponseDefaultType1 | StoragesReadSchema
+        Any | GetStoragesResponseDefault | StoragesReadSchema
     """
 
     return sync_detailed(
@@ -263,8 +220,8 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-    page: int | Unset = 1,
-    per_page: int | Unset = 10,
+    page: int | Unset = UNSET,
+    per_page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
     id: str | Unset = UNSET,
     name: str | Unset = UNSET,
@@ -275,12 +232,7 @@ async def asyncio_detailed(
     scanner_status: str | Unset = UNSET,
     query: str | Unset = UNSET,
     ids: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetStoragesResponseDefaultType0
-    | GetStoragesResponseDefaultType1
-    | StoragesReadSchema
-]:
+) -> Response[Any | GetStoragesResponseDefault | StoragesReadSchema]:
     """Get all storages
 
 
@@ -288,8 +240,8 @@ async def asyncio_detailed(
      - can_read_storages
 
     Args:
-        page (int | Unset):  Default: 1.
-        per_page (int | Unset):  Default: 10.
+        page (int | Unset):
+        per_page (int | Unset):
         sort (str | Unset):
         id (str | Unset):
         name (str | Unset):
@@ -306,7 +258,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetStoragesResponseDefaultType0 | GetStoragesResponseDefaultType1 | StoragesReadSchema]
+        Response[Any | GetStoragesResponseDefault | StoragesReadSchema]
     """
 
     kwargs = _get_kwargs(
@@ -332,8 +284,8 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-    page: int | Unset = 1,
-    per_page: int | Unset = 10,
+    page: int | Unset = UNSET,
+    per_page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
     id: str | Unset = UNSET,
     name: str | Unset = UNSET,
@@ -344,13 +296,7 @@ async def asyncio(
     scanner_status: str | Unset = UNSET,
     query: str | Unset = UNSET,
     ids: str | Unset = UNSET,
-) -> (
-    Any
-    | GetStoragesResponseDefaultType0
-    | GetStoragesResponseDefaultType1
-    | StoragesReadSchema
-    | None
-):
+) -> Any | GetStoragesResponseDefault | StoragesReadSchema | None:
     """Get all storages
 
 
@@ -358,8 +304,8 @@ async def asyncio(
      - can_read_storages
 
     Args:
-        page (int | Unset):  Default: 1.
-        per_page (int | Unset):  Default: 10.
+        page (int | Unset):
+        per_page (int | Unset):
         sort (str | Unset):
         id (str | Unset):
         name (str | Unset):
@@ -376,7 +322,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetStoragesResponseDefaultType0 | GetStoragesResponseDefaultType1 | StoragesReadSchema
+        Any | GetStoragesResponseDefault | StoragesReadSchema
     """
 
     return (

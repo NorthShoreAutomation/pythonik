@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.bulk_share_create_schema import BulkShareCreateSchema
-from ...models.post_share_by_object_type_response_default_type_0 import (
-    PostShareByObjectTypeResponseDefaultType0,
-)
-from ...models.post_share_by_object_type_response_default_type_1 import (
-    PostShareByObjectTypeResponseDefaultType1,
+from ...models.post_share_by_object_type_response_default import (
+    PostShareByObjectTypeResponseDefault,
 )
 from ...models.share_schema import ShareSchema
 from ...types import Response
@@ -40,12 +37,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostShareByObjectTypeResponseDefaultType0
-    | PostShareByObjectTypeResponseDefaultType1
-    | ShareSchema
-):
+) -> Any | PostShareByObjectTypeResponseDefault | ShareSchema:
     if response.status_code == 201:
         response_201 = ShareSchema.from_dict(response.json())
 
@@ -63,43 +55,14 @@ def _parse_response(
         response_403 = cast(Any, None)
         return response_403
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostShareByObjectTypeResponseDefaultType0
-        | PostShareByObjectTypeResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostShareByObjectTypeResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostShareByObjectTypeResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostShareByObjectTypeResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostShareByObjectTypeResponseDefaultType0
-    | PostShareByObjectTypeResponseDefaultType1
-    | ShareSchema
-]:
+) -> Response[Any | PostShareByObjectTypeResponseDefault | ShareSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -113,12 +76,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: BulkShareCreateSchema,
-) -> Response[
-    Any
-    | PostShareByObjectTypeResponseDefaultType0
-    | PostShareByObjectTypeResponseDefaultType1
-    | ShareSchema
-]:
+) -> Response[Any | PostShareByObjectTypeResponseDefault | ShareSchema]:
     """Create a new share of multiple objects (currently only assets are supported)
 
 
@@ -134,7 +92,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostShareByObjectTypeResponseDefaultType0 | PostShareByObjectTypeResponseDefaultType1 | ShareSchema]
+        Response[Any | PostShareByObjectTypeResponseDefault | ShareSchema]
     """
 
     kwargs = _get_kwargs(
@@ -154,13 +112,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: BulkShareCreateSchema,
-) -> (
-    Any
-    | PostShareByObjectTypeResponseDefaultType0
-    | PostShareByObjectTypeResponseDefaultType1
-    | ShareSchema
-    | None
-):
+) -> Any | PostShareByObjectTypeResponseDefault | ShareSchema | None:
     """Create a new share of multiple objects (currently only assets are supported)
 
 
@@ -176,7 +128,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostShareByObjectTypeResponseDefaultType0 | PostShareByObjectTypeResponseDefaultType1 | ShareSchema
+        Any | PostShareByObjectTypeResponseDefault | ShareSchema
     """
 
     return sync_detailed(
@@ -191,12 +143,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: BulkShareCreateSchema,
-) -> Response[
-    Any
-    | PostShareByObjectTypeResponseDefaultType0
-    | PostShareByObjectTypeResponseDefaultType1
-    | ShareSchema
-]:
+) -> Response[Any | PostShareByObjectTypeResponseDefault | ShareSchema]:
     """Create a new share of multiple objects (currently only assets are supported)
 
 
@@ -212,7 +159,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostShareByObjectTypeResponseDefaultType0 | PostShareByObjectTypeResponseDefaultType1 | ShareSchema]
+        Response[Any | PostShareByObjectTypeResponseDefault | ShareSchema]
     """
 
     kwargs = _get_kwargs(
@@ -230,13 +177,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: BulkShareCreateSchema,
-) -> (
-    Any
-    | PostShareByObjectTypeResponseDefaultType0
-    | PostShareByObjectTypeResponseDefaultType1
-    | ShareSchema
-    | None
-):
+) -> Any | PostShareByObjectTypeResponseDefault | ShareSchema | None:
     """Create a new share of multiple objects (currently only assets are supported)
 
 
@@ -252,7 +193,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostShareByObjectTypeResponseDefaultType0 | PostShareByObjectTypeResponseDefaultType1 | ShareSchema
+        Any | PostShareByObjectTypeResponseDefault | ShareSchema
     """
 
     return (

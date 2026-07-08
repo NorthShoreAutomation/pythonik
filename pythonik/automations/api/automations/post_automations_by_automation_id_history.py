@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.automation_history_schema import AutomationHistorySchema
-from ...models.post_automations_by_automation_id_history_response_default_type_0 import (
-    PostAutomationsByAutomationIdHistoryResponseDefaultType0,
-)
-from ...models.post_automations_by_automation_id_history_response_default_type_1 import (
-    PostAutomationsByAutomationIdHistoryResponseDefaultType1,
+from ...models.post_automations_by_automation_id_history_response_default import (
+    PostAutomationsByAutomationIdHistoryResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -48,10 +45,7 @@ def _get_kwargs(
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
-    Any
-    | AutomationHistorySchema
-    | PostAutomationsByAutomationIdHistoryResponseDefaultType0
-    | PostAutomationsByAutomationIdHistoryResponseDefaultType1
+    Any | AutomationHistorySchema | PostAutomationsByAutomationIdHistoryResponseDefault
 ):
     if response.status_code == 201:
         response_201 = AutomationHistorySchema.from_dict(response.json())
@@ -66,31 +60,9 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAutomationsByAutomationIdHistoryResponseDefaultType0
-        | PostAutomationsByAutomationIdHistoryResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostAutomationsByAutomationIdHistoryResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostAutomationsByAutomationIdHistoryResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostAutomationsByAutomationIdHistoryResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -98,10 +70,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | AutomationHistorySchema
-    | PostAutomationsByAutomationIdHistoryResponseDefaultType0
-    | PostAutomationsByAutomationIdHistoryResponseDefaultType1
+    Any | AutomationHistorySchema | PostAutomationsByAutomationIdHistoryResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -118,10 +87,7 @@ def sync_detailed(
     body: AutomationHistorySchema,
     ttl: int | Unset = UNSET,
 ) -> Response[
-    Any
-    | AutomationHistorySchema
-    | PostAutomationsByAutomationIdHistoryResponseDefaultType0
-    | PostAutomationsByAutomationIdHistoryResponseDefaultType1
+    Any | AutomationHistorySchema | PostAutomationsByAutomationIdHistoryResponseDefault
 ]:
     """Create a new history entity
 
@@ -139,7 +105,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AutomationHistorySchema | PostAutomationsByAutomationIdHistoryResponseDefaultType0 | PostAutomationsByAutomationIdHistoryResponseDefaultType1]
+        Response[Any | AutomationHistorySchema | PostAutomationsByAutomationIdHistoryResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -164,8 +130,7 @@ def sync(
 ) -> (
     Any
     | AutomationHistorySchema
-    | PostAutomationsByAutomationIdHistoryResponseDefaultType0
-    | PostAutomationsByAutomationIdHistoryResponseDefaultType1
+    | PostAutomationsByAutomationIdHistoryResponseDefault
     | None
 ):
     """Create a new history entity
@@ -184,7 +149,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AutomationHistorySchema | PostAutomationsByAutomationIdHistoryResponseDefaultType0 | PostAutomationsByAutomationIdHistoryResponseDefaultType1
+        Any | AutomationHistorySchema | PostAutomationsByAutomationIdHistoryResponseDefault
     """
 
     return sync_detailed(
@@ -202,10 +167,7 @@ async def asyncio_detailed(
     body: AutomationHistorySchema,
     ttl: int | Unset = UNSET,
 ) -> Response[
-    Any
-    | AutomationHistorySchema
-    | PostAutomationsByAutomationIdHistoryResponseDefaultType0
-    | PostAutomationsByAutomationIdHistoryResponseDefaultType1
+    Any | AutomationHistorySchema | PostAutomationsByAutomationIdHistoryResponseDefault
 ]:
     """Create a new history entity
 
@@ -223,7 +185,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AutomationHistorySchema | PostAutomationsByAutomationIdHistoryResponseDefaultType0 | PostAutomationsByAutomationIdHistoryResponseDefaultType1]
+        Response[Any | AutomationHistorySchema | PostAutomationsByAutomationIdHistoryResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -246,8 +208,7 @@ async def asyncio(
 ) -> (
     Any
     | AutomationHistorySchema
-    | PostAutomationsByAutomationIdHistoryResponseDefaultType0
-    | PostAutomationsByAutomationIdHistoryResponseDefaultType1
+    | PostAutomationsByAutomationIdHistoryResponseDefault
     | None
 ):
     """Create a new history entity
@@ -266,7 +227,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AutomationHistorySchema | PostAutomationsByAutomationIdHistoryResponseDefaultType0 | PostAutomationsByAutomationIdHistoryResponseDefaultType1
+        Any | AutomationHistorySchema | PostAutomationsByAutomationIdHistoryResponseDefault
     """
 
     return (

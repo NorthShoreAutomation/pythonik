@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_storage_gateway_clusters_by_cluster_id_response_default_type_0 import (
-    DeleteStorageGatewayClustersByClusterIdResponseDefaultType0,
-)
-from ...models.delete_storage_gateway_clusters_by_cluster_id_response_default_type_1 import (
-    DeleteStorageGatewayClustersByClusterIdResponseDefaultType1,
+from ...models.delete_storage_gateway_clusters_by_cluster_id_response_default import (
+    DeleteStorageGatewayClustersByClusterIdResponseDefault,
 )
 from ...types import Response
 
@@ -30,11 +27,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteStorageGatewayClustersByClusterIdResponseDefaultType0
-    | DeleteStorageGatewayClustersByClusterIdResponseDefaultType1
-):
+) -> Any | DeleteStorageGatewayClustersByClusterIdResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -47,44 +40,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteStorageGatewayClustersByClusterIdResponseDefaultType0
-        | DeleteStorageGatewayClustersByClusterIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteStorageGatewayClustersByClusterIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteStorageGatewayClustersByClusterIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteStorageGatewayClustersByClusterIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteStorageGatewayClustersByClusterIdResponseDefaultType0
-    | DeleteStorageGatewayClustersByClusterIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteStorageGatewayClustersByClusterIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -97,11 +62,7 @@ def sync_detailed(
     cluster_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteStorageGatewayClustersByClusterIdResponseDefaultType0
-    | DeleteStorageGatewayClustersByClusterIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteStorageGatewayClustersByClusterIdResponseDefault]:
     """Delete a storage gateway cluster
 
     Args:
@@ -112,7 +73,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteStorageGatewayClustersByClusterIdResponseDefaultType0 | DeleteStorageGatewayClustersByClusterIdResponseDefaultType1]
+        Response[Any | DeleteStorageGatewayClustersByClusterIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -130,12 +91,7 @@ def sync(
     cluster_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteStorageGatewayClustersByClusterIdResponseDefaultType0
-    | DeleteStorageGatewayClustersByClusterIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteStorageGatewayClustersByClusterIdResponseDefault | None:
     """Delete a storage gateway cluster
 
     Args:
@@ -146,7 +102,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteStorageGatewayClustersByClusterIdResponseDefaultType0 | DeleteStorageGatewayClustersByClusterIdResponseDefaultType1
+        Any | DeleteStorageGatewayClustersByClusterIdResponseDefault
     """
 
     return sync_detailed(
@@ -159,11 +115,7 @@ async def asyncio_detailed(
     cluster_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteStorageGatewayClustersByClusterIdResponseDefaultType0
-    | DeleteStorageGatewayClustersByClusterIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteStorageGatewayClustersByClusterIdResponseDefault]:
     """Delete a storage gateway cluster
 
     Args:
@@ -174,7 +126,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteStorageGatewayClustersByClusterIdResponseDefaultType0 | DeleteStorageGatewayClustersByClusterIdResponseDefaultType1]
+        Response[Any | DeleteStorageGatewayClustersByClusterIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -190,12 +142,7 @@ async def asyncio(
     cluster_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteStorageGatewayClustersByClusterIdResponseDefaultType0
-    | DeleteStorageGatewayClustersByClusterIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteStorageGatewayClustersByClusterIdResponseDefault | None:
     """Delete a storage gateway cluster
 
     Args:
@@ -206,7 +153,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteStorageGatewayClustersByClusterIdResponseDefaultType0 | DeleteStorageGatewayClustersByClusterIdResponseDefaultType1
+        Any | DeleteStorageGatewayClustersByClusterIdResponseDefault
     """
 
     return (

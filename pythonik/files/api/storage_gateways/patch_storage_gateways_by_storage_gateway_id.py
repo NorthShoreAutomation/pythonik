@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.iconik_storage_gateway_schema import IconikStorageGatewaySchema
-from ...models.patch_storage_gateways_by_storage_gateway_id_response_default_type_0 import (
-    PatchStorageGatewaysByStorageGatewayIdResponseDefaultType0,
-)
-from ...models.patch_storage_gateways_by_storage_gateway_id_response_default_type_1 import (
-    PatchStorageGatewaysByStorageGatewayIdResponseDefaultType1,
+from ...models.patch_storage_gateways_by_storage_gateway_id_response_default import (
+    PatchStorageGatewaysByStorageGatewayIdResponseDefault,
 )
 from ...types import Response
 
@@ -42,8 +39,7 @@ def _parse_response(
 ) -> (
     Any
     | IconikStorageGatewaySchema
-    | PatchStorageGatewaysByStorageGatewayIdResponseDefaultType0
-    | PatchStorageGatewaysByStorageGatewayIdResponseDefaultType1
+    | PatchStorageGatewaysByStorageGatewayIdResponseDefault
 ):
     if response.status_code == 200:
         response_200 = IconikStorageGatewaySchema.from_dict(response.json())
@@ -62,33 +58,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PatchStorageGatewaysByStorageGatewayIdResponseDefaultType0
-        | PatchStorageGatewaysByStorageGatewayIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PatchStorageGatewaysByStorageGatewayIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PatchStorageGatewaysByStorageGatewayIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PatchStorageGatewaysByStorageGatewayIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -98,8 +70,7 @@ def _build_response(
 ) -> Response[
     Any
     | IconikStorageGatewaySchema
-    | PatchStorageGatewaysByStorageGatewayIdResponseDefaultType0
-    | PatchStorageGatewaysByStorageGatewayIdResponseDefaultType1
+    | PatchStorageGatewaysByStorageGatewayIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -117,8 +88,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | IconikStorageGatewaySchema
-    | PatchStorageGatewaysByStorageGatewayIdResponseDefaultType0
-    | PatchStorageGatewaysByStorageGatewayIdResponseDefaultType1
+    | PatchStorageGatewaysByStorageGatewayIdResponseDefault
 ]:
     """Update a storage gateway
 
@@ -131,7 +101,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | IconikStorageGatewaySchema | PatchStorageGatewaysByStorageGatewayIdResponseDefaultType0 | PatchStorageGatewaysByStorageGatewayIdResponseDefaultType1]
+        Response[Any | IconikStorageGatewaySchema | PatchStorageGatewaysByStorageGatewayIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -154,8 +124,7 @@ def sync(
 ) -> (
     Any
     | IconikStorageGatewaySchema
-    | PatchStorageGatewaysByStorageGatewayIdResponseDefaultType0
-    | PatchStorageGatewaysByStorageGatewayIdResponseDefaultType1
+    | PatchStorageGatewaysByStorageGatewayIdResponseDefault
     | None
 ):
     """Update a storage gateway
@@ -169,7 +138,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | IconikStorageGatewaySchema | PatchStorageGatewaysByStorageGatewayIdResponseDefaultType0 | PatchStorageGatewaysByStorageGatewayIdResponseDefaultType1
+        Any | IconikStorageGatewaySchema | PatchStorageGatewaysByStorageGatewayIdResponseDefault
     """
 
     return sync_detailed(
@@ -187,8 +156,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | IconikStorageGatewaySchema
-    | PatchStorageGatewaysByStorageGatewayIdResponseDefaultType0
-    | PatchStorageGatewaysByStorageGatewayIdResponseDefaultType1
+    | PatchStorageGatewaysByStorageGatewayIdResponseDefault
 ]:
     """Update a storage gateway
 
@@ -201,7 +169,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | IconikStorageGatewaySchema | PatchStorageGatewaysByStorageGatewayIdResponseDefaultType0 | PatchStorageGatewaysByStorageGatewayIdResponseDefaultType1]
+        Response[Any | IconikStorageGatewaySchema | PatchStorageGatewaysByStorageGatewayIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -222,8 +190,7 @@ async def asyncio(
 ) -> (
     Any
     | IconikStorageGatewaySchema
-    | PatchStorageGatewaysByStorageGatewayIdResponseDefaultType0
-    | PatchStorageGatewaysByStorageGatewayIdResponseDefaultType1
+    | PatchStorageGatewaysByStorageGatewayIdResponseDefault
     | None
 ):
     """Update a storage gateway
@@ -237,7 +204,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | IconikStorageGatewaySchema | PatchStorageGatewaysByStorageGatewayIdResponseDefaultType0 | PatchStorageGatewaysByStorageGatewayIdResponseDefaultType1
+        Any | IconikStorageGatewaySchema | PatchStorageGatewaysByStorageGatewayIdResponseDefault
     """
 
     return (

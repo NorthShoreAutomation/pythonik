@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.file_sets_schema import FileSetsSchema
-from ...models.get_assets_by_asset_id_file_sets_response_default_type_0 import (
-    GetAssetsByAssetIdFileSetsResponseDefaultType0,
-)
-from ...models.get_assets_by_asset_id_file_sets_response_default_type_1 import (
-    GetAssetsByAssetIdFileSetsResponseDefaultType1,
+from ...models.get_assets_by_asset_id_file_sets_response_default import (
+    GetAssetsByAssetIdFileSetsResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -18,9 +15,9 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     asset_id: str,
     *,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-    file_count: bool | Unset = False,
+    file_count: bool | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -46,12 +43,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | FileSetsSchema
-    | GetAssetsByAssetIdFileSetsResponseDefaultType0
-    | GetAssetsByAssetIdFileSetsResponseDefaultType1
-):
+) -> Any | FileSetsSchema | GetAssetsByAssetIdFileSetsResponseDefault:
     if response.status_code == 200:
         response_200 = FileSetsSchema.from_dict(response.json())
 
@@ -65,43 +57,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsByAssetIdFileSetsResponseDefaultType0
-        | GetAssetsByAssetIdFileSetsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetAssetsByAssetIdFileSetsResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetAssetsByAssetIdFileSetsResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAssetsByAssetIdFileSetsResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | FileSetsSchema
-    | GetAssetsByAssetIdFileSetsResponseDefaultType0
-    | GetAssetsByAssetIdFileSetsResponseDefaultType1
-]:
+) -> Response[Any | FileSetsSchema | GetAssetsByAssetIdFileSetsResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -114,15 +79,10 @@ def sync_detailed(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-    file_count: bool | Unset = False,
-) -> Response[
-    Any
-    | FileSetsSchema
-    | GetAssetsByAssetIdFileSetsResponseDefaultType0
-    | GetAssetsByAssetIdFileSetsResponseDefaultType1
-]:
+    file_count: bool | Unset = UNSET,
+) -> Response[Any | FileSetsSchema | GetAssetsByAssetIdFileSetsResponseDefault]:
     """Get all asset's file sets
 
 
@@ -131,16 +91,16 @@ def sync_detailed(
 
     Args:
         asset_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
-        file_count (bool | Unset):  Default: False.
+        file_count (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | FileSetsSchema | GetAssetsByAssetIdFileSetsResponseDefaultType0 | GetAssetsByAssetIdFileSetsResponseDefaultType1]
+        Response[Any | FileSetsSchema | GetAssetsByAssetIdFileSetsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -161,16 +121,10 @@ def sync(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-    file_count: bool | Unset = False,
-) -> (
-    Any
-    | FileSetsSchema
-    | GetAssetsByAssetIdFileSetsResponseDefaultType0
-    | GetAssetsByAssetIdFileSetsResponseDefaultType1
-    | None
-):
+    file_count: bool | Unset = UNSET,
+) -> Any | FileSetsSchema | GetAssetsByAssetIdFileSetsResponseDefault | None:
     """Get all asset's file sets
 
 
@@ -179,16 +133,16 @@ def sync(
 
     Args:
         asset_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
-        file_count (bool | Unset):  Default: False.
+        file_count (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | FileSetsSchema | GetAssetsByAssetIdFileSetsResponseDefaultType0 | GetAssetsByAssetIdFileSetsResponseDefaultType1
+        Any | FileSetsSchema | GetAssetsByAssetIdFileSetsResponseDefault
     """
 
     return sync_detailed(
@@ -204,15 +158,10 @@ async def asyncio_detailed(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-    file_count: bool | Unset = False,
-) -> Response[
-    Any
-    | FileSetsSchema
-    | GetAssetsByAssetIdFileSetsResponseDefaultType0
-    | GetAssetsByAssetIdFileSetsResponseDefaultType1
-]:
+    file_count: bool | Unset = UNSET,
+) -> Response[Any | FileSetsSchema | GetAssetsByAssetIdFileSetsResponseDefault]:
     """Get all asset's file sets
 
 
@@ -221,16 +170,16 @@ async def asyncio_detailed(
 
     Args:
         asset_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
-        file_count (bool | Unset):  Default: False.
+        file_count (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | FileSetsSchema | GetAssetsByAssetIdFileSetsResponseDefaultType0 | GetAssetsByAssetIdFileSetsResponseDefaultType1]
+        Response[Any | FileSetsSchema | GetAssetsByAssetIdFileSetsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -249,16 +198,10 @@ async def asyncio(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-    file_count: bool | Unset = False,
-) -> (
-    Any
-    | FileSetsSchema
-    | GetAssetsByAssetIdFileSetsResponseDefaultType0
-    | GetAssetsByAssetIdFileSetsResponseDefaultType1
-    | None
-):
+    file_count: bool | Unset = UNSET,
+) -> Any | FileSetsSchema | GetAssetsByAssetIdFileSetsResponseDefault | None:
     """Get all asset's file sets
 
 
@@ -267,16 +210,16 @@ async def asyncio(
 
     Args:
         asset_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
-        file_count (bool | Unset):  Default: False.
+        file_count (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | FileSetsSchema | GetAssetsByAssetIdFileSetsResponseDefaultType0 | GetAssetsByAssetIdFileSetsResponseDefaultType1
+        Any | FileSetsSchema | GetAssetsByAssetIdFileSetsResponseDefault
     """
 
     return (

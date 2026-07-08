@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.keyframe_schema import KeyframeSchema
-from ...models.post_assets_by_asset_id_keyframes_by_keyframe_id_public_response_default_type_0 import (
-    PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0,
-)
-from ...models.post_assets_by_asset_id_keyframes_by_keyframe_id_public_response_default_type_1 import (
-    PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1,
+from ...models.post_assets_by_asset_id_keyframes_by_keyframe_id_public_response_default import (
+    PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault,
 )
 from ...types import Response
 
@@ -34,10 +31,7 @@ def _get_kwargs(
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
-    Any
-    | KeyframeSchema
-    | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0
-    | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1
+    Any | KeyframeSchema | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault
 ):
     if response.status_code == 201:
         response_201 = KeyframeSchema.from_dict(response.json())
@@ -52,31 +46,11 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0
-        | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -84,10 +58,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | KeyframeSchema
-    | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0
-    | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1
+    Any | KeyframeSchema | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -103,10 +74,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | KeyframeSchema
-    | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0
-    | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1
+    Any | KeyframeSchema | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault
 ]:
     """Make the keyframe link public
 
@@ -123,7 +91,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | KeyframeSchema | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0 | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1]
+        Response[Any | KeyframeSchema | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -146,8 +114,7 @@ def sync(
 ) -> (
     Any
     | KeyframeSchema
-    | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0
-    | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1
+    | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault
     | None
 ):
     """Make the keyframe link public
@@ -165,7 +132,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | KeyframeSchema | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0 | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1
+        Any | KeyframeSchema | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault
     """
 
     return sync_detailed(
@@ -181,10 +148,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | KeyframeSchema
-    | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0
-    | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1
+    Any | KeyframeSchema | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault
 ]:
     """Make the keyframe link public
 
@@ -201,7 +165,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | KeyframeSchema | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0 | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1]
+        Response[Any | KeyframeSchema | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -222,8 +186,7 @@ async def asyncio(
 ) -> (
     Any
     | KeyframeSchema
-    | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0
-    | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1
+    | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault
     | None
 ):
     """Make the keyframe link public
@@ -241,7 +204,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | KeyframeSchema | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0 | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1
+        Any | KeyframeSchema | PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault
     """
 
     return (

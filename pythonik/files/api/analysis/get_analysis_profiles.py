@@ -5,18 +5,15 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.analysis_profiles_schema import AnalysisProfilesSchema
-from ...models.get_analysis_profiles_response_default_type_0 import (
-    GetAnalysisProfilesResponseDefaultType0,
-)
-from ...models.get_analysis_profiles_response_default_type_1 import (
-    GetAnalysisProfilesResponseDefaultType1,
+from ...models.get_analysis_profiles_response_default import (
+    GetAnalysisProfilesResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     *,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> dict[str, Any]:
 
@@ -39,12 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    AnalysisProfilesSchema
-    | Any
-    | GetAnalysisProfilesResponseDefaultType0
-    | GetAnalysisProfilesResponseDefaultType1
-):
+) -> AnalysisProfilesSchema | Any | GetAnalysisProfilesResponseDefault:
     if response.status_code == 200:
         response_200 = AnalysisProfilesSchema.from_dict(response.json())
 
@@ -58,43 +50,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAnalysisProfilesResponseDefaultType0
-        | GetAnalysisProfilesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetAnalysisProfilesResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetAnalysisProfilesResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAnalysisProfilesResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    AnalysisProfilesSchema
-    | Any
-    | GetAnalysisProfilesResponseDefaultType0
-    | GetAnalysisProfilesResponseDefaultType1
-]:
+) -> Response[AnalysisProfilesSchema | Any | GetAnalysisProfilesResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -106,18 +69,13 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> Response[
-    AnalysisProfilesSchema
-    | Any
-    | GetAnalysisProfilesResponseDefaultType0
-    | GetAnalysisProfilesResponseDefaultType1
-]:
+) -> Response[AnalysisProfilesSchema | Any | GetAnalysisProfilesResponseDefault]:
     """Get analysis profiles
 
     Args:
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -125,7 +83,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[AnalysisProfilesSchema | Any | GetAnalysisProfilesResponseDefaultType0 | GetAnalysisProfilesResponseDefaultType1]
+        Response[AnalysisProfilesSchema | Any | GetAnalysisProfilesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -143,19 +101,13 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> (
-    AnalysisProfilesSchema
-    | Any
-    | GetAnalysisProfilesResponseDefaultType0
-    | GetAnalysisProfilesResponseDefaultType1
-    | None
-):
+) -> AnalysisProfilesSchema | Any | GetAnalysisProfilesResponseDefault | None:
     """Get analysis profiles
 
     Args:
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -163,7 +115,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        AnalysisProfilesSchema | Any | GetAnalysisProfilesResponseDefaultType0 | GetAnalysisProfilesResponseDefaultType1
+        AnalysisProfilesSchema | Any | GetAnalysisProfilesResponseDefault
     """
 
     return sync_detailed(
@@ -176,18 +128,13 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> Response[
-    AnalysisProfilesSchema
-    | Any
-    | GetAnalysisProfilesResponseDefaultType0
-    | GetAnalysisProfilesResponseDefaultType1
-]:
+) -> Response[AnalysisProfilesSchema | Any | GetAnalysisProfilesResponseDefault]:
     """Get analysis profiles
 
     Args:
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -195,7 +142,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[AnalysisProfilesSchema | Any | GetAnalysisProfilesResponseDefaultType0 | GetAnalysisProfilesResponseDefaultType1]
+        Response[AnalysisProfilesSchema | Any | GetAnalysisProfilesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -211,19 +158,13 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> (
-    AnalysisProfilesSchema
-    | Any
-    | GetAnalysisProfilesResponseDefaultType0
-    | GetAnalysisProfilesResponseDefaultType1
-    | None
-):
+) -> AnalysisProfilesSchema | Any | GetAnalysisProfilesResponseDefault | None:
     """Get analysis profiles
 
     Args:
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -231,7 +172,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        AnalysisProfilesSchema | Any | GetAnalysisProfilesResponseDefaultType0 | GetAnalysisProfilesResponseDefaultType1
+        AnalysisProfilesSchema | Any | GetAnalysisProfilesResponseDefault
     """
 
     return (

@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_assets_by_asset_id_proxies_by_proxy_id_containers_by_container_id_files_response_default_type_0 import (
-    PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType0,
-)
-from ...models.post_assets_by_asset_id_proxies_by_proxy_id_containers_by_container_id_files_response_default_type_1 import (
-    PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType1,
+from ...models.post_assets_by_asset_id_proxies_by_proxy_id_containers_by_container_id_files_response_default import (
+    PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefault,
 )
 from ...models.proxy_file_schema import ProxyFileSchema
 from ...types import UNSET, Response, Unset
@@ -52,8 +49,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType0
-    | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType1
+    | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefault
     | ProxyFileSchema
 ):
     if response.status_code == 201:
@@ -77,31 +73,9 @@ def _parse_response(
         response_425 = cast(Any, None)
         return response_425
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType0
-        | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -110,8 +84,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType0
-    | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType1
+    | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefault
     | ProxyFileSchema
 ]:
     return Response(
@@ -133,8 +106,7 @@ def sync_detailed(
     watermark: str | Unset = UNSET,
 ) -> Response[
     Any
-    | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType0
-    | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType1
+    | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefault
     | ProxyFileSchema
 ]:
     """Create Proxy file
@@ -156,7 +128,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType0 | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType1 | ProxyFileSchema]
+        Response[Any | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefault | ProxyFileSchema]
     """
 
     kwargs = _get_kwargs(
@@ -186,8 +158,7 @@ def sync(
     watermark: str | Unset = UNSET,
 ) -> (
     Any
-    | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType0
-    | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType1
+    | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefault
     | ProxyFileSchema
     | None
 ):
@@ -210,7 +181,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType0 | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType1 | ProxyFileSchema
+        Any | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefault | ProxyFileSchema
     """
 
     return sync_detailed(
@@ -235,8 +206,7 @@ async def asyncio_detailed(
     watermark: str | Unset = UNSET,
 ) -> Response[
     Any
-    | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType0
-    | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType1
+    | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefault
     | ProxyFileSchema
 ]:
     """Create Proxy file
@@ -258,7 +228,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType0 | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType1 | ProxyFileSchema]
+        Response[Any | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefault | ProxyFileSchema]
     """
 
     kwargs = _get_kwargs(
@@ -286,8 +256,7 @@ async def asyncio(
     watermark: str | Unset = UNSET,
 ) -> (
     Any
-    | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType0
-    | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType1
+    | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefault
     | ProxyFileSchema
     | None
 ):
@@ -310,7 +279,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType0 | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType1 | ProxyFileSchema
+        Any | PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefault | ProxyFileSchema
     """
 
     return (

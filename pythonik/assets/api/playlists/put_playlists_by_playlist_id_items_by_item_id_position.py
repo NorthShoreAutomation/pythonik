@@ -9,11 +9,8 @@ from ...models.playlist_item_schema import PlaylistItemSchema
 from ...models.playlist_item_update_position_schema import (
     PlaylistItemUpdatePositionSchema,
 )
-from ...models.put_playlists_by_playlist_id_items_by_item_id_position_response_default_type_0 import (
-    PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType0,
-)
-from ...models.put_playlists_by_playlist_id_items_by_item_id_position_response_default_type_1 import (
-    PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType1,
+from ...models.put_playlists_by_playlist_id_items_by_item_id_position_response_default import (
+    PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefault,
 )
 from ...types import Response
 
@@ -47,13 +44,12 @@ def _parse_response(
 ) -> (
     Any
     | PlaylistItemSchema
-    | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType0
-    | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType1
+    | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefault
 ):
-    if response.status_code == 201:
-        response_201 = PlaylistItemSchema.from_dict(response.json())
+    if response.status_code == 200:
+        response_200 = PlaylistItemSchema.from_dict(response.json())
 
-        return response_201
+        return response_200
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -63,33 +59,11 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType0
-        | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -99,8 +73,7 @@ def _build_response(
 ) -> Response[
     Any
     | PlaylistItemSchema
-    | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType0
-    | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType1
+    | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -119,8 +92,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | PlaylistItemSchema
-    | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType0
-    | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType1
+    | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefault
 ]:
     """Update a playlist item position
 
@@ -138,7 +110,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PlaylistItemSchema | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType0 | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType1]
+        Response[Any | PlaylistItemSchema | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -163,8 +135,7 @@ def sync(
 ) -> (
     Any
     | PlaylistItemSchema
-    | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType0
-    | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType1
+    | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefault
     | None
 ):
     """Update a playlist item position
@@ -183,7 +154,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PlaylistItemSchema | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType0 | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType1
+        Any | PlaylistItemSchema | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefault
     """
 
     return sync_detailed(
@@ -203,8 +174,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | PlaylistItemSchema
-    | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType0
-    | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType1
+    | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefault
 ]:
     """Update a playlist item position
 
@@ -222,7 +192,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PlaylistItemSchema | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType0 | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType1]
+        Response[Any | PlaylistItemSchema | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -245,8 +215,7 @@ async def asyncio(
 ) -> (
     Any
     | PlaylistItemSchema
-    | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType0
-    | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType1
+    | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefault
     | None
 ):
     """Update a playlist item position
@@ -265,7 +234,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PlaylistItemSchema | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType0 | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefaultType1
+        Any | PlaylistItemSchema | PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefault
     """
 
     return (

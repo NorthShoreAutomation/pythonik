@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.patch_search_saved_group_by_group_id_response_default_type_0 import (
-    PatchSearchSavedGroupByGroupIdResponseDefaultType0,
-)
-from ...models.patch_search_saved_group_by_group_id_response_default_type_1 import (
-    PatchSearchSavedGroupByGroupIdResponseDefaultType1,
+from ...models.patch_search_saved_group_by_group_id_response_default import (
+    PatchSearchSavedGroupByGroupIdResponseDefault,
 )
 from ...models.saved_search_group_schema import SavedSearchGroupSchema
 from ...types import Response
@@ -39,12 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PatchSearchSavedGroupByGroupIdResponseDefaultType0
-    | PatchSearchSavedGroupByGroupIdResponseDefaultType1
-    | SavedSearchGroupSchema
-):
+) -> Any | PatchSearchSavedGroupByGroupIdResponseDefault | SavedSearchGroupSchema:
     if response.status_code == 200:
         response_200 = SavedSearchGroupSchema.from_dict(response.json())
 
@@ -62,31 +54,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PatchSearchSavedGroupByGroupIdResponseDefaultType0
-        | PatchSearchSavedGroupByGroupIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PatchSearchSavedGroupByGroupIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PatchSearchSavedGroupByGroupIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PatchSearchSavedGroupByGroupIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -94,10 +64,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | PatchSearchSavedGroupByGroupIdResponseDefaultType0
-    | PatchSearchSavedGroupByGroupIdResponseDefaultType1
-    | SavedSearchGroupSchema
+    Any | PatchSearchSavedGroupByGroupIdResponseDefault | SavedSearchGroupSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -113,10 +80,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: SavedSearchGroupSchema,
 ) -> Response[
-    Any
-    | PatchSearchSavedGroupByGroupIdResponseDefaultType0
-    | PatchSearchSavedGroupByGroupIdResponseDefaultType1
-    | SavedSearchGroupSchema
+    Any | PatchSearchSavedGroupByGroupIdResponseDefault | SavedSearchGroupSchema
 ]:
     """Update and return saved search group data
 
@@ -133,7 +97,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PatchSearchSavedGroupByGroupIdResponseDefaultType0 | PatchSearchSavedGroupByGroupIdResponseDefaultType1 | SavedSearchGroupSchema]
+        Response[Any | PatchSearchSavedGroupByGroupIdResponseDefault | SavedSearchGroupSchema]
     """
 
     kwargs = _get_kwargs(
@@ -154,11 +118,7 @@ def sync(
     client: AuthenticatedClient | Client,
     body: SavedSearchGroupSchema,
 ) -> (
-    Any
-    | PatchSearchSavedGroupByGroupIdResponseDefaultType0
-    | PatchSearchSavedGroupByGroupIdResponseDefaultType1
-    | SavedSearchGroupSchema
-    | None
+    Any | PatchSearchSavedGroupByGroupIdResponseDefault | SavedSearchGroupSchema | None
 ):
     """Update and return saved search group data
 
@@ -175,7 +135,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PatchSearchSavedGroupByGroupIdResponseDefaultType0 | PatchSearchSavedGroupByGroupIdResponseDefaultType1 | SavedSearchGroupSchema
+        Any | PatchSearchSavedGroupByGroupIdResponseDefault | SavedSearchGroupSchema
     """
 
     return sync_detailed(
@@ -191,10 +151,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: SavedSearchGroupSchema,
 ) -> Response[
-    Any
-    | PatchSearchSavedGroupByGroupIdResponseDefaultType0
-    | PatchSearchSavedGroupByGroupIdResponseDefaultType1
-    | SavedSearchGroupSchema
+    Any | PatchSearchSavedGroupByGroupIdResponseDefault | SavedSearchGroupSchema
 ]:
     """Update and return saved search group data
 
@@ -211,7 +168,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PatchSearchSavedGroupByGroupIdResponseDefaultType0 | PatchSearchSavedGroupByGroupIdResponseDefaultType1 | SavedSearchGroupSchema]
+        Response[Any | PatchSearchSavedGroupByGroupIdResponseDefault | SavedSearchGroupSchema]
     """
 
     kwargs = _get_kwargs(
@@ -230,11 +187,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     body: SavedSearchGroupSchema,
 ) -> (
-    Any
-    | PatchSearchSavedGroupByGroupIdResponseDefaultType0
-    | PatchSearchSavedGroupByGroupIdResponseDefaultType1
-    | SavedSearchGroupSchema
-    | None
+    Any | PatchSearchSavedGroupByGroupIdResponseDefault | SavedSearchGroupSchema | None
 ):
     """Update and return saved search group data
 
@@ -251,7 +204,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PatchSearchSavedGroupByGroupIdResponseDefaultType0 | PatchSearchSavedGroupByGroupIdResponseDefaultType1 | SavedSearchGroupSchema
+        Any | PatchSearchSavedGroupByGroupIdResponseDefault | SavedSearchGroupSchema
     """
 
     return (

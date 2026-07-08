@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_face_recognition_persons_by_person_id_response_default_type_0 import (
-    DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType0,
-)
-from ...models.delete_face_recognition_persons_by_person_id_response_default_type_1 import (
-    DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType1,
+from ...models.delete_face_recognition_persons_by_person_id_response_default import (
+    DeleteFaceRecognitionPersonsByPersonIdResponseDefault,
 )
 from ...types import Response
 
@@ -30,14 +27,14 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType0
-    | DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType1
-):
+) -> Any | DeleteFaceRecognitionPersonsByPersonIdResponseDefault:
     if response.status_code == 201:
         response_201 = cast(Any, None)
         return response_201
+
+    if response.status_code == 204:
+        response_204 = cast(Any, None)
+        return response_204
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -51,44 +48,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType0
-        | DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteFaceRecognitionPersonsByPersonIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType0
-    | DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteFaceRecognitionPersonsByPersonIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -101,11 +70,7 @@ def sync_detailed(
     person_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType0
-    | DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteFaceRecognitionPersonsByPersonIdResponseDefault]:
     """Delete a person
 
 
@@ -120,7 +85,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType0 | DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType1]
+        Response[Any | DeleteFaceRecognitionPersonsByPersonIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -138,12 +103,7 @@ def sync(
     person_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType0
-    | DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteFaceRecognitionPersonsByPersonIdResponseDefault | None:
     """Delete a person
 
 
@@ -158,7 +118,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType0 | DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType1
+        Any | DeleteFaceRecognitionPersonsByPersonIdResponseDefault
     """
 
     return sync_detailed(
@@ -171,11 +131,7 @@ async def asyncio_detailed(
     person_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType0
-    | DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteFaceRecognitionPersonsByPersonIdResponseDefault]:
     """Delete a person
 
 
@@ -190,7 +146,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType0 | DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType1]
+        Response[Any | DeleteFaceRecognitionPersonsByPersonIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -206,12 +162,7 @@ async def asyncio(
     person_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType0
-    | DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteFaceRecognitionPersonsByPersonIdResponseDefault | None:
     """Delete a person
 
 
@@ -226,7 +177,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType0 | DeleteFaceRecognitionPersonsByPersonIdResponseDefaultType1
+        Any | DeleteFaceRecognitionPersonsByPersonIdResponseDefault
     """
 
     return (

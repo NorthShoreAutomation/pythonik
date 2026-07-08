@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_search_view_by_view_id_group_ids_response_default_type_0 import (
-    DeleteSearchViewByViewIdGroupIdsResponseDefaultType0,
-)
-from ...models.delete_search_view_by_view_id_group_ids_response_default_type_1 import (
-    DeleteSearchViewByViewIdGroupIdsResponseDefaultType1,
+from ...models.delete_search_view_by_view_id_group_ids_response_default import (
+    DeleteSearchViewByViewIdGroupIdsResponseDefault,
 )
 from ...models.group_settings_id_schema import GroupSettingsIDSchema
 from ...types import Response
@@ -39,11 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteSearchViewByViewIdGroupIdsResponseDefaultType0
-    | DeleteSearchViewByViewIdGroupIdsResponseDefaultType1
-):
+) -> Any | DeleteSearchViewByViewIdGroupIdsResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -56,42 +49,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteSearchViewByViewIdGroupIdsResponseDefaultType0
-        | DeleteSearchViewByViewIdGroupIdsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteSearchViewByViewIdGroupIdsResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteSearchViewByViewIdGroupIdsResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteSearchViewByViewIdGroupIdsResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteSearchViewByViewIdGroupIdsResponseDefaultType0
-    | DeleteSearchViewByViewIdGroupIdsResponseDefaultType1
-]:
+) -> Response[Any | DeleteSearchViewByViewIdGroupIdsResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -105,11 +72,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: GroupSettingsIDSchema,
-) -> Response[
-    Any
-    | DeleteSearchViewByViewIdGroupIdsResponseDefaultType0
-    | DeleteSearchViewByViewIdGroupIdsResponseDefaultType1
-]:
+) -> Response[Any | DeleteSearchViewByViewIdGroupIdsResponseDefault]:
     """Remove the Search View ID from any Group ID in the list.
 
     Args:
@@ -121,7 +84,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteSearchViewByViewIdGroupIdsResponseDefaultType0 | DeleteSearchViewByViewIdGroupIdsResponseDefaultType1]
+        Response[Any | DeleteSearchViewByViewIdGroupIdsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -141,12 +104,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: GroupSettingsIDSchema,
-) -> (
-    Any
-    | DeleteSearchViewByViewIdGroupIdsResponseDefaultType0
-    | DeleteSearchViewByViewIdGroupIdsResponseDefaultType1
-    | None
-):
+) -> Any | DeleteSearchViewByViewIdGroupIdsResponseDefault | None:
     """Remove the Search View ID from any Group ID in the list.
 
     Args:
@@ -158,7 +116,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteSearchViewByViewIdGroupIdsResponseDefaultType0 | DeleteSearchViewByViewIdGroupIdsResponseDefaultType1
+        Any | DeleteSearchViewByViewIdGroupIdsResponseDefault
     """
 
     return sync_detailed(
@@ -173,11 +131,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: GroupSettingsIDSchema,
-) -> Response[
-    Any
-    | DeleteSearchViewByViewIdGroupIdsResponseDefaultType0
-    | DeleteSearchViewByViewIdGroupIdsResponseDefaultType1
-]:
+) -> Response[Any | DeleteSearchViewByViewIdGroupIdsResponseDefault]:
     """Remove the Search View ID from any Group ID in the list.
 
     Args:
@@ -189,7 +143,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteSearchViewByViewIdGroupIdsResponseDefaultType0 | DeleteSearchViewByViewIdGroupIdsResponseDefaultType1]
+        Response[Any | DeleteSearchViewByViewIdGroupIdsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -207,12 +161,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: GroupSettingsIDSchema,
-) -> (
-    Any
-    | DeleteSearchViewByViewIdGroupIdsResponseDefaultType0
-    | DeleteSearchViewByViewIdGroupIdsResponseDefaultType1
-    | None
-):
+) -> Any | DeleteSearchViewByViewIdGroupIdsResponseDefault | None:
     """Remove the Search View ID from any Group ID in the list.
 
     Args:
@@ -224,7 +173,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteSearchViewByViewIdGroupIdsResponseDefaultType0 | DeleteSearchViewByViewIdGroupIdsResponseDefaultType1
+        Any | DeleteSearchViewByViewIdGroupIdsResponseDefault
     """
 
     return (

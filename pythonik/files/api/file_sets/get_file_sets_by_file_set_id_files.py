@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.files_schema import FilesSchema
-from ...models.get_file_sets_by_file_set_id_files_response_default_type_0 import (
-    GetFileSetsByFileSetIdFilesResponseDefaultType0,
-)
-from ...models.get_file_sets_by_file_set_id_files_response_default_type_1 import (
-    GetFileSetsByFileSetIdFilesResponseDefaultType1,
+from ...models.get_file_sets_by_file_set_id_files_response_default import (
+    GetFileSetsByFileSetIdFilesResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -18,7 +15,7 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     file_set_id: str,
     *,
-    generate_signed_url: bool | Unset = True,
+    generate_signed_url: bool | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -40,52 +37,22 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    FilesSchema
-    | GetFileSetsByFileSetIdFilesResponseDefaultType0
-    | GetFileSetsByFileSetIdFilesResponseDefaultType1
-):
+) -> FilesSchema | GetFileSetsByFileSetIdFilesResponseDefault:
     if response.status_code == 200:
         response_200 = FilesSchema.from_dict(response.json())
 
         return response_200
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetFileSetsByFileSetIdFilesResponseDefaultType0
-        | GetFileSetsByFileSetIdFilesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetFileSetsByFileSetIdFilesResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetFileSetsByFileSetIdFilesResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetFileSetsByFileSetIdFilesResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    FilesSchema
-    | GetFileSetsByFileSetIdFilesResponseDefaultType0
-    | GetFileSetsByFileSetIdFilesResponseDefaultType1
-]:
+) -> Response[FilesSchema | GetFileSetsByFileSetIdFilesResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -98,12 +65,8 @@ def sync_detailed(
     file_set_id: str,
     *,
     client: AuthenticatedClient | Client,
-    generate_signed_url: bool | Unset = True,
-) -> Response[
-    FilesSchema
-    | GetFileSetsByFileSetIdFilesResponseDefaultType0
-    | GetFileSetsByFileSetIdFilesResponseDefaultType1
-]:
+    generate_signed_url: bool | Unset = UNSET,
+) -> Response[FilesSchema | GetFileSetsByFileSetIdFilesResponseDefault]:
     """Get files from a file set
 
 
@@ -112,14 +75,14 @@ def sync_detailed(
 
     Args:
         file_set_id (str):
-        generate_signed_url (bool | Unset):  Default: True.
+        generate_signed_url (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[FilesSchema | GetFileSetsByFileSetIdFilesResponseDefaultType0 | GetFileSetsByFileSetIdFilesResponseDefaultType1]
+        Response[FilesSchema | GetFileSetsByFileSetIdFilesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -138,13 +101,8 @@ def sync(
     file_set_id: str,
     *,
     client: AuthenticatedClient | Client,
-    generate_signed_url: bool | Unset = True,
-) -> (
-    FilesSchema
-    | GetFileSetsByFileSetIdFilesResponseDefaultType0
-    | GetFileSetsByFileSetIdFilesResponseDefaultType1
-    | None
-):
+    generate_signed_url: bool | Unset = UNSET,
+) -> FilesSchema | GetFileSetsByFileSetIdFilesResponseDefault | None:
     """Get files from a file set
 
 
@@ -153,14 +111,14 @@ def sync(
 
     Args:
         file_set_id (str):
-        generate_signed_url (bool | Unset):  Default: True.
+        generate_signed_url (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        FilesSchema | GetFileSetsByFileSetIdFilesResponseDefaultType0 | GetFileSetsByFileSetIdFilesResponseDefaultType1
+        FilesSchema | GetFileSetsByFileSetIdFilesResponseDefault
     """
 
     return sync_detailed(
@@ -174,12 +132,8 @@ async def asyncio_detailed(
     file_set_id: str,
     *,
     client: AuthenticatedClient | Client,
-    generate_signed_url: bool | Unset = True,
-) -> Response[
-    FilesSchema
-    | GetFileSetsByFileSetIdFilesResponseDefaultType0
-    | GetFileSetsByFileSetIdFilesResponseDefaultType1
-]:
+    generate_signed_url: bool | Unset = UNSET,
+) -> Response[FilesSchema | GetFileSetsByFileSetIdFilesResponseDefault]:
     """Get files from a file set
 
 
@@ -188,14 +142,14 @@ async def asyncio_detailed(
 
     Args:
         file_set_id (str):
-        generate_signed_url (bool | Unset):  Default: True.
+        generate_signed_url (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[FilesSchema | GetFileSetsByFileSetIdFilesResponseDefaultType0 | GetFileSetsByFileSetIdFilesResponseDefaultType1]
+        Response[FilesSchema | GetFileSetsByFileSetIdFilesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -212,13 +166,8 @@ async def asyncio(
     file_set_id: str,
     *,
     client: AuthenticatedClient | Client,
-    generate_signed_url: bool | Unset = True,
-) -> (
-    FilesSchema
-    | GetFileSetsByFileSetIdFilesResponseDefaultType0
-    | GetFileSetsByFileSetIdFilesResponseDefaultType1
-    | None
-):
+    generate_signed_url: bool | Unset = UNSET,
+) -> FilesSchema | GetFileSetsByFileSetIdFilesResponseDefault | None:
     """Get files from a file set
 
 
@@ -227,14 +176,14 @@ async def asyncio(
 
     Args:
         file_set_id (str):
-        generate_signed_url (bool | Unset):  Default: True.
+        generate_signed_url (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        FilesSchema | GetFileSetsByFileSetIdFilesResponseDefaultType0 | GetFileSetsByFileSetIdFilesResponseDefaultType1
+        FilesSchema | GetFileSetsByFileSetIdFilesResponseDefault
     """
 
     return (

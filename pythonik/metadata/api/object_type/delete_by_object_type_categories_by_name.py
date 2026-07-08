@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_by_object_type_categories_by_name_response_default_type_0 import (
-    DeleteByObjectTypeCategoriesByNameResponseDefaultType0,
-)
-from ...models.delete_by_object_type_categories_by_name_response_default_type_1 import (
-    DeleteByObjectTypeCategoriesByNameResponseDefaultType1,
+from ...models.delete_by_object_type_categories_by_name_response_default import (
+    DeleteByObjectTypeCategoriesByNameResponseDefault,
 )
 from ...types import Response
 
@@ -32,11 +29,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteByObjectTypeCategoriesByNameResponseDefaultType0
-    | DeleteByObjectTypeCategoriesByNameResponseDefaultType1
-):
+) -> Any | DeleteByObjectTypeCategoriesByNameResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -53,42 +46,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteByObjectTypeCategoriesByNameResponseDefaultType0
-        | DeleteByObjectTypeCategoriesByNameResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteByObjectTypeCategoriesByNameResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteByObjectTypeCategoriesByNameResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteByObjectTypeCategoriesByNameResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteByObjectTypeCategoriesByNameResponseDefaultType0
-    | DeleteByObjectTypeCategoriesByNameResponseDefaultType1
-]:
+) -> Response[Any | DeleteByObjectTypeCategoriesByNameResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -102,11 +69,7 @@ def sync_detailed(
     name: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteByObjectTypeCategoriesByNameResponseDefaultType0
-    | DeleteByObjectTypeCategoriesByNameResponseDefaultType1
-]:
+) -> Response[Any | DeleteByObjectTypeCategoriesByNameResponseDefault]:
     """Delete metadata category by object type and category name
 
 
@@ -122,7 +85,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteByObjectTypeCategoriesByNameResponseDefaultType0 | DeleteByObjectTypeCategoriesByNameResponseDefaultType1]
+        Response[Any | DeleteByObjectTypeCategoriesByNameResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -142,12 +105,7 @@ def sync(
     name: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteByObjectTypeCategoriesByNameResponseDefaultType0
-    | DeleteByObjectTypeCategoriesByNameResponseDefaultType1
-    | None
-):
+) -> Any | DeleteByObjectTypeCategoriesByNameResponseDefault | None:
     """Delete metadata category by object type and category name
 
 
@@ -163,7 +121,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteByObjectTypeCategoriesByNameResponseDefaultType0 | DeleteByObjectTypeCategoriesByNameResponseDefaultType1
+        Any | DeleteByObjectTypeCategoriesByNameResponseDefault
     """
 
     return sync_detailed(
@@ -178,11 +136,7 @@ async def asyncio_detailed(
     name: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteByObjectTypeCategoriesByNameResponseDefaultType0
-    | DeleteByObjectTypeCategoriesByNameResponseDefaultType1
-]:
+) -> Response[Any | DeleteByObjectTypeCategoriesByNameResponseDefault]:
     """Delete metadata category by object type and category name
 
 
@@ -198,7 +152,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteByObjectTypeCategoriesByNameResponseDefaultType0 | DeleteByObjectTypeCategoriesByNameResponseDefaultType1]
+        Response[Any | DeleteByObjectTypeCategoriesByNameResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -216,12 +170,7 @@ async def asyncio(
     name: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteByObjectTypeCategoriesByNameResponseDefaultType0
-    | DeleteByObjectTypeCategoriesByNameResponseDefaultType1
-    | None
-):
+) -> Any | DeleteByObjectTypeCategoriesByNameResponseDefault | None:
     """Delete metadata category by object type and category name
 
 
@@ -237,7 +186,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteByObjectTypeCategoriesByNameResponseDefaultType0 | DeleteByObjectTypeCategoriesByNameResponseDefaultType1
+        Any | DeleteByObjectTypeCategoriesByNameResponseDefault
     """
 
     return (

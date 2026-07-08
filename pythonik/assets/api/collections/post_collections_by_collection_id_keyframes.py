@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_collections_by_collection_id_keyframes_response_default_type_0 import (
-    PostCollectionsByCollectionIdKeyframesResponseDefaultType0,
-)
-from ...models.post_collections_by_collection_id_keyframes_response_default_type_1 import (
-    PostCollectionsByCollectionIdKeyframesResponseDefaultType1,
+from ...models.post_collections_by_collection_id_keyframes_response_default import (
+    PostCollectionsByCollectionIdKeyframesResponseDefault,
 )
 from ...models.synchronize_collection_keyframes_schema import (
     SynchronizeCollectionKeyframesSchema,
@@ -41,11 +38,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostCollectionsByCollectionIdKeyframesResponseDefaultType0
-    | PostCollectionsByCollectionIdKeyframesResponseDefaultType1
-):
+) -> Any | PostCollectionsByCollectionIdKeyframesResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -62,44 +55,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostCollectionsByCollectionIdKeyframesResponseDefaultType0
-        | PostCollectionsByCollectionIdKeyframesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostCollectionsByCollectionIdKeyframesResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostCollectionsByCollectionIdKeyframesResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostCollectionsByCollectionIdKeyframesResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostCollectionsByCollectionIdKeyframesResponseDefaultType0
-    | PostCollectionsByCollectionIdKeyframesResponseDefaultType1
-]:
+) -> Response[Any | PostCollectionsByCollectionIdKeyframesResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -113,11 +78,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: SynchronizeCollectionKeyframesSchema,
-) -> Response[
-    Any
-    | PostCollectionsByCollectionIdKeyframesResponseDefaultType0
-    | PostCollectionsByCollectionIdKeyframesResponseDefaultType1
-]:
+) -> Response[Any | PostCollectionsByCollectionIdKeyframesResponseDefault]:
     """Pick up to three asset_ids for collection keyframes
 
 
@@ -133,7 +94,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostCollectionsByCollectionIdKeyframesResponseDefaultType0 | PostCollectionsByCollectionIdKeyframesResponseDefaultType1]
+        Response[Any | PostCollectionsByCollectionIdKeyframesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -153,12 +114,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: SynchronizeCollectionKeyframesSchema,
-) -> (
-    Any
-    | PostCollectionsByCollectionIdKeyframesResponseDefaultType0
-    | PostCollectionsByCollectionIdKeyframesResponseDefaultType1
-    | None
-):
+) -> Any | PostCollectionsByCollectionIdKeyframesResponseDefault | None:
     """Pick up to three asset_ids for collection keyframes
 
 
@@ -174,7 +130,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostCollectionsByCollectionIdKeyframesResponseDefaultType0 | PostCollectionsByCollectionIdKeyframesResponseDefaultType1
+        Any | PostCollectionsByCollectionIdKeyframesResponseDefault
     """
 
     return sync_detailed(
@@ -189,11 +145,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: SynchronizeCollectionKeyframesSchema,
-) -> Response[
-    Any
-    | PostCollectionsByCollectionIdKeyframesResponseDefaultType0
-    | PostCollectionsByCollectionIdKeyframesResponseDefaultType1
-]:
+) -> Response[Any | PostCollectionsByCollectionIdKeyframesResponseDefault]:
     """Pick up to three asset_ids for collection keyframes
 
 
@@ -209,7 +161,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostCollectionsByCollectionIdKeyframesResponseDefaultType0 | PostCollectionsByCollectionIdKeyframesResponseDefaultType1]
+        Response[Any | PostCollectionsByCollectionIdKeyframesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -227,12 +179,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: SynchronizeCollectionKeyframesSchema,
-) -> (
-    Any
-    | PostCollectionsByCollectionIdKeyframesResponseDefaultType0
-    | PostCollectionsByCollectionIdKeyframesResponseDefaultType1
-    | None
-):
+) -> Any | PostCollectionsByCollectionIdKeyframesResponseDefault | None:
     """Pick up to three asset_ids for collection keyframes
 
 
@@ -248,7 +195,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostCollectionsByCollectionIdKeyframesResponseDefaultType0 | PostCollectionsByCollectionIdKeyframesResponseDefaultType1
+        Any | PostCollectionsByCollectionIdKeyframesResponseDefault
     """
 
     return (

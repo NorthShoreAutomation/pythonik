@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_assets_by_asset_id_segments_csv_response_default_type_0 import (
-    GetAssetsByAssetIdSegmentsCsvResponseDefaultType0,
-)
-from ...models.get_assets_by_asset_id_segments_csv_response_default_type_1 import (
-    GetAssetsByAssetIdSegmentsCsvResponseDefaultType1,
+from ...models.get_assets_by_asset_id_segments_csv_response_default import (
+    GetAssetsByAssetIdSegmentsCsvResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -54,12 +51,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetAssetsByAssetIdSegmentsCsvResponseDefaultType0
-    | GetAssetsByAssetIdSegmentsCsvResponseDefaultType1
-    | str
-):
+) -> Any | GetAssetsByAssetIdSegmentsCsvResponseDefault | str:
     if response.status_code == 200:
         response_200 = response.text
         return response_200
@@ -76,43 +68,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsByAssetIdSegmentsCsvResponseDefaultType0
-        | GetAssetsByAssetIdSegmentsCsvResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetAssetsByAssetIdSegmentsCsvResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetAssetsByAssetIdSegmentsCsvResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAssetsByAssetIdSegmentsCsvResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetAssetsByAssetIdSegmentsCsvResponseDefaultType0
-    | GetAssetsByAssetIdSegmentsCsvResponseDefaultType1
-    | str
-]:
+) -> Response[Any | GetAssetsByAssetIdSegmentsCsvResponseDefault | str]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -131,12 +96,7 @@ def sync_detailed(
     version_id: str | Unset = UNSET,
     segment_type: str | Unset = UNSET,
     segment_color: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetAssetsByAssetIdSegmentsCsvResponseDefaultType0
-    | GetAssetsByAssetIdSegmentsCsvResponseDefaultType1
-    | str
-]:
+) -> Response[Any | GetAssetsByAssetIdSegmentsCsvResponseDefault | str]:
     """List of segments as CSV file
 
 
@@ -157,7 +117,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdSegmentsCsvResponseDefaultType0 | GetAssetsByAssetIdSegmentsCsvResponseDefaultType1 | str]
+        Response[Any | GetAssetsByAssetIdSegmentsCsvResponseDefault | str]
     """
 
     kwargs = _get_kwargs(
@@ -187,13 +147,7 @@ def sync(
     version_id: str | Unset = UNSET,
     segment_type: str | Unset = UNSET,
     segment_color: str | Unset = UNSET,
-) -> (
-    Any
-    | GetAssetsByAssetIdSegmentsCsvResponseDefaultType0
-    | GetAssetsByAssetIdSegmentsCsvResponseDefaultType1
-    | str
-    | None
-):
+) -> Any | GetAssetsByAssetIdSegmentsCsvResponseDefault | str | None:
     """List of segments as CSV file
 
 
@@ -214,7 +168,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdSegmentsCsvResponseDefaultType0 | GetAssetsByAssetIdSegmentsCsvResponseDefaultType1 | str
+        Any | GetAssetsByAssetIdSegmentsCsvResponseDefault | str
     """
 
     return sync_detailed(
@@ -239,12 +193,7 @@ async def asyncio_detailed(
     version_id: str | Unset = UNSET,
     segment_type: str | Unset = UNSET,
     segment_color: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetAssetsByAssetIdSegmentsCsvResponseDefaultType0
-    | GetAssetsByAssetIdSegmentsCsvResponseDefaultType1
-    | str
-]:
+) -> Response[Any | GetAssetsByAssetIdSegmentsCsvResponseDefault | str]:
     """List of segments as CSV file
 
 
@@ -265,7 +214,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdSegmentsCsvResponseDefaultType0 | GetAssetsByAssetIdSegmentsCsvResponseDefaultType1 | str]
+        Response[Any | GetAssetsByAssetIdSegmentsCsvResponseDefault | str]
     """
 
     kwargs = _get_kwargs(
@@ -293,13 +242,7 @@ async def asyncio(
     version_id: str | Unset = UNSET,
     segment_type: str | Unset = UNSET,
     segment_color: str | Unset = UNSET,
-) -> (
-    Any
-    | GetAssetsByAssetIdSegmentsCsvResponseDefaultType0
-    | GetAssetsByAssetIdSegmentsCsvResponseDefaultType1
-    | str
-    | None
-):
+) -> Any | GetAssetsByAssetIdSegmentsCsvResponseDefault | str | None:
     """List of segments as CSV file
 
 
@@ -320,7 +263,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdSegmentsCsvResponseDefaultType0 | GetAssetsByAssetIdSegmentsCsvResponseDefaultType1 | str
+        Any | GetAssetsByAssetIdSegmentsCsvResponseDefault | str
     """
 
     return (

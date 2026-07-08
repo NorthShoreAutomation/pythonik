@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_assets_by_asset_id_method_by_storage_method_proxies_response_default_type_0 import (
-    PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType0,
-)
-from ...models.post_assets_by_asset_id_method_by_storage_method_proxies_response_default_type_1 import (
-    PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType1,
+from ...models.post_assets_by_asset_id_method_by_storage_method_proxies_response_default import (
+    PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefault,
 )
 from ...models.proxy_create_schema import ProxyCreateSchema
 from ...types import Response
@@ -43,8 +40,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType0
-    | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType1
+    | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefault
     | ProxyCreateSchema
 ):
     if response.status_code == 201:
@@ -60,31 +56,11 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType0
-        | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -93,8 +69,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType0
-    | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType1
+    | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefault
     | ProxyCreateSchema
 ]:
     return Response(
@@ -113,8 +88,7 @@ def sync_detailed(
     body: ProxyCreateSchema,
 ) -> Response[
     Any
-    | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType0
-    | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType1
+    | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefault
     | ProxyCreateSchema
 ]:
     """Create proxy and associate to asset
@@ -133,7 +107,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType0 | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType1 | ProxyCreateSchema]
+        Response[Any | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefault | ProxyCreateSchema]
     """
 
     kwargs = _get_kwargs(
@@ -157,8 +131,7 @@ def sync(
     body: ProxyCreateSchema,
 ) -> (
     Any
-    | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType0
-    | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType1
+    | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefault
     | ProxyCreateSchema
     | None
 ):
@@ -178,7 +151,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType0 | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType1 | ProxyCreateSchema
+        Any | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefault | ProxyCreateSchema
     """
 
     return sync_detailed(
@@ -197,8 +170,7 @@ async def asyncio_detailed(
     body: ProxyCreateSchema,
 ) -> Response[
     Any
-    | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType0
-    | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType1
+    | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefault
     | ProxyCreateSchema
 ]:
     """Create proxy and associate to asset
@@ -217,7 +189,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType0 | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType1 | ProxyCreateSchema]
+        Response[Any | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefault | ProxyCreateSchema]
     """
 
     kwargs = _get_kwargs(
@@ -239,8 +211,7 @@ async def asyncio(
     body: ProxyCreateSchema,
 ) -> (
     Any
-    | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType0
-    | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType1
+    | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefault
     | ProxyCreateSchema
     | None
 ):
@@ -260,7 +231,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType0 | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType1 | ProxyCreateSchema
+        Any | PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefault | ProxyCreateSchema
     """
 
     return (

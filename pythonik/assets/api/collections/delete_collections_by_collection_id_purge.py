@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_collections_by_collection_id_purge_response_default_type_0 import (
-    DeleteCollectionsByCollectionIdPurgeResponseDefaultType0,
-)
-from ...models.delete_collections_by_collection_id_purge_response_default_type_1 import (
-    DeleteCollectionsByCollectionIdPurgeResponseDefaultType1,
+from ...models.delete_collections_by_collection_id_purge_response_default import (
+    DeleteCollectionsByCollectionIdPurgeResponseDefault,
 )
 from ...types import Response
 
@@ -30,14 +27,14 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteCollectionsByCollectionIdPurgeResponseDefaultType0
-    | DeleteCollectionsByCollectionIdPurgeResponseDefaultType1
-):
+) -> Any | DeleteCollectionsByCollectionIdPurgeResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
+
+    if response.status_code == 204:
+        response_204 = cast(Any, None)
+        return response_204
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -55,42 +52,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteCollectionsByCollectionIdPurgeResponseDefaultType0
-        | DeleteCollectionsByCollectionIdPurgeResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteCollectionsByCollectionIdPurgeResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteCollectionsByCollectionIdPurgeResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteCollectionsByCollectionIdPurgeResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteCollectionsByCollectionIdPurgeResponseDefaultType0
-    | DeleteCollectionsByCollectionIdPurgeResponseDefaultType1
-]:
+) -> Response[Any | DeleteCollectionsByCollectionIdPurgeResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -103,11 +74,7 @@ def sync_detailed(
     collection_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteCollectionsByCollectionIdPurgeResponseDefaultType0
-    | DeleteCollectionsByCollectionIdPurgeResponseDefaultType1
-]:
+) -> Response[Any | DeleteCollectionsByCollectionIdPurgeResponseDefault]:
     """Purges deleted collection by id immediately
 
 
@@ -122,7 +89,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteCollectionsByCollectionIdPurgeResponseDefaultType0 | DeleteCollectionsByCollectionIdPurgeResponseDefaultType1]
+        Response[Any | DeleteCollectionsByCollectionIdPurgeResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -140,12 +107,7 @@ def sync(
     collection_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteCollectionsByCollectionIdPurgeResponseDefaultType0
-    | DeleteCollectionsByCollectionIdPurgeResponseDefaultType1
-    | None
-):
+) -> Any | DeleteCollectionsByCollectionIdPurgeResponseDefault | None:
     """Purges deleted collection by id immediately
 
 
@@ -160,7 +122,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteCollectionsByCollectionIdPurgeResponseDefaultType0 | DeleteCollectionsByCollectionIdPurgeResponseDefaultType1
+        Any | DeleteCollectionsByCollectionIdPurgeResponseDefault
     """
 
     return sync_detailed(
@@ -173,11 +135,7 @@ async def asyncio_detailed(
     collection_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteCollectionsByCollectionIdPurgeResponseDefaultType0
-    | DeleteCollectionsByCollectionIdPurgeResponseDefaultType1
-]:
+) -> Response[Any | DeleteCollectionsByCollectionIdPurgeResponseDefault]:
     """Purges deleted collection by id immediately
 
 
@@ -192,7 +150,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteCollectionsByCollectionIdPurgeResponseDefaultType0 | DeleteCollectionsByCollectionIdPurgeResponseDefaultType1]
+        Response[Any | DeleteCollectionsByCollectionIdPurgeResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -208,12 +166,7 @@ async def asyncio(
     collection_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteCollectionsByCollectionIdPurgeResponseDefaultType0
-    | DeleteCollectionsByCollectionIdPurgeResponseDefaultType1
-    | None
-):
+) -> Any | DeleteCollectionsByCollectionIdPurgeResponseDefault | None:
     """Purges deleted collection by id immediately
 
 
@@ -228,7 +181,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteCollectionsByCollectionIdPurgeResponseDefaultType0 | DeleteCollectionsByCollectionIdPurgeResponseDefaultType1
+        Any | DeleteCollectionsByCollectionIdPurgeResponseDefault
     """
 
     return (

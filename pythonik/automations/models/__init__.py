@@ -91,23 +91,11 @@ from .delete_action_schema import DeleteActionSchema
 from .delete_action_schema_parameters_type_0 import DeleteActionSchemaParametersType0
 from .delete_action_schema_type import DeleteActionSchemaType
 from .delete_action_type import DeleteActionType
-from .delete_automations_by_automation_id_history_by_object_type_by_object_id_by_version_id_response_default_type_0 import (
-    DeleteAutomationsByAutomationIdHistoryByObjectTypeByObjectIdByVersionIdResponseDefaultType0,
+from .delete_automations_by_automation_id_history_by_object_type_by_object_id_by_version_id_response_default import (
+    DeleteAutomationsByAutomationIdHistoryByObjectTypeByObjectIdByVersionIdResponseDefault,
 )
-from .delete_automations_by_automation_id_history_by_object_type_by_object_id_by_version_id_response_default_type_1 import (
-    DeleteAutomationsByAutomationIdHistoryByObjectTypeByObjectIdByVersionIdResponseDefaultType1,
-)
-from .delete_automations_by_automation_id_history_by_object_type_by_object_id_by_version_id_response_default_type_1_errors import (
-    DeleteAutomationsByAutomationIdHistoryByObjectTypeByObjectIdByVersionIdResponseDefaultType1Errors,
-)
-from .delete_automations_by_automation_id_response_default_type_0 import (
-    DeleteAutomationsByAutomationIdResponseDefaultType0,
-)
-from .delete_automations_by_automation_id_response_default_type_1 import (
-    DeleteAutomationsByAutomationIdResponseDefaultType1,
-)
-from .delete_automations_by_automation_id_response_default_type_1_errors import (
-    DeleteAutomationsByAutomationIdResponseDefaultType1Errors,
+from .delete_automations_by_automation_id_response_default import (
+    DeleteAutomationsByAutomationIdResponseDefault,
 )
 from .delete_file_set_action import DeleteFileSetAction
 from .delete_file_set_action_parameters import DeleteFileSetActionParameters
@@ -128,38 +116,16 @@ from .extract_faces_action_schema_type import ExtractFacesActionSchemaType
 from .extract_faces_action_type import ExtractFacesActionType
 from .extract_faces_parameters import ExtractFacesParameters
 from .facet_schema import FacetSchema
-from .get_automations_by_automation_id_history_by_object_type_by_object_id_by_version_id_response_default_type_0 import (
-    GetAutomationsByAutomationIdHistoryByObjectTypeByObjectIdByVersionIdResponseDefaultType0,
+from .get_automations_by_automation_id_history_by_object_type_by_object_id_by_version_id_response_default import (
+    GetAutomationsByAutomationIdHistoryByObjectTypeByObjectIdByVersionIdResponseDefault,
 )
-from .get_automations_by_automation_id_history_by_object_type_by_object_id_by_version_id_response_default_type_1 import (
-    GetAutomationsByAutomationIdHistoryByObjectTypeByObjectIdByVersionIdResponseDefaultType1,
+from .get_automations_by_automation_id_response_default import (
+    GetAutomationsByAutomationIdResponseDefault,
 )
-from .get_automations_by_automation_id_history_by_object_type_by_object_id_by_version_id_response_default_type_1_errors import (
-    GetAutomationsByAutomationIdHistoryByObjectTypeByObjectIdByVersionIdResponseDefaultType1Errors,
+from .get_automations_by_automation_id_runs_estimate_response_default import (
+    GetAutomationsByAutomationIdRunsEstimateResponseDefault,
 )
-from .get_automations_by_automation_id_response_default_type_0 import (
-    GetAutomationsByAutomationIdResponseDefaultType0,
-)
-from .get_automations_by_automation_id_response_default_type_1 import (
-    GetAutomationsByAutomationIdResponseDefaultType1,
-)
-from .get_automations_by_automation_id_response_default_type_1_errors import (
-    GetAutomationsByAutomationIdResponseDefaultType1Errors,
-)
-from .get_automations_by_automation_id_runs_estimate_response_default_type_0 import (
-    GetAutomationsByAutomationIdRunsEstimateResponseDefaultType0,
-)
-from .get_automations_by_automation_id_runs_estimate_response_default_type_1 import (
-    GetAutomationsByAutomationIdRunsEstimateResponseDefaultType1,
-)
-from .get_automations_by_automation_id_runs_estimate_response_default_type_1_errors import (
-    GetAutomationsByAutomationIdRunsEstimateResponseDefaultType1Errors,
-)
-from .get_automations_response_default_type_0 import GetAutomationsResponseDefaultType0
-from .get_automations_response_default_type_1 import GetAutomationsResponseDefaultType1
-from .get_automations_response_default_type_1_errors import (
-    GetAutomationsResponseDefaultType1Errors,
-)
+from .get_automations_response_default import GetAutomationsResponseDefault
 from .list_objects_schema import ListObjectsSchema
 from .metadata_field_value_schema import MetadataFieldValueSchema
 from .metadata_field_value_schema_field_values_type_0_item import (
@@ -220,50 +186,18 @@ from .object_removed_from_collection_trigger_schema_type import (
 from .object_removed_from_collection_trigger_type import (
     ObjectRemovedFromCollectionTriggerType,
 )
-from .patch_automations_by_automation_id_response_default_type_0 import (
-    PatchAutomationsByAutomationIdResponseDefaultType0,
+from .patch_automations_by_automation_id_response_default import (
+    PatchAutomationsByAutomationIdResponseDefault,
 )
-from .patch_automations_by_automation_id_response_default_type_1 import (
-    PatchAutomationsByAutomationIdResponseDefaultType1,
+from .post_automations_by_automation_id_history_response_default import (
+    PostAutomationsByAutomationIdHistoryResponseDefault,
 )
-from .patch_automations_by_automation_id_response_default_type_1_errors import (
-    PatchAutomationsByAutomationIdResponseDefaultType1Errors,
+from .post_automations_by_automation_id_runs_response_default import (
+    PostAutomationsByAutomationIdRunsResponseDefault,
 )
-from .post_automations_by_automation_id_history_response_default_type_0 import (
-    PostAutomationsByAutomationIdHistoryResponseDefaultType0,
-)
-from .post_automations_by_automation_id_history_response_default_type_1 import (
-    PostAutomationsByAutomationIdHistoryResponseDefaultType1,
-)
-from .post_automations_by_automation_id_history_response_default_type_1_errors import (
-    PostAutomationsByAutomationIdHistoryResponseDefaultType1Errors,
-)
-from .post_automations_by_automation_id_runs_response_default_type_0 import (
-    PostAutomationsByAutomationIdRunsResponseDefaultType0,
-)
-from .post_automations_by_automation_id_runs_response_default_type_1 import (
-    PostAutomationsByAutomationIdRunsResponseDefaultType1,
-)
-from .post_automations_by_automation_id_runs_response_default_type_1_errors import (
-    PostAutomationsByAutomationIdRunsResponseDefaultType1Errors,
-)
-from .post_automations_response_default_type_0 import (
-    PostAutomationsResponseDefaultType0,
-)
-from .post_automations_response_default_type_1 import (
-    PostAutomationsResponseDefaultType1,
-)
-from .post_automations_response_default_type_1_errors import (
-    PostAutomationsResponseDefaultType1Errors,
-)
-from .put_automations_by_automation_id_response_default_type_0 import (
-    PutAutomationsByAutomationIdResponseDefaultType0,
-)
-from .put_automations_by_automation_id_response_default_type_1 import (
-    PutAutomationsByAutomationIdResponseDefaultType1,
-)
-from .put_automations_by_automation_id_response_default_type_1_errors import (
-    PutAutomationsByAutomationIdResponseDefaultType1Errors,
+from .post_automations_response_default import PostAutomationsResponseDefault
+from .put_automations_by_automation_id_response_default import (
+    PutAutomationsByAutomationIdResponseDefault,
 )
 from .range_filter import RangeFilter
 from .range_filter_schema import RangeFilterSchema
@@ -449,12 +383,8 @@ __all__ = (
     "DeleteActionSchemaParametersType0",
     "DeleteActionSchemaType",
     "DeleteActionType",
-    "DeleteAutomationsByAutomationIdHistoryByObjectTypeByObjectIdByVersionIdResponseDefaultType0",
-    "DeleteAutomationsByAutomationIdHistoryByObjectTypeByObjectIdByVersionIdResponseDefaultType1",
-    "DeleteAutomationsByAutomationIdHistoryByObjectTypeByObjectIdByVersionIdResponseDefaultType1Errors",
-    "DeleteAutomationsByAutomationIdResponseDefaultType0",
-    "DeleteAutomationsByAutomationIdResponseDefaultType1",
-    "DeleteAutomationsByAutomationIdResponseDefaultType1Errors",
+    "DeleteAutomationsByAutomationIdHistoryByObjectTypeByObjectIdByVersionIdResponseDefault",
+    "DeleteAutomationsByAutomationIdResponseDefault",
     "DeleteFileSetAction",
     "DeleteFileSetActionParameters",
     "DeleteFileSetActionSchema",
@@ -472,18 +402,10 @@ __all__ = (
     "ExtractFacesActionType",
     "ExtractFacesParameters",
     "FacetSchema",
-    "GetAutomationsByAutomationIdHistoryByObjectTypeByObjectIdByVersionIdResponseDefaultType0",
-    "GetAutomationsByAutomationIdHistoryByObjectTypeByObjectIdByVersionIdResponseDefaultType1",
-    "GetAutomationsByAutomationIdHistoryByObjectTypeByObjectIdByVersionIdResponseDefaultType1Errors",
-    "GetAutomationsByAutomationIdResponseDefaultType0",
-    "GetAutomationsByAutomationIdResponseDefaultType1",
-    "GetAutomationsByAutomationIdResponseDefaultType1Errors",
-    "GetAutomationsByAutomationIdRunsEstimateResponseDefaultType0",
-    "GetAutomationsByAutomationIdRunsEstimateResponseDefaultType1",
-    "GetAutomationsByAutomationIdRunsEstimateResponseDefaultType1Errors",
-    "GetAutomationsResponseDefaultType0",
-    "GetAutomationsResponseDefaultType1",
-    "GetAutomationsResponseDefaultType1Errors",
+    "GetAutomationsByAutomationIdHistoryByObjectTypeByObjectIdByVersionIdResponseDefault",
+    "GetAutomationsByAutomationIdResponseDefault",
+    "GetAutomationsByAutomationIdRunsEstimateResponseDefault",
+    "GetAutomationsResponseDefault",
     "ListObjectsSchema",
     "MetadataFieldValueSchema",
     "MetadataFieldValueSchemaFieldValuesType0Item",
@@ -518,21 +440,11 @@ __all__ = (
     "ObjectRemovedFromCollectionTriggerSchema",
     "ObjectRemovedFromCollectionTriggerSchemaType",
     "ObjectRemovedFromCollectionTriggerType",
-    "PatchAutomationsByAutomationIdResponseDefaultType0",
-    "PatchAutomationsByAutomationIdResponseDefaultType1",
-    "PatchAutomationsByAutomationIdResponseDefaultType1Errors",
-    "PostAutomationsByAutomationIdHistoryResponseDefaultType0",
-    "PostAutomationsByAutomationIdHistoryResponseDefaultType1",
-    "PostAutomationsByAutomationIdHistoryResponseDefaultType1Errors",
-    "PostAutomationsByAutomationIdRunsResponseDefaultType0",
-    "PostAutomationsByAutomationIdRunsResponseDefaultType1",
-    "PostAutomationsByAutomationIdRunsResponseDefaultType1Errors",
-    "PostAutomationsResponseDefaultType0",
-    "PostAutomationsResponseDefaultType1",
-    "PostAutomationsResponseDefaultType1Errors",
-    "PutAutomationsByAutomationIdResponseDefaultType0",
-    "PutAutomationsByAutomationIdResponseDefaultType1",
-    "PutAutomationsByAutomationIdResponseDefaultType1Errors",
+    "PatchAutomationsByAutomationIdResponseDefault",
+    "PostAutomationsByAutomationIdHistoryResponseDefault",
+    "PostAutomationsByAutomationIdRunsResponseDefault",
+    "PostAutomationsResponseDefault",
+    "PutAutomationsByAutomationIdResponseDefault",
     "RangeFilter",
     "RangeFilterSchema",
     "RemoveAssetRestrictionAction",

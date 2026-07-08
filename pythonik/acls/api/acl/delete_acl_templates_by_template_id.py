@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_acl_templates_by_template_id_response_default_type_0 import (
-    DeleteAclTemplatesByTemplateIdResponseDefaultType0,
-)
-from ...models.delete_acl_templates_by_template_id_response_default_type_1 import (
-    DeleteAclTemplatesByTemplateIdResponseDefaultType1,
+from ...models.delete_acl_templates_by_template_id_response_default import (
+    DeleteAclTemplatesByTemplateIdResponseDefault,
 )
 from ...types import Response
 
@@ -30,11 +27,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteAclTemplatesByTemplateIdResponseDefaultType0
-    | DeleteAclTemplatesByTemplateIdResponseDefaultType1
-):
+) -> Any | DeleteAclTemplatesByTemplateIdResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -51,42 +44,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteAclTemplatesByTemplateIdResponseDefaultType0
-        | DeleteAclTemplatesByTemplateIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteAclTemplatesByTemplateIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteAclTemplatesByTemplateIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteAclTemplatesByTemplateIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteAclTemplatesByTemplateIdResponseDefaultType0
-    | DeleteAclTemplatesByTemplateIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteAclTemplatesByTemplateIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -99,11 +66,7 @@ def sync_detailed(
     template_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteAclTemplatesByTemplateIdResponseDefaultType0
-    | DeleteAclTemplatesByTemplateIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteAclTemplatesByTemplateIdResponseDefault]:
     """Remove an acl template
 
 
@@ -118,7 +81,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAclTemplatesByTemplateIdResponseDefaultType0 | DeleteAclTemplatesByTemplateIdResponseDefaultType1]
+        Response[Any | DeleteAclTemplatesByTemplateIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -136,12 +99,7 @@ def sync(
     template_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteAclTemplatesByTemplateIdResponseDefaultType0
-    | DeleteAclTemplatesByTemplateIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAclTemplatesByTemplateIdResponseDefault | None:
     """Remove an acl template
 
 
@@ -156,7 +114,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAclTemplatesByTemplateIdResponseDefaultType0 | DeleteAclTemplatesByTemplateIdResponseDefaultType1
+        Any | DeleteAclTemplatesByTemplateIdResponseDefault
     """
 
     return sync_detailed(
@@ -169,11 +127,7 @@ async def asyncio_detailed(
     template_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteAclTemplatesByTemplateIdResponseDefaultType0
-    | DeleteAclTemplatesByTemplateIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteAclTemplatesByTemplateIdResponseDefault]:
     """Remove an acl template
 
 
@@ -188,7 +142,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAclTemplatesByTemplateIdResponseDefaultType0 | DeleteAclTemplatesByTemplateIdResponseDefaultType1]
+        Response[Any | DeleteAclTemplatesByTemplateIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -204,12 +158,7 @@ async def asyncio(
     template_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteAclTemplatesByTemplateIdResponseDefaultType0
-    | DeleteAclTemplatesByTemplateIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAclTemplatesByTemplateIdResponseDefault | None:
     """Remove an acl template
 
 
@@ -224,7 +173,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAclTemplatesByTemplateIdResponseDefaultType0 | DeleteAclTemplatesByTemplateIdResponseDefaultType1
+        Any | DeleteAclTemplatesByTemplateIdResponseDefault
     """
 
     return (

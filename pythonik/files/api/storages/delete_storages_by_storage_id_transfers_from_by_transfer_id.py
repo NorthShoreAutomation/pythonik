@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_storages_by_storage_id_transfers_from_by_transfer_id_response_default_type_0 import (
-    DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType0,
-)
-from ...models.delete_storages_by_storage_id_transfers_from_by_transfer_id_response_default_type_1 import (
-    DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType1,
+from ...models.delete_storages_by_storage_id_transfers_from_by_transfer_id_response_default import (
+    DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -44,11 +41,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType0
-    | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType1
-):
+) -> Any | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -57,42 +50,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType0
-        | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType0
-    | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -108,11 +77,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     failed: bool | Unset = UNSET,
     completed: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType0
-    | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefault]:
     """Delete file set transfer after handling it
 
 
@@ -130,7 +95,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType0 | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType1]
+        Response[Any | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -154,12 +119,7 @@ def sync(
     client: AuthenticatedClient | Client,
     failed: bool | Unset = UNSET,
     completed: bool | Unset = UNSET,
-) -> (
-    Any
-    | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType0
-    | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefault | None:
     """Delete file set transfer after handling it
 
 
@@ -177,7 +137,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType0 | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType1
+        Any | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefault
     """
 
     return sync_detailed(
@@ -196,11 +156,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     failed: bool | Unset = UNSET,
     completed: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType0
-    | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefault]:
     """Delete file set transfer after handling it
 
 
@@ -218,7 +174,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType0 | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType1]
+        Response[Any | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -240,12 +196,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     failed: bool | Unset = UNSET,
     completed: bool | Unset = UNSET,
-) -> (
-    Any
-    | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType0
-    | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefault | None:
     """Delete file set transfer after handling it
 
 
@@ -263,7 +214,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType0 | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType1
+        Any | DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefault
     """
 
     return (

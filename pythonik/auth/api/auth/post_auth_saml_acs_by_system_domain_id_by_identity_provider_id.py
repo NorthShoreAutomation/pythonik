@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_auth_saml_acs_by_system_domain_id_by_identity_provider_id_response_default_type_0 import (
-    PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType0,
-)
-from ...models.post_auth_saml_acs_by_system_domain_id_by_identity_provider_id_response_default_type_1 import (
-    PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType1,
+from ...models.post_auth_saml_acs_by_system_domain_id_by_identity_provider_id_response_default import (
+    PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefault,
 )
 from ...types import Response
 
@@ -32,11 +29,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType0
-    | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType1
-):
+) -> Any | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefault:
     if response.status_code == 302:
         response_302 = cast(Any, None)
         return response_302
@@ -53,42 +46,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType0
-        | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType0
-    | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType1
-]:
+) -> Response[Any | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -102,11 +71,7 @@ def sync_detailed(
     identity_provider_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType0
-    | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType1
-]:
+) -> Response[Any | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefault]:
     """SAML Assertion Consumer Service
 
     Args:
@@ -118,7 +83,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType0 | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType1]
+        Response[Any | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -138,12 +103,7 @@ def sync(
     identity_provider_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType0
-    | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType1
-    | None
-):
+) -> Any | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefault | None:
     """SAML Assertion Consumer Service
 
     Args:
@@ -155,7 +115,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType0 | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType1
+        Any | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefault
     """
 
     return sync_detailed(
@@ -170,11 +130,7 @@ async def asyncio_detailed(
     identity_provider_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType0
-    | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType1
-]:
+) -> Response[Any | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefault]:
     """SAML Assertion Consumer Service
 
     Args:
@@ -186,7 +142,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType0 | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType1]
+        Response[Any | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -204,12 +160,7 @@ async def asyncio(
     identity_provider_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType0
-    | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType1
-    | None
-):
+) -> Any | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefault | None:
     """SAML Assertion Consumer Service
 
     Args:
@@ -221,7 +172,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType0 | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefaultType1
+        Any | PostAuthSamlAcsBySystemDomainIdByIdentityProviderIdResponseDefault
     """
 
     return (

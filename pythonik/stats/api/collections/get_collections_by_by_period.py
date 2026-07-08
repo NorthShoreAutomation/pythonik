@@ -5,12 +5,9 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.collection_usage_schema import CollectionUsageSchema
-from ...models.get_collections_by_by_period_response_default_type_0 import (
-    GetCollectionsByByPeriodResponseDefaultType0,
-)
-from ...models.get_collections_by_by_period_response_default_type_1 import (
-    GetCollectionsByByPeriodResponseDefaultType1,
+from ...models.collection_usages_schema import CollectionUsagesSchema
+from ...models.get_collections_by_by_period_response_default import (
+    GetCollectionsByByPeriodResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -43,14 +40,9 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | CollectionUsageSchema
-    | GetCollectionsByByPeriodResponseDefaultType0
-    | GetCollectionsByByPeriodResponseDefaultType1
-):
+) -> Any | CollectionUsagesSchema | GetCollectionsByByPeriodResponseDefault:
     if response.status_code == 200:
-        response_200 = CollectionUsageSchema.from_dict(response.json())
+        response_200 = CollectionUsagesSchema.from_dict(response.json())
 
         return response_200
 
@@ -66,43 +58,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetCollectionsByByPeriodResponseDefaultType0
-        | GetCollectionsByByPeriodResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetCollectionsByByPeriodResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetCollectionsByByPeriodResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetCollectionsByByPeriodResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | CollectionUsageSchema
-    | GetCollectionsByByPeriodResponseDefaultType0
-    | GetCollectionsByByPeriodResponseDefaultType1
-]:
+) -> Response[Any | CollectionUsagesSchema | GetCollectionsByByPeriodResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -117,12 +82,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     from_date: str | Unset = UNSET,
     to_date: str | Unset = UNSET,
-) -> Response[
-    Any
-    | CollectionUsageSchema
-    | GetCollectionsByByPeriodResponseDefaultType0
-    | GetCollectionsByByPeriodResponseDefaultType1
-]:
+) -> Response[Any | CollectionUsagesSchema | GetCollectionsByByPeriodResponseDefault]:
     """Returns all collection usage
 
 
@@ -139,7 +99,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CollectionUsageSchema | GetCollectionsByByPeriodResponseDefaultType0 | GetCollectionsByByPeriodResponseDefaultType1]
+        Response[Any | CollectionUsagesSchema | GetCollectionsByByPeriodResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -161,13 +121,7 @@ def sync(
     client: AuthenticatedClient | Client,
     from_date: str | Unset = UNSET,
     to_date: str | Unset = UNSET,
-) -> (
-    Any
-    | CollectionUsageSchema
-    | GetCollectionsByByPeriodResponseDefaultType0
-    | GetCollectionsByByPeriodResponseDefaultType1
-    | None
-):
+) -> Any | CollectionUsagesSchema | GetCollectionsByByPeriodResponseDefault | None:
     """Returns all collection usage
 
 
@@ -184,7 +138,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CollectionUsageSchema | GetCollectionsByByPeriodResponseDefaultType0 | GetCollectionsByByPeriodResponseDefaultType1
+        Any | CollectionUsagesSchema | GetCollectionsByByPeriodResponseDefault
     """
 
     return sync_detailed(
@@ -201,12 +155,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     from_date: str | Unset = UNSET,
     to_date: str | Unset = UNSET,
-) -> Response[
-    Any
-    | CollectionUsageSchema
-    | GetCollectionsByByPeriodResponseDefaultType0
-    | GetCollectionsByByPeriodResponseDefaultType1
-]:
+) -> Response[Any | CollectionUsagesSchema | GetCollectionsByByPeriodResponseDefault]:
     """Returns all collection usage
 
 
@@ -223,7 +172,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CollectionUsageSchema | GetCollectionsByByPeriodResponseDefaultType0 | GetCollectionsByByPeriodResponseDefaultType1]
+        Response[Any | CollectionUsagesSchema | GetCollectionsByByPeriodResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -243,13 +192,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     from_date: str | Unset = UNSET,
     to_date: str | Unset = UNSET,
-) -> (
-    Any
-    | CollectionUsageSchema
-    | GetCollectionsByByPeriodResponseDefaultType0
-    | GetCollectionsByByPeriodResponseDefaultType1
-    | None
-):
+) -> Any | CollectionUsagesSchema | GetCollectionsByByPeriodResponseDefault | None:
     """Returns all collection usage
 
 
@@ -266,7 +209,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CollectionUsageSchema | GetCollectionsByByPeriodResponseDefaultType0 | GetCollectionsByByPeriodResponseDefaultType1
+        Any | CollectionUsagesSchema | GetCollectionsByByPeriodResponseDefault
     """
 
     return (

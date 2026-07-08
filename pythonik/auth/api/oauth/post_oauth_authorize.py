@@ -5,11 +5,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.o_auth_2_authorize_response_schema import OAuth2AuthorizeResponseSchema
-from ...models.post_oauth_authorize_response_default_type_0 import (
-    PostOauthAuthorizeResponseDefaultType0,
-)
-from ...models.post_oauth_authorize_response_default_type_1 import (
-    PostOauthAuthorizeResponseDefaultType1,
+from ...models.post_oauth_authorize_response_default import (
+    PostOauthAuthorizeResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -51,12 +48,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | OAuth2AuthorizeResponseSchema
-    | PostOauthAuthorizeResponseDefaultType0
-    | PostOauthAuthorizeResponseDefaultType1
-):
+) -> Any | OAuth2AuthorizeResponseSchema | PostOauthAuthorizeResponseDefault:
     if response.status_code == 200:
         response_200 = OAuth2AuthorizeResponseSchema.from_dict(response.json())
 
@@ -66,40 +58,14 @@ def _parse_response(
         response_400 = cast(Any, None)
         return response_400
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostOauthAuthorizeResponseDefaultType0 | PostOauthAuthorizeResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostOauthAuthorizeResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostOauthAuthorizeResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostOauthAuthorizeResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | OAuth2AuthorizeResponseSchema
-    | PostOauthAuthorizeResponseDefaultType0
-    | PostOauthAuthorizeResponseDefaultType1
-]:
+) -> Response[Any | OAuth2AuthorizeResponseSchema | PostOauthAuthorizeResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -117,12 +83,7 @@ def sync_detailed(
     response_type: str,
     code_challenge: str,
     code_challenge_method: str | Unset = UNSET,
-) -> Response[
-    Any
-    | OAuth2AuthorizeResponseSchema
-    | PostOauthAuthorizeResponseDefaultType0
-    | PostOauthAuthorizeResponseDefaultType1
-]:
+) -> Response[Any | OAuth2AuthorizeResponseSchema | PostOauthAuthorizeResponseDefault]:
     """Submit the user's consent decision. If ``confirm`` is present in
 
      the form body the authorization code is minted; otherwise the<br/>request is denied
@@ -141,7 +102,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | OAuth2AuthorizeResponseSchema | PostOauthAuthorizeResponseDefaultType0 | PostOauthAuthorizeResponseDefaultType1]
+        Response[Any | OAuth2AuthorizeResponseSchema | PostOauthAuthorizeResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -169,13 +130,7 @@ def sync(
     response_type: str,
     code_challenge: str,
     code_challenge_method: str | Unset = UNSET,
-) -> (
-    Any
-    | OAuth2AuthorizeResponseSchema
-    | PostOauthAuthorizeResponseDefaultType0
-    | PostOauthAuthorizeResponseDefaultType1
-    | None
-):
+) -> Any | OAuth2AuthorizeResponseSchema | PostOauthAuthorizeResponseDefault | None:
     """Submit the user's consent decision. If ``confirm`` is present in
 
      the form body the authorization code is minted; otherwise the<br/>request is denied
@@ -194,7 +149,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | OAuth2AuthorizeResponseSchema | PostOauthAuthorizeResponseDefaultType0 | PostOauthAuthorizeResponseDefaultType1
+        Any | OAuth2AuthorizeResponseSchema | PostOauthAuthorizeResponseDefault
     """
 
     return sync_detailed(
@@ -217,12 +172,7 @@ async def asyncio_detailed(
     response_type: str,
     code_challenge: str,
     code_challenge_method: str | Unset = UNSET,
-) -> Response[
-    Any
-    | OAuth2AuthorizeResponseSchema
-    | PostOauthAuthorizeResponseDefaultType0
-    | PostOauthAuthorizeResponseDefaultType1
-]:
+) -> Response[Any | OAuth2AuthorizeResponseSchema | PostOauthAuthorizeResponseDefault]:
     """Submit the user's consent decision. If ``confirm`` is present in
 
      the form body the authorization code is minted; otherwise the<br/>request is denied
@@ -241,7 +191,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | OAuth2AuthorizeResponseSchema | PostOauthAuthorizeResponseDefaultType0 | PostOauthAuthorizeResponseDefaultType1]
+        Response[Any | OAuth2AuthorizeResponseSchema | PostOauthAuthorizeResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -267,13 +217,7 @@ async def asyncio(
     response_type: str,
     code_challenge: str,
     code_challenge_method: str | Unset = UNSET,
-) -> (
-    Any
-    | OAuth2AuthorizeResponseSchema
-    | PostOauthAuthorizeResponseDefaultType0
-    | PostOauthAuthorizeResponseDefaultType1
-    | None
-):
+) -> Any | OAuth2AuthorizeResponseSchema | PostOauthAuthorizeResponseDefault | None:
     """Submit the user's consent decision. If ``confirm`` is present in
 
      the form body the authorization code is minted; otherwise the<br/>request is denied
@@ -292,7 +236,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | OAuth2AuthorizeResponseSchema | PostOauthAuthorizeResponseDefaultType0 | PostOauthAuthorizeResponseDefaultType1
+        Any | OAuth2AuthorizeResponseSchema | PostOauthAuthorizeResponseDefault
     """
 
     return (

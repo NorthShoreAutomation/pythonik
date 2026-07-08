@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_storage_access_by_by_period_response_default_type_0 import (
-    GetStorageAccessByByPeriodResponseDefaultType0,
-)
-from ...models.get_storage_access_by_by_period_response_default_type_1 import (
-    GetStorageAccessByByPeriodResponseDefaultType1,
+from ...models.get_storage_access_by_by_period_response_default import (
+    GetStorageAccessByByPeriodResponseDefault,
 )
 from ...models.storage_accesses_schema import StorageAccessesSchema
 from ...types import UNSET, Response, Unset
@@ -43,12 +40,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetStorageAccessByByPeriodResponseDefaultType0
-    | GetStorageAccessByByPeriodResponseDefaultType1
-    | StorageAccessesSchema
-):
+) -> Any | GetStorageAccessByByPeriodResponseDefault | StorageAccessesSchema:
     if response.status_code == 200:
         response_200 = StorageAccessesSchema.from_dict(response.json())
 
@@ -66,43 +58,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetStorageAccessByByPeriodResponseDefaultType0
-        | GetStorageAccessByByPeriodResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetStorageAccessByByPeriodResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetStorageAccessByByPeriodResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetStorageAccessByByPeriodResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetStorageAccessByByPeriodResponseDefaultType0
-    | GetStorageAccessByByPeriodResponseDefaultType1
-    | StorageAccessesSchema
-]:
+) -> Response[Any | GetStorageAccessByByPeriodResponseDefault | StorageAccessesSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -117,12 +82,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     from_date: str | Unset = UNSET,
     to_date: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetStorageAccessByByPeriodResponseDefaultType0
-    | GetStorageAccessByByPeriodResponseDefaultType1
-    | StorageAccessesSchema
-]:
+) -> Response[Any | GetStorageAccessByByPeriodResponseDefault | StorageAccessesSchema]:
     """Returns storage_access for all storages
 
 
@@ -139,7 +99,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetStorageAccessByByPeriodResponseDefaultType0 | GetStorageAccessByByPeriodResponseDefaultType1 | StorageAccessesSchema]
+        Response[Any | GetStorageAccessByByPeriodResponseDefault | StorageAccessesSchema]
     """
 
     kwargs = _get_kwargs(
@@ -161,13 +121,7 @@ def sync(
     client: AuthenticatedClient | Client,
     from_date: str | Unset = UNSET,
     to_date: str | Unset = UNSET,
-) -> (
-    Any
-    | GetStorageAccessByByPeriodResponseDefaultType0
-    | GetStorageAccessByByPeriodResponseDefaultType1
-    | StorageAccessesSchema
-    | None
-):
+) -> Any | GetStorageAccessByByPeriodResponseDefault | StorageAccessesSchema | None:
     """Returns storage_access for all storages
 
 
@@ -184,7 +138,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetStorageAccessByByPeriodResponseDefaultType0 | GetStorageAccessByByPeriodResponseDefaultType1 | StorageAccessesSchema
+        Any | GetStorageAccessByByPeriodResponseDefault | StorageAccessesSchema
     """
 
     return sync_detailed(
@@ -201,12 +155,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     from_date: str | Unset = UNSET,
     to_date: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetStorageAccessByByPeriodResponseDefaultType0
-    | GetStorageAccessByByPeriodResponseDefaultType1
-    | StorageAccessesSchema
-]:
+) -> Response[Any | GetStorageAccessByByPeriodResponseDefault | StorageAccessesSchema]:
     """Returns storage_access for all storages
 
 
@@ -223,7 +172,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetStorageAccessByByPeriodResponseDefaultType0 | GetStorageAccessByByPeriodResponseDefaultType1 | StorageAccessesSchema]
+        Response[Any | GetStorageAccessByByPeriodResponseDefault | StorageAccessesSchema]
     """
 
     kwargs = _get_kwargs(
@@ -243,13 +192,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     from_date: str | Unset = UNSET,
     to_date: str | Unset = UNSET,
-) -> (
-    Any
-    | GetStorageAccessByByPeriodResponseDefaultType0
-    | GetStorageAccessByByPeriodResponseDefaultType1
-    | StorageAccessesSchema
-    | None
-):
+) -> Any | GetStorageAccessByByPeriodResponseDefault | StorageAccessesSchema | None:
     """Returns storage_access for all storages
 
 
@@ -266,7 +209,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetStorageAccessByByPeriodResponseDefaultType0 | GetStorageAccessByByPeriodResponseDefaultType1 | StorageAccessesSchema
+        Any | GetStorageAccessByByPeriodResponseDefault | StorageAccessesSchema
     """
 
     return (

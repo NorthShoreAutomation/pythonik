@@ -8,11 +8,8 @@ from ...client import AuthenticatedClient, Client
 from ...models.post_storages_by_storage_id_logs_response_200 import (
     PostStoragesByStorageIdLogsResponse200,
 )
-from ...models.post_storages_by_storage_id_logs_response_default_type_0 import (
-    PostStoragesByStorageIdLogsResponseDefaultType0,
-)
-from ...models.post_storages_by_storage_id_logs_response_default_type_1 import (
-    PostStoragesByStorageIdLogsResponseDefaultType1,
+from ...models.post_storages_by_storage_id_logs_response_default import (
+    PostStoragesByStorageIdLogsResponseDefault,
 )
 from ...models.upload_iconik_storage_gateway_logs_schema import (
     UploadIconikStorageGatewayLogsSchema,
@@ -47,8 +44,7 @@ def _parse_response(
 ) -> (
     Any
     | PostStoragesByStorageIdLogsResponse200
-    | PostStoragesByStorageIdLogsResponseDefaultType0
-    | PostStoragesByStorageIdLogsResponseDefaultType1
+    | PostStoragesByStorageIdLogsResponseDefault
 ):
     if response.status_code == 200:
         response_200 = PostStoragesByStorageIdLogsResponse200.from_dict(response.json())
@@ -67,31 +63,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostStoragesByStorageIdLogsResponseDefaultType0
-        | PostStoragesByStorageIdLogsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostStoragesByStorageIdLogsResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostStoragesByStorageIdLogsResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostStoragesByStorageIdLogsResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -101,8 +75,7 @@ def _build_response(
 ) -> Response[
     Any
     | PostStoragesByStorageIdLogsResponse200
-    | PostStoragesByStorageIdLogsResponseDefaultType0
-    | PostStoragesByStorageIdLogsResponseDefaultType1
+    | PostStoragesByStorageIdLogsResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -120,8 +93,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | PostStoragesByStorageIdLogsResponse200
-    | PostStoragesByStorageIdLogsResponseDefaultType0
-    | PostStoragesByStorageIdLogsResponseDefaultType1
+    | PostStoragesByStorageIdLogsResponseDefault
 ]:
     """Upload storage logs
 
@@ -138,7 +110,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostStoragesByStorageIdLogsResponse200 | PostStoragesByStorageIdLogsResponseDefaultType0 | PostStoragesByStorageIdLogsResponseDefaultType1]
+        Response[Any | PostStoragesByStorageIdLogsResponse200 | PostStoragesByStorageIdLogsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -161,8 +133,7 @@ def sync(
 ) -> (
     Any
     | PostStoragesByStorageIdLogsResponse200
-    | PostStoragesByStorageIdLogsResponseDefaultType0
-    | PostStoragesByStorageIdLogsResponseDefaultType1
+    | PostStoragesByStorageIdLogsResponseDefault
     | None
 ):
     """Upload storage logs
@@ -180,7 +151,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostStoragesByStorageIdLogsResponse200 | PostStoragesByStorageIdLogsResponseDefaultType0 | PostStoragesByStorageIdLogsResponseDefaultType1
+        Any | PostStoragesByStorageIdLogsResponse200 | PostStoragesByStorageIdLogsResponseDefault
     """
 
     return sync_detailed(
@@ -198,8 +169,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | PostStoragesByStorageIdLogsResponse200
-    | PostStoragesByStorageIdLogsResponseDefaultType0
-    | PostStoragesByStorageIdLogsResponseDefaultType1
+    | PostStoragesByStorageIdLogsResponseDefault
 ]:
     """Upload storage logs
 
@@ -216,7 +186,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostStoragesByStorageIdLogsResponse200 | PostStoragesByStorageIdLogsResponseDefaultType0 | PostStoragesByStorageIdLogsResponseDefaultType1]
+        Response[Any | PostStoragesByStorageIdLogsResponse200 | PostStoragesByStorageIdLogsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -237,8 +207,7 @@ async def asyncio(
 ) -> (
     Any
     | PostStoragesByStorageIdLogsResponse200
-    | PostStoragesByStorageIdLogsResponseDefaultType0
-    | PostStoragesByStorageIdLogsResponseDefaultType1
+    | PostStoragesByStorageIdLogsResponseDefault
     | None
 ):
     """Upload storage logs
@@ -256,7 +225,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostStoragesByStorageIdLogsResponse200 | PostStoragesByStorageIdLogsResponseDefaultType0 | PostStoragesByStorageIdLogsResponseDefaultType1
+        Any | PostStoragesByStorageIdLogsResponse200 | PostStoragesByStorageIdLogsResponseDefault
     """
 
     return (

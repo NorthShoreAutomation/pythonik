@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_transcode_queue_system_response_default_type_0 import (
-    GetTranscodeQueueSystemResponseDefaultType0,
-)
-from ...models.get_transcode_queue_system_response_default_type_1 import (
-    GetTranscodeQueueSystemResponseDefaultType1,
+from ...models.get_transcode_queue_system_response_default import (
+    GetTranscodeQueueSystemResponseDefault,
 )
 from ...models.transcode_queue_schema import TranscodeQueueSchema
 from ...types import UNSET, Response, Unset
@@ -45,12 +42,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetTranscodeQueueSystemResponseDefaultType0
-    | GetTranscodeQueueSystemResponseDefaultType1
-    | TranscodeQueueSchema
-):
+) -> Any | GetTranscodeQueueSystemResponseDefault | TranscodeQueueSchema:
     if response.status_code == 200:
         response_200 = TranscodeQueueSchema.from_dict(response.json())
 
@@ -64,43 +56,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetTranscodeQueueSystemResponseDefaultType0
-        | GetTranscodeQueueSystemResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetTranscodeQueueSystemResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetTranscodeQueueSystemResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetTranscodeQueueSystemResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetTranscodeQueueSystemResponseDefaultType0
-    | GetTranscodeQueueSystemResponseDefaultType1
-    | TranscodeQueueSchema
-]:
+) -> Response[Any | GetTranscodeQueueSystemResponseDefault | TranscodeQueueSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -116,12 +79,7 @@ def sync_detailed(
     per_page: int | Unset = UNSET,
     page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetTranscodeQueueSystemResponseDefaultType0
-    | GetTranscodeQueueSystemResponseDefaultType1
-    | TranscodeQueueSchema
-]:
+) -> Response[Any | GetTranscodeQueueSystemResponseDefault | TranscodeQueueSchema]:
     """Get the status of the transcode job queues
 
     Args:
@@ -135,7 +93,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetTranscodeQueueSystemResponseDefaultType0 | GetTranscodeQueueSystemResponseDefaultType1 | TranscodeQueueSchema]
+        Response[Any | GetTranscodeQueueSystemResponseDefault | TranscodeQueueSchema]
     """
 
     kwargs = _get_kwargs(
@@ -159,13 +117,7 @@ def sync(
     per_page: int | Unset = UNSET,
     page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
-) -> (
-    Any
-    | GetTranscodeQueueSystemResponseDefaultType0
-    | GetTranscodeQueueSystemResponseDefaultType1
-    | TranscodeQueueSchema
-    | None
-):
+) -> Any | GetTranscodeQueueSystemResponseDefault | TranscodeQueueSchema | None:
     """Get the status of the transcode job queues
 
     Args:
@@ -179,7 +131,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetTranscodeQueueSystemResponseDefaultType0 | GetTranscodeQueueSystemResponseDefaultType1 | TranscodeQueueSchema
+        Any | GetTranscodeQueueSystemResponseDefault | TranscodeQueueSchema
     """
 
     return sync_detailed(
@@ -198,12 +150,7 @@ async def asyncio_detailed(
     per_page: int | Unset = UNSET,
     page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetTranscodeQueueSystemResponseDefaultType0
-    | GetTranscodeQueueSystemResponseDefaultType1
-    | TranscodeQueueSchema
-]:
+) -> Response[Any | GetTranscodeQueueSystemResponseDefault | TranscodeQueueSchema]:
     """Get the status of the transcode job queues
 
     Args:
@@ -217,7 +164,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetTranscodeQueueSystemResponseDefaultType0 | GetTranscodeQueueSystemResponseDefaultType1 | TranscodeQueueSchema]
+        Response[Any | GetTranscodeQueueSystemResponseDefault | TranscodeQueueSchema]
     """
 
     kwargs = _get_kwargs(
@@ -239,13 +186,7 @@ async def asyncio(
     per_page: int | Unset = UNSET,
     page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
-) -> (
-    Any
-    | GetTranscodeQueueSystemResponseDefaultType0
-    | GetTranscodeQueueSystemResponseDefaultType1
-    | TranscodeQueueSchema
-    | None
-):
+) -> Any | GetTranscodeQueueSystemResponseDefault | TranscodeQueueSchema | None:
     """Get the status of the transcode job queues
 
     Args:
@@ -259,7 +200,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetTranscodeQueueSystemResponseDefaultType0 | GetTranscodeQueueSystemResponseDefaultType1 | TranscodeQueueSchema
+        Any | GetTranscodeQueueSystemResponseDefault | TranscodeQueueSchema
     """
 
     return (

@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.file_sets_schema import FileSetsSchema
-from ...models.get_assets_by_asset_id_formats_by_format_id_file_sets_response_default_type_0 import (
-    GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType0,
-)
-from ...models.get_assets_by_asset_id_formats_by_format_id_file_sets_response_default_type_1 import (
-    GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType1,
+from ...models.get_assets_by_asset_id_formats_by_format_id_file_sets_response_default import (
+    GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -19,7 +16,7 @@ def _get_kwargs(
     asset_id: str,
     format_id: str,
     *,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> dict[str, Any]:
 
@@ -45,12 +42,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | FileSetsSchema
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType0
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType1
-):
+) -> Any | FileSetsSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefault:
     if response.status_code == 200:
         response_200 = FileSetsSchema.from_dict(response.json())
 
@@ -64,33 +56,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType0
-        | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -98,10 +68,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | FileSetsSchema
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType0
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType1
+    Any | FileSetsSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -116,13 +83,10 @@ def sync_detailed(
     format_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> Response[
-    Any
-    | FileSetsSchema
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType0
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType1
+    Any | FileSetsSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefault
 ]:
     """Get all asset's file sets in a specific format
 
@@ -133,7 +97,7 @@ def sync_detailed(
     Args:
         asset_id (str):
         format_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -141,7 +105,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | FileSetsSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType0 | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType1]
+        Response[Any | FileSetsSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -163,13 +127,12 @@ def sync(
     format_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> (
     Any
     | FileSetsSchema
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType0
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType1
+    | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefault
     | None
 ):
     """Get all asset's file sets in a specific format
@@ -181,7 +144,7 @@ def sync(
     Args:
         asset_id (str):
         format_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -189,7 +152,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | FileSetsSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType0 | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType1
+        Any | FileSetsSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefault
     """
 
     return sync_detailed(
@@ -206,13 +169,10 @@ async def asyncio_detailed(
     format_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> Response[
-    Any
-    | FileSetsSchema
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType0
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType1
+    Any | FileSetsSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefault
 ]:
     """Get all asset's file sets in a specific format
 
@@ -223,7 +183,7 @@ async def asyncio_detailed(
     Args:
         asset_id (str):
         format_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -231,7 +191,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | FileSetsSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType0 | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType1]
+        Response[Any | FileSetsSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -251,13 +211,12 @@ async def asyncio(
     format_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> (
     Any
     | FileSetsSchema
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType0
-    | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType1
+    | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefault
     | None
 ):
     """Get all asset's file sets in a specific format
@@ -269,7 +228,7 @@ async def asyncio(
     Args:
         asset_id (str):
         format_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -277,7 +236,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | FileSetsSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType0 | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType1
+        Any | FileSetsSchema | GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefault
     """
 
     return (

@@ -160,347 +160,119 @@ from .component_schema_metadata_type_0 import ComponentSchemaMetadataType0
 from .component_schema_type import ComponentSchemaType
 from .components_schema import ComponentsSchema
 from .custom_settings_schema import CustomSettingsSchema
-from .delete_analysis_profiles_by_profile_id_default_response_default_type_0 import (
-    DeleteAnalysisProfilesByProfileIdDefaultResponseDefaultType0,
+from .delete_analysis_profiles_by_profile_id_default_response_default import (
+    DeleteAnalysisProfilesByProfileIdDefaultResponseDefault,
 )
-from .delete_analysis_profiles_by_profile_id_default_response_default_type_1 import (
-    DeleteAnalysisProfilesByProfileIdDefaultResponseDefaultType1,
+from .delete_analysis_profiles_by_profile_id_response_default import (
+    DeleteAnalysisProfilesByProfileIdResponseDefault,
 )
-from .delete_analysis_profiles_by_profile_id_default_response_default_type_1_errors import (
-    DeleteAnalysisProfilesByProfileIdDefaultResponseDefaultType1Errors,
+from .delete_analysis_service_accounts_by_analysis_service_account_id_response_default import (
+    DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault,
 )
-from .delete_analysis_profiles_by_profile_id_response_default_type_0 import (
-    DeleteAnalysisProfilesByProfileIdResponseDefaultType0,
+from .delete_assets_by_asset_id_file_sets_by_file_set_id_purge_response_default import (
+    DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefault,
 )
-from .delete_analysis_profiles_by_profile_id_response_default_type_1 import (
-    DeleteAnalysisProfilesByProfileIdResponseDefaultType1,
+from .delete_assets_by_asset_id_file_sets_by_file_set_id_response_default import (
+    DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefault,
 )
-from .delete_analysis_profiles_by_profile_id_response_default_type_1_errors import (
-    DeleteAnalysisProfilesByProfileIdResponseDefaultType1Errors,
+from .delete_assets_by_asset_id_files_by_file_id_response_default import (
+    DeleteAssetsByAssetIdFilesByFileIdResponseDefault,
 )
-from .delete_analysis_service_accounts_by_analysis_service_account_id_response_default_type_0 import (
-    DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0,
+from .delete_assets_by_asset_id_formats_by_format_id_archive_response_default import (
+    DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault,
 )
-from .delete_analysis_service_accounts_by_analysis_service_account_id_response_default_type_1 import (
-    DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1,
+from .delete_assets_by_asset_id_formats_by_format_id_components_by_component_id_response_default import (
+    DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault,
 )
-from .delete_analysis_service_accounts_by_analysis_service_account_id_response_default_type_1_errors import (
-    DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1Errors,
+from .delete_assets_by_asset_id_formats_by_format_id_purge_response_default import (
+    DeleteAssetsByAssetIdFormatsByFormatIdPurgeResponseDefault,
 )
-from .delete_assets_by_asset_id_file_sets_by_file_set_id_purge_response_default_type_0 import (
-    DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType0,
+from .delete_assets_by_asset_id_formats_by_format_id_response_default import (
+    DeleteAssetsByAssetIdFormatsByFormatIdResponseDefault,
 )
-from .delete_assets_by_asset_id_file_sets_by_file_set_id_purge_response_default_type_1 import (
-    DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType1,
+from .delete_assets_by_asset_id_keyframes_by_keyframe_id_public_response_default import (
+    DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault,
 )
-from .delete_assets_by_asset_id_file_sets_by_file_set_id_purge_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType1Errors,
+from .delete_assets_by_asset_id_keyframes_by_keyframe_id_response_default import (
+    DeleteAssetsByAssetIdKeyframesByKeyframeIdResponseDefault,
 )
-from .delete_assets_by_asset_id_file_sets_by_file_set_id_response_default_type_0 import (
-    DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0,
+from .delete_assets_by_asset_id_proxies_by_proxy_id_public_response_default import (
+    DeleteAssetsByAssetIdProxiesByProxyIdPublicResponseDefault,
 )
-from .delete_assets_by_asset_id_file_sets_by_file_set_id_response_default_type_1 import (
-    DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1,
+from .delete_assets_by_asset_id_proxies_by_proxy_id_response_default import (
+    DeleteAssetsByAssetIdProxiesByProxyIdResponseDefault,
 )
-from .delete_assets_by_asset_id_file_sets_by_file_set_id_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1Errors,
+from .delete_assets_by_asset_id_subtitles_by_subtitle_id_cc_response_default import (
+    DeleteAssetsByAssetIdSubtitlesBySubtitleIdCcResponseDefault,
 )
-from .delete_assets_by_asset_id_files_by_file_id_response_default_type_0 import (
-    DeleteAssetsByAssetIdFilesByFileIdResponseDefaultType0,
+from .delete_assets_by_asset_id_subtitles_by_subtitle_id_response_default import (
+    DeleteAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault,
 )
-from .delete_assets_by_asset_id_files_by_file_id_response_default_type_1 import (
-    DeleteAssetsByAssetIdFilesByFileIdResponseDefaultType1,
+from .delete_assets_by_asset_id_temporary_file_sets_by_file_set_id_response_default import (
+    DeleteAssetsByAssetIdTemporaryFileSetsByFileSetIdResponseDefault,
 )
-from .delete_assets_by_asset_id_files_by_file_id_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdFilesByFileIdResponseDefaultType1Errors,
+from .delete_assets_by_asset_id_versions_all_file_sets_response_default import (
+    DeleteAssetsByAssetIdVersionsAllFileSetsResponseDefault,
 )
-from .delete_assets_by_asset_id_formats_by_format_id_archive_response_default_type_0 import (
-    DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0,
+from .delete_assets_by_asset_id_versions_all_files_response_default import (
+    DeleteAssetsByAssetIdVersionsAllFilesResponseDefault,
 )
-from .delete_assets_by_asset_id_formats_by_format_id_archive_response_default_type_1 import (
-    DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1,
+from .delete_assets_by_asset_id_versions_all_formats_response_default import (
+    DeleteAssetsByAssetIdVersionsAllFormatsResponseDefault,
 )
-from .delete_assets_by_asset_id_formats_by_format_id_archive_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1Errors,
+from .delete_assets_by_asset_id_versions_all_keyframes_response_default import (
+    DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefault,
 )
-from .delete_assets_by_asset_id_formats_by_format_id_components_by_component_id_response_default_type_0 import (
-    DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0,
+from .delete_assets_by_asset_id_versions_all_proxies_response_default import (
+    DeleteAssetsByAssetIdVersionsAllProxiesResponseDefault,
 )
-from .delete_assets_by_asset_id_formats_by_format_id_components_by_component_id_response_default_type_1 import (
-    DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1,
+from .delete_assets_by_asset_id_versions_all_subtitles_response_default import (
+    DeleteAssetsByAssetIdVersionsAllSubtitlesResponseDefault,
 )
-from .delete_assets_by_asset_id_formats_by_format_id_components_by_component_id_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1Errors,
+from .delete_assets_by_asset_id_versions_by_version_id_file_sets_response_default import (
+    DeleteAssetsByAssetIdVersionsByVersionIdFileSetsResponseDefault,
 )
-from .delete_assets_by_asset_id_formats_by_format_id_purge_response_default_type_0 import (
-    DeleteAssetsByAssetIdFormatsByFormatIdPurgeResponseDefaultType0,
+from .delete_assets_by_asset_id_versions_by_version_id_files_response_default import (
+    DeleteAssetsByAssetIdVersionsByVersionIdFilesResponseDefault,
 )
-from .delete_assets_by_asset_id_formats_by_format_id_purge_response_default_type_1 import (
-    DeleteAssetsByAssetIdFormatsByFormatIdPurgeResponseDefaultType1,
+from .delete_assets_by_asset_id_versions_by_version_id_formats_response_default import (
+    DeleteAssetsByAssetIdVersionsByVersionIdFormatsResponseDefault,
 )
-from .delete_assets_by_asset_id_formats_by_format_id_purge_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdFormatsByFormatIdPurgeResponseDefaultType1Errors,
+from .delete_assets_by_asset_id_versions_by_version_id_keyframes_response_default import (
+    DeleteAssetsByAssetIdVersionsByVersionIdKeyframesResponseDefault,
 )
-from .delete_assets_by_asset_id_formats_by_format_id_response_default_type_0 import (
-    DeleteAssetsByAssetIdFormatsByFormatIdResponseDefaultType0,
+from .delete_assets_by_asset_id_versions_by_version_id_proxies_response_default import (
+    DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefault,
 )
-from .delete_assets_by_asset_id_formats_by_format_id_response_default_type_1 import (
-    DeleteAssetsByAssetIdFormatsByFormatIdResponseDefaultType1,
+from .delete_assets_by_asset_id_versions_by_version_id_subtitles_response_default import (
+    DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefault,
 )
-from .delete_assets_by_asset_id_formats_by_format_id_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdFormatsByFormatIdResponseDefaultType1Errors,
+from .delete_collections_by_collection_id_keyframes_by_keyframe_id_response_default import (
+    DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault,
 )
-from .delete_assets_by_asset_id_keyframes_by_keyframe_id_public_response_default_type_0 import (
-    DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0,
+from .delete_delete_queue_file_sets_response_default import (
+    DeleteDeleteQueueFileSetsResponseDefault,
 )
-from .delete_assets_by_asset_id_keyframes_by_keyframe_id_public_response_default_type_1 import (
-    DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1,
+from .delete_delete_queue_formats_response_default import (
+    DeleteDeleteQueueFormatsResponseDefault,
 )
-from .delete_assets_by_asset_id_keyframes_by_keyframe_id_public_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1Errors,
+from .delete_export_locations_by_export_location_id_response_default import (
+    DeleteExportLocationsByExportLocationIdResponseDefault,
 )
-from .delete_assets_by_asset_id_keyframes_by_keyframe_id_response_default_type_0 import (
-    DeleteAssetsByAssetIdKeyframesByKeyframeIdResponseDefaultType0,
+from .delete_file_sets_by_file_set_id_transfers_from_by_storage_id_response_default import (
+    DeleteFileSetsByFileSetIdTransfersFromByStorageIdResponseDefault,
 )
-from .delete_assets_by_asset_id_keyframes_by_keyframe_id_response_default_type_1 import (
-    DeleteAssetsByAssetIdKeyframesByKeyframeIdResponseDefaultType1,
+from .delete_file_sets_by_file_set_id_transfers_to_by_storage_id_response_default import (
+    DeleteFileSetsByFileSetIdTransfersToByStorageIdResponseDefault,
 )
-from .delete_assets_by_asset_id_keyframes_by_keyframe_id_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdKeyframesByKeyframeIdResponseDefaultType1Errors,
+from .delete_files_by_file_id_deletions_from_by_storage_id_response_default import (
+    DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefault,
 )
-from .delete_assets_by_asset_id_proxies_by_proxy_id_public_response_default_type_0 import (
-    DeleteAssetsByAssetIdProxiesByProxyIdPublicResponseDefaultType0,
+from .delete_files_missing_storages_by_storage_id_response_default import (
+    DeleteFilesMissingStoragesByStorageIdResponseDefault,
 )
-from .delete_assets_by_asset_id_proxies_by_proxy_id_public_response_default_type_1 import (
-    DeleteAssetsByAssetIdProxiesByProxyIdPublicResponseDefaultType1,
-)
-from .delete_assets_by_asset_id_proxies_by_proxy_id_public_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdProxiesByProxyIdPublicResponseDefaultType1Errors,
-)
-from .delete_assets_by_asset_id_proxies_by_proxy_id_response_default_type_0 import (
-    DeleteAssetsByAssetIdProxiesByProxyIdResponseDefaultType0,
-)
-from .delete_assets_by_asset_id_proxies_by_proxy_id_response_default_type_1 import (
-    DeleteAssetsByAssetIdProxiesByProxyIdResponseDefaultType1,
-)
-from .delete_assets_by_asset_id_proxies_by_proxy_id_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdProxiesByProxyIdResponseDefaultType1Errors,
-)
-from .delete_assets_by_asset_id_subtitles_by_subtitle_id_cc_response_default_type_0 import (
-    DeleteAssetsByAssetIdSubtitlesBySubtitleIdCcResponseDefaultType0,
-)
-from .delete_assets_by_asset_id_subtitles_by_subtitle_id_cc_response_default_type_1 import (
-    DeleteAssetsByAssetIdSubtitlesBySubtitleIdCcResponseDefaultType1,
-)
-from .delete_assets_by_asset_id_subtitles_by_subtitle_id_cc_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdSubtitlesBySubtitleIdCcResponseDefaultType1Errors,
-)
-from .delete_assets_by_asset_id_subtitles_by_subtitle_id_response_default_type_0 import (
-    DeleteAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0,
-)
-from .delete_assets_by_asset_id_subtitles_by_subtitle_id_response_default_type_1 import (
-    DeleteAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1,
-)
-from .delete_assets_by_asset_id_subtitles_by_subtitle_id_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1Errors,
-)
-from .delete_assets_by_asset_id_temporary_file_sets_by_file_set_id_response_default_type_0 import (
-    DeleteAssetsByAssetIdTemporaryFileSetsByFileSetIdResponseDefaultType0,
-)
-from .delete_assets_by_asset_id_temporary_file_sets_by_file_set_id_response_default_type_1 import (
-    DeleteAssetsByAssetIdTemporaryFileSetsByFileSetIdResponseDefaultType1,
-)
-from .delete_assets_by_asset_id_temporary_file_sets_by_file_set_id_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdTemporaryFileSetsByFileSetIdResponseDefaultType1Errors,
-)
-from .delete_assets_by_asset_id_versions_all_file_sets_response_default_type_0 import (
-    DeleteAssetsByAssetIdVersionsAllFileSetsResponseDefaultType0,
-)
-from .delete_assets_by_asset_id_versions_all_file_sets_response_default_type_1 import (
-    DeleteAssetsByAssetIdVersionsAllFileSetsResponseDefaultType1,
-)
-from .delete_assets_by_asset_id_versions_all_file_sets_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdVersionsAllFileSetsResponseDefaultType1Errors,
-)
-from .delete_assets_by_asset_id_versions_all_files_response_default_type_0 import (
-    DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType0,
-)
-from .delete_assets_by_asset_id_versions_all_files_response_default_type_1 import (
-    DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType1,
-)
-from .delete_assets_by_asset_id_versions_all_files_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType1Errors,
-)
-from .delete_assets_by_asset_id_versions_all_formats_response_default_type_0 import (
-    DeleteAssetsByAssetIdVersionsAllFormatsResponseDefaultType0,
-)
-from .delete_assets_by_asset_id_versions_all_formats_response_default_type_1 import (
-    DeleteAssetsByAssetIdVersionsAllFormatsResponseDefaultType1,
-)
-from .delete_assets_by_asset_id_versions_all_formats_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdVersionsAllFormatsResponseDefaultType1Errors,
-)
-from .delete_assets_by_asset_id_versions_all_keyframes_response_default_type_0 import (
-    DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType0,
-)
-from .delete_assets_by_asset_id_versions_all_keyframes_response_default_type_1 import (
-    DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType1,
-)
-from .delete_assets_by_asset_id_versions_all_keyframes_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType1Errors,
-)
-from .delete_assets_by_asset_id_versions_all_proxies_response_default_type_0 import (
-    DeleteAssetsByAssetIdVersionsAllProxiesResponseDefaultType0,
-)
-from .delete_assets_by_asset_id_versions_all_proxies_response_default_type_1 import (
-    DeleteAssetsByAssetIdVersionsAllProxiesResponseDefaultType1,
-)
-from .delete_assets_by_asset_id_versions_all_proxies_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdVersionsAllProxiesResponseDefaultType1Errors,
-)
-from .delete_assets_by_asset_id_versions_all_subtitles_response_default_type_0 import (
-    DeleteAssetsByAssetIdVersionsAllSubtitlesResponseDefaultType0,
-)
-from .delete_assets_by_asset_id_versions_all_subtitles_response_default_type_1 import (
-    DeleteAssetsByAssetIdVersionsAllSubtitlesResponseDefaultType1,
-)
-from .delete_assets_by_asset_id_versions_all_subtitles_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdVersionsAllSubtitlesResponseDefaultType1Errors,
-)
-from .delete_assets_by_asset_id_versions_by_version_id_file_sets_response_default_type_0 import (
-    DeleteAssetsByAssetIdVersionsByVersionIdFileSetsResponseDefaultType0,
-)
-from .delete_assets_by_asset_id_versions_by_version_id_file_sets_response_default_type_1 import (
-    DeleteAssetsByAssetIdVersionsByVersionIdFileSetsResponseDefaultType1,
-)
-from .delete_assets_by_asset_id_versions_by_version_id_file_sets_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdVersionsByVersionIdFileSetsResponseDefaultType1Errors,
-)
-from .delete_assets_by_asset_id_versions_by_version_id_files_response_default_type_0 import (
-    DeleteAssetsByAssetIdVersionsByVersionIdFilesResponseDefaultType0,
-)
-from .delete_assets_by_asset_id_versions_by_version_id_files_response_default_type_1 import (
-    DeleteAssetsByAssetIdVersionsByVersionIdFilesResponseDefaultType1,
-)
-from .delete_assets_by_asset_id_versions_by_version_id_files_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdVersionsByVersionIdFilesResponseDefaultType1Errors,
-)
-from .delete_assets_by_asset_id_versions_by_version_id_formats_response_default_type_0 import (
-    DeleteAssetsByAssetIdVersionsByVersionIdFormatsResponseDefaultType0,
-)
-from .delete_assets_by_asset_id_versions_by_version_id_formats_response_default_type_1 import (
-    DeleteAssetsByAssetIdVersionsByVersionIdFormatsResponseDefaultType1,
-)
-from .delete_assets_by_asset_id_versions_by_version_id_formats_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdVersionsByVersionIdFormatsResponseDefaultType1Errors,
-)
-from .delete_assets_by_asset_id_versions_by_version_id_keyframes_response_default_type_0 import (
-    DeleteAssetsByAssetIdVersionsByVersionIdKeyframesResponseDefaultType0,
-)
-from .delete_assets_by_asset_id_versions_by_version_id_keyframes_response_default_type_1 import (
-    DeleteAssetsByAssetIdVersionsByVersionIdKeyframesResponseDefaultType1,
-)
-from .delete_assets_by_asset_id_versions_by_version_id_keyframes_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdVersionsByVersionIdKeyframesResponseDefaultType1Errors,
-)
-from .delete_assets_by_asset_id_versions_by_version_id_proxies_response_default_type_0 import (
-    DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType0,
-)
-from .delete_assets_by_asset_id_versions_by_version_id_proxies_response_default_type_1 import (
-    DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType1,
-)
-from .delete_assets_by_asset_id_versions_by_version_id_proxies_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType1Errors,
-)
-from .delete_assets_by_asset_id_versions_by_version_id_subtitles_response_default_type_0 import (
-    DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType0,
-)
-from .delete_assets_by_asset_id_versions_by_version_id_subtitles_response_default_type_1 import (
-    DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType1,
-)
-from .delete_assets_by_asset_id_versions_by_version_id_subtitles_response_default_type_1_errors import (
-    DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType1Errors,
-)
-from .delete_collections_by_collection_id_keyframes_by_keyframe_id_response_default_type_0 import (
-    DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0,
-)
-from .delete_collections_by_collection_id_keyframes_by_keyframe_id_response_default_type_1 import (
-    DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1,
-)
-from .delete_collections_by_collection_id_keyframes_by_keyframe_id_response_default_type_1_errors import (
-    DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1Errors,
-)
-from .delete_delete_queue_file_sets_response_default_type_0 import (
-    DeleteDeleteQueueFileSetsResponseDefaultType0,
-)
-from .delete_delete_queue_file_sets_response_default_type_1 import (
-    DeleteDeleteQueueFileSetsResponseDefaultType1,
-)
-from .delete_delete_queue_file_sets_response_default_type_1_errors import (
-    DeleteDeleteQueueFileSetsResponseDefaultType1Errors,
-)
-from .delete_delete_queue_formats_response_default_type_0 import (
-    DeleteDeleteQueueFormatsResponseDefaultType0,
-)
-from .delete_delete_queue_formats_response_default_type_1 import (
-    DeleteDeleteQueueFormatsResponseDefaultType1,
-)
-from .delete_delete_queue_formats_response_default_type_1_errors import (
-    DeleteDeleteQueueFormatsResponseDefaultType1Errors,
-)
-from .delete_export_locations_by_export_location_id_response_default_type_0 import (
-    DeleteExportLocationsByExportLocationIdResponseDefaultType0,
-)
-from .delete_export_locations_by_export_location_id_response_default_type_1 import (
-    DeleteExportLocationsByExportLocationIdResponseDefaultType1,
-)
-from .delete_export_locations_by_export_location_id_response_default_type_1_errors import (
-    DeleteExportLocationsByExportLocationIdResponseDefaultType1Errors,
-)
-from .delete_file_sets_by_file_set_id_transfers_from_by_storage_id_response_default_type_0 import (
-    DeleteFileSetsByFileSetIdTransfersFromByStorageIdResponseDefaultType0,
-)
-from .delete_file_sets_by_file_set_id_transfers_from_by_storage_id_response_default_type_1 import (
-    DeleteFileSetsByFileSetIdTransfersFromByStorageIdResponseDefaultType1,
-)
-from .delete_file_sets_by_file_set_id_transfers_from_by_storage_id_response_default_type_1_errors import (
-    DeleteFileSetsByFileSetIdTransfersFromByStorageIdResponseDefaultType1Errors,
-)
-from .delete_file_sets_by_file_set_id_transfers_to_by_storage_id_response_default_type_0 import (
-    DeleteFileSetsByFileSetIdTransfersToByStorageIdResponseDefaultType0,
-)
-from .delete_file_sets_by_file_set_id_transfers_to_by_storage_id_response_default_type_1 import (
-    DeleteFileSetsByFileSetIdTransfersToByStorageIdResponseDefaultType1,
-)
-from .delete_file_sets_by_file_set_id_transfers_to_by_storage_id_response_default_type_1_errors import (
-    DeleteFileSetsByFileSetIdTransfersToByStorageIdResponseDefaultType1Errors,
-)
-from .delete_files_by_file_id_deletions_from_by_storage_id_response_default_type_0 import (
-    DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType0,
-)
-from .delete_files_by_file_id_deletions_from_by_storage_id_response_default_type_1 import (
-    DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType1,
-)
-from .delete_files_by_file_id_deletions_from_by_storage_id_response_default_type_1_errors import (
-    DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType1Errors,
-)
-from .delete_files_missing_storages_by_storage_id_response_default_type_0 import (
-    DeleteFilesMissingStoragesByStorageIdResponseDefaultType0,
-)
-from .delete_files_missing_storages_by_storage_id_response_default_type_1 import (
-    DeleteFilesMissingStoragesByStorageIdResponseDefaultType1,
-)
-from .delete_files_missing_storages_by_storage_id_response_default_type_1_errors import (
-    DeleteFilesMissingStoragesByStorageIdResponseDefaultType1Errors,
-)
-from .delete_playlists_by_playlist_id_keyframes_by_keyframe_id_response_default_type_0 import (
-    DeletePlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType0,
-)
-from .delete_playlists_by_playlist_id_keyframes_by_keyframe_id_response_default_type_1 import (
-    DeletePlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1,
-)
-from .delete_playlists_by_playlist_id_keyframes_by_keyframe_id_response_default_type_1_errors import (
-    DeletePlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1Errors,
+from .delete_playlists_by_playlist_id_keyframes_by_keyframe_id_response_default import (
+    DeletePlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault,
 )
 from .delete_queue_file_sets_query_params_schema import (
     DeleteQueueFileSetsQueryParamsSchema,
@@ -509,122 +281,44 @@ from .delete_queue_formats_query_params_schema import (
     DeleteQueueFormatsQueryParamsSchema,
 )
 from .delete_queue_schema import DeleteQueueSchema
-from .delete_storage_gateway_clusters_by_cluster_id_response_default_type_0 import (
-    DeleteStorageGatewayClustersByClusterIdResponseDefaultType0,
+from .delete_storage_gateway_clusters_by_cluster_id_response_default import (
+    DeleteStorageGatewayClustersByClusterIdResponseDefault,
 )
-from .delete_storage_gateway_clusters_by_cluster_id_response_default_type_1 import (
-    DeleteStorageGatewayClustersByClusterIdResponseDefaultType1,
+from .delete_storage_gateways_by_storage_gateway_id_response_default import (
+    DeleteStorageGatewaysByStorageGatewayIdResponseDefault,
 )
-from .delete_storage_gateway_clusters_by_cluster_id_response_default_type_1_errors import (
-    DeleteStorageGatewayClustersByClusterIdResponseDefaultType1Errors,
+from .delete_storages_by_storage_id_auto_scan_response_default import (
+    DeleteStoragesByStorageIdAutoScanResponseDefault,
 )
-from .delete_storage_gateways_by_storage_gateway_id_response_default_type_0 import (
-    DeleteStorageGatewaysByStorageGatewayIdResponseDefaultType0,
+from .delete_storages_by_storage_id_by_object_type_files_response_default import (
+    DeleteStoragesByStorageIdByObjectTypeFilesResponseDefault,
 )
-from .delete_storage_gateways_by_storage_gateway_id_response_default_type_1 import (
-    DeleteStorageGatewaysByStorageGatewayIdResponseDefaultType1,
+from .delete_storages_by_storage_id_default_response_default import (
+    DeleteStoragesByStorageIdDefaultResponseDefault,
 )
-from .delete_storage_gateways_by_storage_gateway_id_response_default_type_1_errors import (
-    DeleteStorageGatewaysByStorageGatewayIdResponseDefaultType1Errors,
+from .delete_storages_by_storage_id_deletions_by_deletion_id_response_default import (
+    DeleteStoragesByStorageIdDeletionsByDeletionIdResponseDefault,
 )
-from .delete_storages_by_storage_id_auto_scan_response_default_type_0 import (
-    DeleteStoragesByStorageIdAutoScanResponseDefaultType0,
+from .delete_storages_by_storage_id_files_response_default import (
+    DeleteStoragesByStorageIdFilesResponseDefault,
 )
-from .delete_storages_by_storage_id_auto_scan_response_default_type_1 import (
-    DeleteStoragesByStorageIdAutoScanResponseDefaultType1,
+from .delete_storages_by_storage_id_gateway_events_by_event_id_response_default import (
+    DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefault,
 )
-from .delete_storages_by_storage_id_auto_scan_response_default_type_1_errors import (
-    DeleteStoragesByStorageIdAutoScanResponseDefaultType1Errors,
+from .delete_storages_by_storage_id_response_default import (
+    DeleteStoragesByStorageIdResponseDefault,
 )
-from .delete_storages_by_storage_id_by_object_type_files_response_default_type_0 import (
-    DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType0,
+from .delete_storages_by_storage_id_transcoders_by_transcoder_id_response_default import (
+    DeleteStoragesByStorageIdTranscodersByTranscoderIdResponseDefault,
 )
-from .delete_storages_by_storage_id_by_object_type_files_response_default_type_1 import (
-    DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType1,
+from .delete_storages_by_storage_id_transfers_from_by_transfer_id_response_default import (
+    DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefault,
 )
-from .delete_storages_by_storage_id_by_object_type_files_response_default_type_1_errors import (
-    DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType1Errors,
+from .delete_storages_by_storage_id_transfers_to_by_transfer_id_response_default import (
+    DeleteStoragesByStorageIdTransfersToByTransferIdResponseDefault,
 )
-from .delete_storages_by_storage_id_default_response_default_type_0 import (
-    DeleteStoragesByStorageIdDefaultResponseDefaultType0,
-)
-from .delete_storages_by_storage_id_default_response_default_type_1 import (
-    DeleteStoragesByStorageIdDefaultResponseDefaultType1,
-)
-from .delete_storages_by_storage_id_default_response_default_type_1_errors import (
-    DeleteStoragesByStorageIdDefaultResponseDefaultType1Errors,
-)
-from .delete_storages_by_storage_id_deletions_by_deletion_id_response_default_type_0 import (
-    DeleteStoragesByStorageIdDeletionsByDeletionIdResponseDefaultType0,
-)
-from .delete_storages_by_storage_id_deletions_by_deletion_id_response_default_type_1 import (
-    DeleteStoragesByStorageIdDeletionsByDeletionIdResponseDefaultType1,
-)
-from .delete_storages_by_storage_id_deletions_by_deletion_id_response_default_type_1_errors import (
-    DeleteStoragesByStorageIdDeletionsByDeletionIdResponseDefaultType1Errors,
-)
-from .delete_storages_by_storage_id_files_response_default_type_0 import (
-    DeleteStoragesByStorageIdFilesResponseDefaultType0,
-)
-from .delete_storages_by_storage_id_files_response_default_type_1 import (
-    DeleteStoragesByStorageIdFilesResponseDefaultType1,
-)
-from .delete_storages_by_storage_id_files_response_default_type_1_errors import (
-    DeleteStoragesByStorageIdFilesResponseDefaultType1Errors,
-)
-from .delete_storages_by_storage_id_gateway_events_by_event_id_response_default_type_0 import (
-    DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType0,
-)
-from .delete_storages_by_storage_id_gateway_events_by_event_id_response_default_type_1 import (
-    DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType1,
-)
-from .delete_storages_by_storage_id_gateway_events_by_event_id_response_default_type_1_errors import (
-    DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType1Errors,
-)
-from .delete_storages_by_storage_id_response_default_type_0 import (
-    DeleteStoragesByStorageIdResponseDefaultType0,
-)
-from .delete_storages_by_storage_id_response_default_type_1 import (
-    DeleteStoragesByStorageIdResponseDefaultType1,
-)
-from .delete_storages_by_storage_id_response_default_type_1_errors import (
-    DeleteStoragesByStorageIdResponseDefaultType1Errors,
-)
-from .delete_storages_by_storage_id_transcoders_by_transcoder_id_response_default_type_0 import (
-    DeleteStoragesByStorageIdTranscodersByTranscoderIdResponseDefaultType0,
-)
-from .delete_storages_by_storage_id_transcoders_by_transcoder_id_response_default_type_1 import (
-    DeleteStoragesByStorageIdTranscodersByTranscoderIdResponseDefaultType1,
-)
-from .delete_storages_by_storage_id_transcoders_by_transcoder_id_response_default_type_1_errors import (
-    DeleteStoragesByStorageIdTranscodersByTranscoderIdResponseDefaultType1Errors,
-)
-from .delete_storages_by_storage_id_transfers_from_by_transfer_id_response_default_type_0 import (
-    DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType0,
-)
-from .delete_storages_by_storage_id_transfers_from_by_transfer_id_response_default_type_1 import (
-    DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType1,
-)
-from .delete_storages_by_storage_id_transfers_from_by_transfer_id_response_default_type_1_errors import (
-    DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType1Errors,
-)
-from .delete_storages_by_storage_id_transfers_to_by_transfer_id_response_default_type_0 import (
-    DeleteStoragesByStorageIdTransfersToByTransferIdResponseDefaultType0,
-)
-from .delete_storages_by_storage_id_transfers_to_by_transfer_id_response_default_type_1 import (
-    DeleteStoragesByStorageIdTransfersToByTransferIdResponseDefaultType1,
-)
-from .delete_storages_by_storage_id_transfers_to_by_transfer_id_response_default_type_1_errors import (
-    DeleteStoragesByStorageIdTransfersToByTransferIdResponseDefaultType1Errors,
-)
-from .delete_transcoders_by_transcoder_id_response_default_type_0 import (
-    DeleteTranscodersByTranscoderIdResponseDefaultType0,
-)
-from .delete_transcoders_by_transcoder_id_response_default_type_1 import (
-    DeleteTranscodersByTranscoderIdResponseDefaultType1,
-)
-from .delete_transcoders_by_transcoder_id_response_default_type_1_errors import (
-    DeleteTranscodersByTranscoderIdResponseDefaultType1Errors,
+from .delete_transcoders_by_transcoder_id_response_default import (
+    DeleteTranscodersByTranscoderIdResponseDefault,
 )
 from .edit_proxy_response_schema import EditProxyResponseSchema
 from .edit_proxy_schema import EditProxySchema
@@ -720,807 +414,271 @@ from .gateway_report_schema import GatewayReportSchema
 from .gateway_report_schema_start_status import GatewayReportSchemaStartStatus
 from .gateway_report_schema_status import GatewayReportSchemaStatus
 from .gateway_status_schema import GatewayStatusSchema
-from .get_analysis_profiles_by_media_type_default_response_default_type_0 import (
-    GetAnalysisProfilesByMediaTypeDefaultResponseDefaultType0,
+from .get_analysis_profiles_by_media_type_default_response_default import (
+    GetAnalysisProfilesByMediaTypeDefaultResponseDefault,
 )
-from .get_analysis_profiles_by_media_type_default_response_default_type_1 import (
-    GetAnalysisProfilesByMediaTypeDefaultResponseDefaultType1,
+from .get_analysis_profiles_by_profile_id_response_default import (
+    GetAnalysisProfilesByProfileIdResponseDefault,
 )
-from .get_analysis_profiles_by_media_type_default_response_default_type_1_errors import (
-    GetAnalysisProfilesByMediaTypeDefaultResponseDefaultType1Errors,
+from .get_analysis_profiles_response_default import GetAnalysisProfilesResponseDefault
+from .get_analysis_service_accounts_by_analysis_service_account_id_response_default import (
+    GetAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault,
 )
-from .get_analysis_profiles_by_profile_id_response_default_type_0 import (
-    GetAnalysisProfilesByProfileIdResponseDefaultType0,
+from .get_analysis_service_accounts_response_default import (
+    GetAnalysisServiceAccountsResponseDefault,
 )
-from .get_analysis_profiles_by_profile_id_response_default_type_1 import (
-    GetAnalysisProfilesByProfileIdResponseDefaultType1,
+from .get_analysis_settings_transcription_default_response_default import (
+    GetAnalysisSettingsTranscriptionDefaultResponseDefault,
 )
-from .get_analysis_profiles_by_profile_id_response_default_type_1_errors import (
-    GetAnalysisProfilesByProfileIdResponseDefaultType1Errors,
+from .get_assets_by_asset_id_file_sets_by_file_set_id_files_response_default import (
+    GetAssetsByAssetIdFileSetsByFileSetIdFilesResponseDefault,
 )
-from .get_analysis_profiles_response_default_type_0 import (
-    GetAnalysisProfilesResponseDefaultType0,
+from .get_assets_by_asset_id_file_sets_by_file_set_id_response_default import (
+    GetAssetsByAssetIdFileSetsByFileSetIdResponseDefault,
 )
-from .get_analysis_profiles_response_default_type_1 import (
-    GetAnalysisProfilesResponseDefaultType1,
+from .get_assets_by_asset_id_file_sets_response_default import (
+    GetAssetsByAssetIdFileSetsResponseDefault,
 )
-from .get_analysis_profiles_response_default_type_1_errors import (
-    GetAnalysisProfilesResponseDefaultType1Errors,
+from .get_assets_by_asset_id_files_by_file_id_download_url_response_default import (
+    GetAssetsByAssetIdFilesByFileIdDownloadUrlResponseDefault,
 )
-from .get_analysis_service_accounts_by_analysis_service_account_id_response_default_type_0 import (
-    GetAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0,
+from .get_assets_by_asset_id_files_by_file_id_isg_handler_url_response_default import (
+    GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefault,
 )
-from .get_analysis_service_accounts_by_analysis_service_account_id_response_default_type_1 import (
-    GetAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1,
+from .get_assets_by_asset_id_files_by_file_id_multipart_url_part_response_default import (
+    GetAssetsByAssetIdFilesByFileIdMultipartUrlPartResponseDefault,
 )
-from .get_analysis_service_accounts_by_analysis_service_account_id_response_default_type_1_errors import (
-    GetAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1Errors,
+from .get_assets_by_asset_id_files_by_file_id_multipart_url_response_default import (
+    GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefault,
 )
-from .get_analysis_service_accounts_response_default_type_0 import (
-    GetAnalysisServiceAccountsResponseDefaultType0,
+from .get_assets_by_asset_id_files_by_file_id_response_default import (
+    GetAssetsByAssetIdFilesByFileIdResponseDefault,
 )
-from .get_analysis_service_accounts_response_default_type_1 import (
-    GetAnalysisServiceAccountsResponseDefaultType1,
+from .get_assets_by_asset_id_files_response_default import (
+    GetAssetsByAssetIdFilesResponseDefault,
 )
-from .get_analysis_service_accounts_response_default_type_1_errors import (
-    GetAnalysisServiceAccountsResponseDefaultType1Errors,
+from .get_assets_by_asset_id_formats_by_format_id_components_by_component_id_response_default import (
+    GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault,
 )
-from .get_analysis_settings_transcription_default_response_default_type_0 import (
-    GetAnalysisSettingsTranscriptionDefaultResponseDefaultType0,
+from .get_assets_by_asset_id_formats_by_format_id_components_response_default import (
+    GetAssetsByAssetIdFormatsByFormatIdComponentsResponseDefault,
 )
-from .get_analysis_settings_transcription_default_response_default_type_1 import (
-    GetAnalysisSettingsTranscriptionDefaultResponseDefaultType1,
+from .get_assets_by_asset_id_formats_by_format_id_file_sets_response_default import (
+    GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefault,
 )
-from .get_analysis_settings_transcription_default_response_default_type_1_errors import (
-    GetAnalysisSettingsTranscriptionDefaultResponseDefaultType1Errors,
+from .get_assets_by_asset_id_formats_by_format_id_file_sets_sources_by_storage_method_response_default import (
+    GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefault,
 )
-from .get_assets_by_asset_id_file_sets_by_file_set_id_files_response_default_type_0 import (
-    GetAssetsByAssetIdFileSetsByFileSetIdFilesResponseDefaultType0,
+from .get_assets_by_asset_id_formats_by_format_id_file_sets_sources_response_default import (
+    GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefault,
 )
-from .get_assets_by_asset_id_file_sets_by_file_set_id_files_response_default_type_1 import (
-    GetAssetsByAssetIdFileSetsByFileSetIdFilesResponseDefaultType1,
+from .get_assets_by_asset_id_formats_by_format_id_response_default import (
+    GetAssetsByAssetIdFormatsByFormatIdResponseDefault,
 )
-from .get_assets_by_asset_id_file_sets_by_file_set_id_files_response_default_type_1_errors import (
-    GetAssetsByAssetIdFileSetsByFileSetIdFilesResponseDefaultType1Errors,
+from .get_assets_by_asset_id_formats_by_format_id_storages_by_storage_id_file_sets_response_default import (
+    GetAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdFileSetsResponseDefault,
 )
-from .get_assets_by_asset_id_file_sets_by_file_set_id_response_default_type_0 import (
-    GetAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0,
+from .get_assets_by_asset_id_formats_response_default import (
+    GetAssetsByAssetIdFormatsResponseDefault,
 )
-from .get_assets_by_asset_id_file_sets_by_file_set_id_response_default_type_1 import (
-    GetAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1,
+from .get_assets_by_asset_id_keyframes_by_keyframe_id_response_default import (
+    GetAssetsByAssetIdKeyframesByKeyframeIdResponseDefault,
 )
-from .get_assets_by_asset_id_file_sets_by_file_set_id_response_default_type_1_errors import (
-    GetAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1Errors,
+from .get_assets_by_asset_id_keyframes_response_default import (
+    GetAssetsByAssetIdKeyframesResponseDefault,
 )
-from .get_assets_by_asset_id_file_sets_response_default_type_0 import (
-    GetAssetsByAssetIdFileSetsResponseDefaultType0,
+from .get_assets_by_asset_id_proxies_by_proxy_id_download_url_response_default import (
+    GetAssetsByAssetIdProxiesByProxyIdDownloadUrlResponseDefault,
 )
-from .get_assets_by_asset_id_file_sets_response_default_type_1 import (
-    GetAssetsByAssetIdFileSetsResponseDefaultType1,
+from .get_assets_by_asset_id_proxies_by_proxy_id_multipart_url_part_response_default import (
+    GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefault,
 )
-from .get_assets_by_asset_id_file_sets_response_default_type_1_errors import (
-    GetAssetsByAssetIdFileSetsResponseDefaultType1Errors,
+from .get_assets_by_asset_id_proxies_by_proxy_id_multipart_url_response_default import (
+    GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefault,
 )
-from .get_assets_by_asset_id_files_by_file_id_download_url_response_default_type_0 import (
-    GetAssetsByAssetIdFilesByFileIdDownloadUrlResponseDefaultType0,
+from .get_assets_by_asset_id_proxies_by_proxy_id_response_default import (
+    GetAssetsByAssetIdProxiesByProxyIdResponseDefault,
 )
-from .get_assets_by_asset_id_files_by_file_id_download_url_response_default_type_1 import (
-    GetAssetsByAssetIdFilesByFileIdDownloadUrlResponseDefaultType1,
+from .get_assets_by_asset_id_proxies_response_default import (
+    GetAssetsByAssetIdProxiesResponseDefault,
 )
-from .get_assets_by_asset_id_files_by_file_id_download_url_response_default_type_1_errors import (
-    GetAssetsByAssetIdFilesByFileIdDownloadUrlResponseDefaultType1Errors,
+from .get_assets_by_asset_id_subtitles_by_language_cc_response_default import (
+    GetAssetsByAssetIdSubtitlesByLanguageCcResponseDefault,
 )
-from .get_assets_by_asset_id_files_by_file_id_isg_handler_url_response_default_type_0 import (
-    GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType0,
+from .get_assets_by_asset_id_subtitles_by_language_cc_webvtt_response_default import (
+    GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefault,
 )
-from .get_assets_by_asset_id_files_by_file_id_isg_handler_url_response_default_type_1 import (
-    GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType1,
+from .get_assets_by_asset_id_subtitles_by_language_webvtt_response_default import (
+    GetAssetsByAssetIdSubtitlesByLanguageWebvttResponseDefault,
 )
-from .get_assets_by_asset_id_files_by_file_id_isg_handler_url_response_default_type_1_errors import (
-    GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType1Errors,
+from .get_assets_by_asset_id_subtitles_by_subtitle_id_response_default import (
+    GetAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault,
 )
-from .get_assets_by_asset_id_files_by_file_id_multipart_url_part_response_default_type_0 import (
-    GetAssetsByAssetIdFilesByFileIdMultipartUrlPartResponseDefaultType0,
+from .get_assets_by_asset_id_subtitles_response_default import (
+    GetAssetsByAssetIdSubtitlesResponseDefault,
 )
-from .get_assets_by_asset_id_files_by_file_id_multipart_url_part_response_default_type_1 import (
-    GetAssetsByAssetIdFilesByFileIdMultipartUrlPartResponseDefaultType1,
+from .get_assets_by_asset_id_temporary_file_sets_by_file_set_id_files_response_default import (
+    GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefault,
 )
-from .get_assets_by_asset_id_files_by_file_id_multipart_url_part_response_default_type_1_errors import (
-    GetAssetsByAssetIdFilesByFileIdMultipartUrlPartResponseDefaultType1Errors,
+from .get_assets_by_asset_id_versions_by_version_id_file_sets_response_default import (
+    GetAssetsByAssetIdVersionsByVersionIdFileSetsResponseDefault,
 )
-from .get_assets_by_asset_id_files_by_file_id_multipart_url_response_default_type_0 import (
-    GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType0,
+from .get_assets_by_asset_id_versions_by_version_id_files_response_default import (
+    GetAssetsByAssetIdVersionsByVersionIdFilesResponseDefault,
 )
-from .get_assets_by_asset_id_files_by_file_id_multipart_url_response_default_type_1 import (
-    GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType1,
+from .get_assets_by_asset_id_versions_by_version_id_formats_response_default import (
+    GetAssetsByAssetIdVersionsByVersionIdFormatsResponseDefault,
 )
-from .get_assets_by_asset_id_files_by_file_id_multipart_url_response_default_type_1_errors import (
-    GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType1Errors,
+from .get_assets_by_asset_id_versions_by_version_id_keyframes_response_default import (
+    GetAssetsByAssetIdVersionsByVersionIdKeyframesResponseDefault,
 )
-from .get_assets_by_asset_id_files_by_file_id_response_default_type_0 import (
-    GetAssetsByAssetIdFilesByFileIdResponseDefaultType0,
+from .get_assets_by_asset_id_versions_by_version_id_proxies_by_proxy_id_by_manifest_type_response_default import (
+    GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefault,
 )
-from .get_assets_by_asset_id_files_by_file_id_response_default_type_1 import (
-    GetAssetsByAssetIdFilesByFileIdResponseDefaultType1,
+from .get_assets_by_asset_id_versions_by_version_id_proxies_response_default import (
+    GetAssetsByAssetIdVersionsByVersionIdProxiesResponseDefault,
 )
-from .get_assets_by_asset_id_files_by_file_id_response_default_type_1_errors import (
-    GetAssetsByAssetIdFilesByFileIdResponseDefaultType1Errors,
+from .get_assets_by_asset_id_versions_by_version_id_subtitles_by_language_cc_webvtt_response_default import (
+    GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageCcWebvttResponseDefault,
 )
-from .get_assets_by_asset_id_files_response_default_type_0 import (
-    GetAssetsByAssetIdFilesResponseDefaultType0,
+from .get_assets_by_asset_id_versions_by_version_id_subtitles_by_language_webvtt_response_default import (
+    GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefault,
 )
-from .get_assets_by_asset_id_files_response_default_type_1 import (
-    GetAssetsByAssetIdFilesResponseDefaultType1,
+from .get_assets_by_asset_id_versions_by_version_id_subtitles_response_default import (
+    GetAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefault,
 )
-from .get_assets_by_asset_id_files_response_default_type_1_errors import (
-    GetAssetsByAssetIdFilesResponseDefaultType1Errors,
+from .get_assets_by_asset_id_watermark_matches_response_default import (
+    GetAssetsByAssetIdWatermarkMatchesResponseDefault,
 )
-from .get_assets_by_asset_id_formats_by_format_id_components_by_component_id_response_default_type_0 import (
-    GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0,
+from .get_collections_by_collection_id_keyframes_by_keyframe_id_response_default import (
+    GetCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault,
 )
-from .get_assets_by_asset_id_formats_by_format_id_components_by_component_id_response_default_type_1 import (
-    GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1,
+from .get_collections_by_collection_id_keyframes_response_default import (
+    GetCollectionsByCollectionIdKeyframesResponseDefault,
 )
-from .get_assets_by_asset_id_formats_by_format_id_components_by_component_id_response_default_type_1_errors import (
-    GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1Errors,
+from .get_delete_queue_file_sets_response_default import (
+    GetDeleteQueueFileSetsResponseDefault,
 )
-from .get_assets_by_asset_id_formats_by_format_id_components_response_default_type_0 import (
-    GetAssetsByAssetIdFormatsByFormatIdComponentsResponseDefaultType0,
+from .get_delete_queue_formats_response_default import (
+    GetDeleteQueueFormatsResponseDefault,
 )
-from .get_assets_by_asset_id_formats_by_format_id_components_response_default_type_1 import (
-    GetAssetsByAssetIdFormatsByFormatIdComponentsResponseDefaultType1,
+from .get_export_locations_by_export_location_id_response_default import (
+    GetExportLocationsByExportLocationIdResponseDefault,
 )
-from .get_assets_by_asset_id_formats_by_format_id_components_response_default_type_1_errors import (
-    GetAssetsByAssetIdFormatsByFormatIdComponentsResponseDefaultType1Errors,
+from .get_export_locations_response_default import GetExportLocationsResponseDefault
+from .get_file_sets_by_file_set_id_files_response_default import (
+    GetFileSetsByFileSetIdFilesResponseDefault,
 )
-from .get_assets_by_asset_id_formats_by_format_id_file_sets_response_default_type_0 import (
-    GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType0,
+from .get_files_checksum_by_checksum_response_default import (
+    GetFilesChecksumByChecksumResponseDefault,
 )
-from .get_assets_by_asset_id_formats_by_format_id_file_sets_response_default_type_1 import (
-    GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType1,
+from .get_playlists_by_playlist_id_keyframes_by_keyframe_id_response_default import (
+    GetPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault,
 )
-from .get_assets_by_asset_id_formats_by_format_id_file_sets_response_default_type_1_errors import (
-    GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType1Errors,
+from .get_playlists_by_playlist_id_keyframes_response_default import (
+    GetPlaylistsByPlaylistIdKeyframesResponseDefault,
 )
-from .get_assets_by_asset_id_formats_by_format_id_file_sets_sources_by_storage_method_response_default_type_0 import (
-    GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType0,
+from .get_shares_storages_by_storage_id_files_response_default import (
+    GetSharesStoragesByStorageIdFilesResponseDefault,
 )
-from .get_assets_by_asset_id_formats_by_format_id_file_sets_sources_by_storage_method_response_default_type_1 import (
-    GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType1,
+from .get_storage_gateway_clusters_by_cluster_id_response_default import (
+    GetStorageGatewayClustersByClusterIdResponseDefault,
 )
-from .get_assets_by_asset_id_formats_by_format_id_file_sets_sources_by_storage_method_response_default_type_1_errors import (
-    GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType1Errors,
+from .get_storage_gateway_clusters_response_default import (
+    GetStorageGatewayClustersResponseDefault,
 )
-from .get_assets_by_asset_id_formats_by_format_id_file_sets_sources_response_default_type_0 import (
-    GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType0,
+from .get_storage_gateways_by_storage_gateway_id_response_default import (
+    GetStorageGatewaysByStorageGatewayIdResponseDefault,
 )
-from .get_assets_by_asset_id_formats_by_format_id_file_sets_sources_response_default_type_1 import (
-    GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType1,
+from .get_storage_gateways_by_storage_gateway_id_telemetry_response_default import (
+    GetStorageGatewaysByStorageGatewayIdTelemetryResponseDefault,
 )
-from .get_assets_by_asset_id_formats_by_format_id_file_sets_sources_response_default_type_1_errors import (
-    GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType1Errors,
+from .get_storage_gateways_response_default import GetStorageGatewaysResponseDefault
+from .get_storage_gateways_telemetry_by_worker_id_response_default import (
+    GetStorageGatewaysTelemetryByWorkerIdResponseDefault,
 )
-from .get_assets_by_asset_id_formats_by_format_id_response_default_type_0 import (
-    GetAssetsByAssetIdFormatsByFormatIdResponseDefaultType0,
+from .get_storage_gateways_telemetry_response_default import (
+    GetStorageGatewaysTelemetryResponseDefault,
 )
-from .get_assets_by_asset_id_formats_by_format_id_response_default_type_1 import (
-    GetAssetsByAssetIdFormatsByFormatIdResponseDefaultType1,
+from .get_storages_by_purpose_default_response_default import (
+    GetStoragesByPurposeDefaultResponseDefault,
 )
-from .get_assets_by_asset_id_formats_by_format_id_response_default_type_1_errors import (
-    GetAssetsByAssetIdFormatsByFormatIdResponseDefaultType1Errors,
+from .get_storages_by_storage_id_auto_scan_response_default import (
+    GetStoragesByStorageIdAutoScanResponseDefault,
 )
-from .get_assets_by_asset_id_formats_by_format_id_storages_by_storage_id_file_sets_response_default_type_0 import (
-    GetAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdFileSetsResponseDefaultType0,
+from .get_storages_by_storage_id_deletions_from_response_default import (
+    GetStoragesByStorageIdDeletionsFromResponseDefault,
 )
-from .get_assets_by_asset_id_formats_by_format_id_storages_by_storage_id_file_sets_response_default_type_1 import (
-    GetAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdFileSetsResponseDefaultType1,
+from .get_storages_by_storage_id_deletions_response_default import (
+    GetStoragesByStorageIdDeletionsResponseDefault,
 )
-from .get_assets_by_asset_id_formats_by_format_id_storages_by_storage_id_file_sets_response_default_type_1_errors import (
-    GetAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdFileSetsResponseDefaultType1Errors,
+from .get_storages_by_storage_id_files_response_default import (
+    GetStoragesByStorageIdFilesResponseDefault,
 )
-from .get_assets_by_asset_id_formats_response_default_type_0 import (
-    GetAssetsByAssetIdFormatsResponseDefaultType0,
+from .get_storages_by_storage_id_gateway_events_response_default import (
+    GetStoragesByStorageIdGatewayEventsResponseDefault,
 )
-from .get_assets_by_asset_id_formats_response_default_type_1 import (
-    GetAssetsByAssetIdFormatsResponseDefaultType1,
+from .get_storages_by_storage_id_gateway_report_response_default import (
+    GetStoragesByStorageIdGatewayReportResponseDefault,
 )
-from .get_assets_by_asset_id_formats_response_default_type_1_errors import (
-    GetAssetsByAssetIdFormatsResponseDefaultType1Errors,
+from .get_storages_by_storage_id_response_default import (
+    GetStoragesByStorageIdResponseDefault,
 )
-from .get_assets_by_asset_id_keyframes_by_keyframe_id_response_default_type_0 import (
-    GetAssetsByAssetIdKeyframesByKeyframeIdResponseDefaultType0,
+from .get_storages_by_storage_id_temporary_files_response_default import (
+    GetStoragesByStorageIdTemporaryFilesResponseDefault,
 )
-from .get_assets_by_asset_id_keyframes_by_keyframe_id_response_default_type_1 import (
-    GetAssetsByAssetIdKeyframesByKeyframeIdResponseDefaultType1,
+from .get_storages_by_storage_id_transcoders_response_default import (
+    GetStoragesByStorageIdTranscodersResponseDefault,
 )
-from .get_assets_by_asset_id_keyframes_by_keyframe_id_response_default_type_1_errors import (
-    GetAssetsByAssetIdKeyframesByKeyframeIdResponseDefaultType1Errors,
+from .get_storages_by_storage_id_transfers_from_by_transfer_id_response_default import (
+    GetStoragesByStorageIdTransfersFromByTransferIdResponseDefault,
 )
-from .get_assets_by_asset_id_keyframes_response_default_type_0 import (
-    GetAssetsByAssetIdKeyframesResponseDefaultType0,
+from .get_storages_by_storage_id_transfers_from_response_default import (
+    GetStoragesByStorageIdTransfersFromResponseDefault,
 )
-from .get_assets_by_asset_id_keyframes_response_default_type_1 import (
-    GetAssetsByAssetIdKeyframesResponseDefaultType1,
+from .get_storages_by_storage_id_transfers_to_by_transfer_id_response_default import (
+    GetStoragesByStorageIdTransfersToByTransferIdResponseDefault,
 )
-from .get_assets_by_asset_id_keyframes_response_default_type_1_errors import (
-    GetAssetsByAssetIdKeyframesResponseDefaultType1Errors,
-)
-from .get_assets_by_asset_id_proxies_by_proxy_id_download_url_response_default_type_0 import (
-    GetAssetsByAssetIdProxiesByProxyIdDownloadUrlResponseDefaultType0,
-)
-from .get_assets_by_asset_id_proxies_by_proxy_id_download_url_response_default_type_1 import (
-    GetAssetsByAssetIdProxiesByProxyIdDownloadUrlResponseDefaultType1,
-)
-from .get_assets_by_asset_id_proxies_by_proxy_id_download_url_response_default_type_1_errors import (
-    GetAssetsByAssetIdProxiesByProxyIdDownloadUrlResponseDefaultType1Errors,
-)
-from .get_assets_by_asset_id_proxies_by_proxy_id_multipart_url_part_response_default_type_0 import (
-    GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType0,
-)
-from .get_assets_by_asset_id_proxies_by_proxy_id_multipart_url_part_response_default_type_1 import (
-    GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType1,
-)
-from .get_assets_by_asset_id_proxies_by_proxy_id_multipart_url_part_response_default_type_1_errors import (
-    GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType1Errors,
-)
-from .get_assets_by_asset_id_proxies_by_proxy_id_multipart_url_response_default_type_0 import (
-    GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType0,
-)
-from .get_assets_by_asset_id_proxies_by_proxy_id_multipart_url_response_default_type_1 import (
-    GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType1,
-)
-from .get_assets_by_asset_id_proxies_by_proxy_id_multipart_url_response_default_type_1_errors import (
-    GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType1Errors,
-)
-from .get_assets_by_asset_id_proxies_by_proxy_id_response_default_type_0 import (
-    GetAssetsByAssetIdProxiesByProxyIdResponseDefaultType0,
-)
-from .get_assets_by_asset_id_proxies_by_proxy_id_response_default_type_1 import (
-    GetAssetsByAssetIdProxiesByProxyIdResponseDefaultType1,
-)
-from .get_assets_by_asset_id_proxies_by_proxy_id_response_default_type_1_errors import (
-    GetAssetsByAssetIdProxiesByProxyIdResponseDefaultType1Errors,
-)
-from .get_assets_by_asset_id_proxies_response_default_type_0 import (
-    GetAssetsByAssetIdProxiesResponseDefaultType0,
-)
-from .get_assets_by_asset_id_proxies_response_default_type_1 import (
-    GetAssetsByAssetIdProxiesResponseDefaultType1,
-)
-from .get_assets_by_asset_id_proxies_response_default_type_1_errors import (
-    GetAssetsByAssetIdProxiesResponseDefaultType1Errors,
-)
-from .get_assets_by_asset_id_subtitles_by_language_cc_response_default_type_0 import (
-    GetAssetsByAssetIdSubtitlesByLanguageCcResponseDefaultType0,
-)
-from .get_assets_by_asset_id_subtitles_by_language_cc_response_default_type_1 import (
-    GetAssetsByAssetIdSubtitlesByLanguageCcResponseDefaultType1,
-)
-from .get_assets_by_asset_id_subtitles_by_language_cc_response_default_type_1_errors import (
-    GetAssetsByAssetIdSubtitlesByLanguageCcResponseDefaultType1Errors,
-)
-from .get_assets_by_asset_id_subtitles_by_language_cc_webvtt_response_default_type_0 import (
-    GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType0,
-)
-from .get_assets_by_asset_id_subtitles_by_language_cc_webvtt_response_default_type_1 import (
-    GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType1,
-)
-from .get_assets_by_asset_id_subtitles_by_language_cc_webvtt_response_default_type_1_errors import (
-    GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType1Errors,
-)
-from .get_assets_by_asset_id_subtitles_by_language_webvtt_response_default_type_0 import (
-    GetAssetsByAssetIdSubtitlesByLanguageWebvttResponseDefaultType0,
-)
-from .get_assets_by_asset_id_subtitles_by_language_webvtt_response_default_type_1 import (
-    GetAssetsByAssetIdSubtitlesByLanguageWebvttResponseDefaultType1,
-)
-from .get_assets_by_asset_id_subtitles_by_language_webvtt_response_default_type_1_errors import (
-    GetAssetsByAssetIdSubtitlesByLanguageWebvttResponseDefaultType1Errors,
-)
-from .get_assets_by_asset_id_subtitles_by_subtitle_id_response_default_type_0 import (
-    GetAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0,
-)
-from .get_assets_by_asset_id_subtitles_by_subtitle_id_response_default_type_1 import (
-    GetAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1,
-)
-from .get_assets_by_asset_id_subtitles_by_subtitle_id_response_default_type_1_errors import (
-    GetAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1Errors,
-)
-from .get_assets_by_asset_id_subtitles_response_default_type_0 import (
-    GetAssetsByAssetIdSubtitlesResponseDefaultType0,
-)
-from .get_assets_by_asset_id_subtitles_response_default_type_1 import (
-    GetAssetsByAssetIdSubtitlesResponseDefaultType1,
-)
-from .get_assets_by_asset_id_subtitles_response_default_type_1_errors import (
-    GetAssetsByAssetIdSubtitlesResponseDefaultType1Errors,
-)
-from .get_assets_by_asset_id_temporary_file_sets_by_file_set_id_files_response_default_type_0 import (
-    GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType0,
-)
-from .get_assets_by_asset_id_temporary_file_sets_by_file_set_id_files_response_default_type_1 import (
-    GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType1,
-)
-from .get_assets_by_asset_id_temporary_file_sets_by_file_set_id_files_response_default_type_1_errors import (
-    GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType1Errors,
-)
-from .get_assets_by_asset_id_versions_by_version_id_file_sets_response_default_type_0 import (
-    GetAssetsByAssetIdVersionsByVersionIdFileSetsResponseDefaultType0,
-)
-from .get_assets_by_asset_id_versions_by_version_id_file_sets_response_default_type_1 import (
-    GetAssetsByAssetIdVersionsByVersionIdFileSetsResponseDefaultType1,
-)
-from .get_assets_by_asset_id_versions_by_version_id_file_sets_response_default_type_1_errors import (
-    GetAssetsByAssetIdVersionsByVersionIdFileSetsResponseDefaultType1Errors,
-)
-from .get_assets_by_asset_id_versions_by_version_id_files_response_default_type_0 import (
-    GetAssetsByAssetIdVersionsByVersionIdFilesResponseDefaultType0,
-)
-from .get_assets_by_asset_id_versions_by_version_id_files_response_default_type_1 import (
-    GetAssetsByAssetIdVersionsByVersionIdFilesResponseDefaultType1,
-)
-from .get_assets_by_asset_id_versions_by_version_id_files_response_default_type_1_errors import (
-    GetAssetsByAssetIdVersionsByVersionIdFilesResponseDefaultType1Errors,
-)
-from .get_assets_by_asset_id_versions_by_version_id_formats_response_default_type_0 import (
-    GetAssetsByAssetIdVersionsByVersionIdFormatsResponseDefaultType0,
-)
-from .get_assets_by_asset_id_versions_by_version_id_formats_response_default_type_1 import (
-    GetAssetsByAssetIdVersionsByVersionIdFormatsResponseDefaultType1,
-)
-from .get_assets_by_asset_id_versions_by_version_id_formats_response_default_type_1_errors import (
-    GetAssetsByAssetIdVersionsByVersionIdFormatsResponseDefaultType1Errors,
-)
-from .get_assets_by_asset_id_versions_by_version_id_keyframes_response_default_type_0 import (
-    GetAssetsByAssetIdVersionsByVersionIdKeyframesResponseDefaultType0,
-)
-from .get_assets_by_asset_id_versions_by_version_id_keyframes_response_default_type_1 import (
-    GetAssetsByAssetIdVersionsByVersionIdKeyframesResponseDefaultType1,
-)
-from .get_assets_by_asset_id_versions_by_version_id_keyframes_response_default_type_1_errors import (
-    GetAssetsByAssetIdVersionsByVersionIdKeyframesResponseDefaultType1Errors,
-)
-from .get_assets_by_asset_id_versions_by_version_id_proxies_by_proxy_id_by_manifest_type_response_default_type_0 import (
-    GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType0,
-)
-from .get_assets_by_asset_id_versions_by_version_id_proxies_by_proxy_id_by_manifest_type_response_default_type_1 import (
-    GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType1,
-)
-from .get_assets_by_asset_id_versions_by_version_id_proxies_by_proxy_id_by_manifest_type_response_default_type_1_errors import (
-    GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType1Errors,
-)
-from .get_assets_by_asset_id_versions_by_version_id_proxies_response_default_type_0 import (
-    GetAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType0,
-)
-from .get_assets_by_asset_id_versions_by_version_id_proxies_response_default_type_1 import (
-    GetAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType1,
-)
-from .get_assets_by_asset_id_versions_by_version_id_proxies_response_default_type_1_errors import (
-    GetAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType1Errors,
-)
-from .get_assets_by_asset_id_versions_by_version_id_subtitles_by_language_cc_webvtt_response_default_type_0 import (
-    GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageCcWebvttResponseDefaultType0,
-)
-from .get_assets_by_asset_id_versions_by_version_id_subtitles_by_language_cc_webvtt_response_default_type_1 import (
-    GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageCcWebvttResponseDefaultType1,
-)
-from .get_assets_by_asset_id_versions_by_version_id_subtitles_by_language_cc_webvtt_response_default_type_1_errors import (
-    GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageCcWebvttResponseDefaultType1Errors,
-)
-from .get_assets_by_asset_id_versions_by_version_id_subtitles_by_language_webvtt_response_default_type_0 import (
-    GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType0,
-)
-from .get_assets_by_asset_id_versions_by_version_id_subtitles_by_language_webvtt_response_default_type_1 import (
-    GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType1,
-)
-from .get_assets_by_asset_id_versions_by_version_id_subtitles_by_language_webvtt_response_default_type_1_errors import (
-    GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType1Errors,
-)
-from .get_assets_by_asset_id_versions_by_version_id_subtitles_response_default_type_0 import (
-    GetAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType0,
-)
-from .get_assets_by_asset_id_versions_by_version_id_subtitles_response_default_type_1 import (
-    GetAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType1,
-)
-from .get_assets_by_asset_id_versions_by_version_id_subtitles_response_default_type_1_errors import (
-    GetAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType1Errors,
-)
-from .get_assets_by_asset_id_watermark_matches_response_default_type_0 import (
-    GetAssetsByAssetIdWatermarkMatchesResponseDefaultType0,
-)
-from .get_assets_by_asset_id_watermark_matches_response_default_type_1 import (
-    GetAssetsByAssetIdWatermarkMatchesResponseDefaultType1,
-)
-from .get_assets_by_asset_id_watermark_matches_response_default_type_1_errors import (
-    GetAssetsByAssetIdWatermarkMatchesResponseDefaultType1Errors,
-)
-from .get_collections_by_collection_id_keyframes_by_keyframe_id_response_default_type_0 import (
-    GetCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0,
-)
-from .get_collections_by_collection_id_keyframes_by_keyframe_id_response_default_type_1 import (
-    GetCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1,
-)
-from .get_collections_by_collection_id_keyframes_by_keyframe_id_response_default_type_1_errors import (
-    GetCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1Errors,
-)
-from .get_collections_by_collection_id_keyframes_response_default_type_0 import (
-    GetCollectionsByCollectionIdKeyframesResponseDefaultType0,
-)
-from .get_collections_by_collection_id_keyframes_response_default_type_1 import (
-    GetCollectionsByCollectionIdKeyframesResponseDefaultType1,
-)
-from .get_collections_by_collection_id_keyframes_response_default_type_1_errors import (
-    GetCollectionsByCollectionIdKeyframesResponseDefaultType1Errors,
-)
-from .get_delete_queue_file_sets_response_default_type_0 import (
-    GetDeleteQueueFileSetsResponseDefaultType0,
-)
-from .get_delete_queue_file_sets_response_default_type_1 import (
-    GetDeleteQueueFileSetsResponseDefaultType1,
-)
-from .get_delete_queue_file_sets_response_default_type_1_errors import (
-    GetDeleteQueueFileSetsResponseDefaultType1Errors,
-)
-from .get_delete_queue_formats_response_default_type_0 import (
-    GetDeleteQueueFormatsResponseDefaultType0,
-)
-from .get_delete_queue_formats_response_default_type_1 import (
-    GetDeleteQueueFormatsResponseDefaultType1,
-)
-from .get_delete_queue_formats_response_default_type_1_errors import (
-    GetDeleteQueueFormatsResponseDefaultType1Errors,
-)
-from .get_export_locations_by_export_location_id_response_default_type_0 import (
-    GetExportLocationsByExportLocationIdResponseDefaultType0,
-)
-from .get_export_locations_by_export_location_id_response_default_type_1 import (
-    GetExportLocationsByExportLocationIdResponseDefaultType1,
-)
-from .get_export_locations_by_export_location_id_response_default_type_1_errors import (
-    GetExportLocationsByExportLocationIdResponseDefaultType1Errors,
-)
-from .get_export_locations_response_default_type_0 import (
-    GetExportLocationsResponseDefaultType0,
-)
-from .get_export_locations_response_default_type_1 import (
-    GetExportLocationsResponseDefaultType1,
-)
-from .get_export_locations_response_default_type_1_errors import (
-    GetExportLocationsResponseDefaultType1Errors,
-)
-from .get_file_sets_by_file_set_id_files_response_default_type_0 import (
-    GetFileSetsByFileSetIdFilesResponseDefaultType0,
-)
-from .get_file_sets_by_file_set_id_files_response_default_type_1 import (
-    GetFileSetsByFileSetIdFilesResponseDefaultType1,
-)
-from .get_file_sets_by_file_set_id_files_response_default_type_1_errors import (
-    GetFileSetsByFileSetIdFilesResponseDefaultType1Errors,
-)
-from .get_files_checksum_by_checksum_response_default_type_0 import (
-    GetFilesChecksumByChecksumResponseDefaultType0,
-)
-from .get_files_checksum_by_checksum_response_default_type_1 import (
-    GetFilesChecksumByChecksumResponseDefaultType1,
-)
-from .get_files_checksum_by_checksum_response_default_type_1_errors import (
-    GetFilesChecksumByChecksumResponseDefaultType1Errors,
-)
-from .get_playlists_by_playlist_id_keyframes_by_keyframe_id_response_default_type_0 import (
-    GetPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType0,
-)
-from .get_playlists_by_playlist_id_keyframes_by_keyframe_id_response_default_type_1 import (
-    GetPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1,
-)
-from .get_playlists_by_playlist_id_keyframes_by_keyframe_id_response_default_type_1_errors import (
-    GetPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1Errors,
-)
-from .get_playlists_by_playlist_id_keyframes_response_default_type_0 import (
-    GetPlaylistsByPlaylistIdKeyframesResponseDefaultType0,
-)
-from .get_playlists_by_playlist_id_keyframes_response_default_type_1 import (
-    GetPlaylistsByPlaylistIdKeyframesResponseDefaultType1,
-)
-from .get_playlists_by_playlist_id_keyframes_response_default_type_1_errors import (
-    GetPlaylistsByPlaylistIdKeyframesResponseDefaultType1Errors,
-)
-from .get_shares_storages_by_storage_id_files_response_default_type_0 import (
-    GetSharesStoragesByStorageIdFilesResponseDefaultType0,
-)
-from .get_shares_storages_by_storage_id_files_response_default_type_1 import (
-    GetSharesStoragesByStorageIdFilesResponseDefaultType1,
-)
-from .get_shares_storages_by_storage_id_files_response_default_type_1_errors import (
-    GetSharesStoragesByStorageIdFilesResponseDefaultType1Errors,
-)
-from .get_storage_gateway_clusters_by_cluster_id_response_default_type_0 import (
-    GetStorageGatewayClustersByClusterIdResponseDefaultType0,
-)
-from .get_storage_gateway_clusters_by_cluster_id_response_default_type_1 import (
-    GetStorageGatewayClustersByClusterIdResponseDefaultType1,
-)
-from .get_storage_gateway_clusters_by_cluster_id_response_default_type_1_errors import (
-    GetStorageGatewayClustersByClusterIdResponseDefaultType1Errors,
-)
-from .get_storage_gateway_clusters_response_default_type_0 import (
-    GetStorageGatewayClustersResponseDefaultType0,
-)
-from .get_storage_gateway_clusters_response_default_type_1 import (
-    GetStorageGatewayClustersResponseDefaultType1,
-)
-from .get_storage_gateway_clusters_response_default_type_1_errors import (
-    GetStorageGatewayClustersResponseDefaultType1Errors,
-)
-from .get_storage_gateways_by_storage_gateway_id_response_default_type_0 import (
-    GetStorageGatewaysByStorageGatewayIdResponseDefaultType0,
-)
-from .get_storage_gateways_by_storage_gateway_id_response_default_type_1 import (
-    GetStorageGatewaysByStorageGatewayIdResponseDefaultType1,
-)
-from .get_storage_gateways_by_storage_gateway_id_response_default_type_1_errors import (
-    GetStorageGatewaysByStorageGatewayIdResponseDefaultType1Errors,
-)
-from .get_storage_gateways_by_storage_gateway_id_telemetry_response_default_type_0 import (
-    GetStorageGatewaysByStorageGatewayIdTelemetryResponseDefaultType0,
-)
-from .get_storage_gateways_by_storage_gateway_id_telemetry_response_default_type_1 import (
-    GetStorageGatewaysByStorageGatewayIdTelemetryResponseDefaultType1,
-)
-from .get_storage_gateways_by_storage_gateway_id_telemetry_response_default_type_1_errors import (
-    GetStorageGatewaysByStorageGatewayIdTelemetryResponseDefaultType1Errors,
-)
-from .get_storage_gateways_response_default_type_0 import (
-    GetStorageGatewaysResponseDefaultType0,
-)
-from .get_storage_gateways_response_default_type_1 import (
-    GetStorageGatewaysResponseDefaultType1,
-)
-from .get_storage_gateways_response_default_type_1_errors import (
-    GetStorageGatewaysResponseDefaultType1Errors,
-)
-from .get_storage_gateways_telemetry_by_worker_id_response_default_type_0 import (
-    GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType0,
-)
-from .get_storage_gateways_telemetry_by_worker_id_response_default_type_1 import (
-    GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType1,
-)
-from .get_storage_gateways_telemetry_by_worker_id_response_default_type_1_errors import (
-    GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType1Errors,
-)
-from .get_storage_gateways_telemetry_response_default_type_0 import (
-    GetStorageGatewaysTelemetryResponseDefaultType0,
-)
-from .get_storage_gateways_telemetry_response_default_type_1 import (
-    GetStorageGatewaysTelemetryResponseDefaultType1,
-)
-from .get_storage_gateways_telemetry_response_default_type_1_errors import (
-    GetStorageGatewaysTelemetryResponseDefaultType1Errors,
-)
-from .get_storages_by_purpose_default_response_default_type_0 import (
-    GetStoragesByPurposeDefaultResponseDefaultType0,
-)
-from .get_storages_by_purpose_default_response_default_type_1 import (
-    GetStoragesByPurposeDefaultResponseDefaultType1,
-)
-from .get_storages_by_purpose_default_response_default_type_1_errors import (
-    GetStoragesByPurposeDefaultResponseDefaultType1Errors,
-)
-from .get_storages_by_storage_id_auto_scan_response_default_type_0 import (
-    GetStoragesByStorageIdAutoScanResponseDefaultType0,
-)
-from .get_storages_by_storage_id_auto_scan_response_default_type_1 import (
-    GetStoragesByStorageIdAutoScanResponseDefaultType1,
-)
-from .get_storages_by_storage_id_auto_scan_response_default_type_1_errors import (
-    GetStoragesByStorageIdAutoScanResponseDefaultType1Errors,
-)
-from .get_storages_by_storage_id_deletions_from_response_default_type_0 import (
-    GetStoragesByStorageIdDeletionsFromResponseDefaultType0,
-)
-from .get_storages_by_storage_id_deletions_from_response_default_type_1 import (
-    GetStoragesByStorageIdDeletionsFromResponseDefaultType1,
-)
-from .get_storages_by_storage_id_deletions_from_response_default_type_1_errors import (
-    GetStoragesByStorageIdDeletionsFromResponseDefaultType1Errors,
-)
-from .get_storages_by_storage_id_deletions_response_default_type_0 import (
-    GetStoragesByStorageIdDeletionsResponseDefaultType0,
-)
-from .get_storages_by_storage_id_deletions_response_default_type_1 import (
-    GetStoragesByStorageIdDeletionsResponseDefaultType1,
-)
-from .get_storages_by_storage_id_deletions_response_default_type_1_errors import (
-    GetStoragesByStorageIdDeletionsResponseDefaultType1Errors,
-)
-from .get_storages_by_storage_id_files_response_default_type_0 import (
-    GetStoragesByStorageIdFilesResponseDefaultType0,
-)
-from .get_storages_by_storage_id_files_response_default_type_1 import (
-    GetStoragesByStorageIdFilesResponseDefaultType1,
-)
-from .get_storages_by_storage_id_files_response_default_type_1_errors import (
-    GetStoragesByStorageIdFilesResponseDefaultType1Errors,
-)
-from .get_storages_by_storage_id_gateway_events_response_default_type_0 import (
-    GetStoragesByStorageIdGatewayEventsResponseDefaultType0,
-)
-from .get_storages_by_storage_id_gateway_events_response_default_type_1 import (
-    GetStoragesByStorageIdGatewayEventsResponseDefaultType1,
-)
-from .get_storages_by_storage_id_gateway_events_response_default_type_1_errors import (
-    GetStoragesByStorageIdGatewayEventsResponseDefaultType1Errors,
-)
-from .get_storages_by_storage_id_gateway_report_response_default_type_0 import (
-    GetStoragesByStorageIdGatewayReportResponseDefaultType0,
-)
-from .get_storages_by_storage_id_gateway_report_response_default_type_1 import (
-    GetStoragesByStorageIdGatewayReportResponseDefaultType1,
-)
-from .get_storages_by_storage_id_gateway_report_response_default_type_1_errors import (
-    GetStoragesByStorageIdGatewayReportResponseDefaultType1Errors,
-)
-from .get_storages_by_storage_id_response_default_type_0 import (
-    GetStoragesByStorageIdResponseDefaultType0,
-)
-from .get_storages_by_storage_id_response_default_type_1 import (
-    GetStoragesByStorageIdResponseDefaultType1,
-)
-from .get_storages_by_storage_id_response_default_type_1_errors import (
-    GetStoragesByStorageIdResponseDefaultType1Errors,
-)
-from .get_storages_by_storage_id_temporary_files_response_default_type_0 import (
-    GetStoragesByStorageIdTemporaryFilesResponseDefaultType0,
-)
-from .get_storages_by_storage_id_temporary_files_response_default_type_1 import (
-    GetStoragesByStorageIdTemporaryFilesResponseDefaultType1,
-)
-from .get_storages_by_storage_id_temporary_files_response_default_type_1_errors import (
-    GetStoragesByStorageIdTemporaryFilesResponseDefaultType1Errors,
-)
-from .get_storages_by_storage_id_transcoders_response_default_type_0 import (
-    GetStoragesByStorageIdTranscodersResponseDefaultType0,
-)
-from .get_storages_by_storage_id_transcoders_response_default_type_1 import (
-    GetStoragesByStorageIdTranscodersResponseDefaultType1,
-)
-from .get_storages_by_storage_id_transcoders_response_default_type_1_errors import (
-    GetStoragesByStorageIdTranscodersResponseDefaultType1Errors,
-)
-from .get_storages_by_storage_id_transfers_from_by_transfer_id_response_default_type_0 import (
-    GetStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType0,
-)
-from .get_storages_by_storage_id_transfers_from_by_transfer_id_response_default_type_1 import (
-    GetStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType1,
-)
-from .get_storages_by_storage_id_transfers_from_by_transfer_id_response_default_type_1_errors import (
-    GetStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType1Errors,
-)
-from .get_storages_by_storage_id_transfers_from_response_default_type_0 import (
-    GetStoragesByStorageIdTransfersFromResponseDefaultType0,
-)
-from .get_storages_by_storage_id_transfers_from_response_default_type_1 import (
-    GetStoragesByStorageIdTransfersFromResponseDefaultType1,
-)
-from .get_storages_by_storage_id_transfers_from_response_default_type_1_errors import (
-    GetStoragesByStorageIdTransfersFromResponseDefaultType1Errors,
-)
-from .get_storages_by_storage_id_transfers_to_by_transfer_id_response_default_type_0 import (
-    GetStoragesByStorageIdTransfersToByTransferIdResponseDefaultType0,
-)
-from .get_storages_by_storage_id_transfers_to_by_transfer_id_response_default_type_1 import (
-    GetStoragesByStorageIdTransfersToByTransferIdResponseDefaultType1,
-)
-from .get_storages_by_storage_id_transfers_to_by_transfer_id_response_default_type_1_errors import (
-    GetStoragesByStorageIdTransfersToByTransferIdResponseDefaultType1Errors,
-)
-from .get_storages_by_storage_id_transfers_to_response_default_type_0 import (
-    GetStoragesByStorageIdTransfersToResponseDefaultType0,
-)
-from .get_storages_by_storage_id_transfers_to_response_default_type_1 import (
-    GetStoragesByStorageIdTransfersToResponseDefaultType1,
-)
-from .get_storages_by_storage_id_transfers_to_response_default_type_1_errors import (
-    GetStoragesByStorageIdTransfersToResponseDefaultType1Errors,
+from .get_storages_by_storage_id_transfers_to_response_default import (
+    GetStoragesByStorageIdTransfersToResponseDefault,
 )
 from .get_storages_by_storage_id_verifications_access_response_200 import (
     GetStoragesByStorageIdVerificationsAccessResponse200,
 )
-from .get_storages_by_storage_id_verifications_access_response_default_type_0 import (
-    GetStoragesByStorageIdVerificationsAccessResponseDefaultType0,
-)
-from .get_storages_by_storage_id_verifications_access_response_default_type_1 import (
-    GetStoragesByStorageIdVerificationsAccessResponseDefaultType1,
-)
-from .get_storages_by_storage_id_verifications_access_response_default_type_1_errors import (
-    GetStoragesByStorageIdVerificationsAccessResponseDefaultType1Errors,
+from .get_storages_by_storage_id_verifications_access_response_default import (
+    GetStoragesByStorageIdVerificationsAccessResponseDefault,
 )
 from .get_storages_by_storage_id_verifications_permissions_response_200 import (
     GetStoragesByStorageIdVerificationsPermissionsResponse200,
 )
-from .get_storages_by_storage_id_verifications_permissions_response_default_type_0 import (
-    GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType0,
-)
-from .get_storages_by_storage_id_verifications_permissions_response_default_type_1 import (
-    GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType1,
-)
-from .get_storages_by_storage_id_verifications_permissions_response_default_type_1_errors import (
-    GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType1Errors,
+from .get_storages_by_storage_id_verifications_permissions_response_default import (
+    GetStoragesByStorageIdVerificationsPermissionsResponseDefault,
 )
 from .get_storages_isg_latest_version_response_200 import (
     GetStoragesIsgLatestVersionResponse200,
 )
-from .get_storages_isg_latest_version_response_default_type_0 import (
-    GetStoragesIsgLatestVersionResponseDefaultType0,
+from .get_storages_isg_latest_version_response_default import (
+    GetStoragesIsgLatestVersionResponseDefault,
 )
-from .get_storages_isg_latest_version_response_default_type_1 import (
-    GetStoragesIsgLatestVersionResponseDefaultType1,
+from .get_storages_matching_by_purpose_method_by_method_response_default import (
+    GetStoragesMatchingByPurposeMethodByMethodResponseDefault,
 )
-from .get_storages_isg_latest_version_response_default_type_1_errors import (
-    GetStoragesIsgLatestVersionResponseDefaultType1Errors,
+from .get_storages_matching_by_purpose_response_default import (
+    GetStoragesMatchingByPurposeResponseDefault,
 )
-from .get_storages_matching_by_purpose_method_by_method_response_default_type_0 import (
-    GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType0,
+from .get_storages_response_default import GetStoragesResponseDefault
+from .get_transcoders_by_transcoder_id_options_by_option_name_response_default import (
+    GetTranscodersByTranscoderIdOptionsByOptionNameResponseDefault,
 )
-from .get_storages_matching_by_purpose_method_by_method_response_default_type_1 import (
-    GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType1,
+from .get_transcoders_by_transcoder_id_response_default import (
+    GetTranscodersByTranscoderIdResponseDefault,
 )
-from .get_storages_matching_by_purpose_method_by_method_response_default_type_1_errors import (
-    GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType1Errors,
+from .get_transcoders_by_transcoder_id_storages_response_default import (
+    GetTranscodersByTranscoderIdStoragesResponseDefault,
 )
-from .get_storages_matching_by_purpose_response_default_type_0 import (
-    GetStoragesMatchingByPurposeResponseDefaultType0,
-)
-from .get_storages_matching_by_purpose_response_default_type_1 import (
-    GetStoragesMatchingByPurposeResponseDefaultType1,
-)
-from .get_storages_matching_by_purpose_response_default_type_1_errors import (
-    GetStoragesMatchingByPurposeResponseDefaultType1Errors,
-)
-from .get_storages_response_default_type_0 import GetStoragesResponseDefaultType0
-from .get_storages_response_default_type_1 import GetStoragesResponseDefaultType1
-from .get_storages_response_default_type_1_errors import (
-    GetStoragesResponseDefaultType1Errors,
-)
-from .get_transcoders_by_transcoder_id_options_by_option_name_response_default_type_0 import (
-    GetTranscodersByTranscoderIdOptionsByOptionNameResponseDefaultType0,
-)
-from .get_transcoders_by_transcoder_id_options_by_option_name_response_default_type_1 import (
-    GetTranscodersByTranscoderIdOptionsByOptionNameResponseDefaultType1,
-)
-from .get_transcoders_by_transcoder_id_options_by_option_name_response_default_type_1_errors import (
-    GetTranscodersByTranscoderIdOptionsByOptionNameResponseDefaultType1Errors,
-)
-from .get_transcoders_by_transcoder_id_response_default_type_0 import (
-    GetTranscodersByTranscoderIdResponseDefaultType0,
-)
-from .get_transcoders_by_transcoder_id_response_default_type_1 import (
-    GetTranscodersByTranscoderIdResponseDefaultType1,
-)
-from .get_transcoders_by_transcoder_id_response_default_type_1_errors import (
-    GetTranscodersByTranscoderIdResponseDefaultType1Errors,
-)
-from .get_transcoders_by_transcoder_id_storages_response_default_type_0 import (
-    GetTranscodersByTranscoderIdStoragesResponseDefaultType0,
-)
-from .get_transcoders_by_transcoder_id_storages_response_default_type_1 import (
-    GetTranscodersByTranscoderIdStoragesResponseDefaultType1,
-)
-from .get_transcoders_by_transcoder_id_storages_response_default_type_1_errors import (
-    GetTranscodersByTranscoderIdStoragesResponseDefaultType1Errors,
-)
-from .get_transcoders_response_default_type_0 import GetTranscodersResponseDefaultType0
-from .get_transcoders_response_default_type_1 import GetTranscodersResponseDefaultType1
-from .get_transcoders_response_default_type_1_errors import (
-    GetTranscodersResponseDefaultType1Errors,
-)
-from .get_transfers_by_transfer_id_urls_verify_response_default_type_0 import (
-    GetTransfersByTransferIdUrlsVerifyResponseDefaultType0,
-)
-from .get_transfers_by_transfer_id_urls_verify_response_default_type_1 import (
-    GetTransfersByTransferIdUrlsVerifyResponseDefaultType1,
-)
-from .get_transfers_by_transfer_id_urls_verify_response_default_type_1_errors import (
-    GetTransfersByTransferIdUrlsVerifyResponseDefaultType1Errors,
+from .get_transcoders_response_default import GetTranscodersResponseDefault
+from .get_transfers_by_transfer_id_urls_verify_response_default import (
+    GetTransfersByTransferIdUrlsVerifyResponseDefault,
 )
 from .google_cloud_storage_settings_schema import GoogleCloudStorageSettingsSchema
 from .http_settings_schema import HttpSettingsSchema
@@ -1639,167 +797,59 @@ from .multipart_upload_cleanup_schema import MultipartUploadCleanupSchema
 from .multipart_upload_compose_schema import MultipartUploadComposeSchema
 from .multipart_upload_proxy_cleanup_schema import MultipartUploadProxyCleanupSchema
 from .multipart_upload_schema import MultipartUploadSchema
-from .patch_analysis_profiles_by_profile_id_response_default_type_0 import (
-    PatchAnalysisProfilesByProfileIdResponseDefaultType0,
+from .patch_analysis_profiles_by_profile_id_response_default import (
+    PatchAnalysisProfilesByProfileIdResponseDefault,
 )
-from .patch_analysis_profiles_by_profile_id_response_default_type_1 import (
-    PatchAnalysisProfilesByProfileIdResponseDefaultType1,
+from .patch_analysis_service_accounts_by_analysis_service_account_id_response_default import (
+    PatchAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault,
 )
-from .patch_analysis_profiles_by_profile_id_response_default_type_1_errors import (
-    PatchAnalysisProfilesByProfileIdResponseDefaultType1Errors,
+from .patch_assets_by_asset_id_file_sets_by_file_set_id_response_default import (
+    PatchAssetsByAssetIdFileSetsByFileSetIdResponseDefault,
 )
-from .patch_analysis_service_accounts_by_analysis_service_account_id_response_default_type_0 import (
-    PatchAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0,
+from .patch_assets_by_asset_id_files_by_file_id_response_default import (
+    PatchAssetsByAssetIdFilesByFileIdResponseDefault,
 )
-from .patch_analysis_service_accounts_by_analysis_service_account_id_response_default_type_1 import (
-    PatchAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1,
+from .patch_assets_by_asset_id_formats_by_format_id_response_default import (
+    PatchAssetsByAssetIdFormatsByFormatIdResponseDefault,
 )
-from .patch_analysis_service_accounts_by_analysis_service_account_id_response_default_type_1_errors import (
-    PatchAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1Errors,
+from .patch_assets_by_asset_id_keyframes_by_keyframe_id_response_default import (
+    PatchAssetsByAssetIdKeyframesByKeyframeIdResponseDefault,
 )
-from .patch_assets_by_asset_id_file_sets_by_file_set_id_response_default_type_0 import (
-    PatchAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0,
+from .patch_assets_by_asset_id_proxies_by_proxy_id_containers_by_container_id_files_by_file_id_response_default import (
+    PatchAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesByFileIdResponseDefault,
 )
-from .patch_assets_by_asset_id_file_sets_by_file_set_id_response_default_type_1 import (
-    PatchAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1,
+from .patch_assets_by_asset_id_proxies_by_proxy_id_response_default import (
+    PatchAssetsByAssetIdProxiesByProxyIdResponseDefault,
 )
-from .patch_assets_by_asset_id_file_sets_by_file_set_id_response_default_type_1_errors import (
-    PatchAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1Errors,
+from .patch_assets_by_asset_id_subtitles_by_subtitle_id_response_default import (
+    PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault,
 )
-from .patch_assets_by_asset_id_files_by_file_id_response_default_type_0 import (
-    PatchAssetsByAssetIdFilesByFileIdResponseDefaultType0,
+from .patch_assets_by_asset_id_temporary_files_by_file_id_response_default import (
+    PatchAssetsByAssetIdTemporaryFilesByFileIdResponseDefault,
 )
-from .patch_assets_by_asset_id_files_by_file_id_response_default_type_1 import (
-    PatchAssetsByAssetIdFilesByFileIdResponseDefaultType1,
+from .patch_collections_by_collection_id_keyframes_by_keyframe_id_response_default import (
+    PatchCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault,
 )
-from .patch_assets_by_asset_id_files_by_file_id_response_default_type_1_errors import (
-    PatchAssetsByAssetIdFilesByFileIdResponseDefaultType1Errors,
+from .patch_export_locations_by_export_location_id_response_default import (
+    PatchExportLocationsByExportLocationIdResponseDefault,
 )
-from .patch_assets_by_asset_id_formats_by_format_id_response_default_type_0 import (
-    PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType0,
+from .patch_playlists_by_playlist_id_keyframes_by_keyframe_id_response_default import (
+    PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault,
 )
-from .patch_assets_by_asset_id_formats_by_format_id_response_default_type_1 import (
-    PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType1,
+from .patch_storage_gateway_clusters_by_cluster_id_response_default import (
+    PatchStorageGatewayClustersByClusterIdResponseDefault,
 )
-from .patch_assets_by_asset_id_formats_by_format_id_response_default_type_1_errors import (
-    PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType1Errors,
+from .patch_storage_gateways_by_storage_gateway_id_response_default import (
+    PatchStorageGatewaysByStorageGatewayIdResponseDefault,
 )
-from .patch_assets_by_asset_id_keyframes_by_keyframe_id_response_default_type_0 import (
-    PatchAssetsByAssetIdKeyframesByKeyframeIdResponseDefaultType0,
+from .patch_storages_by_storage_id_files_response_default import (
+    PatchStoragesByStorageIdFilesResponseDefault,
 )
-from .patch_assets_by_asset_id_keyframes_by_keyframe_id_response_default_type_1 import (
-    PatchAssetsByAssetIdKeyframesByKeyframeIdResponseDefaultType1,
+from .patch_storages_by_storage_id_response_default import (
+    PatchStoragesByStorageIdResponseDefault,
 )
-from .patch_assets_by_asset_id_keyframes_by_keyframe_id_response_default_type_1_errors import (
-    PatchAssetsByAssetIdKeyframesByKeyframeIdResponseDefaultType1Errors,
-)
-from .patch_assets_by_asset_id_proxies_by_proxy_id_containers_by_container_id_files_by_file_id_response_default_type_0 import (
-    PatchAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesByFileIdResponseDefaultType0,
-)
-from .patch_assets_by_asset_id_proxies_by_proxy_id_containers_by_container_id_files_by_file_id_response_default_type_1 import (
-    PatchAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesByFileIdResponseDefaultType1,
-)
-from .patch_assets_by_asset_id_proxies_by_proxy_id_containers_by_container_id_files_by_file_id_response_default_type_1_errors import (
-    PatchAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesByFileIdResponseDefaultType1Errors,
-)
-from .patch_assets_by_asset_id_proxies_by_proxy_id_response_default_type_0 import (
-    PatchAssetsByAssetIdProxiesByProxyIdResponseDefaultType0,
-)
-from .patch_assets_by_asset_id_proxies_by_proxy_id_response_default_type_1 import (
-    PatchAssetsByAssetIdProxiesByProxyIdResponseDefaultType1,
-)
-from .patch_assets_by_asset_id_proxies_by_proxy_id_response_default_type_1_errors import (
-    PatchAssetsByAssetIdProxiesByProxyIdResponseDefaultType1Errors,
-)
-from .patch_assets_by_asset_id_subtitles_by_subtitle_id_response_default_type_0 import (
-    PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0,
-)
-from .patch_assets_by_asset_id_subtitles_by_subtitle_id_response_default_type_1 import (
-    PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1,
-)
-from .patch_assets_by_asset_id_subtitles_by_subtitle_id_response_default_type_1_errors import (
-    PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1Errors,
-)
-from .patch_assets_by_asset_id_temporary_files_by_file_id_response_default_type_0 import (
-    PatchAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType0,
-)
-from .patch_assets_by_asset_id_temporary_files_by_file_id_response_default_type_1 import (
-    PatchAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType1,
-)
-from .patch_assets_by_asset_id_temporary_files_by_file_id_response_default_type_1_errors import (
-    PatchAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType1Errors,
-)
-from .patch_collections_by_collection_id_keyframes_by_keyframe_id_response_default_type_0 import (
-    PatchCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0,
-)
-from .patch_collections_by_collection_id_keyframes_by_keyframe_id_response_default_type_1 import (
-    PatchCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1,
-)
-from .patch_collections_by_collection_id_keyframes_by_keyframe_id_response_default_type_1_errors import (
-    PatchCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1Errors,
-)
-from .patch_export_locations_by_export_location_id_response_default_type_0 import (
-    PatchExportLocationsByExportLocationIdResponseDefaultType0,
-)
-from .patch_export_locations_by_export_location_id_response_default_type_1 import (
-    PatchExportLocationsByExportLocationIdResponseDefaultType1,
-)
-from .patch_export_locations_by_export_location_id_response_default_type_1_errors import (
-    PatchExportLocationsByExportLocationIdResponseDefaultType1Errors,
-)
-from .patch_playlists_by_playlist_id_keyframes_by_keyframe_id_response_default_type_0 import (
-    PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType0,
-)
-from .patch_playlists_by_playlist_id_keyframes_by_keyframe_id_response_default_type_1 import (
-    PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1,
-)
-from .patch_playlists_by_playlist_id_keyframes_by_keyframe_id_response_default_type_1_errors import (
-    PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1Errors,
-)
-from .patch_storage_gateway_clusters_by_cluster_id_response_default_type_0 import (
-    PatchStorageGatewayClustersByClusterIdResponseDefaultType0,
-)
-from .patch_storage_gateway_clusters_by_cluster_id_response_default_type_1 import (
-    PatchStorageGatewayClustersByClusterIdResponseDefaultType1,
-)
-from .patch_storage_gateway_clusters_by_cluster_id_response_default_type_1_errors import (
-    PatchStorageGatewayClustersByClusterIdResponseDefaultType1Errors,
-)
-from .patch_storage_gateways_by_storage_gateway_id_response_default_type_0 import (
-    PatchStorageGatewaysByStorageGatewayIdResponseDefaultType0,
-)
-from .patch_storage_gateways_by_storage_gateway_id_response_default_type_1 import (
-    PatchStorageGatewaysByStorageGatewayIdResponseDefaultType1,
-)
-from .patch_storage_gateways_by_storage_gateway_id_response_default_type_1_errors import (
-    PatchStorageGatewaysByStorageGatewayIdResponseDefaultType1Errors,
-)
-from .patch_storages_by_storage_id_files_response_default_type_0 import (
-    PatchStoragesByStorageIdFilesResponseDefaultType0,
-)
-from .patch_storages_by_storage_id_files_response_default_type_1 import (
-    PatchStoragesByStorageIdFilesResponseDefaultType1,
-)
-from .patch_storages_by_storage_id_files_response_default_type_1_errors import (
-    PatchStoragesByStorageIdFilesResponseDefaultType1Errors,
-)
-from .patch_storages_by_storage_id_response_default_type_0 import (
-    PatchStoragesByStorageIdResponseDefaultType0,
-)
-from .patch_storages_by_storage_id_response_default_type_1 import (
-    PatchStoragesByStorageIdResponseDefaultType1,
-)
-from .patch_storages_by_storage_id_response_default_type_1_errors import (
-    PatchStoragesByStorageIdResponseDefaultType1Errors,
-)
-from .patch_transcoders_by_transcoder_id_response_default_type_0 import (
-    PatchTranscodersByTranscoderIdResponseDefaultType0,
-)
-from .patch_transcoders_by_transcoder_id_response_default_type_1 import (
-    PatchTranscodersByTranscoderIdResponseDefaultType1,
-)
-from .patch_transcoders_by_transcoder_id_response_default_type_1_errors import (
-    PatchTranscodersByTranscoderIdResponseDefaultType1Errors,
+from .patch_transcoders_by_transcoder_id_response_default import (
+    PatchTranscodersByTranscoderIdResponseDefault,
 )
 from .playlist_keyframe_create_schema import PlaylistKeyframeCreateSchema
 from .playlist_keyframe_create_schema_status import PlaylistKeyframeCreateSchemaStatus
@@ -1815,919 +865,307 @@ from .playlist_keyframe_update_schema_status import PlaylistKeyframeUpdateSchema
 from .playlist_keyframe_update_schema_type import PlaylistKeyframeUpdateSchemaType
 from .playlist_keyframes_schema import PlaylistKeyframesSchema
 from .portal_settings_schema import PortalSettingsSchema
-from .post_analysis_profiles_by_profile_id_default_response_default_type_0 import (
-    PostAnalysisProfilesByProfileIdDefaultResponseDefaultType0,
+from .post_analysis_profiles_by_profile_id_default_response_default import (
+    PostAnalysisProfilesByProfileIdDefaultResponseDefault,
 )
-from .post_analysis_profiles_by_profile_id_default_response_default_type_1 import (
-    PostAnalysisProfilesByProfileIdDefaultResponseDefaultType1,
+from .post_analysis_profiles_response_default import PostAnalysisProfilesResponseDefault
+from .post_analysis_service_accounts_response_default import (
+    PostAnalysisServiceAccountsResponseDefault,
 )
-from .post_analysis_profiles_by_profile_id_default_response_default_type_1_errors import (
-    PostAnalysisProfilesByProfileIdDefaultResponseDefaultType1Errors,
+from .post_assets_bulk_archive_response_default import (
+    PostAssetsBulkArchiveResponseDefault,
 )
-from .post_analysis_profiles_response_default_type_0 import (
-    PostAnalysisProfilesResponseDefaultType0,
+from .post_assets_bulk_keyframes_response_default import (
+    PostAssetsBulkKeyframesResponseDefault,
 )
-from .post_analysis_profiles_response_default_type_1 import (
-    PostAnalysisProfilesResponseDefaultType1,
+from .post_assets_bulk_restore_response_default import (
+    PostAssetsBulkRestoreResponseDefault,
 )
-from .post_analysis_profiles_response_default_type_1_errors import (
-    PostAnalysisProfilesResponseDefaultType1Errors,
+from .post_assets_by_asset_id_custom_keyframe_by_poster_id_response_default import (
+    PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefault,
 )
-from .post_analysis_service_accounts_response_default_type_0 import (
-    PostAnalysisServiceAccountsResponseDefaultType0,
+from .post_assets_by_asset_id_custom_keyframe_response_default import (
+    PostAssetsByAssetIdCustomKeyframeResponseDefault,
 )
-from .post_analysis_service_accounts_response_default_type_1 import (
-    PostAnalysisServiceAccountsResponseDefaultType1,
+from .post_assets_by_asset_id_export_locations_by_export_location_id_response_default import (
+    PostAssetsByAssetIdExportLocationsByExportLocationIdResponseDefault,
 )
-from .post_analysis_service_accounts_response_default_type_1_errors import (
-    PostAnalysisServiceAccountsResponseDefaultType1Errors,
+from .post_assets_by_asset_id_file_sets_bulk_response_default import (
+    PostAssetsByAssetIdFileSetsBulkResponseDefault,
 )
-from .post_assets_bulk_archive_response_default_type_0 import (
-    PostAssetsBulkArchiveResponseDefaultType0,
+from .post_assets_by_asset_id_file_sets_response_default import (
+    PostAssetsByAssetIdFileSetsResponseDefault,
 )
-from .post_assets_bulk_archive_response_default_type_1 import (
-    PostAssetsBulkArchiveResponseDefaultType1,
+from .post_assets_by_asset_id_files_by_file_id_capture_by_milliseconds_response_default import (
+    PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefault,
 )
-from .post_assets_bulk_archive_response_default_type_1_errors import (
-    PostAssetsBulkArchiveResponseDefaultType1Errors,
+from .post_assets_by_asset_id_files_by_file_id_edit_proxies_response_default import (
+    PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefault,
 )
-from .post_assets_bulk_keyframes_response_default_type_0 import (
-    PostAssetsBulkKeyframesResponseDefaultType0,
+from .post_assets_by_asset_id_files_by_file_id_keyframes_response_default import (
+    PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefault,
 )
-from .post_assets_bulk_keyframes_response_default_type_1 import (
-    PostAssetsBulkKeyframesResponseDefaultType1,
+from .post_assets_by_asset_id_files_by_file_id_mediainfo_response_default import (
+    PostAssetsByAssetIdFilesByFileIdMediainfoResponseDefault,
 )
-from .post_assets_bulk_keyframes_response_default_type_1_errors import (
-    PostAssetsBulkKeyframesResponseDefaultType1Errors,
+from .post_assets_by_asset_id_files_by_file_id_multipart_b2_cancel_response_default import (
+    PostAssetsByAssetIdFilesByFileIdMultipartB2CancelResponseDefault,
 )
-from .post_assets_bulk_restore_response_default_type_0 import (
-    PostAssetsBulkRestoreResponseDefaultType0,
+from .post_assets_by_asset_id_files_by_file_id_multipart_b2_finish_response_default import (
+    PostAssetsByAssetIdFilesByFileIdMultipartB2FinishResponseDefault,
 )
-from .post_assets_bulk_restore_response_default_type_1 import (
-    PostAssetsBulkRestoreResponseDefaultType1,
+from .post_assets_by_asset_id_files_by_file_id_multipart_b2_start_response_default import (
+    PostAssetsByAssetIdFilesByFileIdMultipartB2StartResponseDefault,
 )
-from .post_assets_bulk_restore_response_default_type_1_errors import (
-    PostAssetsBulkRestoreResponseDefaultType1Errors,
+from .post_assets_by_asset_id_files_by_file_id_multipart_cleanup_response_default import (
+    PostAssetsByAssetIdFilesByFileIdMultipartCleanupResponseDefault,
 )
-from .post_assets_by_asset_id_custom_keyframe_by_poster_id_response_default_type_0 import (
-    PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType0,
+from .post_assets_by_asset_id_files_by_file_id_multipart_gcs_compose_url_response_default import (
+    PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefault,
 )
-from .post_assets_by_asset_id_custom_keyframe_by_poster_id_response_default_type_1 import (
-    PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType1,
+from .post_assets_by_asset_id_files_by_file_id_multipart_response_default import (
+    PostAssetsByAssetIdFilesByFileIdMultipartResponseDefault,
 )
-from .post_assets_by_asset_id_custom_keyframe_by_poster_id_response_default_type_1_errors import (
-    PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType1Errors,
+from .post_assets_by_asset_id_files_by_file_id_multipart_url_s3_part_response_default import (
+    PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefault,
 )
-from .post_assets_by_asset_id_custom_keyframe_response_default_type_0 import (
-    PostAssetsByAssetIdCustomKeyframeResponseDefaultType0,
+from .post_assets_by_asset_id_files_by_file_id_reindex_response_default import (
+    PostAssetsByAssetIdFilesByFileIdReindexResponseDefault,
 )
-from .post_assets_by_asset_id_custom_keyframe_response_default_type_1 import (
-    PostAssetsByAssetIdCustomKeyframeResponseDefaultType1,
+from .post_assets_by_asset_id_files_by_file_id_subtitles_response_default import (
+    PostAssetsByAssetIdFilesByFileIdSubtitlesResponseDefault,
 )
-from .post_assets_by_asset_id_custom_keyframe_response_default_type_1_errors import (
-    PostAssetsByAssetIdCustomKeyframeResponseDefaultType1Errors,
+from .post_assets_by_asset_id_files_response_default import (
+    PostAssetsByAssetIdFilesResponseDefault,
 )
-from .post_assets_by_asset_id_export_locations_by_export_location_id_response_default_type_0 import (
-    PostAssetsByAssetIdExportLocationsByExportLocationIdResponseDefaultType0,
+from .post_assets_by_asset_id_formats_by_format_id_archive_1_response_default import (
+    PostAssetsByAssetIdFormatsByFormatIdArchive1ResponseDefault,
 )
-from .post_assets_by_asset_id_export_locations_by_export_location_id_response_default_type_1 import (
-    PostAssetsByAssetIdExportLocationsByExportLocationIdResponseDefaultType1,
+from .post_assets_by_asset_id_formats_by_format_id_archive_response_default import (
+    PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault,
 )
-from .post_assets_by_asset_id_export_locations_by_export_location_id_response_default_type_1_errors import (
-    PostAssetsByAssetIdExportLocationsByExportLocationIdResponseDefaultType1Errors,
+from .post_assets_by_asset_id_formats_by_format_id_components_response_default import (
+    PostAssetsByAssetIdFormatsByFormatIdComponentsResponseDefault,
 )
-from .post_assets_by_asset_id_file_sets_bulk_response_default_type_0 import (
-    PostAssetsByAssetIdFileSetsBulkResponseDefaultType0,
+from .post_assets_by_asset_id_formats_by_format_id_restore_response_default import (
+    PostAssetsByAssetIdFormatsByFormatIdRestoreResponseDefault,
 )
-from .post_assets_by_asset_id_file_sets_bulk_response_default_type_1 import (
-    PostAssetsByAssetIdFileSetsBulkResponseDefaultType1,
+from .post_assets_by_asset_id_formats_by_format_id_storages_by_storage_id_response_default import (
+    PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefault,
 )
-from .post_assets_by_asset_id_file_sets_bulk_response_default_type_1_errors import (
-    PostAssetsByAssetIdFileSetsBulkResponseDefaultType1Errors,
+from .post_assets_by_asset_id_formats_response_default import (
+    PostAssetsByAssetIdFormatsResponseDefault,
 )
-from .post_assets_by_asset_id_file_sets_response_default_type_0 import (
-    PostAssetsByAssetIdFileSetsResponseDefaultType0,
+from .post_assets_by_asset_id_keyframes_by_keyframe_id_public_response_default import (
+    PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault,
 )
-from .post_assets_by_asset_id_file_sets_response_default_type_1 import (
-    PostAssetsByAssetIdFileSetsResponseDefaultType1,
+from .post_assets_by_asset_id_keyframes_response_default import (
+    PostAssetsByAssetIdKeyframesResponseDefault,
 )
-from .post_assets_by_asset_id_file_sets_response_default_type_1_errors import (
-    PostAssetsByAssetIdFileSetsResponseDefaultType1Errors,
+from .post_assets_by_asset_id_method_by_storage_method_keyframes_response_default import (
+    PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefault,
 )
-from .post_assets_by_asset_id_files_by_file_id_capture_by_milliseconds_response_default_type_0 import (
-    PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType0,
+from .post_assets_by_asset_id_method_by_storage_method_proxies_response_default import (
+    PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefault,
 )
-from .post_assets_by_asset_id_files_by_file_id_capture_by_milliseconds_response_default_type_1 import (
-    PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType1,
+from .post_assets_by_asset_id_proxies_by_proxy_id_containers_by_container_id_files_response_default import (
+    PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefault,
 )
-from .post_assets_by_asset_id_files_by_file_id_capture_by_milliseconds_response_default_type_1_errors import (
-    PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType1Errors,
+from .post_assets_by_asset_id_proxies_by_proxy_id_keyframes_response_default import (
+    PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefault,
 )
-from .post_assets_by_asset_id_files_by_file_id_edit_proxies_response_default_type_0 import (
-    PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType0,
+from .post_assets_by_asset_id_proxies_by_proxy_id_multipart_cleanup_response_default import (
+    PostAssetsByAssetIdProxiesByProxyIdMultipartCleanupResponseDefault,
 )
-from .post_assets_by_asset_id_files_by_file_id_edit_proxies_response_default_type_1 import (
-    PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType1,
+from .post_assets_by_asset_id_proxies_by_proxy_id_public_response_default import (
+    PostAssetsByAssetIdProxiesByProxyIdPublicResponseDefault,
 )
-from .post_assets_by_asset_id_files_by_file_id_edit_proxies_response_default_type_1_errors import (
-    PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType1Errors,
+from .post_assets_by_asset_id_proxies_response_default import (
+    PostAssetsByAssetIdProxiesResponseDefault,
 )
-from .post_assets_by_asset_id_files_by_file_id_keyframes_response_default_type_0 import (
-    PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType0,
+from .post_assets_by_asset_id_subtitles_response_default import (
+    PostAssetsByAssetIdSubtitlesResponseDefault,
 )
-from .post_assets_by_asset_id_files_by_file_id_keyframes_response_default_type_1 import (
-    PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType1,
+from .post_assets_by_asset_id_temporary_file_sets_response_default import (
+    PostAssetsByAssetIdTemporaryFileSetsResponseDefault,
 )
-from .post_assets_by_asset_id_files_by_file_id_keyframes_response_default_type_1_errors import (
-    PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType1Errors,
+from .post_assets_by_asset_id_temporary_files_response_default import (
+    PostAssetsByAssetIdTemporaryFilesResponseDefault,
 )
-from .post_assets_by_asset_id_files_by_file_id_mediainfo_response_default_type_0 import (
-    PostAssetsByAssetIdFilesByFileIdMediainfoResponseDefaultType0,
+from .post_assets_by_asset_id_versions_by_version_id_transcode_response_default import (
+    PostAssetsByAssetIdVersionsByVersionIdTranscodeResponseDefault,
 )
-from .post_assets_by_asset_id_files_by_file_id_mediainfo_response_default_type_1 import (
-    PostAssetsByAssetIdFilesByFileIdMediainfoResponseDefaultType1,
+from .post_assets_export_locations_by_export_location_id_bulk_export_response_default import (
+    PostAssetsExportLocationsByExportLocationIdBulkExportResponseDefault,
 )
-from .post_assets_by_asset_id_files_by_file_id_mediainfo_response_default_type_1_errors import (
-    PostAssetsByAssetIdFilesByFileIdMediainfoResponseDefaultType1Errors,
+from .post_assets_export_locations_by_export_location_id_response_default import (
+    PostAssetsExportLocationsByExportLocationIdResponseDefault,
 )
-from .post_assets_by_asset_id_files_by_file_id_multipart_b2_cancel_response_default_type_0 import (
-    PostAssetsByAssetIdFilesByFileIdMultipartB2CancelResponseDefaultType0,
+from .post_assets_storages_by_storage_id_bulk_transfer_response_default import (
+    PostAssetsStoragesByStorageIdBulkTransferResponseDefault,
 )
-from .post_assets_by_asset_id_files_by_file_id_multipart_b2_cancel_response_default_type_1 import (
-    PostAssetsByAssetIdFilesByFileIdMultipartB2CancelResponseDefaultType1,
+from .post_collections_bulk_archive_response_default import (
+    PostCollectionsBulkArchiveResponseDefault,
 )
-from .post_assets_by_asset_id_files_by_file_id_multipart_b2_cancel_response_default_type_1_errors import (
-    PostAssetsByAssetIdFilesByFileIdMultipartB2CancelResponseDefaultType1Errors,
+from .post_collections_bulk_restore_response_default import (
+    PostCollectionsBulkRestoreResponseDefault,
 )
-from .post_assets_by_asset_id_files_by_file_id_multipart_b2_finish_response_default_type_0 import (
-    PostAssetsByAssetIdFilesByFileIdMultipartB2FinishResponseDefaultType0,
+from .post_collections_by_collection_id_custom_keyframe_by_poster_id_response_default import (
+    PostCollectionsByCollectionIdCustomKeyframeByPosterIdResponseDefault,
 )
-from .post_assets_by_asset_id_files_by_file_id_multipart_b2_finish_response_default_type_1 import (
-    PostAssetsByAssetIdFilesByFileIdMultipartB2FinishResponseDefaultType1,
+from .post_collections_by_collection_id_export_locations_by_export_location_id_response_default import (
+    PostCollectionsByCollectionIdExportLocationsByExportLocationIdResponseDefault,
 )
-from .post_assets_by_asset_id_files_by_file_id_multipart_b2_finish_response_default_type_1_errors import (
-    PostAssetsByAssetIdFilesByFileIdMultipartB2FinishResponseDefaultType1Errors,
+from .post_collections_by_collection_id_keyframes_copy_response_default import (
+    PostCollectionsByCollectionIdKeyframesCopyResponseDefault,
 )
-from .post_assets_by_asset_id_files_by_file_id_multipart_b2_start_response_default_type_0 import (
-    PostAssetsByAssetIdFilesByFileIdMultipartB2StartResponseDefaultType0,
+from .post_collections_by_collection_id_keyframes_response_default import (
+    PostCollectionsByCollectionIdKeyframesResponseDefault,
 )
-from .post_assets_by_asset_id_files_by_file_id_multipart_b2_start_response_default_type_1 import (
-    PostAssetsByAssetIdFilesByFileIdMultipartB2StartResponseDefaultType1,
+from .post_collections_export_locations_by_export_location_id_bulk_export_response_default import (
+    PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefault,
 )
-from .post_assets_by_asset_id_files_by_file_id_multipart_b2_start_response_default_type_1_errors import (
-    PostAssetsByAssetIdFilesByFileIdMultipartB2StartResponseDefaultType1Errors,
+from .post_collections_storages_by_storage_id_bulk_transfer_response_default import (
+    PostCollectionsStoragesByStorageIdBulkTransferResponseDefault,
 )
-from .post_assets_by_asset_id_files_by_file_id_multipart_cleanup_response_default_type_0 import (
-    PostAssetsByAssetIdFilesByFileIdMultipartCleanupResponseDefaultType0,
+from .post_delete_queue_file_sets_purge_all_response_default import (
+    PostDeleteQueueFileSetsPurgeAllResponseDefault,
 )
-from .post_assets_by_asset_id_files_by_file_id_multipart_cleanup_response_default_type_1 import (
-    PostAssetsByAssetIdFilesByFileIdMultipartCleanupResponseDefaultType1,
+from .post_delete_queue_file_sets_purge_response_default import (
+    PostDeleteQueueFileSetsPurgeResponseDefault,
 )
-from .post_assets_by_asset_id_files_by_file_id_multipart_cleanup_response_default_type_1_errors import (
-    PostAssetsByAssetIdFilesByFileIdMultipartCleanupResponseDefaultType1Errors,
+from .post_delete_queue_formats_purge_all_response_default import (
+    PostDeleteQueueFormatsPurgeAllResponseDefault,
 )
-from .post_assets_by_asset_id_files_by_file_id_multipart_gcs_compose_url_response_default_type_0 import (
-    PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType0,
-)
-from .post_assets_by_asset_id_files_by_file_id_multipart_gcs_compose_url_response_default_type_1 import (
-    PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType1,
-)
-from .post_assets_by_asset_id_files_by_file_id_multipart_gcs_compose_url_response_default_type_1_errors import (
-    PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType1Errors,
-)
-from .post_assets_by_asset_id_files_by_file_id_multipart_response_default_type_0 import (
-    PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType0,
-)
-from .post_assets_by_asset_id_files_by_file_id_multipart_response_default_type_1 import (
-    PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType1,
-)
-from .post_assets_by_asset_id_files_by_file_id_multipart_response_default_type_1_errors import (
-    PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType1Errors,
-)
-from .post_assets_by_asset_id_files_by_file_id_multipart_url_s3_part_response_default_type_0 import (
-    PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType0,
-)
-from .post_assets_by_asset_id_files_by_file_id_multipart_url_s3_part_response_default_type_1 import (
-    PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType1,
-)
-from .post_assets_by_asset_id_files_by_file_id_multipart_url_s3_part_response_default_type_1_errors import (
-    PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType1Errors,
-)
-from .post_assets_by_asset_id_files_by_file_id_reindex_response_default_type_0 import (
-    PostAssetsByAssetIdFilesByFileIdReindexResponseDefaultType0,
-)
-from .post_assets_by_asset_id_files_by_file_id_reindex_response_default_type_1 import (
-    PostAssetsByAssetIdFilesByFileIdReindexResponseDefaultType1,
-)
-from .post_assets_by_asset_id_files_by_file_id_reindex_response_default_type_1_errors import (
-    PostAssetsByAssetIdFilesByFileIdReindexResponseDefaultType1Errors,
-)
-from .post_assets_by_asset_id_files_by_file_id_subtitles_response_default_type_0 import (
-    PostAssetsByAssetIdFilesByFileIdSubtitlesResponseDefaultType0,
-)
-from .post_assets_by_asset_id_files_by_file_id_subtitles_response_default_type_1 import (
-    PostAssetsByAssetIdFilesByFileIdSubtitlesResponseDefaultType1,
-)
-from .post_assets_by_asset_id_files_by_file_id_subtitles_response_default_type_1_errors import (
-    PostAssetsByAssetIdFilesByFileIdSubtitlesResponseDefaultType1Errors,
-)
-from .post_assets_by_asset_id_files_response_default_type_0 import (
-    PostAssetsByAssetIdFilesResponseDefaultType0,
-)
-from .post_assets_by_asset_id_files_response_default_type_1 import (
-    PostAssetsByAssetIdFilesResponseDefaultType1,
-)
-from .post_assets_by_asset_id_files_response_default_type_1_errors import (
-    PostAssetsByAssetIdFilesResponseDefaultType1Errors,
-)
-from .post_assets_by_asset_id_formats_by_format_id_archive_1_response_default_type_0 import (
-    PostAssetsByAssetIdFormatsByFormatIdArchive1ResponseDefaultType0,
-)
-from .post_assets_by_asset_id_formats_by_format_id_archive_1_response_default_type_1 import (
-    PostAssetsByAssetIdFormatsByFormatIdArchive1ResponseDefaultType1,
-)
-from .post_assets_by_asset_id_formats_by_format_id_archive_1_response_default_type_1_errors import (
-    PostAssetsByAssetIdFormatsByFormatIdArchive1ResponseDefaultType1Errors,
-)
-from .post_assets_by_asset_id_formats_by_format_id_archive_response_default_type_0 import (
-    PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0,
-)
-from .post_assets_by_asset_id_formats_by_format_id_archive_response_default_type_1 import (
-    PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1,
-)
-from .post_assets_by_asset_id_formats_by_format_id_archive_response_default_type_1_errors import (
-    PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1Errors,
-)
-from .post_assets_by_asset_id_formats_by_format_id_components_response_default_type_0 import (
-    PostAssetsByAssetIdFormatsByFormatIdComponentsResponseDefaultType0,
-)
-from .post_assets_by_asset_id_formats_by_format_id_components_response_default_type_1 import (
-    PostAssetsByAssetIdFormatsByFormatIdComponentsResponseDefaultType1,
-)
-from .post_assets_by_asset_id_formats_by_format_id_components_response_default_type_1_errors import (
-    PostAssetsByAssetIdFormatsByFormatIdComponentsResponseDefaultType1Errors,
-)
-from .post_assets_by_asset_id_formats_by_format_id_restore_response_default_type_0 import (
-    PostAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType0,
-)
-from .post_assets_by_asset_id_formats_by_format_id_restore_response_default_type_1 import (
-    PostAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType1,
-)
-from .post_assets_by_asset_id_formats_by_format_id_restore_response_default_type_1_errors import (
-    PostAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType1Errors,
-)
-from .post_assets_by_asset_id_formats_by_format_id_storages_by_storage_id_response_default_type_0 import (
-    PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType0,
-)
-from .post_assets_by_asset_id_formats_by_format_id_storages_by_storage_id_response_default_type_1 import (
-    PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType1,
-)
-from .post_assets_by_asset_id_formats_by_format_id_storages_by_storage_id_response_default_type_1_errors import (
-    PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType1Errors,
-)
-from .post_assets_by_asset_id_formats_response_default_type_0 import (
-    PostAssetsByAssetIdFormatsResponseDefaultType0,
-)
-from .post_assets_by_asset_id_formats_response_default_type_1 import (
-    PostAssetsByAssetIdFormatsResponseDefaultType1,
-)
-from .post_assets_by_asset_id_formats_response_default_type_1_errors import (
-    PostAssetsByAssetIdFormatsResponseDefaultType1Errors,
-)
-from .post_assets_by_asset_id_keyframes_by_keyframe_id_public_response_default_type_0 import (
-    PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0,
-)
-from .post_assets_by_asset_id_keyframes_by_keyframe_id_public_response_default_type_1 import (
-    PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1,
-)
-from .post_assets_by_asset_id_keyframes_by_keyframe_id_public_response_default_type_1_errors import (
-    PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1Errors,
-)
-from .post_assets_by_asset_id_keyframes_response_default_type_0 import (
-    PostAssetsByAssetIdKeyframesResponseDefaultType0,
-)
-from .post_assets_by_asset_id_keyframes_response_default_type_1 import (
-    PostAssetsByAssetIdKeyframesResponseDefaultType1,
-)
-from .post_assets_by_asset_id_keyframes_response_default_type_1_errors import (
-    PostAssetsByAssetIdKeyframesResponseDefaultType1Errors,
-)
-from .post_assets_by_asset_id_method_by_storage_method_keyframes_response_default_type_0 import (
-    PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType0,
-)
-from .post_assets_by_asset_id_method_by_storage_method_keyframes_response_default_type_1 import (
-    PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType1,
-)
-from .post_assets_by_asset_id_method_by_storage_method_keyframes_response_default_type_1_errors import (
-    PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType1Errors,
-)
-from .post_assets_by_asset_id_method_by_storage_method_proxies_response_default_type_0 import (
-    PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType0,
-)
-from .post_assets_by_asset_id_method_by_storage_method_proxies_response_default_type_1 import (
-    PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType1,
-)
-from .post_assets_by_asset_id_method_by_storage_method_proxies_response_default_type_1_errors import (
-    PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType1Errors,
-)
-from .post_assets_by_asset_id_proxies_by_proxy_id_containers_by_container_id_files_response_default_type_0 import (
-    PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType0,
-)
-from .post_assets_by_asset_id_proxies_by_proxy_id_containers_by_container_id_files_response_default_type_1 import (
-    PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType1,
-)
-from .post_assets_by_asset_id_proxies_by_proxy_id_containers_by_container_id_files_response_default_type_1_errors import (
-    PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType1Errors,
-)
-from .post_assets_by_asset_id_proxies_by_proxy_id_keyframes_response_default_type_0 import (
-    PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType0,
-)
-from .post_assets_by_asset_id_proxies_by_proxy_id_keyframes_response_default_type_1 import (
-    PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType1,
-)
-from .post_assets_by_asset_id_proxies_by_proxy_id_keyframes_response_default_type_1_errors import (
-    PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType1Errors,
-)
-from .post_assets_by_asset_id_proxies_by_proxy_id_multipart_cleanup_response_default_type_0 import (
-    PostAssetsByAssetIdProxiesByProxyIdMultipartCleanupResponseDefaultType0,
-)
-from .post_assets_by_asset_id_proxies_by_proxy_id_multipart_cleanup_response_default_type_1 import (
-    PostAssetsByAssetIdProxiesByProxyIdMultipartCleanupResponseDefaultType1,
-)
-from .post_assets_by_asset_id_proxies_by_proxy_id_multipart_cleanup_response_default_type_1_errors import (
-    PostAssetsByAssetIdProxiesByProxyIdMultipartCleanupResponseDefaultType1Errors,
-)
-from .post_assets_by_asset_id_proxies_by_proxy_id_public_response_default_type_0 import (
-    PostAssetsByAssetIdProxiesByProxyIdPublicResponseDefaultType0,
-)
-from .post_assets_by_asset_id_proxies_by_proxy_id_public_response_default_type_1 import (
-    PostAssetsByAssetIdProxiesByProxyIdPublicResponseDefaultType1,
-)
-from .post_assets_by_asset_id_proxies_by_proxy_id_public_response_default_type_1_errors import (
-    PostAssetsByAssetIdProxiesByProxyIdPublicResponseDefaultType1Errors,
-)
-from .post_assets_by_asset_id_proxies_response_default_type_0 import (
-    PostAssetsByAssetIdProxiesResponseDefaultType0,
-)
-from .post_assets_by_asset_id_proxies_response_default_type_1 import (
-    PostAssetsByAssetIdProxiesResponseDefaultType1,
-)
-from .post_assets_by_asset_id_proxies_response_default_type_1_errors import (
-    PostAssetsByAssetIdProxiesResponseDefaultType1Errors,
-)
-from .post_assets_by_asset_id_subtitles_response_default_type_0 import (
-    PostAssetsByAssetIdSubtitlesResponseDefaultType0,
-)
-from .post_assets_by_asset_id_subtitles_response_default_type_1 import (
-    PostAssetsByAssetIdSubtitlesResponseDefaultType1,
-)
-from .post_assets_by_asset_id_subtitles_response_default_type_1_errors import (
-    PostAssetsByAssetIdSubtitlesResponseDefaultType1Errors,
-)
-from .post_assets_by_asset_id_temporary_file_sets_response_default_type_0 import (
-    PostAssetsByAssetIdTemporaryFileSetsResponseDefaultType0,
-)
-from .post_assets_by_asset_id_temporary_file_sets_response_default_type_1 import (
-    PostAssetsByAssetIdTemporaryFileSetsResponseDefaultType1,
-)
-from .post_assets_by_asset_id_temporary_file_sets_response_default_type_1_errors import (
-    PostAssetsByAssetIdTemporaryFileSetsResponseDefaultType1Errors,
-)
-from .post_assets_by_asset_id_temporary_files_response_default_type_0 import (
-    PostAssetsByAssetIdTemporaryFilesResponseDefaultType0,
-)
-from .post_assets_by_asset_id_temporary_files_response_default_type_1 import (
-    PostAssetsByAssetIdTemporaryFilesResponseDefaultType1,
-)
-from .post_assets_by_asset_id_temporary_files_response_default_type_1_errors import (
-    PostAssetsByAssetIdTemporaryFilesResponseDefaultType1Errors,
-)
-from .post_assets_by_asset_id_versions_by_version_id_transcode_response_default_type_0 import (
-    PostAssetsByAssetIdVersionsByVersionIdTranscodeResponseDefaultType0,
-)
-from .post_assets_by_asset_id_versions_by_version_id_transcode_response_default_type_1 import (
-    PostAssetsByAssetIdVersionsByVersionIdTranscodeResponseDefaultType1,
-)
-from .post_assets_by_asset_id_versions_by_version_id_transcode_response_default_type_1_errors import (
-    PostAssetsByAssetIdVersionsByVersionIdTranscodeResponseDefaultType1Errors,
-)
-from .post_assets_export_locations_by_export_location_id_bulk_export_response_default_type_0 import (
-    PostAssetsExportLocationsByExportLocationIdBulkExportResponseDefaultType0,
-)
-from .post_assets_export_locations_by_export_location_id_bulk_export_response_default_type_1 import (
-    PostAssetsExportLocationsByExportLocationIdBulkExportResponseDefaultType1,
-)
-from .post_assets_export_locations_by_export_location_id_bulk_export_response_default_type_1_errors import (
-    PostAssetsExportLocationsByExportLocationIdBulkExportResponseDefaultType1Errors,
-)
-from .post_assets_export_locations_by_export_location_id_response_default_type_0 import (
-    PostAssetsExportLocationsByExportLocationIdResponseDefaultType0,
-)
-from .post_assets_export_locations_by_export_location_id_response_default_type_1 import (
-    PostAssetsExportLocationsByExportLocationIdResponseDefaultType1,
-)
-from .post_assets_export_locations_by_export_location_id_response_default_type_1_errors import (
-    PostAssetsExportLocationsByExportLocationIdResponseDefaultType1Errors,
-)
-from .post_assets_storages_by_storage_id_bulk_transfer_response_default_type_0 import (
-    PostAssetsStoragesByStorageIdBulkTransferResponseDefaultType0,
-)
-from .post_assets_storages_by_storage_id_bulk_transfer_response_default_type_1 import (
-    PostAssetsStoragesByStorageIdBulkTransferResponseDefaultType1,
-)
-from .post_assets_storages_by_storage_id_bulk_transfer_response_default_type_1_errors import (
-    PostAssetsStoragesByStorageIdBulkTransferResponseDefaultType1Errors,
-)
-from .post_collections_bulk_archive_response_default_type_0 import (
-    PostCollectionsBulkArchiveResponseDefaultType0,
-)
-from .post_collections_bulk_archive_response_default_type_1 import (
-    PostCollectionsBulkArchiveResponseDefaultType1,
-)
-from .post_collections_bulk_archive_response_default_type_1_errors import (
-    PostCollectionsBulkArchiveResponseDefaultType1Errors,
-)
-from .post_collections_bulk_restore_response_default_type_0 import (
-    PostCollectionsBulkRestoreResponseDefaultType0,
-)
-from .post_collections_bulk_restore_response_default_type_1 import (
-    PostCollectionsBulkRestoreResponseDefaultType1,
-)
-from .post_collections_bulk_restore_response_default_type_1_errors import (
-    PostCollectionsBulkRestoreResponseDefaultType1Errors,
-)
-from .post_collections_by_collection_id_custom_keyframe_by_poster_id_response_default_type_0 import (
-    PostCollectionsByCollectionIdCustomKeyframeByPosterIdResponseDefaultType0,
-)
-from .post_collections_by_collection_id_custom_keyframe_by_poster_id_response_default_type_1 import (
-    PostCollectionsByCollectionIdCustomKeyframeByPosterIdResponseDefaultType1,
-)
-from .post_collections_by_collection_id_custom_keyframe_by_poster_id_response_default_type_1_errors import (
-    PostCollectionsByCollectionIdCustomKeyframeByPosterIdResponseDefaultType1Errors,
-)
-from .post_collections_by_collection_id_export_locations_by_export_location_id_response_default_type_0 import (
-    PostCollectionsByCollectionIdExportLocationsByExportLocationIdResponseDefaultType0,
-)
-from .post_collections_by_collection_id_export_locations_by_export_location_id_response_default_type_1 import (
-    PostCollectionsByCollectionIdExportLocationsByExportLocationIdResponseDefaultType1,
-)
-from .post_collections_by_collection_id_export_locations_by_export_location_id_response_default_type_1_errors import (
-    PostCollectionsByCollectionIdExportLocationsByExportLocationIdResponseDefaultType1Errors,
-)
-from .post_collections_by_collection_id_keyframes_copy_response_default_type_0 import (
-    PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType0,
-)
-from .post_collections_by_collection_id_keyframes_copy_response_default_type_1 import (
-    PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType1,
-)
-from .post_collections_by_collection_id_keyframes_copy_response_default_type_1_errors import (
-    PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType1Errors,
-)
-from .post_collections_by_collection_id_keyframes_response_default_type_0 import (
-    PostCollectionsByCollectionIdKeyframesResponseDefaultType0,
-)
-from .post_collections_by_collection_id_keyframes_response_default_type_1 import (
-    PostCollectionsByCollectionIdKeyframesResponseDefaultType1,
-)
-from .post_collections_by_collection_id_keyframes_response_default_type_1_errors import (
-    PostCollectionsByCollectionIdKeyframesResponseDefaultType1Errors,
-)
-from .post_collections_export_locations_by_export_location_id_bulk_export_response_default_type_0 import (
-    PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType0,
-)
-from .post_collections_export_locations_by_export_location_id_bulk_export_response_default_type_1 import (
-    PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType1,
-)
-from .post_collections_export_locations_by_export_location_id_bulk_export_response_default_type_1_errors import (
-    PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType1Errors,
-)
-from .post_collections_storages_by_storage_id_bulk_transfer_response_default_type_0 import (
-    PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType0,
-)
-from .post_collections_storages_by_storage_id_bulk_transfer_response_default_type_1 import (
-    PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType1,
-)
-from .post_collections_storages_by_storage_id_bulk_transfer_response_default_type_1_errors import (
-    PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType1Errors,
-)
-from .post_delete_queue_file_sets_purge_all_response_default_type_0 import (
-    PostDeleteQueueFileSetsPurgeAllResponseDefaultType0,
-)
-from .post_delete_queue_file_sets_purge_all_response_default_type_1 import (
-    PostDeleteQueueFileSetsPurgeAllResponseDefaultType1,
-)
-from .post_delete_queue_file_sets_purge_all_response_default_type_1_errors import (
-    PostDeleteQueueFileSetsPurgeAllResponseDefaultType1Errors,
-)
-from .post_delete_queue_file_sets_purge_response_default_type_0 import (
-    PostDeleteQueueFileSetsPurgeResponseDefaultType0,
-)
-from .post_delete_queue_file_sets_purge_response_default_type_1 import (
-    PostDeleteQueueFileSetsPurgeResponseDefaultType1,
-)
-from .post_delete_queue_file_sets_purge_response_default_type_1_errors import (
-    PostDeleteQueueFileSetsPurgeResponseDefaultType1Errors,
-)
-from .post_delete_queue_formats_purge_all_response_default_type_0 import (
-    PostDeleteQueueFormatsPurgeAllResponseDefaultType0,
-)
-from .post_delete_queue_formats_purge_all_response_default_type_1 import (
-    PostDeleteQueueFormatsPurgeAllResponseDefaultType1,
-)
-from .post_delete_queue_formats_purge_all_response_default_type_1_errors import (
-    PostDeleteQueueFormatsPurgeAllResponseDefaultType1Errors,
-)
-from .post_delete_queue_formats_purge_response_default_type_0 import (
-    PostDeleteQueueFormatsPurgeResponseDefaultType0,
-)
-from .post_delete_queue_formats_purge_response_default_type_1 import (
-    PostDeleteQueueFormatsPurgeResponseDefaultType1,
-)
-from .post_delete_queue_formats_purge_response_default_type_1_errors import (
-    PostDeleteQueueFormatsPurgeResponseDefaultType1Errors,
+from .post_delete_queue_formats_purge_response_default import (
+    PostDeleteQueueFormatsPurgeResponseDefault,
 )
 from .post_drm_assets_by_asset_id_versions_by_version_id_proxies_by_proxy_id_auth_response_200 import (
     PostDrmAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdAuthResponse200,
 )
-from .post_drm_assets_by_asset_id_versions_by_version_id_proxies_by_proxy_id_auth_response_default_type_0 import (
-    PostDrmAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdAuthResponseDefaultType0,
+from .post_drm_assets_by_asset_id_versions_by_version_id_proxies_by_proxy_id_auth_response_default import (
+    PostDrmAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdAuthResponseDefault,
 )
-from .post_drm_assets_by_asset_id_versions_by_version_id_proxies_by_proxy_id_auth_response_default_type_1 import (
-    PostDrmAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdAuthResponseDefaultType1,
+from .post_export_locations_by_export_location_id_bulk_export_response_default import (
+    PostExportLocationsByExportLocationIdBulkExportResponseDefault,
 )
-from .post_drm_assets_by_asset_id_versions_by_version_id_proxies_by_proxy_id_auth_response_default_type_1_errors import (
-    PostDrmAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdAuthResponseDefaultType1Errors,
+from .post_export_locations_by_export_location_id_reindex_response_default import (
+    PostExportLocationsByExportLocationIdReindexResponseDefault,
 )
-from .post_export_locations_by_export_location_id_bulk_export_response_default_type_0 import (
-    PostExportLocationsByExportLocationIdBulkExportResponseDefaultType0,
+from .post_export_locations_response_default import PostExportLocationsResponseDefault
+from .post_exports_temporary_file_sets_by_file_set_id_storages_by_storage_id_response_default import (
+    PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefault,
 )
-from .post_export_locations_by_export_location_id_bulk_export_response_default_type_1 import (
-    PostExportLocationsByExportLocationIdBulkExportResponseDefaultType1,
+from .post_file_sets_by_file_set_id_storages_by_storage_id_response_default import (
+    PostFileSetsByFileSetIdStoragesByStorageIdResponseDefault,
 )
-from .post_export_locations_by_export_location_id_bulk_export_response_default_type_1_errors import (
-    PostExportLocationsByExportLocationIdBulkExportResponseDefaultType1Errors,
+from .post_files_storages_by_storage_id_response_default import (
+    PostFilesStoragesByStorageIdResponseDefault,
 )
-from .post_export_locations_by_export_location_id_reindex_response_default_type_0 import (
-    PostExportLocationsByExportLocationIdReindexResponseDefaultType0,
+from .post_files_upload_response_default import PostFilesUploadResponseDefault
+from .post_formats_by_format_id_storages_by_storage_id_response_default import (
+    PostFormatsByFormatIdStoragesByStorageIdResponseDefault,
 )
-from .post_export_locations_by_export_location_id_reindex_response_default_type_1 import (
-    PostExportLocationsByExportLocationIdReindexResponseDefaultType1,
+from .post_formats_by_format_name_archive_bulk_response_default import (
+    PostFormatsByFormatNameArchiveBulkResponseDefault,
 )
-from .post_export_locations_by_export_location_id_reindex_response_default_type_1_errors import (
-    PostExportLocationsByExportLocationIdReindexResponseDefaultType1Errors,
+from .post_formats_by_format_name_restore_bulk_response_default import (
+    PostFormatsByFormatNameRestoreBulkResponseDefault,
 )
-from .post_export_locations_response_default_type_0 import (
-    PostExportLocationsResponseDefaultType0,
+from .post_playlists_by_playlist_id_keyframes_response_default import (
+    PostPlaylistsByPlaylistIdKeyframesResponseDefault,
 )
-from .post_export_locations_response_default_type_1 import (
-    PostExportLocationsResponseDefaultType1,
+from .post_saved_searches_bulk_archive_response_default import (
+    PostSavedSearchesBulkArchiveResponseDefault,
 )
-from .post_export_locations_response_default_type_1_errors import (
-    PostExportLocationsResponseDefaultType1Errors,
+from .post_saved_searches_bulk_restore_response_default import (
+    PostSavedSearchesBulkRestoreResponseDefault,
 )
-from .post_exports_temporary_file_sets_by_file_set_id_storages_by_storage_id_response_default_type_0 import (
-    PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType0,
+from .post_saved_searches_export_locations_by_export_location_id_bulk_export_response_default import (
+    PostSavedSearchesExportLocationsByExportLocationIdBulkExportResponseDefault,
 )
-from .post_exports_temporary_file_sets_by_file_set_id_storages_by_storage_id_response_default_type_1 import (
-    PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType1,
+from .post_saved_searches_storages_by_storage_id_bulk_transfer_response_default import (
+    PostSavedSearchesStoragesByStorageIdBulkTransferResponseDefault,
 )
-from .post_exports_temporary_file_sets_by_file_set_id_storages_by_storage_id_response_default_type_1_errors import (
-    PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType1Errors,
-)
-from .post_file_sets_by_file_set_id_storages_by_storage_id_response_default_type_0 import (
-    PostFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType0,
-)
-from .post_file_sets_by_file_set_id_storages_by_storage_id_response_default_type_1 import (
-    PostFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType1,
-)
-from .post_file_sets_by_file_set_id_storages_by_storage_id_response_default_type_1_errors import (
-    PostFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType1Errors,
-)
-from .post_files_storages_by_storage_id_response_default_type_0 import (
-    PostFilesStoragesByStorageIdResponseDefaultType0,
-)
-from .post_files_storages_by_storage_id_response_default_type_1 import (
-    PostFilesStoragesByStorageIdResponseDefaultType1,
-)
-from .post_files_storages_by_storage_id_response_default_type_1_errors import (
-    PostFilesStoragesByStorageIdResponseDefaultType1Errors,
-)
-from .post_files_upload_response_default_type_0 import (
-    PostFilesUploadResponseDefaultType0,
-)
-from .post_files_upload_response_default_type_1 import (
-    PostFilesUploadResponseDefaultType1,
-)
-from .post_files_upload_response_default_type_1_errors import (
-    PostFilesUploadResponseDefaultType1Errors,
-)
-from .post_formats_by_format_id_storages_by_storage_id_response_default_type_0 import (
-    PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType0,
-)
-from .post_formats_by_format_id_storages_by_storage_id_response_default_type_1 import (
-    PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType1,
-)
-from .post_formats_by_format_id_storages_by_storage_id_response_default_type_1_errors import (
-    PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType1Errors,
-)
-from .post_formats_by_format_name_archive_bulk_response_default_type_0 import (
-    PostFormatsByFormatNameArchiveBulkResponseDefaultType0,
-)
-from .post_formats_by_format_name_archive_bulk_response_default_type_1 import (
-    PostFormatsByFormatNameArchiveBulkResponseDefaultType1,
-)
-from .post_formats_by_format_name_archive_bulk_response_default_type_1_errors import (
-    PostFormatsByFormatNameArchiveBulkResponseDefaultType1Errors,
-)
-from .post_formats_by_format_name_restore_bulk_response_default_type_0 import (
-    PostFormatsByFormatNameRestoreBulkResponseDefaultType0,
-)
-from .post_formats_by_format_name_restore_bulk_response_default_type_1 import (
-    PostFormatsByFormatNameRestoreBulkResponseDefaultType1,
-)
-from .post_formats_by_format_name_restore_bulk_response_default_type_1_errors import (
-    PostFormatsByFormatNameRestoreBulkResponseDefaultType1Errors,
-)
-from .post_playlists_by_playlist_id_keyframes_response_default_type_0 import (
-    PostPlaylistsByPlaylistIdKeyframesResponseDefaultType0,
-)
-from .post_playlists_by_playlist_id_keyframes_response_default_type_1 import (
-    PostPlaylistsByPlaylistIdKeyframesResponseDefaultType1,
-)
-from .post_playlists_by_playlist_id_keyframes_response_default_type_1_errors import (
-    PostPlaylistsByPlaylistIdKeyframesResponseDefaultType1Errors,
-)
-from .post_saved_searches_bulk_archive_response_default_type_0 import (
-    PostSavedSearchesBulkArchiveResponseDefaultType0,
-)
-from .post_saved_searches_bulk_archive_response_default_type_1 import (
-    PostSavedSearchesBulkArchiveResponseDefaultType1,
-)
-from .post_saved_searches_bulk_archive_response_default_type_1_errors import (
-    PostSavedSearchesBulkArchiveResponseDefaultType1Errors,
-)
-from .post_saved_searches_bulk_restore_response_default_type_0 import (
-    PostSavedSearchesBulkRestoreResponseDefaultType0,
-)
-from .post_saved_searches_bulk_restore_response_default_type_1 import (
-    PostSavedSearchesBulkRestoreResponseDefaultType1,
-)
-from .post_saved_searches_bulk_restore_response_default_type_1_errors import (
-    PostSavedSearchesBulkRestoreResponseDefaultType1Errors,
-)
-from .post_saved_searches_export_locations_by_export_location_id_bulk_export_response_default_type_0 import (
-    PostSavedSearchesExportLocationsByExportLocationIdBulkExportResponseDefaultType0,
-)
-from .post_saved_searches_export_locations_by_export_location_id_bulk_export_response_default_type_1 import (
-    PostSavedSearchesExportLocationsByExportLocationIdBulkExportResponseDefaultType1,
-)
-from .post_saved_searches_export_locations_by_export_location_id_bulk_export_response_default_type_1_errors import (
-    PostSavedSearchesExportLocationsByExportLocationIdBulkExportResponseDefaultType1Errors,
-)
-from .post_saved_searches_storages_by_storage_id_bulk_transfer_response_default_type_0 import (
-    PostSavedSearchesStoragesByStorageIdBulkTransferResponseDefaultType0,
-)
-from .post_saved_searches_storages_by_storage_id_bulk_transfer_response_default_type_1 import (
-    PostSavedSearchesStoragesByStorageIdBulkTransferResponseDefaultType1,
-)
-from .post_saved_searches_storages_by_storage_id_bulk_transfer_response_default_type_1_errors import (
-    PostSavedSearchesStoragesByStorageIdBulkTransferResponseDefaultType1Errors,
-)
-from .post_storage_gateway_clusters_response_default_type_0 import (
-    PostStorageGatewayClustersResponseDefaultType0,
-)
-from .post_storage_gateway_clusters_response_default_type_1 import (
-    PostStorageGatewayClustersResponseDefaultType1,
-)
-from .post_storage_gateway_clusters_response_default_type_1_errors import (
-    PostStorageGatewayClustersResponseDefaultType1Errors,
+from .post_storage_gateway_clusters_response_default import (
+    PostStorageGatewayClustersResponseDefault,
 )
 from .post_storage_gateways_by_storage_gateway_id_logs_response_201 import (
     PostStorageGatewaysByStorageGatewayIdLogsResponse201,
 )
-from .post_storage_gateways_by_storage_gateway_id_logs_response_default_type_0 import (
-    PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType0,
+from .post_storage_gateways_by_storage_gateway_id_logs_response_default import (
+    PostStorageGatewaysByStorageGatewayIdLogsResponseDefault,
 )
-from .post_storage_gateways_by_storage_gateway_id_logs_response_default_type_1 import (
-    PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType1,
+from .post_storage_gateways_by_storage_gateway_id_telemetry_response_default import (
+    PostStorageGatewaysByStorageGatewayIdTelemetryResponseDefault,
 )
-from .post_storage_gateways_by_storage_gateway_id_logs_response_default_type_1_errors import (
-    PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType1Errors,
+from .post_storage_gateways_response_default import PostStorageGatewaysResponseDefault
+from .post_storages_by_storage_id_auto_scan_response_default import (
+    PostStoragesByStorageIdAutoScanResponseDefault,
 )
-from .post_storage_gateways_by_storage_gateway_id_telemetry_response_default_type_0 import (
-    PostStorageGatewaysByStorageGatewayIdTelemetryResponseDefaultType0,
+from .post_storages_by_storage_id_bulk_response_default import (
+    PostStoragesByStorageIdBulkResponseDefault,
 )
-from .post_storage_gateways_by_storage_gateway_id_telemetry_response_default_type_1 import (
-    PostStorageGatewaysByStorageGatewayIdTelemetryResponseDefaultType1,
+from .post_storages_by_storage_id_default_response_default import (
+    PostStoragesByStorageIdDefaultResponseDefault,
 )
-from .post_storage_gateways_by_storage_gateway_id_telemetry_response_default_type_1_errors import (
-    PostStorageGatewaysByStorageGatewayIdTelemetryResponseDefaultType1Errors,
+from .post_storages_by_storage_id_files_by_file_id_reindex_response_default import (
+    PostStoragesByStorageIdFilesByFileIdReindexResponseDefault,
 )
-from .post_storage_gateways_response_default_type_0 import (
-    PostStorageGatewaysResponseDefaultType0,
+from .post_storages_by_storage_id_files_reindex_response_default import (
+    PostStoragesByStorageIdFilesReindexResponseDefault,
 )
-from .post_storage_gateways_response_default_type_1 import (
-    PostStorageGatewaysResponseDefaultType1,
+from .post_storages_by_storage_id_files_response_default import (
+    PostStoragesByStorageIdFilesResponseDefault,
 )
-from .post_storage_gateways_response_default_type_1_errors import (
-    PostStorageGatewaysResponseDefaultType1Errors,
+from .post_storages_by_storage_id_gateway_events_purge_response_default import (
+    PostStoragesByStorageIdGatewayEventsPurgeResponseDefault,
 )
-from .post_storages_by_storage_id_auto_scan_response_default_type_0 import (
-    PostStoragesByStorageIdAutoScanResponseDefaultType0,
-)
-from .post_storages_by_storage_id_auto_scan_response_default_type_1 import (
-    PostStoragesByStorageIdAutoScanResponseDefaultType1,
-)
-from .post_storages_by_storage_id_auto_scan_response_default_type_1_errors import (
-    PostStoragesByStorageIdAutoScanResponseDefaultType1Errors,
-)
-from .post_storages_by_storage_id_bulk_response_default_type_0 import (
-    PostStoragesByStorageIdBulkResponseDefaultType0,
-)
-from .post_storages_by_storage_id_bulk_response_default_type_1 import (
-    PostStoragesByStorageIdBulkResponseDefaultType1,
-)
-from .post_storages_by_storage_id_bulk_response_default_type_1_errors import (
-    PostStoragesByStorageIdBulkResponseDefaultType1Errors,
-)
-from .post_storages_by_storage_id_default_response_default_type_0 import (
-    PostStoragesByStorageIdDefaultResponseDefaultType0,
-)
-from .post_storages_by_storage_id_default_response_default_type_1 import (
-    PostStoragesByStorageIdDefaultResponseDefaultType1,
-)
-from .post_storages_by_storage_id_default_response_default_type_1_errors import (
-    PostStoragesByStorageIdDefaultResponseDefaultType1Errors,
-)
-from .post_storages_by_storage_id_files_by_file_id_reindex_response_default_type_0 import (
-    PostStoragesByStorageIdFilesByFileIdReindexResponseDefaultType0,
-)
-from .post_storages_by_storage_id_files_by_file_id_reindex_response_default_type_1 import (
-    PostStoragesByStorageIdFilesByFileIdReindexResponseDefaultType1,
-)
-from .post_storages_by_storage_id_files_by_file_id_reindex_response_default_type_1_errors import (
-    PostStoragesByStorageIdFilesByFileIdReindexResponseDefaultType1Errors,
-)
-from .post_storages_by_storage_id_files_reindex_response_default_type_0 import (
-    PostStoragesByStorageIdFilesReindexResponseDefaultType0,
-)
-from .post_storages_by_storage_id_files_reindex_response_default_type_1 import (
-    PostStoragesByStorageIdFilesReindexResponseDefaultType1,
-)
-from .post_storages_by_storage_id_files_reindex_response_default_type_1_errors import (
-    PostStoragesByStorageIdFilesReindexResponseDefaultType1Errors,
-)
-from .post_storages_by_storage_id_files_response_default_type_0 import (
-    PostStoragesByStorageIdFilesResponseDefaultType0,
-)
-from .post_storages_by_storage_id_files_response_default_type_1 import (
-    PostStoragesByStorageIdFilesResponseDefaultType1,
-)
-from .post_storages_by_storage_id_files_response_default_type_1_errors import (
-    PostStoragesByStorageIdFilesResponseDefaultType1Errors,
-)
-from .post_storages_by_storage_id_gateway_events_purge_response_default_type_0 import (
-    PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType0,
-)
-from .post_storages_by_storage_id_gateway_events_purge_response_default_type_1 import (
-    PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType1,
-)
-from .post_storages_by_storage_id_gateway_events_purge_response_default_type_1_errors import (
-    PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType1Errors,
-)
-from .post_storages_by_storage_id_gateway_events_response_default_type_0 import (
-    PostStoragesByStorageIdGatewayEventsResponseDefaultType0,
-)
-from .post_storages_by_storage_id_gateway_events_response_default_type_1 import (
-    PostStoragesByStorageIdGatewayEventsResponseDefaultType1,
-)
-from .post_storages_by_storage_id_gateway_events_response_default_type_1_errors import (
-    PostStoragesByStorageIdGatewayEventsResponseDefaultType1Errors,
+from .post_storages_by_storage_id_gateway_events_response_default import (
+    PostStoragesByStorageIdGatewayEventsResponseDefault,
 )
 from .post_storages_by_storage_id_logs_response_200 import (
     PostStoragesByStorageIdLogsResponse200,
 )
-from .post_storages_by_storage_id_logs_response_default_type_0 import (
-    PostStoragesByStorageIdLogsResponseDefaultType0,
+from .post_storages_by_storage_id_logs_response_default import (
+    PostStoragesByStorageIdLogsResponseDefault,
 )
-from .post_storages_by_storage_id_logs_response_default_type_1 import (
-    PostStoragesByStorageIdLogsResponseDefaultType1,
+from .post_storages_by_storage_id_reindex_response_default import (
+    PostStoragesByStorageIdReindexResponseDefault,
 )
-from .post_storages_by_storage_id_logs_response_default_type_1_errors import (
-    PostStoragesByStorageIdLogsResponseDefaultType1Errors,
+from .post_storages_by_storage_id_scan_response_default import (
+    PostStoragesByStorageIdScanResponseDefault,
 )
-from .post_storages_by_storage_id_reindex_response_default_type_0 import (
-    PostStoragesByStorageIdReindexResponseDefaultType0,
+from .post_storages_files_reindex_response_default import (
+    PostStoragesFilesReindexResponseDefault,
 )
-from .post_storages_by_storage_id_reindex_response_default_type_1 import (
-    PostStoragesByStorageIdReindexResponseDefaultType1,
-)
-from .post_storages_by_storage_id_reindex_response_default_type_1_errors import (
-    PostStoragesByStorageIdReindexResponseDefaultType1Errors,
-)
-from .post_storages_by_storage_id_scan_response_default_type_0 import (
-    PostStoragesByStorageIdScanResponseDefaultType0,
-)
-from .post_storages_by_storage_id_scan_response_default_type_1 import (
-    PostStoragesByStorageIdScanResponseDefaultType1,
-)
-from .post_storages_by_storage_id_scan_response_default_type_1_errors import (
-    PostStoragesByStorageIdScanResponseDefaultType1Errors,
-)
-from .post_storages_files_reindex_response_default_type_0 import (
-    PostStoragesFilesReindexResponseDefaultType0,
-)
-from .post_storages_files_reindex_response_default_type_1 import (
-    PostStoragesFilesReindexResponseDefaultType1,
-)
-from .post_storages_files_reindex_response_default_type_1_errors import (
-    PostStoragesFilesReindexResponseDefaultType1Errors,
-)
-from .post_storages_reindex_response_default_type_0 import (
-    PostStoragesReindexResponseDefaultType0,
-)
-from .post_storages_reindex_response_default_type_1 import (
-    PostStoragesReindexResponseDefaultType1,
-)
-from .post_storages_reindex_response_default_type_1_errors import (
-    PostStoragesReindexResponseDefaultType1Errors,
-)
-from .post_storages_response_default_type_0 import PostStoragesResponseDefaultType0
-from .post_storages_response_default_type_1 import PostStoragesResponseDefaultType1
-from .post_storages_response_default_type_1_errors import (
-    PostStoragesResponseDefaultType1Errors,
-)
-from .post_storages_swap_response_default_type_0 import (
-    PostStoragesSwapResponseDefaultType0,
-)
-from .post_storages_swap_response_default_type_1 import (
-    PostStoragesSwapResponseDefaultType1,
-)
-from .post_storages_swap_response_default_type_1_errors import (
-    PostStoragesSwapResponseDefaultType1Errors,
-)
+from .post_storages_reindex_response_default import PostStoragesReindexResponseDefault
+from .post_storages_response_default import PostStoragesResponseDefault
+from .post_storages_swap_response_default import PostStoragesSwapResponseDefault
 from .post_storages_verifications_access_response_200 import (
     PostStoragesVerificationsAccessResponse200,
 )
-from .post_storages_verifications_access_response_default_type_0 import (
-    PostStoragesVerificationsAccessResponseDefaultType0,
-)
-from .post_storages_verifications_access_response_default_type_1 import (
-    PostStoragesVerificationsAccessResponseDefaultType1,
-)
-from .post_storages_verifications_access_response_default_type_1_errors import (
-    PostStoragesVerificationsAccessResponseDefaultType1Errors,
+from .post_storages_verifications_access_response_default import (
+    PostStoragesVerificationsAccessResponseDefault,
 )
 from .post_storages_verifications_permissions_response_200 import (
     PostStoragesVerificationsPermissionsResponse200,
 )
-from .post_storages_verifications_permissions_response_default_type_0 import (
-    PostStoragesVerificationsPermissionsResponseDefaultType0,
-)
-from .post_storages_verifications_permissions_response_default_type_1 import (
-    PostStoragesVerificationsPermissionsResponseDefaultType1,
-)
-from .post_storages_verifications_permissions_response_default_type_1_errors import (
-    PostStoragesVerificationsPermissionsResponseDefaultType1Errors,
+from .post_storages_verifications_permissions_response_default import (
+    PostStoragesVerificationsPermissionsResponseDefault,
 )
 from .post_transcoders_by_transcoder_id_logs_response_200 import (
     PostTranscodersByTranscoderIdLogsResponse200,
 )
-from .post_transcoders_by_transcoder_id_logs_response_default_type_0 import (
-    PostTranscodersByTranscoderIdLogsResponseDefaultType0,
+from .post_transcoders_by_transcoder_id_logs_response_default import (
+    PostTranscodersByTranscoderIdLogsResponseDefault,
 )
-from .post_transcoders_by_transcoder_id_logs_response_default_type_1 import (
-    PostTranscodersByTranscoderIdLogsResponseDefaultType1,
+from .post_transcoders_by_transcoder_id_reindex_response_default import (
+    PostTranscodersByTranscoderIdReindexResponseDefault,
 )
-from .post_transcoders_by_transcoder_id_logs_response_default_type_1_errors import (
-    PostTranscodersByTranscoderIdLogsResponseDefaultType1Errors,
-)
-from .post_transcoders_by_transcoder_id_reindex_response_default_type_0 import (
-    PostTranscodersByTranscoderIdReindexResponseDefaultType0,
-)
-from .post_transcoders_by_transcoder_id_reindex_response_default_type_1 import (
-    PostTranscodersByTranscoderIdReindexResponseDefaultType1,
-)
-from .post_transcoders_by_transcoder_id_reindex_response_default_type_1_errors import (
-    PostTranscodersByTranscoderIdReindexResponseDefaultType1Errors,
-)
-from .post_transcoders_response_default_type_0 import (
-    PostTranscodersResponseDefaultType0,
-)
-from .post_transcoders_response_default_type_1 import (
-    PostTranscodersResponseDefaultType1,
-)
-from .post_transcoders_response_default_type_1_errors import (
-    PostTranscodersResponseDefaultType1Errors,
-)
-from .post_transfers_by_transfer_id_urls_response_default_type_0 import (
-    PostTransfersByTransferIdUrlsResponseDefaultType0,
-)
-from .post_transfers_by_transfer_id_urls_response_default_type_1 import (
-    PostTransfersByTransferIdUrlsResponseDefaultType1,
-)
-from .post_transfers_by_transfer_id_urls_response_default_type_1_errors import (
-    PostTransfersByTransferIdUrlsResponseDefaultType1Errors,
+from .post_transcoders_response_default import PostTranscodersResponseDefault
+from .post_transfers_by_transfer_id_urls_response_default import (
+    PostTransfersByTransferIdUrlsResponseDefault,
 )
 from .prio_dir import PrioDir
 from .prio_dir_schema import PrioDirSchema
@@ -2758,239 +1196,83 @@ from .proxy_status import ProxyStatus
 from .proxy_update_schema import ProxyUpdateSchema
 from .proxy_update_schema_status import ProxyUpdateSchemaStatus
 from .proxy_upload_credentials_type_0 import ProxyUploadCredentialsType0
-from .put_analysis_profiles_by_profile_id_response_default_type_0 import (
-    PutAnalysisProfilesByProfileIdResponseDefaultType0,
+from .put_analysis_profiles_by_profile_id_response_default import (
+    PutAnalysisProfilesByProfileIdResponseDefault,
 )
-from .put_analysis_profiles_by_profile_id_response_default_type_1 import (
-    PutAnalysisProfilesByProfileIdResponseDefaultType1,
+from .put_analysis_service_accounts_by_analysis_service_account_id_response_default import (
+    PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault,
 )
-from .put_analysis_profiles_by_profile_id_response_default_type_1_errors import (
-    PutAnalysisProfilesByProfileIdResponseDefaultType1Errors,
+from .put_assets_by_asset_id_file_sets_by_file_set_id_response_default import (
+    PutAssetsByAssetIdFileSetsByFileSetIdResponseDefault,
 )
-from .put_analysis_service_accounts_by_analysis_service_account_id_response_default_type_0 import (
-    PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0,
+from .put_assets_by_asset_id_file_sets_by_file_set_id_restore_response_default import (
+    PutAssetsByAssetIdFileSetsByFileSetIdRestoreResponseDefault,
 )
-from .put_analysis_service_accounts_by_analysis_service_account_id_response_default_type_1 import (
-    PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1,
+from .put_assets_by_asset_id_files_by_file_id_response_default import (
+    PutAssetsByAssetIdFilesByFileIdResponseDefault,
 )
-from .put_analysis_service_accounts_by_analysis_service_account_id_response_default_type_1_errors import (
-    PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1Errors,
+from .put_assets_by_asset_id_formats_by_format_id_components_by_component_id_response_default import (
+    PutAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault,
 )
-from .put_assets_by_asset_id_file_sets_by_file_set_id_response_default_type_0 import (
-    PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0,
+from .put_assets_by_asset_id_formats_by_format_id_response_default import (
+    PutAssetsByAssetIdFormatsByFormatIdResponseDefault,
 )
-from .put_assets_by_asset_id_file_sets_by_file_set_id_response_default_type_1 import (
-    PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1,
+from .put_assets_by_asset_id_formats_by_format_id_restore_response_default import (
+    PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefault,
 )
-from .put_assets_by_asset_id_file_sets_by_file_set_id_response_default_type_1_errors import (
-    PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1Errors,
+from .put_assets_by_asset_id_keyframes_by_keyframe_id_response_default import (
+    PutAssetsByAssetIdKeyframesByKeyframeIdResponseDefault,
 )
-from .put_assets_by_asset_id_file_sets_by_file_set_id_restore_response_default_type_0 import (
-    PutAssetsByAssetIdFileSetsByFileSetIdRestoreResponseDefaultType0,
+from .put_assets_by_asset_id_proxies_by_proxy_id_containers_by_container_id_files_by_file_id_response_default import (
+    PutAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesByFileIdResponseDefault,
 )
-from .put_assets_by_asset_id_file_sets_by_file_set_id_restore_response_default_type_1 import (
-    PutAssetsByAssetIdFileSetsByFileSetIdRestoreResponseDefaultType1,
+from .put_assets_by_asset_id_proxies_by_proxy_id_containers_response_default import (
+    PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefault,
 )
-from .put_assets_by_asset_id_file_sets_by_file_set_id_restore_response_default_type_1_errors import (
-    PutAssetsByAssetIdFileSetsByFileSetIdRestoreResponseDefaultType1Errors,
+from .put_assets_by_asset_id_proxies_by_proxy_id_response_default import (
+    PutAssetsByAssetIdProxiesByProxyIdResponseDefault,
 )
-from .put_assets_by_asset_id_files_by_file_id_response_default_type_0 import (
-    PutAssetsByAssetIdFilesByFileIdResponseDefaultType0,
+from .put_assets_by_asset_id_subtitles_by_subtitle_id_response_default import (
+    PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault,
 )
-from .put_assets_by_asset_id_files_by_file_id_response_default_type_1 import (
-    PutAssetsByAssetIdFilesByFileIdResponseDefaultType1,
+from .put_assets_by_asset_id_temporary_files_by_file_id_response_default import (
+    PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefault,
 )
-from .put_assets_by_asset_id_files_by_file_id_response_default_type_1_errors import (
-    PutAssetsByAssetIdFilesByFileIdResponseDefaultType1Errors,
+from .put_collections_by_collection_id_keyframes_by_keyframe_id_response_default import (
+    PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault,
 )
-from .put_assets_by_asset_id_formats_by_format_id_components_by_component_id_response_default_type_0 import (
-    PutAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0,
+from .put_export_locations_by_export_location_id_response_default import (
+    PutExportLocationsByExportLocationIdResponseDefault,
 )
-from .put_assets_by_asset_id_formats_by_format_id_components_by_component_id_response_default_type_1 import (
-    PutAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1,
+from .put_playlists_by_playlist_id_keyframes_by_keyframe_id_response_default import (
+    PutPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault,
 )
-from .put_assets_by_asset_id_formats_by_format_id_components_by_component_id_response_default_type_1_errors import (
-    PutAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1Errors,
+from .put_storage_gateway_clusters_by_cluster_id_response_default import (
+    PutStorageGatewayClustersByClusterIdResponseDefault,
 )
-from .put_assets_by_asset_id_formats_by_format_id_response_default_type_0 import (
-    PutAssetsByAssetIdFormatsByFormatIdResponseDefaultType0,
+from .put_storage_gateways_by_storage_gateway_id_response_default import (
+    PutStorageGatewaysByStorageGatewayIdResponseDefault,
 )
-from .put_assets_by_asset_id_formats_by_format_id_response_default_type_1 import (
-    PutAssetsByAssetIdFormatsByFormatIdResponseDefaultType1,
+from .put_storages_by_storage_id_files_response_default import (
+    PutStoragesByStorageIdFilesResponseDefault,
 )
-from .put_assets_by_asset_id_formats_by_format_id_response_default_type_1_errors import (
-    PutAssetsByAssetIdFormatsByFormatIdResponseDefaultType1Errors,
+from .put_storages_by_storage_id_gateway_report_response_default import (
+    PutStoragesByStorageIdGatewayReportResponseDefault,
 )
-from .put_assets_by_asset_id_formats_by_format_id_restore_response_default_type_0 import (
-    PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType0,
+from .put_storages_by_storage_id_gateway_status_response_default import (
+    PutStoragesByStorageIdGatewayStatusResponseDefault,
 )
-from .put_assets_by_asset_id_formats_by_format_id_restore_response_default_type_1 import (
-    PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType1,
+from .put_storages_by_storage_id_response_default import (
+    PutStoragesByStorageIdResponseDefault,
 )
-from .put_assets_by_asset_id_formats_by_format_id_restore_response_default_type_1_errors import (
-    PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType1Errors,
+from .put_storages_by_storage_id_search_document_response_default import (
+    PutStoragesByStorageIdSearchDocumentResponseDefault,
 )
-from .put_assets_by_asset_id_keyframes_by_keyframe_id_response_default_type_0 import (
-    PutAssetsByAssetIdKeyframesByKeyframeIdResponseDefaultType0,
+from .put_storages_by_storage_id_transcoders_by_transcoder_id_response_default import (
+    PutStoragesByStorageIdTranscodersByTranscoderIdResponseDefault,
 )
-from .put_assets_by_asset_id_keyframes_by_keyframe_id_response_default_type_1 import (
-    PutAssetsByAssetIdKeyframesByKeyframeIdResponseDefaultType1,
-)
-from .put_assets_by_asset_id_keyframes_by_keyframe_id_response_default_type_1_errors import (
-    PutAssetsByAssetIdKeyframesByKeyframeIdResponseDefaultType1Errors,
-)
-from .put_assets_by_asset_id_proxies_by_proxy_id_containers_by_container_id_files_by_file_id_response_default_type_0 import (
-    PutAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesByFileIdResponseDefaultType0,
-)
-from .put_assets_by_asset_id_proxies_by_proxy_id_containers_by_container_id_files_by_file_id_response_default_type_1 import (
-    PutAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesByFileIdResponseDefaultType1,
-)
-from .put_assets_by_asset_id_proxies_by_proxy_id_containers_by_container_id_files_by_file_id_response_default_type_1_errors import (
-    PutAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesByFileIdResponseDefaultType1Errors,
-)
-from .put_assets_by_asset_id_proxies_by_proxy_id_containers_response_default_type_0 import (
-    PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType0,
-)
-from .put_assets_by_asset_id_proxies_by_proxy_id_containers_response_default_type_1 import (
-    PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType1,
-)
-from .put_assets_by_asset_id_proxies_by_proxy_id_containers_response_default_type_1_errors import (
-    PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType1Errors,
-)
-from .put_assets_by_asset_id_proxies_by_proxy_id_response_default_type_0 import (
-    PutAssetsByAssetIdProxiesByProxyIdResponseDefaultType0,
-)
-from .put_assets_by_asset_id_proxies_by_proxy_id_response_default_type_1 import (
-    PutAssetsByAssetIdProxiesByProxyIdResponseDefaultType1,
-)
-from .put_assets_by_asset_id_proxies_by_proxy_id_response_default_type_1_errors import (
-    PutAssetsByAssetIdProxiesByProxyIdResponseDefaultType1Errors,
-)
-from .put_assets_by_asset_id_subtitles_by_subtitle_id_response_default_type_0 import (
-    PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0,
-)
-from .put_assets_by_asset_id_subtitles_by_subtitle_id_response_default_type_1 import (
-    PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1,
-)
-from .put_assets_by_asset_id_subtitles_by_subtitle_id_response_default_type_1_errors import (
-    PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1Errors,
-)
-from .put_assets_by_asset_id_temporary_files_by_file_id_response_default_type_0 import (
-    PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType0,
-)
-from .put_assets_by_asset_id_temporary_files_by_file_id_response_default_type_1 import (
-    PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType1,
-)
-from .put_assets_by_asset_id_temporary_files_by_file_id_response_default_type_1_errors import (
-    PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType1Errors,
-)
-from .put_collections_by_collection_id_keyframes_by_keyframe_id_response_default_type_0 import (
-    PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0,
-)
-from .put_collections_by_collection_id_keyframes_by_keyframe_id_response_default_type_1 import (
-    PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1,
-)
-from .put_collections_by_collection_id_keyframes_by_keyframe_id_response_default_type_1_errors import (
-    PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1Errors,
-)
-from .put_export_locations_by_export_location_id_response_default_type_0 import (
-    PutExportLocationsByExportLocationIdResponseDefaultType0,
-)
-from .put_export_locations_by_export_location_id_response_default_type_1 import (
-    PutExportLocationsByExportLocationIdResponseDefaultType1,
-)
-from .put_export_locations_by_export_location_id_response_default_type_1_errors import (
-    PutExportLocationsByExportLocationIdResponseDefaultType1Errors,
-)
-from .put_playlists_by_playlist_id_keyframes_by_keyframe_id_response_default_type_0 import (
-    PutPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType0,
-)
-from .put_playlists_by_playlist_id_keyframes_by_keyframe_id_response_default_type_1 import (
-    PutPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1,
-)
-from .put_playlists_by_playlist_id_keyframes_by_keyframe_id_response_default_type_1_errors import (
-    PutPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1Errors,
-)
-from .put_storage_gateway_clusters_by_cluster_id_response_default_type_0 import (
-    PutStorageGatewayClustersByClusterIdResponseDefaultType0,
-)
-from .put_storage_gateway_clusters_by_cluster_id_response_default_type_1 import (
-    PutStorageGatewayClustersByClusterIdResponseDefaultType1,
-)
-from .put_storage_gateway_clusters_by_cluster_id_response_default_type_1_errors import (
-    PutStorageGatewayClustersByClusterIdResponseDefaultType1Errors,
-)
-from .put_storage_gateways_by_storage_gateway_id_response_default_type_0 import (
-    PutStorageGatewaysByStorageGatewayIdResponseDefaultType0,
-)
-from .put_storage_gateways_by_storage_gateway_id_response_default_type_1 import (
-    PutStorageGatewaysByStorageGatewayIdResponseDefaultType1,
-)
-from .put_storage_gateways_by_storage_gateway_id_response_default_type_1_errors import (
-    PutStorageGatewaysByStorageGatewayIdResponseDefaultType1Errors,
-)
-from .put_storages_by_storage_id_files_response_default_type_0 import (
-    PutStoragesByStorageIdFilesResponseDefaultType0,
-)
-from .put_storages_by_storage_id_files_response_default_type_1 import (
-    PutStoragesByStorageIdFilesResponseDefaultType1,
-)
-from .put_storages_by_storage_id_files_response_default_type_1_errors import (
-    PutStoragesByStorageIdFilesResponseDefaultType1Errors,
-)
-from .put_storages_by_storage_id_gateway_report_response_default_type_0 import (
-    PutStoragesByStorageIdGatewayReportResponseDefaultType0,
-)
-from .put_storages_by_storage_id_gateway_report_response_default_type_1 import (
-    PutStoragesByStorageIdGatewayReportResponseDefaultType1,
-)
-from .put_storages_by_storage_id_gateway_report_response_default_type_1_errors import (
-    PutStoragesByStorageIdGatewayReportResponseDefaultType1Errors,
-)
-from .put_storages_by_storage_id_gateway_status_response_default_type_0 import (
-    PutStoragesByStorageIdGatewayStatusResponseDefaultType0,
-)
-from .put_storages_by_storage_id_gateway_status_response_default_type_1 import (
-    PutStoragesByStorageIdGatewayStatusResponseDefaultType1,
-)
-from .put_storages_by_storage_id_gateway_status_response_default_type_1_errors import (
-    PutStoragesByStorageIdGatewayStatusResponseDefaultType1Errors,
-)
-from .put_storages_by_storage_id_response_default_type_0 import (
-    PutStoragesByStorageIdResponseDefaultType0,
-)
-from .put_storages_by_storage_id_response_default_type_1 import (
-    PutStoragesByStorageIdResponseDefaultType1,
-)
-from .put_storages_by_storage_id_response_default_type_1_errors import (
-    PutStoragesByStorageIdResponseDefaultType1Errors,
-)
-from .put_storages_by_storage_id_search_document_response_default_type_0 import (
-    PutStoragesByStorageIdSearchDocumentResponseDefaultType0,
-)
-from .put_storages_by_storage_id_search_document_response_default_type_1 import (
-    PutStoragesByStorageIdSearchDocumentResponseDefaultType1,
-)
-from .put_storages_by_storage_id_search_document_response_default_type_1_errors import (
-    PutStoragesByStorageIdSearchDocumentResponseDefaultType1Errors,
-)
-from .put_storages_by_storage_id_transcoders_by_transcoder_id_response_default_type_0 import (
-    PutStoragesByStorageIdTranscodersByTranscoderIdResponseDefaultType0,
-)
-from .put_storages_by_storage_id_transcoders_by_transcoder_id_response_default_type_1 import (
-    PutStoragesByStorageIdTranscodersByTranscoderIdResponseDefaultType1,
-)
-from .put_storages_by_storage_id_transcoders_by_transcoder_id_response_default_type_1_errors import (
-    PutStoragesByStorageIdTranscodersByTranscoderIdResponseDefaultType1Errors,
-)
-from .put_transcoders_by_transcoder_id_response_default_type_0 import (
-    PutTranscodersByTranscoderIdResponseDefaultType0,
-)
-from .put_transcoders_by_transcoder_id_response_default_type_1 import (
-    PutTranscodersByTranscoderIdResponseDefaultType1,
-)
-from .put_transcoders_by_transcoder_id_response_default_type_1_errors import (
-    PutTranscodersByTranscoderIdResponseDefaultType1Errors,
+from .put_transcoders_by_transcoder_id_response_default import (
+    PutTranscodersByTranscoderIdResponseDefault,
 )
 from .redline_schema import RedlineSchema
 from .redline_schema_format import RedlineSchemaFormat
@@ -3286,162 +1568,60 @@ __all__ = (
     "ComponentSchemaType",
     "ComponentsSchema",
     "CustomSettingsSchema",
-    "DeleteAnalysisProfilesByProfileIdDefaultResponseDefaultType0",
-    "DeleteAnalysisProfilesByProfileIdDefaultResponseDefaultType1",
-    "DeleteAnalysisProfilesByProfileIdDefaultResponseDefaultType1Errors",
-    "DeleteAnalysisProfilesByProfileIdResponseDefaultType0",
-    "DeleteAnalysisProfilesByProfileIdResponseDefaultType1",
-    "DeleteAnalysisProfilesByProfileIdResponseDefaultType1Errors",
-    "DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0",
-    "DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1",
-    "DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdFilesByFileIdResponseDefaultType0",
-    "DeleteAssetsByAssetIdFilesByFileIdResponseDefaultType1",
-    "DeleteAssetsByAssetIdFilesByFileIdResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType0",
-    "DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType1",
-    "DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0",
-    "DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1",
-    "DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0",
-    "DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1",
-    "DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0",
-    "DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1",
-    "DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdFormatsByFormatIdPurgeResponseDefaultType0",
-    "DeleteAssetsByAssetIdFormatsByFormatIdPurgeResponseDefaultType1",
-    "DeleteAssetsByAssetIdFormatsByFormatIdPurgeResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdFormatsByFormatIdResponseDefaultType0",
-    "DeleteAssetsByAssetIdFormatsByFormatIdResponseDefaultType1",
-    "DeleteAssetsByAssetIdFormatsByFormatIdResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0",
-    "DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1",
-    "DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdKeyframesByKeyframeIdResponseDefaultType0",
-    "DeleteAssetsByAssetIdKeyframesByKeyframeIdResponseDefaultType1",
-    "DeleteAssetsByAssetIdKeyframesByKeyframeIdResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdProxiesByProxyIdPublicResponseDefaultType0",
-    "DeleteAssetsByAssetIdProxiesByProxyIdPublicResponseDefaultType1",
-    "DeleteAssetsByAssetIdProxiesByProxyIdPublicResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdProxiesByProxyIdResponseDefaultType0",
-    "DeleteAssetsByAssetIdProxiesByProxyIdResponseDefaultType1",
-    "DeleteAssetsByAssetIdProxiesByProxyIdResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdSubtitlesBySubtitleIdCcResponseDefaultType0",
-    "DeleteAssetsByAssetIdSubtitlesBySubtitleIdCcResponseDefaultType1",
-    "DeleteAssetsByAssetIdSubtitlesBySubtitleIdCcResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0",
-    "DeleteAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1",
-    "DeleteAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdTemporaryFileSetsByFileSetIdResponseDefaultType0",
-    "DeleteAssetsByAssetIdTemporaryFileSetsByFileSetIdResponseDefaultType1",
-    "DeleteAssetsByAssetIdTemporaryFileSetsByFileSetIdResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdVersionsAllFileSetsResponseDefaultType0",
-    "DeleteAssetsByAssetIdVersionsAllFileSetsResponseDefaultType1",
-    "DeleteAssetsByAssetIdVersionsAllFileSetsResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType0",
-    "DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType1",
-    "DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdVersionsAllFormatsResponseDefaultType0",
-    "DeleteAssetsByAssetIdVersionsAllFormatsResponseDefaultType1",
-    "DeleteAssetsByAssetIdVersionsAllFormatsResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType0",
-    "DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType1",
-    "DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdVersionsAllProxiesResponseDefaultType0",
-    "DeleteAssetsByAssetIdVersionsAllProxiesResponseDefaultType1",
-    "DeleteAssetsByAssetIdVersionsAllProxiesResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdVersionsAllSubtitlesResponseDefaultType0",
-    "DeleteAssetsByAssetIdVersionsAllSubtitlesResponseDefaultType1",
-    "DeleteAssetsByAssetIdVersionsAllSubtitlesResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdVersionsByVersionIdFileSetsResponseDefaultType0",
-    "DeleteAssetsByAssetIdVersionsByVersionIdFileSetsResponseDefaultType1",
-    "DeleteAssetsByAssetIdVersionsByVersionIdFileSetsResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdVersionsByVersionIdFilesResponseDefaultType0",
-    "DeleteAssetsByAssetIdVersionsByVersionIdFilesResponseDefaultType1",
-    "DeleteAssetsByAssetIdVersionsByVersionIdFilesResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdVersionsByVersionIdFormatsResponseDefaultType0",
-    "DeleteAssetsByAssetIdVersionsByVersionIdFormatsResponseDefaultType1",
-    "DeleteAssetsByAssetIdVersionsByVersionIdFormatsResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdVersionsByVersionIdKeyframesResponseDefaultType0",
-    "DeleteAssetsByAssetIdVersionsByVersionIdKeyframesResponseDefaultType1",
-    "DeleteAssetsByAssetIdVersionsByVersionIdKeyframesResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType0",
-    "DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType1",
-    "DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType1Errors",
-    "DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType0",
-    "DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType1",
-    "DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType1Errors",
-    "DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0",
-    "DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1",
-    "DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1Errors",
-    "DeleteDeleteQueueFileSetsResponseDefaultType0",
-    "DeleteDeleteQueueFileSetsResponseDefaultType1",
-    "DeleteDeleteQueueFileSetsResponseDefaultType1Errors",
-    "DeleteDeleteQueueFormatsResponseDefaultType0",
-    "DeleteDeleteQueueFormatsResponseDefaultType1",
-    "DeleteDeleteQueueFormatsResponseDefaultType1Errors",
-    "DeleteExportLocationsByExportLocationIdResponseDefaultType0",
-    "DeleteExportLocationsByExportLocationIdResponseDefaultType1",
-    "DeleteExportLocationsByExportLocationIdResponseDefaultType1Errors",
-    "DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType0",
-    "DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType1",
-    "DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType1Errors",
-    "DeleteFileSetsByFileSetIdTransfersFromByStorageIdResponseDefaultType0",
-    "DeleteFileSetsByFileSetIdTransfersFromByStorageIdResponseDefaultType1",
-    "DeleteFileSetsByFileSetIdTransfersFromByStorageIdResponseDefaultType1Errors",
-    "DeleteFileSetsByFileSetIdTransfersToByStorageIdResponseDefaultType0",
-    "DeleteFileSetsByFileSetIdTransfersToByStorageIdResponseDefaultType1",
-    "DeleteFileSetsByFileSetIdTransfersToByStorageIdResponseDefaultType1Errors",
-    "DeleteFilesMissingStoragesByStorageIdResponseDefaultType0",
-    "DeleteFilesMissingStoragesByStorageIdResponseDefaultType1",
-    "DeleteFilesMissingStoragesByStorageIdResponseDefaultType1Errors",
-    "DeletePlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType0",
-    "DeletePlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1",
-    "DeletePlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1Errors",
+    "DeleteAnalysisProfilesByProfileIdDefaultResponseDefault",
+    "DeleteAnalysisProfilesByProfileIdResponseDefault",
+    "DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault",
+    "DeleteAssetsByAssetIdFilesByFileIdResponseDefault",
+    "DeleteAssetsByAssetIdFileSetsByFileSetIdPurgeResponseDefault",
+    "DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefault",
+    "DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault",
+    "DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault",
+    "DeleteAssetsByAssetIdFormatsByFormatIdPurgeResponseDefault",
+    "DeleteAssetsByAssetIdFormatsByFormatIdResponseDefault",
+    "DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault",
+    "DeleteAssetsByAssetIdKeyframesByKeyframeIdResponseDefault",
+    "DeleteAssetsByAssetIdProxiesByProxyIdPublicResponseDefault",
+    "DeleteAssetsByAssetIdProxiesByProxyIdResponseDefault",
+    "DeleteAssetsByAssetIdSubtitlesBySubtitleIdCcResponseDefault",
+    "DeleteAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault",
+    "DeleteAssetsByAssetIdTemporaryFileSetsByFileSetIdResponseDefault",
+    "DeleteAssetsByAssetIdVersionsAllFileSetsResponseDefault",
+    "DeleteAssetsByAssetIdVersionsAllFilesResponseDefault",
+    "DeleteAssetsByAssetIdVersionsAllFormatsResponseDefault",
+    "DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefault",
+    "DeleteAssetsByAssetIdVersionsAllProxiesResponseDefault",
+    "DeleteAssetsByAssetIdVersionsAllSubtitlesResponseDefault",
+    "DeleteAssetsByAssetIdVersionsByVersionIdFileSetsResponseDefault",
+    "DeleteAssetsByAssetIdVersionsByVersionIdFilesResponseDefault",
+    "DeleteAssetsByAssetIdVersionsByVersionIdFormatsResponseDefault",
+    "DeleteAssetsByAssetIdVersionsByVersionIdKeyframesResponseDefault",
+    "DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefault",
+    "DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefault",
+    "DeleteCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault",
+    "DeleteDeleteQueueFileSetsResponseDefault",
+    "DeleteDeleteQueueFormatsResponseDefault",
+    "DeleteExportLocationsByExportLocationIdResponseDefault",
+    "DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefault",
+    "DeleteFileSetsByFileSetIdTransfersFromByStorageIdResponseDefault",
+    "DeleteFileSetsByFileSetIdTransfersToByStorageIdResponseDefault",
+    "DeleteFilesMissingStoragesByStorageIdResponseDefault",
+    "DeletePlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault",
     "DeleteQueueFileSetsQueryParamsSchema",
     "DeleteQueueFormatsQueryParamsSchema",
     "DeleteQueueSchema",
-    "DeleteStorageGatewayClustersByClusterIdResponseDefaultType0",
-    "DeleteStorageGatewayClustersByClusterIdResponseDefaultType1",
-    "DeleteStorageGatewayClustersByClusterIdResponseDefaultType1Errors",
-    "DeleteStorageGatewaysByStorageGatewayIdResponseDefaultType0",
-    "DeleteStorageGatewaysByStorageGatewayIdResponseDefaultType1",
-    "DeleteStorageGatewaysByStorageGatewayIdResponseDefaultType1Errors",
-    "DeleteStoragesByStorageIdAutoScanResponseDefaultType0",
-    "DeleteStoragesByStorageIdAutoScanResponseDefaultType1",
-    "DeleteStoragesByStorageIdAutoScanResponseDefaultType1Errors",
-    "DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType0",
-    "DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType1",
-    "DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType1Errors",
-    "DeleteStoragesByStorageIdDefaultResponseDefaultType0",
-    "DeleteStoragesByStorageIdDefaultResponseDefaultType1",
-    "DeleteStoragesByStorageIdDefaultResponseDefaultType1Errors",
-    "DeleteStoragesByStorageIdDeletionsByDeletionIdResponseDefaultType0",
-    "DeleteStoragesByStorageIdDeletionsByDeletionIdResponseDefaultType1",
-    "DeleteStoragesByStorageIdDeletionsByDeletionIdResponseDefaultType1Errors",
-    "DeleteStoragesByStorageIdFilesResponseDefaultType0",
-    "DeleteStoragesByStorageIdFilesResponseDefaultType1",
-    "DeleteStoragesByStorageIdFilesResponseDefaultType1Errors",
-    "DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType0",
-    "DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType1",
-    "DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType1Errors",
-    "DeleteStoragesByStorageIdResponseDefaultType0",
-    "DeleteStoragesByStorageIdResponseDefaultType1",
-    "DeleteStoragesByStorageIdResponseDefaultType1Errors",
-    "DeleteStoragesByStorageIdTranscodersByTranscoderIdResponseDefaultType0",
-    "DeleteStoragesByStorageIdTranscodersByTranscoderIdResponseDefaultType1",
-    "DeleteStoragesByStorageIdTranscodersByTranscoderIdResponseDefaultType1Errors",
-    "DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType0",
-    "DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType1",
-    "DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType1Errors",
-    "DeleteStoragesByStorageIdTransfersToByTransferIdResponseDefaultType0",
-    "DeleteStoragesByStorageIdTransfersToByTransferIdResponseDefaultType1",
-    "DeleteStoragesByStorageIdTransfersToByTransferIdResponseDefaultType1Errors",
-    "DeleteTranscodersByTranscoderIdResponseDefaultType0",
-    "DeleteTranscodersByTranscoderIdResponseDefaultType1",
-    "DeleteTranscodersByTranscoderIdResponseDefaultType1Errors",
+    "DeleteStorageGatewayClustersByClusterIdResponseDefault",
+    "DeleteStorageGatewaysByStorageGatewayIdResponseDefault",
+    "DeleteStoragesByStorageIdAutoScanResponseDefault",
+    "DeleteStoragesByStorageIdByObjectTypeFilesResponseDefault",
+    "DeleteStoragesByStorageIdDefaultResponseDefault",
+    "DeleteStoragesByStorageIdDeletionsByDeletionIdResponseDefault",
+    "DeleteStoragesByStorageIdFilesResponseDefault",
+    "DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefault",
+    "DeleteStoragesByStorageIdResponseDefault",
+    "DeleteStoragesByStorageIdTranscodersByTranscoderIdResponseDefault",
+    "DeleteStoragesByStorageIdTransfersFromByTransferIdResponseDefault",
+    "DeleteStoragesByStorageIdTransfersToByTransferIdResponseDefault",
+    "DeleteTranscodersByTranscoderIdResponseDefault",
     "EditProxyResponseSchema",
     "EditProxySchema",
     "EditProxySettingsSchema",
@@ -3528,276 +1708,98 @@ __all__ = (
     "GatewayReportSchemaStartStatus",
     "GatewayReportSchemaStatus",
     "GatewayStatusSchema",
-    "GetAnalysisProfilesByMediaTypeDefaultResponseDefaultType0",
-    "GetAnalysisProfilesByMediaTypeDefaultResponseDefaultType1",
-    "GetAnalysisProfilesByMediaTypeDefaultResponseDefaultType1Errors",
-    "GetAnalysisProfilesByProfileIdResponseDefaultType0",
-    "GetAnalysisProfilesByProfileIdResponseDefaultType1",
-    "GetAnalysisProfilesByProfileIdResponseDefaultType1Errors",
-    "GetAnalysisProfilesResponseDefaultType0",
-    "GetAnalysisProfilesResponseDefaultType1",
-    "GetAnalysisProfilesResponseDefaultType1Errors",
-    "GetAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0",
-    "GetAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1",
-    "GetAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1Errors",
-    "GetAnalysisServiceAccountsResponseDefaultType0",
-    "GetAnalysisServiceAccountsResponseDefaultType1",
-    "GetAnalysisServiceAccountsResponseDefaultType1Errors",
-    "GetAnalysisSettingsTranscriptionDefaultResponseDefaultType0",
-    "GetAnalysisSettingsTranscriptionDefaultResponseDefaultType1",
-    "GetAnalysisSettingsTranscriptionDefaultResponseDefaultType1Errors",
-    "GetAssetsByAssetIdFilesByFileIdDownloadUrlResponseDefaultType0",
-    "GetAssetsByAssetIdFilesByFileIdDownloadUrlResponseDefaultType1",
-    "GetAssetsByAssetIdFilesByFileIdDownloadUrlResponseDefaultType1Errors",
-    "GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType0",
-    "GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType1",
-    "GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType1Errors",
-    "GetAssetsByAssetIdFilesByFileIdMultipartUrlPartResponseDefaultType0",
-    "GetAssetsByAssetIdFilesByFileIdMultipartUrlPartResponseDefaultType1",
-    "GetAssetsByAssetIdFilesByFileIdMultipartUrlPartResponseDefaultType1Errors",
-    "GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType0",
-    "GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType1",
-    "GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefaultType1Errors",
-    "GetAssetsByAssetIdFilesByFileIdResponseDefaultType0",
-    "GetAssetsByAssetIdFilesByFileIdResponseDefaultType1",
-    "GetAssetsByAssetIdFilesByFileIdResponseDefaultType1Errors",
-    "GetAssetsByAssetIdFileSetsByFileSetIdFilesResponseDefaultType0",
-    "GetAssetsByAssetIdFileSetsByFileSetIdFilesResponseDefaultType1",
-    "GetAssetsByAssetIdFileSetsByFileSetIdFilesResponseDefaultType1Errors",
-    "GetAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0",
-    "GetAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1",
-    "GetAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1Errors",
-    "GetAssetsByAssetIdFileSetsResponseDefaultType0",
-    "GetAssetsByAssetIdFileSetsResponseDefaultType1",
-    "GetAssetsByAssetIdFileSetsResponseDefaultType1Errors",
-    "GetAssetsByAssetIdFilesResponseDefaultType0",
-    "GetAssetsByAssetIdFilesResponseDefaultType1",
-    "GetAssetsByAssetIdFilesResponseDefaultType1Errors",
-    "GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0",
-    "GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1",
-    "GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1Errors",
-    "GetAssetsByAssetIdFormatsByFormatIdComponentsResponseDefaultType0",
-    "GetAssetsByAssetIdFormatsByFormatIdComponentsResponseDefaultType1",
-    "GetAssetsByAssetIdFormatsByFormatIdComponentsResponseDefaultType1Errors",
-    "GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType0",
-    "GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType1",
-    "GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefaultType1Errors",
-    "GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType0",
-    "GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType1",
-    "GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefaultType1Errors",
-    "GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType0",
-    "GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType1",
-    "GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefaultType1Errors",
-    "GetAssetsByAssetIdFormatsByFormatIdResponseDefaultType0",
-    "GetAssetsByAssetIdFormatsByFormatIdResponseDefaultType1",
-    "GetAssetsByAssetIdFormatsByFormatIdResponseDefaultType1Errors",
-    "GetAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdFileSetsResponseDefaultType0",
-    "GetAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdFileSetsResponseDefaultType1",
-    "GetAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdFileSetsResponseDefaultType1Errors",
-    "GetAssetsByAssetIdFormatsResponseDefaultType0",
-    "GetAssetsByAssetIdFormatsResponseDefaultType1",
-    "GetAssetsByAssetIdFormatsResponseDefaultType1Errors",
-    "GetAssetsByAssetIdKeyframesByKeyframeIdResponseDefaultType0",
-    "GetAssetsByAssetIdKeyframesByKeyframeIdResponseDefaultType1",
-    "GetAssetsByAssetIdKeyframesByKeyframeIdResponseDefaultType1Errors",
-    "GetAssetsByAssetIdKeyframesResponseDefaultType0",
-    "GetAssetsByAssetIdKeyframesResponseDefaultType1",
-    "GetAssetsByAssetIdKeyframesResponseDefaultType1Errors",
-    "GetAssetsByAssetIdProxiesByProxyIdDownloadUrlResponseDefaultType0",
-    "GetAssetsByAssetIdProxiesByProxyIdDownloadUrlResponseDefaultType1",
-    "GetAssetsByAssetIdProxiesByProxyIdDownloadUrlResponseDefaultType1Errors",
-    "GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType0",
-    "GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType1",
-    "GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType1Errors",
-    "GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType0",
-    "GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType1",
-    "GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefaultType1Errors",
-    "GetAssetsByAssetIdProxiesByProxyIdResponseDefaultType0",
-    "GetAssetsByAssetIdProxiesByProxyIdResponseDefaultType1",
-    "GetAssetsByAssetIdProxiesByProxyIdResponseDefaultType1Errors",
-    "GetAssetsByAssetIdProxiesResponseDefaultType0",
-    "GetAssetsByAssetIdProxiesResponseDefaultType1",
-    "GetAssetsByAssetIdProxiesResponseDefaultType1Errors",
-    "GetAssetsByAssetIdSubtitlesByLanguageCcResponseDefaultType0",
-    "GetAssetsByAssetIdSubtitlesByLanguageCcResponseDefaultType1",
-    "GetAssetsByAssetIdSubtitlesByLanguageCcResponseDefaultType1Errors",
-    "GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType0",
-    "GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType1",
-    "GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType1Errors",
-    "GetAssetsByAssetIdSubtitlesByLanguageWebvttResponseDefaultType0",
-    "GetAssetsByAssetIdSubtitlesByLanguageWebvttResponseDefaultType1",
-    "GetAssetsByAssetIdSubtitlesByLanguageWebvttResponseDefaultType1Errors",
-    "GetAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0",
-    "GetAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1",
-    "GetAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1Errors",
-    "GetAssetsByAssetIdSubtitlesResponseDefaultType0",
-    "GetAssetsByAssetIdSubtitlesResponseDefaultType1",
-    "GetAssetsByAssetIdSubtitlesResponseDefaultType1Errors",
-    "GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType0",
-    "GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType1",
-    "GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType1Errors",
-    "GetAssetsByAssetIdVersionsByVersionIdFileSetsResponseDefaultType0",
-    "GetAssetsByAssetIdVersionsByVersionIdFileSetsResponseDefaultType1",
-    "GetAssetsByAssetIdVersionsByVersionIdFileSetsResponseDefaultType1Errors",
-    "GetAssetsByAssetIdVersionsByVersionIdFilesResponseDefaultType0",
-    "GetAssetsByAssetIdVersionsByVersionIdFilesResponseDefaultType1",
-    "GetAssetsByAssetIdVersionsByVersionIdFilesResponseDefaultType1Errors",
-    "GetAssetsByAssetIdVersionsByVersionIdFormatsResponseDefaultType0",
-    "GetAssetsByAssetIdVersionsByVersionIdFormatsResponseDefaultType1",
-    "GetAssetsByAssetIdVersionsByVersionIdFormatsResponseDefaultType1Errors",
-    "GetAssetsByAssetIdVersionsByVersionIdKeyframesResponseDefaultType0",
-    "GetAssetsByAssetIdVersionsByVersionIdKeyframesResponseDefaultType1",
-    "GetAssetsByAssetIdVersionsByVersionIdKeyframesResponseDefaultType1Errors",
-    "GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType0",
-    "GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType1",
-    "GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefaultType1Errors",
-    "GetAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType0",
-    "GetAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType1",
-    "GetAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType1Errors",
-    "GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageCcWebvttResponseDefaultType0",
-    "GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageCcWebvttResponseDefaultType1",
-    "GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageCcWebvttResponseDefaultType1Errors",
-    "GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType0",
-    "GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType1",
-    "GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType1Errors",
-    "GetAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType0",
-    "GetAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType1",
-    "GetAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType1Errors",
-    "GetAssetsByAssetIdWatermarkMatchesResponseDefaultType0",
-    "GetAssetsByAssetIdWatermarkMatchesResponseDefaultType1",
-    "GetAssetsByAssetIdWatermarkMatchesResponseDefaultType1Errors",
-    "GetCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0",
-    "GetCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1",
-    "GetCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1Errors",
-    "GetCollectionsByCollectionIdKeyframesResponseDefaultType0",
-    "GetCollectionsByCollectionIdKeyframesResponseDefaultType1",
-    "GetCollectionsByCollectionIdKeyframesResponseDefaultType1Errors",
-    "GetDeleteQueueFileSetsResponseDefaultType0",
-    "GetDeleteQueueFileSetsResponseDefaultType1",
-    "GetDeleteQueueFileSetsResponseDefaultType1Errors",
-    "GetDeleteQueueFormatsResponseDefaultType0",
-    "GetDeleteQueueFormatsResponseDefaultType1",
-    "GetDeleteQueueFormatsResponseDefaultType1Errors",
-    "GetExportLocationsByExportLocationIdResponseDefaultType0",
-    "GetExportLocationsByExportLocationIdResponseDefaultType1",
-    "GetExportLocationsByExportLocationIdResponseDefaultType1Errors",
-    "GetExportLocationsResponseDefaultType0",
-    "GetExportLocationsResponseDefaultType1",
-    "GetExportLocationsResponseDefaultType1Errors",
-    "GetFilesChecksumByChecksumResponseDefaultType0",
-    "GetFilesChecksumByChecksumResponseDefaultType1",
-    "GetFilesChecksumByChecksumResponseDefaultType1Errors",
-    "GetFileSetsByFileSetIdFilesResponseDefaultType0",
-    "GetFileSetsByFileSetIdFilesResponseDefaultType1",
-    "GetFileSetsByFileSetIdFilesResponseDefaultType1Errors",
-    "GetPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType0",
-    "GetPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1",
-    "GetPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1Errors",
-    "GetPlaylistsByPlaylistIdKeyframesResponseDefaultType0",
-    "GetPlaylistsByPlaylistIdKeyframesResponseDefaultType1",
-    "GetPlaylistsByPlaylistIdKeyframesResponseDefaultType1Errors",
-    "GetSharesStoragesByStorageIdFilesResponseDefaultType0",
-    "GetSharesStoragesByStorageIdFilesResponseDefaultType1",
-    "GetSharesStoragesByStorageIdFilesResponseDefaultType1Errors",
-    "GetStorageGatewayClustersByClusterIdResponseDefaultType0",
-    "GetStorageGatewayClustersByClusterIdResponseDefaultType1",
-    "GetStorageGatewayClustersByClusterIdResponseDefaultType1Errors",
-    "GetStorageGatewayClustersResponseDefaultType0",
-    "GetStorageGatewayClustersResponseDefaultType1",
-    "GetStorageGatewayClustersResponseDefaultType1Errors",
-    "GetStorageGatewaysByStorageGatewayIdResponseDefaultType0",
-    "GetStorageGatewaysByStorageGatewayIdResponseDefaultType1",
-    "GetStorageGatewaysByStorageGatewayIdResponseDefaultType1Errors",
-    "GetStorageGatewaysByStorageGatewayIdTelemetryResponseDefaultType0",
-    "GetStorageGatewaysByStorageGatewayIdTelemetryResponseDefaultType1",
-    "GetStorageGatewaysByStorageGatewayIdTelemetryResponseDefaultType1Errors",
-    "GetStorageGatewaysResponseDefaultType0",
-    "GetStorageGatewaysResponseDefaultType1",
-    "GetStorageGatewaysResponseDefaultType1Errors",
-    "GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType0",
-    "GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType1",
-    "GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType1Errors",
-    "GetStorageGatewaysTelemetryResponseDefaultType0",
-    "GetStorageGatewaysTelemetryResponseDefaultType1",
-    "GetStorageGatewaysTelemetryResponseDefaultType1Errors",
-    "GetStoragesByPurposeDefaultResponseDefaultType0",
-    "GetStoragesByPurposeDefaultResponseDefaultType1",
-    "GetStoragesByPurposeDefaultResponseDefaultType1Errors",
-    "GetStoragesByStorageIdAutoScanResponseDefaultType0",
-    "GetStoragesByStorageIdAutoScanResponseDefaultType1",
-    "GetStoragesByStorageIdAutoScanResponseDefaultType1Errors",
-    "GetStoragesByStorageIdDeletionsFromResponseDefaultType0",
-    "GetStoragesByStorageIdDeletionsFromResponseDefaultType1",
-    "GetStoragesByStorageIdDeletionsFromResponseDefaultType1Errors",
-    "GetStoragesByStorageIdDeletionsResponseDefaultType0",
-    "GetStoragesByStorageIdDeletionsResponseDefaultType1",
-    "GetStoragesByStorageIdDeletionsResponseDefaultType1Errors",
-    "GetStoragesByStorageIdFilesResponseDefaultType0",
-    "GetStoragesByStorageIdFilesResponseDefaultType1",
-    "GetStoragesByStorageIdFilesResponseDefaultType1Errors",
-    "GetStoragesByStorageIdGatewayEventsResponseDefaultType0",
-    "GetStoragesByStorageIdGatewayEventsResponseDefaultType1",
-    "GetStoragesByStorageIdGatewayEventsResponseDefaultType1Errors",
-    "GetStoragesByStorageIdGatewayReportResponseDefaultType0",
-    "GetStoragesByStorageIdGatewayReportResponseDefaultType1",
-    "GetStoragesByStorageIdGatewayReportResponseDefaultType1Errors",
-    "GetStoragesByStorageIdResponseDefaultType0",
-    "GetStoragesByStorageIdResponseDefaultType1",
-    "GetStoragesByStorageIdResponseDefaultType1Errors",
-    "GetStoragesByStorageIdTemporaryFilesResponseDefaultType0",
-    "GetStoragesByStorageIdTemporaryFilesResponseDefaultType1",
-    "GetStoragesByStorageIdTemporaryFilesResponseDefaultType1Errors",
-    "GetStoragesByStorageIdTranscodersResponseDefaultType0",
-    "GetStoragesByStorageIdTranscodersResponseDefaultType1",
-    "GetStoragesByStorageIdTranscodersResponseDefaultType1Errors",
-    "GetStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType0",
-    "GetStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType1",
-    "GetStoragesByStorageIdTransfersFromByTransferIdResponseDefaultType1Errors",
-    "GetStoragesByStorageIdTransfersFromResponseDefaultType0",
-    "GetStoragesByStorageIdTransfersFromResponseDefaultType1",
-    "GetStoragesByStorageIdTransfersFromResponseDefaultType1Errors",
-    "GetStoragesByStorageIdTransfersToByTransferIdResponseDefaultType0",
-    "GetStoragesByStorageIdTransfersToByTransferIdResponseDefaultType1",
-    "GetStoragesByStorageIdTransfersToByTransferIdResponseDefaultType1Errors",
-    "GetStoragesByStorageIdTransfersToResponseDefaultType0",
-    "GetStoragesByStorageIdTransfersToResponseDefaultType1",
-    "GetStoragesByStorageIdTransfersToResponseDefaultType1Errors",
+    "GetAnalysisProfilesByMediaTypeDefaultResponseDefault",
+    "GetAnalysisProfilesByProfileIdResponseDefault",
+    "GetAnalysisProfilesResponseDefault",
+    "GetAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault",
+    "GetAnalysisServiceAccountsResponseDefault",
+    "GetAnalysisSettingsTranscriptionDefaultResponseDefault",
+    "GetAssetsByAssetIdFilesByFileIdDownloadUrlResponseDefault",
+    "GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefault",
+    "GetAssetsByAssetIdFilesByFileIdMultipartUrlPartResponseDefault",
+    "GetAssetsByAssetIdFilesByFileIdMultipartUrlResponseDefault",
+    "GetAssetsByAssetIdFilesByFileIdResponseDefault",
+    "GetAssetsByAssetIdFileSetsByFileSetIdFilesResponseDefault",
+    "GetAssetsByAssetIdFileSetsByFileSetIdResponseDefault",
+    "GetAssetsByAssetIdFileSetsResponseDefault",
+    "GetAssetsByAssetIdFilesResponseDefault",
+    "GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault",
+    "GetAssetsByAssetIdFormatsByFormatIdComponentsResponseDefault",
+    "GetAssetsByAssetIdFormatsByFormatIdFileSetsResponseDefault",
+    "GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesByStorageMethodResponseDefault",
+    "GetAssetsByAssetIdFormatsByFormatIdFileSetsSourcesResponseDefault",
+    "GetAssetsByAssetIdFormatsByFormatIdResponseDefault",
+    "GetAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdFileSetsResponseDefault",
+    "GetAssetsByAssetIdFormatsResponseDefault",
+    "GetAssetsByAssetIdKeyframesByKeyframeIdResponseDefault",
+    "GetAssetsByAssetIdKeyframesResponseDefault",
+    "GetAssetsByAssetIdProxiesByProxyIdDownloadUrlResponseDefault",
+    "GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefault",
+    "GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefault",
+    "GetAssetsByAssetIdProxiesByProxyIdResponseDefault",
+    "GetAssetsByAssetIdProxiesResponseDefault",
+    "GetAssetsByAssetIdSubtitlesByLanguageCcResponseDefault",
+    "GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefault",
+    "GetAssetsByAssetIdSubtitlesByLanguageWebvttResponseDefault",
+    "GetAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault",
+    "GetAssetsByAssetIdSubtitlesResponseDefault",
+    "GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefault",
+    "GetAssetsByAssetIdVersionsByVersionIdFileSetsResponseDefault",
+    "GetAssetsByAssetIdVersionsByVersionIdFilesResponseDefault",
+    "GetAssetsByAssetIdVersionsByVersionIdFormatsResponseDefault",
+    "GetAssetsByAssetIdVersionsByVersionIdKeyframesResponseDefault",
+    "GetAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdByManifestTypeResponseDefault",
+    "GetAssetsByAssetIdVersionsByVersionIdProxiesResponseDefault",
+    "GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageCcWebvttResponseDefault",
+    "GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefault",
+    "GetAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefault",
+    "GetAssetsByAssetIdWatermarkMatchesResponseDefault",
+    "GetCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault",
+    "GetCollectionsByCollectionIdKeyframesResponseDefault",
+    "GetDeleteQueueFileSetsResponseDefault",
+    "GetDeleteQueueFormatsResponseDefault",
+    "GetExportLocationsByExportLocationIdResponseDefault",
+    "GetExportLocationsResponseDefault",
+    "GetFilesChecksumByChecksumResponseDefault",
+    "GetFileSetsByFileSetIdFilesResponseDefault",
+    "GetPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault",
+    "GetPlaylistsByPlaylistIdKeyframesResponseDefault",
+    "GetSharesStoragesByStorageIdFilesResponseDefault",
+    "GetStorageGatewayClustersByClusterIdResponseDefault",
+    "GetStorageGatewayClustersResponseDefault",
+    "GetStorageGatewaysByStorageGatewayIdResponseDefault",
+    "GetStorageGatewaysByStorageGatewayIdTelemetryResponseDefault",
+    "GetStorageGatewaysResponseDefault",
+    "GetStorageGatewaysTelemetryByWorkerIdResponseDefault",
+    "GetStorageGatewaysTelemetryResponseDefault",
+    "GetStoragesByPurposeDefaultResponseDefault",
+    "GetStoragesByStorageIdAutoScanResponseDefault",
+    "GetStoragesByStorageIdDeletionsFromResponseDefault",
+    "GetStoragesByStorageIdDeletionsResponseDefault",
+    "GetStoragesByStorageIdFilesResponseDefault",
+    "GetStoragesByStorageIdGatewayEventsResponseDefault",
+    "GetStoragesByStorageIdGatewayReportResponseDefault",
+    "GetStoragesByStorageIdResponseDefault",
+    "GetStoragesByStorageIdTemporaryFilesResponseDefault",
+    "GetStoragesByStorageIdTranscodersResponseDefault",
+    "GetStoragesByStorageIdTransfersFromByTransferIdResponseDefault",
+    "GetStoragesByStorageIdTransfersFromResponseDefault",
+    "GetStoragesByStorageIdTransfersToByTransferIdResponseDefault",
+    "GetStoragesByStorageIdTransfersToResponseDefault",
     "GetStoragesByStorageIdVerificationsAccessResponse200",
-    "GetStoragesByStorageIdVerificationsAccessResponseDefaultType0",
-    "GetStoragesByStorageIdVerificationsAccessResponseDefaultType1",
-    "GetStoragesByStorageIdVerificationsAccessResponseDefaultType1Errors",
+    "GetStoragesByStorageIdVerificationsAccessResponseDefault",
     "GetStoragesByStorageIdVerificationsPermissionsResponse200",
-    "GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType0",
-    "GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType1",
-    "GetStoragesByStorageIdVerificationsPermissionsResponseDefaultType1Errors",
+    "GetStoragesByStorageIdVerificationsPermissionsResponseDefault",
     "GetStoragesIsgLatestVersionResponse200",
-    "GetStoragesIsgLatestVersionResponseDefaultType0",
-    "GetStoragesIsgLatestVersionResponseDefaultType1",
-    "GetStoragesIsgLatestVersionResponseDefaultType1Errors",
-    "GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType0",
-    "GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType1",
-    "GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType1Errors",
-    "GetStoragesMatchingByPurposeResponseDefaultType0",
-    "GetStoragesMatchingByPurposeResponseDefaultType1",
-    "GetStoragesMatchingByPurposeResponseDefaultType1Errors",
-    "GetStoragesResponseDefaultType0",
-    "GetStoragesResponseDefaultType1",
-    "GetStoragesResponseDefaultType1Errors",
-    "GetTranscodersByTranscoderIdOptionsByOptionNameResponseDefaultType0",
-    "GetTranscodersByTranscoderIdOptionsByOptionNameResponseDefaultType1",
-    "GetTranscodersByTranscoderIdOptionsByOptionNameResponseDefaultType1Errors",
-    "GetTranscodersByTranscoderIdResponseDefaultType0",
-    "GetTranscodersByTranscoderIdResponseDefaultType1",
-    "GetTranscodersByTranscoderIdResponseDefaultType1Errors",
-    "GetTranscodersByTranscoderIdStoragesResponseDefaultType0",
-    "GetTranscodersByTranscoderIdStoragesResponseDefaultType1",
-    "GetTranscodersByTranscoderIdStoragesResponseDefaultType1Errors",
-    "GetTranscodersResponseDefaultType0",
-    "GetTranscodersResponseDefaultType1",
-    "GetTranscodersResponseDefaultType1Errors",
-    "GetTransfersByTransferIdUrlsVerifyResponseDefaultType0",
-    "GetTransfersByTransferIdUrlsVerifyResponseDefaultType1",
-    "GetTransfersByTransferIdUrlsVerifyResponseDefaultType1Errors",
+    "GetStoragesIsgLatestVersionResponseDefault",
+    "GetStoragesMatchingByPurposeMethodByMethodResponseDefault",
+    "GetStoragesMatchingByPurposeResponseDefault",
+    "GetStoragesResponseDefault",
+    "GetTranscodersByTranscoderIdOptionsByOptionNameResponseDefault",
+    "GetTranscodersByTranscoderIdResponseDefault",
+    "GetTranscodersByTranscoderIdStoragesResponseDefault",
+    "GetTranscodersResponseDefault",
+    "GetTransfersByTransferIdUrlsVerifyResponseDefault",
     "GoogleCloudStorageSettingsSchema",
     "HttpSettingsSchema",
     "IconikEdgeTranscoderSchema",
@@ -3875,60 +1877,24 @@ __all__ = (
     "MultiPartUploadURLSchema",
     "MultiPartUploadURLsSchema",
     "MultiPartURLsSchema",
-    "PatchAnalysisProfilesByProfileIdResponseDefaultType0",
-    "PatchAnalysisProfilesByProfileIdResponseDefaultType1",
-    "PatchAnalysisProfilesByProfileIdResponseDefaultType1Errors",
-    "PatchAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0",
-    "PatchAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1",
-    "PatchAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1Errors",
-    "PatchAssetsByAssetIdFilesByFileIdResponseDefaultType0",
-    "PatchAssetsByAssetIdFilesByFileIdResponseDefaultType1",
-    "PatchAssetsByAssetIdFilesByFileIdResponseDefaultType1Errors",
-    "PatchAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0",
-    "PatchAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1",
-    "PatchAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1Errors",
-    "PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType0",
-    "PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType1",
-    "PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType1Errors",
-    "PatchAssetsByAssetIdKeyframesByKeyframeIdResponseDefaultType0",
-    "PatchAssetsByAssetIdKeyframesByKeyframeIdResponseDefaultType1",
-    "PatchAssetsByAssetIdKeyframesByKeyframeIdResponseDefaultType1Errors",
-    "PatchAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesByFileIdResponseDefaultType0",
-    "PatchAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesByFileIdResponseDefaultType1",
-    "PatchAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesByFileIdResponseDefaultType1Errors",
-    "PatchAssetsByAssetIdProxiesByProxyIdResponseDefaultType0",
-    "PatchAssetsByAssetIdProxiesByProxyIdResponseDefaultType1",
-    "PatchAssetsByAssetIdProxiesByProxyIdResponseDefaultType1Errors",
-    "PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0",
-    "PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1",
-    "PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1Errors",
-    "PatchAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType0",
-    "PatchAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType1",
-    "PatchAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType1Errors",
-    "PatchCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0",
-    "PatchCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1",
-    "PatchCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1Errors",
-    "PatchExportLocationsByExportLocationIdResponseDefaultType0",
-    "PatchExportLocationsByExportLocationIdResponseDefaultType1",
-    "PatchExportLocationsByExportLocationIdResponseDefaultType1Errors",
-    "PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType0",
-    "PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1",
-    "PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1Errors",
-    "PatchStorageGatewayClustersByClusterIdResponseDefaultType0",
-    "PatchStorageGatewayClustersByClusterIdResponseDefaultType1",
-    "PatchStorageGatewayClustersByClusterIdResponseDefaultType1Errors",
-    "PatchStorageGatewaysByStorageGatewayIdResponseDefaultType0",
-    "PatchStorageGatewaysByStorageGatewayIdResponseDefaultType1",
-    "PatchStorageGatewaysByStorageGatewayIdResponseDefaultType1Errors",
-    "PatchStoragesByStorageIdFilesResponseDefaultType0",
-    "PatchStoragesByStorageIdFilesResponseDefaultType1",
-    "PatchStoragesByStorageIdFilesResponseDefaultType1Errors",
-    "PatchStoragesByStorageIdResponseDefaultType0",
-    "PatchStoragesByStorageIdResponseDefaultType1",
-    "PatchStoragesByStorageIdResponseDefaultType1Errors",
-    "PatchTranscodersByTranscoderIdResponseDefaultType0",
-    "PatchTranscodersByTranscoderIdResponseDefaultType1",
-    "PatchTranscodersByTranscoderIdResponseDefaultType1Errors",
+    "PatchAnalysisProfilesByProfileIdResponseDefault",
+    "PatchAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault",
+    "PatchAssetsByAssetIdFilesByFileIdResponseDefault",
+    "PatchAssetsByAssetIdFileSetsByFileSetIdResponseDefault",
+    "PatchAssetsByAssetIdFormatsByFormatIdResponseDefault",
+    "PatchAssetsByAssetIdKeyframesByKeyframeIdResponseDefault",
+    "PatchAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesByFileIdResponseDefault",
+    "PatchAssetsByAssetIdProxiesByProxyIdResponseDefault",
+    "PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault",
+    "PatchAssetsByAssetIdTemporaryFilesByFileIdResponseDefault",
+    "PatchCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault",
+    "PatchExportLocationsByExportLocationIdResponseDefault",
+    "PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault",
+    "PatchStorageGatewayClustersByClusterIdResponseDefault",
+    "PatchStorageGatewaysByStorageGatewayIdResponseDefault",
+    "PatchStoragesByStorageIdFilesResponseDefault",
+    "PatchStoragesByStorageIdResponseDefault",
+    "PatchTranscodersByTranscoderIdResponseDefault",
     "PlaylistKeyframeCreateSchema",
     "PlaylistKeyframeCreateSchemaStatus",
     "PlaylistKeyframeCreateSchemaType",
@@ -3941,312 +1907,112 @@ __all__ = (
     "PlaylistKeyframeUpdateSchemaStatus",
     "PlaylistKeyframeUpdateSchemaType",
     "PortalSettingsSchema",
-    "PostAnalysisProfilesByProfileIdDefaultResponseDefaultType0",
-    "PostAnalysisProfilesByProfileIdDefaultResponseDefaultType1",
-    "PostAnalysisProfilesByProfileIdDefaultResponseDefaultType1Errors",
-    "PostAnalysisProfilesResponseDefaultType0",
-    "PostAnalysisProfilesResponseDefaultType1",
-    "PostAnalysisProfilesResponseDefaultType1Errors",
-    "PostAnalysisServiceAccountsResponseDefaultType0",
-    "PostAnalysisServiceAccountsResponseDefaultType1",
-    "PostAnalysisServiceAccountsResponseDefaultType1Errors",
-    "PostAssetsBulkArchiveResponseDefaultType0",
-    "PostAssetsBulkArchiveResponseDefaultType1",
-    "PostAssetsBulkArchiveResponseDefaultType1Errors",
-    "PostAssetsBulkKeyframesResponseDefaultType0",
-    "PostAssetsBulkKeyframesResponseDefaultType1",
-    "PostAssetsBulkKeyframesResponseDefaultType1Errors",
-    "PostAssetsBulkRestoreResponseDefaultType0",
-    "PostAssetsBulkRestoreResponseDefaultType1",
-    "PostAssetsBulkRestoreResponseDefaultType1Errors",
-    "PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType0",
-    "PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType1",
-    "PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType1Errors",
-    "PostAssetsByAssetIdCustomKeyframeResponseDefaultType0",
-    "PostAssetsByAssetIdCustomKeyframeResponseDefaultType1",
-    "PostAssetsByAssetIdCustomKeyframeResponseDefaultType1Errors",
-    "PostAssetsByAssetIdExportLocationsByExportLocationIdResponseDefaultType0",
-    "PostAssetsByAssetIdExportLocationsByExportLocationIdResponseDefaultType1",
-    "PostAssetsByAssetIdExportLocationsByExportLocationIdResponseDefaultType1Errors",
-    "PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType0",
-    "PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType1",
-    "PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType1Errors",
-    "PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType0",
-    "PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType1",
-    "PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType1Errors",
-    "PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType0",
-    "PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType1",
-    "PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType1Errors",
-    "PostAssetsByAssetIdFilesByFileIdMediainfoResponseDefaultType0",
-    "PostAssetsByAssetIdFilesByFileIdMediainfoResponseDefaultType1",
-    "PostAssetsByAssetIdFilesByFileIdMediainfoResponseDefaultType1Errors",
-    "PostAssetsByAssetIdFilesByFileIdMultipartB2CancelResponseDefaultType0",
-    "PostAssetsByAssetIdFilesByFileIdMultipartB2CancelResponseDefaultType1",
-    "PostAssetsByAssetIdFilesByFileIdMultipartB2CancelResponseDefaultType1Errors",
-    "PostAssetsByAssetIdFilesByFileIdMultipartB2FinishResponseDefaultType0",
-    "PostAssetsByAssetIdFilesByFileIdMultipartB2FinishResponseDefaultType1",
-    "PostAssetsByAssetIdFilesByFileIdMultipartB2FinishResponseDefaultType1Errors",
-    "PostAssetsByAssetIdFilesByFileIdMultipartB2StartResponseDefaultType0",
-    "PostAssetsByAssetIdFilesByFileIdMultipartB2StartResponseDefaultType1",
-    "PostAssetsByAssetIdFilesByFileIdMultipartB2StartResponseDefaultType1Errors",
-    "PostAssetsByAssetIdFilesByFileIdMultipartCleanupResponseDefaultType0",
-    "PostAssetsByAssetIdFilesByFileIdMultipartCleanupResponseDefaultType1",
-    "PostAssetsByAssetIdFilesByFileIdMultipartCleanupResponseDefaultType1Errors",
-    "PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType0",
-    "PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType1",
-    "PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefaultType1Errors",
-    "PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType0",
-    "PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType1",
-    "PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType1Errors",
-    "PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType0",
-    "PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType1",
-    "PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType1Errors",
-    "PostAssetsByAssetIdFilesByFileIdReindexResponseDefaultType0",
-    "PostAssetsByAssetIdFilesByFileIdReindexResponseDefaultType1",
-    "PostAssetsByAssetIdFilesByFileIdReindexResponseDefaultType1Errors",
-    "PostAssetsByAssetIdFilesByFileIdSubtitlesResponseDefaultType0",
-    "PostAssetsByAssetIdFilesByFileIdSubtitlesResponseDefaultType1",
-    "PostAssetsByAssetIdFilesByFileIdSubtitlesResponseDefaultType1Errors",
-    "PostAssetsByAssetIdFileSetsBulkResponseDefaultType0",
-    "PostAssetsByAssetIdFileSetsBulkResponseDefaultType1",
-    "PostAssetsByAssetIdFileSetsBulkResponseDefaultType1Errors",
-    "PostAssetsByAssetIdFileSetsResponseDefaultType0",
-    "PostAssetsByAssetIdFileSetsResponseDefaultType1",
-    "PostAssetsByAssetIdFileSetsResponseDefaultType1Errors",
-    "PostAssetsByAssetIdFilesResponseDefaultType0",
-    "PostAssetsByAssetIdFilesResponseDefaultType1",
-    "PostAssetsByAssetIdFilesResponseDefaultType1Errors",
-    "PostAssetsByAssetIdFormatsByFormatIdArchive1ResponseDefaultType0",
-    "PostAssetsByAssetIdFormatsByFormatIdArchive1ResponseDefaultType1",
-    "PostAssetsByAssetIdFormatsByFormatIdArchive1ResponseDefaultType1Errors",
-    "PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0",
-    "PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1",
-    "PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1Errors",
-    "PostAssetsByAssetIdFormatsByFormatIdComponentsResponseDefaultType0",
-    "PostAssetsByAssetIdFormatsByFormatIdComponentsResponseDefaultType1",
-    "PostAssetsByAssetIdFormatsByFormatIdComponentsResponseDefaultType1Errors",
-    "PostAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType0",
-    "PostAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType1",
-    "PostAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType1Errors",
-    "PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType0",
-    "PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType1",
-    "PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefaultType1Errors",
-    "PostAssetsByAssetIdFormatsResponseDefaultType0",
-    "PostAssetsByAssetIdFormatsResponseDefaultType1",
-    "PostAssetsByAssetIdFormatsResponseDefaultType1Errors",
-    "PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0",
-    "PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1",
-    "PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1Errors",
-    "PostAssetsByAssetIdKeyframesResponseDefaultType0",
-    "PostAssetsByAssetIdKeyframesResponseDefaultType1",
-    "PostAssetsByAssetIdKeyframesResponseDefaultType1Errors",
-    "PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType0",
-    "PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType1",
-    "PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType1Errors",
-    "PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType0",
-    "PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType1",
-    "PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefaultType1Errors",
-    "PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType0",
-    "PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType1",
-    "PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefaultType1Errors",
-    "PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType0",
-    "PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType1",
-    "PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefaultType1Errors",
-    "PostAssetsByAssetIdProxiesByProxyIdMultipartCleanupResponseDefaultType0",
-    "PostAssetsByAssetIdProxiesByProxyIdMultipartCleanupResponseDefaultType1",
-    "PostAssetsByAssetIdProxiesByProxyIdMultipartCleanupResponseDefaultType1Errors",
-    "PostAssetsByAssetIdProxiesByProxyIdPublicResponseDefaultType0",
-    "PostAssetsByAssetIdProxiesByProxyIdPublicResponseDefaultType1",
-    "PostAssetsByAssetIdProxiesByProxyIdPublicResponseDefaultType1Errors",
-    "PostAssetsByAssetIdProxiesResponseDefaultType0",
-    "PostAssetsByAssetIdProxiesResponseDefaultType1",
-    "PostAssetsByAssetIdProxiesResponseDefaultType1Errors",
-    "PostAssetsByAssetIdSubtitlesResponseDefaultType0",
-    "PostAssetsByAssetIdSubtitlesResponseDefaultType1",
-    "PostAssetsByAssetIdSubtitlesResponseDefaultType1Errors",
-    "PostAssetsByAssetIdTemporaryFileSetsResponseDefaultType0",
-    "PostAssetsByAssetIdTemporaryFileSetsResponseDefaultType1",
-    "PostAssetsByAssetIdTemporaryFileSetsResponseDefaultType1Errors",
-    "PostAssetsByAssetIdTemporaryFilesResponseDefaultType0",
-    "PostAssetsByAssetIdTemporaryFilesResponseDefaultType1",
-    "PostAssetsByAssetIdTemporaryFilesResponseDefaultType1Errors",
-    "PostAssetsByAssetIdVersionsByVersionIdTranscodeResponseDefaultType0",
-    "PostAssetsByAssetIdVersionsByVersionIdTranscodeResponseDefaultType1",
-    "PostAssetsByAssetIdVersionsByVersionIdTranscodeResponseDefaultType1Errors",
-    "PostAssetsExportLocationsByExportLocationIdBulkExportResponseDefaultType0",
-    "PostAssetsExportLocationsByExportLocationIdBulkExportResponseDefaultType1",
-    "PostAssetsExportLocationsByExportLocationIdBulkExportResponseDefaultType1Errors",
-    "PostAssetsExportLocationsByExportLocationIdResponseDefaultType0",
-    "PostAssetsExportLocationsByExportLocationIdResponseDefaultType1",
-    "PostAssetsExportLocationsByExportLocationIdResponseDefaultType1Errors",
-    "PostAssetsStoragesByStorageIdBulkTransferResponseDefaultType0",
-    "PostAssetsStoragesByStorageIdBulkTransferResponseDefaultType1",
-    "PostAssetsStoragesByStorageIdBulkTransferResponseDefaultType1Errors",
-    "PostCollectionsBulkArchiveResponseDefaultType0",
-    "PostCollectionsBulkArchiveResponseDefaultType1",
-    "PostCollectionsBulkArchiveResponseDefaultType1Errors",
-    "PostCollectionsBulkRestoreResponseDefaultType0",
-    "PostCollectionsBulkRestoreResponseDefaultType1",
-    "PostCollectionsBulkRestoreResponseDefaultType1Errors",
-    "PostCollectionsByCollectionIdCustomKeyframeByPosterIdResponseDefaultType0",
-    "PostCollectionsByCollectionIdCustomKeyframeByPosterIdResponseDefaultType1",
-    "PostCollectionsByCollectionIdCustomKeyframeByPosterIdResponseDefaultType1Errors",
-    "PostCollectionsByCollectionIdExportLocationsByExportLocationIdResponseDefaultType0",
-    "PostCollectionsByCollectionIdExportLocationsByExportLocationIdResponseDefaultType1",
-    "PostCollectionsByCollectionIdExportLocationsByExportLocationIdResponseDefaultType1Errors",
-    "PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType0",
-    "PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType1",
-    "PostCollectionsByCollectionIdKeyframesCopyResponseDefaultType1Errors",
-    "PostCollectionsByCollectionIdKeyframesResponseDefaultType0",
-    "PostCollectionsByCollectionIdKeyframesResponseDefaultType1",
-    "PostCollectionsByCollectionIdKeyframesResponseDefaultType1Errors",
-    "PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType0",
-    "PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType1",
-    "PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType1Errors",
-    "PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType0",
-    "PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType1",
-    "PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType1Errors",
-    "PostDeleteQueueFileSetsPurgeAllResponseDefaultType0",
-    "PostDeleteQueueFileSetsPurgeAllResponseDefaultType1",
-    "PostDeleteQueueFileSetsPurgeAllResponseDefaultType1Errors",
-    "PostDeleteQueueFileSetsPurgeResponseDefaultType0",
-    "PostDeleteQueueFileSetsPurgeResponseDefaultType1",
-    "PostDeleteQueueFileSetsPurgeResponseDefaultType1Errors",
-    "PostDeleteQueueFormatsPurgeAllResponseDefaultType0",
-    "PostDeleteQueueFormatsPurgeAllResponseDefaultType1",
-    "PostDeleteQueueFormatsPurgeAllResponseDefaultType1Errors",
-    "PostDeleteQueueFormatsPurgeResponseDefaultType0",
-    "PostDeleteQueueFormatsPurgeResponseDefaultType1",
-    "PostDeleteQueueFormatsPurgeResponseDefaultType1Errors",
+    "PostAnalysisProfilesByProfileIdDefaultResponseDefault",
+    "PostAnalysisProfilesResponseDefault",
+    "PostAnalysisServiceAccountsResponseDefault",
+    "PostAssetsBulkArchiveResponseDefault",
+    "PostAssetsBulkKeyframesResponseDefault",
+    "PostAssetsBulkRestoreResponseDefault",
+    "PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefault",
+    "PostAssetsByAssetIdCustomKeyframeResponseDefault",
+    "PostAssetsByAssetIdExportLocationsByExportLocationIdResponseDefault",
+    "PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefault",
+    "PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefault",
+    "PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefault",
+    "PostAssetsByAssetIdFilesByFileIdMediainfoResponseDefault",
+    "PostAssetsByAssetIdFilesByFileIdMultipartB2CancelResponseDefault",
+    "PostAssetsByAssetIdFilesByFileIdMultipartB2FinishResponseDefault",
+    "PostAssetsByAssetIdFilesByFileIdMultipartB2StartResponseDefault",
+    "PostAssetsByAssetIdFilesByFileIdMultipartCleanupResponseDefault",
+    "PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefault",
+    "PostAssetsByAssetIdFilesByFileIdMultipartResponseDefault",
+    "PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefault",
+    "PostAssetsByAssetIdFilesByFileIdReindexResponseDefault",
+    "PostAssetsByAssetIdFilesByFileIdSubtitlesResponseDefault",
+    "PostAssetsByAssetIdFileSetsBulkResponseDefault",
+    "PostAssetsByAssetIdFileSetsResponseDefault",
+    "PostAssetsByAssetIdFilesResponseDefault",
+    "PostAssetsByAssetIdFormatsByFormatIdArchive1ResponseDefault",
+    "PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault",
+    "PostAssetsByAssetIdFormatsByFormatIdComponentsResponseDefault",
+    "PostAssetsByAssetIdFormatsByFormatIdRestoreResponseDefault",
+    "PostAssetsByAssetIdFormatsByFormatIdStoragesByStorageIdResponseDefault",
+    "PostAssetsByAssetIdFormatsResponseDefault",
+    "PostAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault",
+    "PostAssetsByAssetIdKeyframesResponseDefault",
+    "PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefault",
+    "PostAssetsByAssetIdMethodByStorageMethodProxiesResponseDefault",
+    "PostAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesResponseDefault",
+    "PostAssetsByAssetIdProxiesByProxyIdKeyframesResponseDefault",
+    "PostAssetsByAssetIdProxiesByProxyIdMultipartCleanupResponseDefault",
+    "PostAssetsByAssetIdProxiesByProxyIdPublicResponseDefault",
+    "PostAssetsByAssetIdProxiesResponseDefault",
+    "PostAssetsByAssetIdSubtitlesResponseDefault",
+    "PostAssetsByAssetIdTemporaryFileSetsResponseDefault",
+    "PostAssetsByAssetIdTemporaryFilesResponseDefault",
+    "PostAssetsByAssetIdVersionsByVersionIdTranscodeResponseDefault",
+    "PostAssetsExportLocationsByExportLocationIdBulkExportResponseDefault",
+    "PostAssetsExportLocationsByExportLocationIdResponseDefault",
+    "PostAssetsStoragesByStorageIdBulkTransferResponseDefault",
+    "PostCollectionsBulkArchiveResponseDefault",
+    "PostCollectionsBulkRestoreResponseDefault",
+    "PostCollectionsByCollectionIdCustomKeyframeByPosterIdResponseDefault",
+    "PostCollectionsByCollectionIdExportLocationsByExportLocationIdResponseDefault",
+    "PostCollectionsByCollectionIdKeyframesCopyResponseDefault",
+    "PostCollectionsByCollectionIdKeyframesResponseDefault",
+    "PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefault",
+    "PostCollectionsStoragesByStorageIdBulkTransferResponseDefault",
+    "PostDeleteQueueFileSetsPurgeAllResponseDefault",
+    "PostDeleteQueueFileSetsPurgeResponseDefault",
+    "PostDeleteQueueFormatsPurgeAllResponseDefault",
+    "PostDeleteQueueFormatsPurgeResponseDefault",
     "PostDrmAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdAuthResponse200",
-    "PostDrmAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdAuthResponseDefaultType0",
-    "PostDrmAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdAuthResponseDefaultType1",
-    "PostDrmAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdAuthResponseDefaultType1Errors",
-    "PostExportLocationsByExportLocationIdBulkExportResponseDefaultType0",
-    "PostExportLocationsByExportLocationIdBulkExportResponseDefaultType1",
-    "PostExportLocationsByExportLocationIdBulkExportResponseDefaultType1Errors",
-    "PostExportLocationsByExportLocationIdReindexResponseDefaultType0",
-    "PostExportLocationsByExportLocationIdReindexResponseDefaultType1",
-    "PostExportLocationsByExportLocationIdReindexResponseDefaultType1Errors",
-    "PostExportLocationsResponseDefaultType0",
-    "PostExportLocationsResponseDefaultType1",
-    "PostExportLocationsResponseDefaultType1Errors",
-    "PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType0",
-    "PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType1",
-    "PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType1Errors",
-    "PostFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType0",
-    "PostFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType1",
-    "PostFileSetsByFileSetIdStoragesByStorageIdResponseDefaultType1Errors",
-    "PostFilesStoragesByStorageIdResponseDefaultType0",
-    "PostFilesStoragesByStorageIdResponseDefaultType1",
-    "PostFilesStoragesByStorageIdResponseDefaultType1Errors",
-    "PostFilesUploadResponseDefaultType0",
-    "PostFilesUploadResponseDefaultType1",
-    "PostFilesUploadResponseDefaultType1Errors",
-    "PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType0",
-    "PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType1",
-    "PostFormatsByFormatIdStoragesByStorageIdResponseDefaultType1Errors",
-    "PostFormatsByFormatNameArchiveBulkResponseDefaultType0",
-    "PostFormatsByFormatNameArchiveBulkResponseDefaultType1",
-    "PostFormatsByFormatNameArchiveBulkResponseDefaultType1Errors",
-    "PostFormatsByFormatNameRestoreBulkResponseDefaultType0",
-    "PostFormatsByFormatNameRestoreBulkResponseDefaultType1",
-    "PostFormatsByFormatNameRestoreBulkResponseDefaultType1Errors",
-    "PostPlaylistsByPlaylistIdKeyframesResponseDefaultType0",
-    "PostPlaylistsByPlaylistIdKeyframesResponseDefaultType1",
-    "PostPlaylistsByPlaylistIdKeyframesResponseDefaultType1Errors",
-    "PostSavedSearchesBulkArchiveResponseDefaultType0",
-    "PostSavedSearchesBulkArchiveResponseDefaultType1",
-    "PostSavedSearchesBulkArchiveResponseDefaultType1Errors",
-    "PostSavedSearchesBulkRestoreResponseDefaultType0",
-    "PostSavedSearchesBulkRestoreResponseDefaultType1",
-    "PostSavedSearchesBulkRestoreResponseDefaultType1Errors",
-    "PostSavedSearchesExportLocationsByExportLocationIdBulkExportResponseDefaultType0",
-    "PostSavedSearchesExportLocationsByExportLocationIdBulkExportResponseDefaultType1",
-    "PostSavedSearchesExportLocationsByExportLocationIdBulkExportResponseDefaultType1Errors",
-    "PostSavedSearchesStoragesByStorageIdBulkTransferResponseDefaultType0",
-    "PostSavedSearchesStoragesByStorageIdBulkTransferResponseDefaultType1",
-    "PostSavedSearchesStoragesByStorageIdBulkTransferResponseDefaultType1Errors",
-    "PostStorageGatewayClustersResponseDefaultType0",
-    "PostStorageGatewayClustersResponseDefaultType1",
-    "PostStorageGatewayClustersResponseDefaultType1Errors",
+    "PostDrmAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdAuthResponseDefault",
+    "PostExportLocationsByExportLocationIdBulkExportResponseDefault",
+    "PostExportLocationsByExportLocationIdReindexResponseDefault",
+    "PostExportLocationsResponseDefault",
+    "PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefault",
+    "PostFileSetsByFileSetIdStoragesByStorageIdResponseDefault",
+    "PostFilesStoragesByStorageIdResponseDefault",
+    "PostFilesUploadResponseDefault",
+    "PostFormatsByFormatIdStoragesByStorageIdResponseDefault",
+    "PostFormatsByFormatNameArchiveBulkResponseDefault",
+    "PostFormatsByFormatNameRestoreBulkResponseDefault",
+    "PostPlaylistsByPlaylistIdKeyframesResponseDefault",
+    "PostSavedSearchesBulkArchiveResponseDefault",
+    "PostSavedSearchesBulkRestoreResponseDefault",
+    "PostSavedSearchesExportLocationsByExportLocationIdBulkExportResponseDefault",
+    "PostSavedSearchesStoragesByStorageIdBulkTransferResponseDefault",
+    "PostStorageGatewayClustersResponseDefault",
     "PostStorageGatewaysByStorageGatewayIdLogsResponse201",
-    "PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType0",
-    "PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType1",
-    "PostStorageGatewaysByStorageGatewayIdLogsResponseDefaultType1Errors",
-    "PostStorageGatewaysByStorageGatewayIdTelemetryResponseDefaultType0",
-    "PostStorageGatewaysByStorageGatewayIdTelemetryResponseDefaultType1",
-    "PostStorageGatewaysByStorageGatewayIdTelemetryResponseDefaultType1Errors",
-    "PostStorageGatewaysResponseDefaultType0",
-    "PostStorageGatewaysResponseDefaultType1",
-    "PostStorageGatewaysResponseDefaultType1Errors",
-    "PostStoragesByStorageIdAutoScanResponseDefaultType0",
-    "PostStoragesByStorageIdAutoScanResponseDefaultType1",
-    "PostStoragesByStorageIdAutoScanResponseDefaultType1Errors",
-    "PostStoragesByStorageIdBulkResponseDefaultType0",
-    "PostStoragesByStorageIdBulkResponseDefaultType1",
-    "PostStoragesByStorageIdBulkResponseDefaultType1Errors",
-    "PostStoragesByStorageIdDefaultResponseDefaultType0",
-    "PostStoragesByStorageIdDefaultResponseDefaultType1",
-    "PostStoragesByStorageIdDefaultResponseDefaultType1Errors",
-    "PostStoragesByStorageIdFilesByFileIdReindexResponseDefaultType0",
-    "PostStoragesByStorageIdFilesByFileIdReindexResponseDefaultType1",
-    "PostStoragesByStorageIdFilesByFileIdReindexResponseDefaultType1Errors",
-    "PostStoragesByStorageIdFilesReindexResponseDefaultType0",
-    "PostStoragesByStorageIdFilesReindexResponseDefaultType1",
-    "PostStoragesByStorageIdFilesReindexResponseDefaultType1Errors",
-    "PostStoragesByStorageIdFilesResponseDefaultType0",
-    "PostStoragesByStorageIdFilesResponseDefaultType1",
-    "PostStoragesByStorageIdFilesResponseDefaultType1Errors",
-    "PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType0",
-    "PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType1",
-    "PostStoragesByStorageIdGatewayEventsPurgeResponseDefaultType1Errors",
-    "PostStoragesByStorageIdGatewayEventsResponseDefaultType0",
-    "PostStoragesByStorageIdGatewayEventsResponseDefaultType1",
-    "PostStoragesByStorageIdGatewayEventsResponseDefaultType1Errors",
+    "PostStorageGatewaysByStorageGatewayIdLogsResponseDefault",
+    "PostStorageGatewaysByStorageGatewayIdTelemetryResponseDefault",
+    "PostStorageGatewaysResponseDefault",
+    "PostStoragesByStorageIdAutoScanResponseDefault",
+    "PostStoragesByStorageIdBulkResponseDefault",
+    "PostStoragesByStorageIdDefaultResponseDefault",
+    "PostStoragesByStorageIdFilesByFileIdReindexResponseDefault",
+    "PostStoragesByStorageIdFilesReindexResponseDefault",
+    "PostStoragesByStorageIdFilesResponseDefault",
+    "PostStoragesByStorageIdGatewayEventsPurgeResponseDefault",
+    "PostStoragesByStorageIdGatewayEventsResponseDefault",
     "PostStoragesByStorageIdLogsResponse200",
-    "PostStoragesByStorageIdLogsResponseDefaultType0",
-    "PostStoragesByStorageIdLogsResponseDefaultType1",
-    "PostStoragesByStorageIdLogsResponseDefaultType1Errors",
-    "PostStoragesByStorageIdReindexResponseDefaultType0",
-    "PostStoragesByStorageIdReindexResponseDefaultType1",
-    "PostStoragesByStorageIdReindexResponseDefaultType1Errors",
-    "PostStoragesByStorageIdScanResponseDefaultType0",
-    "PostStoragesByStorageIdScanResponseDefaultType1",
-    "PostStoragesByStorageIdScanResponseDefaultType1Errors",
-    "PostStoragesFilesReindexResponseDefaultType0",
-    "PostStoragesFilesReindexResponseDefaultType1",
-    "PostStoragesFilesReindexResponseDefaultType1Errors",
-    "PostStoragesReindexResponseDefaultType0",
-    "PostStoragesReindexResponseDefaultType1",
-    "PostStoragesReindexResponseDefaultType1Errors",
-    "PostStoragesResponseDefaultType0",
-    "PostStoragesResponseDefaultType1",
-    "PostStoragesResponseDefaultType1Errors",
-    "PostStoragesSwapResponseDefaultType0",
-    "PostStoragesSwapResponseDefaultType1",
-    "PostStoragesSwapResponseDefaultType1Errors",
+    "PostStoragesByStorageIdLogsResponseDefault",
+    "PostStoragesByStorageIdReindexResponseDefault",
+    "PostStoragesByStorageIdScanResponseDefault",
+    "PostStoragesFilesReindexResponseDefault",
+    "PostStoragesReindexResponseDefault",
+    "PostStoragesResponseDefault",
+    "PostStoragesSwapResponseDefault",
     "PostStoragesVerificationsAccessResponse200",
-    "PostStoragesVerificationsAccessResponseDefaultType0",
-    "PostStoragesVerificationsAccessResponseDefaultType1",
-    "PostStoragesVerificationsAccessResponseDefaultType1Errors",
+    "PostStoragesVerificationsAccessResponseDefault",
     "PostStoragesVerificationsPermissionsResponse200",
-    "PostStoragesVerificationsPermissionsResponseDefaultType0",
-    "PostStoragesVerificationsPermissionsResponseDefaultType1",
-    "PostStoragesVerificationsPermissionsResponseDefaultType1Errors",
+    "PostStoragesVerificationsPermissionsResponseDefault",
     "PostTranscodersByTranscoderIdLogsResponse200",
-    "PostTranscodersByTranscoderIdLogsResponseDefaultType0",
-    "PostTranscodersByTranscoderIdLogsResponseDefaultType1",
-    "PostTranscodersByTranscoderIdLogsResponseDefaultType1Errors",
-    "PostTranscodersByTranscoderIdReindexResponseDefaultType0",
-    "PostTranscodersByTranscoderIdReindexResponseDefaultType1",
-    "PostTranscodersByTranscoderIdReindexResponseDefaultType1Errors",
-    "PostTranscodersResponseDefaultType0",
-    "PostTranscodersResponseDefaultType1",
-    "PostTranscodersResponseDefaultType1Errors",
-    "PostTransfersByTransferIdUrlsResponseDefaultType0",
-    "PostTransfersByTransferIdUrlsResponseDefaultType1",
-    "PostTransfersByTransferIdUrlsResponseDefaultType1Errors",
+    "PostTranscodersByTranscoderIdLogsResponseDefault",
+    "PostTranscodersByTranscoderIdReindexResponseDefault",
+    "PostTranscodersResponseDefault",
+    "PostTransfersByTransferIdUrlsResponseDefault",
     "PrioDir",
     "PrioDirSchema",
     "PrioPattern",
@@ -4274,84 +2040,32 @@ __all__ = (
     "ProxyUpdateSchema",
     "ProxyUpdateSchemaStatus",
     "ProxyUploadCredentialsType0",
-    "PutAnalysisProfilesByProfileIdResponseDefaultType0",
-    "PutAnalysisProfilesByProfileIdResponseDefaultType1",
-    "PutAnalysisProfilesByProfileIdResponseDefaultType1Errors",
-    "PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0",
-    "PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1",
-    "PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1Errors",
-    "PutAssetsByAssetIdFilesByFileIdResponseDefaultType0",
-    "PutAssetsByAssetIdFilesByFileIdResponseDefaultType1",
-    "PutAssetsByAssetIdFilesByFileIdResponseDefaultType1Errors",
-    "PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0",
-    "PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1",
-    "PutAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1Errors",
-    "PutAssetsByAssetIdFileSetsByFileSetIdRestoreResponseDefaultType0",
-    "PutAssetsByAssetIdFileSetsByFileSetIdRestoreResponseDefaultType1",
-    "PutAssetsByAssetIdFileSetsByFileSetIdRestoreResponseDefaultType1Errors",
-    "PutAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0",
-    "PutAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1",
-    "PutAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1Errors",
-    "PutAssetsByAssetIdFormatsByFormatIdResponseDefaultType0",
-    "PutAssetsByAssetIdFormatsByFormatIdResponseDefaultType1",
-    "PutAssetsByAssetIdFormatsByFormatIdResponseDefaultType1Errors",
-    "PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType0",
-    "PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType1",
-    "PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType1Errors",
-    "PutAssetsByAssetIdKeyframesByKeyframeIdResponseDefaultType0",
-    "PutAssetsByAssetIdKeyframesByKeyframeIdResponseDefaultType1",
-    "PutAssetsByAssetIdKeyframesByKeyframeIdResponseDefaultType1Errors",
-    "PutAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesByFileIdResponseDefaultType0",
-    "PutAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesByFileIdResponseDefaultType1",
-    "PutAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesByFileIdResponseDefaultType1Errors",
-    "PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType0",
-    "PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType1",
-    "PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType1Errors",
-    "PutAssetsByAssetIdProxiesByProxyIdResponseDefaultType0",
-    "PutAssetsByAssetIdProxiesByProxyIdResponseDefaultType1",
-    "PutAssetsByAssetIdProxiesByProxyIdResponseDefaultType1Errors",
-    "PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0",
-    "PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1",
-    "PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1Errors",
-    "PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType0",
-    "PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType1",
-    "PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType1Errors",
-    "PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0",
-    "PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1",
-    "PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1Errors",
-    "PutExportLocationsByExportLocationIdResponseDefaultType0",
-    "PutExportLocationsByExportLocationIdResponseDefaultType1",
-    "PutExportLocationsByExportLocationIdResponseDefaultType1Errors",
-    "PutPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType0",
-    "PutPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1",
-    "PutPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefaultType1Errors",
-    "PutStorageGatewayClustersByClusterIdResponseDefaultType0",
-    "PutStorageGatewayClustersByClusterIdResponseDefaultType1",
-    "PutStorageGatewayClustersByClusterIdResponseDefaultType1Errors",
-    "PutStorageGatewaysByStorageGatewayIdResponseDefaultType0",
-    "PutStorageGatewaysByStorageGatewayIdResponseDefaultType1",
-    "PutStorageGatewaysByStorageGatewayIdResponseDefaultType1Errors",
-    "PutStoragesByStorageIdFilesResponseDefaultType0",
-    "PutStoragesByStorageIdFilesResponseDefaultType1",
-    "PutStoragesByStorageIdFilesResponseDefaultType1Errors",
-    "PutStoragesByStorageIdGatewayReportResponseDefaultType0",
-    "PutStoragesByStorageIdGatewayReportResponseDefaultType1",
-    "PutStoragesByStorageIdGatewayReportResponseDefaultType1Errors",
-    "PutStoragesByStorageIdGatewayStatusResponseDefaultType0",
-    "PutStoragesByStorageIdGatewayStatusResponseDefaultType1",
-    "PutStoragesByStorageIdGatewayStatusResponseDefaultType1Errors",
-    "PutStoragesByStorageIdResponseDefaultType0",
-    "PutStoragesByStorageIdResponseDefaultType1",
-    "PutStoragesByStorageIdResponseDefaultType1Errors",
-    "PutStoragesByStorageIdSearchDocumentResponseDefaultType0",
-    "PutStoragesByStorageIdSearchDocumentResponseDefaultType1",
-    "PutStoragesByStorageIdSearchDocumentResponseDefaultType1Errors",
-    "PutStoragesByStorageIdTranscodersByTranscoderIdResponseDefaultType0",
-    "PutStoragesByStorageIdTranscodersByTranscoderIdResponseDefaultType1",
-    "PutStoragesByStorageIdTranscodersByTranscoderIdResponseDefaultType1Errors",
-    "PutTranscodersByTranscoderIdResponseDefaultType0",
-    "PutTranscodersByTranscoderIdResponseDefaultType1",
-    "PutTranscodersByTranscoderIdResponseDefaultType1Errors",
+    "PutAnalysisProfilesByProfileIdResponseDefault",
+    "PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault",
+    "PutAssetsByAssetIdFilesByFileIdResponseDefault",
+    "PutAssetsByAssetIdFileSetsByFileSetIdResponseDefault",
+    "PutAssetsByAssetIdFileSetsByFileSetIdRestoreResponseDefault",
+    "PutAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault",
+    "PutAssetsByAssetIdFormatsByFormatIdResponseDefault",
+    "PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefault",
+    "PutAssetsByAssetIdKeyframesByKeyframeIdResponseDefault",
+    "PutAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesByFileIdResponseDefault",
+    "PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefault",
+    "PutAssetsByAssetIdProxiesByProxyIdResponseDefault",
+    "PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault",
+    "PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefault",
+    "PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault",
+    "PutExportLocationsByExportLocationIdResponseDefault",
+    "PutPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault",
+    "PutStorageGatewayClustersByClusterIdResponseDefault",
+    "PutStorageGatewaysByStorageGatewayIdResponseDefault",
+    "PutStoragesByStorageIdFilesResponseDefault",
+    "PutStoragesByStorageIdGatewayReportResponseDefault",
+    "PutStoragesByStorageIdGatewayStatusResponseDefault",
+    "PutStoragesByStorageIdResponseDefault",
+    "PutStoragesByStorageIdSearchDocumentResponseDefault",
+    "PutStoragesByStorageIdTranscodersByTranscoderIdResponseDefault",
+    "PutTranscodersByTranscoderIdResponseDefault",
     "RedlineSchema",
     "RedlineSchemaFormat",
     "RedlineSchemaPrcodec",

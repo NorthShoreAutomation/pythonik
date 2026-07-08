@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_search_saved_group_response_default_type_0 import (
-    PostSearchSavedGroupResponseDefaultType0,
-)
-from ...models.post_search_saved_group_response_default_type_1 import (
-    PostSearchSavedGroupResponseDefaultType1,
+from ...models.post_search_saved_group_response_default import (
+    PostSearchSavedGroupResponseDefault,
 )
 from ...models.saved_search_group_schema import SavedSearchGroupSchema
 from ...types import Response
@@ -35,12 +32,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostSearchSavedGroupResponseDefaultType0
-    | PostSearchSavedGroupResponseDefaultType1
-    | SavedSearchGroupSchema
-):
+) -> Any | PostSearchSavedGroupResponseDefault | SavedSearchGroupSchema:
     if response.status_code == 201:
         response_201 = SavedSearchGroupSchema.from_dict(response.json())
 
@@ -54,43 +46,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostSearchSavedGroupResponseDefaultType0
-        | PostSearchSavedGroupResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostSearchSavedGroupResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostSearchSavedGroupResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostSearchSavedGroupResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostSearchSavedGroupResponseDefaultType0
-    | PostSearchSavedGroupResponseDefaultType1
-    | SavedSearchGroupSchema
-]:
+) -> Response[Any | PostSearchSavedGroupResponseDefault | SavedSearchGroupSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -103,12 +66,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: SavedSearchGroupSchema,
-) -> Response[
-    Any
-    | PostSearchSavedGroupResponseDefaultType0
-    | PostSearchSavedGroupResponseDefaultType1
-    | SavedSearchGroupSchema
-]:
+) -> Response[Any | PostSearchSavedGroupResponseDefault | SavedSearchGroupSchema]:
     """Create and return saved search group data
 
 
@@ -123,7 +81,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSearchSavedGroupResponseDefaultType0 | PostSearchSavedGroupResponseDefaultType1 | SavedSearchGroupSchema]
+        Response[Any | PostSearchSavedGroupResponseDefault | SavedSearchGroupSchema]
     """
 
     kwargs = _get_kwargs(
@@ -141,13 +99,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: SavedSearchGroupSchema,
-) -> (
-    Any
-    | PostSearchSavedGroupResponseDefaultType0
-    | PostSearchSavedGroupResponseDefaultType1
-    | SavedSearchGroupSchema
-    | None
-):
+) -> Any | PostSearchSavedGroupResponseDefault | SavedSearchGroupSchema | None:
     """Create and return saved search group data
 
 
@@ -162,7 +114,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSearchSavedGroupResponseDefaultType0 | PostSearchSavedGroupResponseDefaultType1 | SavedSearchGroupSchema
+        Any | PostSearchSavedGroupResponseDefault | SavedSearchGroupSchema
     """
 
     return sync_detailed(
@@ -175,12 +127,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: SavedSearchGroupSchema,
-) -> Response[
-    Any
-    | PostSearchSavedGroupResponseDefaultType0
-    | PostSearchSavedGroupResponseDefaultType1
-    | SavedSearchGroupSchema
-]:
+) -> Response[Any | PostSearchSavedGroupResponseDefault | SavedSearchGroupSchema]:
     """Create and return saved search group data
 
 
@@ -195,7 +142,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSearchSavedGroupResponseDefaultType0 | PostSearchSavedGroupResponseDefaultType1 | SavedSearchGroupSchema]
+        Response[Any | PostSearchSavedGroupResponseDefault | SavedSearchGroupSchema]
     """
 
     kwargs = _get_kwargs(
@@ -211,13 +158,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: SavedSearchGroupSchema,
-) -> (
-    Any
-    | PostSearchSavedGroupResponseDefaultType0
-    | PostSearchSavedGroupResponseDefaultType1
-    | SavedSearchGroupSchema
-    | None
-):
+) -> Any | PostSearchSavedGroupResponseDefault | SavedSearchGroupSchema | None:
     """Create and return saved search group data
 
 
@@ -232,7 +173,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSearchSavedGroupResponseDefaultType0 | PostSearchSavedGroupResponseDefaultType1 | SavedSearchGroupSchema
+        Any | PostSearchSavedGroupResponseDefault | SavedSearchGroupSchema
     """
 
     return (

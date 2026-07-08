@@ -8,11 +8,8 @@ from ...models.analysis_service_account_read_schema import (
     AnalysisServiceAccountReadSchema,
 )
 from ...models.analysis_service_account_schema import AnalysisServiceAccountSchema
-from ...models.post_analysis_service_accounts_response_default_type_0 import (
-    PostAnalysisServiceAccountsResponseDefaultType0,
-)
-from ...models.post_analysis_service_accounts_response_default_type_1 import (
-    PostAnalysisServiceAccountsResponseDefaultType1,
+from ...models.post_analysis_service_accounts_response_default import (
+    PostAnalysisServiceAccountsResponseDefault,
 )
 from ...types import Response
 
@@ -39,10 +36,7 @@ def _get_kwargs(
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
-    AnalysisServiceAccountReadSchema
-    | Any
-    | PostAnalysisServiceAccountsResponseDefaultType0
-    | PostAnalysisServiceAccountsResponseDefaultType1
+    AnalysisServiceAccountReadSchema | Any | PostAnalysisServiceAccountsResponseDefault
 ):
     if response.status_code == 201:
         response_201 = AnalysisServiceAccountReadSchema.from_dict(response.json())
@@ -57,31 +51,9 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAnalysisServiceAccountsResponseDefaultType0
-        | PostAnalysisServiceAccountsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostAnalysisServiceAccountsResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostAnalysisServiceAccountsResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostAnalysisServiceAccountsResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -89,10 +61,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    AnalysisServiceAccountReadSchema
-    | Any
-    | PostAnalysisServiceAccountsResponseDefaultType0
-    | PostAnalysisServiceAccountsResponseDefaultType1
+    AnalysisServiceAccountReadSchema | Any | PostAnalysisServiceAccountsResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -107,10 +76,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: AnalysisServiceAccountSchema,
 ) -> Response[
-    AnalysisServiceAccountReadSchema
-    | Any
-    | PostAnalysisServiceAccountsResponseDefaultType0
-    | PostAnalysisServiceAccountsResponseDefaultType1
+    AnalysisServiceAccountReadSchema | Any | PostAnalysisServiceAccountsResponseDefault
 ]:
     """Create a new analysis service account
 
@@ -126,7 +92,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[AnalysisServiceAccountReadSchema | Any | PostAnalysisServiceAccountsResponseDefaultType0 | PostAnalysisServiceAccountsResponseDefaultType1]
+        Response[AnalysisServiceAccountReadSchema | Any | PostAnalysisServiceAccountsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -147,8 +113,7 @@ def sync(
 ) -> (
     AnalysisServiceAccountReadSchema
     | Any
-    | PostAnalysisServiceAccountsResponseDefaultType0
-    | PostAnalysisServiceAccountsResponseDefaultType1
+    | PostAnalysisServiceAccountsResponseDefault
     | None
 ):
     """Create a new analysis service account
@@ -165,7 +130,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        AnalysisServiceAccountReadSchema | Any | PostAnalysisServiceAccountsResponseDefaultType0 | PostAnalysisServiceAccountsResponseDefaultType1
+        AnalysisServiceAccountReadSchema | Any | PostAnalysisServiceAccountsResponseDefault
     """
 
     return sync_detailed(
@@ -179,10 +144,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: AnalysisServiceAccountSchema,
 ) -> Response[
-    AnalysisServiceAccountReadSchema
-    | Any
-    | PostAnalysisServiceAccountsResponseDefaultType0
-    | PostAnalysisServiceAccountsResponseDefaultType1
+    AnalysisServiceAccountReadSchema | Any | PostAnalysisServiceAccountsResponseDefault
 ]:
     """Create a new analysis service account
 
@@ -198,7 +160,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[AnalysisServiceAccountReadSchema | Any | PostAnalysisServiceAccountsResponseDefaultType0 | PostAnalysisServiceAccountsResponseDefaultType1]
+        Response[AnalysisServiceAccountReadSchema | Any | PostAnalysisServiceAccountsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -217,8 +179,7 @@ async def asyncio(
 ) -> (
     AnalysisServiceAccountReadSchema
     | Any
-    | PostAnalysisServiceAccountsResponseDefaultType0
-    | PostAnalysisServiceAccountsResponseDefaultType1
+    | PostAnalysisServiceAccountsResponseDefault
     | None
 ):
     """Create a new analysis service account
@@ -235,7 +196,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        AnalysisServiceAccountReadSchema | Any | PostAnalysisServiceAccountsResponseDefaultType0 | PostAnalysisServiceAccountsResponseDefaultType1
+        AnalysisServiceAccountReadSchema | Any | PostAnalysisServiceAccountsResponseDefault
     """
 
     return (

@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_assets_by_asset_id_proxies_response_default_type_0 import (
-    PostAssetsByAssetIdProxiesResponseDefaultType0,
-)
-from ...models.post_assets_by_asset_id_proxies_response_default_type_1 import (
-    PostAssetsByAssetIdProxiesResponseDefaultType1,
+from ...models.post_assets_by_asset_id_proxies_response_default import (
+    PostAssetsByAssetIdProxiesResponseDefault,
 )
 from ...models.proxy_create_schema import ProxyCreateSchema
 from ...types import Response
@@ -39,12 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostAssetsByAssetIdProxiesResponseDefaultType0
-    | PostAssetsByAssetIdProxiesResponseDefaultType1
-    | ProxyCreateSchema
-):
+) -> Any | PostAssetsByAssetIdProxiesResponseDefault | ProxyCreateSchema:
     if response.status_code == 201:
         response_201 = ProxyCreateSchema.from_dict(response.json())
 
@@ -58,43 +50,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsByAssetIdProxiesResponseDefaultType0
-        | PostAssetsByAssetIdProxiesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostAssetsByAssetIdProxiesResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostAssetsByAssetIdProxiesResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostAssetsByAssetIdProxiesResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostAssetsByAssetIdProxiesResponseDefaultType0
-    | PostAssetsByAssetIdProxiesResponseDefaultType1
-    | ProxyCreateSchema
-]:
+) -> Response[Any | PostAssetsByAssetIdProxiesResponseDefault | ProxyCreateSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -108,12 +73,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: ProxyCreateSchema,
-) -> Response[
-    Any
-    | PostAssetsByAssetIdProxiesResponseDefaultType0
-    | PostAssetsByAssetIdProxiesResponseDefaultType1
-    | ProxyCreateSchema
-]:
+) -> Response[Any | PostAssetsByAssetIdProxiesResponseDefault | ProxyCreateSchema]:
     """Create proxy and associate to asset
 
 
@@ -129,7 +89,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdProxiesResponseDefaultType0 | PostAssetsByAssetIdProxiesResponseDefaultType1 | ProxyCreateSchema]
+        Response[Any | PostAssetsByAssetIdProxiesResponseDefault | ProxyCreateSchema]
     """
 
     kwargs = _get_kwargs(
@@ -149,13 +109,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: ProxyCreateSchema,
-) -> (
-    Any
-    | PostAssetsByAssetIdProxiesResponseDefaultType0
-    | PostAssetsByAssetIdProxiesResponseDefaultType1
-    | ProxyCreateSchema
-    | None
-):
+) -> Any | PostAssetsByAssetIdProxiesResponseDefault | ProxyCreateSchema | None:
     """Create proxy and associate to asset
 
 
@@ -171,7 +125,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdProxiesResponseDefaultType0 | PostAssetsByAssetIdProxiesResponseDefaultType1 | ProxyCreateSchema
+        Any | PostAssetsByAssetIdProxiesResponseDefault | ProxyCreateSchema
     """
 
     return sync_detailed(
@@ -186,12 +140,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: ProxyCreateSchema,
-) -> Response[
-    Any
-    | PostAssetsByAssetIdProxiesResponseDefaultType0
-    | PostAssetsByAssetIdProxiesResponseDefaultType1
-    | ProxyCreateSchema
-]:
+) -> Response[Any | PostAssetsByAssetIdProxiesResponseDefault | ProxyCreateSchema]:
     """Create proxy and associate to asset
 
 
@@ -207,7 +156,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdProxiesResponseDefaultType0 | PostAssetsByAssetIdProxiesResponseDefaultType1 | ProxyCreateSchema]
+        Response[Any | PostAssetsByAssetIdProxiesResponseDefault | ProxyCreateSchema]
     """
 
     kwargs = _get_kwargs(
@@ -225,13 +174,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: ProxyCreateSchema,
-) -> (
-    Any
-    | PostAssetsByAssetIdProxiesResponseDefaultType0
-    | PostAssetsByAssetIdProxiesResponseDefaultType1
-    | ProxyCreateSchema
-    | None
-):
+) -> Any | PostAssetsByAssetIdProxiesResponseDefault | ProxyCreateSchema | None:
     """Create proxy and associate to asset
 
 
@@ -247,7 +190,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdProxiesResponseDefaultType0 | PostAssetsByAssetIdProxiesResponseDefaultType1 | ProxyCreateSchema
+        Any | PostAssetsByAssetIdProxiesResponseDefault | ProxyCreateSchema
     """
 
     return (

@@ -4,8 +4,7 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_views_response_default_type_0 import GetViewsResponseDefaultType0
-from ...models.get_views_response_default_type_1 import GetViewsResponseDefaultType1
+from ...models.get_views_response_default import GetViewsResponseDefault
 from ...models.search_views_schema import SearchViewsSchema
 from ...types import Response
 
@@ -22,12 +21,7 @@ def _get_kwargs() -> dict[str, Any]:
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetViewsResponseDefaultType0
-    | GetViewsResponseDefaultType1
-    | SearchViewsSchema
-):
+) -> Any | GetViewsResponseDefault | SearchViewsSchema:
     if response.status_code == 200:
         response_200 = SearchViewsSchema.from_dict(response.json())
 
@@ -45,36 +39,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> GetViewsResponseDefaultType0 | GetViewsResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetViewsResponseDefaultType0.from_dict(data)
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetViewsResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetViewsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetViewsResponseDefaultType0
-    | GetViewsResponseDefaultType1
-    | SearchViewsSchema
-]:
+) -> Response[Any | GetViewsResponseDefault | SearchViewsSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -86,12 +58,7 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetViewsResponseDefaultType0
-    | GetViewsResponseDefaultType1
-    | SearchViewsSchema
-]:
+) -> Response[Any | GetViewsResponseDefault | SearchViewsSchema]:
     """Get all Views for the system domain.
 
 
@@ -103,7 +70,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetViewsResponseDefaultType0 | GetViewsResponseDefaultType1 | SearchViewsSchema]
+        Response[Any | GetViewsResponseDefault | SearchViewsSchema]
     """
 
     kwargs = _get_kwargs()
@@ -118,13 +85,7 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetViewsResponseDefaultType0
-    | GetViewsResponseDefaultType1
-    | SearchViewsSchema
-    | None
-):
+) -> Any | GetViewsResponseDefault | SearchViewsSchema | None:
     """Get all Views for the system domain.
 
 
@@ -136,7 +97,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetViewsResponseDefaultType0 | GetViewsResponseDefaultType1 | SearchViewsSchema
+        Any | GetViewsResponseDefault | SearchViewsSchema
     """
 
     return sync_detailed(
@@ -147,12 +108,7 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetViewsResponseDefaultType0
-    | GetViewsResponseDefaultType1
-    | SearchViewsSchema
-]:
+) -> Response[Any | GetViewsResponseDefault | SearchViewsSchema]:
     """Get all Views for the system domain.
 
 
@@ -164,7 +120,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetViewsResponseDefaultType0 | GetViewsResponseDefaultType1 | SearchViewsSchema]
+        Response[Any | GetViewsResponseDefault | SearchViewsSchema]
     """
 
     kwargs = _get_kwargs()
@@ -177,13 +133,7 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetViewsResponseDefaultType0
-    | GetViewsResponseDefaultType1
-    | SearchViewsSchema
-    | None
-):
+) -> Any | GetViewsResponseDefault | SearchViewsSchema | None:
     """Get all Views for the system domain.
 
 
@@ -195,7 +145,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetViewsResponseDefaultType0 | GetViewsResponseDefaultType1 | SearchViewsSchema
+        Any | GetViewsResponseDefault | SearchViewsSchema
     """
 
     return (

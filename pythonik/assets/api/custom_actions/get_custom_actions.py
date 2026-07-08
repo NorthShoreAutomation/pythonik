@@ -5,11 +5,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.custom_actions_schema import CustomActionsSchema
-from ...models.get_custom_actions_response_default_type_0 import (
-    GetCustomActionsResponseDefaultType0,
-)
-from ...models.get_custom_actions_response_default_type_1 import (
-    GetCustomActionsResponseDefaultType1,
+from ...models.get_custom_actions_response_default import (
+    GetCustomActionsResponseDefault,
 )
 from ...types import Response
 
@@ -26,12 +23,7 @@ def _get_kwargs() -> dict[str, Any]:
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | CustomActionsSchema
-    | GetCustomActionsResponseDefaultType0
-    | GetCustomActionsResponseDefaultType1
-):
+) -> Any | CustomActionsSchema | GetCustomActionsResponseDefault:
     if response.status_code == 200:
         response_200 = CustomActionsSchema.from_dict(response.json())
 
@@ -49,38 +41,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> GetCustomActionsResponseDefaultType0 | GetCustomActionsResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetCustomActionsResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetCustomActionsResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetCustomActionsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | CustomActionsSchema
-    | GetCustomActionsResponseDefaultType0
-    | GetCustomActionsResponseDefaultType1
-]:
+) -> Response[Any | CustomActionsSchema | GetCustomActionsResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -92,12 +60,7 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | CustomActionsSchema
-    | GetCustomActionsResponseDefaultType0
-    | GetCustomActionsResponseDefaultType1
-]:
+) -> Response[Any | CustomActionsSchema | GetCustomActionsResponseDefault]:
     """Get list of custom actions
 
 
@@ -109,7 +72,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CustomActionsSchema | GetCustomActionsResponseDefaultType0 | GetCustomActionsResponseDefaultType1]
+        Response[Any | CustomActionsSchema | GetCustomActionsResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -124,13 +87,7 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | CustomActionsSchema
-    | GetCustomActionsResponseDefaultType0
-    | GetCustomActionsResponseDefaultType1
-    | None
-):
+) -> Any | CustomActionsSchema | GetCustomActionsResponseDefault | None:
     """Get list of custom actions
 
 
@@ -142,7 +99,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CustomActionsSchema | GetCustomActionsResponseDefaultType0 | GetCustomActionsResponseDefaultType1
+        Any | CustomActionsSchema | GetCustomActionsResponseDefault
     """
 
     return sync_detailed(
@@ -153,12 +110,7 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | CustomActionsSchema
-    | GetCustomActionsResponseDefaultType0
-    | GetCustomActionsResponseDefaultType1
-]:
+) -> Response[Any | CustomActionsSchema | GetCustomActionsResponseDefault]:
     """Get list of custom actions
 
 
@@ -170,7 +122,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CustomActionsSchema | GetCustomActionsResponseDefaultType0 | GetCustomActionsResponseDefaultType1]
+        Response[Any | CustomActionsSchema | GetCustomActionsResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -183,13 +135,7 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | CustomActionsSchema
-    | GetCustomActionsResponseDefaultType0
-    | GetCustomActionsResponseDefaultType1
-    | None
-):
+) -> Any | CustomActionsSchema | GetCustomActionsResponseDefault | None:
     """Get list of custom actions
 
 
@@ -201,7 +147,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CustomActionsSchema | GetCustomActionsResponseDefaultType0 | GetCustomActionsResponseDefaultType1
+        Any | CustomActionsSchema | GetCustomActionsResponseDefault
     """
 
     return (

@@ -16,50 +16,20 @@ from .bulk_metadata_filling_schema_object_type import (
 )
 from .bulk_transcribe_schema import BulkTranscribeSchema
 from .bulk_transcribe_schema_object_type import BulkTranscribeSchemaObjectType
-from .delete_edge_transcode_workers_by_worker_id_response_default_type_0 import (
-    DeleteEdgeTranscodeWorkersByWorkerIdResponseDefaultType0,
+from .delete_edge_transcode_workers_by_worker_id_response_default import (
+    DeleteEdgeTranscodeWorkersByWorkerIdResponseDefault,
 )
-from .delete_edge_transcode_workers_by_worker_id_response_default_type_1 import (
-    DeleteEdgeTranscodeWorkersByWorkerIdResponseDefaultType1,
+from .delete_storages_by_storage_id_files_by_file_id_transcode_response_default import (
+    DeleteStoragesByStorageIdFilesByFileIdTranscodeResponseDefault,
 )
-from .delete_edge_transcode_workers_by_worker_id_response_default_type_1_errors import (
-    DeleteEdgeTranscodeWorkersByWorkerIdResponseDefaultType1Errors,
+from .delete_storages_by_storage_id_response_default import (
+    DeleteStoragesByStorageIdResponseDefault,
 )
-from .delete_storages_by_storage_id_files_by_file_id_transcode_response_default_type_0 import (
-    DeleteStoragesByStorageIdFilesByFileIdTranscodeResponseDefaultType0,
+from .delete_storages_by_storage_id_transcode_by_record_id_response_default import (
+    DeleteStoragesByStorageIdTranscodeByRecordIdResponseDefault,
 )
-from .delete_storages_by_storage_id_files_by_file_id_transcode_response_default_type_1 import (
-    DeleteStoragesByStorageIdFilesByFileIdTranscodeResponseDefaultType1,
-)
-from .delete_storages_by_storage_id_files_by_file_id_transcode_response_default_type_1_errors import (
-    DeleteStoragesByStorageIdFilesByFileIdTranscodeResponseDefaultType1Errors,
-)
-from .delete_storages_by_storage_id_response_default_type_0 import (
-    DeleteStoragesByStorageIdResponseDefaultType0,
-)
-from .delete_storages_by_storage_id_response_default_type_1 import (
-    DeleteStoragesByStorageIdResponseDefaultType1,
-)
-from .delete_storages_by_storage_id_response_default_type_1_errors import (
-    DeleteStoragesByStorageIdResponseDefaultType1Errors,
-)
-from .delete_storages_by_storage_id_transcode_by_record_id_response_default_type_0 import (
-    DeleteStoragesByStorageIdTranscodeByRecordIdResponseDefaultType0,
-)
-from .delete_storages_by_storage_id_transcode_by_record_id_response_default_type_1 import (
-    DeleteStoragesByStorageIdTranscodeByRecordIdResponseDefaultType1,
-)
-from .delete_storages_by_storage_id_transcode_by_record_id_response_default_type_1_errors import (
-    DeleteStoragesByStorageIdTranscodeByRecordIdResponseDefaultType1Errors,
-)
-from .delete_transcode_by_transcode_job_id_response_default_type_0 import (
-    DeleteTranscodeByTranscodeJobIdResponseDefaultType0,
-)
-from .delete_transcode_by_transcode_job_id_response_default_type_1 import (
-    DeleteTranscodeByTranscodeJobIdResponseDefaultType1,
-)
-from .delete_transcode_by_transcode_job_id_response_default_type_1_errors import (
-    DeleteTranscodeByTranscodeJobIdResponseDefaultType1Errors,
+from .delete_transcode_by_transcode_job_id_response_default import (
+    DeleteTranscodeByTranscodeJobIdResponseDefault,
 )
 from .edge_thumbnail_job_field_schema import EdgeThumbnailJobFieldSchema
 from .edge_transcode_endpoint_schema import EdgeTranscodeEndpointSchema
@@ -79,113 +49,39 @@ from .endpoint_schema_headers_type_0 import EndpointSchemaHeadersType0
 from .facet_bucket_schema import FacetBucketSchema
 from .facet_schema import FacetSchema
 from .generate_collection_keyframe_schema import GenerateCollectionKeyframeSchema
-from .get_edge_transcode_workers_by_worker_id_response_default_type_0 import (
-    GetEdgeTranscodeWorkersByWorkerIdResponseDefaultType0,
+from .get_edge_transcode_workers_by_worker_id_response_default import (
+    GetEdgeTranscodeWorkersByWorkerIdResponseDefault,
 )
-from .get_edge_transcode_workers_by_worker_id_response_default_type_1 import (
-    GetEdgeTranscodeWorkersByWorkerIdResponseDefaultType1,
+from .get_edge_transcode_workers_response_default import (
+    GetEdgeTranscodeWorkersResponseDefault,
 )
-from .get_edge_transcode_workers_by_worker_id_response_default_type_1_errors import (
-    GetEdgeTranscodeWorkersByWorkerIdResponseDefaultType1Errors,
+from .get_metadata_filling_proposals_assets_by_asset_id_versions_by_version_id_response_default import (
+    GetMetadataFillingProposalsAssetsByAssetIdVersionsByVersionIdResponseDefault,
 )
-from .get_edge_transcode_workers_response_default_type_0 import (
-    GetEdgeTranscodeWorkersResponseDefaultType0,
+from .get_metadata_filling_proposals_by_job_id_response_default import (
+    GetMetadataFillingProposalsByJobIdResponseDefault,
 )
-from .get_edge_transcode_workers_response_default_type_1 import (
-    GetEdgeTranscodeWorkersResponseDefaultType1,
+from .get_storages_by_storage_id_edge_transcode_jobs_response_default import (
+    GetStoragesByStorageIdEdgeTranscodeJobsResponseDefault,
 )
-from .get_edge_transcode_workers_response_default_type_1_errors import (
-    GetEdgeTranscodeWorkersResponseDefaultType1Errors,
+from .get_storages_by_storage_id_transcode_by_record_id_response_default import (
+    GetStoragesByStorageIdTranscodeByRecordIdResponseDefault,
 )
-from .get_metadata_filling_proposals_assets_by_asset_id_versions_by_version_id_response_default_type_0 import (
-    GetMetadataFillingProposalsAssetsByAssetIdVersionsByVersionIdResponseDefaultType0,
+from .get_storages_by_storage_id_transcode_response_default import (
+    GetStoragesByStorageIdTranscodeResponseDefault,
 )
-from .get_metadata_filling_proposals_assets_by_asset_id_versions_by_version_id_response_default_type_1 import (
-    GetMetadataFillingProposalsAssetsByAssetIdVersionsByVersionIdResponseDefaultType1,
+from .get_transcode_by_object_type_by_object_id_response_default import (
+    GetTranscodeByObjectTypeByObjectIdResponseDefault,
 )
-from .get_metadata_filling_proposals_assets_by_asset_id_versions_by_version_id_response_default_type_1_errors import (
-    GetMetadataFillingProposalsAssetsByAssetIdVersionsByVersionIdResponseDefaultType1Errors,
+from .get_transcode_by_object_type_by_object_id_versions_by_version_id_response_default import (
+    GetTranscodeByObjectTypeByObjectIdVersionsByVersionIdResponseDefault,
 )
-from .get_metadata_filling_proposals_by_job_id_response_default_type_0 import (
-    GetMetadataFillingProposalsByJobIdResponseDefaultType0,
+from .get_transcode_by_transcode_job_id_response_default import (
+    GetTranscodeByTranscodeJobIdResponseDefault,
 )
-from .get_metadata_filling_proposals_by_job_id_response_default_type_1 import (
-    GetMetadataFillingProposalsByJobIdResponseDefaultType1,
-)
-from .get_metadata_filling_proposals_by_job_id_response_default_type_1_errors import (
-    GetMetadataFillingProposalsByJobIdResponseDefaultType1Errors,
-)
-from .get_storages_by_storage_id_edge_transcode_jobs_response_default_type_0 import (
-    GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType0,
-)
-from .get_storages_by_storage_id_edge_transcode_jobs_response_default_type_1 import (
-    GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType1,
-)
-from .get_storages_by_storage_id_edge_transcode_jobs_response_default_type_1_errors import (
-    GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType1Errors,
-)
-from .get_storages_by_storage_id_transcode_by_record_id_response_default_type_0 import (
-    GetStoragesByStorageIdTranscodeByRecordIdResponseDefaultType0,
-)
-from .get_storages_by_storage_id_transcode_by_record_id_response_default_type_1 import (
-    GetStoragesByStorageIdTranscodeByRecordIdResponseDefaultType1,
-)
-from .get_storages_by_storage_id_transcode_by_record_id_response_default_type_1_errors import (
-    GetStoragesByStorageIdTranscodeByRecordIdResponseDefaultType1Errors,
-)
-from .get_storages_by_storage_id_transcode_response_default_type_0 import (
-    GetStoragesByStorageIdTranscodeResponseDefaultType0,
-)
-from .get_storages_by_storage_id_transcode_response_default_type_1 import (
-    GetStoragesByStorageIdTranscodeResponseDefaultType1,
-)
-from .get_storages_by_storage_id_transcode_response_default_type_1_errors import (
-    GetStoragesByStorageIdTranscodeResponseDefaultType1Errors,
-)
-from .get_transcode_by_object_type_by_object_id_response_default_type_0 import (
-    GetTranscodeByObjectTypeByObjectIdResponseDefaultType0,
-)
-from .get_transcode_by_object_type_by_object_id_response_default_type_1 import (
-    GetTranscodeByObjectTypeByObjectIdResponseDefaultType1,
-)
-from .get_transcode_by_object_type_by_object_id_response_default_type_1_errors import (
-    GetTranscodeByObjectTypeByObjectIdResponseDefaultType1Errors,
-)
-from .get_transcode_by_object_type_by_object_id_versions_by_version_id_response_default_type_0 import (
-    GetTranscodeByObjectTypeByObjectIdVersionsByVersionIdResponseDefaultType0,
-)
-from .get_transcode_by_object_type_by_object_id_versions_by_version_id_response_default_type_1 import (
-    GetTranscodeByObjectTypeByObjectIdVersionsByVersionIdResponseDefaultType1,
-)
-from .get_transcode_by_object_type_by_object_id_versions_by_version_id_response_default_type_1_errors import (
-    GetTranscodeByObjectTypeByObjectIdVersionsByVersionIdResponseDefaultType1Errors,
-)
-from .get_transcode_by_transcode_job_id_response_default_type_0 import (
-    GetTranscodeByTranscodeJobIdResponseDefaultType0,
-)
-from .get_transcode_by_transcode_job_id_response_default_type_1 import (
-    GetTranscodeByTranscodeJobIdResponseDefaultType1,
-)
-from .get_transcode_by_transcode_job_id_response_default_type_1_errors import (
-    GetTranscodeByTranscodeJobIdResponseDefaultType1Errors,
-)
-from .get_transcode_queue_response_default_type_0 import (
-    GetTranscodeQueueResponseDefaultType0,
-)
-from .get_transcode_queue_response_default_type_1 import (
-    GetTranscodeQueueResponseDefaultType1,
-)
-from .get_transcode_queue_response_default_type_1_errors import (
-    GetTranscodeQueueResponseDefaultType1Errors,
-)
-from .get_transcode_queue_system_response_default_type_0 import (
-    GetTranscodeQueueSystemResponseDefaultType0,
-)
-from .get_transcode_queue_system_response_default_type_1 import (
-    GetTranscodeQueueSystemResponseDefaultType1,
-)
-from .get_transcode_queue_system_response_default_type_1_errors import (
-    GetTranscodeQueueSystemResponseDefaultType1Errors,
+from .get_transcode_queue_response_default import GetTranscodeQueueResponseDefault
+from .get_transcode_queue_system_response_default import (
+    GetTranscodeQueueSystemResponseDefault,
 )
 from .input_schema import InputSchema
 from .job_base_schema import JobBaseSchema
@@ -226,190 +122,62 @@ from .output_endpoint import OutputEndpoint
 from .output_endpoint_headers_type_0 import OutputEndpointHeadersType0
 from .output_endpoint_schema import OutputEndpointSchema
 from .output_endpoint_schema_headers_type_0 import OutputEndpointSchemaHeadersType0
-from .patch_edge_transcode_workers_by_worker_id_response_default_type_0 import (
-    PatchEdgeTranscodeWorkersByWorkerIdResponseDefaultType0,
+from .patch_edge_transcode_workers_by_worker_id_response_default import (
+    PatchEdgeTranscodeWorkersByWorkerIdResponseDefault,
 )
-from .patch_edge_transcode_workers_by_worker_id_response_default_type_1 import (
-    PatchEdgeTranscodeWorkersByWorkerIdResponseDefaultType1,
+from .post_analyze_assets_by_asset_id_profiles_by_profile_id_response_default import (
+    PostAnalyzeAssetsByAssetIdProfilesByProfileIdResponseDefault,
 )
-from .patch_edge_transcode_workers_by_worker_id_response_default_type_1_errors import (
-    PatchEdgeTranscodeWorkersByWorkerIdResponseDefaultType1Errors,
+from .post_analyze_assets_by_asset_id_profiles_default_by_media_type_response_default import (
+    PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefault,
 )
-from .post_analyze_assets_by_asset_id_profiles_by_profile_id_response_default_type_0 import (
-    PostAnalyzeAssetsByAssetIdProfilesByProfileIdResponseDefaultType0,
+from .post_analyze_assets_by_asset_id_profiles_default_response_default import (
+    PostAnalyzeAssetsByAssetIdProfilesDefaultResponseDefault,
 )
-from .post_analyze_assets_by_asset_id_profiles_by_profile_id_response_default_type_1 import (
-    PostAnalyzeAssetsByAssetIdProfilesByProfileIdResponseDefaultType1,
+from .post_analyze_assets_by_asset_id_response_default import (
+    PostAnalyzeAssetsByAssetIdResponseDefault,
 )
-from .post_analyze_assets_by_asset_id_profiles_by_profile_id_response_default_type_1_errors import (
-    PostAnalyzeAssetsByAssetIdProfilesByProfileIdResponseDefaultType1Errors,
+from .post_analyze_bulk_response_default import PostAnalyzeBulkResponseDefault
+from .post_edge_transcode_jobs_by_job_id_acknowledge_response_default import (
+    PostEdgeTranscodeJobsByJobIdAcknowledgeResponseDefault,
 )
-from .post_analyze_assets_by_asset_id_profiles_default_by_media_type_response_default_type_0 import (
-    PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType0,
+from .post_edge_transcode_workers_response_default import (
+    PostEdgeTranscodeWorkersResponseDefault,
 )
-from .post_analyze_assets_by_asset_id_profiles_default_by_media_type_response_default_type_1 import (
-    PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType1,
+from .post_keyframes_collections_by_collection_id_response_default import (
+    PostKeyframesCollectionsByCollectionIdResponseDefault,
 )
-from .post_analyze_assets_by_asset_id_profiles_default_by_media_type_response_default_type_1_errors import (
-    PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType1Errors,
+from .post_keyframes_playlists_by_playlist_id_response_default import (
+    PostKeyframesPlaylistsByPlaylistIdResponseDefault,
 )
-from .post_analyze_assets_by_asset_id_profiles_default_response_default_type_0 import (
-    PostAnalyzeAssetsByAssetIdProfilesDefaultResponseDefaultType0,
+from .post_metadata_filling_assets_by_asset_id_versions_by_version_id_response_default import (
+    PostMetadataFillingAssetsByAssetIdVersionsByVersionIdResponseDefault,
 )
-from .post_analyze_assets_by_asset_id_profiles_default_response_default_type_1 import (
-    PostAnalyzeAssetsByAssetIdProfilesDefaultResponseDefaultType1,
+from .post_metadata_filling_bulk_response_default import (
+    PostMetadataFillingBulkResponseDefault,
 )
-from .post_analyze_assets_by_asset_id_profiles_default_response_default_type_1_errors import (
-    PostAnalyzeAssetsByAssetIdProfilesDefaultResponseDefaultType1Errors,
+from .post_metadata_filling_proposals_by_job_id_accept_response_default import (
+    PostMetadataFillingProposalsByJobIdAcceptResponseDefault,
 )
-from .post_analyze_assets_by_asset_id_response_default_type_0 import (
-    PostAnalyzeAssetsByAssetIdResponseDefaultType0,
+from .post_metadata_filling_proposals_by_job_id_discard_response_default import (
+    PostMetadataFillingProposalsByJobIdDiscardResponseDefault,
 )
-from .post_analyze_assets_by_asset_id_response_default_type_1 import (
-    PostAnalyzeAssetsByAssetIdResponseDefaultType1,
+from .post_metadata_filling_proposals_by_job_id_regenerate_response_default import (
+    PostMetadataFillingProposalsByJobIdRegenerateResponseDefault,
 )
-from .post_analyze_assets_by_asset_id_response_default_type_1_errors import (
-    PostAnalyzeAssetsByAssetIdResponseDefaultType1Errors,
+from .post_transcode_by_transcode_job_id_position_by_position_response_default import (
+    PostTranscodeByTranscodeJobIdPositionByPositionResponseDefault,
 )
-from .post_analyze_bulk_response_default_type_0 import (
-    PostAnalyzeBulkResponseDefaultType0,
+from .post_transcode_response_default import PostTranscodeResponseDefault
+from .post_transcribe_assets_by_asset_id_profiles_default_response_default import (
+    PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefault,
 )
-from .post_analyze_bulk_response_default_type_1 import (
-    PostAnalyzeBulkResponseDefaultType1,
+from .post_transcribe_bulk_response_default import PostTranscribeBulkResponseDefault
+from .put_edge_transcode_workers_by_worker_id_response_default import (
+    PutEdgeTranscodeWorkersByWorkerIdResponseDefault,
 )
-from .post_analyze_bulk_response_default_type_1_errors import (
-    PostAnalyzeBulkResponseDefaultType1Errors,
-)
-from .post_edge_transcode_jobs_by_job_id_acknowledge_response_default_type_0 import (
-    PostEdgeTranscodeJobsByJobIdAcknowledgeResponseDefaultType0,
-)
-from .post_edge_transcode_jobs_by_job_id_acknowledge_response_default_type_1 import (
-    PostEdgeTranscodeJobsByJobIdAcknowledgeResponseDefaultType1,
-)
-from .post_edge_transcode_jobs_by_job_id_acknowledge_response_default_type_1_errors import (
-    PostEdgeTranscodeJobsByJobIdAcknowledgeResponseDefaultType1Errors,
-)
-from .post_edge_transcode_workers_response_default_type_0 import (
-    PostEdgeTranscodeWorkersResponseDefaultType0,
-)
-from .post_edge_transcode_workers_response_default_type_1 import (
-    PostEdgeTranscodeWorkersResponseDefaultType1,
-)
-from .post_edge_transcode_workers_response_default_type_1_errors import (
-    PostEdgeTranscodeWorkersResponseDefaultType1Errors,
-)
-from .post_keyframes_collections_by_collection_id_response_default_type_0 import (
-    PostKeyframesCollectionsByCollectionIdResponseDefaultType0,
-)
-from .post_keyframes_collections_by_collection_id_response_default_type_1 import (
-    PostKeyframesCollectionsByCollectionIdResponseDefaultType1,
-)
-from .post_keyframes_collections_by_collection_id_response_default_type_1_errors import (
-    PostKeyframesCollectionsByCollectionIdResponseDefaultType1Errors,
-)
-from .post_keyframes_playlists_by_playlist_id_response_default_type_0 import (
-    PostKeyframesPlaylistsByPlaylistIdResponseDefaultType0,
-)
-from .post_keyframes_playlists_by_playlist_id_response_default_type_1 import (
-    PostKeyframesPlaylistsByPlaylistIdResponseDefaultType1,
-)
-from .post_keyframes_playlists_by_playlist_id_response_default_type_1_errors import (
-    PostKeyframesPlaylistsByPlaylistIdResponseDefaultType1Errors,
-)
-from .post_metadata_filling_assets_by_asset_id_versions_by_version_id_response_default_type_0 import (
-    PostMetadataFillingAssetsByAssetIdVersionsByVersionIdResponseDefaultType0,
-)
-from .post_metadata_filling_assets_by_asset_id_versions_by_version_id_response_default_type_1 import (
-    PostMetadataFillingAssetsByAssetIdVersionsByVersionIdResponseDefaultType1,
-)
-from .post_metadata_filling_assets_by_asset_id_versions_by_version_id_response_default_type_1_errors import (
-    PostMetadataFillingAssetsByAssetIdVersionsByVersionIdResponseDefaultType1Errors,
-)
-from .post_metadata_filling_bulk_response_default_type_0 import (
-    PostMetadataFillingBulkResponseDefaultType0,
-)
-from .post_metadata_filling_bulk_response_default_type_1 import (
-    PostMetadataFillingBulkResponseDefaultType1,
-)
-from .post_metadata_filling_bulk_response_default_type_1_errors import (
-    PostMetadataFillingBulkResponseDefaultType1Errors,
-)
-from .post_metadata_filling_proposals_by_job_id_accept_response_default_type_0 import (
-    PostMetadataFillingProposalsByJobIdAcceptResponseDefaultType0,
-)
-from .post_metadata_filling_proposals_by_job_id_accept_response_default_type_1 import (
-    PostMetadataFillingProposalsByJobIdAcceptResponseDefaultType1,
-)
-from .post_metadata_filling_proposals_by_job_id_accept_response_default_type_1_errors import (
-    PostMetadataFillingProposalsByJobIdAcceptResponseDefaultType1Errors,
-)
-from .post_metadata_filling_proposals_by_job_id_discard_response_default_type_0 import (
-    PostMetadataFillingProposalsByJobIdDiscardResponseDefaultType0,
-)
-from .post_metadata_filling_proposals_by_job_id_discard_response_default_type_1 import (
-    PostMetadataFillingProposalsByJobIdDiscardResponseDefaultType1,
-)
-from .post_metadata_filling_proposals_by_job_id_discard_response_default_type_1_errors import (
-    PostMetadataFillingProposalsByJobIdDiscardResponseDefaultType1Errors,
-)
-from .post_metadata_filling_proposals_by_job_id_regenerate_response_default_type_0 import (
-    PostMetadataFillingProposalsByJobIdRegenerateResponseDefaultType0,
-)
-from .post_metadata_filling_proposals_by_job_id_regenerate_response_default_type_1 import (
-    PostMetadataFillingProposalsByJobIdRegenerateResponseDefaultType1,
-)
-from .post_metadata_filling_proposals_by_job_id_regenerate_response_default_type_1_errors import (
-    PostMetadataFillingProposalsByJobIdRegenerateResponseDefaultType1Errors,
-)
-from .post_transcode_by_transcode_job_id_position_by_position_response_default_type_0 import (
-    PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType0,
-)
-from .post_transcode_by_transcode_job_id_position_by_position_response_default_type_1 import (
-    PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType1,
-)
-from .post_transcode_by_transcode_job_id_position_by_position_response_default_type_1_errors import (
-    PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType1Errors,
-)
-from .post_transcode_response_default_type_0 import PostTranscodeResponseDefaultType0
-from .post_transcode_response_default_type_1 import PostTranscodeResponseDefaultType1
-from .post_transcode_response_default_type_1_errors import (
-    PostTranscodeResponseDefaultType1Errors,
-)
-from .post_transcribe_assets_by_asset_id_profiles_default_response_default_type_0 import (
-    PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType0,
-)
-from .post_transcribe_assets_by_asset_id_profiles_default_response_default_type_1 import (
-    PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType1,
-)
-from .post_transcribe_assets_by_asset_id_profiles_default_response_default_type_1_errors import (
-    PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType1Errors,
-)
-from .post_transcribe_bulk_response_default_type_0 import (
-    PostTranscribeBulkResponseDefaultType0,
-)
-from .post_transcribe_bulk_response_default_type_1 import (
-    PostTranscribeBulkResponseDefaultType1,
-)
-from .post_transcribe_bulk_response_default_type_1_errors import (
-    PostTranscribeBulkResponseDefaultType1Errors,
-)
-from .put_edge_transcode_workers_by_worker_id_response_default_type_0 import (
-    PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType0,
-)
-from .put_edge_transcode_workers_by_worker_id_response_default_type_1 import (
-    PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType1,
-)
-from .put_edge_transcode_workers_by_worker_id_response_default_type_1_errors import (
-    PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType1Errors,
-)
-from .put_transcode_by_transcode_job_id_priority_by_priority_response_default_type_0 import (
-    PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType0,
-)
-from .put_transcode_by_transcode_job_id_priority_by_priority_response_default_type_1 import (
-    PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType1,
-)
-from .put_transcode_by_transcode_job_id_priority_by_priority_response_default_type_1_errors import (
-    PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType1Errors,
+from .put_transcode_by_transcode_job_id_priority_by_priority_response_default import (
+    PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefault,
 )
 from .reindex_queue_record_schema import ReindexQueueRecordSchema
 from .specified_keyframes import SpecifiedKeyframes
@@ -457,21 +225,11 @@ __all__ = (
     "BulkMetadataFillingSchemaObjectType",
     "BulkTranscribeSchema",
     "BulkTranscribeSchemaObjectType",
-    "DeleteEdgeTranscodeWorkersByWorkerIdResponseDefaultType0",
-    "DeleteEdgeTranscodeWorkersByWorkerIdResponseDefaultType1",
-    "DeleteEdgeTranscodeWorkersByWorkerIdResponseDefaultType1Errors",
-    "DeleteStoragesByStorageIdFilesByFileIdTranscodeResponseDefaultType0",
-    "DeleteStoragesByStorageIdFilesByFileIdTranscodeResponseDefaultType1",
-    "DeleteStoragesByStorageIdFilesByFileIdTranscodeResponseDefaultType1Errors",
-    "DeleteStoragesByStorageIdResponseDefaultType0",
-    "DeleteStoragesByStorageIdResponseDefaultType1",
-    "DeleteStoragesByStorageIdResponseDefaultType1Errors",
-    "DeleteStoragesByStorageIdTranscodeByRecordIdResponseDefaultType0",
-    "DeleteStoragesByStorageIdTranscodeByRecordIdResponseDefaultType1",
-    "DeleteStoragesByStorageIdTranscodeByRecordIdResponseDefaultType1Errors",
-    "DeleteTranscodeByTranscodeJobIdResponseDefaultType0",
-    "DeleteTranscodeByTranscodeJobIdResponseDefaultType1",
-    "DeleteTranscodeByTranscodeJobIdResponseDefaultType1Errors",
+    "DeleteEdgeTranscodeWorkersByWorkerIdResponseDefault",
+    "DeleteStoragesByStorageIdFilesByFileIdTranscodeResponseDefault",
+    "DeleteStoragesByStorageIdResponseDefault",
+    "DeleteStoragesByStorageIdTranscodeByRecordIdResponseDefault",
+    "DeleteTranscodeByTranscodeJobIdResponseDefault",
     "EdgeThumbnailJobFieldSchema",
     "EdgeTranscodeEndpointSchema",
     "EdgeTranscodeEndpointSchemaDataType0",
@@ -488,42 +246,18 @@ __all__ = (
     "FacetBucketSchema",
     "FacetSchema",
     "GenerateCollectionKeyframeSchema",
-    "GetEdgeTranscodeWorkersByWorkerIdResponseDefaultType0",
-    "GetEdgeTranscodeWorkersByWorkerIdResponseDefaultType1",
-    "GetEdgeTranscodeWorkersByWorkerIdResponseDefaultType1Errors",
-    "GetEdgeTranscodeWorkersResponseDefaultType0",
-    "GetEdgeTranscodeWorkersResponseDefaultType1",
-    "GetEdgeTranscodeWorkersResponseDefaultType1Errors",
-    "GetMetadataFillingProposalsAssetsByAssetIdVersionsByVersionIdResponseDefaultType0",
-    "GetMetadataFillingProposalsAssetsByAssetIdVersionsByVersionIdResponseDefaultType1",
-    "GetMetadataFillingProposalsAssetsByAssetIdVersionsByVersionIdResponseDefaultType1Errors",
-    "GetMetadataFillingProposalsByJobIdResponseDefaultType0",
-    "GetMetadataFillingProposalsByJobIdResponseDefaultType1",
-    "GetMetadataFillingProposalsByJobIdResponseDefaultType1Errors",
-    "GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType0",
-    "GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType1",
-    "GetStoragesByStorageIdEdgeTranscodeJobsResponseDefaultType1Errors",
-    "GetStoragesByStorageIdTranscodeByRecordIdResponseDefaultType0",
-    "GetStoragesByStorageIdTranscodeByRecordIdResponseDefaultType1",
-    "GetStoragesByStorageIdTranscodeByRecordIdResponseDefaultType1Errors",
-    "GetStoragesByStorageIdTranscodeResponseDefaultType0",
-    "GetStoragesByStorageIdTranscodeResponseDefaultType1",
-    "GetStoragesByStorageIdTranscodeResponseDefaultType1Errors",
-    "GetTranscodeByObjectTypeByObjectIdResponseDefaultType0",
-    "GetTranscodeByObjectTypeByObjectIdResponseDefaultType1",
-    "GetTranscodeByObjectTypeByObjectIdResponseDefaultType1Errors",
-    "GetTranscodeByObjectTypeByObjectIdVersionsByVersionIdResponseDefaultType0",
-    "GetTranscodeByObjectTypeByObjectIdVersionsByVersionIdResponseDefaultType1",
-    "GetTranscodeByObjectTypeByObjectIdVersionsByVersionIdResponseDefaultType1Errors",
-    "GetTranscodeByTranscodeJobIdResponseDefaultType0",
-    "GetTranscodeByTranscodeJobIdResponseDefaultType1",
-    "GetTranscodeByTranscodeJobIdResponseDefaultType1Errors",
-    "GetTranscodeQueueResponseDefaultType0",
-    "GetTranscodeQueueResponseDefaultType1",
-    "GetTranscodeQueueResponseDefaultType1Errors",
-    "GetTranscodeQueueSystemResponseDefaultType0",
-    "GetTranscodeQueueSystemResponseDefaultType1",
-    "GetTranscodeQueueSystemResponseDefaultType1Errors",
+    "GetEdgeTranscodeWorkersByWorkerIdResponseDefault",
+    "GetEdgeTranscodeWorkersResponseDefault",
+    "GetMetadataFillingProposalsAssetsByAssetIdVersionsByVersionIdResponseDefault",
+    "GetMetadataFillingProposalsByJobIdResponseDefault",
+    "GetStoragesByStorageIdEdgeTranscodeJobsResponseDefault",
+    "GetStoragesByStorageIdTranscodeByRecordIdResponseDefault",
+    "GetStoragesByStorageIdTranscodeResponseDefault",
+    "GetTranscodeByObjectTypeByObjectIdResponseDefault",
+    "GetTranscodeByObjectTypeByObjectIdVersionsByVersionIdResponseDefault",
+    "GetTranscodeByTranscodeJobIdResponseDefault",
+    "GetTranscodeQueueResponseDefault",
+    "GetTranscodeQueueSystemResponseDefault",
     "InputSchema",
     "JobBaseSchema",
     "JobSchema",
@@ -551,69 +285,27 @@ __all__ = (
     "OutputEndpointHeadersType0",
     "OutputEndpointSchema",
     "OutputEndpointSchemaHeadersType0",
-    "PatchEdgeTranscodeWorkersByWorkerIdResponseDefaultType0",
-    "PatchEdgeTranscodeWorkersByWorkerIdResponseDefaultType1",
-    "PatchEdgeTranscodeWorkersByWorkerIdResponseDefaultType1Errors",
-    "PostAnalyzeAssetsByAssetIdProfilesByProfileIdResponseDefaultType0",
-    "PostAnalyzeAssetsByAssetIdProfilesByProfileIdResponseDefaultType1",
-    "PostAnalyzeAssetsByAssetIdProfilesByProfileIdResponseDefaultType1Errors",
-    "PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType0",
-    "PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType1",
-    "PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType1Errors",
-    "PostAnalyzeAssetsByAssetIdProfilesDefaultResponseDefaultType0",
-    "PostAnalyzeAssetsByAssetIdProfilesDefaultResponseDefaultType1",
-    "PostAnalyzeAssetsByAssetIdProfilesDefaultResponseDefaultType1Errors",
-    "PostAnalyzeAssetsByAssetIdResponseDefaultType0",
-    "PostAnalyzeAssetsByAssetIdResponseDefaultType1",
-    "PostAnalyzeAssetsByAssetIdResponseDefaultType1Errors",
-    "PostAnalyzeBulkResponseDefaultType0",
-    "PostAnalyzeBulkResponseDefaultType1",
-    "PostAnalyzeBulkResponseDefaultType1Errors",
-    "PostEdgeTranscodeJobsByJobIdAcknowledgeResponseDefaultType0",
-    "PostEdgeTranscodeJobsByJobIdAcknowledgeResponseDefaultType1",
-    "PostEdgeTranscodeJobsByJobIdAcknowledgeResponseDefaultType1Errors",
-    "PostEdgeTranscodeWorkersResponseDefaultType0",
-    "PostEdgeTranscodeWorkersResponseDefaultType1",
-    "PostEdgeTranscodeWorkersResponseDefaultType1Errors",
-    "PostKeyframesCollectionsByCollectionIdResponseDefaultType0",
-    "PostKeyframesCollectionsByCollectionIdResponseDefaultType1",
-    "PostKeyframesCollectionsByCollectionIdResponseDefaultType1Errors",
-    "PostKeyframesPlaylistsByPlaylistIdResponseDefaultType0",
-    "PostKeyframesPlaylistsByPlaylistIdResponseDefaultType1",
-    "PostKeyframesPlaylistsByPlaylistIdResponseDefaultType1Errors",
-    "PostMetadataFillingAssetsByAssetIdVersionsByVersionIdResponseDefaultType0",
-    "PostMetadataFillingAssetsByAssetIdVersionsByVersionIdResponseDefaultType1",
-    "PostMetadataFillingAssetsByAssetIdVersionsByVersionIdResponseDefaultType1Errors",
-    "PostMetadataFillingBulkResponseDefaultType0",
-    "PostMetadataFillingBulkResponseDefaultType1",
-    "PostMetadataFillingBulkResponseDefaultType1Errors",
-    "PostMetadataFillingProposalsByJobIdAcceptResponseDefaultType0",
-    "PostMetadataFillingProposalsByJobIdAcceptResponseDefaultType1",
-    "PostMetadataFillingProposalsByJobIdAcceptResponseDefaultType1Errors",
-    "PostMetadataFillingProposalsByJobIdDiscardResponseDefaultType0",
-    "PostMetadataFillingProposalsByJobIdDiscardResponseDefaultType1",
-    "PostMetadataFillingProposalsByJobIdDiscardResponseDefaultType1Errors",
-    "PostMetadataFillingProposalsByJobIdRegenerateResponseDefaultType0",
-    "PostMetadataFillingProposalsByJobIdRegenerateResponseDefaultType1",
-    "PostMetadataFillingProposalsByJobIdRegenerateResponseDefaultType1Errors",
-    "PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType0",
-    "PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType1",
-    "PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType1Errors",
-    "PostTranscodeResponseDefaultType0",
-    "PostTranscodeResponseDefaultType1",
-    "PostTranscodeResponseDefaultType1Errors",
-    "PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType0",
-    "PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType1",
-    "PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType1Errors",
-    "PostTranscribeBulkResponseDefaultType0",
-    "PostTranscribeBulkResponseDefaultType1",
-    "PostTranscribeBulkResponseDefaultType1Errors",
-    "PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType0",
-    "PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType1",
-    "PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType1Errors",
-    "PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType0",
-    "PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType1",
-    "PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType1Errors",
+    "PatchEdgeTranscodeWorkersByWorkerIdResponseDefault",
+    "PostAnalyzeAssetsByAssetIdProfilesByProfileIdResponseDefault",
+    "PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefault",
+    "PostAnalyzeAssetsByAssetIdProfilesDefaultResponseDefault",
+    "PostAnalyzeAssetsByAssetIdResponseDefault",
+    "PostAnalyzeBulkResponseDefault",
+    "PostEdgeTranscodeJobsByJobIdAcknowledgeResponseDefault",
+    "PostEdgeTranscodeWorkersResponseDefault",
+    "PostKeyframesCollectionsByCollectionIdResponseDefault",
+    "PostKeyframesPlaylistsByPlaylistIdResponseDefault",
+    "PostMetadataFillingAssetsByAssetIdVersionsByVersionIdResponseDefault",
+    "PostMetadataFillingBulkResponseDefault",
+    "PostMetadataFillingProposalsByJobIdAcceptResponseDefault",
+    "PostMetadataFillingProposalsByJobIdDiscardResponseDefault",
+    "PostMetadataFillingProposalsByJobIdRegenerateResponseDefault",
+    "PostTranscodeByTranscodeJobIdPositionByPositionResponseDefault",
+    "PostTranscodeResponseDefault",
+    "PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefault",
+    "PostTranscribeBulkResponseDefault",
+    "PutEdgeTranscodeWorkersByWorkerIdResponseDefault",
+    "PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefault",
     "ReindexQueueRecordSchema",
     "SpecifiedKeyframes",
     "SpecifiedKeyframesSchema",

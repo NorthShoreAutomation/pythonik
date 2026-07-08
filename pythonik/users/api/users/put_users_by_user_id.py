@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.put_users_by_user_id_response_default_type_0 import (
-    PutUsersByUserIdResponseDefaultType0,
-)
-from ...models.put_users_by_user_id_response_default_type_1 import (
-    PutUsersByUserIdResponseDefaultType1,
+from ...models.put_users_by_user_id_response_default import (
+    PutUsersByUserIdResponseDefault,
 )
 from ...models.user_schema import UserSchema
 from ...types import Response
@@ -39,12 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PutUsersByUserIdResponseDefaultType0
-    | PutUsersByUserIdResponseDefaultType1
-    | UserSchema
-):
+) -> Any | PutUsersByUserIdResponseDefault | UserSchema:
     if response.status_code == 200:
         response_200 = UserSchema.from_dict(response.json())
 
@@ -62,38 +54,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> PutUsersByUserIdResponseDefaultType0 | PutUsersByUserIdResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PutUsersByUserIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PutUsersByUserIdResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutUsersByUserIdResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PutUsersByUserIdResponseDefaultType0
-    | PutUsersByUserIdResponseDefaultType1
-    | UserSchema
-]:
+) -> Response[Any | PutUsersByUserIdResponseDefault | UserSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -107,12 +75,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: UserSchema,
-) -> Response[
-    Any
-    | PutUsersByUserIdResponseDefaultType0
-    | PutUsersByUserIdResponseDefaultType1
-    | UserSchema
-]:
+) -> Response[Any | PutUsersByUserIdResponseDefault | UserSchema]:
     """Update user
 
 
@@ -128,7 +91,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutUsersByUserIdResponseDefaultType0 | PutUsersByUserIdResponseDefaultType1 | UserSchema]
+        Response[Any | PutUsersByUserIdResponseDefault | UserSchema]
     """
 
     kwargs = _get_kwargs(
@@ -148,13 +111,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: UserSchema,
-) -> (
-    Any
-    | PutUsersByUserIdResponseDefaultType0
-    | PutUsersByUserIdResponseDefaultType1
-    | UserSchema
-    | None
-):
+) -> Any | PutUsersByUserIdResponseDefault | UserSchema | None:
     """Update user
 
 
@@ -170,7 +127,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutUsersByUserIdResponseDefaultType0 | PutUsersByUserIdResponseDefaultType1 | UserSchema
+        Any | PutUsersByUserIdResponseDefault | UserSchema
     """
 
     return sync_detailed(
@@ -185,12 +142,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: UserSchema,
-) -> Response[
-    Any
-    | PutUsersByUserIdResponseDefaultType0
-    | PutUsersByUserIdResponseDefaultType1
-    | UserSchema
-]:
+) -> Response[Any | PutUsersByUserIdResponseDefault | UserSchema]:
     """Update user
 
 
@@ -206,7 +158,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutUsersByUserIdResponseDefaultType0 | PutUsersByUserIdResponseDefaultType1 | UserSchema]
+        Response[Any | PutUsersByUserIdResponseDefault | UserSchema]
     """
 
     kwargs = _get_kwargs(
@@ -224,13 +176,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: UserSchema,
-) -> (
-    Any
-    | PutUsersByUserIdResponseDefaultType0
-    | PutUsersByUserIdResponseDefaultType1
-    | UserSchema
-    | None
-):
+) -> Any | PutUsersByUserIdResponseDefault | UserSchema | None:
     """Update user
 
 
@@ -246,7 +192,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutUsersByUserIdResponseDefaultType0 | PutUsersByUserIdResponseDefaultType1 | UserSchema
+        Any | PutUsersByUserIdResponseDefault | UserSchema
     """
 
     return (

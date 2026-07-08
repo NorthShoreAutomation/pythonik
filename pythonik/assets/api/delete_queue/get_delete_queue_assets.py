@@ -5,11 +5,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.assets_schema import AssetsSchema
-from ...models.get_delete_queue_assets_response_default_type_0 import (
-    GetDeleteQueueAssetsResponseDefaultType0,
-)
-from ...models.get_delete_queue_assets_response_default_type_1 import (
-    GetDeleteQueueAssetsResponseDefaultType1,
+from ...models.get_delete_queue_assets_response_default import (
+    GetDeleteQueueAssetsResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -17,7 +14,7 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     *,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
     filter_: str | Unset = UNSET,
 ) -> dict[str, Any]:
@@ -45,12 +42,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | AssetsSchema
-    | GetDeleteQueueAssetsResponseDefaultType0
-    | GetDeleteQueueAssetsResponseDefaultType1
-):
+) -> Any | AssetsSchema | GetDeleteQueueAssetsResponseDefault:
     if response.status_code == 200:
         response_200 = AssetsSchema.from_dict(response.json())
 
@@ -68,43 +60,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetDeleteQueueAssetsResponseDefaultType0
-        | GetDeleteQueueAssetsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetDeleteQueueAssetsResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetDeleteQueueAssetsResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetDeleteQueueAssetsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | AssetsSchema
-    | GetDeleteQueueAssetsResponseDefaultType0
-    | GetDeleteQueueAssetsResponseDefaultType1
-]:
+) -> Response[Any | AssetsSchema | GetDeleteQueueAssetsResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -117,15 +80,10 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
     filter_: str | Unset = UNSET,
-) -> Response[
-    Any
-    | AssetsSchema
-    | GetDeleteQueueAssetsResponseDefaultType0
-    | GetDeleteQueueAssetsResponseDefaultType1
-]:
+) -> Response[Any | AssetsSchema | GetDeleteQueueAssetsResponseDefault]:
     """Get deleted objects
 
 
@@ -134,7 +92,7 @@ def sync_detailed(
 
     Args:
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         sort (str | Unset):
         filter_ (str | Unset):
 
@@ -143,7 +101,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AssetsSchema | GetDeleteQueueAssetsResponseDefaultType0 | GetDeleteQueueAssetsResponseDefaultType1]
+        Response[Any | AssetsSchema | GetDeleteQueueAssetsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -164,16 +122,10 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
     filter_: str | Unset = UNSET,
-) -> (
-    Any
-    | AssetsSchema
-    | GetDeleteQueueAssetsResponseDefaultType0
-    | GetDeleteQueueAssetsResponseDefaultType1
-    | None
-):
+) -> Any | AssetsSchema | GetDeleteQueueAssetsResponseDefault | None:
     """Get deleted objects
 
 
@@ -182,7 +134,7 @@ def sync(
 
     Args:
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         sort (str | Unset):
         filter_ (str | Unset):
 
@@ -191,7 +143,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AssetsSchema | GetDeleteQueueAssetsResponseDefaultType0 | GetDeleteQueueAssetsResponseDefaultType1
+        Any | AssetsSchema | GetDeleteQueueAssetsResponseDefault
     """
 
     return sync_detailed(
@@ -207,15 +159,10 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
     filter_: str | Unset = UNSET,
-) -> Response[
-    Any
-    | AssetsSchema
-    | GetDeleteQueueAssetsResponseDefaultType0
-    | GetDeleteQueueAssetsResponseDefaultType1
-]:
+) -> Response[Any | AssetsSchema | GetDeleteQueueAssetsResponseDefault]:
     """Get deleted objects
 
 
@@ -224,7 +171,7 @@ async def asyncio_detailed(
 
     Args:
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         sort (str | Unset):
         filter_ (str | Unset):
 
@@ -233,7 +180,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AssetsSchema | GetDeleteQueueAssetsResponseDefaultType0 | GetDeleteQueueAssetsResponseDefaultType1]
+        Response[Any | AssetsSchema | GetDeleteQueueAssetsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -252,16 +199,10 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
     filter_: str | Unset = UNSET,
-) -> (
-    Any
-    | AssetsSchema
-    | GetDeleteQueueAssetsResponseDefaultType0
-    | GetDeleteQueueAssetsResponseDefaultType1
-    | None
-):
+) -> Any | AssetsSchema | GetDeleteQueueAssetsResponseDefault | None:
     """Get deleted objects
 
 
@@ -270,7 +211,7 @@ async def asyncio(
 
     Args:
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         sort (str | Unset):
         filter_ (str | Unset):
 
@@ -279,7 +220,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AssetsSchema | GetDeleteQueueAssetsResponseDefaultType0 | GetDeleteQueueAssetsResponseDefaultType1
+        Any | AssetsSchema | GetDeleteQueueAssetsResponseDefault
     """
 
     return (

@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.patch_assets_by_asset_id_subtitles_by_subtitle_id_response_default_type_0 import (
-    PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0,
-)
-from ...models.patch_assets_by_asset_id_subtitles_by_subtitle_id_response_default_type_1 import (
-    PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1,
+from ...models.patch_assets_by_asset_id_subtitles_by_subtitle_id_response_default import (
+    PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault,
 )
 from ...models.subtitle_schema import SubtitleSchema
 from ...types import Response
@@ -41,12 +38,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0
-    | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1
-    | SubtitleSchema
-):
+) -> Any | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault | SubtitleSchema:
     if response.status_code == 200:
         response_200 = SubtitleSchema.from_dict(response.json())
 
@@ -64,35 +56,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0
-        | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -100,10 +68,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0
-    | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1
-    | SubtitleSchema
+    Any | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault | SubtitleSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -120,10 +85,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: SubtitleSchema,
 ) -> Response[
-    Any
-    | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0
-    | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1
-    | SubtitleSchema
+    Any | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault | SubtitleSchema
 ]:
     """Update subtitle information
 
@@ -141,7 +103,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0 | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1 | SubtitleSchema]
+        Response[Any | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault | SubtitleSchema]
     """
 
     kwargs = _get_kwargs(
@@ -165,8 +127,7 @@ def sync(
     body: SubtitleSchema,
 ) -> (
     Any
-    | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0
-    | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1
+    | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault
     | SubtitleSchema
     | None
 ):
@@ -186,7 +147,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0 | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1 | SubtitleSchema
+        Any | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault | SubtitleSchema
     """
 
     return sync_detailed(
@@ -204,10 +165,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: SubtitleSchema,
 ) -> Response[
-    Any
-    | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0
-    | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1
-    | SubtitleSchema
+    Any | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault | SubtitleSchema
 ]:
     """Update subtitle information
 
@@ -225,7 +183,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0 | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1 | SubtitleSchema]
+        Response[Any | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault | SubtitleSchema]
     """
 
     kwargs = _get_kwargs(
@@ -247,8 +205,7 @@ async def asyncio(
     body: SubtitleSchema,
 ) -> (
     Any
-    | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0
-    | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1
+    | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault
     | SubtitleSchema
     | None
 ):
@@ -268,7 +225,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0 | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1 | SubtitleSchema
+        Any | PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault | SubtitleSchema
     """
 
     return (

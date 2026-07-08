@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_storages_by_storage_id_gateway_events_response_default_type_0 import (
-    GetStoragesByStorageIdGatewayEventsResponseDefaultType0,
-)
-from ...models.get_storages_by_storage_id_gateway_events_response_default_type_1 import (
-    GetStoragesByStorageIdGatewayEventsResponseDefaultType1,
+from ...models.get_storages_by_storage_id_gateway_events_response_default import (
+    GetStoragesByStorageIdGatewayEventsResponseDefault,
 )
 from ...models.iconik_storage_gateway_events_schema import (
     IconikStorageGatewayEventsSchema,
@@ -44,8 +41,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | GetStoragesByStorageIdGatewayEventsResponseDefaultType0
-    | GetStoragesByStorageIdGatewayEventsResponseDefaultType1
+    | GetStoragesByStorageIdGatewayEventsResponseDefault
     | IconikStorageGatewayEventsSchema
 ):
     if response.status_code == 200:
@@ -65,31 +61,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetStoragesByStorageIdGatewayEventsResponseDefaultType0
-        | GetStoragesByStorageIdGatewayEventsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetStoragesByStorageIdGatewayEventsResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetStoragesByStorageIdGatewayEventsResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetStoragesByStorageIdGatewayEventsResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -98,8 +72,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | GetStoragesByStorageIdGatewayEventsResponseDefaultType0
-    | GetStoragesByStorageIdGatewayEventsResponseDefaultType1
+    | GetStoragesByStorageIdGatewayEventsResponseDefault
     | IconikStorageGatewayEventsSchema
 ]:
     return Response(
@@ -117,8 +90,7 @@ def sync_detailed(
     last_id: str | Unset = UNSET,
 ) -> Response[
     Any
-    | GetStoragesByStorageIdGatewayEventsResponseDefaultType0
-    | GetStoragesByStorageIdGatewayEventsResponseDefaultType1
+    | GetStoragesByStorageIdGatewayEventsResponseDefault
     | IconikStorageGatewayEventsSchema
 ]:
     """Get pending storage gateway events
@@ -132,7 +104,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetStoragesByStorageIdGatewayEventsResponseDefaultType0 | GetStoragesByStorageIdGatewayEventsResponseDefaultType1 | IconikStorageGatewayEventsSchema]
+        Response[Any | GetStoragesByStorageIdGatewayEventsResponseDefault | IconikStorageGatewayEventsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -154,8 +126,7 @@ def sync(
     last_id: str | Unset = UNSET,
 ) -> (
     Any
-    | GetStoragesByStorageIdGatewayEventsResponseDefaultType0
-    | GetStoragesByStorageIdGatewayEventsResponseDefaultType1
+    | GetStoragesByStorageIdGatewayEventsResponseDefault
     | IconikStorageGatewayEventsSchema
     | None
 ):
@@ -170,7 +141,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetStoragesByStorageIdGatewayEventsResponseDefaultType0 | GetStoragesByStorageIdGatewayEventsResponseDefaultType1 | IconikStorageGatewayEventsSchema
+        Any | GetStoragesByStorageIdGatewayEventsResponseDefault | IconikStorageGatewayEventsSchema
     """
 
     return sync_detailed(
@@ -187,8 +158,7 @@ async def asyncio_detailed(
     last_id: str | Unset = UNSET,
 ) -> Response[
     Any
-    | GetStoragesByStorageIdGatewayEventsResponseDefaultType0
-    | GetStoragesByStorageIdGatewayEventsResponseDefaultType1
+    | GetStoragesByStorageIdGatewayEventsResponseDefault
     | IconikStorageGatewayEventsSchema
 ]:
     """Get pending storage gateway events
@@ -202,7 +172,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetStoragesByStorageIdGatewayEventsResponseDefaultType0 | GetStoragesByStorageIdGatewayEventsResponseDefaultType1 | IconikStorageGatewayEventsSchema]
+        Response[Any | GetStoragesByStorageIdGatewayEventsResponseDefault | IconikStorageGatewayEventsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -222,8 +192,7 @@ async def asyncio(
     last_id: str | Unset = UNSET,
 ) -> (
     Any
-    | GetStoragesByStorageIdGatewayEventsResponseDefaultType0
-    | GetStoragesByStorageIdGatewayEventsResponseDefaultType1
+    | GetStoragesByStorageIdGatewayEventsResponseDefault
     | IconikStorageGatewayEventsSchema
     | None
 ):
@@ -238,7 +207,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetStoragesByStorageIdGatewayEventsResponseDefaultType0 | GetStoragesByStorageIdGatewayEventsResponseDefaultType1 | IconikStorageGatewayEventsSchema
+        Any | GetStoragesByStorageIdGatewayEventsResponseDefault | IconikStorageGatewayEventsSchema
     """
 
     return (

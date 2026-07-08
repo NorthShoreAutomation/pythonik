@@ -7,11 +7,8 @@ import httpx
 from ...client import AuthenticatedClient, Client
 from ...models.collection_input_schema import CollectionInputSchema
 from ...models.collection_schema import CollectionSchema
-from ...models.patch_collections_by_collection_id_response_default_type_0 import (
-    PatchCollectionsByCollectionIdResponseDefaultType0,
-)
-from ...models.patch_collections_by_collection_id_response_default_type_1 import (
-    PatchCollectionsByCollectionIdResponseDefaultType1,
+from ...models.patch_collections_by_collection_id_response_default import (
+    PatchCollectionsByCollectionIdResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -20,7 +17,7 @@ def _get_kwargs(
     collection_id: str,
     *,
     body: CollectionInputSchema,
-    change_parent_mode: str | Unset = "move",
+    change_parent_mode: str | Unset = UNSET,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -48,12 +45,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | CollectionSchema
-    | PatchCollectionsByCollectionIdResponseDefaultType0
-    | PatchCollectionsByCollectionIdResponseDefaultType1
-):
+) -> Any | CollectionSchema | PatchCollectionsByCollectionIdResponseDefault:
     if response.status_code == 200:
         response_200 = CollectionSchema.from_dict(response.json())
 
@@ -71,43 +63,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PatchCollectionsByCollectionIdResponseDefaultType0
-        | PatchCollectionsByCollectionIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PatchCollectionsByCollectionIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PatchCollectionsByCollectionIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PatchCollectionsByCollectionIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | CollectionSchema
-    | PatchCollectionsByCollectionIdResponseDefaultType0
-    | PatchCollectionsByCollectionIdResponseDefaultType1
-]:
+) -> Response[Any | CollectionSchema | PatchCollectionsByCollectionIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -121,13 +86,8 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: CollectionInputSchema,
-    change_parent_mode: str | Unset = "move",
-) -> Response[
-    Any
-    | CollectionSchema
-    | PatchCollectionsByCollectionIdResponseDefaultType0
-    | PatchCollectionsByCollectionIdResponseDefaultType1
-]:
+    change_parent_mode: str | Unset = UNSET,
+) -> Response[Any | CollectionSchema | PatchCollectionsByCollectionIdResponseDefault]:
     """Update collection
 
 
@@ -136,7 +96,7 @@ def sync_detailed(
 
     Args:
         collection_id (str):
-        change_parent_mode (str | Unset):  Default: 'move'.
+        change_parent_mode (str | Unset):
         body (CollectionInputSchema):
 
     Raises:
@@ -144,7 +104,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CollectionSchema | PatchCollectionsByCollectionIdResponseDefaultType0 | PatchCollectionsByCollectionIdResponseDefaultType1]
+        Response[Any | CollectionSchema | PatchCollectionsByCollectionIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -165,14 +125,8 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: CollectionInputSchema,
-    change_parent_mode: str | Unset = "move",
-) -> (
-    Any
-    | CollectionSchema
-    | PatchCollectionsByCollectionIdResponseDefaultType0
-    | PatchCollectionsByCollectionIdResponseDefaultType1
-    | None
-):
+    change_parent_mode: str | Unset = UNSET,
+) -> Any | CollectionSchema | PatchCollectionsByCollectionIdResponseDefault | None:
     """Update collection
 
 
@@ -181,7 +135,7 @@ def sync(
 
     Args:
         collection_id (str):
-        change_parent_mode (str | Unset):  Default: 'move'.
+        change_parent_mode (str | Unset):
         body (CollectionInputSchema):
 
     Raises:
@@ -189,7 +143,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CollectionSchema | PatchCollectionsByCollectionIdResponseDefaultType0 | PatchCollectionsByCollectionIdResponseDefaultType1
+        Any | CollectionSchema | PatchCollectionsByCollectionIdResponseDefault
     """
 
     return sync_detailed(
@@ -205,13 +159,8 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: CollectionInputSchema,
-    change_parent_mode: str | Unset = "move",
-) -> Response[
-    Any
-    | CollectionSchema
-    | PatchCollectionsByCollectionIdResponseDefaultType0
-    | PatchCollectionsByCollectionIdResponseDefaultType1
-]:
+    change_parent_mode: str | Unset = UNSET,
+) -> Response[Any | CollectionSchema | PatchCollectionsByCollectionIdResponseDefault]:
     """Update collection
 
 
@@ -220,7 +169,7 @@ async def asyncio_detailed(
 
     Args:
         collection_id (str):
-        change_parent_mode (str | Unset):  Default: 'move'.
+        change_parent_mode (str | Unset):
         body (CollectionInputSchema):
 
     Raises:
@@ -228,7 +177,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CollectionSchema | PatchCollectionsByCollectionIdResponseDefaultType0 | PatchCollectionsByCollectionIdResponseDefaultType1]
+        Response[Any | CollectionSchema | PatchCollectionsByCollectionIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -247,14 +196,8 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: CollectionInputSchema,
-    change_parent_mode: str | Unset = "move",
-) -> (
-    Any
-    | CollectionSchema
-    | PatchCollectionsByCollectionIdResponseDefaultType0
-    | PatchCollectionsByCollectionIdResponseDefaultType1
-    | None
-):
+    change_parent_mode: str | Unset = UNSET,
+) -> Any | CollectionSchema | PatchCollectionsByCollectionIdResponseDefault | None:
     """Update collection
 
 
@@ -263,7 +206,7 @@ async def asyncio(
 
     Args:
         collection_id (str):
-        change_parent_mode (str | Unset):  Default: 'move'.
+        change_parent_mode (str | Unset):
         body (CollectionInputSchema):
 
     Raises:
@@ -271,7 +214,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CollectionSchema | PatchCollectionsByCollectionIdResponseDefaultType0 | PatchCollectionsByCollectionIdResponseDefaultType1
+        Any | CollectionSchema | PatchCollectionsByCollectionIdResponseDefault
     """
 
     return (

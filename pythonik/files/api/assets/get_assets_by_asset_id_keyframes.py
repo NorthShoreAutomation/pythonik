@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_assets_by_asset_id_keyframes_response_default_type_0 import (
-    GetAssetsByAssetIdKeyframesResponseDefaultType0,
-)
-from ...models.get_assets_by_asset_id_keyframes_response_default_type_1 import (
-    GetAssetsByAssetIdKeyframesResponseDefaultType1,
+from ...models.get_assets_by_asset_id_keyframes_response_default import (
+    GetAssetsByAssetIdKeyframesResponseDefault,
 )
 from ...models.keyframes_schema import KeyframesSchema
 from ...types import UNSET, Response, Unset
@@ -18,9 +15,9 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     asset_id: str,
     *,
-    per_page: int | Unset = 10,
-    generate_signed_url: bool | Unset = True,
-    content_disposition: str | Unset = "inline",
+    per_page: int | Unset = UNSET,
+    generate_signed_url: bool | Unset = UNSET,
+    content_disposition: str | Unset = UNSET,
     last_id: str | Unset = UNSET,
     include_all_versions: bool | Unset = UNSET,
 ) -> dict[str, Any]:
@@ -52,12 +49,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetAssetsByAssetIdKeyframesResponseDefaultType0
-    | GetAssetsByAssetIdKeyframesResponseDefaultType1
-    | KeyframesSchema
-):
+) -> Any | GetAssetsByAssetIdKeyframesResponseDefault | KeyframesSchema:
     if response.status_code == 200:
         response_200 = KeyframesSchema.from_dict(response.json())
 
@@ -71,43 +63,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsByAssetIdKeyframesResponseDefaultType0
-        | GetAssetsByAssetIdKeyframesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetAssetsByAssetIdKeyframesResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetAssetsByAssetIdKeyframesResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAssetsByAssetIdKeyframesResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetAssetsByAssetIdKeyframesResponseDefaultType0
-    | GetAssetsByAssetIdKeyframesResponseDefaultType1
-    | KeyframesSchema
-]:
+) -> Response[Any | GetAssetsByAssetIdKeyframesResponseDefault | KeyframesSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -120,17 +85,12 @@ def sync_detailed(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
-    generate_signed_url: bool | Unset = True,
-    content_disposition: str | Unset = "inline",
+    per_page: int | Unset = UNSET,
+    generate_signed_url: bool | Unset = UNSET,
+    content_disposition: str | Unset = UNSET,
     last_id: str | Unset = UNSET,
     include_all_versions: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | GetAssetsByAssetIdKeyframesResponseDefaultType0
-    | GetAssetsByAssetIdKeyframesResponseDefaultType1
-    | KeyframesSchema
-]:
+) -> Response[Any | GetAssetsByAssetIdKeyframesResponseDefault | KeyframesSchema]:
     """Get all asset's keyframes
 
 
@@ -139,9 +99,9 @@ def sync_detailed(
 
     Args:
         asset_id (str):
-        per_page (int | Unset):  Default: 10.
-        generate_signed_url (bool | Unset):  Default: True.
-        content_disposition (str | Unset):  Default: 'inline'.
+        per_page (int | Unset):
+        generate_signed_url (bool | Unset):
+        content_disposition (str | Unset):
         last_id (str | Unset):
         include_all_versions (bool | Unset):
 
@@ -150,7 +110,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdKeyframesResponseDefaultType0 | GetAssetsByAssetIdKeyframesResponseDefaultType1 | KeyframesSchema]
+        Response[Any | GetAssetsByAssetIdKeyframesResponseDefault | KeyframesSchema]
     """
 
     kwargs = _get_kwargs(
@@ -173,18 +133,12 @@ def sync(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
-    generate_signed_url: bool | Unset = True,
-    content_disposition: str | Unset = "inline",
+    per_page: int | Unset = UNSET,
+    generate_signed_url: bool | Unset = UNSET,
+    content_disposition: str | Unset = UNSET,
     last_id: str | Unset = UNSET,
     include_all_versions: bool | Unset = UNSET,
-) -> (
-    Any
-    | GetAssetsByAssetIdKeyframesResponseDefaultType0
-    | GetAssetsByAssetIdKeyframesResponseDefaultType1
-    | KeyframesSchema
-    | None
-):
+) -> Any | GetAssetsByAssetIdKeyframesResponseDefault | KeyframesSchema | None:
     """Get all asset's keyframes
 
 
@@ -193,9 +147,9 @@ def sync(
 
     Args:
         asset_id (str):
-        per_page (int | Unset):  Default: 10.
-        generate_signed_url (bool | Unset):  Default: True.
-        content_disposition (str | Unset):  Default: 'inline'.
+        per_page (int | Unset):
+        generate_signed_url (bool | Unset):
+        content_disposition (str | Unset):
         last_id (str | Unset):
         include_all_versions (bool | Unset):
 
@@ -204,7 +158,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdKeyframesResponseDefaultType0 | GetAssetsByAssetIdKeyframesResponseDefaultType1 | KeyframesSchema
+        Any | GetAssetsByAssetIdKeyframesResponseDefault | KeyframesSchema
     """
 
     return sync_detailed(
@@ -222,17 +176,12 @@ async def asyncio_detailed(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
-    generate_signed_url: bool | Unset = True,
-    content_disposition: str | Unset = "inline",
+    per_page: int | Unset = UNSET,
+    generate_signed_url: bool | Unset = UNSET,
+    content_disposition: str | Unset = UNSET,
     last_id: str | Unset = UNSET,
     include_all_versions: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | GetAssetsByAssetIdKeyframesResponseDefaultType0
-    | GetAssetsByAssetIdKeyframesResponseDefaultType1
-    | KeyframesSchema
-]:
+) -> Response[Any | GetAssetsByAssetIdKeyframesResponseDefault | KeyframesSchema]:
     """Get all asset's keyframes
 
 
@@ -241,9 +190,9 @@ async def asyncio_detailed(
 
     Args:
         asset_id (str):
-        per_page (int | Unset):  Default: 10.
-        generate_signed_url (bool | Unset):  Default: True.
-        content_disposition (str | Unset):  Default: 'inline'.
+        per_page (int | Unset):
+        generate_signed_url (bool | Unset):
+        content_disposition (str | Unset):
         last_id (str | Unset):
         include_all_versions (bool | Unset):
 
@@ -252,7 +201,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdKeyframesResponseDefaultType0 | GetAssetsByAssetIdKeyframesResponseDefaultType1 | KeyframesSchema]
+        Response[Any | GetAssetsByAssetIdKeyframesResponseDefault | KeyframesSchema]
     """
 
     kwargs = _get_kwargs(
@@ -273,18 +222,12 @@ async def asyncio(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
-    generate_signed_url: bool | Unset = True,
-    content_disposition: str | Unset = "inline",
+    per_page: int | Unset = UNSET,
+    generate_signed_url: bool | Unset = UNSET,
+    content_disposition: str | Unset = UNSET,
     last_id: str | Unset = UNSET,
     include_all_versions: bool | Unset = UNSET,
-) -> (
-    Any
-    | GetAssetsByAssetIdKeyframesResponseDefaultType0
-    | GetAssetsByAssetIdKeyframesResponseDefaultType1
-    | KeyframesSchema
-    | None
-):
+) -> Any | GetAssetsByAssetIdKeyframesResponseDefault | KeyframesSchema | None:
     """Get all asset's keyframes
 
 
@@ -293,9 +236,9 @@ async def asyncio(
 
     Args:
         asset_id (str):
-        per_page (int | Unset):  Default: 10.
-        generate_signed_url (bool | Unset):  Default: True.
-        content_disposition (str | Unset):  Default: 'inline'.
+        per_page (int | Unset):
+        generate_signed_url (bool | Unset):
+        content_disposition (str | Unset):
         last_id (str | Unset):
         include_all_versions (bool | Unset):
 
@@ -304,7 +247,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdKeyframesResponseDefaultType0 | GetAssetsByAssetIdKeyframesResponseDefaultType1 | KeyframesSchema
+        Any | GetAssetsByAssetIdKeyframesResponseDefault | KeyframesSchema
     """
 
     return (

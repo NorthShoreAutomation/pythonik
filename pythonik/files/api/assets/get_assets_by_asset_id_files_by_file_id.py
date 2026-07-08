@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.file_schema import FileSchema
-from ...models.get_assets_by_asset_id_files_by_file_id_response_default_type_0 import (
-    GetAssetsByAssetIdFilesByFileIdResponseDefaultType0,
-)
-from ...models.get_assets_by_asset_id_files_by_file_id_response_default_type_1 import (
-    GetAssetsByAssetIdFilesByFileIdResponseDefaultType1,
+from ...models.get_assets_by_asset_id_files_by_file_id_response_default import (
+    GetAssetsByAssetIdFilesByFileIdResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -19,10 +16,10 @@ def _get_kwargs(
     asset_id: str,
     file_id: str,
     *,
-    generate_signed_post_url: bool | Unset = False,
-    content_disposition: str | Unset = "inline",
+    generate_signed_post_url: bool | Unset = UNSET,
+    content_disposition: str | Unset = UNSET,
     content_type: str | Unset = UNSET,
-    bypass_url_cache: bool | Unset = False,
+    bypass_url_cache: bool | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -51,12 +48,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | FileSchema
-    | GetAssetsByAssetIdFilesByFileIdResponseDefaultType0
-    | GetAssetsByAssetIdFilesByFileIdResponseDefaultType1
-):
+) -> Any | FileSchema | GetAssetsByAssetIdFilesByFileIdResponseDefault:
     if response.status_code == 200:
         response_200 = FileSchema.from_dict(response.json())
 
@@ -70,43 +62,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsByAssetIdFilesByFileIdResponseDefaultType0
-        | GetAssetsByAssetIdFilesByFileIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetAssetsByAssetIdFilesByFileIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetAssetsByAssetIdFilesByFileIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAssetsByAssetIdFilesByFileIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | FileSchema
-    | GetAssetsByAssetIdFilesByFileIdResponseDefaultType0
-    | GetAssetsByAssetIdFilesByFileIdResponseDefaultType1
-]:
+) -> Response[Any | FileSchema | GetAssetsByAssetIdFilesByFileIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -120,16 +85,11 @@ def sync_detailed(
     file_id: str,
     *,
     client: AuthenticatedClient | Client,
-    generate_signed_post_url: bool | Unset = False,
-    content_disposition: str | Unset = "inline",
+    generate_signed_post_url: bool | Unset = UNSET,
+    content_disposition: str | Unset = UNSET,
     content_type: str | Unset = UNSET,
-    bypass_url_cache: bool | Unset = False,
-) -> Response[
-    Any
-    | FileSchema
-    | GetAssetsByAssetIdFilesByFileIdResponseDefaultType0
-    | GetAssetsByAssetIdFilesByFileIdResponseDefaultType1
-]:
+    bypass_url_cache: bool | Unset = UNSET,
+) -> Response[Any | FileSchema | GetAssetsByAssetIdFilesByFileIdResponseDefault]:
     """Get asset's file
 
 
@@ -139,17 +99,17 @@ def sync_detailed(
     Args:
         asset_id (str):
         file_id (str):
-        generate_signed_post_url (bool | Unset):  Default: False.
-        content_disposition (str | Unset):  Default: 'inline'.
+        generate_signed_post_url (bool | Unset):
+        content_disposition (str | Unset):
         content_type (str | Unset):
-        bypass_url_cache (bool | Unset):  Default: False.
+        bypass_url_cache (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | FileSchema | GetAssetsByAssetIdFilesByFileIdResponseDefaultType0 | GetAssetsByAssetIdFilesByFileIdResponseDefaultType1]
+        Response[Any | FileSchema | GetAssetsByAssetIdFilesByFileIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -173,17 +133,11 @@ def sync(
     file_id: str,
     *,
     client: AuthenticatedClient | Client,
-    generate_signed_post_url: bool | Unset = False,
-    content_disposition: str | Unset = "inline",
+    generate_signed_post_url: bool | Unset = UNSET,
+    content_disposition: str | Unset = UNSET,
     content_type: str | Unset = UNSET,
-    bypass_url_cache: bool | Unset = False,
-) -> (
-    Any
-    | FileSchema
-    | GetAssetsByAssetIdFilesByFileIdResponseDefaultType0
-    | GetAssetsByAssetIdFilesByFileIdResponseDefaultType1
-    | None
-):
+    bypass_url_cache: bool | Unset = UNSET,
+) -> Any | FileSchema | GetAssetsByAssetIdFilesByFileIdResponseDefault | None:
     """Get asset's file
 
 
@@ -193,17 +147,17 @@ def sync(
     Args:
         asset_id (str):
         file_id (str):
-        generate_signed_post_url (bool | Unset):  Default: False.
-        content_disposition (str | Unset):  Default: 'inline'.
+        generate_signed_post_url (bool | Unset):
+        content_disposition (str | Unset):
         content_type (str | Unset):
-        bypass_url_cache (bool | Unset):  Default: False.
+        bypass_url_cache (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | FileSchema | GetAssetsByAssetIdFilesByFileIdResponseDefaultType0 | GetAssetsByAssetIdFilesByFileIdResponseDefaultType1
+        Any | FileSchema | GetAssetsByAssetIdFilesByFileIdResponseDefault
     """
 
     return sync_detailed(
@@ -222,16 +176,11 @@ async def asyncio_detailed(
     file_id: str,
     *,
     client: AuthenticatedClient | Client,
-    generate_signed_post_url: bool | Unset = False,
-    content_disposition: str | Unset = "inline",
+    generate_signed_post_url: bool | Unset = UNSET,
+    content_disposition: str | Unset = UNSET,
     content_type: str | Unset = UNSET,
-    bypass_url_cache: bool | Unset = False,
-) -> Response[
-    Any
-    | FileSchema
-    | GetAssetsByAssetIdFilesByFileIdResponseDefaultType0
-    | GetAssetsByAssetIdFilesByFileIdResponseDefaultType1
-]:
+    bypass_url_cache: bool | Unset = UNSET,
+) -> Response[Any | FileSchema | GetAssetsByAssetIdFilesByFileIdResponseDefault]:
     """Get asset's file
 
 
@@ -241,17 +190,17 @@ async def asyncio_detailed(
     Args:
         asset_id (str):
         file_id (str):
-        generate_signed_post_url (bool | Unset):  Default: False.
-        content_disposition (str | Unset):  Default: 'inline'.
+        generate_signed_post_url (bool | Unset):
+        content_disposition (str | Unset):
         content_type (str | Unset):
-        bypass_url_cache (bool | Unset):  Default: False.
+        bypass_url_cache (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | FileSchema | GetAssetsByAssetIdFilesByFileIdResponseDefaultType0 | GetAssetsByAssetIdFilesByFileIdResponseDefaultType1]
+        Response[Any | FileSchema | GetAssetsByAssetIdFilesByFileIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -273,17 +222,11 @@ async def asyncio(
     file_id: str,
     *,
     client: AuthenticatedClient | Client,
-    generate_signed_post_url: bool | Unset = False,
-    content_disposition: str | Unset = "inline",
+    generate_signed_post_url: bool | Unset = UNSET,
+    content_disposition: str | Unset = UNSET,
     content_type: str | Unset = UNSET,
-    bypass_url_cache: bool | Unset = False,
-) -> (
-    Any
-    | FileSchema
-    | GetAssetsByAssetIdFilesByFileIdResponseDefaultType0
-    | GetAssetsByAssetIdFilesByFileIdResponseDefaultType1
-    | None
-):
+    bypass_url_cache: bool | Unset = UNSET,
+) -> Any | FileSchema | GetAssetsByAssetIdFilesByFileIdResponseDefault | None:
     """Get asset's file
 
 
@@ -293,17 +236,17 @@ async def asyncio(
     Args:
         asset_id (str):
         file_id (str):
-        generate_signed_post_url (bool | Unset):  Default: False.
-        content_disposition (str | Unset):  Default: 'inline'.
+        generate_signed_post_url (bool | Unset):
+        content_disposition (str | Unset):
         content_type (str | Unset):
-        bypass_url_cache (bool | Unset):  Default: False.
+        bypass_url_cache (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | FileSchema | GetAssetsByAssetIdFilesByFileIdResponseDefaultType0 | GetAssetsByAssetIdFilesByFileIdResponseDefaultType1
+        Any | FileSchema | GetAssetsByAssetIdFilesByFileIdResponseDefault
     """
 
     return (

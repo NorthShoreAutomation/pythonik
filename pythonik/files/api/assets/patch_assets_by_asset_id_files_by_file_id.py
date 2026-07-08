@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.file_schema import FileSchema
-from ...models.patch_assets_by_asset_id_files_by_file_id_response_default_type_0 import (
-    PatchAssetsByAssetIdFilesByFileIdResponseDefaultType0,
-)
-from ...models.patch_assets_by_asset_id_files_by_file_id_response_default_type_1 import (
-    PatchAssetsByAssetIdFilesByFileIdResponseDefaultType1,
+from ...models.patch_assets_by_asset_id_files_by_file_id_response_default import (
+    PatchAssetsByAssetIdFilesByFileIdResponseDefault,
 )
 from ...types import Response
 
@@ -41,12 +38,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | FileSchema
-    | PatchAssetsByAssetIdFilesByFileIdResponseDefaultType0
-    | PatchAssetsByAssetIdFilesByFileIdResponseDefaultType1
-):
+) -> Any | FileSchema | PatchAssetsByAssetIdFilesByFileIdResponseDefault:
     if response.status_code == 200:
         response_200 = FileSchema.from_dict(response.json())
 
@@ -64,43 +56,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PatchAssetsByAssetIdFilesByFileIdResponseDefaultType0
-        | PatchAssetsByAssetIdFilesByFileIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PatchAssetsByAssetIdFilesByFileIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PatchAssetsByAssetIdFilesByFileIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PatchAssetsByAssetIdFilesByFileIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | FileSchema
-    | PatchAssetsByAssetIdFilesByFileIdResponseDefaultType0
-    | PatchAssetsByAssetIdFilesByFileIdResponseDefaultType1
-]:
+) -> Response[Any | FileSchema | PatchAssetsByAssetIdFilesByFileIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -115,12 +80,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: FileSchema,
-) -> Response[
-    Any
-    | FileSchema
-    | PatchAssetsByAssetIdFilesByFileIdResponseDefaultType0
-    | PatchAssetsByAssetIdFilesByFileIdResponseDefaultType1
-]:
+) -> Response[Any | FileSchema | PatchAssetsByAssetIdFilesByFileIdResponseDefault]:
     """Update file information
 
 
@@ -137,7 +97,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | FileSchema | PatchAssetsByAssetIdFilesByFileIdResponseDefaultType0 | PatchAssetsByAssetIdFilesByFileIdResponseDefaultType1]
+        Response[Any | FileSchema | PatchAssetsByAssetIdFilesByFileIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -159,13 +119,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: FileSchema,
-) -> (
-    Any
-    | FileSchema
-    | PatchAssetsByAssetIdFilesByFileIdResponseDefaultType0
-    | PatchAssetsByAssetIdFilesByFileIdResponseDefaultType1
-    | None
-):
+) -> Any | FileSchema | PatchAssetsByAssetIdFilesByFileIdResponseDefault | None:
     """Update file information
 
 
@@ -182,7 +136,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | FileSchema | PatchAssetsByAssetIdFilesByFileIdResponseDefaultType0 | PatchAssetsByAssetIdFilesByFileIdResponseDefaultType1
+        Any | FileSchema | PatchAssetsByAssetIdFilesByFileIdResponseDefault
     """
 
     return sync_detailed(
@@ -199,12 +153,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: FileSchema,
-) -> Response[
-    Any
-    | FileSchema
-    | PatchAssetsByAssetIdFilesByFileIdResponseDefaultType0
-    | PatchAssetsByAssetIdFilesByFileIdResponseDefaultType1
-]:
+) -> Response[Any | FileSchema | PatchAssetsByAssetIdFilesByFileIdResponseDefault]:
     """Update file information
 
 
@@ -221,7 +170,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | FileSchema | PatchAssetsByAssetIdFilesByFileIdResponseDefaultType0 | PatchAssetsByAssetIdFilesByFileIdResponseDefaultType1]
+        Response[Any | FileSchema | PatchAssetsByAssetIdFilesByFileIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -241,13 +190,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: FileSchema,
-) -> (
-    Any
-    | FileSchema
-    | PatchAssetsByAssetIdFilesByFileIdResponseDefaultType0
-    | PatchAssetsByAssetIdFilesByFileIdResponseDefaultType1
-    | None
-):
+) -> Any | FileSchema | PatchAssetsByAssetIdFilesByFileIdResponseDefault | None:
     """Update file information
 
 
@@ -264,7 +207,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | FileSchema | PatchAssetsByAssetIdFilesByFileIdResponseDefaultType0 | PatchAssetsByAssetIdFilesByFileIdResponseDefaultType1
+        Any | FileSchema | PatchAssetsByAssetIdFilesByFileIdResponseDefault
     """
 
     return (

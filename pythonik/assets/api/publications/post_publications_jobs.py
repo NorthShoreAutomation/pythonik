@@ -5,11 +5,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.create_publication_job_schema import CreatePublicationJobSchema
-from ...models.post_publications_jobs_response_default_type_0 import (
-    PostPublicationsJobsResponseDefaultType0,
-)
-from ...models.post_publications_jobs_response_default_type_1 import (
-    PostPublicationsJobsResponseDefaultType1,
+from ...models.post_publications_jobs_response_default import (
+    PostPublicationsJobsResponseDefault,
 )
 from ...types import Response
 
@@ -35,11 +32,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostPublicationsJobsResponseDefaultType0
-    | PostPublicationsJobsResponseDefaultType1
-):
+) -> Any | PostPublicationsJobsResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -56,42 +49,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostPublicationsJobsResponseDefaultType0
-        | PostPublicationsJobsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostPublicationsJobsResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostPublicationsJobsResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostPublicationsJobsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostPublicationsJobsResponseDefaultType0
-    | PostPublicationsJobsResponseDefaultType1
-]:
+) -> Response[Any | PostPublicationsJobsResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -104,11 +69,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: CreatePublicationJobSchema,
-) -> Response[
-    Any
-    | PostPublicationsJobsResponseDefaultType0
-    | PostPublicationsJobsResponseDefaultType1
-]:
+) -> Response[Any | PostPublicationsJobsResponseDefault]:
     """⚠️ Beta: Schedules publishing for an asset to a list of destinations based on template_id
 
 
@@ -123,7 +84,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostPublicationsJobsResponseDefaultType0 | PostPublicationsJobsResponseDefaultType1]
+        Response[Any | PostPublicationsJobsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -141,12 +102,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: CreatePublicationJobSchema,
-) -> (
-    Any
-    | PostPublicationsJobsResponseDefaultType0
-    | PostPublicationsJobsResponseDefaultType1
-    | None
-):
+) -> Any | PostPublicationsJobsResponseDefault | None:
     """⚠️ Beta: Schedules publishing for an asset to a list of destinations based on template_id
 
 
@@ -161,7 +117,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostPublicationsJobsResponseDefaultType0 | PostPublicationsJobsResponseDefaultType1
+        Any | PostPublicationsJobsResponseDefault
     """
 
     return sync_detailed(
@@ -174,11 +130,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: CreatePublicationJobSchema,
-) -> Response[
-    Any
-    | PostPublicationsJobsResponseDefaultType0
-    | PostPublicationsJobsResponseDefaultType1
-]:
+) -> Response[Any | PostPublicationsJobsResponseDefault]:
     """⚠️ Beta: Schedules publishing for an asset to a list of destinations based on template_id
 
 
@@ -193,7 +145,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostPublicationsJobsResponseDefaultType0 | PostPublicationsJobsResponseDefaultType1]
+        Response[Any | PostPublicationsJobsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -209,12 +161,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: CreatePublicationJobSchema,
-) -> (
-    Any
-    | PostPublicationsJobsResponseDefaultType0
-    | PostPublicationsJobsResponseDefaultType1
-    | None
-):
+) -> Any | PostPublicationsJobsResponseDefault | None:
     """⚠️ Beta: Schedules publishing for an asset to a list of destinations based on template_id
 
 
@@ -229,7 +176,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostPublicationsJobsResponseDefaultType0 | PostPublicationsJobsResponseDefaultType1
+        Any | PostPublicationsJobsResponseDefault
     """
 
     return (

@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_auth_by_app_id_tokens_response_default_type_0 import (
-    GetAuthByAppIdTokensResponseDefaultType0,
-)
-from ...models.get_auth_by_app_id_tokens_response_default_type_1 import (
-    GetAuthByAppIdTokensResponseDefaultType1,
+from ...models.get_auth_by_app_id_tokens_response_default import (
+    GetAuthByAppIdTokensResponseDefault,
 )
 from ...models.tokens_schema import TokensSchema
 from ...types import UNSET, Response, Unset
@@ -18,7 +15,7 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     app_id: str,
     *,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> dict[str, Any]:
 
@@ -43,12 +40,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetAuthByAppIdTokensResponseDefaultType0
-    | GetAuthByAppIdTokensResponseDefaultType1
-    | TokensSchema
-):
+) -> Any | GetAuthByAppIdTokensResponseDefault | TokensSchema:
     if response.status_code == 200:
         response_200 = TokensSchema.from_dict(response.json())
 
@@ -58,43 +50,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAuthByAppIdTokensResponseDefaultType0
-        | GetAuthByAppIdTokensResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetAuthByAppIdTokensResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetAuthByAppIdTokensResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAuthByAppIdTokensResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetAuthByAppIdTokensResponseDefaultType0
-    | GetAuthByAppIdTokensResponseDefaultType1
-    | TokensSchema
-]:
+) -> Response[Any | GetAuthByAppIdTokensResponseDefault | TokensSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -107,19 +70,14 @@ def sync_detailed(
     app_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetAuthByAppIdTokensResponseDefaultType0
-    | GetAuthByAppIdTokensResponseDefaultType1
-    | TokensSchema
-]:
+) -> Response[Any | GetAuthByAppIdTokensResponseDefault | TokensSchema]:
     """List application tokens
 
     Args:
         app_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -127,7 +85,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAuthByAppIdTokensResponseDefaultType0 | GetAuthByAppIdTokensResponseDefaultType1 | TokensSchema]
+        Response[Any | GetAuthByAppIdTokensResponseDefault | TokensSchema]
     """
 
     kwargs = _get_kwargs(
@@ -147,20 +105,14 @@ def sync(
     app_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> (
-    Any
-    | GetAuthByAppIdTokensResponseDefaultType0
-    | GetAuthByAppIdTokensResponseDefaultType1
-    | TokensSchema
-    | None
-):
+) -> Any | GetAuthByAppIdTokensResponseDefault | TokensSchema | None:
     """List application tokens
 
     Args:
         app_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -168,7 +120,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAuthByAppIdTokensResponseDefaultType0 | GetAuthByAppIdTokensResponseDefaultType1 | TokensSchema
+        Any | GetAuthByAppIdTokensResponseDefault | TokensSchema
     """
 
     return sync_detailed(
@@ -183,19 +135,14 @@ async def asyncio_detailed(
     app_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetAuthByAppIdTokensResponseDefaultType0
-    | GetAuthByAppIdTokensResponseDefaultType1
-    | TokensSchema
-]:
+) -> Response[Any | GetAuthByAppIdTokensResponseDefault | TokensSchema]:
     """List application tokens
 
     Args:
         app_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -203,7 +150,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAuthByAppIdTokensResponseDefaultType0 | GetAuthByAppIdTokensResponseDefaultType1 | TokensSchema]
+        Response[Any | GetAuthByAppIdTokensResponseDefault | TokensSchema]
     """
 
     kwargs = _get_kwargs(
@@ -221,20 +168,14 @@ async def asyncio(
     app_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> (
-    Any
-    | GetAuthByAppIdTokensResponseDefaultType0
-    | GetAuthByAppIdTokensResponseDefaultType1
-    | TokensSchema
-    | None
-):
+) -> Any | GetAuthByAppIdTokensResponseDefault | TokensSchema | None:
     """List application tokens
 
     Args:
         app_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -242,7 +183,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAuthByAppIdTokensResponseDefaultType0 | GetAuthByAppIdTokensResponseDefaultType1 | TokensSchema
+        Any | GetAuthByAppIdTokensResponseDefault | TokensSchema
     """
 
     return (

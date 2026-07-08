@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.automation_schema import AutomationSchema
-from ...models.get_automations_by_automation_id_response_default_type_0 import (
-    GetAutomationsByAutomationIdResponseDefaultType0,
-)
-from ...models.get_automations_by_automation_id_response_default_type_1 import (
-    GetAutomationsByAutomationIdResponseDefaultType1,
+from ...models.get_automations_by_automation_id_response_default import (
+    GetAutomationsByAutomationIdResponseDefault,
 )
 from ...types import Response
 
@@ -31,12 +28,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | AutomationSchema
-    | GetAutomationsByAutomationIdResponseDefaultType0
-    | GetAutomationsByAutomationIdResponseDefaultType1
-):
+) -> Any | AutomationSchema | GetAutomationsByAutomationIdResponseDefault:
     if response.status_code == 200:
         response_200 = AutomationSchema.from_dict(response.json())
 
@@ -50,43 +42,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAutomationsByAutomationIdResponseDefaultType0
-        | GetAutomationsByAutomationIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetAutomationsByAutomationIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetAutomationsByAutomationIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAutomationsByAutomationIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | AutomationSchema
-    | GetAutomationsByAutomationIdResponseDefaultType0
-    | GetAutomationsByAutomationIdResponseDefaultType1
-]:
+) -> Response[Any | AutomationSchema | GetAutomationsByAutomationIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -99,12 +64,7 @@ def sync_detailed(
     automation_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | AutomationSchema
-    | GetAutomationsByAutomationIdResponseDefaultType0
-    | GetAutomationsByAutomationIdResponseDefaultType1
-]:
+) -> Response[Any | AutomationSchema | GetAutomationsByAutomationIdResponseDefault]:
     """Returns a particular automation by id
 
 
@@ -119,7 +79,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AutomationSchema | GetAutomationsByAutomationIdResponseDefaultType0 | GetAutomationsByAutomationIdResponseDefaultType1]
+        Response[Any | AutomationSchema | GetAutomationsByAutomationIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -137,13 +97,7 @@ def sync(
     automation_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | AutomationSchema
-    | GetAutomationsByAutomationIdResponseDefaultType0
-    | GetAutomationsByAutomationIdResponseDefaultType1
-    | None
-):
+) -> Any | AutomationSchema | GetAutomationsByAutomationIdResponseDefault | None:
     """Returns a particular automation by id
 
 
@@ -158,7 +112,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AutomationSchema | GetAutomationsByAutomationIdResponseDefaultType0 | GetAutomationsByAutomationIdResponseDefaultType1
+        Any | AutomationSchema | GetAutomationsByAutomationIdResponseDefault
     """
 
     return sync_detailed(
@@ -171,12 +125,7 @@ async def asyncio_detailed(
     automation_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | AutomationSchema
-    | GetAutomationsByAutomationIdResponseDefaultType0
-    | GetAutomationsByAutomationIdResponseDefaultType1
-]:
+) -> Response[Any | AutomationSchema | GetAutomationsByAutomationIdResponseDefault]:
     """Returns a particular automation by id
 
 
@@ -191,7 +140,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AutomationSchema | GetAutomationsByAutomationIdResponseDefaultType0 | GetAutomationsByAutomationIdResponseDefaultType1]
+        Response[Any | AutomationSchema | GetAutomationsByAutomationIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -207,13 +156,7 @@ async def asyncio(
     automation_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | AutomationSchema
-    | GetAutomationsByAutomationIdResponseDefaultType0
-    | GetAutomationsByAutomationIdResponseDefaultType1
-    | None
-):
+) -> Any | AutomationSchema | GetAutomationsByAutomationIdResponseDefault | None:
     """Returns a particular automation by id
 
 
@@ -228,7 +171,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AutomationSchema | GetAutomationsByAutomationIdResponseDefaultType0 | GetAutomationsByAutomationIdResponseDefaultType1
+        Any | AutomationSchema | GetAutomationsByAutomationIdResponseDefault
     """
 
     return (

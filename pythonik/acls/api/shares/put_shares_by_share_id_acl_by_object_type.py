@@ -7,11 +7,8 @@ import httpx
 from ...client import AuthenticatedClient, Client
 from ...models.create_ac_ls_result_schema import CreateACLsResultSchema
 from ...models.create_share_ac_ls_schema import CreateShareACLsSchema
-from ...models.put_shares_by_share_id_acl_by_object_type_response_default_type_0 import (
-    PutSharesByShareIdAclByObjectTypeResponseDefaultType0,
-)
-from ...models.put_shares_by_share_id_acl_by_object_type_response_default_type_1 import (
-    PutSharesByShareIdAclByObjectTypeResponseDefaultType1,
+from ...models.put_shares_by_share_id_acl_by_object_type_response_default import (
+    PutSharesByShareIdAclByObjectTypeResponseDefault,
 )
 from ...types import Response
 
@@ -42,12 +39,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | CreateACLsResultSchema
-    | PutSharesByShareIdAclByObjectTypeResponseDefaultType0
-    | PutSharesByShareIdAclByObjectTypeResponseDefaultType1
-):
+) -> Any | CreateACLsResultSchema | PutSharesByShareIdAclByObjectTypeResponseDefault:
     if response.status_code == 200:
         response_200 = CreateACLsResultSchema.from_dict(response.json())
 
@@ -61,31 +53,9 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutSharesByShareIdAclByObjectTypeResponseDefaultType0
-        | PutSharesByShareIdAclByObjectTypeResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PutSharesByShareIdAclByObjectTypeResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PutSharesByShareIdAclByObjectTypeResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutSharesByShareIdAclByObjectTypeResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -93,10 +63,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | CreateACLsResultSchema
-    | PutSharesByShareIdAclByObjectTypeResponseDefaultType0
-    | PutSharesByShareIdAclByObjectTypeResponseDefaultType1
+    Any | CreateACLsResultSchema | PutSharesByShareIdAclByObjectTypeResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -113,10 +80,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: CreateShareACLsSchema,
 ) -> Response[
-    Any
-    | CreateACLsResultSchema
-    | PutSharesByShareIdAclByObjectTypeResponseDefaultType0
-    | PutSharesByShareIdAclByObjectTypeResponseDefaultType1
+    Any | CreateACLsResultSchema | PutSharesByShareIdAclByObjectTypeResponseDefault
 ]:
     """Create a new acl for multiple share objects
 
@@ -134,7 +98,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CreateACLsResultSchema | PutSharesByShareIdAclByObjectTypeResponseDefaultType0 | PutSharesByShareIdAclByObjectTypeResponseDefaultType1]
+        Response[Any | CreateACLsResultSchema | PutSharesByShareIdAclByObjectTypeResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -159,8 +123,7 @@ def sync(
 ) -> (
     Any
     | CreateACLsResultSchema
-    | PutSharesByShareIdAclByObjectTypeResponseDefaultType0
-    | PutSharesByShareIdAclByObjectTypeResponseDefaultType1
+    | PutSharesByShareIdAclByObjectTypeResponseDefault
     | None
 ):
     """Create a new acl for multiple share objects
@@ -179,7 +142,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CreateACLsResultSchema | PutSharesByShareIdAclByObjectTypeResponseDefaultType0 | PutSharesByShareIdAclByObjectTypeResponseDefaultType1
+        Any | CreateACLsResultSchema | PutSharesByShareIdAclByObjectTypeResponseDefault
     """
 
     return sync_detailed(
@@ -197,10 +160,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: CreateShareACLsSchema,
 ) -> Response[
-    Any
-    | CreateACLsResultSchema
-    | PutSharesByShareIdAclByObjectTypeResponseDefaultType0
-    | PutSharesByShareIdAclByObjectTypeResponseDefaultType1
+    Any | CreateACLsResultSchema | PutSharesByShareIdAclByObjectTypeResponseDefault
 ]:
     """Create a new acl for multiple share objects
 
@@ -218,7 +178,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CreateACLsResultSchema | PutSharesByShareIdAclByObjectTypeResponseDefaultType0 | PutSharesByShareIdAclByObjectTypeResponseDefaultType1]
+        Response[Any | CreateACLsResultSchema | PutSharesByShareIdAclByObjectTypeResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -241,8 +201,7 @@ async def asyncio(
 ) -> (
     Any
     | CreateACLsResultSchema
-    | PutSharesByShareIdAclByObjectTypeResponseDefaultType0
-    | PutSharesByShareIdAclByObjectTypeResponseDefaultType1
+    | PutSharesByShareIdAclByObjectTypeResponseDefault
     | None
 ):
     """Create a new acl for multiple share objects
@@ -261,7 +220,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CreateACLsResultSchema | PutSharesByShareIdAclByObjectTypeResponseDefaultType0 | PutSharesByShareIdAclByObjectTypeResponseDefaultType1
+        Any | CreateACLsResultSchema | PutSharesByShareIdAclByObjectTypeResponseDefault
     """
 
     return (

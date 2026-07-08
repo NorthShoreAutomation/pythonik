@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_assets_by_asset_id_keyframes_by_keyframe_id_public_response_default_type_0 import (
-    DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0,
-)
-from ...models.delete_assets_by_asset_id_keyframes_by_keyframe_id_public_response_default_type_1 import (
-    DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1,
+from ...models.delete_assets_by_asset_id_keyframes_by_keyframe_id_public_response_default import (
+    DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault,
 )
 from ...models.keyframe_schema import KeyframeSchema
 from ...types import Response
@@ -35,14 +32,17 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0
-    | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1
+    | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault
     | KeyframeSchema
 ):
     if response.status_code == 201:
         response_201 = KeyframeSchema.from_dict(response.json())
 
         return response_201
+
+    if response.status_code == 204:
+        response_204 = cast(Any, None)
+        return response_204
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -52,31 +52,11 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0
-        | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -85,8 +65,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0
-    | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1
+    | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault
     | KeyframeSchema
 ]:
     return Response(
@@ -104,8 +83,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
 ) -> Response[
     Any
-    | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0
-    | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1
+    | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault
     | KeyframeSchema
 ]:
     """Make the keyframe link private
@@ -123,7 +101,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0 | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1 | KeyframeSchema]
+        Response[Any | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault | KeyframeSchema]
     """
 
     kwargs = _get_kwargs(
@@ -145,8 +123,7 @@ def sync(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0
-    | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1
+    | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault
     | KeyframeSchema
     | None
 ):
@@ -165,7 +142,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0 | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1 | KeyframeSchema
+        Any | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault | KeyframeSchema
     """
 
     return sync_detailed(
@@ -182,8 +159,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
 ) -> Response[
     Any
-    | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0
-    | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1
+    | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault
     | KeyframeSchema
 ]:
     """Make the keyframe link private
@@ -201,7 +177,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0 | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1 | KeyframeSchema]
+        Response[Any | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault | KeyframeSchema]
     """
 
     kwargs = _get_kwargs(
@@ -221,8 +197,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0
-    | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1
+    | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault
     | KeyframeSchema
     | None
 ):
@@ -241,7 +216,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType0 | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefaultType1 | KeyframeSchema
+        Any | DeleteAssetsByAssetIdKeyframesByKeyframeIdPublicResponseDefault | KeyframeSchema
     """
 
     return (

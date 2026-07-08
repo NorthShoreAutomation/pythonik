@@ -6,9 +6,6 @@ from typing import Any, TypeVar, cast
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.billing_stats_schema_system_domain_status import (
-    BillingStatsSchemaSystemDomainStatus,
-)
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="BillingStatsSchema")
@@ -19,26 +16,27 @@ class BillingStatsSchema:
     """
     Attributes:
         system_domain_type (str):
-        system_domain_warning_message (str):
+        system_domain_warning_message (None | str):
         current_balance (float | None | Unset):
         invoice_end_of_month (bool | None | Unset):
         new_billing_enabled (bool | None | Unset):
         stripe_id (bool | None | Unset):
-        system_domain_status (BillingStatsSchemaSystemDomainStatus | None | Unset):
+        system_domain_status (None | str | Unset):
     """
 
     system_domain_type: str
-    system_domain_warning_message: str
+    system_domain_warning_message: None | str
     current_balance: float | None | Unset = UNSET
     invoice_end_of_month: bool | None | Unset = UNSET
     new_billing_enabled: bool | None | Unset = UNSET
     stripe_id: bool | None | Unset = UNSET
-    system_domain_status: BillingStatsSchemaSystemDomainStatus | None | Unset = UNSET
+    system_domain_status: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         system_domain_type = self.system_domain_type
 
+        system_domain_warning_message: None | str
         system_domain_warning_message = self.system_domain_warning_message
 
         current_balance: float | None | Unset
@@ -68,10 +66,6 @@ class BillingStatsSchema:
         system_domain_status: None | str | Unset
         if isinstance(self.system_domain_status, Unset):
             system_domain_status = UNSET
-        elif isinstance(
-            self.system_domain_status, BillingStatsSchemaSystemDomainStatus
-        ):
-            system_domain_status = self.system_domain_status.value
         else:
             system_domain_status = self.system_domain_status
 
@@ -101,7 +95,14 @@ class BillingStatsSchema:
         d = dict(src_dict)
         system_domain_type = d.pop("system_domain_type")
 
-        system_domain_warning_message = d.pop("system_domain_warning_message")
+        def _parse_system_domain_warning_message(data: object) -> None | str:
+            if data is None:
+                return data
+            return cast(None | str, data)
+
+        system_domain_warning_message = _parse_system_domain_warning_message(
+            d.pop("system_domain_warning_message")
+        )
 
         def _parse_current_balance(data: object) -> float | None | Unset:
             if data is None:
@@ -143,22 +144,12 @@ class BillingStatsSchema:
 
         stripe_id = _parse_stripe_id(d.pop("stripe_id", UNSET))
 
-        def _parse_system_domain_status(
-            data: object,
-        ) -> BillingStatsSchemaSystemDomainStatus | None | Unset:
+        def _parse_system_domain_status(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            try:
-                if not isinstance(data, str):
-                    raise TypeError()
-                system_domain_status_type_1 = BillingStatsSchemaSystemDomainStatus(data)
-
-                return system_domain_status_type_1
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            return cast(BillingStatsSchemaSystemDomainStatus | None | Unset, data)
+            return cast(None | str | Unset, data)
 
         system_domain_status = _parse_system_domain_status(
             d.pop("system_domain_status", UNSET)

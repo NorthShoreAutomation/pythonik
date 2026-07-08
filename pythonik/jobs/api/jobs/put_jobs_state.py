@@ -5,12 +5,7 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.jobs_state_schema import JobsStateSchema
-from ...models.put_jobs_state_response_default_type_0 import (
-    PutJobsStateResponseDefaultType0,
-)
-from ...models.put_jobs_state_response_default_type_1 import (
-    PutJobsStateResponseDefaultType1,
-)
+from ...models.put_jobs_state_response_default import PutJobsStateResponseDefault
 from ...types import Response
 
 
@@ -35,10 +30,10 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Any | PutJobsStateResponseDefaultType0 | PutJobsStateResponseDefaultType1:
-    if response.status_code == 201:
-        response_201 = cast(Any, None)
-        return response_201
+) -> Any | PutJobsStateResponseDefault:
+    if response.status_code == 200:
+        response_200 = cast(Any, None)
+        return response_200
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -48,33 +43,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> PutJobsStateResponseDefaultType0 | PutJobsStateResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PutJobsStateResponseDefaultType0.from_dict(data)
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PutJobsStateResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutJobsStateResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any | PutJobsStateResponseDefaultType0 | PutJobsStateResponseDefaultType1
-]:
+) -> Response[Any | PutJobsStateResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -87,9 +63,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: JobsStateSchema,
-) -> Response[
-    Any | PutJobsStateResponseDefaultType0 | PutJobsStateResponseDefaultType1
-]:
+) -> Response[Any | PutJobsStateResponseDefault]:
     """Change jobs state
 
 
@@ -104,7 +78,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutJobsStateResponseDefaultType0 | PutJobsStateResponseDefaultType1]
+        Response[Any | PutJobsStateResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -122,7 +96,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: JobsStateSchema,
-) -> Any | PutJobsStateResponseDefaultType0 | PutJobsStateResponseDefaultType1 | None:
+) -> Any | PutJobsStateResponseDefault | None:
     """Change jobs state
 
 
@@ -137,7 +111,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutJobsStateResponseDefaultType0 | PutJobsStateResponseDefaultType1
+        Any | PutJobsStateResponseDefault
     """
 
     return sync_detailed(
@@ -150,9 +124,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: JobsStateSchema,
-) -> Response[
-    Any | PutJobsStateResponseDefaultType0 | PutJobsStateResponseDefaultType1
-]:
+) -> Response[Any | PutJobsStateResponseDefault]:
     """Change jobs state
 
 
@@ -167,7 +139,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutJobsStateResponseDefaultType0 | PutJobsStateResponseDefaultType1]
+        Response[Any | PutJobsStateResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -183,7 +155,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: JobsStateSchema,
-) -> Any | PutJobsStateResponseDefaultType0 | PutJobsStateResponseDefaultType1 | None:
+) -> Any | PutJobsStateResponseDefault | None:
     """Change jobs state
 
 
@@ -198,7 +170,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutJobsStateResponseDefaultType0 | PutJobsStateResponseDefaultType1
+        Any | PutJobsStateResponseDefault
     """
 
     return (

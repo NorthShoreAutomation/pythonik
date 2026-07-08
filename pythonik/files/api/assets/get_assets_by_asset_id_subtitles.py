@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_assets_by_asset_id_subtitles_response_default_type_0 import (
-    GetAssetsByAssetIdSubtitlesResponseDefaultType0,
-)
-from ...models.get_assets_by_asset_id_subtitles_response_default_type_1 import (
-    GetAssetsByAssetIdSubtitlesResponseDefaultType1,
+from ...models.get_assets_by_asset_id_subtitles_response_default import (
+    GetAssetsByAssetIdSubtitlesResponseDefault,
 )
 from ...models.subtitles_schema import SubtitlesSchema
 from ...types import UNSET, Response, Unset
@@ -18,7 +15,7 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     asset_id: str,
     *,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> dict[str, Any]:
 
@@ -43,12 +40,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetAssetsByAssetIdSubtitlesResponseDefaultType0
-    | GetAssetsByAssetIdSubtitlesResponseDefaultType1
-    | SubtitlesSchema
-):
+) -> Any | GetAssetsByAssetIdSubtitlesResponseDefault | SubtitlesSchema:
     if response.status_code == 200:
         response_200 = SubtitlesSchema.from_dict(response.json())
 
@@ -62,43 +54,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsByAssetIdSubtitlesResponseDefaultType0
-        | GetAssetsByAssetIdSubtitlesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetAssetsByAssetIdSubtitlesResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetAssetsByAssetIdSubtitlesResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAssetsByAssetIdSubtitlesResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetAssetsByAssetIdSubtitlesResponseDefaultType0
-    | GetAssetsByAssetIdSubtitlesResponseDefaultType1
-    | SubtitlesSchema
-]:
+) -> Response[Any | GetAssetsByAssetIdSubtitlesResponseDefault | SubtitlesSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -111,14 +76,9 @@ def sync_detailed(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetAssetsByAssetIdSubtitlesResponseDefaultType0
-    | GetAssetsByAssetIdSubtitlesResponseDefaultType1
-    | SubtitlesSchema
-]:
+) -> Response[Any | GetAssetsByAssetIdSubtitlesResponseDefault | SubtitlesSchema]:
     """Get all asset's subtitles
 
 
@@ -127,7 +87,7 @@ def sync_detailed(
 
     Args:
         asset_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -135,7 +95,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdSubtitlesResponseDefaultType0 | GetAssetsByAssetIdSubtitlesResponseDefaultType1 | SubtitlesSchema]
+        Response[Any | GetAssetsByAssetIdSubtitlesResponseDefault | SubtitlesSchema]
     """
 
     kwargs = _get_kwargs(
@@ -155,15 +115,9 @@ def sync(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> (
-    Any
-    | GetAssetsByAssetIdSubtitlesResponseDefaultType0
-    | GetAssetsByAssetIdSubtitlesResponseDefaultType1
-    | SubtitlesSchema
-    | None
-):
+) -> Any | GetAssetsByAssetIdSubtitlesResponseDefault | SubtitlesSchema | None:
     """Get all asset's subtitles
 
 
@@ -172,7 +126,7 @@ def sync(
 
     Args:
         asset_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -180,7 +134,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdSubtitlesResponseDefaultType0 | GetAssetsByAssetIdSubtitlesResponseDefaultType1 | SubtitlesSchema
+        Any | GetAssetsByAssetIdSubtitlesResponseDefault | SubtitlesSchema
     """
 
     return sync_detailed(
@@ -195,14 +149,9 @@ async def asyncio_detailed(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetAssetsByAssetIdSubtitlesResponseDefaultType0
-    | GetAssetsByAssetIdSubtitlesResponseDefaultType1
-    | SubtitlesSchema
-]:
+) -> Response[Any | GetAssetsByAssetIdSubtitlesResponseDefault | SubtitlesSchema]:
     """Get all asset's subtitles
 
 
@@ -211,7 +160,7 @@ async def asyncio_detailed(
 
     Args:
         asset_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -219,7 +168,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdSubtitlesResponseDefaultType0 | GetAssetsByAssetIdSubtitlesResponseDefaultType1 | SubtitlesSchema]
+        Response[Any | GetAssetsByAssetIdSubtitlesResponseDefault | SubtitlesSchema]
     """
 
     kwargs = _get_kwargs(
@@ -237,15 +186,9 @@ async def asyncio(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> (
-    Any
-    | GetAssetsByAssetIdSubtitlesResponseDefaultType0
-    | GetAssetsByAssetIdSubtitlesResponseDefaultType1
-    | SubtitlesSchema
-    | None
-):
+) -> Any | GetAssetsByAssetIdSubtitlesResponseDefault | SubtitlesSchema | None:
     """Get all asset's subtitles
 
 
@@ -254,7 +197,7 @@ async def asyncio(
 
     Args:
         asset_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -262,7 +205,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdSubtitlesResponseDefaultType0 | GetAssetsByAssetIdSubtitlesResponseDefaultType1 | SubtitlesSchema
+        Any | GetAssetsByAssetIdSubtitlesResponseDefault | SubtitlesSchema
     """
 
     return (

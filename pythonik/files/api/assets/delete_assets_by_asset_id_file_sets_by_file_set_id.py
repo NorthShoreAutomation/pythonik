@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_assets_by_asset_id_file_sets_by_file_set_id_response_default_type_0 import (
-    DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0,
-)
-from ...models.delete_assets_by_asset_id_file_sets_by_file_set_id_response_default_type_1 import (
-    DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1,
+from ...models.delete_assets_by_asset_id_file_sets_by_file_set_id_response_default import (
+    DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -18,8 +15,8 @@ def _get_kwargs(
     asset_id: str,
     file_set_id: str,
     *,
-    keep_source: bool | Unset = False,
-    immediately: bool | Unset = False,
+    keep_source: bool | Unset = UNSET,
+    immediately: bool | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -44,11 +41,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0
-    | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1
-):
+) -> Any | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefault:
     if response.status_code == 200:
         response_200 = cast(Any, None)
         return response_200
@@ -65,44 +58,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0
-        | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1.from_dict(data)
+    response_default = (
+        DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0
-    | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -116,13 +83,9 @@ def sync_detailed(
     file_set_id: str,
     *,
     client: AuthenticatedClient | Client,
-    keep_source: bool | Unset = False,
-    immediately: bool | Unset = False,
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0
-    | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1
-]:
+    keep_source: bool | Unset = UNSET,
+    immediately: bool | Unset = UNSET,
+) -> Response[Any | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefault]:
     """Delete asset's file set, file entries, and actual files
 
 
@@ -132,15 +95,15 @@ def sync_detailed(
     Args:
         asset_id (str):
         file_set_id (str):
-        keep_source (bool | Unset):  Default: False.
-        immediately (bool | Unset):  Default: False.
+        keep_source (bool | Unset):
+        immediately (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0 | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1]
+        Response[Any | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -162,14 +125,9 @@ def sync(
     file_set_id: str,
     *,
     client: AuthenticatedClient | Client,
-    keep_source: bool | Unset = False,
-    immediately: bool | Unset = False,
-) -> (
-    Any
-    | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0
-    | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1
-    | None
-):
+    keep_source: bool | Unset = UNSET,
+    immediately: bool | Unset = UNSET,
+) -> Any | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefault | None:
     """Delete asset's file set, file entries, and actual files
 
 
@@ -179,15 +137,15 @@ def sync(
     Args:
         asset_id (str):
         file_set_id (str):
-        keep_source (bool | Unset):  Default: False.
-        immediately (bool | Unset):  Default: False.
+        keep_source (bool | Unset):
+        immediately (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0 | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1
+        Any | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefault
     """
 
     return sync_detailed(
@@ -204,13 +162,9 @@ async def asyncio_detailed(
     file_set_id: str,
     *,
     client: AuthenticatedClient | Client,
-    keep_source: bool | Unset = False,
-    immediately: bool | Unset = False,
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0
-    | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1
-]:
+    keep_source: bool | Unset = UNSET,
+    immediately: bool | Unset = UNSET,
+) -> Response[Any | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefault]:
     """Delete asset's file set, file entries, and actual files
 
 
@@ -220,15 +174,15 @@ async def asyncio_detailed(
     Args:
         asset_id (str):
         file_set_id (str):
-        keep_source (bool | Unset):  Default: False.
-        immediately (bool | Unset):  Default: False.
+        keep_source (bool | Unset):
+        immediately (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0 | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1]
+        Response[Any | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -248,14 +202,9 @@ async def asyncio(
     file_set_id: str,
     *,
     client: AuthenticatedClient | Client,
-    keep_source: bool | Unset = False,
-    immediately: bool | Unset = False,
-) -> (
-    Any
-    | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0
-    | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1
-    | None
-):
+    keep_source: bool | Unset = UNSET,
+    immediately: bool | Unset = UNSET,
+) -> Any | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefault | None:
     """Delete asset's file set, file entries, and actual files
 
 
@@ -265,15 +214,15 @@ async def asyncio(
     Args:
         asset_id (str):
         file_set_id (str):
-        keep_source (bool | Unset):  Default: False.
-        immediately (bool | Unset):  Default: False.
+        keep_source (bool | Unset):
+        immediately (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType0 | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefaultType1
+        Any | DeleteAssetsByAssetIdFileSetsByFileSetIdResponseDefault
     """
 
     return (

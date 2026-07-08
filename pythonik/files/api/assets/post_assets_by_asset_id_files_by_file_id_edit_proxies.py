@@ -7,11 +7,8 @@ import httpx
 from ...client import AuthenticatedClient, Client
 from ...models.edit_proxy_response_schema import EditProxyResponseSchema
 from ...models.edit_proxy_schema import EditProxySchema
-from ...models.post_assets_by_asset_id_files_by_file_id_edit_proxies_response_default_type_0 import (
-    PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType0,
-)
-from ...models.post_assets_by_asset_id_files_by_file_id_edit_proxies_response_default_type_1 import (
-    PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType1,
+from ...models.post_assets_by_asset_id_files_by_file_id_edit_proxies_response_default import (
+    PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefault,
 )
 from ...types import Response
 
@@ -45,8 +42,7 @@ def _parse_response(
 ) -> (
     Any
     | EditProxyResponseSchema
-    | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefault
 ):
     if response.status_code == 201:
         response_201 = EditProxyResponseSchema.from_dict(response.json())
@@ -61,33 +57,11 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType0
-        | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -97,8 +71,7 @@ def _build_response(
 ) -> Response[
     Any
     | EditProxyResponseSchema
-    | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -117,8 +90,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | EditProxyResponseSchema
-    | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefault
 ]:
     """Create format, file_set, and file for edit proxy if storage has edit proxy transcoder configured
 
@@ -137,7 +109,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | EditProxyResponseSchema | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType0 | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType1]
+        Response[Any | EditProxyResponseSchema | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -162,8 +134,7 @@ def sync(
 ) -> (
     Any
     | EditProxyResponseSchema
-    | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefault
     | None
 ):
     """Create format, file_set, and file for edit proxy if storage has edit proxy transcoder configured
@@ -183,7 +154,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | EditProxyResponseSchema | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType0 | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType1
+        Any | EditProxyResponseSchema | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefault
     """
 
     return sync_detailed(
@@ -203,8 +174,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | EditProxyResponseSchema
-    | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefault
 ]:
     """Create format, file_set, and file for edit proxy if storage has edit proxy transcoder configured
 
@@ -223,7 +193,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | EditProxyResponseSchema | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType0 | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType1]
+        Response[Any | EditProxyResponseSchema | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -246,8 +216,7 @@ async def asyncio(
 ) -> (
     Any
     | EditProxyResponseSchema
-    | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefault
     | None
 ):
     """Create format, file_set, and file for edit proxy if storage has edit proxy transcoder configured
@@ -267,7 +236,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | EditProxyResponseSchema | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType0 | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefaultType1
+        Any | EditProxyResponseSchema | PostAssetsByAssetIdFilesByFileIdEditProxiesResponseDefault
     """
 
     return (

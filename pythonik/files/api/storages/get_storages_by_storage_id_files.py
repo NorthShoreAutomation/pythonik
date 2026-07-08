@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.files_elastic_schema import FilesElasticSchema
-from ...models.get_storages_by_storage_id_files_response_default_type_0 import (
-    GetStoragesByStorageIdFilesResponseDefaultType0,
-)
-from ...models.get_storages_by_storage_id_files_response_default_type_1 import (
-    GetStoragesByStorageIdFilesResponseDefaultType1,
+from ...models.get_storages_by_storage_id_files_response_default import (
+    GetStoragesByStorageIdFilesResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -22,8 +19,8 @@ def _get_kwargs(
     path_separator: str | Unset = UNSET,
     directory_path: str | Unset = UNSET,
     checksum: str | Unset = UNSET,
-    per_page: int | Unset = 10,
-    page: int | Unset = 1,
+    per_page: int | Unset = UNSET,
+    page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
     sort: str | Unset = UNSET,
@@ -82,12 +79,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | FilesElasticSchema
-    | GetStoragesByStorageIdFilesResponseDefaultType0
-    | GetStoragesByStorageIdFilesResponseDefaultType1
-):
+) -> Any | FilesElasticSchema | GetStoragesByStorageIdFilesResponseDefault:
     if response.status_code == 200:
         response_200 = FilesElasticSchema.from_dict(response.json())
 
@@ -101,43 +93,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetStoragesByStorageIdFilesResponseDefaultType0
-        | GetStoragesByStorageIdFilesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetStoragesByStorageIdFilesResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetStoragesByStorageIdFilesResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetStoragesByStorageIdFilesResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | FilesElasticSchema
-    | GetStoragesByStorageIdFilesResponseDefaultType0
-    | GetStoragesByStorageIdFilesResponseDefaultType1
-]:
+) -> Response[Any | FilesElasticSchema | GetStoragesByStorageIdFilesResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -154,8 +119,8 @@ def sync_detailed(
     path_separator: str | Unset = UNSET,
     directory_path: str | Unset = UNSET,
     checksum: str | Unset = UNSET,
-    per_page: int | Unset = 10,
-    page: int | Unset = 1,
+    per_page: int | Unset = UNSET,
+    page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
     sort: str | Unset = UNSET,
@@ -165,12 +130,7 @@ def sync_detailed(
     status: str | Unset = UNSET,
     date_created: str | Unset = UNSET,
     date_modified: str | Unset = UNSET,
-) -> Response[
-    Any
-    | FilesElasticSchema
-    | GetStoragesByStorageIdFilesResponseDefaultType0
-    | GetStoragesByStorageIdFilesResponseDefaultType1
-]:
+) -> Response[Any | FilesElasticSchema | GetStoragesByStorageIdFilesResponseDefault]:
     """Get files in a storage folder, or all files on a storage
 
 
@@ -183,8 +143,8 @@ def sync_detailed(
         path_separator (str | Unset):
         directory_path (str | Unset):
         checksum (str | Unset):
-        per_page (int | Unset):  Default: 10.
-        page (int | Unset):  Default: 1.
+        per_page (int | Unset):
+        page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
         sort (str | Unset):
@@ -200,7 +160,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | FilesElasticSchema | GetStoragesByStorageIdFilesResponseDefaultType0 | GetStoragesByStorageIdFilesResponseDefaultType1]
+        Response[Any | FilesElasticSchema | GetStoragesByStorageIdFilesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -237,8 +197,8 @@ def sync(
     path_separator: str | Unset = UNSET,
     directory_path: str | Unset = UNSET,
     checksum: str | Unset = UNSET,
-    per_page: int | Unset = 10,
-    page: int | Unset = 1,
+    per_page: int | Unset = UNSET,
+    page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
     sort: str | Unset = UNSET,
@@ -248,13 +208,7 @@ def sync(
     status: str | Unset = UNSET,
     date_created: str | Unset = UNSET,
     date_modified: str | Unset = UNSET,
-) -> (
-    Any
-    | FilesElasticSchema
-    | GetStoragesByStorageIdFilesResponseDefaultType0
-    | GetStoragesByStorageIdFilesResponseDefaultType1
-    | None
-):
+) -> Any | FilesElasticSchema | GetStoragesByStorageIdFilesResponseDefault | None:
     """Get files in a storage folder, or all files on a storage
 
 
@@ -267,8 +221,8 @@ def sync(
         path_separator (str | Unset):
         directory_path (str | Unset):
         checksum (str | Unset):
-        per_page (int | Unset):  Default: 10.
-        page (int | Unset):  Default: 1.
+        per_page (int | Unset):
+        page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
         sort (str | Unset):
@@ -284,7 +238,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | FilesElasticSchema | GetStoragesByStorageIdFilesResponseDefaultType0 | GetStoragesByStorageIdFilesResponseDefaultType1
+        Any | FilesElasticSchema | GetStoragesByStorageIdFilesResponseDefault
     """
 
     return sync_detailed(
@@ -316,8 +270,8 @@ async def asyncio_detailed(
     path_separator: str | Unset = UNSET,
     directory_path: str | Unset = UNSET,
     checksum: str | Unset = UNSET,
-    per_page: int | Unset = 10,
-    page: int | Unset = 1,
+    per_page: int | Unset = UNSET,
+    page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
     sort: str | Unset = UNSET,
@@ -327,12 +281,7 @@ async def asyncio_detailed(
     status: str | Unset = UNSET,
     date_created: str | Unset = UNSET,
     date_modified: str | Unset = UNSET,
-) -> Response[
-    Any
-    | FilesElasticSchema
-    | GetStoragesByStorageIdFilesResponseDefaultType0
-    | GetStoragesByStorageIdFilesResponseDefaultType1
-]:
+) -> Response[Any | FilesElasticSchema | GetStoragesByStorageIdFilesResponseDefault]:
     """Get files in a storage folder, or all files on a storage
 
 
@@ -345,8 +294,8 @@ async def asyncio_detailed(
         path_separator (str | Unset):
         directory_path (str | Unset):
         checksum (str | Unset):
-        per_page (int | Unset):  Default: 10.
-        page (int | Unset):  Default: 1.
+        per_page (int | Unset):
+        page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
         sort (str | Unset):
@@ -362,7 +311,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | FilesElasticSchema | GetStoragesByStorageIdFilesResponseDefaultType0 | GetStoragesByStorageIdFilesResponseDefaultType1]
+        Response[Any | FilesElasticSchema | GetStoragesByStorageIdFilesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -397,8 +346,8 @@ async def asyncio(
     path_separator: str | Unset = UNSET,
     directory_path: str | Unset = UNSET,
     checksum: str | Unset = UNSET,
-    per_page: int | Unset = 10,
-    page: int | Unset = 1,
+    per_page: int | Unset = UNSET,
+    page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
     sort: str | Unset = UNSET,
@@ -408,13 +357,7 @@ async def asyncio(
     status: str | Unset = UNSET,
     date_created: str | Unset = UNSET,
     date_modified: str | Unset = UNSET,
-) -> (
-    Any
-    | FilesElasticSchema
-    | GetStoragesByStorageIdFilesResponseDefaultType0
-    | GetStoragesByStorageIdFilesResponseDefaultType1
-    | None
-):
+) -> Any | FilesElasticSchema | GetStoragesByStorageIdFilesResponseDefault | None:
     """Get files in a storage folder, or all files on a storage
 
 
@@ -427,8 +370,8 @@ async def asyncio(
         path_separator (str | Unset):
         directory_path (str | Unset):
         checksum (str | Unset):
-        per_page (int | Unset):  Default: 10.
-        page (int | Unset):  Default: 1.
+        per_page (int | Unset):
+        page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
         sort (str | Unset):
@@ -444,7 +387,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | FilesElasticSchema | GetStoragesByStorageIdFilesResponseDefaultType0 | GetStoragesByStorageIdFilesResponseDefaultType1
+        Any | FilesElasticSchema | GetStoragesByStorageIdFilesResponseDefault
     """
 
     return (

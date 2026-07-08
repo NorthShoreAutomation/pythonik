@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_assets_by_asset_id_files_by_file_id_isg_handler_url_response_default_type_0 import (
-    GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType0,
-)
-from ...models.get_assets_by_asset_id_files_by_file_id_isg_handler_url_response_default_type_1 import (
-    GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType1,
+from ...models.get_assets_by_asset_id_files_by_file_id_isg_handler_url_response_default import (
+    GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefault,
 )
 from ...models.isg_handler_url_schema import ISGHandlerURLSchema
 from ...types import Response
@@ -35,8 +32,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType0
-    | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType1
+    | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefault
     | ISGHandlerURLSchema
 ):
     if response.status_code == 200:
@@ -52,33 +48,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType0
-        | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -87,8 +61,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType0
-    | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType1
+    | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefault
     | ISGHandlerURLSchema
 ]:
     return Response(
@@ -106,8 +79,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
 ) -> Response[
     Any
-    | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType0
-    | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType1
+    | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefault
     | ISGHandlerURLSchema
 ]:
     """Get asset's file handler URL for ISG
@@ -125,7 +97,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType0 | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType1 | ISGHandlerURLSchema]
+        Response[Any | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefault | ISGHandlerURLSchema]
     """
 
     kwargs = _get_kwargs(
@@ -147,8 +119,7 @@ def sync(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType0
-    | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType1
+    | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefault
     | ISGHandlerURLSchema
     | None
 ):
@@ -167,7 +138,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType0 | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType1 | ISGHandlerURLSchema
+        Any | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefault | ISGHandlerURLSchema
     """
 
     return sync_detailed(
@@ -184,8 +155,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
 ) -> Response[
     Any
-    | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType0
-    | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType1
+    | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefault
     | ISGHandlerURLSchema
 ]:
     """Get asset's file handler URL for ISG
@@ -203,7 +173,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType0 | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType1 | ISGHandlerURLSchema]
+        Response[Any | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefault | ISGHandlerURLSchema]
     """
 
     kwargs = _get_kwargs(
@@ -223,8 +193,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType0
-    | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType1
+    | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefault
     | ISGHandlerURLSchema
     | None
 ):
@@ -243,7 +212,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType0 | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefaultType1 | ISGHandlerURLSchema
+        Any | GetAssetsByAssetIdFilesByFileIdIsgHandlerUrlResponseDefault | ISGHandlerURLSchema
     """
 
     return (

@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_system_domains_referral_code_by_referral_code_response_default_type_0 import (
-    PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType0,
-)
-from ...models.post_system_domains_referral_code_by_referral_code_response_default_type_1 import (
-    PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType1,
+from ...models.post_system_domains_referral_code_by_referral_code_response_default import (
+    PostSystemDomainsReferralCodeByReferralCodeResponseDefault,
 )
 from ...models.system_domain_from_referral_code_schema import (
     SystemDomainFromReferralCodeSchema,
@@ -44,8 +41,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType0
-    | PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType1
+    | PostSystemDomainsReferralCodeByReferralCodeResponseDefault
     | SystemDomainFromTemplateSchema
 ):
     if response.status_code == 201:
@@ -61,33 +57,11 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType0
-        | PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PostSystemDomainsReferralCodeByReferralCodeResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -96,8 +70,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType0
-    | PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType1
+    | PostSystemDomainsReferralCodeByReferralCodeResponseDefault
     | SystemDomainFromTemplateSchema
 ]:
     return Response(
@@ -115,8 +88,7 @@ def sync_detailed(
     body: SystemDomainFromReferralCodeSchema,
 ) -> Response[
     Any
-    | PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType0
-    | PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType1
+    | PostSystemDomainsReferralCodeByReferralCodeResponseDefault
     | SystemDomainFromTemplateSchema
 ]:
     """Create a new system domain from a referral code (That is associated to your domain)
@@ -130,7 +102,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType0 | PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType1 | SystemDomainFromTemplateSchema]
+        Response[Any | PostSystemDomainsReferralCodeByReferralCodeResponseDefault | SystemDomainFromTemplateSchema]
     """
 
     kwargs = _get_kwargs(
@@ -152,8 +124,7 @@ def sync(
     body: SystemDomainFromReferralCodeSchema,
 ) -> (
     Any
-    | PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType0
-    | PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType1
+    | PostSystemDomainsReferralCodeByReferralCodeResponseDefault
     | SystemDomainFromTemplateSchema
     | None
 ):
@@ -168,7 +139,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType0 | PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType1 | SystemDomainFromTemplateSchema
+        Any | PostSystemDomainsReferralCodeByReferralCodeResponseDefault | SystemDomainFromTemplateSchema
     """
 
     return sync_detailed(
@@ -185,8 +156,7 @@ async def asyncio_detailed(
     body: SystemDomainFromReferralCodeSchema,
 ) -> Response[
     Any
-    | PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType0
-    | PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType1
+    | PostSystemDomainsReferralCodeByReferralCodeResponseDefault
     | SystemDomainFromTemplateSchema
 ]:
     """Create a new system domain from a referral code (That is associated to your domain)
@@ -200,7 +170,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType0 | PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType1 | SystemDomainFromTemplateSchema]
+        Response[Any | PostSystemDomainsReferralCodeByReferralCodeResponseDefault | SystemDomainFromTemplateSchema]
     """
 
     kwargs = _get_kwargs(
@@ -220,8 +190,7 @@ async def asyncio(
     body: SystemDomainFromReferralCodeSchema,
 ) -> (
     Any
-    | PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType0
-    | PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType1
+    | PostSystemDomainsReferralCodeByReferralCodeResponseDefault
     | SystemDomainFromTemplateSchema
     | None
 ):
@@ -236,7 +205,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType0 | PostSystemDomainsReferralCodeByReferralCodeResponseDefaultType1 | SystemDomainFromTemplateSchema
+        Any | PostSystemDomainsReferralCodeByReferralCodeResponseDefault | SystemDomainFromTemplateSchema
     """
 
     return (

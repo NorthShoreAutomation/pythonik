@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_analysis_service_accounts_by_analysis_service_account_id_response_default_type_0 import (
-    DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0,
-)
-from ...models.delete_analysis_service_accounts_by_analysis_service_account_id_response_default_type_1 import (
-    DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1,
+from ...models.delete_analysis_service_accounts_by_analysis_service_account_id_response_default import (
+    DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault,
 )
 from ...types import Response
 
@@ -32,11 +29,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0
-    | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1
-):
+) -> Any | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -53,31 +46,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0
-        | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -85,9 +56,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0
-    | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1
+    Any | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -102,9 +71,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0
-    | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1
+    Any | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault
 ]:
     """Delete an analysis service account
 
@@ -120,7 +87,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0 | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1]
+        Response[Any | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -139,10 +106,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
 ) -> (
-    Any
-    | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0
-    | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1
-    | None
+    Any | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault | None
 ):
     """Delete an analysis service account
 
@@ -158,7 +122,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0 | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1
+        Any | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault
     """
 
     return sync_detailed(
@@ -172,9 +136,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0
-    | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1
+    Any | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault
 ]:
     """Delete an analysis service account
 
@@ -190,7 +152,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0 | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1]
+        Response[Any | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -207,10 +169,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
 ) -> (
-    Any
-    | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0
-    | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1
-    | None
+    Any | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault | None
 ):
     """Delete an analysis service account
 
@@ -226,7 +185,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0 | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1
+        Any | DeleteAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault
     """
 
     return (

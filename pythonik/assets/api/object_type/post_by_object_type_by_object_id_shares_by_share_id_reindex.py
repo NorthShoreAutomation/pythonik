@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_by_object_type_by_object_id_shares_by_share_id_reindex_response_default_type_0 import (
-    PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType0,
-)
-from ...models.post_by_object_type_by_object_id_shares_by_share_id_reindex_response_default_type_1 import (
-    PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType1,
+from ...models.post_by_object_type_by_object_id_shares_by_share_id_reindex_response_default import (
+    PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefault,
 )
 from ...models.reindex_share_schema import ReindexShareSchema
 from ...types import Response
@@ -43,11 +40,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType0
-    | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType1
-):
+) -> Any | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefault:
     if response.status_code == 201:
         response_201 = cast(Any, None)
         return response_201
@@ -60,42 +53,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType0
-        | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType0
-    | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -111,11 +80,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexShareSchema,
-) -> Response[
-    Any
-    | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType0
-    | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefault]:
     """Reindex the share
 
 
@@ -133,7 +98,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType0 | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType1]
+        Response[Any | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -157,12 +122,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexShareSchema,
-) -> (
-    Any
-    | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType0
-    | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefault | None:
     """Reindex the share
 
 
@@ -180,7 +140,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType0 | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType1
+        Any | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefault
     """
 
     return sync_detailed(
@@ -199,11 +159,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexShareSchema,
-) -> Response[
-    Any
-    | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType0
-    | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefault]:
     """Reindex the share
 
 
@@ -221,7 +177,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType0 | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType1]
+        Response[Any | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -243,12 +199,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexShareSchema,
-) -> (
-    Any
-    | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType0
-    | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefault | None:
     """Reindex the share
 
 
@@ -266,7 +217,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType0 | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefaultType1
+        Any | PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefault
     """
 
     return (

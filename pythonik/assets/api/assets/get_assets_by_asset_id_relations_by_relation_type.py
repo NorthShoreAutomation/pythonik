@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.assets_schema import AssetsSchema
-from ...models.get_assets_by_asset_id_relations_by_relation_type_response_default_type_0 import (
-    GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType0,
-)
-from ...models.get_assets_by_asset_id_relations_by_relation_type_response_default_type_1 import (
-    GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType1,
+from ...models.get_assets_by_asset_id_relations_by_relation_type_response_default import (
+    GetAssetsByAssetIdRelationsByRelationTypeResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -19,9 +16,9 @@ def _get_kwargs(
     asset_id: str,
     relation_type: str,
     *,
-    include_deleted: bool | Unset = False,
+    include_deleted: bool | Unset = UNSET,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     search_after: str | Unset = UNSET,
 ) -> dict[str, Any]:
 
@@ -51,12 +48,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | AssetsSchema
-    | GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType0
-    | GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType1
-):
+) -> Any | AssetsSchema | GetAssetsByAssetIdRelationsByRelationTypeResponseDefault:
     if response.status_code == 200:
         response_200 = AssetsSchema.from_dict(response.json())
 
@@ -70,35 +62,11 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType0
-        | GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        GetAssetsByAssetIdRelationsByRelationTypeResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -106,10 +74,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | AssetsSchema
-    | GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType0
-    | GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType1
+    Any | AssetsSchema | GetAssetsByAssetIdRelationsByRelationTypeResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -124,15 +89,12 @@ def sync_detailed(
     relation_type: str,
     *,
     client: AuthenticatedClient | Client,
-    include_deleted: bool | Unset = False,
+    include_deleted: bool | Unset = UNSET,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     search_after: str | Unset = UNSET,
 ) -> Response[
-    Any
-    | AssetsSchema
-    | GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType0
-    | GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType1
+    Any | AssetsSchema | GetAssetsByAssetIdRelationsByRelationTypeResponseDefault
 ]:
     """Returns assets that has a relation to this asset
 
@@ -143,9 +105,9 @@ def sync_detailed(
     Args:
         asset_id (str):
         relation_type (str):
-        include_deleted (bool | Unset):  Default: False.
+        include_deleted (bool | Unset):
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         search_after (str | Unset):
 
     Raises:
@@ -153,7 +115,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AssetsSchema | GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType0 | GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType1]
+        Response[Any | AssetsSchema | GetAssetsByAssetIdRelationsByRelationTypeResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -177,16 +139,12 @@ def sync(
     relation_type: str,
     *,
     client: AuthenticatedClient | Client,
-    include_deleted: bool | Unset = False,
+    include_deleted: bool | Unset = UNSET,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     search_after: str | Unset = UNSET,
 ) -> (
-    Any
-    | AssetsSchema
-    | GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType0
-    | GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType1
-    | None
+    Any | AssetsSchema | GetAssetsByAssetIdRelationsByRelationTypeResponseDefault | None
 ):
     """Returns assets that has a relation to this asset
 
@@ -197,9 +155,9 @@ def sync(
     Args:
         asset_id (str):
         relation_type (str):
-        include_deleted (bool | Unset):  Default: False.
+        include_deleted (bool | Unset):
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         search_after (str | Unset):
 
     Raises:
@@ -207,7 +165,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AssetsSchema | GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType0 | GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType1
+        Any | AssetsSchema | GetAssetsByAssetIdRelationsByRelationTypeResponseDefault
     """
 
     return sync_detailed(
@@ -226,15 +184,12 @@ async def asyncio_detailed(
     relation_type: str,
     *,
     client: AuthenticatedClient | Client,
-    include_deleted: bool | Unset = False,
+    include_deleted: bool | Unset = UNSET,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     search_after: str | Unset = UNSET,
 ) -> Response[
-    Any
-    | AssetsSchema
-    | GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType0
-    | GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType1
+    Any | AssetsSchema | GetAssetsByAssetIdRelationsByRelationTypeResponseDefault
 ]:
     """Returns assets that has a relation to this asset
 
@@ -245,9 +200,9 @@ async def asyncio_detailed(
     Args:
         asset_id (str):
         relation_type (str):
-        include_deleted (bool | Unset):  Default: False.
+        include_deleted (bool | Unset):
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         search_after (str | Unset):
 
     Raises:
@@ -255,7 +210,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AssetsSchema | GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType0 | GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType1]
+        Response[Any | AssetsSchema | GetAssetsByAssetIdRelationsByRelationTypeResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -277,16 +232,12 @@ async def asyncio(
     relation_type: str,
     *,
     client: AuthenticatedClient | Client,
-    include_deleted: bool | Unset = False,
+    include_deleted: bool | Unset = UNSET,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     search_after: str | Unset = UNSET,
 ) -> (
-    Any
-    | AssetsSchema
-    | GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType0
-    | GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType1
-    | None
+    Any | AssetsSchema | GetAssetsByAssetIdRelationsByRelationTypeResponseDefault | None
 ):
     """Returns assets that has a relation to this asset
 
@@ -297,9 +248,9 @@ async def asyncio(
     Args:
         asset_id (str):
         relation_type (str):
-        include_deleted (bool | Unset):  Default: False.
+        include_deleted (bool | Unset):
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         search_after (str | Unset):
 
     Raises:
@@ -307,7 +258,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AssetsSchema | GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType0 | GetAssetsByAssetIdRelationsByRelationTypeResponseDefaultType1
+        Any | AssetsSchema | GetAssetsByAssetIdRelationsByRelationTypeResponseDefault
     """
 
     return (

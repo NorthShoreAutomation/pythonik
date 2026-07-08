@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_delete_queue_assets_response_default_type_0 import (
-    DeleteDeleteQueueAssetsResponseDefaultType0,
-)
-from ...models.delete_delete_queue_assets_response_default_type_1 import (
-    DeleteDeleteQueueAssetsResponseDefaultType1,
+from ...models.delete_delete_queue_assets_response_default import (
+    DeleteDeleteQueueAssetsResponseDefault,
 )
 from ...models.delete_queue_schema import DeleteQueueSchema
 from ...types import Response
@@ -35,11 +32,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteDeleteQueueAssetsResponseDefaultType0
-    | DeleteDeleteQueueAssetsResponseDefaultType1
-):
+) -> Any | DeleteDeleteQueueAssetsResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -52,42 +45,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteDeleteQueueAssetsResponseDefaultType0
-        | DeleteDeleteQueueAssetsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteDeleteQueueAssetsResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = DeleteDeleteQueueAssetsResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteDeleteQueueAssetsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteDeleteQueueAssetsResponseDefaultType0
-    | DeleteDeleteQueueAssetsResponseDefaultType1
-]:
+) -> Response[Any | DeleteDeleteQueueAssetsResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -100,11 +65,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: DeleteQueueSchema,
-) -> Response[
-    Any
-    | DeleteDeleteQueueAssetsResponseDefaultType0
-    | DeleteDeleteQueueAssetsResponseDefaultType1
-]:
+) -> Response[Any | DeleteDeleteQueueAssetsResponseDefault]:
     """Delete assets from delete queue (Mark assets as active again)
 
 
@@ -119,7 +80,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteDeleteQueueAssetsResponseDefaultType0 | DeleteDeleteQueueAssetsResponseDefaultType1]
+        Response[Any | DeleteDeleteQueueAssetsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -137,12 +98,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: DeleteQueueSchema,
-) -> (
-    Any
-    | DeleteDeleteQueueAssetsResponseDefaultType0
-    | DeleteDeleteQueueAssetsResponseDefaultType1
-    | None
-):
+) -> Any | DeleteDeleteQueueAssetsResponseDefault | None:
     """Delete assets from delete queue (Mark assets as active again)
 
 
@@ -157,7 +113,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteDeleteQueueAssetsResponseDefaultType0 | DeleteDeleteQueueAssetsResponseDefaultType1
+        Any | DeleteDeleteQueueAssetsResponseDefault
     """
 
     return sync_detailed(
@@ -170,11 +126,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: DeleteQueueSchema,
-) -> Response[
-    Any
-    | DeleteDeleteQueueAssetsResponseDefaultType0
-    | DeleteDeleteQueueAssetsResponseDefaultType1
-]:
+) -> Response[Any | DeleteDeleteQueueAssetsResponseDefault]:
     """Delete assets from delete queue (Mark assets as active again)
 
 
@@ -189,7 +141,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteDeleteQueueAssetsResponseDefaultType0 | DeleteDeleteQueueAssetsResponseDefaultType1]
+        Response[Any | DeleteDeleteQueueAssetsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -205,12 +157,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: DeleteQueueSchema,
-) -> (
-    Any
-    | DeleteDeleteQueueAssetsResponseDefaultType0
-    | DeleteDeleteQueueAssetsResponseDefaultType1
-    | None
-):
+) -> Any | DeleteDeleteQueueAssetsResponseDefault | None:
     """Delete assets from delete queue (Mark assets as active again)
 
 
@@ -225,7 +172,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteDeleteQueueAssetsResponseDefaultType0 | DeleteDeleteQueueAssetsResponseDefaultType1
+        Any | DeleteDeleteQueueAssetsResponseDefault
     """
 
     return (

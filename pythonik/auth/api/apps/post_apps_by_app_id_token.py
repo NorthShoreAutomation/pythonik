@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_apps_by_app_id_token_response_default_type_0 import (
-    PostAppsByAppIdTokenResponseDefaultType0,
-)
-from ...models.post_apps_by_app_id_token_response_default_type_1 import (
-    PostAppsByAppIdTokenResponseDefaultType1,
+from ...models.post_apps_by_app_id_token_response_default import (
+    PostAppsByAppIdTokenResponseDefault,
 )
 from ...models.token_schema import TokenSchema
 from ...types import UNSET, Response, Unset
@@ -40,12 +37,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostAppsByAppIdTokenResponseDefaultType0
-    | PostAppsByAppIdTokenResponseDefaultType1
-    | TokenSchema
-):
+) -> Any | PostAppsByAppIdTokenResponseDefault | TokenSchema:
     if response.status_code == 200:
         response_200 = TokenSchema.from_dict(response.json())
 
@@ -59,43 +51,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAppsByAppIdTokenResponseDefaultType0
-        | PostAppsByAppIdTokenResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostAppsByAppIdTokenResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostAppsByAppIdTokenResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostAppsByAppIdTokenResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostAppsByAppIdTokenResponseDefaultType0
-    | PostAppsByAppIdTokenResponseDefaultType1
-    | TokenSchema
-]:
+) -> Response[Any | PostAppsByAppIdTokenResponseDefault | TokenSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -109,12 +72,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     expires_in: int | Unset = UNSET,
-) -> Response[
-    Any
-    | PostAppsByAppIdTokenResponseDefaultType0
-    | PostAppsByAppIdTokenResponseDefaultType1
-    | TokenSchema
-]:
+) -> Response[Any | PostAppsByAppIdTokenResponseDefault | TokenSchema]:
     """Creates app token by id and returns it's data
 
 
@@ -130,7 +88,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAppsByAppIdTokenResponseDefaultType0 | PostAppsByAppIdTokenResponseDefaultType1 | TokenSchema]
+        Response[Any | PostAppsByAppIdTokenResponseDefault | TokenSchema]
     """
 
     kwargs = _get_kwargs(
@@ -150,13 +108,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     expires_in: int | Unset = UNSET,
-) -> (
-    Any
-    | PostAppsByAppIdTokenResponseDefaultType0
-    | PostAppsByAppIdTokenResponseDefaultType1
-    | TokenSchema
-    | None
-):
+) -> Any | PostAppsByAppIdTokenResponseDefault | TokenSchema | None:
     """Creates app token by id and returns it's data
 
 
@@ -172,7 +124,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAppsByAppIdTokenResponseDefaultType0 | PostAppsByAppIdTokenResponseDefaultType1 | TokenSchema
+        Any | PostAppsByAppIdTokenResponseDefault | TokenSchema
     """
 
     return sync_detailed(
@@ -187,12 +139,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     expires_in: int | Unset = UNSET,
-) -> Response[
-    Any
-    | PostAppsByAppIdTokenResponseDefaultType0
-    | PostAppsByAppIdTokenResponseDefaultType1
-    | TokenSchema
-]:
+) -> Response[Any | PostAppsByAppIdTokenResponseDefault | TokenSchema]:
     """Creates app token by id and returns it's data
 
 
@@ -208,7 +155,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAppsByAppIdTokenResponseDefaultType0 | PostAppsByAppIdTokenResponseDefaultType1 | TokenSchema]
+        Response[Any | PostAppsByAppIdTokenResponseDefault | TokenSchema]
     """
 
     kwargs = _get_kwargs(
@@ -226,13 +173,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     expires_in: int | Unset = UNSET,
-) -> (
-    Any
-    | PostAppsByAppIdTokenResponseDefaultType0
-    | PostAppsByAppIdTokenResponseDefaultType1
-    | TokenSchema
-    | None
-):
+) -> Any | PostAppsByAppIdTokenResponseDefault | TokenSchema | None:
     """Creates app token by id and returns it's data
 
 
@@ -248,7 +189,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAppsByAppIdTokenResponseDefaultType0 | PostAppsByAppIdTokenResponseDefaultType1 | TokenSchema
+        Any | PostAppsByAppIdTokenResponseDefault | TokenSchema
     """
 
     return (

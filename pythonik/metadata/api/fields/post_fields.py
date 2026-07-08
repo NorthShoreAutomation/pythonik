@@ -6,8 +6,7 @@ import httpx
 from ...client import AuthenticatedClient, Client
 from ...models.metadata_field_create_schema import MetadataFieldCreateSchema
 from ...models.metadata_field_schema import MetadataFieldSchema
-from ...models.post_fields_response_default_type_0 import PostFieldsResponseDefaultType0
-from ...models.post_fields_response_default_type_1 import PostFieldsResponseDefaultType1
+from ...models.post_fields_response_default import PostFieldsResponseDefault
 from ...types import Response
 
 
@@ -32,12 +31,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | MetadataFieldSchema
-    | PostFieldsResponseDefaultType0
-    | PostFieldsResponseDefaultType1
-):
+) -> Any | MetadataFieldSchema | PostFieldsResponseDefault:
     if response.status_code == 201:
         response_201 = MetadataFieldSchema.from_dict(response.json())
 
@@ -51,36 +45,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> PostFieldsResponseDefaultType0 | PostFieldsResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostFieldsResponseDefaultType0.from_dict(data)
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostFieldsResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostFieldsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | MetadataFieldSchema
-    | PostFieldsResponseDefaultType0
-    | PostFieldsResponseDefaultType1
-]:
+) -> Response[Any | MetadataFieldSchema | PostFieldsResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -93,12 +65,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: MetadataFieldCreateSchema,
-) -> Response[
-    Any
-    | MetadataFieldSchema
-    | PostFieldsResponseDefaultType0
-    | PostFieldsResponseDefaultType1
-]:
+) -> Response[Any | MetadataFieldSchema | PostFieldsResponseDefault]:
     """Create a new field
 
 
@@ -113,7 +80,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | MetadataFieldSchema | PostFieldsResponseDefaultType0 | PostFieldsResponseDefaultType1]
+        Response[Any | MetadataFieldSchema | PostFieldsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -131,13 +98,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: MetadataFieldCreateSchema,
-) -> (
-    Any
-    | MetadataFieldSchema
-    | PostFieldsResponseDefaultType0
-    | PostFieldsResponseDefaultType1
-    | None
-):
+) -> Any | MetadataFieldSchema | PostFieldsResponseDefault | None:
     """Create a new field
 
 
@@ -152,7 +113,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | MetadataFieldSchema | PostFieldsResponseDefaultType0 | PostFieldsResponseDefaultType1
+        Any | MetadataFieldSchema | PostFieldsResponseDefault
     """
 
     return sync_detailed(
@@ -165,12 +126,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: MetadataFieldCreateSchema,
-) -> Response[
-    Any
-    | MetadataFieldSchema
-    | PostFieldsResponseDefaultType0
-    | PostFieldsResponseDefaultType1
-]:
+) -> Response[Any | MetadataFieldSchema | PostFieldsResponseDefault]:
     """Create a new field
 
 
@@ -185,7 +141,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | MetadataFieldSchema | PostFieldsResponseDefaultType0 | PostFieldsResponseDefaultType1]
+        Response[Any | MetadataFieldSchema | PostFieldsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -201,13 +157,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: MetadataFieldCreateSchema,
-) -> (
-    Any
-    | MetadataFieldSchema
-    | PostFieldsResponseDefaultType0
-    | PostFieldsResponseDefaultType1
-    | None
-):
+) -> Any | MetadataFieldSchema | PostFieldsResponseDefault | None:
     """Create a new field
 
 
@@ -222,7 +172,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | MetadataFieldSchema | PostFieldsResponseDefaultType0 | PostFieldsResponseDefaultType1
+        Any | MetadataFieldSchema | PostFieldsResponseDefault
     """
 
     return (

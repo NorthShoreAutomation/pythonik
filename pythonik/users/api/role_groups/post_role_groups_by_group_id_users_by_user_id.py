@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_role_groups_by_group_id_users_by_user_id_response_default_type_0 import (
-    PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType0,
-)
-from ...models.post_role_groups_by_group_id_users_by_user_id_response_default_type_1 import (
-    PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType1,
+from ...models.post_role_groups_by_group_id_users_by_user_id_response_default import (
+    PostRoleGroupsByGroupIdUsersByUserIdResponseDefault,
 )
 from ...models.user_with_separated_groups_schema import UserWithSeparatedGroupsSchema
 from ...types import Response
@@ -35,8 +32,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType0
-    | PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType1
+    | PostRoleGroupsByGroupIdUsersByUserIdResponseDefault
     | UserWithSeparatedGroupsSchema
 ):
     if response.status_code == 201:
@@ -52,31 +48,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType0
-        | PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostRoleGroupsByGroupIdUsersByUserIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -85,8 +59,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType0
-    | PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType1
+    | PostRoleGroupsByGroupIdUsersByUserIdResponseDefault
     | UserWithSeparatedGroupsSchema
 ]:
     return Response(
@@ -104,8 +77,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
 ) -> Response[
     Any
-    | PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType0
-    | PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType1
+    | PostRoleGroupsByGroupIdUsersByUserIdResponseDefault
     | UserWithSeparatedGroupsSchema
 ]:
     """Add user into a role group
@@ -123,7 +95,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType0 | PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType1 | UserWithSeparatedGroupsSchema]
+        Response[Any | PostRoleGroupsByGroupIdUsersByUserIdResponseDefault | UserWithSeparatedGroupsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -145,8 +117,7 @@ def sync(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType0
-    | PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType1
+    | PostRoleGroupsByGroupIdUsersByUserIdResponseDefault
     | UserWithSeparatedGroupsSchema
     | None
 ):
@@ -165,7 +136,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType0 | PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType1 | UserWithSeparatedGroupsSchema
+        Any | PostRoleGroupsByGroupIdUsersByUserIdResponseDefault | UserWithSeparatedGroupsSchema
     """
 
     return sync_detailed(
@@ -182,8 +153,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
 ) -> Response[
     Any
-    | PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType0
-    | PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType1
+    | PostRoleGroupsByGroupIdUsersByUserIdResponseDefault
     | UserWithSeparatedGroupsSchema
 ]:
     """Add user into a role group
@@ -201,7 +171,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType0 | PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType1 | UserWithSeparatedGroupsSchema]
+        Response[Any | PostRoleGroupsByGroupIdUsersByUserIdResponseDefault | UserWithSeparatedGroupsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -221,8 +191,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType0
-    | PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType1
+    | PostRoleGroupsByGroupIdUsersByUserIdResponseDefault
     | UserWithSeparatedGroupsSchema
     | None
 ):
@@ -241,7 +210,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType0 | PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType1 | UserWithSeparatedGroupsSchema
+        Any | PostRoleGroupsByGroupIdUsersByUserIdResponseDefault | UserWithSeparatedGroupsSchema
     """
 
     return (

@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_referral_codes_by_code_response_default_type_0 import (
-    DeleteReferralCodesByCodeResponseDefaultType0,
-)
-from ...models.delete_referral_codes_by_code_response_default_type_1 import (
-    DeleteReferralCodesByCodeResponseDefaultType1,
+from ...models.delete_referral_codes_by_code_response_default import (
+    DeleteReferralCodesByCodeResponseDefault,
 )
 from ...types import Response
 
@@ -30,11 +27,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteReferralCodesByCodeResponseDefaultType0
-    | DeleteReferralCodesByCodeResponseDefaultType1
-):
+) -> Any | DeleteReferralCodesByCodeResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -47,42 +40,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteReferralCodesByCodeResponseDefaultType0
-        | DeleteReferralCodesByCodeResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteReferralCodesByCodeResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteReferralCodesByCodeResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteReferralCodesByCodeResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteReferralCodesByCodeResponseDefaultType0
-    | DeleteReferralCodesByCodeResponseDefaultType1
-]:
+) -> Response[Any | DeleteReferralCodesByCodeResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -95,11 +62,7 @@ def sync_detailed(
     code: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteReferralCodesByCodeResponseDefaultType0
-    | DeleteReferralCodesByCodeResponseDefaultType1
-]:
+) -> Response[Any | DeleteReferralCodesByCodeResponseDefault]:
     """Delete a referral_code
 
     Args:
@@ -110,7 +73,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteReferralCodesByCodeResponseDefaultType0 | DeleteReferralCodesByCodeResponseDefaultType1]
+        Response[Any | DeleteReferralCodesByCodeResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -128,12 +91,7 @@ def sync(
     code: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteReferralCodesByCodeResponseDefaultType0
-    | DeleteReferralCodesByCodeResponseDefaultType1
-    | None
-):
+) -> Any | DeleteReferralCodesByCodeResponseDefault | None:
     """Delete a referral_code
 
     Args:
@@ -144,7 +102,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteReferralCodesByCodeResponseDefaultType0 | DeleteReferralCodesByCodeResponseDefaultType1
+        Any | DeleteReferralCodesByCodeResponseDefault
     """
 
     return sync_detailed(
@@ -157,11 +115,7 @@ async def asyncio_detailed(
     code: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteReferralCodesByCodeResponseDefaultType0
-    | DeleteReferralCodesByCodeResponseDefaultType1
-]:
+) -> Response[Any | DeleteReferralCodesByCodeResponseDefault]:
     """Delete a referral_code
 
     Args:
@@ -172,7 +126,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteReferralCodesByCodeResponseDefaultType0 | DeleteReferralCodesByCodeResponseDefaultType1]
+        Response[Any | DeleteReferralCodesByCodeResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -188,12 +142,7 @@ async def asyncio(
     code: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteReferralCodesByCodeResponseDefaultType0
-    | DeleteReferralCodesByCodeResponseDefaultType1
-    | None
-):
+) -> Any | DeleteReferralCodesByCodeResponseDefault | None:
     """Delete a referral_code
 
     Args:
@@ -204,7 +153,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteReferralCodesByCodeResponseDefaultType0 | DeleteReferralCodesByCodeResponseDefaultType1
+        Any | DeleteReferralCodesByCodeResponseDefault
     """
 
     return (

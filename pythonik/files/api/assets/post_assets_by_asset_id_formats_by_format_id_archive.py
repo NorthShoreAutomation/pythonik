@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.format_archive_schema import FormatArchiveSchema
-from ...models.post_assets_by_asset_id_formats_by_format_id_archive_response_default_type_0 import (
-    PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0,
-)
-from ...models.post_assets_by_asset_id_formats_by_format_id_archive_response_default_type_1 import (
-    PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1,
+from ...models.post_assets_by_asset_id_formats_by_format_id_archive_response_default import (
+    PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -49,11 +46,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0
-    | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1
-):
+) -> Any | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -70,44 +63,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0
-        | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0
-    | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1
-]:
+) -> Response[Any | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -123,11 +90,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: FormatArchiveSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0
-    | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1
-]:
+) -> Response[Any | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault]:
     """Archive format
 
 
@@ -145,7 +108,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0 | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1]
+        Response[Any | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -169,12 +132,7 @@ def sync(
     client: AuthenticatedClient | Client,
     body: FormatArchiveSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> (
-    Any
-    | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0
-    | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1
-    | None
-):
+) -> Any | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault | None:
     """Archive format
 
 
@@ -192,7 +150,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0 | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1
+        Any | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault
     """
 
     return sync_detailed(
@@ -211,11 +169,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: FormatArchiveSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0
-    | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1
-]:
+) -> Response[Any | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault]:
     """Archive format
 
 
@@ -233,7 +187,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0 | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1]
+        Response[Any | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -255,12 +209,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     body: FormatArchiveSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> (
-    Any
-    | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0
-    | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1
-    | None
-):
+) -> Any | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault | None:
     """Archive format
 
 
@@ -278,7 +227,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0 | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1
+        Any | PostAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault
     """
 
     return (

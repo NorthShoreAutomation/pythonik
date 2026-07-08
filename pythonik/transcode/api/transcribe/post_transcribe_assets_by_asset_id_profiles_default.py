@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_transcribe_assets_by_asset_id_profiles_default_response_default_type_0 import (
-    PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType0,
-)
-from ...models.post_transcribe_assets_by_asset_id_profiles_default_response_default_type_1 import (
-    PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType1,
+from ...models.post_transcribe_assets_by_asset_id_profiles_default_response_default import (
+    PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefault,
 )
 from ...models.transcribe_schema import TranscribeSchema
 from ...types import UNSET, Response, Unset
@@ -40,11 +37,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType0
-    | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType1
-):
+) -> Any | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefault:
     if response.status_code == 201:
         response_201 = cast(Any, None)
         return response_201
@@ -57,44 +50,18 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType0
-        | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType0
-    | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType1
-]:
+) -> Response[Any | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -108,11 +75,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: TranscribeSchema | Unset = UNSET,
-) -> Response[
-    Any
-    | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType0
-    | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType1
-]:
+) -> Response[Any | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefault]:
     """Start a job that sends an asset to default transcription service
 
 
@@ -128,7 +91,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType0 | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType1]
+        Response[Any | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -148,12 +111,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: TranscribeSchema | Unset = UNSET,
-) -> (
-    Any
-    | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType0
-    | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType1
-    | None
-):
+) -> Any | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefault | None:
     """Start a job that sends an asset to default transcription service
 
 
@@ -169,7 +127,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType0 | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType1
+        Any | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefault
     """
 
     return sync_detailed(
@@ -184,11 +142,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: TranscribeSchema | Unset = UNSET,
-) -> Response[
-    Any
-    | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType0
-    | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType1
-]:
+) -> Response[Any | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefault]:
     """Start a job that sends an asset to default transcription service
 
 
@@ -204,7 +158,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType0 | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType1]
+        Response[Any | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -222,12 +176,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: TranscribeSchema | Unset = UNSET,
-) -> (
-    Any
-    | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType0
-    | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType1
-    | None
-):
+) -> Any | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefault | None:
     """Start a job that sends an asset to default transcription service
 
 
@@ -243,7 +192,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType0 | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefaultType1
+        Any | PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefault
     """
 
     return (

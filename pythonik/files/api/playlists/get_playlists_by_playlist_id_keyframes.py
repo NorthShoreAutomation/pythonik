@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_playlists_by_playlist_id_keyframes_response_default_type_0 import (
-    GetPlaylistsByPlaylistIdKeyframesResponseDefaultType0,
-)
-from ...models.get_playlists_by_playlist_id_keyframes_response_default_type_1 import (
-    GetPlaylistsByPlaylistIdKeyframesResponseDefaultType1,
+from ...models.get_playlists_by_playlist_id_keyframes_response_default import (
+    GetPlaylistsByPlaylistIdKeyframesResponseDefault,
 )
 from ...models.playlist_keyframes_schema import PlaylistKeyframesSchema
 from ...types import UNSET, Response, Unset
@@ -18,8 +15,8 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     playlist_id: str,
     *,
-    per_page: int | Unset = 10,
-    generate_signed_url: bool | Unset = True,
+    per_page: int | Unset = UNSET,
+    generate_signed_url: bool | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> dict[str, Any]:
 
@@ -46,12 +43,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetPlaylistsByPlaylistIdKeyframesResponseDefaultType0
-    | GetPlaylistsByPlaylistIdKeyframesResponseDefaultType1
-    | PlaylistKeyframesSchema
-):
+) -> Any | GetPlaylistsByPlaylistIdKeyframesResponseDefault | PlaylistKeyframesSchema:
     if response.status_code == 200:
         response_200 = PlaylistKeyframesSchema.from_dict(response.json())
 
@@ -65,31 +57,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetPlaylistsByPlaylistIdKeyframesResponseDefaultType0
-        | GetPlaylistsByPlaylistIdKeyframesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetPlaylistsByPlaylistIdKeyframesResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetPlaylistsByPlaylistIdKeyframesResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetPlaylistsByPlaylistIdKeyframesResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -97,10 +67,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | GetPlaylistsByPlaylistIdKeyframesResponseDefaultType0
-    | GetPlaylistsByPlaylistIdKeyframesResponseDefaultType1
-    | PlaylistKeyframesSchema
+    Any | GetPlaylistsByPlaylistIdKeyframesResponseDefault | PlaylistKeyframesSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -114,14 +81,11 @@ def sync_detailed(
     playlist_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
-    generate_signed_url: bool | Unset = True,
+    per_page: int | Unset = UNSET,
+    generate_signed_url: bool | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> Response[
-    Any
-    | GetPlaylistsByPlaylistIdKeyframesResponseDefaultType0
-    | GetPlaylistsByPlaylistIdKeyframesResponseDefaultType1
-    | PlaylistKeyframesSchema
+    Any | GetPlaylistsByPlaylistIdKeyframesResponseDefault | PlaylistKeyframesSchema
 ]:
     """Get all playlist's keyframes
 
@@ -131,8 +95,8 @@ def sync_detailed(
 
     Args:
         playlist_id (str):
-        per_page (int | Unset):  Default: 10.
-        generate_signed_url (bool | Unset):  Default: True.
+        per_page (int | Unset):
+        generate_signed_url (bool | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -140,7 +104,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetPlaylistsByPlaylistIdKeyframesResponseDefaultType0 | GetPlaylistsByPlaylistIdKeyframesResponseDefaultType1 | PlaylistKeyframesSchema]
+        Response[Any | GetPlaylistsByPlaylistIdKeyframesResponseDefault | PlaylistKeyframesSchema]
     """
 
     kwargs = _get_kwargs(
@@ -161,13 +125,12 @@ def sync(
     playlist_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
-    generate_signed_url: bool | Unset = True,
+    per_page: int | Unset = UNSET,
+    generate_signed_url: bool | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> (
     Any
-    | GetPlaylistsByPlaylistIdKeyframesResponseDefaultType0
-    | GetPlaylistsByPlaylistIdKeyframesResponseDefaultType1
+    | GetPlaylistsByPlaylistIdKeyframesResponseDefault
     | PlaylistKeyframesSchema
     | None
 ):
@@ -179,8 +142,8 @@ def sync(
 
     Args:
         playlist_id (str):
-        per_page (int | Unset):  Default: 10.
-        generate_signed_url (bool | Unset):  Default: True.
+        per_page (int | Unset):
+        generate_signed_url (bool | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -188,7 +151,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetPlaylistsByPlaylistIdKeyframesResponseDefaultType0 | GetPlaylistsByPlaylistIdKeyframesResponseDefaultType1 | PlaylistKeyframesSchema
+        Any | GetPlaylistsByPlaylistIdKeyframesResponseDefault | PlaylistKeyframesSchema
     """
 
     return sync_detailed(
@@ -204,14 +167,11 @@ async def asyncio_detailed(
     playlist_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
-    generate_signed_url: bool | Unset = True,
+    per_page: int | Unset = UNSET,
+    generate_signed_url: bool | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> Response[
-    Any
-    | GetPlaylistsByPlaylistIdKeyframesResponseDefaultType0
-    | GetPlaylistsByPlaylistIdKeyframesResponseDefaultType1
-    | PlaylistKeyframesSchema
+    Any | GetPlaylistsByPlaylistIdKeyframesResponseDefault | PlaylistKeyframesSchema
 ]:
     """Get all playlist's keyframes
 
@@ -221,8 +181,8 @@ async def asyncio_detailed(
 
     Args:
         playlist_id (str):
-        per_page (int | Unset):  Default: 10.
-        generate_signed_url (bool | Unset):  Default: True.
+        per_page (int | Unset):
+        generate_signed_url (bool | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -230,7 +190,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetPlaylistsByPlaylistIdKeyframesResponseDefaultType0 | GetPlaylistsByPlaylistIdKeyframesResponseDefaultType1 | PlaylistKeyframesSchema]
+        Response[Any | GetPlaylistsByPlaylistIdKeyframesResponseDefault | PlaylistKeyframesSchema]
     """
 
     kwargs = _get_kwargs(
@@ -249,13 +209,12 @@ async def asyncio(
     playlist_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
-    generate_signed_url: bool | Unset = True,
+    per_page: int | Unset = UNSET,
+    generate_signed_url: bool | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> (
     Any
-    | GetPlaylistsByPlaylistIdKeyframesResponseDefaultType0
-    | GetPlaylistsByPlaylistIdKeyframesResponseDefaultType1
+    | GetPlaylistsByPlaylistIdKeyframesResponseDefault
     | PlaylistKeyframesSchema
     | None
 ):
@@ -267,8 +226,8 @@ async def asyncio(
 
     Args:
         playlist_id (str):
-        per_page (int | Unset):  Default: 10.
-        generate_signed_url (bool | Unset):  Default: True.
+        per_page (int | Unset):
+        generate_signed_url (bool | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -276,7 +235,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetPlaylistsByPlaylistIdKeyframesResponseDefaultType0 | GetPlaylistsByPlaylistIdKeyframesResponseDefaultType1 | PlaylistKeyframesSchema
+        Any | GetPlaylistsByPlaylistIdKeyframesResponseDefault | PlaylistKeyframesSchema
     """
 
     return (

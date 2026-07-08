@@ -5,8 +5,7 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.app_create_schema import AppCreateSchema
-from ...models.post_apps_response_default_type_0 import PostAppsResponseDefaultType0
-from ...models.post_apps_response_default_type_1 import PostAppsResponseDefaultType1
+from ...models.post_apps_response_default import PostAppsResponseDefault
 from ...types import Response
 
 
@@ -31,9 +30,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any | AppCreateSchema | PostAppsResponseDefaultType0 | PostAppsResponseDefaultType1
-):
+) -> Any | AppCreateSchema | PostAppsResponseDefault:
     if response.status_code == 201:
         response_201 = AppCreateSchema.from_dict(response.json())
 
@@ -47,33 +44,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> PostAppsResponseDefaultType0 | PostAppsResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostAppsResponseDefaultType0.from_dict(data)
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostAppsResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostAppsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any | AppCreateSchema | PostAppsResponseDefaultType0 | PostAppsResponseDefaultType1
-]:
+) -> Response[Any | AppCreateSchema | PostAppsResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -86,9 +64,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: AppCreateSchema,
-) -> Response[
-    Any | AppCreateSchema | PostAppsResponseDefaultType0 | PostAppsResponseDefaultType1
-]:
+) -> Response[Any | AppCreateSchema | PostAppsResponseDefault]:
     """Create a new app
 
 
@@ -103,7 +79,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AppCreateSchema | PostAppsResponseDefaultType0 | PostAppsResponseDefaultType1]
+        Response[Any | AppCreateSchema | PostAppsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -121,13 +97,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: AppCreateSchema,
-) -> (
-    Any
-    | AppCreateSchema
-    | PostAppsResponseDefaultType0
-    | PostAppsResponseDefaultType1
-    | None
-):
+) -> Any | AppCreateSchema | PostAppsResponseDefault | None:
     """Create a new app
 
 
@@ -142,7 +112,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AppCreateSchema | PostAppsResponseDefaultType0 | PostAppsResponseDefaultType1
+        Any | AppCreateSchema | PostAppsResponseDefault
     """
 
     return sync_detailed(
@@ -155,9 +125,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: AppCreateSchema,
-) -> Response[
-    Any | AppCreateSchema | PostAppsResponseDefaultType0 | PostAppsResponseDefaultType1
-]:
+) -> Response[Any | AppCreateSchema | PostAppsResponseDefault]:
     """Create a new app
 
 
@@ -172,7 +140,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AppCreateSchema | PostAppsResponseDefaultType0 | PostAppsResponseDefaultType1]
+        Response[Any | AppCreateSchema | PostAppsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -188,13 +156,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: AppCreateSchema,
-) -> (
-    Any
-    | AppCreateSchema
-    | PostAppsResponseDefaultType0
-    | PostAppsResponseDefaultType1
-    | None
-):
+) -> Any | AppCreateSchema | PostAppsResponseDefault | None:
     """Create a new app
 
 
@@ -209,7 +171,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AppCreateSchema | PostAppsResponseDefaultType0 | PostAppsResponseDefaultType1
+        Any | AppCreateSchema | PostAppsResponseDefault
     """
 
     return (

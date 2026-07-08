@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.multi_part_s3_url_parts_schema import MultiPartS3UrlPartsSchema
-from ...models.post_assets_by_asset_id_files_by_file_id_multipart_url_s3_part_response_default_type_0 import (
-    PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType0,
-)
-from ...models.post_assets_by_asset_id_files_by_file_id_multipart_url_s3_part_response_default_type_1 import (
-    PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType1,
+from ...models.post_assets_by_asset_id_files_by_file_id_multipart_url_s3_part_response_default import (
+    PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -20,7 +17,7 @@ def _get_kwargs(
     file_id: str,
     *,
     body: MultiPartS3UrlPartsSchema,
-    temporary: bool | Unset = False,
+    temporary: bool | Unset = UNSET,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -52,8 +49,7 @@ def _parse_response(
 ) -> (
     Any
     | MultiPartS3UrlPartsSchema
-    | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefault
 ):
     if response.status_code == 200:
         response_200 = MultiPartS3UrlPartsSchema.from_dict(response.json())
@@ -72,31 +68,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType0
-        | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -106,8 +82,7 @@ def _build_response(
 ) -> Response[
     Any
     | MultiPartS3UrlPartsSchema
-    | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -123,12 +98,11 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: MultiPartS3UrlPartsSchema,
-    temporary: bool | Unset = False,
+    temporary: bool | Unset = UNSET,
 ) -> Response[
     Any
     | MultiPartS3UrlPartsSchema
-    | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefault
 ]:
     """Create presigned urls for multipart part S3 upload.
 
@@ -139,7 +113,7 @@ def sync_detailed(
     Args:
         asset_id (str):
         file_id (str):
-        temporary (bool | Unset):  Default: False.
+        temporary (bool | Unset):
         body (MultiPartS3UrlPartsSchema):
 
     Raises:
@@ -147,7 +121,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | MultiPartS3UrlPartsSchema | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType0 | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType1]
+        Response[Any | MultiPartS3UrlPartsSchema | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -170,12 +144,11 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: MultiPartS3UrlPartsSchema,
-    temporary: bool | Unset = False,
+    temporary: bool | Unset = UNSET,
 ) -> (
     Any
     | MultiPartS3UrlPartsSchema
-    | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefault
     | None
 ):
     """Create presigned urls for multipart part S3 upload.
@@ -187,7 +160,7 @@ def sync(
     Args:
         asset_id (str):
         file_id (str):
-        temporary (bool | Unset):  Default: False.
+        temporary (bool | Unset):
         body (MultiPartS3UrlPartsSchema):
 
     Raises:
@@ -195,7 +168,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | MultiPartS3UrlPartsSchema | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType0 | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType1
+        Any | MultiPartS3UrlPartsSchema | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefault
     """
 
     return sync_detailed(
@@ -213,12 +186,11 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: MultiPartS3UrlPartsSchema,
-    temporary: bool | Unset = False,
+    temporary: bool | Unset = UNSET,
 ) -> Response[
     Any
     | MultiPartS3UrlPartsSchema
-    | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefault
 ]:
     """Create presigned urls for multipart part S3 upload.
 
@@ -229,7 +201,7 @@ async def asyncio_detailed(
     Args:
         asset_id (str):
         file_id (str):
-        temporary (bool | Unset):  Default: False.
+        temporary (bool | Unset):
         body (MultiPartS3UrlPartsSchema):
 
     Raises:
@@ -237,7 +209,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | MultiPartS3UrlPartsSchema | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType0 | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType1]
+        Response[Any | MultiPartS3UrlPartsSchema | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -258,12 +230,11 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: MultiPartS3UrlPartsSchema,
-    temporary: bool | Unset = False,
+    temporary: bool | Unset = UNSET,
 ) -> (
     Any
     | MultiPartS3UrlPartsSchema
-    | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefault
     | None
 ):
     """Create presigned urls for multipart part S3 upload.
@@ -275,7 +246,7 @@ async def asyncio(
     Args:
         asset_id (str):
         file_id (str):
-        temporary (bool | Unset):  Default: False.
+        temporary (bool | Unset):
         body (MultiPartS3UrlPartsSchema):
 
     Raises:
@@ -283,7 +254,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | MultiPartS3UrlPartsSchema | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType0 | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefaultType1
+        Any | MultiPartS3UrlPartsSchema | PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefault
     """
 
     return (

@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.person_by_asset_and_version_schema import PersonByAssetAndVersionSchema
-from ...models.post_face_recognition_persons_by_person_id_assets_by_asset_id_versions_by_version_id_confirm_person_response_default_type_0 import (
-    PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType0,
-)
-from ...models.post_face_recognition_persons_by_person_id_assets_by_asset_id_versions_by_version_id_confirm_person_response_default_type_1 import (
-    PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType1,
+from ...models.post_face_recognition_persons_by_person_id_assets_by_asset_id_versions_by_version_id_confirm_person_response_default import (
+    PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -20,7 +17,7 @@ def _get_kwargs(
     asset_id: str,
     version_id: str,
     *,
-    use_instance_as_main_face: bool | Unset = False,
+    use_instance_as_main_face: bool | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -47,8 +44,7 @@ def _parse_response(
 ) -> (
     Any
     | PersonByAssetAndVersionSchema
-    | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType0
-    | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType1
+    | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefault
 ):
     if response.status_code == 200:
         response_200 = PersonByAssetAndVersionSchema.from_dict(response.json())
@@ -67,31 +63,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType0
-        | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -101,8 +75,7 @@ def _build_response(
 ) -> Response[
     Any
     | PersonByAssetAndVersionSchema
-    | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType0
-    | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType1
+    | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -118,12 +91,11 @@ def sync_detailed(
     version_id: str,
     *,
     client: AuthenticatedClient | Client,
-    use_instance_as_main_face: bool | Unset = False,
+    use_instance_as_main_face: bool | Unset = UNSET,
 ) -> Response[
     Any
     | PersonByAssetAndVersionSchema
-    | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType0
-    | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType1
+    | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefault
 ]:
     """Confirm a system unconfirmed person instance
 
@@ -136,14 +108,14 @@ def sync_detailed(
         person_id (str):
         asset_id (str):
         version_id (str):
-        use_instance_as_main_face (bool | Unset):  Default: False.
+        use_instance_as_main_face (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PersonByAssetAndVersionSchema | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType0 | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType1]
+        Response[Any | PersonByAssetAndVersionSchema | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -166,12 +138,11 @@ def sync(
     version_id: str,
     *,
     client: AuthenticatedClient | Client,
-    use_instance_as_main_face: bool | Unset = False,
+    use_instance_as_main_face: bool | Unset = UNSET,
 ) -> (
     Any
     | PersonByAssetAndVersionSchema
-    | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType0
-    | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType1
+    | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefault
     | None
 ):
     """Confirm a system unconfirmed person instance
@@ -185,14 +156,14 @@ def sync(
         person_id (str):
         asset_id (str):
         version_id (str):
-        use_instance_as_main_face (bool | Unset):  Default: False.
+        use_instance_as_main_face (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PersonByAssetAndVersionSchema | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType0 | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType1
+        Any | PersonByAssetAndVersionSchema | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefault
     """
 
     return sync_detailed(
@@ -210,12 +181,11 @@ async def asyncio_detailed(
     version_id: str,
     *,
     client: AuthenticatedClient | Client,
-    use_instance_as_main_face: bool | Unset = False,
+    use_instance_as_main_face: bool | Unset = UNSET,
 ) -> Response[
     Any
     | PersonByAssetAndVersionSchema
-    | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType0
-    | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType1
+    | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefault
 ]:
     """Confirm a system unconfirmed person instance
 
@@ -228,14 +198,14 @@ async def asyncio_detailed(
         person_id (str):
         asset_id (str):
         version_id (str):
-        use_instance_as_main_face (bool | Unset):  Default: False.
+        use_instance_as_main_face (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PersonByAssetAndVersionSchema | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType0 | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType1]
+        Response[Any | PersonByAssetAndVersionSchema | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -256,12 +226,11 @@ async def asyncio(
     version_id: str,
     *,
     client: AuthenticatedClient | Client,
-    use_instance_as_main_face: bool | Unset = False,
+    use_instance_as_main_face: bool | Unset = UNSET,
 ) -> (
     Any
     | PersonByAssetAndVersionSchema
-    | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType0
-    | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType1
+    | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefault
     | None
 ):
     """Confirm a system unconfirmed person instance
@@ -275,14 +244,14 @@ async def asyncio(
         person_id (str):
         asset_id (str):
         version_id (str):
-        use_instance_as_main_face (bool | Unset):  Default: False.
+        use_instance_as_main_face (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PersonByAssetAndVersionSchema | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType0 | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefaultType1
+        Any | PersonByAssetAndVersionSchema | PostFaceRecognitionPersonsByPersonIdAssetsByAssetIdVersionsByVersionIdConfirmPersonResponseDefault
     """
 
     return (

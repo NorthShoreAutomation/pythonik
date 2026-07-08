@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_by_object_type_categories_response_default_type_0 import (
-    GetByObjectTypeCategoriesResponseDefaultType0,
-)
-from ...models.get_by_object_type_categories_response_default_type_1 import (
-    GetByObjectTypeCategoriesResponseDefaultType1,
+from ...models.get_by_object_type_categories_response_default import (
+    GetByObjectTypeCategoriesResponseDefault,
 )
 from ...models.metadata_categories_schema import MetadataCategoriesSchema
 from ...types import Response
@@ -31,12 +28,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetByObjectTypeCategoriesResponseDefaultType0
-    | GetByObjectTypeCategoriesResponseDefaultType1
-    | MetadataCategoriesSchema
-):
+) -> Any | GetByObjectTypeCategoriesResponseDefault | MetadataCategoriesSchema:
     if response.status_code == 200:
         response_200 = MetadataCategoriesSchema.from_dict(response.json())
 
@@ -50,31 +42,9 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetByObjectTypeCategoriesResponseDefaultType0
-        | GetByObjectTypeCategoriesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetByObjectTypeCategoriesResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetByObjectTypeCategoriesResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetByObjectTypeCategoriesResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -82,10 +52,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | GetByObjectTypeCategoriesResponseDefaultType0
-    | GetByObjectTypeCategoriesResponseDefaultType1
-    | MetadataCategoriesSchema
+    Any | GetByObjectTypeCategoriesResponseDefault | MetadataCategoriesSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -100,10 +67,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | GetByObjectTypeCategoriesResponseDefaultType0
-    | GetByObjectTypeCategoriesResponseDefaultType1
-    | MetadataCategoriesSchema
+    Any | GetByObjectTypeCategoriesResponseDefault | MetadataCategoriesSchema
 ]:
     """Get metadata categories
 
@@ -119,7 +83,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetByObjectTypeCategoriesResponseDefaultType0 | GetByObjectTypeCategoriesResponseDefaultType1 | MetadataCategoriesSchema]
+        Response[Any | GetByObjectTypeCategoriesResponseDefault | MetadataCategoriesSchema]
     """
 
     kwargs = _get_kwargs(
@@ -137,13 +101,7 @@ def sync(
     object_type: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetByObjectTypeCategoriesResponseDefaultType0
-    | GetByObjectTypeCategoriesResponseDefaultType1
-    | MetadataCategoriesSchema
-    | None
-):
+) -> Any | GetByObjectTypeCategoriesResponseDefault | MetadataCategoriesSchema | None:
     """Get metadata categories
 
 
@@ -158,7 +116,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetByObjectTypeCategoriesResponseDefaultType0 | GetByObjectTypeCategoriesResponseDefaultType1 | MetadataCategoriesSchema
+        Any | GetByObjectTypeCategoriesResponseDefault | MetadataCategoriesSchema
     """
 
     return sync_detailed(
@@ -172,10 +130,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | GetByObjectTypeCategoriesResponseDefaultType0
-    | GetByObjectTypeCategoriesResponseDefaultType1
-    | MetadataCategoriesSchema
+    Any | GetByObjectTypeCategoriesResponseDefault | MetadataCategoriesSchema
 ]:
     """Get metadata categories
 
@@ -191,7 +146,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetByObjectTypeCategoriesResponseDefaultType0 | GetByObjectTypeCategoriesResponseDefaultType1 | MetadataCategoriesSchema]
+        Response[Any | GetByObjectTypeCategoriesResponseDefault | MetadataCategoriesSchema]
     """
 
     kwargs = _get_kwargs(
@@ -207,13 +162,7 @@ async def asyncio(
     object_type: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetByObjectTypeCategoriesResponseDefaultType0
-    | GetByObjectTypeCategoriesResponseDefaultType1
-    | MetadataCategoriesSchema
-    | None
-):
+) -> Any | GetByObjectTypeCategoriesResponseDefault | MetadataCategoriesSchema | None:
     """Get metadata categories
 
 
@@ -228,7 +177,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetByObjectTypeCategoriesResponseDefaultType0 | GetByObjectTypeCategoriesResponseDefaultType1 | MetadataCategoriesSchema
+        Any | GetByObjectTypeCategoriesResponseDefault | MetadataCategoriesSchema
     """
 
     return (

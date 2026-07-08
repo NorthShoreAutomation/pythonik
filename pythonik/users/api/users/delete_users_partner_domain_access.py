@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_users_partner_domain_access_response_default_type_0 import (
-    DeleteUsersPartnerDomainAccessResponseDefaultType0,
-)
-from ...models.delete_users_partner_domain_access_response_default_type_1 import (
-    DeleteUsersPartnerDomainAccessResponseDefaultType1,
+from ...models.delete_users_partner_domain_access_response_default import (
+    DeleteUsersPartnerDomainAccessResponseDefault,
 )
 from ...models.partner_domain_access_schema import PartnerDomainAccessSchema
 from ...types import Response
@@ -35,14 +32,14 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteUsersPartnerDomainAccessResponseDefaultType0
-    | DeleteUsersPartnerDomainAccessResponseDefaultType1
-):
+) -> Any | DeleteUsersPartnerDomainAccessResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
+
+    if response.status_code == 204:
+        response_204 = cast(Any, None)
+        return response_204
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -56,42 +53,16 @@ def _parse_response(
         response_403 = cast(Any, None)
         return response_403
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteUsersPartnerDomainAccessResponseDefaultType0
-        | DeleteUsersPartnerDomainAccessResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteUsersPartnerDomainAccessResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteUsersPartnerDomainAccessResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteUsersPartnerDomainAccessResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteUsersPartnerDomainAccessResponseDefaultType0
-    | DeleteUsersPartnerDomainAccessResponseDefaultType1
-]:
+) -> Response[Any | DeleteUsersPartnerDomainAccessResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -104,11 +75,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: PartnerDomainAccessSchema,
-) -> Response[
-    Any
-    | DeleteUsersPartnerDomainAccessResponseDefaultType0
-    | DeleteUsersPartnerDomainAccessResponseDefaultType1
-]:
+) -> Response[Any | DeleteUsersPartnerDomainAccessResponseDefault]:
     """Remove customer domain access from all users in a partner domain.
 
          (Super admins only)
@@ -121,7 +88,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteUsersPartnerDomainAccessResponseDefaultType0 | DeleteUsersPartnerDomainAccessResponseDefaultType1]
+        Response[Any | DeleteUsersPartnerDomainAccessResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -139,12 +106,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: PartnerDomainAccessSchema,
-) -> (
-    Any
-    | DeleteUsersPartnerDomainAccessResponseDefaultType0
-    | DeleteUsersPartnerDomainAccessResponseDefaultType1
-    | None
-):
+) -> Any | DeleteUsersPartnerDomainAccessResponseDefault | None:
     """Remove customer domain access from all users in a partner domain.
 
          (Super admins only)
@@ -157,7 +119,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteUsersPartnerDomainAccessResponseDefaultType0 | DeleteUsersPartnerDomainAccessResponseDefaultType1
+        Any | DeleteUsersPartnerDomainAccessResponseDefault
     """
 
     return sync_detailed(
@@ -170,11 +132,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: PartnerDomainAccessSchema,
-) -> Response[
-    Any
-    | DeleteUsersPartnerDomainAccessResponseDefaultType0
-    | DeleteUsersPartnerDomainAccessResponseDefaultType1
-]:
+) -> Response[Any | DeleteUsersPartnerDomainAccessResponseDefault]:
     """Remove customer domain access from all users in a partner domain.
 
          (Super admins only)
@@ -187,7 +145,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteUsersPartnerDomainAccessResponseDefaultType0 | DeleteUsersPartnerDomainAccessResponseDefaultType1]
+        Response[Any | DeleteUsersPartnerDomainAccessResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -203,12 +161,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: PartnerDomainAccessSchema,
-) -> (
-    Any
-    | DeleteUsersPartnerDomainAccessResponseDefaultType0
-    | DeleteUsersPartnerDomainAccessResponseDefaultType1
-    | None
-):
+) -> Any | DeleteUsersPartnerDomainAccessResponseDefault | None:
     """Remove customer domain access from all users in a partner domain.
 
          (Super admins only)
@@ -221,7 +174,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteUsersPartnerDomainAccessResponseDefaultType0 | DeleteUsersPartnerDomainAccessResponseDefaultType1
+        Any | DeleteUsersPartnerDomainAccessResponseDefault
     """
 
     return (

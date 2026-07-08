@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_assets_by_asset_id_versions_by_version_id_proxies_response_default_type_0 import (
-    DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType0,
-)
-from ...models.delete_assets_by_asset_id_versions_by_version_id_proxies_response_default_type_1 import (
-    DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType1,
+from ...models.delete_assets_by_asset_id_versions_by_version_id_proxies_response_default import (
+    DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefault,
 )
 from ...types import Response
 
@@ -32,11 +29,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType1
-):
+) -> Any | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -53,42 +46,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType0
-        | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -102,11 +71,7 @@ def sync_detailed(
     version_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefault]:
     """Delete asset's proxies by version
 
 
@@ -122,7 +87,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType0 | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType1]
+        Response[Any | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -142,12 +107,7 @@ def sync(
     version_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefault | None:
     """Delete asset's proxies by version
 
 
@@ -163,7 +123,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType0 | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType1
+        Any | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefault
     """
 
     return sync_detailed(
@@ -178,11 +138,7 @@ async def asyncio_detailed(
     version_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefault]:
     """Delete asset's proxies by version
 
 
@@ -198,7 +154,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType0 | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType1]
+        Response[Any | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -216,12 +172,7 @@ async def asyncio(
     version_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefault | None:
     """Delete asset's proxies by version
 
 
@@ -237,7 +188,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType0 | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefaultType1
+        Any | DeleteAssetsByAssetIdVersionsByVersionIdProxiesResponseDefault
     """
 
     return (

@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_sequences_by_sequence_id_items_by_item_id_response_default_type_0 import (
-    DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType0,
-)
-from ...models.delete_sequences_by_sequence_id_items_by_item_id_response_default_type_1 import (
-    DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType1,
+from ...models.delete_sequences_by_sequence_id_items_by_item_id_response_default import (
+    DeleteSequencesBySequenceIdItemsByItemIdResponseDefault,
 )
 from ...types import Response
 
@@ -32,11 +29,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType0
-    | DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType1
-):
+) -> Any | DeleteSequencesBySequenceIdItemsByItemIdResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -53,44 +46,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType0
-        | DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType1.from_dict(data)
+    response_default = (
+        DeleteSequencesBySequenceIdItemsByItemIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType0
-    | DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteSequencesBySequenceIdItemsByItemIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -104,11 +71,7 @@ def sync_detailed(
     item_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType0
-    | DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteSequencesBySequenceIdItemsByItemIdResponseDefault]:
     """Delete a particular sequence item by id
 
 
@@ -124,7 +87,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType0 | DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType1]
+        Response[Any | DeleteSequencesBySequenceIdItemsByItemIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -144,12 +107,7 @@ def sync(
     item_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType0
-    | DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteSequencesBySequenceIdItemsByItemIdResponseDefault | None:
     """Delete a particular sequence item by id
 
 
@@ -165,7 +123,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType0 | DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType1
+        Any | DeleteSequencesBySequenceIdItemsByItemIdResponseDefault
     """
 
     return sync_detailed(
@@ -180,11 +138,7 @@ async def asyncio_detailed(
     item_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType0
-    | DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteSequencesBySequenceIdItemsByItemIdResponseDefault]:
     """Delete a particular sequence item by id
 
 
@@ -200,7 +154,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType0 | DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType1]
+        Response[Any | DeleteSequencesBySequenceIdItemsByItemIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -218,12 +172,7 @@ async def asyncio(
     item_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType0
-    | DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteSequencesBySequenceIdItemsByItemIdResponseDefault | None:
     """Delete a particular sequence item by id
 
 
@@ -239,7 +188,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType0 | DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType1
+        Any | DeleteSequencesBySequenceIdItemsByItemIdResponseDefault
     """
 
     return (

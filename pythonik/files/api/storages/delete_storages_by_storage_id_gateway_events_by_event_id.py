@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_storages_by_storage_id_gateway_events_by_event_id_response_default_type_0 import (
-    DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType0,
-)
-from ...models.delete_storages_by_storage_id_gateway_events_by_event_id_response_default_type_1 import (
-    DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType1,
+from ...models.delete_storages_by_storage_id_gateway_events_by_event_id_response_default import (
+    DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefault,
 )
 from ...types import Response
 
@@ -32,11 +29,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType0
-    | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType1
-):
+) -> Any | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -49,42 +42,18 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType0
-        | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType0
-    | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -98,11 +67,7 @@ def sync_detailed(
     event_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType0
-    | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefault]:
     """Delete storage gateway event
 
     Args:
@@ -114,7 +79,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType0 | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType1]
+        Response[Any | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -134,12 +99,7 @@ def sync(
     event_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType0
-    | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefault | None:
     """Delete storage gateway event
 
     Args:
@@ -151,7 +111,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType0 | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType1
+        Any | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefault
     """
 
     return sync_detailed(
@@ -166,11 +126,7 @@ async def asyncio_detailed(
     event_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType0
-    | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefault]:
     """Delete storage gateway event
 
     Args:
@@ -182,7 +138,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType0 | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType1]
+        Response[Any | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -200,12 +156,7 @@ async def asyncio(
     event_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType0
-    | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefault | None:
     """Delete storage gateway event
 
     Args:
@@ -217,7 +168,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType0 | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefaultType1
+        Any | DeleteStoragesByStorageIdGatewayEventsByEventIdResponseDefault
     """
 
     return (

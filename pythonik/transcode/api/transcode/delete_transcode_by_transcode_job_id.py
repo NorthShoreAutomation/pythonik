@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_transcode_by_transcode_job_id_response_default_type_0 import (
-    DeleteTranscodeByTranscodeJobIdResponseDefaultType0,
-)
-from ...models.delete_transcode_by_transcode_job_id_response_default_type_1 import (
-    DeleteTranscodeByTranscodeJobIdResponseDefaultType1,
+from ...models.delete_transcode_by_transcode_job_id_response_default import (
+    DeleteTranscodeByTranscodeJobIdResponseDefault,
 )
 from ...types import Response
 
@@ -30,11 +27,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteTranscodeByTranscodeJobIdResponseDefaultType0
-    | DeleteTranscodeByTranscodeJobIdResponseDefaultType1
-):
+) -> Any | DeleteTranscodeByTranscodeJobIdResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -51,42 +44,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteTranscodeByTranscodeJobIdResponseDefaultType0
-        | DeleteTranscodeByTranscodeJobIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteTranscodeByTranscodeJobIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteTranscodeByTranscodeJobIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteTranscodeByTranscodeJobIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteTranscodeByTranscodeJobIdResponseDefaultType0
-    | DeleteTranscodeByTranscodeJobIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteTranscodeByTranscodeJobIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -99,11 +66,7 @@ def sync_detailed(
     transcode_job_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteTranscodeByTranscodeJobIdResponseDefaultType0
-    | DeleteTranscodeByTranscodeJobIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteTranscodeByTranscodeJobIdResponseDefault]:
     """Cancel a particular transcode job by id
 
 
@@ -118,7 +81,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteTranscodeByTranscodeJobIdResponseDefaultType0 | DeleteTranscodeByTranscodeJobIdResponseDefaultType1]
+        Response[Any | DeleteTranscodeByTranscodeJobIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -136,12 +99,7 @@ def sync(
     transcode_job_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteTranscodeByTranscodeJobIdResponseDefaultType0
-    | DeleteTranscodeByTranscodeJobIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteTranscodeByTranscodeJobIdResponseDefault | None:
     """Cancel a particular transcode job by id
 
 
@@ -156,7 +114,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteTranscodeByTranscodeJobIdResponseDefaultType0 | DeleteTranscodeByTranscodeJobIdResponseDefaultType1
+        Any | DeleteTranscodeByTranscodeJobIdResponseDefault
     """
 
     return sync_detailed(
@@ -169,11 +127,7 @@ async def asyncio_detailed(
     transcode_job_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteTranscodeByTranscodeJobIdResponseDefaultType0
-    | DeleteTranscodeByTranscodeJobIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteTranscodeByTranscodeJobIdResponseDefault]:
     """Cancel a particular transcode job by id
 
 
@@ -188,7 +142,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteTranscodeByTranscodeJobIdResponseDefaultType0 | DeleteTranscodeByTranscodeJobIdResponseDefaultType1]
+        Response[Any | DeleteTranscodeByTranscodeJobIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -204,12 +158,7 @@ async def asyncio(
     transcode_job_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteTranscodeByTranscodeJobIdResponseDefaultType0
-    | DeleteTranscodeByTranscodeJobIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteTranscodeByTranscodeJobIdResponseDefault | None:
     """Cancel a particular transcode job by id
 
 
@@ -224,7 +173,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteTranscodeByTranscodeJobIdResponseDefaultType0 | DeleteTranscodeByTranscodeJobIdResponseDefaultType1
+        Any | DeleteTranscodeByTranscodeJobIdResponseDefault
     """
 
     return (

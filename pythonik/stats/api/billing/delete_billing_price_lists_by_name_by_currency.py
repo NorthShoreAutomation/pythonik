@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_billing_price_lists_by_name_by_currency_response_default_type_0 import (
-    DeleteBillingPriceListsByNameByCurrencyResponseDefaultType0,
-)
-from ...models.delete_billing_price_lists_by_name_by_currency_response_default_type_1 import (
-    DeleteBillingPriceListsByNameByCurrencyResponseDefaultType1,
+from ...models.delete_billing_price_lists_by_name_by_currency_response_default import (
+    DeleteBillingPriceListsByNameByCurrencyResponseDefault,
 )
 from ...types import Response
 
@@ -32,11 +29,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteBillingPriceListsByNameByCurrencyResponseDefaultType0
-    | DeleteBillingPriceListsByNameByCurrencyResponseDefaultType1
-):
+) -> Any | DeleteBillingPriceListsByNameByCurrencyResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -53,44 +46,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteBillingPriceListsByNameByCurrencyResponseDefaultType0
-        | DeleteBillingPriceListsByNameByCurrencyResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteBillingPriceListsByNameByCurrencyResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteBillingPriceListsByNameByCurrencyResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteBillingPriceListsByNameByCurrencyResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteBillingPriceListsByNameByCurrencyResponseDefaultType0
-    | DeleteBillingPriceListsByNameByCurrencyResponseDefaultType1
-]:
+) -> Response[Any | DeleteBillingPriceListsByNameByCurrencyResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -104,11 +69,7 @@ def sync_detailed(
     currency: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteBillingPriceListsByNameByCurrencyResponseDefaultType0
-    | DeleteBillingPriceListsByNameByCurrencyResponseDefaultType1
-]:
+) -> Response[Any | DeleteBillingPriceListsByNameByCurrencyResponseDefault]:
     """Delete a Price list
 
     Args:
@@ -120,7 +81,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteBillingPriceListsByNameByCurrencyResponseDefaultType0 | DeleteBillingPriceListsByNameByCurrencyResponseDefaultType1]
+        Response[Any | DeleteBillingPriceListsByNameByCurrencyResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -140,12 +101,7 @@ def sync(
     currency: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteBillingPriceListsByNameByCurrencyResponseDefaultType0
-    | DeleteBillingPriceListsByNameByCurrencyResponseDefaultType1
-    | None
-):
+) -> Any | DeleteBillingPriceListsByNameByCurrencyResponseDefault | None:
     """Delete a Price list
 
     Args:
@@ -157,7 +113,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteBillingPriceListsByNameByCurrencyResponseDefaultType0 | DeleteBillingPriceListsByNameByCurrencyResponseDefaultType1
+        Any | DeleteBillingPriceListsByNameByCurrencyResponseDefault
     """
 
     return sync_detailed(
@@ -172,11 +128,7 @@ async def asyncio_detailed(
     currency: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteBillingPriceListsByNameByCurrencyResponseDefaultType0
-    | DeleteBillingPriceListsByNameByCurrencyResponseDefaultType1
-]:
+) -> Response[Any | DeleteBillingPriceListsByNameByCurrencyResponseDefault]:
     """Delete a Price list
 
     Args:
@@ -188,7 +140,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteBillingPriceListsByNameByCurrencyResponseDefaultType0 | DeleteBillingPriceListsByNameByCurrencyResponseDefaultType1]
+        Response[Any | DeleteBillingPriceListsByNameByCurrencyResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -206,12 +158,7 @@ async def asyncio(
     currency: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteBillingPriceListsByNameByCurrencyResponseDefaultType0
-    | DeleteBillingPriceListsByNameByCurrencyResponseDefaultType1
-    | None
-):
+) -> Any | DeleteBillingPriceListsByNameByCurrencyResponseDefault | None:
     """Delete a Price list
 
     Args:
@@ -223,7 +170,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteBillingPriceListsByNameByCurrencyResponseDefaultType0 | DeleteBillingPriceListsByNameByCurrencyResponseDefaultType1
+        Any | DeleteBillingPriceListsByNameByCurrencyResponseDefault
     """
 
     return (

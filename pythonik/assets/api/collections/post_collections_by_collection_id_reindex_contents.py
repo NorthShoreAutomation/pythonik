@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_collections_by_collection_id_reindex_contents_response_default_type_0 import (
-    PostCollectionsByCollectionIdReindexContentsResponseDefaultType0,
-)
-from ...models.post_collections_by_collection_id_reindex_contents_response_default_type_1 import (
-    PostCollectionsByCollectionIdReindexContentsResponseDefaultType1,
+from ...models.post_collections_by_collection_id_reindex_contents_response_default import (
+    PostCollectionsByCollectionIdReindexContentsResponseDefault,
 )
 from ...types import Response
 
@@ -30,11 +27,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostCollectionsByCollectionIdReindexContentsResponseDefaultType0
-    | PostCollectionsByCollectionIdReindexContentsResponseDefaultType1
-):
+) -> Any | PostCollectionsByCollectionIdReindexContentsResponseDefault:
     if response.status_code == 201:
         response_201 = cast(Any, None)
         return response_201
@@ -47,44 +40,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostCollectionsByCollectionIdReindexContentsResponseDefaultType0
-        | PostCollectionsByCollectionIdReindexContentsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostCollectionsByCollectionIdReindexContentsResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostCollectionsByCollectionIdReindexContentsResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PostCollectionsByCollectionIdReindexContentsResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostCollectionsByCollectionIdReindexContentsResponseDefaultType0
-    | PostCollectionsByCollectionIdReindexContentsResponseDefaultType1
-]:
+) -> Response[Any | PostCollectionsByCollectionIdReindexContentsResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -97,11 +64,7 @@ def sync_detailed(
     collection_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostCollectionsByCollectionIdReindexContentsResponseDefaultType0
-    | PostCollectionsByCollectionIdReindexContentsResponseDefaultType1
-]:
+) -> Response[Any | PostCollectionsByCollectionIdReindexContentsResponseDefault]:
     """Reindex collection and its content
 
 
@@ -116,7 +79,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostCollectionsByCollectionIdReindexContentsResponseDefaultType0 | PostCollectionsByCollectionIdReindexContentsResponseDefaultType1]
+        Response[Any | PostCollectionsByCollectionIdReindexContentsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -134,12 +97,7 @@ def sync(
     collection_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostCollectionsByCollectionIdReindexContentsResponseDefaultType0
-    | PostCollectionsByCollectionIdReindexContentsResponseDefaultType1
-    | None
-):
+) -> Any | PostCollectionsByCollectionIdReindexContentsResponseDefault | None:
     """Reindex collection and its content
 
 
@@ -154,7 +112,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostCollectionsByCollectionIdReindexContentsResponseDefaultType0 | PostCollectionsByCollectionIdReindexContentsResponseDefaultType1
+        Any | PostCollectionsByCollectionIdReindexContentsResponseDefault
     """
 
     return sync_detailed(
@@ -167,11 +125,7 @@ async def asyncio_detailed(
     collection_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostCollectionsByCollectionIdReindexContentsResponseDefaultType0
-    | PostCollectionsByCollectionIdReindexContentsResponseDefaultType1
-]:
+) -> Response[Any | PostCollectionsByCollectionIdReindexContentsResponseDefault]:
     """Reindex collection and its content
 
 
@@ -186,7 +140,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostCollectionsByCollectionIdReindexContentsResponseDefaultType0 | PostCollectionsByCollectionIdReindexContentsResponseDefaultType1]
+        Response[Any | PostCollectionsByCollectionIdReindexContentsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -202,12 +156,7 @@ async def asyncio(
     collection_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostCollectionsByCollectionIdReindexContentsResponseDefaultType0
-    | PostCollectionsByCollectionIdReindexContentsResponseDefaultType1
-    | None
-):
+) -> Any | PostCollectionsByCollectionIdReindexContentsResponseDefault | None:
     """Reindex collection and its content
 
 
@@ -222,7 +171,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostCollectionsByCollectionIdReindexContentsResponseDefaultType0 | PostCollectionsByCollectionIdReindexContentsResponseDefaultType1
+        Any | PostCollectionsByCollectionIdReindexContentsResponseDefault
     """
 
     return (

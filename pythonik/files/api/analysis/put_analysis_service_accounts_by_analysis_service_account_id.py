@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.analysis_service_account_schema import AnalysisServiceAccountSchema
-from ...models.put_analysis_service_accounts_by_analysis_service_account_id_response_default_type_0 import (
-    PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0,
-)
-from ...models.put_analysis_service_accounts_by_analysis_service_account_id_response_default_type_1 import (
-    PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1,
+from ...models.put_analysis_service_accounts_by_analysis_service_account_id_response_default import (
+    PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault,
 )
 from ...types import Response
 
@@ -44,8 +41,7 @@ def _parse_response(
 ) -> (
     AnalysisServiceAccountSchema
     | Any
-    | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0
-    | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1
+    | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault
 ):
     if response.status_code == 200:
         response_200 = AnalysisServiceAccountSchema.from_dict(response.json())
@@ -64,31 +60,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0
-        | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -98,8 +74,7 @@ def _build_response(
 ) -> Response[
     AnalysisServiceAccountSchema
     | Any
-    | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0
-    | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1
+    | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -117,8 +92,7 @@ def sync_detailed(
 ) -> Response[
     AnalysisServiceAccountSchema
     | Any
-    | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0
-    | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1
+    | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault
 ]:
     """Update an analysis service account information
 
@@ -135,7 +109,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[AnalysisServiceAccountSchema | Any | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0 | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1]
+        Response[AnalysisServiceAccountSchema | Any | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -158,8 +132,7 @@ def sync(
 ) -> (
     AnalysisServiceAccountSchema
     | Any
-    | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0
-    | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1
+    | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault
     | None
 ):
     """Update an analysis service account information
@@ -177,7 +150,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        AnalysisServiceAccountSchema | Any | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0 | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1
+        AnalysisServiceAccountSchema | Any | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault
     """
 
     return sync_detailed(
@@ -195,8 +168,7 @@ async def asyncio_detailed(
 ) -> Response[
     AnalysisServiceAccountSchema
     | Any
-    | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0
-    | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1
+    | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault
 ]:
     """Update an analysis service account information
 
@@ -213,7 +185,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[AnalysisServiceAccountSchema | Any | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0 | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1]
+        Response[AnalysisServiceAccountSchema | Any | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -234,8 +206,7 @@ async def asyncio(
 ) -> (
     AnalysisServiceAccountSchema
     | Any
-    | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0
-    | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1
+    | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault
     | None
 ):
     """Update an analysis service account information
@@ -253,7 +224,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        AnalysisServiceAccountSchema | Any | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType0 | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefaultType1
+        AnalysisServiceAccountSchema | Any | PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault
     """
 
     return (

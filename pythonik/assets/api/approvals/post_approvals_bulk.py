@@ -5,11 +5,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.bulk_set_approval_schema import BulkSetApprovalSchema
-from ...models.post_approvals_bulk_response_default_type_0 import (
-    PostApprovalsBulkResponseDefaultType0,
-)
-from ...models.post_approvals_bulk_response_default_type_1 import (
-    PostApprovalsBulkResponseDefaultType1,
+from ...models.post_approvals_bulk_response_default import (
+    PostApprovalsBulkResponseDefault,
 )
 from ...types import Response
 
@@ -35,9 +32,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any | PostApprovalsBulkResponseDefaultType0 | PostApprovalsBulkResponseDefaultType1
-):
+) -> Any | PostApprovalsBulkResponseDefault:
     if response.status_code == 200:
         response_200 = cast(Any, None)
         return response_200
@@ -50,35 +45,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> PostApprovalsBulkResponseDefaultType0 | PostApprovalsBulkResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostApprovalsBulkResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostApprovalsBulkResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostApprovalsBulkResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any | PostApprovalsBulkResponseDefaultType0 | PostApprovalsBulkResponseDefaultType1
-]:
+) -> Response[Any | PostApprovalsBulkResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -91,9 +65,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: BulkSetApprovalSchema,
-) -> Response[
-    Any | PostApprovalsBulkResponseDefaultType0 | PostApprovalsBulkResponseDefaultType1
-]:
+) -> Response[Any | PostApprovalsBulkResponseDefault]:
     """Create a job for bulk request & set approval
 
 
@@ -108,7 +80,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostApprovalsBulkResponseDefaultType0 | PostApprovalsBulkResponseDefaultType1]
+        Response[Any | PostApprovalsBulkResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -126,12 +98,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: BulkSetApprovalSchema,
-) -> (
-    Any
-    | PostApprovalsBulkResponseDefaultType0
-    | PostApprovalsBulkResponseDefaultType1
-    | None
-):
+) -> Any | PostApprovalsBulkResponseDefault | None:
     """Create a job for bulk request & set approval
 
 
@@ -146,7 +113,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostApprovalsBulkResponseDefaultType0 | PostApprovalsBulkResponseDefaultType1
+        Any | PostApprovalsBulkResponseDefault
     """
 
     return sync_detailed(
@@ -159,9 +126,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: BulkSetApprovalSchema,
-) -> Response[
-    Any | PostApprovalsBulkResponseDefaultType0 | PostApprovalsBulkResponseDefaultType1
-]:
+) -> Response[Any | PostApprovalsBulkResponseDefault]:
     """Create a job for bulk request & set approval
 
 
@@ -176,7 +141,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostApprovalsBulkResponseDefaultType0 | PostApprovalsBulkResponseDefaultType1]
+        Response[Any | PostApprovalsBulkResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -192,12 +157,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: BulkSetApprovalSchema,
-) -> (
-    Any
-    | PostApprovalsBulkResponseDefaultType0
-    | PostApprovalsBulkResponseDefaultType1
-    | None
-):
+) -> Any | PostApprovalsBulkResponseDefault | None:
     """Create a job for bulk request & set approval
 
 
@@ -212,7 +172,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostApprovalsBulkResponseDefaultType0 | PostApprovalsBulkResponseDefaultType1
+        Any | PostApprovalsBulkResponseDefault
     """
 
     return (

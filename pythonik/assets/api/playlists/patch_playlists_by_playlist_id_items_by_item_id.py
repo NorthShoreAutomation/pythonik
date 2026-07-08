@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.patch_playlists_by_playlist_id_items_by_item_id_response_default_type_0 import (
-    PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType0,
-)
-from ...models.patch_playlists_by_playlist_id_items_by_item_id_response_default_type_1 import (
-    PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType1,
+from ...models.patch_playlists_by_playlist_id_items_by_item_id_response_default import (
+    PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefault,
 )
 from ...models.playlist_item_schema import PlaylistItemSchema
 from ...types import Response
@@ -41,16 +38,11 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType0
-    | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType1
-    | PlaylistItemSchema
-):
-    if response.status_code == 201:
-        response_201 = PlaylistItemSchema.from_dict(response.json())
+) -> Any | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefault | PlaylistItemSchema:
+    if response.status_code == 200:
+        response_200 = PlaylistItemSchema.from_dict(response.json())
 
-        return response_201
+        return response_200
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -60,33 +52,9 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType0
-        | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -94,10 +62,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType0
-    | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType1
-    | PlaylistItemSchema
+    Any | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefault | PlaylistItemSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -114,10 +79,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: PlaylistItemSchema,
 ) -> Response[
-    Any
-    | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType0
-    | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType1
-    | PlaylistItemSchema
+    Any | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefault | PlaylistItemSchema
 ]:
     """Update a playlist item
 
@@ -135,7 +97,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType0 | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType1 | PlaylistItemSchema]
+        Response[Any | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefault | PlaylistItemSchema]
     """
 
     kwargs = _get_kwargs(
@@ -159,8 +121,7 @@ def sync(
     body: PlaylistItemSchema,
 ) -> (
     Any
-    | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType0
-    | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType1
+    | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefault
     | PlaylistItemSchema
     | None
 ):
@@ -180,7 +141,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType0 | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType1 | PlaylistItemSchema
+        Any | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefault | PlaylistItemSchema
     """
 
     return sync_detailed(
@@ -198,10 +159,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: PlaylistItemSchema,
 ) -> Response[
-    Any
-    | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType0
-    | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType1
-    | PlaylistItemSchema
+    Any | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefault | PlaylistItemSchema
 ]:
     """Update a playlist item
 
@@ -219,7 +177,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType0 | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType1 | PlaylistItemSchema]
+        Response[Any | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefault | PlaylistItemSchema]
     """
 
     kwargs = _get_kwargs(
@@ -241,8 +199,7 @@ async def asyncio(
     body: PlaylistItemSchema,
 ) -> (
     Any
-    | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType0
-    | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType1
+    | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefault
     | PlaylistItemSchema
     | None
 ):
@@ -262,7 +219,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType0 | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefaultType1 | PlaylistItemSchema
+        Any | PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefault | PlaylistItemSchema
     """
 
     return (

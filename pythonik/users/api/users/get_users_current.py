@@ -4,12 +4,7 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_users_current_response_default_type_0 import (
-    GetUsersCurrentResponseDefaultType0,
-)
-from ...models.get_users_current_response_default_type_1 import (
-    GetUsersCurrentResponseDefaultType1,
-)
+from ...models.get_users_current_response_default import GetUsersCurrentResponseDefault
 from ...models.user_schema import UserSchema
 from ...types import Response
 
@@ -26,12 +21,7 @@ def _get_kwargs() -> dict[str, Any]:
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetUsersCurrentResponseDefaultType0
-    | GetUsersCurrentResponseDefaultType1
-    | UserSchema
-):
+) -> Any | GetUsersCurrentResponseDefault | UserSchema:
     if response.status_code == 200:
         response_200 = UserSchema.from_dict(response.json())
 
@@ -49,38 +39,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> GetUsersCurrentResponseDefaultType0 | GetUsersCurrentResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetUsersCurrentResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetUsersCurrentResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetUsersCurrentResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetUsersCurrentResponseDefaultType0
-    | GetUsersCurrentResponseDefaultType1
-    | UserSchema
-]:
+) -> Response[Any | GetUsersCurrentResponseDefault | UserSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -92,12 +58,7 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetUsersCurrentResponseDefaultType0
-    | GetUsersCurrentResponseDefaultType1
-    | UserSchema
-]:
+) -> Response[Any | GetUsersCurrentResponseDefault | UserSchema]:
     """Returns current user
 
     Raises:
@@ -105,7 +66,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetUsersCurrentResponseDefaultType0 | GetUsersCurrentResponseDefaultType1 | UserSchema]
+        Response[Any | GetUsersCurrentResponseDefault | UserSchema]
     """
 
     kwargs = _get_kwargs()
@@ -120,13 +81,7 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetUsersCurrentResponseDefaultType0
-    | GetUsersCurrentResponseDefaultType1
-    | UserSchema
-    | None
-):
+) -> Any | GetUsersCurrentResponseDefault | UserSchema | None:
     """Returns current user
 
     Raises:
@@ -134,7 +89,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetUsersCurrentResponseDefaultType0 | GetUsersCurrentResponseDefaultType1 | UserSchema
+        Any | GetUsersCurrentResponseDefault | UserSchema
     """
 
     return sync_detailed(
@@ -145,12 +100,7 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetUsersCurrentResponseDefaultType0
-    | GetUsersCurrentResponseDefaultType1
-    | UserSchema
-]:
+) -> Response[Any | GetUsersCurrentResponseDefault | UserSchema]:
     """Returns current user
 
     Raises:
@@ -158,7 +108,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetUsersCurrentResponseDefaultType0 | GetUsersCurrentResponseDefaultType1 | UserSchema]
+        Response[Any | GetUsersCurrentResponseDefault | UserSchema]
     """
 
     kwargs = _get_kwargs()
@@ -171,13 +121,7 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetUsersCurrentResponseDefaultType0
-    | GetUsersCurrentResponseDefaultType1
-    | UserSchema
-    | None
-):
+) -> Any | GetUsersCurrentResponseDefault | UserSchema | None:
     """Returns current user
 
     Raises:
@@ -185,7 +129,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetUsersCurrentResponseDefaultType0 | GetUsersCurrentResponseDefaultType1 | UserSchema
+        Any | GetUsersCurrentResponseDefault | UserSchema
     """
 
     return (

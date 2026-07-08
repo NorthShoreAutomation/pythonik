@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_assets_by_asset_id_files_by_file_id_capture_by_milliseconds_response_default_type_0 import (
-    PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType0,
-)
-from ...models.post_assets_by_asset_id_files_by_file_id_capture_by_milliseconds_response_default_type_1 import (
-    PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType1,
+from ...models.post_assets_by_asset_id_files_by_file_id_capture_by_milliseconds_response_default import (
+    PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefault,
 )
 from ...models.transcode_request_schema import TranscodeRequestSchema
 from ...models.transcode_response_schema import TranscodeResponseSchema
@@ -46,8 +43,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefault
     | TranscodeResponseSchema
 ):
     if response.status_code == 200:
@@ -67,31 +63,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType0
-        | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -100,8 +76,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefault
     | TranscodeResponseSchema
 ]:
     return Response(
@@ -121,8 +96,7 @@ def sync_detailed(
     body: TranscodeRequestSchema,
 ) -> Response[
     Any
-    | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefault
     | TranscodeResponseSchema
 ]:
     """Create a transcode job for creating still keyframe
@@ -142,7 +116,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType0 | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType1 | TranscodeResponseSchema]
+        Response[Any | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefault | TranscodeResponseSchema]
     """
 
     kwargs = _get_kwargs(
@@ -168,8 +142,7 @@ def sync(
     body: TranscodeRequestSchema,
 ) -> (
     Any
-    | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefault
     | TranscodeResponseSchema
     | None
 ):
@@ -190,7 +163,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType0 | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType1 | TranscodeResponseSchema
+        Any | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefault | TranscodeResponseSchema
     """
 
     return sync_detailed(
@@ -211,8 +184,7 @@ async def asyncio_detailed(
     body: TranscodeRequestSchema,
 ) -> Response[
     Any
-    | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefault
     | TranscodeResponseSchema
 ]:
     """Create a transcode job for creating still keyframe
@@ -232,7 +204,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType0 | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType1 | TranscodeResponseSchema]
+        Response[Any | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefault | TranscodeResponseSchema]
     """
 
     kwargs = _get_kwargs(
@@ -256,8 +228,7 @@ async def asyncio(
     body: TranscodeRequestSchema,
 ) -> (
     Any
-    | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefault
     | TranscodeResponseSchema
     | None
 ):
@@ -278,7 +249,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType0 | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefaultType1 | TranscodeResponseSchema
+        Any | PostAssetsByAssetIdFilesByFileIdCaptureByMillisecondsResponseDefault | TranscodeResponseSchema
     """
 
     return (

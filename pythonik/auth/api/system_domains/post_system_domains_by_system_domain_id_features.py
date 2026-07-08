@@ -8,11 +8,8 @@ from ...client import AuthenticatedClient, Client
 from ...models.enable_system_domain_feature_schema import (
     EnableSystemDomainFeatureSchema,
 )
-from ...models.post_system_domains_by_system_domain_id_features_response_default_type_0 import (
-    PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType0,
-)
-from ...models.post_system_domains_by_system_domain_id_features_response_default_type_1 import (
-    PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType1,
+from ...models.post_system_domains_by_system_domain_id_features_response_default import (
+    PostSystemDomainsBySystemDomainIdFeaturesResponseDefault,
 )
 from ...types import Response
 
@@ -44,8 +41,7 @@ def _parse_response(
 ) -> (
     Any
     | EnableSystemDomainFeatureSchema
-    | PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType0
-    | PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType1
+    | PostSystemDomainsBySystemDomainIdFeaturesResponseDefault
 ):
     if response.status_code == 200:
         response_200 = EnableSystemDomainFeatureSchema.from_dict(response.json())
@@ -60,35 +56,11 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType0
-        | PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PostSystemDomainsBySystemDomainIdFeaturesResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -98,8 +70,7 @@ def _build_response(
 ) -> Response[
     Any
     | EnableSystemDomainFeatureSchema
-    | PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType0
-    | PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType1
+    | PostSystemDomainsBySystemDomainIdFeaturesResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -117,8 +88,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | EnableSystemDomainFeatureSchema
-    | PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType0
-    | PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType1
+    | PostSystemDomainsBySystemDomainIdFeaturesResponseDefault
 ]:
     """Enable specified feature on a system domain
 
@@ -131,7 +101,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | EnableSystemDomainFeatureSchema | PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType0 | PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType1]
+        Response[Any | EnableSystemDomainFeatureSchema | PostSystemDomainsBySystemDomainIdFeaturesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -154,8 +124,7 @@ def sync(
 ) -> (
     Any
     | EnableSystemDomainFeatureSchema
-    | PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType0
-    | PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType1
+    | PostSystemDomainsBySystemDomainIdFeaturesResponseDefault
     | None
 ):
     """Enable specified feature on a system domain
@@ -169,7 +138,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | EnableSystemDomainFeatureSchema | PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType0 | PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType1
+        Any | EnableSystemDomainFeatureSchema | PostSystemDomainsBySystemDomainIdFeaturesResponseDefault
     """
 
     return sync_detailed(
@@ -187,8 +156,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | EnableSystemDomainFeatureSchema
-    | PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType0
-    | PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType1
+    | PostSystemDomainsBySystemDomainIdFeaturesResponseDefault
 ]:
     """Enable specified feature on a system domain
 
@@ -201,7 +169,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | EnableSystemDomainFeatureSchema | PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType0 | PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType1]
+        Response[Any | EnableSystemDomainFeatureSchema | PostSystemDomainsBySystemDomainIdFeaturesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -222,8 +190,7 @@ async def asyncio(
 ) -> (
     Any
     | EnableSystemDomainFeatureSchema
-    | PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType0
-    | PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType1
+    | PostSystemDomainsBySystemDomainIdFeaturesResponseDefault
     | None
 ):
     """Enable specified feature on a system domain
@@ -237,7 +204,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | EnableSystemDomainFeatureSchema | PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType0 | PostSystemDomainsBySystemDomainIdFeaturesResponseDefaultType1
+        Any | EnableSystemDomainFeatureSchema | PostSystemDomainsBySystemDomainIdFeaturesResponseDefault
     """
 
     return (

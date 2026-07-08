@@ -6,12 +6,7 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.job_schema import JobSchema
-from ...models.put_jobs_by_job_id_response_default_type_0 import (
-    PutJobsByJobIdResponseDefaultType0,
-)
-from ...models.put_jobs_by_job_id_response_default_type_1 import (
-    PutJobsByJobIdResponseDefaultType1,
-)
+from ...models.put_jobs_by_job_id_response_default import PutJobsByJobIdResponseDefault
 from ...types import UNSET, Response, Unset
 
 
@@ -47,12 +42,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | JobSchema
-    | PutJobsByJobIdResponseDefaultType0
-    | PutJobsByJobIdResponseDefaultType1
-):
+) -> Any | JobSchema | PutJobsByJobIdResponseDefault:
     if response.status_code == 200:
         response_200 = JobSchema.from_dict(response.json())
 
@@ -66,36 +56,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> PutJobsByJobIdResponseDefaultType0 | PutJobsByJobIdResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PutJobsByJobIdResponseDefaultType0.from_dict(data)
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PutJobsByJobIdResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutJobsByJobIdResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | JobSchema
-    | PutJobsByJobIdResponseDefaultType0
-    | PutJobsByJobIdResponseDefaultType1
-]:
+) -> Response[Any | JobSchema | PutJobsByJobIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -110,12 +78,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: JobSchema,
     merge_metadata: str | Unset = UNSET,
-) -> Response[
-    Any
-    | JobSchema
-    | PutJobsByJobIdResponseDefaultType0
-    | PutJobsByJobIdResponseDefaultType1
-]:
+) -> Response[Any | JobSchema | PutJobsByJobIdResponseDefault]:
     """Update job
 
 
@@ -132,7 +95,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | JobSchema | PutJobsByJobIdResponseDefaultType0 | PutJobsByJobIdResponseDefaultType1]
+        Response[Any | JobSchema | PutJobsByJobIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -154,13 +117,7 @@ def sync(
     client: AuthenticatedClient | Client,
     body: JobSchema,
     merge_metadata: str | Unset = UNSET,
-) -> (
-    Any
-    | JobSchema
-    | PutJobsByJobIdResponseDefaultType0
-    | PutJobsByJobIdResponseDefaultType1
-    | None
-):
+) -> Any | JobSchema | PutJobsByJobIdResponseDefault | None:
     """Update job
 
 
@@ -177,7 +134,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | JobSchema | PutJobsByJobIdResponseDefaultType0 | PutJobsByJobIdResponseDefaultType1
+        Any | JobSchema | PutJobsByJobIdResponseDefault
     """
 
     return sync_detailed(
@@ -194,12 +151,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: JobSchema,
     merge_metadata: str | Unset = UNSET,
-) -> Response[
-    Any
-    | JobSchema
-    | PutJobsByJobIdResponseDefaultType0
-    | PutJobsByJobIdResponseDefaultType1
-]:
+) -> Response[Any | JobSchema | PutJobsByJobIdResponseDefault]:
     """Update job
 
 
@@ -216,7 +168,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | JobSchema | PutJobsByJobIdResponseDefaultType0 | PutJobsByJobIdResponseDefaultType1]
+        Response[Any | JobSchema | PutJobsByJobIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -236,13 +188,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     body: JobSchema,
     merge_metadata: str | Unset = UNSET,
-) -> (
-    Any
-    | JobSchema
-    | PutJobsByJobIdResponseDefaultType0
-    | PutJobsByJobIdResponseDefaultType1
-    | None
-):
+) -> Any | JobSchema | PutJobsByJobIdResponseDefault | None:
     """Update job
 
 
@@ -259,7 +205,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | JobSchema | PutJobsByJobIdResponseDefaultType0 | PutJobsByJobIdResponseDefaultType1
+        Any | JobSchema | PutJobsByJobIdResponseDefault
     """
 
     return (

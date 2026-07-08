@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_face_recognition_embeddings_by_embedding_id_reindex_response_default_type_0 import (
-    PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType0,
-)
-from ...models.post_face_recognition_embeddings_by_embedding_id_reindex_response_default_type_1 import (
-    PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType1,
+from ...models.post_face_recognition_embeddings_by_embedding_id_reindex_response_default import (
+    PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefault,
 )
 from ...models.reindex_embedding_schema import ReindexEmbeddingSchema
 from ...types import Response
@@ -39,11 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType0
-    | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType1
-):
+) -> Any | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -56,42 +49,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType0
-        | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType0
-    | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -105,11 +74,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexEmbeddingSchema,
-) -> Response[
-    Any
-    | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType0
-    | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefault]:
     """Reindex embedding
 
 
@@ -125,7 +90,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType0 | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType1]
+        Response[Any | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -145,12 +110,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexEmbeddingSchema,
-) -> (
-    Any
-    | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType0
-    | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefault | None:
     """Reindex embedding
 
 
@@ -166,7 +126,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType0 | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType1
+        Any | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefault
     """
 
     return sync_detailed(
@@ -181,11 +141,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexEmbeddingSchema,
-) -> Response[
-    Any
-    | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType0
-    | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefault]:
     """Reindex embedding
 
 
@@ -201,7 +157,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType0 | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType1]
+        Response[Any | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -219,12 +175,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexEmbeddingSchema,
-) -> (
-    Any
-    | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType0
-    | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefault | None:
     """Reindex embedding
 
 
@@ -240,7 +191,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType0 | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefaultType1
+        Any | PostFaceRecognitionEmbeddingsByEmbeddingIdReindexResponseDefault
     """
 
     return (

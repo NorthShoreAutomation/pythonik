@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.approval_schema import ApprovalSchema
-from ...models.delete_by_object_type_by_object_id_approvals_request_response_default_type_0 import (
-    DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0,
-)
-from ...models.delete_by_object_type_by_object_id_approvals_request_response_default_type_1 import (
-    DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1,
+from ...models.delete_by_object_type_by_object_id_approvals_request_response_default import (
+    DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefault,
 )
 from ...types import Response
 
@@ -33,16 +30,15 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | ApprovalSchema
-    | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0
-    | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1
-):
+) -> Any | ApprovalSchema | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefault:
     if response.status_code == 200:
         response_200 = ApprovalSchema.from_dict(response.json())
 
         return response_200
+
+    if response.status_code == 204:
+        response_204 = cast(Any, None)
+        return response_204
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -56,33 +52,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0
-        | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -90,10 +64,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | ApprovalSchema
-    | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0
-    | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1
+    Any | ApprovalSchema | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -109,10 +80,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | ApprovalSchema
-    | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0
-    | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1
+    Any | ApprovalSchema | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefault
 ]:
     """Deletes an objects approval request
 
@@ -129,7 +97,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | ApprovalSchema | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0 | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1]
+        Response[Any | ApprovalSchema | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -152,8 +120,7 @@ def sync(
 ) -> (
     Any
     | ApprovalSchema
-    | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0
-    | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1
+    | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefault
     | None
 ):
     """Deletes an objects approval request
@@ -171,7 +138,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | ApprovalSchema | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0 | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1
+        Any | ApprovalSchema | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefault
     """
 
     return sync_detailed(
@@ -187,10 +154,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | ApprovalSchema
-    | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0
-    | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1
+    Any | ApprovalSchema | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefault
 ]:
     """Deletes an objects approval request
 
@@ -207,7 +171,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | ApprovalSchema | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0 | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1]
+        Response[Any | ApprovalSchema | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -228,8 +192,7 @@ async def asyncio(
 ) -> (
     Any
     | ApprovalSchema
-    | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0
-    | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1
+    | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefault
     | None
 ):
     """Deletes an objects approval request
@@ -247,7 +210,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | ApprovalSchema | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType0 | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefaultType1
+        Any | ApprovalSchema | DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefault
     """
 
     return (

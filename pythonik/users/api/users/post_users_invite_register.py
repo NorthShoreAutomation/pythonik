@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_users_invite_register_response_default_type_0 import (
-    PostUsersInviteRegisterResponseDefaultType0,
-)
-from ...models.post_users_invite_register_response_default_type_1 import (
-    PostUsersInviteRegisterResponseDefaultType1,
+from ...models.post_users_invite_register_response_default import (
+    PostUsersInviteRegisterResponseDefault,
 )
 from ...models.user_invite_register_request_schema import (
     UserInviteRegisterRequestSchema,
@@ -40,12 +37,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostUsersInviteRegisterResponseDefaultType0
-    | PostUsersInviteRegisterResponseDefaultType1
-    | UserInviteRegisterResponseSchema
-):
+) -> Any | PostUsersInviteRegisterResponseDefault | UserInviteRegisterResponseSchema:
     if response.status_code == 201:
         response_201 = UserInviteRegisterResponseSchema.from_dict(response.json())
 
@@ -63,31 +55,7 @@ def _parse_response(
         response_429 = cast(Any, None)
         return response_429
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostUsersInviteRegisterResponseDefaultType0
-        | PostUsersInviteRegisterResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostUsersInviteRegisterResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostUsersInviteRegisterResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostUsersInviteRegisterResponseDefault.from_dict(response.json())
 
     return response_default
 
@@ -95,10 +63,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | PostUsersInviteRegisterResponseDefaultType0
-    | PostUsersInviteRegisterResponseDefaultType1
-    | UserInviteRegisterResponseSchema
+    Any | PostUsersInviteRegisterResponseDefault | UserInviteRegisterResponseSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -113,10 +78,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: UserInviteRegisterRequestSchema,
 ) -> Response[
-    Any
-    | PostUsersInviteRegisterResponseDefaultType0
-    | PostUsersInviteRegisterResponseDefaultType1
-    | UserInviteRegisterResponseSchema
+    Any | PostUsersInviteRegisterResponseDefault | UserInviteRegisterResponseSchema
 ]:
     """Register a new user using an invite link token
 
@@ -128,7 +90,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostUsersInviteRegisterResponseDefaultType0 | PostUsersInviteRegisterResponseDefaultType1 | UserInviteRegisterResponseSchema]
+        Response[Any | PostUsersInviteRegisterResponseDefault | UserInviteRegisterResponseSchema]
     """
 
     kwargs = _get_kwargs(
@@ -148,8 +110,7 @@ def sync(
     body: UserInviteRegisterRequestSchema,
 ) -> (
     Any
-    | PostUsersInviteRegisterResponseDefaultType0
-    | PostUsersInviteRegisterResponseDefaultType1
+    | PostUsersInviteRegisterResponseDefault
     | UserInviteRegisterResponseSchema
     | None
 ):
@@ -163,7 +124,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostUsersInviteRegisterResponseDefaultType0 | PostUsersInviteRegisterResponseDefaultType1 | UserInviteRegisterResponseSchema
+        Any | PostUsersInviteRegisterResponseDefault | UserInviteRegisterResponseSchema
     """
 
     return sync_detailed(
@@ -177,10 +138,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: UserInviteRegisterRequestSchema,
 ) -> Response[
-    Any
-    | PostUsersInviteRegisterResponseDefaultType0
-    | PostUsersInviteRegisterResponseDefaultType1
-    | UserInviteRegisterResponseSchema
+    Any | PostUsersInviteRegisterResponseDefault | UserInviteRegisterResponseSchema
 ]:
     """Register a new user using an invite link token
 
@@ -192,7 +150,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostUsersInviteRegisterResponseDefaultType0 | PostUsersInviteRegisterResponseDefaultType1 | UserInviteRegisterResponseSchema]
+        Response[Any | PostUsersInviteRegisterResponseDefault | UserInviteRegisterResponseSchema]
     """
 
     kwargs = _get_kwargs(
@@ -210,8 +168,7 @@ async def asyncio(
     body: UserInviteRegisterRequestSchema,
 ) -> (
     Any
-    | PostUsersInviteRegisterResponseDefaultType0
-    | PostUsersInviteRegisterResponseDefaultType1
+    | PostUsersInviteRegisterResponseDefault
     | UserInviteRegisterResponseSchema
     | None
 ):
@@ -225,7 +182,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostUsersInviteRegisterResponseDefaultType0 | PostUsersInviteRegisterResponseDefaultType1 | UserInviteRegisterResponseSchema
+        Any | PostUsersInviteRegisterResponseDefault | UserInviteRegisterResponseSchema
     """
 
     return (

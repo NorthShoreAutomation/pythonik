@@ -6,8 +6,7 @@ import httpx
 from ...client import AuthenticatedClient, Client
 from ...models.bulk_job_created_schema import BulkJobCreatedSchema
 from ...models.jobs_bulk_edit_schema import JobsBulkEditSchema
-from ...models.patch_jobs_response_default_type_0 import PatchJobsResponseDefaultType0
-from ...models.patch_jobs_response_default_type_1 import PatchJobsResponseDefaultType1
+from ...models.patch_jobs_response_default import PatchJobsResponseDefault
 from ...types import UNSET, Response, Unset
 
 
@@ -76,12 +75,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | BulkJobCreatedSchema
-    | PatchJobsResponseDefaultType0
-    | PatchJobsResponseDefaultType1
-):
+) -> Any | BulkJobCreatedSchema | PatchJobsResponseDefault:
     if response.status_code == 202:
         response_202 = BulkJobCreatedSchema.from_dict(response.json())
 
@@ -95,36 +89,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> PatchJobsResponseDefaultType0 | PatchJobsResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PatchJobsResponseDefaultType0.from_dict(data)
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PatchJobsResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PatchJobsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | BulkJobCreatedSchema
-    | PatchJobsResponseDefaultType0
-    | PatchJobsResponseDefaultType1
-]:
+) -> Response[Any | BulkJobCreatedSchema | PatchJobsResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -150,12 +122,7 @@ def sync_detailed(
     metadata_automation_id: str | Unset = UNSET,
     field_missing: str | Unset = UNSET,
     field_exists: str | Unset = UNSET,
-) -> Response[
-    Any
-    | BulkJobCreatedSchema
-    | PatchJobsResponseDefaultType0
-    | PatchJobsResponseDefaultType1
-]:
+) -> Response[Any | BulkJobCreatedSchema | PatchJobsResponseDefault]:
     """Edit jobs
 
 
@@ -183,7 +150,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | BulkJobCreatedSchema | PatchJobsResponseDefaultType0 | PatchJobsResponseDefaultType1]
+        Response[Any | BulkJobCreatedSchema | PatchJobsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -227,13 +194,7 @@ def sync(
     metadata_automation_id: str | Unset = UNSET,
     field_missing: str | Unset = UNSET,
     field_exists: str | Unset = UNSET,
-) -> (
-    Any
-    | BulkJobCreatedSchema
-    | PatchJobsResponseDefaultType0
-    | PatchJobsResponseDefaultType1
-    | None
-):
+) -> Any | BulkJobCreatedSchema | PatchJobsResponseDefault | None:
     """Edit jobs
 
 
@@ -261,7 +222,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | BulkJobCreatedSchema | PatchJobsResponseDefaultType0 | PatchJobsResponseDefaultType1
+        Any | BulkJobCreatedSchema | PatchJobsResponseDefault
     """
 
     return sync_detailed(
@@ -300,12 +261,7 @@ async def asyncio_detailed(
     metadata_automation_id: str | Unset = UNSET,
     field_missing: str | Unset = UNSET,
     field_exists: str | Unset = UNSET,
-) -> Response[
-    Any
-    | BulkJobCreatedSchema
-    | PatchJobsResponseDefaultType0
-    | PatchJobsResponseDefaultType1
-]:
+) -> Response[Any | BulkJobCreatedSchema | PatchJobsResponseDefault]:
     """Edit jobs
 
 
@@ -333,7 +289,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | BulkJobCreatedSchema | PatchJobsResponseDefaultType0 | PatchJobsResponseDefaultType1]
+        Response[Any | BulkJobCreatedSchema | PatchJobsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -375,13 +331,7 @@ async def asyncio(
     metadata_automation_id: str | Unset = UNSET,
     field_missing: str | Unset = UNSET,
     field_exists: str | Unset = UNSET,
-) -> (
-    Any
-    | BulkJobCreatedSchema
-    | PatchJobsResponseDefaultType0
-    | PatchJobsResponseDefaultType1
-    | None
-):
+) -> Any | BulkJobCreatedSchema | PatchJobsResponseDefault | None:
     """Edit jobs
 
 
@@ -409,7 +359,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | BulkJobCreatedSchema | PatchJobsResponseDefaultType0 | PatchJobsResponseDefaultType1
+        Any | BulkJobCreatedSchema | PatchJobsResponseDefault
     """
 
     return (

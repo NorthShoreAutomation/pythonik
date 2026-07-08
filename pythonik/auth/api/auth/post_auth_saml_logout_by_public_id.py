@@ -8,11 +8,8 @@ from ...client import AuthenticatedClient, Client
 from ...models.post_auth_saml_logout_by_public_id_response_200 import (
     PostAuthSamlLogoutByPublicIdResponse200,
 )
-from ...models.post_auth_saml_logout_by_public_id_response_default_type_0 import (
-    PostAuthSamlLogoutByPublicIdResponseDefaultType0,
-)
-from ...models.post_auth_saml_logout_by_public_id_response_default_type_1 import (
-    PostAuthSamlLogoutByPublicIdResponseDefaultType1,
+from ...models.post_auth_saml_logout_by_public_id_response_default import (
+    PostAuthSamlLogoutByPublicIdResponseDefault,
 )
 from ...types import Response
 
@@ -36,8 +33,7 @@ def _parse_response(
 ) -> (
     Any
     | PostAuthSamlLogoutByPublicIdResponse200
-    | PostAuthSamlLogoutByPublicIdResponseDefaultType0
-    | PostAuthSamlLogoutByPublicIdResponseDefaultType1
+    | PostAuthSamlLogoutByPublicIdResponseDefault
 ):
     if response.status_code == 200:
         response_200 = PostAuthSamlLogoutByPublicIdResponse200.from_dict(
@@ -54,31 +50,9 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAuthSamlLogoutByPublicIdResponseDefaultType0
-        | PostAuthSamlLogoutByPublicIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostAuthSamlLogoutByPublicIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostAuthSamlLogoutByPublicIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostAuthSamlLogoutByPublicIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -88,8 +62,7 @@ def _build_response(
 ) -> Response[
     Any
     | PostAuthSamlLogoutByPublicIdResponse200
-    | PostAuthSamlLogoutByPublicIdResponseDefaultType0
-    | PostAuthSamlLogoutByPublicIdResponseDefaultType1
+    | PostAuthSamlLogoutByPublicIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -106,8 +79,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | PostAuthSamlLogoutByPublicIdResponse200
-    | PostAuthSamlLogoutByPublicIdResponseDefaultType0
-    | PostAuthSamlLogoutByPublicIdResponseDefaultType1
+    | PostAuthSamlLogoutByPublicIdResponseDefault
 ]:
     """Initiate SAML Single logout
 
@@ -119,7 +91,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAuthSamlLogoutByPublicIdResponse200 | PostAuthSamlLogoutByPublicIdResponseDefaultType0 | PostAuthSamlLogoutByPublicIdResponseDefaultType1]
+        Response[Any | PostAuthSamlLogoutByPublicIdResponse200 | PostAuthSamlLogoutByPublicIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -140,8 +112,7 @@ def sync(
 ) -> (
     Any
     | PostAuthSamlLogoutByPublicIdResponse200
-    | PostAuthSamlLogoutByPublicIdResponseDefaultType0
-    | PostAuthSamlLogoutByPublicIdResponseDefaultType1
+    | PostAuthSamlLogoutByPublicIdResponseDefault
     | None
 ):
     """Initiate SAML Single logout
@@ -154,7 +125,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAuthSamlLogoutByPublicIdResponse200 | PostAuthSamlLogoutByPublicIdResponseDefaultType0 | PostAuthSamlLogoutByPublicIdResponseDefaultType1
+        Any | PostAuthSamlLogoutByPublicIdResponse200 | PostAuthSamlLogoutByPublicIdResponseDefault
     """
 
     return sync_detailed(
@@ -170,8 +141,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | PostAuthSamlLogoutByPublicIdResponse200
-    | PostAuthSamlLogoutByPublicIdResponseDefaultType0
-    | PostAuthSamlLogoutByPublicIdResponseDefaultType1
+    | PostAuthSamlLogoutByPublicIdResponseDefault
 ]:
     """Initiate SAML Single logout
 
@@ -183,7 +153,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAuthSamlLogoutByPublicIdResponse200 | PostAuthSamlLogoutByPublicIdResponseDefaultType0 | PostAuthSamlLogoutByPublicIdResponseDefaultType1]
+        Response[Any | PostAuthSamlLogoutByPublicIdResponse200 | PostAuthSamlLogoutByPublicIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -202,8 +172,7 @@ async def asyncio(
 ) -> (
     Any
     | PostAuthSamlLogoutByPublicIdResponse200
-    | PostAuthSamlLogoutByPublicIdResponseDefaultType0
-    | PostAuthSamlLogoutByPublicIdResponseDefaultType1
+    | PostAuthSamlLogoutByPublicIdResponseDefault
     | None
 ):
     """Initiate SAML Single logout
@@ -216,7 +185,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAuthSamlLogoutByPublicIdResponse200 | PostAuthSamlLogoutByPublicIdResponseDefaultType0 | PostAuthSamlLogoutByPublicIdResponseDefaultType1
+        Any | PostAuthSamlLogoutByPublicIdResponse200 | PostAuthSamlLogoutByPublicIdResponseDefault
     """
 
     return (

@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_search_saved_by_search_id_convert_to_collection_response_default_type_0 import (
-    PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType0,
-)
-from ...models.post_search_saved_by_search_id_convert_to_collection_response_default_type_1 import (
-    PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType1,
+from ...models.post_search_saved_by_search_id_convert_to_collection_response_default import (
+    PostSearchSavedBySearchIdConvertToCollectionResponseDefault,
 )
 from ...models.saved_search_convert_collection_schema import (
     SavedSearchConvertCollectionSchema,
@@ -41,11 +38,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType0
-    | PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType1
-):
+) -> Any | PostSearchSavedBySearchIdConvertToCollectionResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -66,44 +59,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType0
-        | PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PostSearchSavedBySearchIdConvertToCollectionResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType0
-    | PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType1
-]:
+) -> Response[Any | PostSearchSavedBySearchIdConvertToCollectionResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -117,11 +84,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: SavedSearchConvertCollectionSchema,
-) -> Response[
-    Any
-    | PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType0
-    | PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType1
-]:
+) -> Response[Any | PostSearchSavedBySearchIdConvertToCollectionResponseDefault]:
     """Converts the saved search to a collection
 
 
@@ -139,7 +102,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType0 | PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType1]
+        Response[Any | PostSearchSavedBySearchIdConvertToCollectionResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -159,12 +122,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: SavedSearchConvertCollectionSchema,
-) -> (
-    Any
-    | PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType0
-    | PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType1
-    | None
-):
+) -> Any | PostSearchSavedBySearchIdConvertToCollectionResponseDefault | None:
     """Converts the saved search to a collection
 
 
@@ -182,7 +140,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType0 | PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType1
+        Any | PostSearchSavedBySearchIdConvertToCollectionResponseDefault
     """
 
     return sync_detailed(
@@ -197,11 +155,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: SavedSearchConvertCollectionSchema,
-) -> Response[
-    Any
-    | PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType0
-    | PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType1
-]:
+) -> Response[Any | PostSearchSavedBySearchIdConvertToCollectionResponseDefault]:
     """Converts the saved search to a collection
 
 
@@ -219,7 +173,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType0 | PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType1]
+        Response[Any | PostSearchSavedBySearchIdConvertToCollectionResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -237,12 +191,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: SavedSearchConvertCollectionSchema,
-) -> (
-    Any
-    | PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType0
-    | PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType1
-    | None
-):
+) -> Any | PostSearchSavedBySearchIdConvertToCollectionResponseDefault | None:
     """Converts the saved search to a collection
 
 
@@ -260,7 +209,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType0 | PostSearchSavedBySearchIdConvertToCollectionResponseDefaultType1
+        Any | PostSearchSavedBySearchIdConvertToCollectionResponseDefault
     """
 
     return (

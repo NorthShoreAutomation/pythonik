@@ -7,11 +7,8 @@ import httpx
 from ...client import AuthenticatedClient, Client
 from ...models.magic_link_allowlist_entry_schema import MagicLinkAllowlistEntrySchema
 from ...models.magic_link_allowlist_update_schema import MagicLinkAllowlistUpdateSchema
-from ...models.put_shares_allowlist_entries_by_entry_id_response_default_type_0 import (
-    PutSharesAllowlistEntriesByEntryIdResponseDefaultType0,
-)
-from ...models.put_shares_allowlist_entries_by_entry_id_response_default_type_1 import (
-    PutSharesAllowlistEntriesByEntryIdResponseDefaultType1,
+from ...models.put_shares_allowlist_entries_by_entry_id_response_default import (
+    PutSharesAllowlistEntriesByEntryIdResponseDefault,
 )
 from ...types import Response
 
@@ -43,8 +40,7 @@ def _parse_response(
 ) -> (
     Any
     | MagicLinkAllowlistEntrySchema
-    | PutSharesAllowlistEntriesByEntryIdResponseDefaultType0
-    | PutSharesAllowlistEntriesByEntryIdResponseDefaultType1
+    | PutSharesAllowlistEntriesByEntryIdResponseDefault
 ):
     if response.status_code == 200:
         response_200 = MagicLinkAllowlistEntrySchema.from_dict(response.json())
@@ -67,31 +63,9 @@ def _parse_response(
         response_409 = cast(Any, None)
         return response_409
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutSharesAllowlistEntriesByEntryIdResponseDefaultType0
-        | PutSharesAllowlistEntriesByEntryIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PutSharesAllowlistEntriesByEntryIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PutSharesAllowlistEntriesByEntryIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutSharesAllowlistEntriesByEntryIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -101,8 +75,7 @@ def _build_response(
 ) -> Response[
     Any
     | MagicLinkAllowlistEntrySchema
-    | PutSharesAllowlistEntriesByEntryIdResponseDefaultType0
-    | PutSharesAllowlistEntriesByEntryIdResponseDefaultType1
+    | PutSharesAllowlistEntriesByEntryIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -120,8 +93,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | MagicLinkAllowlistEntrySchema
-    | PutSharesAllowlistEntriesByEntryIdResponseDefaultType0
-    | PutSharesAllowlistEntriesByEntryIdResponseDefaultType1
+    | PutSharesAllowlistEntriesByEntryIdResponseDefault
 ]:
     """Update an allowlist entry.
 
@@ -134,7 +106,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | MagicLinkAllowlistEntrySchema | PutSharesAllowlistEntriesByEntryIdResponseDefaultType0 | PutSharesAllowlistEntriesByEntryIdResponseDefaultType1]
+        Response[Any | MagicLinkAllowlistEntrySchema | PutSharesAllowlistEntriesByEntryIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -157,8 +129,7 @@ def sync(
 ) -> (
     Any
     | MagicLinkAllowlistEntrySchema
-    | PutSharesAllowlistEntriesByEntryIdResponseDefaultType0
-    | PutSharesAllowlistEntriesByEntryIdResponseDefaultType1
+    | PutSharesAllowlistEntriesByEntryIdResponseDefault
     | None
 ):
     """Update an allowlist entry.
@@ -172,7 +143,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | MagicLinkAllowlistEntrySchema | PutSharesAllowlistEntriesByEntryIdResponseDefaultType0 | PutSharesAllowlistEntriesByEntryIdResponseDefaultType1
+        Any | MagicLinkAllowlistEntrySchema | PutSharesAllowlistEntriesByEntryIdResponseDefault
     """
 
     return sync_detailed(
@@ -190,8 +161,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | MagicLinkAllowlistEntrySchema
-    | PutSharesAllowlistEntriesByEntryIdResponseDefaultType0
-    | PutSharesAllowlistEntriesByEntryIdResponseDefaultType1
+    | PutSharesAllowlistEntriesByEntryIdResponseDefault
 ]:
     """Update an allowlist entry.
 
@@ -204,7 +174,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | MagicLinkAllowlistEntrySchema | PutSharesAllowlistEntriesByEntryIdResponseDefaultType0 | PutSharesAllowlistEntriesByEntryIdResponseDefaultType1]
+        Response[Any | MagicLinkAllowlistEntrySchema | PutSharesAllowlistEntriesByEntryIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -225,8 +195,7 @@ async def asyncio(
 ) -> (
     Any
     | MagicLinkAllowlistEntrySchema
-    | PutSharesAllowlistEntriesByEntryIdResponseDefaultType0
-    | PutSharesAllowlistEntriesByEntryIdResponseDefaultType1
+    | PutSharesAllowlistEntriesByEntryIdResponseDefault
     | None
 ):
     """Update an allowlist entry.
@@ -240,7 +209,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | MagicLinkAllowlistEntrySchema | PutSharesAllowlistEntriesByEntryIdResponseDefaultType0 | PutSharesAllowlistEntriesByEntryIdResponseDefaultType1
+        Any | MagicLinkAllowlistEntrySchema | PutSharesAllowlistEntriesByEntryIdResponseDefault
     """
 
     return (

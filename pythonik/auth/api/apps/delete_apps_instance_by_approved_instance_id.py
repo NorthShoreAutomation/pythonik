@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_apps_instance_by_approved_instance_id_response_default_type_0 import (
-    DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType0,
-)
-from ...models.delete_apps_instance_by_approved_instance_id_response_default_type_1 import (
-    DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType1,
+from ...models.delete_apps_instance_by_approved_instance_id_response_default import (
+    DeleteAppsInstanceByApprovedInstanceIdResponseDefault,
 )
 from ...types import Response
 
@@ -30,11 +27,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType0
-    | DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType1
-):
+) -> Any | DeleteAppsInstanceByApprovedInstanceIdResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -47,44 +40,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType0
-        | DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteAppsInstanceByApprovedInstanceIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType0
-    | DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteAppsInstanceByApprovedInstanceIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -97,11 +62,7 @@ def sync_detailed(
     approved_instance_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType0
-    | DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteAppsInstanceByApprovedInstanceIdResponseDefault]:
     """Delete an approved instance of an app
 
     Args:
@@ -112,7 +73,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType0 | DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType1]
+        Response[Any | DeleteAppsInstanceByApprovedInstanceIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -130,12 +91,7 @@ def sync(
     approved_instance_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType0
-    | DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAppsInstanceByApprovedInstanceIdResponseDefault | None:
     """Delete an approved instance of an app
 
     Args:
@@ -146,7 +102,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType0 | DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType1
+        Any | DeleteAppsInstanceByApprovedInstanceIdResponseDefault
     """
 
     return sync_detailed(
@@ -159,11 +115,7 @@ async def asyncio_detailed(
     approved_instance_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType0
-    | DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteAppsInstanceByApprovedInstanceIdResponseDefault]:
     """Delete an approved instance of an app
 
     Args:
@@ -174,7 +126,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType0 | DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType1]
+        Response[Any | DeleteAppsInstanceByApprovedInstanceIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -190,12 +142,7 @@ async def asyncio(
     approved_instance_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType0
-    | DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAppsInstanceByApprovedInstanceIdResponseDefault | None:
     """Delete an approved instance of an app
 
     Args:
@@ -206,7 +153,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType0 | DeleteAppsInstanceByApprovedInstanceIdResponseDefaultType1
+        Any | DeleteAppsInstanceByApprovedInstanceIdResponseDefault
     """
 
     return (

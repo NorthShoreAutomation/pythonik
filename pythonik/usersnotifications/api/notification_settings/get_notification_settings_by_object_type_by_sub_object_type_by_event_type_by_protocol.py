@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_notification_settings_by_object_type_by_sub_object_type_by_event_type_by_protocol_response_default_type_0 import (
-    GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType0,
-)
-from ...models.get_notification_settings_by_object_type_by_sub_object_type_by_event_type_by_protocol_response_default_type_1 import (
-    GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType1,
+from ...models.get_notification_settings_by_object_type_by_sub_object_type_by_event_type_by_protocol_response_default import (
+    GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefault,
 )
 from ...models.notification_setting_schema import NotificationSettingSchema
 from ...types import Response
@@ -39,8 +36,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType0
-    | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType1
+    | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefault
     | NotificationSettingSchema
 ):
     if response.status_code == 200:
@@ -60,31 +56,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType0
-        | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -93,8 +67,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType0
-    | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType1
+    | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefault
     | NotificationSettingSchema
 ]:
     return Response(
@@ -114,8 +87,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
 ) -> Response[
     Any
-    | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType0
-    | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType1
+    | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefault
     | NotificationSettingSchema
 ]:
     """Returns a particular notification_setting by id
@@ -135,7 +107,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType0 | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType1 | NotificationSettingSchema]
+        Response[Any | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefault | NotificationSettingSchema]
     """
 
     kwargs = _get_kwargs(
@@ -161,8 +133,7 @@ def sync(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType0
-    | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType1
+    | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefault
     | NotificationSettingSchema
     | None
 ):
@@ -183,7 +154,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType0 | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType1 | NotificationSettingSchema
+        Any | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefault | NotificationSettingSchema
     """
 
     return sync_detailed(
@@ -204,8 +175,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
 ) -> Response[
     Any
-    | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType0
-    | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType1
+    | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefault
     | NotificationSettingSchema
 ]:
     """Returns a particular notification_setting by id
@@ -225,7 +195,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType0 | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType1 | NotificationSettingSchema]
+        Response[Any | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefault | NotificationSettingSchema]
     """
 
     kwargs = _get_kwargs(
@@ -249,8 +219,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType0
-    | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType1
+    | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefault
     | NotificationSettingSchema
     | None
 ):
@@ -271,7 +240,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType0 | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefaultType1 | NotificationSettingSchema
+        Any | GetNotificationSettingsByObjectTypeBySubObjectTypeByEventTypeByProtocolResponseDefault | NotificationSettingSchema
     """
 
     return (

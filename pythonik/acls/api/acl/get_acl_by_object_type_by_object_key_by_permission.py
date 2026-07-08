@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_acl_by_object_type_by_object_key_by_permission_response_default_type_0 import (
-    GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0,
-)
-from ...models.get_acl_by_object_type_by_object_key_by_permission_response_default_type_1 import (
-    GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1,
+from ...models.get_acl_by_object_type_by_object_key_by_permission_response_default import (
+    GetAclByObjectTypeByObjectKeyByPermissionResponseDefault,
 )
 from ...types import Response
 
@@ -34,11 +31,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0
-    | GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1
-):
+) -> Any | GetAclByObjectTypeByObjectKeyByPermissionResponseDefault:
     if response.status_code == 200:
         response_200 = cast(Any, None)
         return response_200
@@ -55,46 +48,18 @@ def _parse_response(
         response_403 = cast(Any, None)
         return response_403
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0
-        | GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        GetAclByObjectTypeByObjectKeyByPermissionResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0
-    | GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1
-]:
+) -> Response[Any | GetAclByObjectTypeByObjectKeyByPermissionResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -109,11 +74,7 @@ def sync_detailed(
     permission: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0
-    | GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1
-]:
+) -> Response[Any | GetAclByObjectTypeByObjectKeyByPermissionResponseDefault]:
     """Check if particular object has required permission
 
 
@@ -130,7 +91,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0 | GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1]
+        Response[Any | GetAclByObjectTypeByObjectKeyByPermissionResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -152,12 +113,7 @@ def sync(
     permission: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0
-    | GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1
-    | None
-):
+) -> Any | GetAclByObjectTypeByObjectKeyByPermissionResponseDefault | None:
     """Check if particular object has required permission
 
 
@@ -174,7 +130,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0 | GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1
+        Any | GetAclByObjectTypeByObjectKeyByPermissionResponseDefault
     """
 
     return sync_detailed(
@@ -191,11 +147,7 @@ async def asyncio_detailed(
     permission: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0
-    | GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1
-]:
+) -> Response[Any | GetAclByObjectTypeByObjectKeyByPermissionResponseDefault]:
     """Check if particular object has required permission
 
 
@@ -212,7 +164,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0 | GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1]
+        Response[Any | GetAclByObjectTypeByObjectKeyByPermissionResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -232,12 +184,7 @@ async def asyncio(
     permission: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0
-    | GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1
-    | None
-):
+) -> Any | GetAclByObjectTypeByObjectKeyByPermissionResponseDefault | None:
     """Check if particular object has required permission
 
 
@@ -254,7 +201,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0 | GetAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1
+        Any | GetAclByObjectTypeByObjectKeyByPermissionResponseDefault
     """
 
     return (

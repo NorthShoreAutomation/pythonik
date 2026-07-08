@@ -5,11 +5,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.iconik_storage_gateway_schema import IconikStorageGatewaySchema
-from ...models.post_storage_gateways_response_default_type_0 import (
-    PostStorageGatewaysResponseDefaultType0,
-)
-from ...models.post_storage_gateways_response_default_type_1 import (
-    PostStorageGatewaysResponseDefaultType1,
+from ...models.post_storage_gateways_response_default import (
+    PostStorageGatewaysResponseDefault,
 )
 from ...types import Response
 
@@ -35,12 +32,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | IconikStorageGatewaySchema
-    | PostStorageGatewaysResponseDefaultType0
-    | PostStorageGatewaysResponseDefaultType1
-):
+) -> Any | IconikStorageGatewaySchema | PostStorageGatewaysResponseDefault:
     if response.status_code == 201:
         response_201 = IconikStorageGatewaySchema.from_dict(response.json())
 
@@ -54,43 +46,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostStorageGatewaysResponseDefaultType0
-        | PostStorageGatewaysResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostStorageGatewaysResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostStorageGatewaysResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostStorageGatewaysResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | IconikStorageGatewaySchema
-    | PostStorageGatewaysResponseDefaultType0
-    | PostStorageGatewaysResponseDefaultType1
-]:
+) -> Response[Any | IconikStorageGatewaySchema | PostStorageGatewaysResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -103,12 +66,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: IconikStorageGatewaySchema,
-) -> Response[
-    Any
-    | IconikStorageGatewaySchema
-    | PostStorageGatewaysResponseDefaultType0
-    | PostStorageGatewaysResponseDefaultType1
-]:
+) -> Response[Any | IconikStorageGatewaySchema | PostStorageGatewaysResponseDefault]:
     """Create a new storage gateway
 
     Args:
@@ -119,7 +77,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | IconikStorageGatewaySchema | PostStorageGatewaysResponseDefaultType0 | PostStorageGatewaysResponseDefaultType1]
+        Response[Any | IconikStorageGatewaySchema | PostStorageGatewaysResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -137,13 +95,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: IconikStorageGatewaySchema,
-) -> (
-    Any
-    | IconikStorageGatewaySchema
-    | PostStorageGatewaysResponseDefaultType0
-    | PostStorageGatewaysResponseDefaultType1
-    | None
-):
+) -> Any | IconikStorageGatewaySchema | PostStorageGatewaysResponseDefault | None:
     """Create a new storage gateway
 
     Args:
@@ -154,7 +106,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | IconikStorageGatewaySchema | PostStorageGatewaysResponseDefaultType0 | PostStorageGatewaysResponseDefaultType1
+        Any | IconikStorageGatewaySchema | PostStorageGatewaysResponseDefault
     """
 
     return sync_detailed(
@@ -167,12 +119,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: IconikStorageGatewaySchema,
-) -> Response[
-    Any
-    | IconikStorageGatewaySchema
-    | PostStorageGatewaysResponseDefaultType0
-    | PostStorageGatewaysResponseDefaultType1
-]:
+) -> Response[Any | IconikStorageGatewaySchema | PostStorageGatewaysResponseDefault]:
     """Create a new storage gateway
 
     Args:
@@ -183,7 +130,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | IconikStorageGatewaySchema | PostStorageGatewaysResponseDefaultType0 | PostStorageGatewaysResponseDefaultType1]
+        Response[Any | IconikStorageGatewaySchema | PostStorageGatewaysResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -199,13 +146,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: IconikStorageGatewaySchema,
-) -> (
-    Any
-    | IconikStorageGatewaySchema
-    | PostStorageGatewaysResponseDefaultType0
-    | PostStorageGatewaysResponseDefaultType1
-    | None
-):
+) -> Any | IconikStorageGatewaySchema | PostStorageGatewaysResponseDefault | None:
     """Create a new storage gateway
 
     Args:
@@ -216,7 +157,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | IconikStorageGatewaySchema | PostStorageGatewaysResponseDefaultType0 | PostStorageGatewaysResponseDefaultType1
+        Any | IconikStorageGatewaySchema | PostStorageGatewaysResponseDefault
     """
 
     return (

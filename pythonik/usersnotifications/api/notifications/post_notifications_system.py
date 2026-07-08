@@ -5,11 +5,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.notification_schema import NotificationSchema
-from ...models.post_notifications_system_response_default_type_0 import (
-    PostNotificationsSystemResponseDefaultType0,
-)
-from ...models.post_notifications_system_response_default_type_1 import (
-    PostNotificationsSystemResponseDefaultType1,
+from ...models.post_notifications_system_response_default import (
+    PostNotificationsSystemResponseDefault,
 )
 from ...models.system_notification_schema import SystemNotificationSchema
 from ...types import Response
@@ -36,12 +33,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | NotificationSchema
-    | PostNotificationsSystemResponseDefaultType0
-    | PostNotificationsSystemResponseDefaultType1
-):
+) -> Any | NotificationSchema | PostNotificationsSystemResponseDefault:
     if response.status_code == 201:
         response_201 = NotificationSchema.from_dict(response.json())
 
@@ -55,43 +47,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostNotificationsSystemResponseDefaultType0
-        | PostNotificationsSystemResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostNotificationsSystemResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostNotificationsSystemResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostNotificationsSystemResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | NotificationSchema
-    | PostNotificationsSystemResponseDefaultType0
-    | PostNotificationsSystemResponseDefaultType1
-]:
+) -> Response[Any | NotificationSchema | PostNotificationsSystemResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -104,12 +67,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: SystemNotificationSchema,
-) -> Response[
-    Any
-    | NotificationSchema
-    | PostNotificationsSystemResponseDefaultType0
-    | PostNotificationsSystemResponseDefaultType1
-]:
+) -> Response[Any | NotificationSchema | PostNotificationsSystemResponseDefault]:
     """Create a new system notification
 
     Args:
@@ -120,7 +78,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | NotificationSchema | PostNotificationsSystemResponseDefaultType0 | PostNotificationsSystemResponseDefaultType1]
+        Response[Any | NotificationSchema | PostNotificationsSystemResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -138,13 +96,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: SystemNotificationSchema,
-) -> (
-    Any
-    | NotificationSchema
-    | PostNotificationsSystemResponseDefaultType0
-    | PostNotificationsSystemResponseDefaultType1
-    | None
-):
+) -> Any | NotificationSchema | PostNotificationsSystemResponseDefault | None:
     """Create a new system notification
 
     Args:
@@ -155,7 +107,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | NotificationSchema | PostNotificationsSystemResponseDefaultType0 | PostNotificationsSystemResponseDefaultType1
+        Any | NotificationSchema | PostNotificationsSystemResponseDefault
     """
 
     return sync_detailed(
@@ -168,12 +120,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: SystemNotificationSchema,
-) -> Response[
-    Any
-    | NotificationSchema
-    | PostNotificationsSystemResponseDefaultType0
-    | PostNotificationsSystemResponseDefaultType1
-]:
+) -> Response[Any | NotificationSchema | PostNotificationsSystemResponseDefault]:
     """Create a new system notification
 
     Args:
@@ -184,7 +131,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | NotificationSchema | PostNotificationsSystemResponseDefaultType0 | PostNotificationsSystemResponseDefaultType1]
+        Response[Any | NotificationSchema | PostNotificationsSystemResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -200,13 +147,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: SystemNotificationSchema,
-) -> (
-    Any
-    | NotificationSchema
-    | PostNotificationsSystemResponseDefaultType0
-    | PostNotificationsSystemResponseDefaultType1
-    | None
-):
+) -> Any | NotificationSchema | PostNotificationsSystemResponseDefault | None:
     """Create a new system notification
 
     Args:
@@ -217,7 +158,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | NotificationSchema | PostNotificationsSystemResponseDefaultType0 | PostNotificationsSystemResponseDefaultType1
+        Any | NotificationSchema | PostNotificationsSystemResponseDefault
     """
 
     return (

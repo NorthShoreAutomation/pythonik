@@ -18,8 +18,8 @@ T = TypeVar("T", bound="ProjectSchema")
 class ProjectSchema:
     """
     Attributes:
-        collection_id (UUID):
         name (str):
+        collection_id (None | Unset | UUID):
         created_by_user (None | Unset | UUID):
         date_created (datetime.datetime | None | Unset):
         date_modified (datetime.datetime | None | Unset):
@@ -29,8 +29,8 @@ class ProjectSchema:
         system_domain_id (None | Unset | UUID):
     """
 
-    collection_id: UUID
     name: str
+    collection_id: None | Unset | UUID = UNSET
     created_by_user: None | Unset | UUID = UNSET
     date_created: datetime.datetime | None | Unset = UNSET
     date_modified: datetime.datetime | None | Unset = UNSET
@@ -41,9 +41,15 @@ class ProjectSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        collection_id = str(self.collection_id)
-
         name = self.name
+
+        collection_id: None | str | Unset
+        if isinstance(self.collection_id, Unset):
+            collection_id = UNSET
+        elif isinstance(self.collection_id, UUID):
+            collection_id = str(self.collection_id)
+        else:
+            collection_id = self.collection_id
 
         created_by_user: None | str | Unset
         if isinstance(self.created_by_user, Unset):
@@ -105,10 +111,11 @@ class ProjectSchema:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "collection_id": collection_id,
                 "name": name,
             }
         )
+        if collection_id is not UNSET:
+            field_dict["collection_id"] = collection_id
         if created_by_user is not UNSET:
             field_dict["created_by_user"] = created_by_user
         if date_created is not UNSET:
@@ -129,9 +136,24 @@ class ProjectSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        collection_id = UUID(d.pop("collection_id"))
-
         name = d.pop("name")
+
+        def _parse_collection_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                collection_id_type_0 = UUID(data)
+
+                return collection_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        collection_id = _parse_collection_id(d.pop("collection_id", UNSET))
 
         def _parse_created_by_user(data: object) -> None | Unset | UUID:
             if data is None:
@@ -253,8 +275,8 @@ class ProjectSchema:
         system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
 
         project_schema = cls(
-            collection_id=collection_id,
             name=name,
+            collection_id=collection_id,
             created_by_user=created_by_user,
             date_created=date_created,
             date_modified=date_modified,

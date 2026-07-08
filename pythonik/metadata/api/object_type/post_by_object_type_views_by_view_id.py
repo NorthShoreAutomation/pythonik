@@ -8,11 +8,8 @@ from ...client import AuthenticatedClient, Client
 from ...models.create_metadata_values_batch_schema import (
     CreateMetadataValuesBatchSchema,
 )
-from ...models.post_by_object_type_views_by_view_id_response_default_type_0 import (
-    PostByObjectTypeViewsByViewIdResponseDefaultType0,
-)
-from ...models.post_by_object_type_views_by_view_id_response_default_type_1 import (
-    PostByObjectTypeViewsByViewIdResponseDefaultType1,
+from ...models.post_by_object_type_views_by_view_id_response_default import (
+    PostByObjectTypeViewsByViewIdResponseDefault,
 )
 from ...types import Response
 
@@ -43,11 +40,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostByObjectTypeViewsByViewIdResponseDefaultType0
-    | PostByObjectTypeViewsByViewIdResponseDefaultType1
-):
+) -> Any | PostByObjectTypeViewsByViewIdResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -64,42 +57,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostByObjectTypeViewsByViewIdResponseDefaultType0
-        | PostByObjectTypeViewsByViewIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostByObjectTypeViewsByViewIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostByObjectTypeViewsByViewIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostByObjectTypeViewsByViewIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostByObjectTypeViewsByViewIdResponseDefaultType0
-    | PostByObjectTypeViewsByViewIdResponseDefaultType1
-]:
+) -> Response[Any | PostByObjectTypeViewsByViewIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -114,11 +81,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: CreateMetadataValuesBatchSchema,
-) -> Response[
-    Any
-    | PostByObjectTypeViewsByViewIdResponseDefaultType0
-    | PostByObjectTypeViewsByViewIdResponseDefaultType1
-]:
+) -> Response[Any | PostByObjectTypeViewsByViewIdResponseDefault]:
     """Add view metadata values for multiple objects (Assets, Collections or Segments)
 
 
@@ -135,7 +98,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostByObjectTypeViewsByViewIdResponseDefaultType0 | PostByObjectTypeViewsByViewIdResponseDefaultType1]
+        Response[Any | PostByObjectTypeViewsByViewIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -157,12 +120,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: CreateMetadataValuesBatchSchema,
-) -> (
-    Any
-    | PostByObjectTypeViewsByViewIdResponseDefaultType0
-    | PostByObjectTypeViewsByViewIdResponseDefaultType1
-    | None
-):
+) -> Any | PostByObjectTypeViewsByViewIdResponseDefault | None:
     """Add view metadata values for multiple objects (Assets, Collections or Segments)
 
 
@@ -179,7 +137,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostByObjectTypeViewsByViewIdResponseDefaultType0 | PostByObjectTypeViewsByViewIdResponseDefaultType1
+        Any | PostByObjectTypeViewsByViewIdResponseDefault
     """
 
     return sync_detailed(
@@ -196,11 +154,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: CreateMetadataValuesBatchSchema,
-) -> Response[
-    Any
-    | PostByObjectTypeViewsByViewIdResponseDefaultType0
-    | PostByObjectTypeViewsByViewIdResponseDefaultType1
-]:
+) -> Response[Any | PostByObjectTypeViewsByViewIdResponseDefault]:
     """Add view metadata values for multiple objects (Assets, Collections or Segments)
 
 
@@ -217,7 +171,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostByObjectTypeViewsByViewIdResponseDefaultType0 | PostByObjectTypeViewsByViewIdResponseDefaultType1]
+        Response[Any | PostByObjectTypeViewsByViewIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -237,12 +191,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: CreateMetadataValuesBatchSchema,
-) -> (
-    Any
-    | PostByObjectTypeViewsByViewIdResponseDefaultType0
-    | PostByObjectTypeViewsByViewIdResponseDefaultType1
-    | None
-):
+) -> Any | PostByObjectTypeViewsByViewIdResponseDefault | None:
     """Add view metadata values for multiple objects (Assets, Collections or Segments)
 
 
@@ -259,7 +208,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostByObjectTypeViewsByViewIdResponseDefaultType0 | PostByObjectTypeViewsByViewIdResponseDefaultType1
+        Any | PostByObjectTypeViewsByViewIdResponseDefault
     """
 
     return (

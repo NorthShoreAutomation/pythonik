@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.asset_version_schema import AssetVersionSchema
-from ...models.put_assets_by_asset_id_versions_by_version_id_response_default_type_0 import (
-    PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType0,
-)
-from ...models.put_assets_by_asset_id_versions_by_version_id_response_default_type_1 import (
-    PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType1,
+from ...models.put_assets_by_asset_id_versions_by_version_id_response_default import (
+    PutAssetsByAssetIdVersionsByVersionIdResponseDefault,
 )
 from ...types import Response
 
@@ -41,12 +38,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | AssetVersionSchema
-    | PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType0
-    | PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType1
-):
+) -> Any | AssetVersionSchema | PutAssetsByAssetIdVersionsByVersionIdResponseDefault:
     if response.status_code == 200:
         response_200 = AssetVersionSchema.from_dict(response.json())
 
@@ -64,33 +56,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType0
-        | PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutAssetsByAssetIdVersionsByVersionIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -98,10 +66,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | AssetVersionSchema
-    | PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType0
-    | PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType1
+    Any | AssetVersionSchema | PutAssetsByAssetIdVersionsByVersionIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -118,10 +83,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: AssetVersionSchema,
 ) -> Response[
-    Any
-    | AssetVersionSchema
-    | PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType0
-    | PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType1
+    Any | AssetVersionSchema | PutAssetsByAssetIdVersionsByVersionIdResponseDefault
 ]:
     """Edit asset version
 
@@ -139,7 +101,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AssetVersionSchema | PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType0 | PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType1]
+        Response[Any | AssetVersionSchema | PutAssetsByAssetIdVersionsByVersionIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -164,8 +126,7 @@ def sync(
 ) -> (
     Any
     | AssetVersionSchema
-    | PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType0
-    | PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType1
+    | PutAssetsByAssetIdVersionsByVersionIdResponseDefault
     | None
 ):
     """Edit asset version
@@ -184,7 +145,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AssetVersionSchema | PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType0 | PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType1
+        Any | AssetVersionSchema | PutAssetsByAssetIdVersionsByVersionIdResponseDefault
     """
 
     return sync_detailed(
@@ -202,10 +163,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: AssetVersionSchema,
 ) -> Response[
-    Any
-    | AssetVersionSchema
-    | PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType0
-    | PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType1
+    Any | AssetVersionSchema | PutAssetsByAssetIdVersionsByVersionIdResponseDefault
 ]:
     """Edit asset version
 
@@ -223,7 +181,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AssetVersionSchema | PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType0 | PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType1]
+        Response[Any | AssetVersionSchema | PutAssetsByAssetIdVersionsByVersionIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -246,8 +204,7 @@ async def asyncio(
 ) -> (
     Any
     | AssetVersionSchema
-    | PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType0
-    | PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType1
+    | PutAssetsByAssetIdVersionsByVersionIdResponseDefault
     | None
 ):
     """Edit asset version
@@ -266,7 +223,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AssetVersionSchema | PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType0 | PutAssetsByAssetIdVersionsByVersionIdResponseDefaultType1
+        Any | AssetVersionSchema | PutAssetsByAssetIdVersionsByVersionIdResponseDefault
     """
 
     return (

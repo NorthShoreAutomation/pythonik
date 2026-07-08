@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.collection_schema import CollectionSchema
-from ...models.put_collections_by_collection_id_search_document_response_default_type_0 import (
-    PutCollectionsByCollectionIdSearchDocumentResponseDefaultType0,
-)
-from ...models.put_collections_by_collection_id_search_document_response_default_type_1 import (
-    PutCollectionsByCollectionIdSearchDocumentResponseDefaultType1,
+from ...models.put_collections_by_collection_id_search_document_response_default import (
+    PutCollectionsByCollectionIdSearchDocumentResponseDefault,
 )
 from ...types import Response
 
@@ -39,11 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PutCollectionsByCollectionIdSearchDocumentResponseDefaultType0
-    | PutCollectionsByCollectionIdSearchDocumentResponseDefaultType1
-):
+) -> Any | PutCollectionsByCollectionIdSearchDocumentResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -60,44 +53,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutCollectionsByCollectionIdSearchDocumentResponseDefaultType0
-        | PutCollectionsByCollectionIdSearchDocumentResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PutCollectionsByCollectionIdSearchDocumentResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PutCollectionsByCollectionIdSearchDocumentResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PutCollectionsByCollectionIdSearchDocumentResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PutCollectionsByCollectionIdSearchDocumentResponseDefaultType0
-    | PutCollectionsByCollectionIdSearchDocumentResponseDefaultType1
-]:
+) -> Response[Any | PutCollectionsByCollectionIdSearchDocumentResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -111,11 +78,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: CollectionSchema,
-) -> Response[
-    Any
-    | PutCollectionsByCollectionIdSearchDocumentResponseDefaultType0
-    | PutCollectionsByCollectionIdSearchDocumentResponseDefaultType1
-]:
+) -> Response[Any | PutCollectionsByCollectionIdSearchDocumentResponseDefault]:
     """Update metadata for collection
 
 
@@ -131,7 +94,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutCollectionsByCollectionIdSearchDocumentResponseDefaultType0 | PutCollectionsByCollectionIdSearchDocumentResponseDefaultType1]
+        Response[Any | PutCollectionsByCollectionIdSearchDocumentResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -151,12 +114,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: CollectionSchema,
-) -> (
-    Any
-    | PutCollectionsByCollectionIdSearchDocumentResponseDefaultType0
-    | PutCollectionsByCollectionIdSearchDocumentResponseDefaultType1
-    | None
-):
+) -> Any | PutCollectionsByCollectionIdSearchDocumentResponseDefault | None:
     """Update metadata for collection
 
 
@@ -172,7 +130,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutCollectionsByCollectionIdSearchDocumentResponseDefaultType0 | PutCollectionsByCollectionIdSearchDocumentResponseDefaultType1
+        Any | PutCollectionsByCollectionIdSearchDocumentResponseDefault
     """
 
     return sync_detailed(
@@ -187,11 +145,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: CollectionSchema,
-) -> Response[
-    Any
-    | PutCollectionsByCollectionIdSearchDocumentResponseDefaultType0
-    | PutCollectionsByCollectionIdSearchDocumentResponseDefaultType1
-]:
+) -> Response[Any | PutCollectionsByCollectionIdSearchDocumentResponseDefault]:
     """Update metadata for collection
 
 
@@ -207,7 +161,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutCollectionsByCollectionIdSearchDocumentResponseDefaultType0 | PutCollectionsByCollectionIdSearchDocumentResponseDefaultType1]
+        Response[Any | PutCollectionsByCollectionIdSearchDocumentResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -225,12 +179,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: CollectionSchema,
-) -> (
-    Any
-    | PutCollectionsByCollectionIdSearchDocumentResponseDefaultType0
-    | PutCollectionsByCollectionIdSearchDocumentResponseDefaultType1
-    | None
-):
+) -> Any | PutCollectionsByCollectionIdSearchDocumentResponseDefault | None:
     """Update metadata for collection
 
 
@@ -246,7 +195,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutCollectionsByCollectionIdSearchDocumentResponseDefaultType0 | PutCollectionsByCollectionIdSearchDocumentResponseDefaultType1
+        Any | PutCollectionsByCollectionIdSearchDocumentResponseDefault
     """
 
     return (

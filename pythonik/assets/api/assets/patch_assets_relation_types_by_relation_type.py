@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.patch_assets_relation_types_by_relation_type_response_default_type_0 import (
-    PatchAssetsRelationTypesByRelationTypeResponseDefaultType0,
-)
-from ...models.patch_assets_relation_types_by_relation_type_response_default_type_1 import (
-    PatchAssetsRelationTypesByRelationTypeResponseDefaultType1,
+from ...models.patch_assets_relation_types_by_relation_type_response_default import (
+    PatchAssetsRelationTypesByRelationTypeResponseDefault,
 )
 from ...models.relation_type_schema import RelationTypeSchema
 from ...types import Response
@@ -39,12 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PatchAssetsRelationTypesByRelationTypeResponseDefaultType0
-    | PatchAssetsRelationTypesByRelationTypeResponseDefaultType1
-    | RelationTypeSchema
-):
+) -> Any | PatchAssetsRelationTypesByRelationTypeResponseDefault | RelationTypeSchema:
     if response.status_code == 200:
         response_200 = RelationTypeSchema.from_dict(response.json())
 
@@ -58,33 +50,9 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PatchAssetsRelationTypesByRelationTypeResponseDefaultType0
-        | PatchAssetsRelationTypesByRelationTypeResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PatchAssetsRelationTypesByRelationTypeResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PatchAssetsRelationTypesByRelationTypeResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PatchAssetsRelationTypesByRelationTypeResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -92,10 +60,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | PatchAssetsRelationTypesByRelationTypeResponseDefaultType0
-    | PatchAssetsRelationTypesByRelationTypeResponseDefaultType1
-    | RelationTypeSchema
+    Any | PatchAssetsRelationTypesByRelationTypeResponseDefault | RelationTypeSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -111,10 +76,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: RelationTypeSchema,
 ) -> Response[
-    Any
-    | PatchAssetsRelationTypesByRelationTypeResponseDefaultType0
-    | PatchAssetsRelationTypesByRelationTypeResponseDefaultType1
-    | RelationTypeSchema
+    Any | PatchAssetsRelationTypesByRelationTypeResponseDefault | RelationTypeSchema
 ]:
     """Update an asset relation type
 
@@ -131,7 +93,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PatchAssetsRelationTypesByRelationTypeResponseDefaultType0 | PatchAssetsRelationTypesByRelationTypeResponseDefaultType1 | RelationTypeSchema]
+        Response[Any | PatchAssetsRelationTypesByRelationTypeResponseDefault | RelationTypeSchema]
     """
 
     kwargs = _get_kwargs(
@@ -153,8 +115,7 @@ def sync(
     body: RelationTypeSchema,
 ) -> (
     Any
-    | PatchAssetsRelationTypesByRelationTypeResponseDefaultType0
-    | PatchAssetsRelationTypesByRelationTypeResponseDefaultType1
+    | PatchAssetsRelationTypesByRelationTypeResponseDefault
     | RelationTypeSchema
     | None
 ):
@@ -173,7 +134,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PatchAssetsRelationTypesByRelationTypeResponseDefaultType0 | PatchAssetsRelationTypesByRelationTypeResponseDefaultType1 | RelationTypeSchema
+        Any | PatchAssetsRelationTypesByRelationTypeResponseDefault | RelationTypeSchema
     """
 
     return sync_detailed(
@@ -189,10 +150,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: RelationTypeSchema,
 ) -> Response[
-    Any
-    | PatchAssetsRelationTypesByRelationTypeResponseDefaultType0
-    | PatchAssetsRelationTypesByRelationTypeResponseDefaultType1
-    | RelationTypeSchema
+    Any | PatchAssetsRelationTypesByRelationTypeResponseDefault | RelationTypeSchema
 ]:
     """Update an asset relation type
 
@@ -209,7 +167,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PatchAssetsRelationTypesByRelationTypeResponseDefaultType0 | PatchAssetsRelationTypesByRelationTypeResponseDefaultType1 | RelationTypeSchema]
+        Response[Any | PatchAssetsRelationTypesByRelationTypeResponseDefault | RelationTypeSchema]
     """
 
     kwargs = _get_kwargs(
@@ -229,8 +187,7 @@ async def asyncio(
     body: RelationTypeSchema,
 ) -> (
     Any
-    | PatchAssetsRelationTypesByRelationTypeResponseDefaultType0
-    | PatchAssetsRelationTypesByRelationTypeResponseDefaultType1
+    | PatchAssetsRelationTypesByRelationTypeResponseDefault
     | RelationTypeSchema
     | None
 ):
@@ -249,7 +206,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PatchAssetsRelationTypesByRelationTypeResponseDefaultType0 | PatchAssetsRelationTypesByRelationTypeResponseDefaultType1 | RelationTypeSchema
+        Any | PatchAssetsRelationTypesByRelationTypeResponseDefault | RelationTypeSchema
     """
 
     return (

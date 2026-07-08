@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.file_deletions_schema import FileDeletionsSchema
-from ...models.get_storages_by_storage_id_deletions_response_default_type_0 import (
-    GetStoragesByStorageIdDeletionsResponseDefaultType0,
-)
-from ...models.get_storages_by_storage_id_deletions_response_default_type_1 import (
-    GetStoragesByStorageIdDeletionsResponseDefaultType1,
+from ...models.get_storages_by_storage_id_deletions_response_default import (
+    GetStoragesByStorageIdDeletionsResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -18,7 +15,7 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     storage_id: str,
     *,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> dict[str, Any]:
 
@@ -43,52 +40,22 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    FileDeletionsSchema
-    | GetStoragesByStorageIdDeletionsResponseDefaultType0
-    | GetStoragesByStorageIdDeletionsResponseDefaultType1
-):
+) -> FileDeletionsSchema | GetStoragesByStorageIdDeletionsResponseDefault:
     if response.status_code == 200:
         response_200 = FileDeletionsSchema.from_dict(response.json())
 
         return response_200
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetStoragesByStorageIdDeletionsResponseDefaultType0
-        | GetStoragesByStorageIdDeletionsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetStoragesByStorageIdDeletionsResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetStoragesByStorageIdDeletionsResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetStoragesByStorageIdDeletionsResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    FileDeletionsSchema
-    | GetStoragesByStorageIdDeletionsResponseDefaultType0
-    | GetStoragesByStorageIdDeletionsResponseDefaultType1
-]:
+) -> Response[FileDeletionsSchema | GetStoragesByStorageIdDeletionsResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -101,13 +68,9 @@ def sync_detailed(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> Response[
-    FileDeletionsSchema
-    | GetStoragesByStorageIdDeletionsResponseDefaultType0
-    | GetStoragesByStorageIdDeletionsResponseDefaultType1
-]:
+) -> Response[FileDeletionsSchema | GetStoragesByStorageIdDeletionsResponseDefault]:
     """Get pending deletions of files from a local storage
 
 
@@ -116,7 +79,7 @@ def sync_detailed(
 
     Args:
         storage_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -124,7 +87,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[FileDeletionsSchema | GetStoragesByStorageIdDeletionsResponseDefaultType0 | GetStoragesByStorageIdDeletionsResponseDefaultType1]
+        Response[FileDeletionsSchema | GetStoragesByStorageIdDeletionsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -144,14 +107,9 @@ def sync(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> (
-    FileDeletionsSchema
-    | GetStoragesByStorageIdDeletionsResponseDefaultType0
-    | GetStoragesByStorageIdDeletionsResponseDefaultType1
-    | None
-):
+) -> FileDeletionsSchema | GetStoragesByStorageIdDeletionsResponseDefault | None:
     """Get pending deletions of files from a local storage
 
 
@@ -160,7 +118,7 @@ def sync(
 
     Args:
         storage_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -168,7 +126,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        FileDeletionsSchema | GetStoragesByStorageIdDeletionsResponseDefaultType0 | GetStoragesByStorageIdDeletionsResponseDefaultType1
+        FileDeletionsSchema | GetStoragesByStorageIdDeletionsResponseDefault
     """
 
     return sync_detailed(
@@ -183,13 +141,9 @@ async def asyncio_detailed(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> Response[
-    FileDeletionsSchema
-    | GetStoragesByStorageIdDeletionsResponseDefaultType0
-    | GetStoragesByStorageIdDeletionsResponseDefaultType1
-]:
+) -> Response[FileDeletionsSchema | GetStoragesByStorageIdDeletionsResponseDefault]:
     """Get pending deletions of files from a local storage
 
 
@@ -198,7 +152,7 @@ async def asyncio_detailed(
 
     Args:
         storage_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -206,7 +160,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[FileDeletionsSchema | GetStoragesByStorageIdDeletionsResponseDefaultType0 | GetStoragesByStorageIdDeletionsResponseDefaultType1]
+        Response[FileDeletionsSchema | GetStoragesByStorageIdDeletionsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -224,14 +178,9 @@ async def asyncio(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> (
-    FileDeletionsSchema
-    | GetStoragesByStorageIdDeletionsResponseDefaultType0
-    | GetStoragesByStorageIdDeletionsResponseDefaultType1
-    | None
-):
+) -> FileDeletionsSchema | GetStoragesByStorageIdDeletionsResponseDefault | None:
     """Get pending deletions of files from a local storage
 
 
@@ -240,7 +189,7 @@ async def asyncio(
 
     Args:
         storage_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -248,7 +197,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        FileDeletionsSchema | GetStoragesByStorageIdDeletionsResponseDefaultType0 | GetStoragesByStorageIdDeletionsResponseDefaultType1
+        FileDeletionsSchema | GetStoragesByStorageIdDeletionsResponseDefault
     """
 
     return (

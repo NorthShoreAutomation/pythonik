@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_system_domains_by_system_domain_id_reindex_response_default_type_0 import (
-    PostSystemDomainsBySystemDomainIdReindexResponseDefaultType0,
-)
-from ...models.post_system_domains_by_system_domain_id_reindex_response_default_type_1 import (
-    PostSystemDomainsBySystemDomainIdReindexResponseDefaultType1,
+from ...models.post_system_domains_by_system_domain_id_reindex_response_default import (
+    PostSystemDomainsBySystemDomainIdReindexResponseDefault,
 )
 from ...models.reindex_system_domain_schema import ReindexSystemDomainSchema
 from ...types import Response
@@ -39,11 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostSystemDomainsBySystemDomainIdReindexResponseDefaultType0
-    | PostSystemDomainsBySystemDomainIdReindexResponseDefaultType1
-):
+) -> Any | PostSystemDomainsBySystemDomainIdReindexResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -56,44 +49,18 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostSystemDomainsBySystemDomainIdReindexResponseDefaultType0
-        | PostSystemDomainsBySystemDomainIdReindexResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostSystemDomainsBySystemDomainIdReindexResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostSystemDomainsBySystemDomainIdReindexResponseDefaultType1.from_dict(data)
+    response_default = (
+        PostSystemDomainsBySystemDomainIdReindexResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostSystemDomainsBySystemDomainIdReindexResponseDefaultType0
-    | PostSystemDomainsBySystemDomainIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostSystemDomainsBySystemDomainIdReindexResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -107,11 +74,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexSystemDomainSchema,
-) -> Response[
-    Any
-    | PostSystemDomainsBySystemDomainIdReindexResponseDefaultType0
-    | PostSystemDomainsBySystemDomainIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostSystemDomainsBySystemDomainIdReindexResponseDefault]:
     """Reindex system_domain
 
 
@@ -127,7 +90,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSystemDomainsBySystemDomainIdReindexResponseDefaultType0 | PostSystemDomainsBySystemDomainIdReindexResponseDefaultType1]
+        Response[Any | PostSystemDomainsBySystemDomainIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -147,12 +110,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexSystemDomainSchema,
-) -> (
-    Any
-    | PostSystemDomainsBySystemDomainIdReindexResponseDefaultType0
-    | PostSystemDomainsBySystemDomainIdReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostSystemDomainsBySystemDomainIdReindexResponseDefault | None:
     """Reindex system_domain
 
 
@@ -168,7 +126,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSystemDomainsBySystemDomainIdReindexResponseDefaultType0 | PostSystemDomainsBySystemDomainIdReindexResponseDefaultType1
+        Any | PostSystemDomainsBySystemDomainIdReindexResponseDefault
     """
 
     return sync_detailed(
@@ -183,11 +141,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexSystemDomainSchema,
-) -> Response[
-    Any
-    | PostSystemDomainsBySystemDomainIdReindexResponseDefaultType0
-    | PostSystemDomainsBySystemDomainIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostSystemDomainsBySystemDomainIdReindexResponseDefault]:
     """Reindex system_domain
 
 
@@ -203,7 +157,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSystemDomainsBySystemDomainIdReindexResponseDefaultType0 | PostSystemDomainsBySystemDomainIdReindexResponseDefaultType1]
+        Response[Any | PostSystemDomainsBySystemDomainIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -221,12 +175,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexSystemDomainSchema,
-) -> (
-    Any
-    | PostSystemDomainsBySystemDomainIdReindexResponseDefaultType0
-    | PostSystemDomainsBySystemDomainIdReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostSystemDomainsBySystemDomainIdReindexResponseDefault | None:
     """Reindex system_domain
 
 
@@ -242,7 +191,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSystemDomainsBySystemDomainIdReindexResponseDefaultType0 | PostSystemDomainsBySystemDomainIdReindexResponseDefaultType1
+        Any | PostSystemDomainsBySystemDomainIdReindexResponseDefault
     """
 
     return (

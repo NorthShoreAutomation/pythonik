@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_auth_saml_sso_by_system_domain_id_by_identity_provider_id_response_default_type_0 import (
-    GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType0,
-)
-from ...models.get_auth_saml_sso_by_system_domain_id_by_identity_provider_id_response_default_type_1 import (
-    GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType1,
+from ...models.get_auth_saml_sso_by_system_domain_id_by_identity_provider_id_response_default import (
+    GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefault,
 )
 from ...types import Response
 
@@ -32,11 +29,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType0
-    | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType1
-):
+) -> Any | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefault:
     if response.status_code == 302:
         response_302 = cast(Any, None)
         return response_302
@@ -45,42 +38,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType0
-        | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType0
-    | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType1
-]:
+) -> Response[Any | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -94,11 +63,7 @@ def sync_detailed(
     identity_provider_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType0
-    | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType1
-]:
+) -> Response[Any | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefault]:
     """SAML Single sign-on Service
 
     Args:
@@ -110,7 +75,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType0 | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType1]
+        Response[Any | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -130,12 +95,7 @@ def sync(
     identity_provider_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType0
-    | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType1
-    | None
-):
+) -> Any | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefault | None:
     """SAML Single sign-on Service
 
     Args:
@@ -147,7 +107,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType0 | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType1
+        Any | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefault
     """
 
     return sync_detailed(
@@ -162,11 +122,7 @@ async def asyncio_detailed(
     identity_provider_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType0
-    | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType1
-]:
+) -> Response[Any | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefault]:
     """SAML Single sign-on Service
 
     Args:
@@ -178,7 +134,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType0 | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType1]
+        Response[Any | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -196,12 +152,7 @@ async def asyncio(
     identity_provider_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType0
-    | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType1
-    | None
-):
+) -> Any | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefault | None:
     """SAML Single sign-on Service
 
     Args:
@@ -213,7 +164,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType0 | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefaultType1
+        Any | GetAuthSamlSsoBySystemDomainIdByIdentityProviderIdResponseDefault
     """
 
     return (

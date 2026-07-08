@@ -8,11 +8,8 @@ from ...client import AuthenticatedClient, Client
 from ...models.bulk_export_collection_request_schema import (
     BulkExportCollectionRequestSchema,
 )
-from ...models.post_collections_export_locations_by_export_location_id_bulk_export_response_default_type_0 import (
-    PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType0,
-)
-from ...models.post_collections_export_locations_by_export_location_id_bulk_export_response_default_type_1 import (
-    PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType1,
+from ...models.post_collections_export_locations_by_export_location_id_bulk_export_response_default import (
+    PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -49,11 +46,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType0
-    | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType1
-):
+) -> Any | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -78,31 +71,9 @@ def _parse_response(
         response_409 = cast(Any, None)
         return response_409
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType0
-        | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -110,9 +81,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType0
-    | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType1
+    Any | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -129,9 +98,7 @@ def sync_detailed(
     body: BulkExportCollectionRequestSchema,
     allow_host_transfer: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType0
-    | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType1
+    Any | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefault
 ]:
     """Export multiple collections.
 
@@ -149,7 +116,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType0 | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType1]
+        Response[Any | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -173,8 +140,7 @@ def sync(
     allow_host_transfer: bool | Unset = UNSET,
 ) -> (
     Any
-    | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType0
-    | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType1
+    | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefault
     | None
 ):
     """Export multiple collections.
@@ -193,7 +159,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType0 | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType1
+        Any | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefault
     """
 
     return sync_detailed(
@@ -211,9 +177,7 @@ async def asyncio_detailed(
     body: BulkExportCollectionRequestSchema,
     allow_host_transfer: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType0
-    | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType1
+    Any | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefault
 ]:
     """Export multiple collections.
 
@@ -231,7 +195,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType0 | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType1]
+        Response[Any | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -253,8 +217,7 @@ async def asyncio(
     allow_host_transfer: bool | Unset = UNSET,
 ) -> (
     Any
-    | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType0
-    | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType1
+    | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefault
     | None
 ):
     """Export multiple collections.
@@ -273,7 +236,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType0 | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefaultType1
+        Any | PostCollectionsExportLocationsByExportLocationIdBulkExportResponseDefault
     """
 
     return (

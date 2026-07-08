@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_auth_saml_metadata_by_public_id_response_default_type_0 import (
-    GetAuthSamlMetadataByPublicIdResponseDefaultType0,
-)
-from ...models.get_auth_saml_metadata_by_public_id_response_default_type_1 import (
-    GetAuthSamlMetadataByPublicIdResponseDefaultType1,
+from ...models.get_auth_saml_metadata_by_public_id_response_default import (
+    GetAuthSamlMetadataByPublicIdResponseDefault,
 )
 from ...types import Response
 
@@ -30,11 +27,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetAuthSamlMetadataByPublicIdResponseDefaultType0
-    | GetAuthSamlMetadataByPublicIdResponseDefaultType1
-):
+) -> Any | GetAuthSamlMetadataByPublicIdResponseDefault:
     if response.status_code == 200:
         response_200 = cast(Any, None)
         return response_200
@@ -47,42 +40,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAuthSamlMetadataByPublicIdResponseDefaultType0
-        | GetAuthSamlMetadataByPublicIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetAuthSamlMetadataByPublicIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetAuthSamlMetadataByPublicIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAuthSamlMetadataByPublicIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetAuthSamlMetadataByPublicIdResponseDefaultType0
-    | GetAuthSamlMetadataByPublicIdResponseDefaultType1
-]:
+) -> Response[Any | GetAuthSamlMetadataByPublicIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -95,11 +62,7 @@ def sync_detailed(
     public_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetAuthSamlMetadataByPublicIdResponseDefaultType0
-    | GetAuthSamlMetadataByPublicIdResponseDefaultType1
-]:
+) -> Response[Any | GetAuthSamlMetadataByPublicIdResponseDefault]:
     """SAML Single Logout Service
 
     Args:
@@ -110,7 +73,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAuthSamlMetadataByPublicIdResponseDefaultType0 | GetAuthSamlMetadataByPublicIdResponseDefaultType1]
+        Response[Any | GetAuthSamlMetadataByPublicIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -128,12 +91,7 @@ def sync(
     public_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetAuthSamlMetadataByPublicIdResponseDefaultType0
-    | GetAuthSamlMetadataByPublicIdResponseDefaultType1
-    | None
-):
+) -> Any | GetAuthSamlMetadataByPublicIdResponseDefault | None:
     """SAML Single Logout Service
 
     Args:
@@ -144,7 +102,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAuthSamlMetadataByPublicIdResponseDefaultType0 | GetAuthSamlMetadataByPublicIdResponseDefaultType1
+        Any | GetAuthSamlMetadataByPublicIdResponseDefault
     """
 
     return sync_detailed(
@@ -157,11 +115,7 @@ async def asyncio_detailed(
     public_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetAuthSamlMetadataByPublicIdResponseDefaultType0
-    | GetAuthSamlMetadataByPublicIdResponseDefaultType1
-]:
+) -> Response[Any | GetAuthSamlMetadataByPublicIdResponseDefault]:
     """SAML Single Logout Service
 
     Args:
@@ -172,7 +126,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAuthSamlMetadataByPublicIdResponseDefaultType0 | GetAuthSamlMetadataByPublicIdResponseDefaultType1]
+        Response[Any | GetAuthSamlMetadataByPublicIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -188,12 +142,7 @@ async def asyncio(
     public_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetAuthSamlMetadataByPublicIdResponseDefaultType0
-    | GetAuthSamlMetadataByPublicIdResponseDefaultType1
-    | None
-):
+) -> Any | GetAuthSamlMetadataByPublicIdResponseDefault | None:
     """SAML Single Logout Service
 
     Args:
@@ -204,7 +153,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAuthSamlMetadataByPublicIdResponseDefaultType0 | GetAuthSamlMetadataByPublicIdResponseDefaultType1
+        Any | GetAuthSamlMetadataByPublicIdResponseDefault
     """
 
     return (

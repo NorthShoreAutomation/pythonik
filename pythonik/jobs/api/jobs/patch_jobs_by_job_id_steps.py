@@ -7,11 +7,8 @@ import httpx
 from ...client import AuthenticatedClient, Client
 from ...models.job_schema import JobSchema
 from ...models.job_steps_update_schema import JobStepsUpdateSchema
-from ...models.patch_jobs_by_job_id_steps_response_default_type_0 import (
-    PatchJobsByJobIdStepsResponseDefaultType0,
-)
-from ...models.patch_jobs_by_job_id_steps_response_default_type_1 import (
-    PatchJobsByJobIdStepsResponseDefaultType1,
+from ...models.patch_jobs_by_job_id_steps_response_default import (
+    PatchJobsByJobIdStepsResponseDefault,
 )
 from ...types import Response
 
@@ -40,12 +37,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | JobSchema
-    | PatchJobsByJobIdStepsResponseDefaultType0
-    | PatchJobsByJobIdStepsResponseDefaultType1
-):
+) -> Any | JobSchema | PatchJobsByJobIdStepsResponseDefault:
     if response.status_code == 200:
         response_200 = JobSchema.from_dict(response.json())
 
@@ -59,43 +51,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PatchJobsByJobIdStepsResponseDefaultType0
-        | PatchJobsByJobIdStepsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PatchJobsByJobIdStepsResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PatchJobsByJobIdStepsResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PatchJobsByJobIdStepsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | JobSchema
-    | PatchJobsByJobIdStepsResponseDefaultType0
-    | PatchJobsByJobIdStepsResponseDefaultType1
-]:
+) -> Response[Any | JobSchema | PatchJobsByJobIdStepsResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -109,12 +72,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: JobStepsUpdateSchema,
-) -> Response[
-    Any
-    | JobSchema
-    | PatchJobsByJobIdStepsResponseDefaultType0
-    | PatchJobsByJobIdStepsResponseDefaultType1
-]:
+) -> Response[Any | JobSchema | PatchJobsByJobIdStepsResponseDefault]:
     """Update multiple job steps
 
 
@@ -130,7 +88,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | JobSchema | PatchJobsByJobIdStepsResponseDefaultType0 | PatchJobsByJobIdStepsResponseDefaultType1]
+        Response[Any | JobSchema | PatchJobsByJobIdStepsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -150,13 +108,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: JobStepsUpdateSchema,
-) -> (
-    Any
-    | JobSchema
-    | PatchJobsByJobIdStepsResponseDefaultType0
-    | PatchJobsByJobIdStepsResponseDefaultType1
-    | None
-):
+) -> Any | JobSchema | PatchJobsByJobIdStepsResponseDefault | None:
     """Update multiple job steps
 
 
@@ -172,7 +124,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | JobSchema | PatchJobsByJobIdStepsResponseDefaultType0 | PatchJobsByJobIdStepsResponseDefaultType1
+        Any | JobSchema | PatchJobsByJobIdStepsResponseDefault
     """
 
     return sync_detailed(
@@ -187,12 +139,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: JobStepsUpdateSchema,
-) -> Response[
-    Any
-    | JobSchema
-    | PatchJobsByJobIdStepsResponseDefaultType0
-    | PatchJobsByJobIdStepsResponseDefaultType1
-]:
+) -> Response[Any | JobSchema | PatchJobsByJobIdStepsResponseDefault]:
     """Update multiple job steps
 
 
@@ -208,7 +155,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | JobSchema | PatchJobsByJobIdStepsResponseDefaultType0 | PatchJobsByJobIdStepsResponseDefaultType1]
+        Response[Any | JobSchema | PatchJobsByJobIdStepsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -226,13 +173,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: JobStepsUpdateSchema,
-) -> (
-    Any
-    | JobSchema
-    | PatchJobsByJobIdStepsResponseDefaultType0
-    | PatchJobsByJobIdStepsResponseDefaultType1
-    | None
-):
+) -> Any | JobSchema | PatchJobsByJobIdStepsResponseDefault | None:
     """Update multiple job steps
 
 
@@ -248,7 +189,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | JobSchema | PatchJobsByJobIdStepsResponseDefaultType0 | PatchJobsByJobIdStepsResponseDefaultType1
+        Any | JobSchema | PatchJobsByJobIdStepsResponseDefault
     """
 
     return (

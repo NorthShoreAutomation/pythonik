@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_storages_by_storage_id_reindex_response_default_type_0 import (
-    PostStoragesByStorageIdReindexResponseDefaultType0,
-)
-from ...models.post_storages_by_storage_id_reindex_response_default_type_1 import (
-    PostStoragesByStorageIdReindexResponseDefaultType1,
+from ...models.post_storages_by_storage_id_reindex_response_default import (
+    PostStoragesByStorageIdReindexResponseDefault,
 )
 from ...types import Response
 
@@ -30,11 +27,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostStoragesByStorageIdReindexResponseDefaultType0
-    | PostStoragesByStorageIdReindexResponseDefaultType1
-):
+) -> Any | PostStoragesByStorageIdReindexResponseDefault:
     if response.status_code == 201:
         response_201 = cast(Any, None)
         return response_201
@@ -43,42 +36,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostStoragesByStorageIdReindexResponseDefaultType0
-        | PostStoragesByStorageIdReindexResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostStoragesByStorageIdReindexResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostStoragesByStorageIdReindexResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostStoragesByStorageIdReindexResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostStoragesByStorageIdReindexResponseDefaultType0
-    | PostStoragesByStorageIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostStoragesByStorageIdReindexResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -91,11 +58,7 @@ def sync_detailed(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostStoragesByStorageIdReindexResponseDefaultType0
-    | PostStoragesByStorageIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostStoragesByStorageIdReindexResponseDefault]:
     """Trigger reindexing of a storage
 
 
@@ -110,7 +73,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostStoragesByStorageIdReindexResponseDefaultType0 | PostStoragesByStorageIdReindexResponseDefaultType1]
+        Response[Any | PostStoragesByStorageIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -128,12 +91,7 @@ def sync(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostStoragesByStorageIdReindexResponseDefaultType0
-    | PostStoragesByStorageIdReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostStoragesByStorageIdReindexResponseDefault | None:
     """Trigger reindexing of a storage
 
 
@@ -148,7 +106,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostStoragesByStorageIdReindexResponseDefaultType0 | PostStoragesByStorageIdReindexResponseDefaultType1
+        Any | PostStoragesByStorageIdReindexResponseDefault
     """
 
     return sync_detailed(
@@ -161,11 +119,7 @@ async def asyncio_detailed(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostStoragesByStorageIdReindexResponseDefaultType0
-    | PostStoragesByStorageIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostStoragesByStorageIdReindexResponseDefault]:
     """Trigger reindexing of a storage
 
 
@@ -180,7 +134,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostStoragesByStorageIdReindexResponseDefaultType0 | PostStoragesByStorageIdReindexResponseDefaultType1]
+        Response[Any | PostStoragesByStorageIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -196,12 +150,7 @@ async def asyncio(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostStoragesByStorageIdReindexResponseDefaultType0
-    | PostStoragesByStorageIdReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostStoragesByStorageIdReindexResponseDefault | None:
     """Trigger reindexing of a storage
 
 
@@ -216,7 +165,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostStoragesByStorageIdReindexResponseDefaultType0 | PostStoragesByStorageIdReindexResponseDefaultType1
+        Any | PostStoragesByStorageIdReindexResponseDefault
     """
 
     return (

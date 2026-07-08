@@ -8,11 +8,8 @@ from ...client import AuthenticatedClient, Client
 from ...models.abort_storage_transcode_jobs_schema import (
     AbortStorageTranscodeJobsSchema,
 )
-from ...models.delete_storages_by_storage_id_response_default_type_0 import (
-    DeleteStoragesByStorageIdResponseDefaultType0,
-)
-from ...models.delete_storages_by_storage_id_response_default_type_1 import (
-    DeleteStoragesByStorageIdResponseDefaultType1,
+from ...models.delete_storages_by_storage_id_response_default import (
+    DeleteStoragesByStorageIdResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -42,14 +39,14 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteStoragesByStorageIdResponseDefaultType0
-    | DeleteStoragesByStorageIdResponseDefaultType1
-):
+) -> Any | DeleteStoragesByStorageIdResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
+
+    if response.status_code == 204:
+        response_204 = cast(Any, None)
+        return response_204
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -63,42 +60,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteStoragesByStorageIdResponseDefaultType0
-        | DeleteStoragesByStorageIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteStoragesByStorageIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteStoragesByStorageIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteStoragesByStorageIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteStoragesByStorageIdResponseDefaultType0
-    | DeleteStoragesByStorageIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteStoragesByStorageIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -112,11 +83,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: AbortStorageTranscodeJobsSchema | Unset = UNSET,
-) -> Response[
-    Any
-    | DeleteStoragesByStorageIdResponseDefaultType0
-    | DeleteStoragesByStorageIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteStoragesByStorageIdResponseDefault]:
     """Cancel all transcode jobs linked to the storage
 
 
@@ -132,7 +99,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteStoragesByStorageIdResponseDefaultType0 | DeleteStoragesByStorageIdResponseDefaultType1]
+        Response[Any | DeleteStoragesByStorageIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -152,12 +119,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: AbortStorageTranscodeJobsSchema | Unset = UNSET,
-) -> (
-    Any
-    | DeleteStoragesByStorageIdResponseDefaultType0
-    | DeleteStoragesByStorageIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteStoragesByStorageIdResponseDefault | None:
     """Cancel all transcode jobs linked to the storage
 
 
@@ -173,7 +135,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteStoragesByStorageIdResponseDefaultType0 | DeleteStoragesByStorageIdResponseDefaultType1
+        Any | DeleteStoragesByStorageIdResponseDefault
     """
 
     return sync_detailed(
@@ -188,11 +150,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: AbortStorageTranscodeJobsSchema | Unset = UNSET,
-) -> Response[
-    Any
-    | DeleteStoragesByStorageIdResponseDefaultType0
-    | DeleteStoragesByStorageIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteStoragesByStorageIdResponseDefault]:
     """Cancel all transcode jobs linked to the storage
 
 
@@ -208,7 +166,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteStoragesByStorageIdResponseDefaultType0 | DeleteStoragesByStorageIdResponseDefaultType1]
+        Response[Any | DeleteStoragesByStorageIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -226,12 +184,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: AbortStorageTranscodeJobsSchema | Unset = UNSET,
-) -> (
-    Any
-    | DeleteStoragesByStorageIdResponseDefaultType0
-    | DeleteStoragesByStorageIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteStoragesByStorageIdResponseDefault | None:
     """Cancel all transcode jobs linked to the storage
 
 
@@ -247,7 +200,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteStoragesByStorageIdResponseDefaultType0 | DeleteStoragesByStorageIdResponseDefaultType1
+        Any | DeleteStoragesByStorageIdResponseDefault
     """
 
     return (

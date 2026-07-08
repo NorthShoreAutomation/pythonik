@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.put_assets_by_asset_id_formats_by_format_id_restore_response_default_type_0 import (
-    PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType0,
-)
-from ...models.put_assets_by_asset_id_formats_by_format_id_restore_response_default_type_1 import (
-    PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType1,
+from ...models.put_assets_by_asset_id_formats_by_format_id_restore_response_default import (
+    PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefault,
 )
 from ...types import Response
 
@@ -32,11 +29,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType0
-    | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType1
-):
+) -> Any | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefault:
     if response.status_code == 200:
         response_200 = cast(Any, None)
         return response_200
@@ -53,44 +46,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType0
-        | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType0
-    | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType1
-]:
+) -> Response[Any | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -104,11 +71,7 @@ def sync_detailed(
     format_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType0
-    | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType1
-]:
+) -> Response[Any | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefault]:
     """Restore deleted asset's format
 
 
@@ -124,7 +87,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType0 | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType1]
+        Response[Any | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -144,12 +107,7 @@ def sync(
     format_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType0
-    | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType1
-    | None
-):
+) -> Any | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefault | None:
     """Restore deleted asset's format
 
 
@@ -165,7 +123,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType0 | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType1
+        Any | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefault
     """
 
     return sync_detailed(
@@ -180,11 +138,7 @@ async def asyncio_detailed(
     format_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType0
-    | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType1
-]:
+) -> Response[Any | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefault]:
     """Restore deleted asset's format
 
 
@@ -200,7 +154,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType0 | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType1]
+        Response[Any | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -218,12 +172,7 @@ async def asyncio(
     format_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType0
-    | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType1
-    | None
-):
+) -> Any | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefault | None:
     """Restore deleted asset's format
 
 
@@ -239,7 +188,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType0 | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefaultType1
+        Any | PutAssetsByAssetIdFormatsByFormatIdRestoreResponseDefault
     """
 
     return (

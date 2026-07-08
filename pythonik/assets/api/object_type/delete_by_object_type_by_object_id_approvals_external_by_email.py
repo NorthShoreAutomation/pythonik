@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_by_object_type_by_object_id_approvals_external_by_email_response_default_type_0 import (
-    DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType0,
-)
-from ...models.delete_by_object_type_by_object_id_approvals_external_by_email_response_default_type_1 import (
-    DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType1,
+from ...models.delete_by_object_type_by_object_id_approvals_external_by_email_response_default import (
+    DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefault,
 )
 from ...types import Response
 
@@ -34,11 +31,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType0
-    | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType1
-):
+) -> Any | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -55,31 +48,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType0
-        | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -87,9 +60,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType0
-    | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType1
+    Any | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -106,9 +77,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType0
-    | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType1
+    Any | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefault
 ]:
     """Deletes an objects approval status by user_id
 
@@ -126,7 +95,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType0 | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType1]
+        Response[Any | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -148,12 +117,7 @@ def sync(
     email: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType0
-    | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType1
-    | None
-):
+) -> Any | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefault | None:
     """Deletes an objects approval status by user_id
 
 
@@ -170,7 +134,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType0 | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType1
+        Any | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefault
     """
 
     return sync_detailed(
@@ -188,9 +152,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType0
-    | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType1
+    Any | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefault
 ]:
     """Deletes an objects approval status by user_id
 
@@ -208,7 +170,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType0 | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType1]
+        Response[Any | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -228,12 +190,7 @@ async def asyncio(
     email: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType0
-    | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType1
-    | None
-):
+) -> Any | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefault | None:
     """Deletes an objects approval status by user_id
 
 
@@ -250,7 +207,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType0 | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefaultType1
+        Any | DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefault
     """
 
     return (

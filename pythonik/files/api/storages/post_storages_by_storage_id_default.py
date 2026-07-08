@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_storages_by_storage_id_default_response_default_type_0 import (
-    PostStoragesByStorageIdDefaultResponseDefaultType0,
-)
-from ...models.post_storages_by_storage_id_default_response_default_type_1 import (
-    PostStoragesByStorageIdDefaultResponseDefaultType1,
+from ...models.post_storages_by_storage_id_default_response_default import (
+    PostStoragesByStorageIdDefaultResponseDefault,
 )
 from ...types import Response
 
@@ -30,11 +27,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostStoragesByStorageIdDefaultResponseDefaultType0
-    | PostStoragesByStorageIdDefaultResponseDefaultType1
-):
+) -> Any | PostStoragesByStorageIdDefaultResponseDefault:
     if response.status_code == 201:
         response_201 = cast(Any, None)
         return response_201
@@ -47,42 +40,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostStoragesByStorageIdDefaultResponseDefaultType0
-        | PostStoragesByStorageIdDefaultResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostStoragesByStorageIdDefaultResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostStoragesByStorageIdDefaultResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostStoragesByStorageIdDefaultResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostStoragesByStorageIdDefaultResponseDefaultType0
-    | PostStoragesByStorageIdDefaultResponseDefaultType1
-]:
+) -> Response[Any | PostStoragesByStorageIdDefaultResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -95,11 +62,7 @@ def sync_detailed(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostStoragesByStorageIdDefaultResponseDefaultType0
-    | PostStoragesByStorageIdDefaultResponseDefaultType1
-]:
+) -> Response[Any | PostStoragesByStorageIdDefaultResponseDefault]:
     """Set a storage to the default of its purpose
 
 
@@ -114,7 +77,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostStoragesByStorageIdDefaultResponseDefaultType0 | PostStoragesByStorageIdDefaultResponseDefaultType1]
+        Response[Any | PostStoragesByStorageIdDefaultResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -132,12 +95,7 @@ def sync(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostStoragesByStorageIdDefaultResponseDefaultType0
-    | PostStoragesByStorageIdDefaultResponseDefaultType1
-    | None
-):
+) -> Any | PostStoragesByStorageIdDefaultResponseDefault | None:
     """Set a storage to the default of its purpose
 
 
@@ -152,7 +110,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostStoragesByStorageIdDefaultResponseDefaultType0 | PostStoragesByStorageIdDefaultResponseDefaultType1
+        Any | PostStoragesByStorageIdDefaultResponseDefault
     """
 
     return sync_detailed(
@@ -165,11 +123,7 @@ async def asyncio_detailed(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostStoragesByStorageIdDefaultResponseDefaultType0
-    | PostStoragesByStorageIdDefaultResponseDefaultType1
-]:
+) -> Response[Any | PostStoragesByStorageIdDefaultResponseDefault]:
     """Set a storage to the default of its purpose
 
 
@@ -184,7 +138,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostStoragesByStorageIdDefaultResponseDefaultType0 | PostStoragesByStorageIdDefaultResponseDefaultType1]
+        Response[Any | PostStoragesByStorageIdDefaultResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -200,12 +154,7 @@ async def asyncio(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostStoragesByStorageIdDefaultResponseDefaultType0
-    | PostStoragesByStorageIdDefaultResponseDefaultType1
-    | None
-):
+) -> Any | PostStoragesByStorageIdDefaultResponseDefault | None:
     """Set a storage to the default of its purpose
 
 
@@ -220,7 +169,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostStoragesByStorageIdDefaultResponseDefaultType0 | PostStoragesByStorageIdDefaultResponseDefaultType1
+        Any | PostStoragesByStorageIdDefaultResponseDefault
     """
 
     return (

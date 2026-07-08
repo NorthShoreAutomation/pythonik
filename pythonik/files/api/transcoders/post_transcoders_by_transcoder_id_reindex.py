@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_transcoders_by_transcoder_id_reindex_response_default_type_0 import (
-    PostTranscodersByTranscoderIdReindexResponseDefaultType0,
-)
-from ...models.post_transcoders_by_transcoder_id_reindex_response_default_type_1 import (
-    PostTranscodersByTranscoderIdReindexResponseDefaultType1,
+from ...models.post_transcoders_by_transcoder_id_reindex_response_default import (
+    PostTranscodersByTranscoderIdReindexResponseDefault,
 )
 from ...types import Response
 
@@ -30,11 +27,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostTranscodersByTranscoderIdReindexResponseDefaultType0
-    | PostTranscodersByTranscoderIdReindexResponseDefaultType1
-):
+) -> Any | PostTranscodersByTranscoderIdReindexResponseDefault:
     if response.status_code == 201:
         response_201 = cast(Any, None)
         return response_201
@@ -43,42 +36,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostTranscodersByTranscoderIdReindexResponseDefaultType0
-        | PostTranscodersByTranscoderIdReindexResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostTranscodersByTranscoderIdReindexResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostTranscodersByTranscoderIdReindexResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostTranscodersByTranscoderIdReindexResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostTranscodersByTranscoderIdReindexResponseDefaultType0
-    | PostTranscodersByTranscoderIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostTranscodersByTranscoderIdReindexResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -91,11 +58,7 @@ def sync_detailed(
     transcoder_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostTranscodersByTranscoderIdReindexResponseDefaultType0
-    | PostTranscodersByTranscoderIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostTranscodersByTranscoderIdReindexResponseDefault]:
     """Trigger reindexing of a transcoder
 
 
@@ -110,7 +73,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostTranscodersByTranscoderIdReindexResponseDefaultType0 | PostTranscodersByTranscoderIdReindexResponseDefaultType1]
+        Response[Any | PostTranscodersByTranscoderIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -128,12 +91,7 @@ def sync(
     transcoder_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostTranscodersByTranscoderIdReindexResponseDefaultType0
-    | PostTranscodersByTranscoderIdReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostTranscodersByTranscoderIdReindexResponseDefault | None:
     """Trigger reindexing of a transcoder
 
 
@@ -148,7 +106,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostTranscodersByTranscoderIdReindexResponseDefaultType0 | PostTranscodersByTranscoderIdReindexResponseDefaultType1
+        Any | PostTranscodersByTranscoderIdReindexResponseDefault
     """
 
     return sync_detailed(
@@ -161,11 +119,7 @@ async def asyncio_detailed(
     transcoder_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostTranscodersByTranscoderIdReindexResponseDefaultType0
-    | PostTranscodersByTranscoderIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostTranscodersByTranscoderIdReindexResponseDefault]:
     """Trigger reindexing of a transcoder
 
 
@@ -180,7 +134,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostTranscodersByTranscoderIdReindexResponseDefaultType0 | PostTranscodersByTranscoderIdReindexResponseDefaultType1]
+        Response[Any | PostTranscodersByTranscoderIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -196,12 +150,7 @@ async def asyncio(
     transcoder_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostTranscodersByTranscoderIdReindexResponseDefaultType0
-    | PostTranscodersByTranscoderIdReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostTranscodersByTranscoderIdReindexResponseDefault | None:
     """Trigger reindexing of a transcoder
 
 
@@ -216,7 +165,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostTranscodersByTranscoderIdReindexResponseDefaultType0 | PostTranscodersByTranscoderIdReindexResponseDefaultType1
+        Any | PostTranscodersByTranscoderIdReindexResponseDefault
     """
 
     return (

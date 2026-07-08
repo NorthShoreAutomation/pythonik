@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.multipart_upload_schema import MultipartUploadSchema
-from ...models.post_assets_by_asset_id_files_by_file_id_multipart_response_default_type_0 import (
-    PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType0,
-)
-from ...models.post_assets_by_asset_id_files_by_file_id_multipart_response_default_type_1 import (
-    PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType1,
+from ...models.post_assets_by_asset_id_files_by_file_id_multipart_response_default import (
+    PostAssetsByAssetIdFilesByFileIdMultipartResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -20,7 +17,7 @@ def _get_kwargs(
     file_id: str,
     *,
     body: MultipartUploadSchema,
-    temporary: bool | Unset = False,
+    temporary: bool | Unset = UNSET,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -49,11 +46,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType1
-):
+) -> Any | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefault:
     if response.status_code == 200:
         response_200 = cast(Any, None)
         return response_200
@@ -66,46 +59,18 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType0
-        | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PostAssetsByAssetIdFilesByFileIdMultipartResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType1
-]:
+) -> Response[Any | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -120,12 +85,8 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: MultipartUploadSchema,
-    temporary: bool | Unset = False,
-) -> Response[
-    Any
-    | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType1
-]:
+    temporary: bool | Unset = UNSET,
+) -> Response[Any | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefault]:
     """Complete multipart upload (GCS).
 
 
@@ -135,7 +96,7 @@ def sync_detailed(
     Args:
         asset_id (str):
         file_id (str):
-        temporary (bool | Unset):  Default: False.
+        temporary (bool | Unset):
         body (MultipartUploadSchema):
 
     Raises:
@@ -143,7 +104,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType0 | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType1]
+        Response[Any | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -166,13 +127,8 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: MultipartUploadSchema,
-    temporary: bool | Unset = False,
-) -> (
-    Any
-    | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType1
-    | None
-):
+    temporary: bool | Unset = UNSET,
+) -> Any | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefault | None:
     """Complete multipart upload (GCS).
 
 
@@ -182,7 +138,7 @@ def sync(
     Args:
         asset_id (str):
         file_id (str):
-        temporary (bool | Unset):  Default: False.
+        temporary (bool | Unset):
         body (MultipartUploadSchema):
 
     Raises:
@@ -190,7 +146,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType0 | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType1
+        Any | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefault
     """
 
     return sync_detailed(
@@ -208,12 +164,8 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: MultipartUploadSchema,
-    temporary: bool | Unset = False,
-) -> Response[
-    Any
-    | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType1
-]:
+    temporary: bool | Unset = UNSET,
+) -> Response[Any | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefault]:
     """Complete multipart upload (GCS).
 
 
@@ -223,7 +175,7 @@ async def asyncio_detailed(
     Args:
         asset_id (str):
         file_id (str):
-        temporary (bool | Unset):  Default: False.
+        temporary (bool | Unset):
         body (MultipartUploadSchema):
 
     Raises:
@@ -231,7 +183,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType0 | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType1]
+        Response[Any | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -252,13 +204,8 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: MultipartUploadSchema,
-    temporary: bool | Unset = False,
-) -> (
-    Any
-    | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType1
-    | None
-):
+    temporary: bool | Unset = UNSET,
+) -> Any | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefault | None:
     """Complete multipart upload (GCS).
 
 
@@ -268,7 +215,7 @@ async def asyncio(
     Args:
         asset_id (str):
         file_id (str):
-        temporary (bool | Unset):  Default: False.
+        temporary (bool | Unset):
         body (MultipartUploadSchema):
 
     Raises:
@@ -276,7 +223,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType0 | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefaultType1
+        Any | PostAssetsByAssetIdFilesByFileIdMultipartResponseDefault
     """
 
     return (

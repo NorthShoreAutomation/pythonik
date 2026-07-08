@@ -1,149 +1,49 @@
 """Contains all the data models used in inputs/outputs"""
 
 from .base_query_params_schema import BaseQueryParamsSchema
-from .delete_groups_by_group_id_logo_response_default_type_0 import (
-    DeleteGroupsByGroupIdLogoResponseDefaultType0,
+from .delete_groups_by_group_id_logo_response_default import (
+    DeleteGroupsByGroupIdLogoResponseDefault,
 )
-from .delete_groups_by_group_id_logo_response_default_type_1 import (
-    DeleteGroupsByGroupIdLogoResponseDefaultType1,
+from .delete_groups_by_group_id_response_default import (
+    DeleteGroupsByGroupIdResponseDefault,
 )
-from .delete_groups_by_group_id_logo_response_default_type_1_errors import (
-    DeleteGroupsByGroupIdLogoResponseDefaultType1Errors,
+from .delete_groups_by_group_id_users_by_user_id_response_default import (
+    DeleteGroupsByGroupIdUsersByUserIdResponseDefault,
 )
-from .delete_groups_by_group_id_response_default_type_0 import (
-    DeleteGroupsByGroupIdResponseDefaultType0,
+from .delete_groups_mappings_by_name_response_default import (
+    DeleteGroupsMappingsByNameResponseDefault,
 )
-from .delete_groups_by_group_id_response_default_type_1 import (
-    DeleteGroupsByGroupIdResponseDefaultType1,
+from .delete_role_groups_by_group_id_response_default import (
+    DeleteRoleGroupsByGroupIdResponseDefault,
 )
-from .delete_groups_by_group_id_response_default_type_1_errors import (
-    DeleteGroupsByGroupIdResponseDefaultType1Errors,
+from .delete_role_groups_by_group_id_users_by_user_id_response_default import (
+    DeleteRoleGroupsByGroupIdUsersByUserIdResponseDefault,
 )
-from .delete_groups_by_group_id_users_by_user_id_response_default_type_0 import (
-    DeleteGroupsByGroupIdUsersByUserIdResponseDefaultType0,
+from .delete_teams_by_team_id_logo_response_default import (
+    DeleteTeamsByTeamIdLogoResponseDefault,
 )
-from .delete_groups_by_group_id_users_by_user_id_response_default_type_1 import (
-    DeleteGroupsByGroupIdUsersByUserIdResponseDefaultType1,
+from .delete_teams_by_team_id_response_default import DeleteTeamsByTeamIdResponseDefault
+from .delete_teams_by_team_id_users_by_user_id_response_default import (
+    DeleteTeamsByTeamIdUsersByUserIdResponseDefault,
 )
-from .delete_groups_by_group_id_users_by_user_id_response_default_type_1_errors import (
-    DeleteGroupsByGroupIdUsersByUserIdResponseDefaultType1Errors,
+from .delete_users_by_user_id_photo_response_default import (
+    DeleteUsersByUserIdPhotoResponseDefault,
 )
-from .delete_groups_mappings_by_name_response_default_type_0 import (
-    DeleteGroupsMappingsByNameResponseDefaultType0,
+from .delete_users_by_user_id_response_default import DeleteUsersByUserIdResponseDefault
+from .delete_users_by_user_id_saml_response_default import (
+    DeleteUsersByUserIdSamlResponseDefault,
 )
-from .delete_groups_mappings_by_name_response_default_type_1 import (
-    DeleteGroupsMappingsByNameResponseDefaultType1,
+from .delete_users_current_photo_response_default import (
+    DeleteUsersCurrentPhotoResponseDefault,
 )
-from .delete_groups_mappings_by_name_response_default_type_1_errors import (
-    DeleteGroupsMappingsByNameResponseDefaultType1Errors,
+from .delete_users_current_totp_configure_response_default import (
+    DeleteUsersCurrentTotpConfigureResponseDefault,
 )
-from .delete_role_groups_by_group_id_response_default_type_0 import (
-    DeleteRoleGroupsByGroupIdResponseDefaultType0,
+from .delete_users_invite_purge_response_default import (
+    DeleteUsersInvitePurgeResponseDefault,
 )
-from .delete_role_groups_by_group_id_response_default_type_1 import (
-    DeleteRoleGroupsByGroupIdResponseDefaultType1,
-)
-from .delete_role_groups_by_group_id_response_default_type_1_errors import (
-    DeleteRoleGroupsByGroupIdResponseDefaultType1Errors,
-)
-from .delete_role_groups_by_group_id_users_by_user_id_response_default_type_0 import (
-    DeleteRoleGroupsByGroupIdUsersByUserIdResponseDefaultType0,
-)
-from .delete_role_groups_by_group_id_users_by_user_id_response_default_type_1 import (
-    DeleteRoleGroupsByGroupIdUsersByUserIdResponseDefaultType1,
-)
-from .delete_role_groups_by_group_id_users_by_user_id_response_default_type_1_errors import (
-    DeleteRoleGroupsByGroupIdUsersByUserIdResponseDefaultType1Errors,
-)
-from .delete_teams_by_team_id_logo_response_default_type_0 import (
-    DeleteTeamsByTeamIdLogoResponseDefaultType0,
-)
-from .delete_teams_by_team_id_logo_response_default_type_1 import (
-    DeleteTeamsByTeamIdLogoResponseDefaultType1,
-)
-from .delete_teams_by_team_id_logo_response_default_type_1_errors import (
-    DeleteTeamsByTeamIdLogoResponseDefaultType1Errors,
-)
-from .delete_teams_by_team_id_response_default_type_0 import (
-    DeleteTeamsByTeamIdResponseDefaultType0,
-)
-from .delete_teams_by_team_id_response_default_type_1 import (
-    DeleteTeamsByTeamIdResponseDefaultType1,
-)
-from .delete_teams_by_team_id_response_default_type_1_errors import (
-    DeleteTeamsByTeamIdResponseDefaultType1Errors,
-)
-from .delete_teams_by_team_id_users_by_user_id_response_default_type_0 import (
-    DeleteTeamsByTeamIdUsersByUserIdResponseDefaultType0,
-)
-from .delete_teams_by_team_id_users_by_user_id_response_default_type_1 import (
-    DeleteTeamsByTeamIdUsersByUserIdResponseDefaultType1,
-)
-from .delete_teams_by_team_id_users_by_user_id_response_default_type_1_errors import (
-    DeleteTeamsByTeamIdUsersByUserIdResponseDefaultType1Errors,
-)
-from .delete_users_by_user_id_photo_response_default_type_0 import (
-    DeleteUsersByUserIdPhotoResponseDefaultType0,
-)
-from .delete_users_by_user_id_photo_response_default_type_1 import (
-    DeleteUsersByUserIdPhotoResponseDefaultType1,
-)
-from .delete_users_by_user_id_photo_response_default_type_1_errors import (
-    DeleteUsersByUserIdPhotoResponseDefaultType1Errors,
-)
-from .delete_users_by_user_id_response_default_type_0 import (
-    DeleteUsersByUserIdResponseDefaultType0,
-)
-from .delete_users_by_user_id_response_default_type_1 import (
-    DeleteUsersByUserIdResponseDefaultType1,
-)
-from .delete_users_by_user_id_response_default_type_1_errors import (
-    DeleteUsersByUserIdResponseDefaultType1Errors,
-)
-from .delete_users_by_user_id_saml_response_default_type_0 import (
-    DeleteUsersByUserIdSamlResponseDefaultType0,
-)
-from .delete_users_by_user_id_saml_response_default_type_1 import (
-    DeleteUsersByUserIdSamlResponseDefaultType1,
-)
-from .delete_users_by_user_id_saml_response_default_type_1_errors import (
-    DeleteUsersByUserIdSamlResponseDefaultType1Errors,
-)
-from .delete_users_current_photo_response_default_type_0 import (
-    DeleteUsersCurrentPhotoResponseDefaultType0,
-)
-from .delete_users_current_photo_response_default_type_1 import (
-    DeleteUsersCurrentPhotoResponseDefaultType1,
-)
-from .delete_users_current_photo_response_default_type_1_errors import (
-    DeleteUsersCurrentPhotoResponseDefaultType1Errors,
-)
-from .delete_users_current_totp_configure_response_default_type_0 import (
-    DeleteUsersCurrentTotpConfigureResponseDefaultType0,
-)
-from .delete_users_current_totp_configure_response_default_type_1 import (
-    DeleteUsersCurrentTotpConfigureResponseDefaultType1,
-)
-from .delete_users_current_totp_configure_response_default_type_1_errors import (
-    DeleteUsersCurrentTotpConfigureResponseDefaultType1Errors,
-)
-from .delete_users_invite_purge_response_default_type_0 import (
-    DeleteUsersInvitePurgeResponseDefaultType0,
-)
-from .delete_users_invite_purge_response_default_type_1 import (
-    DeleteUsersInvitePurgeResponseDefaultType1,
-)
-from .delete_users_invite_purge_response_default_type_1_errors import (
-    DeleteUsersInvitePurgeResponseDefaultType1Errors,
-)
-from .delete_users_partner_domain_access_response_default_type_0 import (
-    DeleteUsersPartnerDomainAccessResponseDefaultType0,
-)
-from .delete_users_partner_domain_access_response_default_type_1 import (
-    DeleteUsersPartnerDomainAccessResponseDefaultType1,
-)
-from .delete_users_partner_domain_access_response_default_type_1_errors import (
-    DeleteUsersPartnerDomainAccessResponseDefaultType1Errors,
+from .delete_users_partner_domain_access_response_default import (
+    DeleteUsersPartnerDomainAccessResponseDefault,
 )
 from .domain_users_by_email_schema import DomainUsersByEmailSchema
 from .domain_users_by_email_schema_facets_type_0 import (
@@ -152,157 +52,41 @@ from .domain_users_by_email_schema_facets_type_0 import (
 from .domain_users_by_email_schema_mfa_methods_type_0_item import (
     DomainUsersByEmailSchemaMfaMethodsType0Item,
 )
-from .get_groups_all_basic_response_default_type_0 import (
-    GetGroupsAllBasicResponseDefaultType0,
+from .get_groups_all_basic_response_default import GetGroupsAllBasicResponseDefault
+from .get_groups_basic_response_default import GetGroupsBasicResponseDefault
+from .get_groups_by_group_id_response_default import GetGroupsByGroupIdResponseDefault
+from .get_groups_mappings_by_name_response_default import (
+    GetGroupsMappingsByNameResponseDefault,
 )
-from .get_groups_all_basic_response_default_type_1 import (
-    GetGroupsAllBasicResponseDefaultType1,
+from .get_groups_mappings_response_default import GetGroupsMappingsResponseDefault
+from .get_groups_response_default import GetGroupsResponseDefault
+from .get_role_groups_basic_response_default import GetRoleGroupsBasicResponseDefault
+from .get_role_groups_by_group_id_response_default import (
+    GetRoleGroupsByGroupIdResponseDefault,
 )
-from .get_groups_all_basic_response_default_type_1_errors import (
-    GetGroupsAllBasicResponseDefaultType1Errors,
+from .get_role_groups_response_default import GetRoleGroupsResponseDefault
+from .get_teams_basic_response_default import GetTeamsBasicResponseDefault
+from .get_teams_by_team_id_response_default import GetTeamsByTeamIdResponseDefault
+from .get_teams_response_default import GetTeamsResponseDefault
+from .get_users_basic_response_default import GetUsersBasicResponseDefault
+from .get_users_by_user_id_response_default import GetUsersByUserIdResponseDefault
+from .get_users_by_user_id_roles_by_role_response_default import (
+    GetUsersByUserIdRolesByRoleResponseDefault,
 )
-from .get_groups_basic_response_default_type_0 import GetGroupsBasicResponseDefaultType0
-from .get_groups_basic_response_default_type_1 import GetGroupsBasicResponseDefaultType1
-from .get_groups_basic_response_default_type_1_errors import (
-    GetGroupsBasicResponseDefaultType1Errors,
-)
-from .get_groups_by_group_id_response_default_type_0 import (
-    GetGroupsByGroupIdResponseDefaultType0,
-)
-from .get_groups_by_group_id_response_default_type_1 import (
-    GetGroupsByGroupIdResponseDefaultType1,
-)
-from .get_groups_by_group_id_response_default_type_1_errors import (
-    GetGroupsByGroupIdResponseDefaultType1Errors,
-)
-from .get_groups_mappings_by_name_response_default_type_0 import (
-    GetGroupsMappingsByNameResponseDefaultType0,
-)
-from .get_groups_mappings_by_name_response_default_type_1 import (
-    GetGroupsMappingsByNameResponseDefaultType1,
-)
-from .get_groups_mappings_by_name_response_default_type_1_errors import (
-    GetGroupsMappingsByNameResponseDefaultType1Errors,
-)
-from .get_groups_mappings_response_default_type_0 import (
-    GetGroupsMappingsResponseDefaultType0,
-)
-from .get_groups_mappings_response_default_type_1 import (
-    GetGroupsMappingsResponseDefaultType1,
-)
-from .get_groups_mappings_response_default_type_1_errors import (
-    GetGroupsMappingsResponseDefaultType1Errors,
-)
-from .get_groups_response_default_type_0 import GetGroupsResponseDefaultType0
-from .get_groups_response_default_type_1 import GetGroupsResponseDefaultType1
-from .get_groups_response_default_type_1_errors import (
-    GetGroupsResponseDefaultType1Errors,
-)
-from .get_role_groups_basic_response_default_type_0 import (
-    GetRoleGroupsBasicResponseDefaultType0,
-)
-from .get_role_groups_basic_response_default_type_1 import (
-    GetRoleGroupsBasicResponseDefaultType1,
-)
-from .get_role_groups_basic_response_default_type_1_errors import (
-    GetRoleGroupsBasicResponseDefaultType1Errors,
-)
-from .get_role_groups_by_group_id_response_default_type_0 import (
-    GetRoleGroupsByGroupIdResponseDefaultType0,
-)
-from .get_role_groups_by_group_id_response_default_type_1 import (
-    GetRoleGroupsByGroupIdResponseDefaultType1,
-)
-from .get_role_groups_by_group_id_response_default_type_1_errors import (
-    GetRoleGroupsByGroupIdResponseDefaultType1Errors,
-)
-from .get_role_groups_response_default_type_0 import GetRoleGroupsResponseDefaultType0
-from .get_role_groups_response_default_type_1 import GetRoleGroupsResponseDefaultType1
-from .get_role_groups_response_default_type_1_errors import (
-    GetRoleGroupsResponseDefaultType1Errors,
-)
-from .get_teams_basic_response_default_type_0 import GetTeamsBasicResponseDefaultType0
-from .get_teams_basic_response_default_type_1 import GetTeamsBasicResponseDefaultType1
-from .get_teams_basic_response_default_type_1_errors import (
-    GetTeamsBasicResponseDefaultType1Errors,
-)
-from .get_teams_by_team_id_response_default_type_0 import (
-    GetTeamsByTeamIdResponseDefaultType0,
-)
-from .get_teams_by_team_id_response_default_type_1 import (
-    GetTeamsByTeamIdResponseDefaultType1,
-)
-from .get_teams_by_team_id_response_default_type_1_errors import (
-    GetTeamsByTeamIdResponseDefaultType1Errors,
-)
-from .get_teams_response_default_type_0 import GetTeamsResponseDefaultType0
-from .get_teams_response_default_type_1 import GetTeamsResponseDefaultType1
-from .get_teams_response_default_type_1_errors import GetTeamsResponseDefaultType1Errors
-from .get_users_basic_response_default_type_0 import GetUsersBasicResponseDefaultType0
-from .get_users_basic_response_default_type_1 import GetUsersBasicResponseDefaultType1
-from .get_users_basic_response_default_type_1_errors import (
-    GetUsersBasicResponseDefaultType1Errors,
-)
-from .get_users_by_user_id_response_default_type_0 import (
-    GetUsersByUserIdResponseDefaultType0,
-)
-from .get_users_by_user_id_response_default_type_1 import (
-    GetUsersByUserIdResponseDefaultType1,
-)
-from .get_users_by_user_id_response_default_type_1_errors import (
-    GetUsersByUserIdResponseDefaultType1Errors,
-)
-from .get_users_by_user_id_roles_by_role_response_default_type_0 import (
-    GetUsersByUserIdRolesByRoleResponseDefaultType0,
-)
-from .get_users_by_user_id_roles_by_role_response_default_type_1 import (
-    GetUsersByUserIdRolesByRoleResponseDefaultType1,
-)
-from .get_users_by_user_id_roles_by_role_response_default_type_1_errors import (
-    GetUsersByUserIdRolesByRoleResponseDefaultType1Errors,
-)
-from .get_users_by_user_id_roles_response_default_type_0 import (
-    GetUsersByUserIdRolesResponseDefaultType0,
-)
-from .get_users_by_user_id_roles_response_default_type_1 import (
-    GetUsersByUserIdRolesResponseDefaultType1,
-)
-from .get_users_by_user_id_roles_response_default_type_1_errors import (
-    GetUsersByUserIdRolesResponseDefaultType1Errors,
+from .get_users_by_user_id_roles_response_default import (
+    GetUsersByUserIdRolesResponseDefault,
 )
 from .get_users_current_otp_configure_response_200 import (
     GetUsersCurrentOtpConfigureResponse200,
 )
-from .get_users_current_otp_configure_response_default_type_0 import (
-    GetUsersCurrentOtpConfigureResponseDefaultType0,
+from .get_users_current_otp_configure_response_default import (
+    GetUsersCurrentOtpConfigureResponseDefault,
 )
-from .get_users_current_otp_configure_response_default_type_1 import (
-    GetUsersCurrentOtpConfigureResponseDefaultType1,
+from .get_users_current_response_default import GetUsersCurrentResponseDefault
+from .get_users_current_roles_response_default import (
+    GetUsersCurrentRolesResponseDefault,
 )
-from .get_users_current_otp_configure_response_default_type_1_errors import (
-    GetUsersCurrentOtpConfigureResponseDefaultType1Errors,
-)
-from .get_users_current_response_default_type_0 import (
-    GetUsersCurrentResponseDefaultType0,
-)
-from .get_users_current_response_default_type_1 import (
-    GetUsersCurrentResponseDefaultType1,
-)
-from .get_users_current_response_default_type_1_errors import (
-    GetUsersCurrentResponseDefaultType1Errors,
-)
-from .get_users_current_roles_response_default_type_0 import (
-    GetUsersCurrentRolesResponseDefaultType0,
-)
-from .get_users_current_roles_response_default_type_1 import (
-    GetUsersCurrentRolesResponseDefaultType1,
-)
-from .get_users_current_roles_response_default_type_1_errors import (
-    GetUsersCurrentRolesResponseDefaultType1Errors,
-)
-from .get_users_response_default_type_0 import GetUsersResponseDefaultType0
-from .get_users_response_default_type_1 import GetUsersResponseDefaultType1
-from .get_users_response_default_type_1_errors import GetUsersResponseDefaultType1Errors
+from .get_users_response_default import GetUsersResponseDefault
 from .group_base_schema import GroupBaseSchema
 from .group_base_schema_default_user_type import GroupBaseSchemaDefaultUserType
 from .group_base_schema_group_type import GroupBaseSchemaGroupType
@@ -344,304 +128,98 @@ from .otp_internal_schema_otp_type import OtpInternalSchemaOtpType
 from .otp_schema import OtpSchema
 from .otp_schema_otp_type import OtpSchemaOtpType
 from .partner_domain_access_schema import PartnerDomainAccessSchema
-from .patch_groups_by_group_id_response_default_type_0 import (
-    PatchGroupsByGroupIdResponseDefaultType0,
+from .patch_groups_by_group_id_response_default import (
+    PatchGroupsByGroupIdResponseDefault,
 )
-from .patch_groups_by_group_id_response_default_type_1 import (
-    PatchGroupsByGroupIdResponseDefaultType1,
+from .patch_role_groups_by_group_id_response_default import (
+    PatchRoleGroupsByGroupIdResponseDefault,
 )
-from .patch_groups_by_group_id_response_default_type_1_errors import (
-    PatchGroupsByGroupIdResponseDefaultType1Errors,
-)
-from .patch_role_groups_by_group_id_response_default_type_0 import (
-    PatchRoleGroupsByGroupIdResponseDefaultType0,
-)
-from .patch_role_groups_by_group_id_response_default_type_1 import (
-    PatchRoleGroupsByGroupIdResponseDefaultType1,
-)
-from .patch_role_groups_by_group_id_response_default_type_1_errors import (
-    PatchRoleGroupsByGroupIdResponseDefaultType1Errors,
-)
-from .patch_teams_by_team_id_response_default_type_0 import (
-    PatchTeamsByTeamIdResponseDefaultType0,
-)
-from .patch_teams_by_team_id_response_default_type_1 import (
-    PatchTeamsByTeamIdResponseDefaultType1,
-)
-from .patch_teams_by_team_id_response_default_type_1_errors import (
-    PatchTeamsByTeamIdResponseDefaultType1Errors,
-)
-from .patch_users_by_user_id_response_default_type_0 import (
-    PatchUsersByUserIdResponseDefaultType0,
-)
-from .patch_users_by_user_id_response_default_type_1 import (
-    PatchUsersByUserIdResponseDefaultType1,
-)
-from .patch_users_by_user_id_response_default_type_1_errors import (
-    PatchUsersByUserIdResponseDefaultType1Errors,
-)
-from .patch_users_current_response_default_type_0 import (
-    PatchUsersCurrentResponseDefaultType0,
-)
-from .patch_users_current_response_default_type_1 import (
-    PatchUsersCurrentResponseDefaultType1,
-)
-from .patch_users_current_response_default_type_1_errors import (
-    PatchUsersCurrentResponseDefaultType1Errors,
-)
+from .patch_teams_by_team_id_response_default import PatchTeamsByTeamIdResponseDefault
+from .patch_users_by_user_id_response_default import PatchUsersByUserIdResponseDefault
+from .patch_users_current_response_default import PatchUsersCurrentResponseDefault
 from .post_groups_by_group_id_logo_body import PostGroupsByGroupIdLogoBody
 from .post_groups_by_group_id_logo_response_200 import (
     PostGroupsByGroupIdLogoResponse200,
 )
-from .post_groups_by_group_id_logo_response_default_type_0 import (
-    PostGroupsByGroupIdLogoResponseDefaultType0,
+from .post_groups_by_group_id_logo_response_default import (
+    PostGroupsByGroupIdLogoResponseDefault,
 )
-from .post_groups_by_group_id_logo_response_default_type_1 import (
-    PostGroupsByGroupIdLogoResponseDefaultType1,
+from .post_groups_by_group_id_reindex_response_default import (
+    PostGroupsByGroupIdReindexResponseDefault,
 )
-from .post_groups_by_group_id_logo_response_default_type_1_errors import (
-    PostGroupsByGroupIdLogoResponseDefaultType1Errors,
+from .post_groups_by_group_id_users_by_user_id_response_default import (
+    PostGroupsByGroupIdUsersByUserIdResponseDefault,
 )
-from .post_groups_by_group_id_reindex_response_default_type_0 import (
-    PostGroupsByGroupIdReindexResponseDefaultType0,
+from .post_groups_mappings_response_default import PostGroupsMappingsResponseDefault
+from .post_groups_response_default import PostGroupsResponseDefault
+from .post_role_groups_by_group_id_users_by_user_id_response_default import (
+    PostRoleGroupsByGroupIdUsersByUserIdResponseDefault,
 )
-from .post_groups_by_group_id_reindex_response_default_type_1 import (
-    PostGroupsByGroupIdReindexResponseDefaultType1,
-)
-from .post_groups_by_group_id_reindex_response_default_type_1_errors import (
-    PostGroupsByGroupIdReindexResponseDefaultType1Errors,
-)
-from .post_groups_by_group_id_users_by_user_id_response_default_type_0 import (
-    PostGroupsByGroupIdUsersByUserIdResponseDefaultType0,
-)
-from .post_groups_by_group_id_users_by_user_id_response_default_type_1 import (
-    PostGroupsByGroupIdUsersByUserIdResponseDefaultType1,
-)
-from .post_groups_by_group_id_users_by_user_id_response_default_type_1_errors import (
-    PostGroupsByGroupIdUsersByUserIdResponseDefaultType1Errors,
-)
-from .post_groups_mappings_response_default_type_0 import (
-    PostGroupsMappingsResponseDefaultType0,
-)
-from .post_groups_mappings_response_default_type_1 import (
-    PostGroupsMappingsResponseDefaultType1,
-)
-from .post_groups_mappings_response_default_type_1_errors import (
-    PostGroupsMappingsResponseDefaultType1Errors,
-)
-from .post_groups_response_default_type_0 import PostGroupsResponseDefaultType0
-from .post_groups_response_default_type_1 import PostGroupsResponseDefaultType1
-from .post_groups_response_default_type_1_errors import (
-    PostGroupsResponseDefaultType1Errors,
-)
-from .post_role_groups_by_group_id_users_by_user_id_response_default_type_0 import (
-    PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType0,
-)
-from .post_role_groups_by_group_id_users_by_user_id_response_default_type_1 import (
-    PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType1,
-)
-from .post_role_groups_by_group_id_users_by_user_id_response_default_type_1_errors import (
-    PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType1Errors,
-)
-from .post_role_groups_response_default_type_0 import PostRoleGroupsResponseDefaultType0
-from .post_role_groups_response_default_type_1 import PostRoleGroupsResponseDefaultType1
-from .post_role_groups_response_default_type_1_errors import (
-    PostRoleGroupsResponseDefaultType1Errors,
-)
+from .post_role_groups_response_default import PostRoleGroupsResponseDefault
 from .post_teams_by_team_id_logo_body import PostTeamsByTeamIdLogoBody
 from .post_teams_by_team_id_logo_response_200 import PostTeamsByTeamIdLogoResponse200
-from .post_teams_by_team_id_logo_response_default_type_0 import (
-    PostTeamsByTeamIdLogoResponseDefaultType0,
+from .post_teams_by_team_id_logo_response_default import (
+    PostTeamsByTeamIdLogoResponseDefault,
 )
-from .post_teams_by_team_id_logo_response_default_type_1 import (
-    PostTeamsByTeamIdLogoResponseDefaultType1,
+from .post_teams_by_team_id_users_by_user_id_response_default import (
+    PostTeamsByTeamIdUsersByUserIdResponseDefault,
 )
-from .post_teams_by_team_id_logo_response_default_type_1_errors import (
-    PostTeamsByTeamIdLogoResponseDefaultType1Errors,
-)
-from .post_teams_by_team_id_users_by_user_id_response_default_type_0 import (
-    PostTeamsByTeamIdUsersByUserIdResponseDefaultType0,
-)
-from .post_teams_by_team_id_users_by_user_id_response_default_type_1 import (
-    PostTeamsByTeamIdUsersByUserIdResponseDefaultType1,
-)
-from .post_teams_by_team_id_users_by_user_id_response_default_type_1_errors import (
-    PostTeamsByTeamIdUsersByUserIdResponseDefaultType1Errors,
-)
-from .post_teams_response_default_type_0 import PostTeamsResponseDefaultType0
-from .post_teams_response_default_type_1 import PostTeamsResponseDefaultType1
-from .post_teams_response_default_type_1_errors import (
-    PostTeamsResponseDefaultType1Errors,
-)
+from .post_teams_response_default import PostTeamsResponseDefault
 from .post_users_by_user_id_photo_body import PostUsersByUserIdPhotoBody
 from .post_users_by_user_id_photo_response_201 import PostUsersByUserIdPhotoResponse201
-from .post_users_by_user_id_photo_response_default_type_0 import (
-    PostUsersByUserIdPhotoResponseDefaultType0,
+from .post_users_by_user_id_photo_response_default import (
+    PostUsersByUserIdPhotoResponseDefault,
 )
-from .post_users_by_user_id_photo_response_default_type_1 import (
-    PostUsersByUserIdPhotoResponseDefaultType1,
+from .post_users_by_user_id_reindex_response_default import (
+    PostUsersByUserIdReindexResponseDefault,
 )
-from .post_users_by_user_id_photo_response_default_type_1_errors import (
-    PostUsersByUserIdPhotoResponseDefaultType1Errors,
-)
-from .post_users_by_user_id_reindex_response_default_type_0 import (
-    PostUsersByUserIdReindexResponseDefaultType0,
-)
-from .post_users_by_user_id_reindex_response_default_type_1 import (
-    PostUsersByUserIdReindexResponseDefaultType1,
-)
-from .post_users_by_user_id_reindex_response_default_type_1_errors import (
-    PostUsersByUserIdReindexResponseDefaultType1Errors,
-)
-from .post_users_current_otp_configure_response_default_type_0 import (
-    PostUsersCurrentOtpConfigureResponseDefaultType0,
-)
-from .post_users_current_otp_configure_response_default_type_1 import (
-    PostUsersCurrentOtpConfigureResponseDefaultType1,
-)
-from .post_users_current_otp_configure_response_default_type_1_errors import (
-    PostUsersCurrentOtpConfigureResponseDefaultType1Errors,
+from .post_users_current_otp_configure_response_default import (
+    PostUsersCurrentOtpConfigureResponseDefault,
 )
 from .post_users_current_photo_body import PostUsersCurrentPhotoBody
 from .post_users_current_photo_response_201 import PostUsersCurrentPhotoResponse201
-from .post_users_current_photo_response_default_type_0 import (
-    PostUsersCurrentPhotoResponseDefaultType0,
-)
-from .post_users_current_photo_response_default_type_1 import (
-    PostUsersCurrentPhotoResponseDefaultType1,
-)
-from .post_users_current_photo_response_default_type_1_errors import (
-    PostUsersCurrentPhotoResponseDefaultType1Errors,
+from .post_users_current_photo_response_default import (
+    PostUsersCurrentPhotoResponseDefault,
 )
 from .post_users_current_totp_configure_response_201 import (
     PostUsersCurrentTotpConfigureResponse201,
 )
-from .post_users_current_totp_configure_response_default_type_0 import (
-    PostUsersCurrentTotpConfigureResponseDefaultType0,
+from .post_users_current_totp_configure_response_default import (
+    PostUsersCurrentTotpConfigureResponseDefault,
 )
-from .post_users_current_totp_configure_response_default_type_1 import (
-    PostUsersCurrentTotpConfigureResponseDefaultType1,
+from .post_users_current_totp_validate_configuration_response_default import (
+    PostUsersCurrentTotpValidateConfigurationResponseDefault,
 )
-from .post_users_current_totp_configure_response_default_type_1_errors import (
-    PostUsersCurrentTotpConfigureResponseDefaultType1Errors,
-)
-from .post_users_current_totp_validate_configuration_response_default_type_0 import (
-    PostUsersCurrentTotpValidateConfigurationResponseDefaultType0,
-)
-from .post_users_current_totp_validate_configuration_response_default_type_1 import (
-    PostUsersCurrentTotpValidateConfigurationResponseDefaultType1,
-)
-from .post_users_current_totp_validate_configuration_response_default_type_1_errors import (
-    PostUsersCurrentTotpValidateConfigurationResponseDefaultType1Errors,
-)
-from .post_users_invite_register_response_default_type_0 import (
-    PostUsersInviteRegisterResponseDefaultType0,
-)
-from .post_users_invite_register_response_default_type_1 import (
-    PostUsersInviteRegisterResponseDefaultType1,
-)
-from .post_users_invite_register_response_default_type_1_errors import (
-    PostUsersInviteRegisterResponseDefaultType1Errors,
+from .post_users_invite_register_response_default import (
+    PostUsersInviteRegisterResponseDefault,
 )
 from .post_users_invite_token_request_response_200 import (
     PostUsersInviteTokenRequestResponse200,
 )
-from .post_users_invite_token_request_response_default_type_0 import (
-    PostUsersInviteTokenRequestResponseDefaultType0,
-)
-from .post_users_invite_token_request_response_default_type_1 import (
-    PostUsersInviteTokenRequestResponseDefaultType1,
-)
-from .post_users_invite_token_request_response_default_type_1_errors import (
-    PostUsersInviteTokenRequestResponseDefaultType1Errors,
+from .post_users_invite_token_request_response_default import (
+    PostUsersInviteTokenRequestResponseDefault,
 )
 from .post_users_invite_validate_response_200 import PostUsersInviteValidateResponse200
-from .post_users_invite_validate_response_default_type_0 import (
-    PostUsersInviteValidateResponseDefaultType0,
+from .post_users_invite_validate_response_default import (
+    PostUsersInviteValidateResponseDefault,
 )
-from .post_users_invite_validate_response_default_type_1 import (
-    PostUsersInviteValidateResponseDefaultType1,
+from .post_users_partner_domain_access_response_default import (
+    PostUsersPartnerDomainAccessResponseDefault,
 )
-from .post_users_invite_validate_response_default_type_1_errors import (
-    PostUsersInviteValidateResponseDefaultType1Errors,
+from .post_users_response_default import PostUsersResponseDefault
+from .put_groups_by_group_id_response_default import PutGroupsByGroupIdResponseDefault
+from .put_role_groups_by_group_id_response_default import (
+    PutRoleGroupsByGroupIdResponseDefault,
 )
-from .post_users_partner_domain_access_response_default_type_0 import (
-    PostUsersPartnerDomainAccessResponseDefaultType0,
+from .put_teams_by_team_id_response_default import PutTeamsByTeamIdResponseDefault
+from .put_users_by_user_id_response_default import PutUsersByUserIdResponseDefault
+from .put_users_by_user_id_saml_response_default import (
+    PutUsersByUserIdSamlResponseDefault,
 )
-from .post_users_partner_domain_access_response_default_type_1 import (
-    PostUsersPartnerDomainAccessResponseDefaultType1,
+from .put_users_current_otp_configure_response_default import (
+    PutUsersCurrentOtpConfigureResponseDefault,
 )
-from .post_users_partner_domain_access_response_default_type_1_errors import (
-    PostUsersPartnerDomainAccessResponseDefaultType1Errors,
-)
-from .post_users_response_default_type_0 import PostUsersResponseDefaultType0
-from .post_users_response_default_type_1 import PostUsersResponseDefaultType1
-from .post_users_response_default_type_1_errors import (
-    PostUsersResponseDefaultType1Errors,
-)
-from .put_groups_by_group_id_response_default_type_0 import (
-    PutGroupsByGroupIdResponseDefaultType0,
-)
-from .put_groups_by_group_id_response_default_type_1 import (
-    PutGroupsByGroupIdResponseDefaultType1,
-)
-from .put_groups_by_group_id_response_default_type_1_errors import (
-    PutGroupsByGroupIdResponseDefaultType1Errors,
-)
-from .put_role_groups_by_group_id_response_default_type_0 import (
-    PutRoleGroupsByGroupIdResponseDefaultType0,
-)
-from .put_role_groups_by_group_id_response_default_type_1 import (
-    PutRoleGroupsByGroupIdResponseDefaultType1,
-)
-from .put_role_groups_by_group_id_response_default_type_1_errors import (
-    PutRoleGroupsByGroupIdResponseDefaultType1Errors,
-)
-from .put_teams_by_team_id_response_default_type_0 import (
-    PutTeamsByTeamIdResponseDefaultType0,
-)
-from .put_teams_by_team_id_response_default_type_1 import (
-    PutTeamsByTeamIdResponseDefaultType1,
-)
-from .put_teams_by_team_id_response_default_type_1_errors import (
-    PutTeamsByTeamIdResponseDefaultType1Errors,
-)
-from .put_users_by_user_id_response_default_type_0 import (
-    PutUsersByUserIdResponseDefaultType0,
-)
-from .put_users_by_user_id_response_default_type_1 import (
-    PutUsersByUserIdResponseDefaultType1,
-)
-from .put_users_by_user_id_response_default_type_1_errors import (
-    PutUsersByUserIdResponseDefaultType1Errors,
-)
-from .put_users_by_user_id_saml_response_default_type_0 import (
-    PutUsersByUserIdSamlResponseDefaultType0,
-)
-from .put_users_by_user_id_saml_response_default_type_1 import (
-    PutUsersByUserIdSamlResponseDefaultType1,
-)
-from .put_users_by_user_id_saml_response_default_type_1_errors import (
-    PutUsersByUserIdSamlResponseDefaultType1Errors,
-)
-from .put_users_current_otp_configure_response_default_type_0 import (
-    PutUsersCurrentOtpConfigureResponseDefaultType0,
-)
-from .put_users_current_otp_configure_response_default_type_1 import (
-    PutUsersCurrentOtpConfigureResponseDefaultType1,
-)
-from .put_users_current_otp_configure_response_default_type_1_errors import (
-    PutUsersCurrentOtpConfigureResponseDefaultType1Errors,
-)
-from .put_users_current_response_default_type_0 import (
-    PutUsersCurrentResponseDefaultType0,
-)
-from .put_users_current_response_default_type_1 import (
-    PutUsersCurrentResponseDefaultType1,
-)
-from .put_users_current_response_default_type_1_errors import (
-    PutUsersCurrentResponseDefaultType1Errors,
-)
+from .put_users_current_response_default import PutUsersCurrentResponseDefault
 from .reindex_group_schema import ReindexGroupSchema
 from .reindex_user_schema import ReindexUserSchema
 from .role_categories import RoleCategories
@@ -725,118 +303,46 @@ from .users_schema_facets_type_0 import UsersSchemaFacetsType0
 
 __all__ = (
     "BaseQueryParamsSchema",
-    "DeleteGroupsByGroupIdLogoResponseDefaultType0",
-    "DeleteGroupsByGroupIdLogoResponseDefaultType1",
-    "DeleteGroupsByGroupIdLogoResponseDefaultType1Errors",
-    "DeleteGroupsByGroupIdResponseDefaultType0",
-    "DeleteGroupsByGroupIdResponseDefaultType1",
-    "DeleteGroupsByGroupIdResponseDefaultType1Errors",
-    "DeleteGroupsByGroupIdUsersByUserIdResponseDefaultType0",
-    "DeleteGroupsByGroupIdUsersByUserIdResponseDefaultType1",
-    "DeleteGroupsByGroupIdUsersByUserIdResponseDefaultType1Errors",
-    "DeleteGroupsMappingsByNameResponseDefaultType0",
-    "DeleteGroupsMappingsByNameResponseDefaultType1",
-    "DeleteGroupsMappingsByNameResponseDefaultType1Errors",
-    "DeleteRoleGroupsByGroupIdResponseDefaultType0",
-    "DeleteRoleGroupsByGroupIdResponseDefaultType1",
-    "DeleteRoleGroupsByGroupIdResponseDefaultType1Errors",
-    "DeleteRoleGroupsByGroupIdUsersByUserIdResponseDefaultType0",
-    "DeleteRoleGroupsByGroupIdUsersByUserIdResponseDefaultType1",
-    "DeleteRoleGroupsByGroupIdUsersByUserIdResponseDefaultType1Errors",
-    "DeleteTeamsByTeamIdLogoResponseDefaultType0",
-    "DeleteTeamsByTeamIdLogoResponseDefaultType1",
-    "DeleteTeamsByTeamIdLogoResponseDefaultType1Errors",
-    "DeleteTeamsByTeamIdResponseDefaultType0",
-    "DeleteTeamsByTeamIdResponseDefaultType1",
-    "DeleteTeamsByTeamIdResponseDefaultType1Errors",
-    "DeleteTeamsByTeamIdUsersByUserIdResponseDefaultType0",
-    "DeleteTeamsByTeamIdUsersByUserIdResponseDefaultType1",
-    "DeleteTeamsByTeamIdUsersByUserIdResponseDefaultType1Errors",
-    "DeleteUsersByUserIdPhotoResponseDefaultType0",
-    "DeleteUsersByUserIdPhotoResponseDefaultType1",
-    "DeleteUsersByUserIdPhotoResponseDefaultType1Errors",
-    "DeleteUsersByUserIdResponseDefaultType0",
-    "DeleteUsersByUserIdResponseDefaultType1",
-    "DeleteUsersByUserIdResponseDefaultType1Errors",
-    "DeleteUsersByUserIdSamlResponseDefaultType0",
-    "DeleteUsersByUserIdSamlResponseDefaultType1",
-    "DeleteUsersByUserIdSamlResponseDefaultType1Errors",
-    "DeleteUsersCurrentPhotoResponseDefaultType0",
-    "DeleteUsersCurrentPhotoResponseDefaultType1",
-    "DeleteUsersCurrentPhotoResponseDefaultType1Errors",
-    "DeleteUsersCurrentTotpConfigureResponseDefaultType0",
-    "DeleteUsersCurrentTotpConfigureResponseDefaultType1",
-    "DeleteUsersCurrentTotpConfigureResponseDefaultType1Errors",
-    "DeleteUsersInvitePurgeResponseDefaultType0",
-    "DeleteUsersInvitePurgeResponseDefaultType1",
-    "DeleteUsersInvitePurgeResponseDefaultType1Errors",
-    "DeleteUsersPartnerDomainAccessResponseDefaultType0",
-    "DeleteUsersPartnerDomainAccessResponseDefaultType1",
-    "DeleteUsersPartnerDomainAccessResponseDefaultType1Errors",
+    "DeleteGroupsByGroupIdLogoResponseDefault",
+    "DeleteGroupsByGroupIdResponseDefault",
+    "DeleteGroupsByGroupIdUsersByUserIdResponseDefault",
+    "DeleteGroupsMappingsByNameResponseDefault",
+    "DeleteRoleGroupsByGroupIdResponseDefault",
+    "DeleteRoleGroupsByGroupIdUsersByUserIdResponseDefault",
+    "DeleteTeamsByTeamIdLogoResponseDefault",
+    "DeleteTeamsByTeamIdResponseDefault",
+    "DeleteTeamsByTeamIdUsersByUserIdResponseDefault",
+    "DeleteUsersByUserIdPhotoResponseDefault",
+    "DeleteUsersByUserIdResponseDefault",
+    "DeleteUsersByUserIdSamlResponseDefault",
+    "DeleteUsersCurrentPhotoResponseDefault",
+    "DeleteUsersCurrentTotpConfigureResponseDefault",
+    "DeleteUsersInvitePurgeResponseDefault",
+    "DeleteUsersPartnerDomainAccessResponseDefault",
     "DomainUsersByEmailSchema",
     "DomainUsersByEmailSchemaFacetsType0",
     "DomainUsersByEmailSchemaMfaMethodsType0Item",
-    "GetGroupsAllBasicResponseDefaultType0",
-    "GetGroupsAllBasicResponseDefaultType1",
-    "GetGroupsAllBasicResponseDefaultType1Errors",
-    "GetGroupsBasicResponseDefaultType0",
-    "GetGroupsBasicResponseDefaultType1",
-    "GetGroupsBasicResponseDefaultType1Errors",
-    "GetGroupsByGroupIdResponseDefaultType0",
-    "GetGroupsByGroupIdResponseDefaultType1",
-    "GetGroupsByGroupIdResponseDefaultType1Errors",
-    "GetGroupsMappingsByNameResponseDefaultType0",
-    "GetGroupsMappingsByNameResponseDefaultType1",
-    "GetGroupsMappingsByNameResponseDefaultType1Errors",
-    "GetGroupsMappingsResponseDefaultType0",
-    "GetGroupsMappingsResponseDefaultType1",
-    "GetGroupsMappingsResponseDefaultType1Errors",
-    "GetGroupsResponseDefaultType0",
-    "GetGroupsResponseDefaultType1",
-    "GetGroupsResponseDefaultType1Errors",
-    "GetRoleGroupsBasicResponseDefaultType0",
-    "GetRoleGroupsBasicResponseDefaultType1",
-    "GetRoleGroupsBasicResponseDefaultType1Errors",
-    "GetRoleGroupsByGroupIdResponseDefaultType0",
-    "GetRoleGroupsByGroupIdResponseDefaultType1",
-    "GetRoleGroupsByGroupIdResponseDefaultType1Errors",
-    "GetRoleGroupsResponseDefaultType0",
-    "GetRoleGroupsResponseDefaultType1",
-    "GetRoleGroupsResponseDefaultType1Errors",
-    "GetTeamsBasicResponseDefaultType0",
-    "GetTeamsBasicResponseDefaultType1",
-    "GetTeamsBasicResponseDefaultType1Errors",
-    "GetTeamsByTeamIdResponseDefaultType0",
-    "GetTeamsByTeamIdResponseDefaultType1",
-    "GetTeamsByTeamIdResponseDefaultType1Errors",
-    "GetTeamsResponseDefaultType0",
-    "GetTeamsResponseDefaultType1",
-    "GetTeamsResponseDefaultType1Errors",
-    "GetUsersBasicResponseDefaultType0",
-    "GetUsersBasicResponseDefaultType1",
-    "GetUsersBasicResponseDefaultType1Errors",
-    "GetUsersByUserIdResponseDefaultType0",
-    "GetUsersByUserIdResponseDefaultType1",
-    "GetUsersByUserIdResponseDefaultType1Errors",
-    "GetUsersByUserIdRolesByRoleResponseDefaultType0",
-    "GetUsersByUserIdRolesByRoleResponseDefaultType1",
-    "GetUsersByUserIdRolesByRoleResponseDefaultType1Errors",
-    "GetUsersByUserIdRolesResponseDefaultType0",
-    "GetUsersByUserIdRolesResponseDefaultType1",
-    "GetUsersByUserIdRolesResponseDefaultType1Errors",
+    "GetGroupsAllBasicResponseDefault",
+    "GetGroupsBasicResponseDefault",
+    "GetGroupsByGroupIdResponseDefault",
+    "GetGroupsMappingsByNameResponseDefault",
+    "GetGroupsMappingsResponseDefault",
+    "GetGroupsResponseDefault",
+    "GetRoleGroupsBasicResponseDefault",
+    "GetRoleGroupsByGroupIdResponseDefault",
+    "GetRoleGroupsResponseDefault",
+    "GetTeamsBasicResponseDefault",
+    "GetTeamsByTeamIdResponseDefault",
+    "GetTeamsResponseDefault",
+    "GetUsersBasicResponseDefault",
+    "GetUsersByUserIdResponseDefault",
+    "GetUsersByUserIdRolesByRoleResponseDefault",
+    "GetUsersByUserIdRolesResponseDefault",
     "GetUsersCurrentOtpConfigureResponse200",
-    "GetUsersCurrentOtpConfigureResponseDefaultType0",
-    "GetUsersCurrentOtpConfigureResponseDefaultType1",
-    "GetUsersCurrentOtpConfigureResponseDefaultType1Errors",
-    "GetUsersCurrentResponseDefaultType0",
-    "GetUsersCurrentResponseDefaultType1",
-    "GetUsersCurrentResponseDefaultType1Errors",
-    "GetUsersCurrentRolesResponseDefaultType0",
-    "GetUsersCurrentRolesResponseDefaultType1",
-    "GetUsersCurrentRolesResponseDefaultType1Errors",
-    "GetUsersResponseDefaultType0",
-    "GetUsersResponseDefaultType1",
-    "GetUsersResponseDefaultType1Errors",
+    "GetUsersCurrentOtpConfigureResponseDefault",
+    "GetUsersCurrentResponseDefault",
+    "GetUsersCurrentRolesResponseDefault",
+    "GetUsersResponseDefault",
     "GroupBaseSchema",
     "GroupBaseSchemaDefaultUserType",
     "GroupBaseSchemaGroupType",
@@ -872,116 +378,50 @@ __all__ = (
     "OtpSchema",
     "OtpSchemaOtpType",
     "PartnerDomainAccessSchema",
-    "PatchGroupsByGroupIdResponseDefaultType0",
-    "PatchGroupsByGroupIdResponseDefaultType1",
-    "PatchGroupsByGroupIdResponseDefaultType1Errors",
-    "PatchRoleGroupsByGroupIdResponseDefaultType0",
-    "PatchRoleGroupsByGroupIdResponseDefaultType1",
-    "PatchRoleGroupsByGroupIdResponseDefaultType1Errors",
-    "PatchTeamsByTeamIdResponseDefaultType0",
-    "PatchTeamsByTeamIdResponseDefaultType1",
-    "PatchTeamsByTeamIdResponseDefaultType1Errors",
-    "PatchUsersByUserIdResponseDefaultType0",
-    "PatchUsersByUserIdResponseDefaultType1",
-    "PatchUsersByUserIdResponseDefaultType1Errors",
-    "PatchUsersCurrentResponseDefaultType0",
-    "PatchUsersCurrentResponseDefaultType1",
-    "PatchUsersCurrentResponseDefaultType1Errors",
+    "PatchGroupsByGroupIdResponseDefault",
+    "PatchRoleGroupsByGroupIdResponseDefault",
+    "PatchTeamsByTeamIdResponseDefault",
+    "PatchUsersByUserIdResponseDefault",
+    "PatchUsersCurrentResponseDefault",
     "PostGroupsByGroupIdLogoBody",
     "PostGroupsByGroupIdLogoResponse200",
-    "PostGroupsByGroupIdLogoResponseDefaultType0",
-    "PostGroupsByGroupIdLogoResponseDefaultType1",
-    "PostGroupsByGroupIdLogoResponseDefaultType1Errors",
-    "PostGroupsByGroupIdReindexResponseDefaultType0",
-    "PostGroupsByGroupIdReindexResponseDefaultType1",
-    "PostGroupsByGroupIdReindexResponseDefaultType1Errors",
-    "PostGroupsByGroupIdUsersByUserIdResponseDefaultType0",
-    "PostGroupsByGroupIdUsersByUserIdResponseDefaultType1",
-    "PostGroupsByGroupIdUsersByUserIdResponseDefaultType1Errors",
-    "PostGroupsMappingsResponseDefaultType0",
-    "PostGroupsMappingsResponseDefaultType1",
-    "PostGroupsMappingsResponseDefaultType1Errors",
-    "PostGroupsResponseDefaultType0",
-    "PostGroupsResponseDefaultType1",
-    "PostGroupsResponseDefaultType1Errors",
-    "PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType0",
-    "PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType1",
-    "PostRoleGroupsByGroupIdUsersByUserIdResponseDefaultType1Errors",
-    "PostRoleGroupsResponseDefaultType0",
-    "PostRoleGroupsResponseDefaultType1",
-    "PostRoleGroupsResponseDefaultType1Errors",
+    "PostGroupsByGroupIdLogoResponseDefault",
+    "PostGroupsByGroupIdReindexResponseDefault",
+    "PostGroupsByGroupIdUsersByUserIdResponseDefault",
+    "PostGroupsMappingsResponseDefault",
+    "PostGroupsResponseDefault",
+    "PostRoleGroupsByGroupIdUsersByUserIdResponseDefault",
+    "PostRoleGroupsResponseDefault",
     "PostTeamsByTeamIdLogoBody",
     "PostTeamsByTeamIdLogoResponse200",
-    "PostTeamsByTeamIdLogoResponseDefaultType0",
-    "PostTeamsByTeamIdLogoResponseDefaultType1",
-    "PostTeamsByTeamIdLogoResponseDefaultType1Errors",
-    "PostTeamsByTeamIdUsersByUserIdResponseDefaultType0",
-    "PostTeamsByTeamIdUsersByUserIdResponseDefaultType1",
-    "PostTeamsByTeamIdUsersByUserIdResponseDefaultType1Errors",
-    "PostTeamsResponseDefaultType0",
-    "PostTeamsResponseDefaultType1",
-    "PostTeamsResponseDefaultType1Errors",
+    "PostTeamsByTeamIdLogoResponseDefault",
+    "PostTeamsByTeamIdUsersByUserIdResponseDefault",
+    "PostTeamsResponseDefault",
     "PostUsersByUserIdPhotoBody",
     "PostUsersByUserIdPhotoResponse201",
-    "PostUsersByUserIdPhotoResponseDefaultType0",
-    "PostUsersByUserIdPhotoResponseDefaultType1",
-    "PostUsersByUserIdPhotoResponseDefaultType1Errors",
-    "PostUsersByUserIdReindexResponseDefaultType0",
-    "PostUsersByUserIdReindexResponseDefaultType1",
-    "PostUsersByUserIdReindexResponseDefaultType1Errors",
-    "PostUsersCurrentOtpConfigureResponseDefaultType0",
-    "PostUsersCurrentOtpConfigureResponseDefaultType1",
-    "PostUsersCurrentOtpConfigureResponseDefaultType1Errors",
+    "PostUsersByUserIdPhotoResponseDefault",
+    "PostUsersByUserIdReindexResponseDefault",
+    "PostUsersCurrentOtpConfigureResponseDefault",
     "PostUsersCurrentPhotoBody",
     "PostUsersCurrentPhotoResponse201",
-    "PostUsersCurrentPhotoResponseDefaultType0",
-    "PostUsersCurrentPhotoResponseDefaultType1",
-    "PostUsersCurrentPhotoResponseDefaultType1Errors",
+    "PostUsersCurrentPhotoResponseDefault",
     "PostUsersCurrentTotpConfigureResponse201",
-    "PostUsersCurrentTotpConfigureResponseDefaultType0",
-    "PostUsersCurrentTotpConfigureResponseDefaultType1",
-    "PostUsersCurrentTotpConfigureResponseDefaultType1Errors",
-    "PostUsersCurrentTotpValidateConfigurationResponseDefaultType0",
-    "PostUsersCurrentTotpValidateConfigurationResponseDefaultType1",
-    "PostUsersCurrentTotpValidateConfigurationResponseDefaultType1Errors",
-    "PostUsersInviteRegisterResponseDefaultType0",
-    "PostUsersInviteRegisterResponseDefaultType1",
-    "PostUsersInviteRegisterResponseDefaultType1Errors",
+    "PostUsersCurrentTotpConfigureResponseDefault",
+    "PostUsersCurrentTotpValidateConfigurationResponseDefault",
+    "PostUsersInviteRegisterResponseDefault",
     "PostUsersInviteTokenRequestResponse200",
-    "PostUsersInviteTokenRequestResponseDefaultType0",
-    "PostUsersInviteTokenRequestResponseDefaultType1",
-    "PostUsersInviteTokenRequestResponseDefaultType1Errors",
+    "PostUsersInviteTokenRequestResponseDefault",
     "PostUsersInviteValidateResponse200",
-    "PostUsersInviteValidateResponseDefaultType0",
-    "PostUsersInviteValidateResponseDefaultType1",
-    "PostUsersInviteValidateResponseDefaultType1Errors",
-    "PostUsersPartnerDomainAccessResponseDefaultType0",
-    "PostUsersPartnerDomainAccessResponseDefaultType1",
-    "PostUsersPartnerDomainAccessResponseDefaultType1Errors",
-    "PostUsersResponseDefaultType0",
-    "PostUsersResponseDefaultType1",
-    "PostUsersResponseDefaultType1Errors",
-    "PutGroupsByGroupIdResponseDefaultType0",
-    "PutGroupsByGroupIdResponseDefaultType1",
-    "PutGroupsByGroupIdResponseDefaultType1Errors",
-    "PutRoleGroupsByGroupIdResponseDefaultType0",
-    "PutRoleGroupsByGroupIdResponseDefaultType1",
-    "PutRoleGroupsByGroupIdResponseDefaultType1Errors",
-    "PutTeamsByTeamIdResponseDefaultType0",
-    "PutTeamsByTeamIdResponseDefaultType1",
-    "PutTeamsByTeamIdResponseDefaultType1Errors",
-    "PutUsersByUserIdResponseDefaultType0",
-    "PutUsersByUserIdResponseDefaultType1",
-    "PutUsersByUserIdResponseDefaultType1Errors",
-    "PutUsersByUserIdSamlResponseDefaultType0",
-    "PutUsersByUserIdSamlResponseDefaultType1",
-    "PutUsersByUserIdSamlResponseDefaultType1Errors",
-    "PutUsersCurrentOtpConfigureResponseDefaultType0",
-    "PutUsersCurrentOtpConfigureResponseDefaultType1",
-    "PutUsersCurrentOtpConfigureResponseDefaultType1Errors",
-    "PutUsersCurrentResponseDefaultType0",
-    "PutUsersCurrentResponseDefaultType1",
-    "PutUsersCurrentResponseDefaultType1Errors",
+    "PostUsersInviteValidateResponseDefault",
+    "PostUsersPartnerDomainAccessResponseDefault",
+    "PostUsersResponseDefault",
+    "PutGroupsByGroupIdResponseDefault",
+    "PutRoleGroupsByGroupIdResponseDefault",
+    "PutTeamsByTeamIdResponseDefault",
+    "PutUsersByUserIdResponseDefault",
+    "PutUsersByUserIdSamlResponseDefault",
+    "PutUsersCurrentOtpConfigureResponseDefault",
+    "PutUsersCurrentResponseDefault",
     "ReindexGroupSchema",
     "ReindexUserSchema",
     "RoleCategories",

@@ -5,11 +5,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.bulk_reindex_persons_schema import BulkReindexPersonsSchema
-from ...models.post_face_recognition_persons_reindex_response_default_type_0 import (
-    PostFaceRecognitionPersonsReindexResponseDefaultType0,
-)
-from ...models.post_face_recognition_persons_reindex_response_default_type_1 import (
-    PostFaceRecognitionPersonsReindexResponseDefaultType1,
+from ...models.post_face_recognition_persons_reindex_response_default import (
+    PostFaceRecognitionPersonsReindexResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -46,11 +43,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostFaceRecognitionPersonsReindexResponseDefaultType0
-    | PostFaceRecognitionPersonsReindexResponseDefaultType1
-):
+) -> Any | PostFaceRecognitionPersonsReindexResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -59,42 +52,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostFaceRecognitionPersonsReindexResponseDefaultType0
-        | PostFaceRecognitionPersonsReindexResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostFaceRecognitionPersonsReindexResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostFaceRecognitionPersonsReindexResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostFaceRecognitionPersonsReindexResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostFaceRecognitionPersonsReindexResponseDefaultType0
-    | PostFaceRecognitionPersonsReindexResponseDefaultType1
-]:
+) -> Response[Any | PostFaceRecognitionPersonsReindexResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -109,11 +76,7 @@ def sync_detailed(
     body: BulkReindexPersonsSchema,
     sync_assets: bool | Unset = UNSET,
     low_priority_indexing: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | PostFaceRecognitionPersonsReindexResponseDefaultType0
-    | PostFaceRecognitionPersonsReindexResponseDefaultType1
-]:
+) -> Response[Any | PostFaceRecognitionPersonsReindexResponseDefault]:
     """Trigger reindexing of persons by IDs
 
 
@@ -130,7 +93,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostFaceRecognitionPersonsReindexResponseDefaultType0 | PostFaceRecognitionPersonsReindexResponseDefaultType1]
+        Response[Any | PostFaceRecognitionPersonsReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -152,12 +115,7 @@ def sync(
     body: BulkReindexPersonsSchema,
     sync_assets: bool | Unset = UNSET,
     low_priority_indexing: bool | Unset = UNSET,
-) -> (
-    Any
-    | PostFaceRecognitionPersonsReindexResponseDefaultType0
-    | PostFaceRecognitionPersonsReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostFaceRecognitionPersonsReindexResponseDefault | None:
     """Trigger reindexing of persons by IDs
 
 
@@ -174,7 +132,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostFaceRecognitionPersonsReindexResponseDefaultType0 | PostFaceRecognitionPersonsReindexResponseDefaultType1
+        Any | PostFaceRecognitionPersonsReindexResponseDefault
     """
 
     return sync_detailed(
@@ -191,11 +149,7 @@ async def asyncio_detailed(
     body: BulkReindexPersonsSchema,
     sync_assets: bool | Unset = UNSET,
     low_priority_indexing: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | PostFaceRecognitionPersonsReindexResponseDefaultType0
-    | PostFaceRecognitionPersonsReindexResponseDefaultType1
-]:
+) -> Response[Any | PostFaceRecognitionPersonsReindexResponseDefault]:
     """Trigger reindexing of persons by IDs
 
 
@@ -212,7 +166,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostFaceRecognitionPersonsReindexResponseDefaultType0 | PostFaceRecognitionPersonsReindexResponseDefaultType1]
+        Response[Any | PostFaceRecognitionPersonsReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -232,12 +186,7 @@ async def asyncio(
     body: BulkReindexPersonsSchema,
     sync_assets: bool | Unset = UNSET,
     low_priority_indexing: bool | Unset = UNSET,
-) -> (
-    Any
-    | PostFaceRecognitionPersonsReindexResponseDefaultType0
-    | PostFaceRecognitionPersonsReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostFaceRecognitionPersonsReindexResponseDefault | None:
     """Trigger reindexing of persons by IDs
 
 
@@ -254,7 +203,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostFaceRecognitionPersonsReindexResponseDefaultType0 | PostFaceRecognitionPersonsReindexResponseDefaultType1
+        Any | PostFaceRecognitionPersonsReindexResponseDefault
     """
 
     return (

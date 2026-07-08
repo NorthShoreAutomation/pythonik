@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_users_by_user_id_acl_by_object_type_by_object_key_response_default_type_0 import (
-    GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType0,
-)
-from ...models.get_users_by_user_id_acl_by_object_type_by_object_key_response_default_type_1 import (
-    GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType1,
+from ...models.get_users_by_user_id_acl_by_object_type_by_object_key_response_default import (
+    GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefault,
 )
 from ...models.user_acl_schema import UserACLSchema
 from ...types import Response
@@ -35,12 +32,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType0
-    | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType1
-    | UserACLSchema
-):
+) -> Any | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefault | UserACLSchema:
     if response.status_code == 200:
         response_200 = UserACLSchema.from_dict(response.json())
 
@@ -54,33 +46,11 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType0
-        | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -88,10 +58,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType0
-    | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType1
-    | UserACLSchema
+    Any | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefault | UserACLSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -108,10 +75,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType0
-    | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType1
-    | UserACLSchema
+    Any | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefault | UserACLSchema
 ]:
     """List of user permissions for an object
 
@@ -129,7 +93,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType0 | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType1 | UserACLSchema]
+        Response[Any | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefault | UserACLSchema]
     """
 
     kwargs = _get_kwargs(
@@ -153,8 +117,7 @@ def sync(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType0
-    | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType1
+    | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefault
     | UserACLSchema
     | None
 ):
@@ -174,7 +137,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType0 | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType1 | UserACLSchema
+        Any | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefault | UserACLSchema
     """
 
     return sync_detailed(
@@ -192,10 +155,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType0
-    | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType1
-    | UserACLSchema
+    Any | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefault | UserACLSchema
 ]:
     """List of user permissions for an object
 
@@ -213,7 +173,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType0 | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType1 | UserACLSchema]
+        Response[Any | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefault | UserACLSchema]
     """
 
     kwargs = _get_kwargs(
@@ -235,8 +195,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType0
-    | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType1
+    | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefault
     | UserACLSchema
     | None
 ):
@@ -256,7 +215,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType0 | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefaultType1 | UserACLSchema
+        Any | GetUsersByUserIdAclByObjectTypeByObjectKeyResponseDefault | UserACLSchema
     """
 
     return (

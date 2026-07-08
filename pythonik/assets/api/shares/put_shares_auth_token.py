@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.put_shares_auth_token_response_default_type_0 import (
-    PutSharesAuthTokenResponseDefaultType0,
-)
-from ...models.put_shares_auth_token_response_default_type_1 import (
-    PutSharesAuthTokenResponseDefaultType1,
+from ...models.put_shares_auth_token_response_default import (
+    PutSharesAuthTokenResponseDefault,
 )
 from ...models.share_token_schema import ShareTokenSchema
 from ...types import Response
@@ -32,12 +29,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PutSharesAuthTokenResponseDefaultType0
-    | PutSharesAuthTokenResponseDefaultType1
-    | ShareTokenSchema
-):
+) -> Any | PutSharesAuthTokenResponseDefault | ShareTokenSchema:
     if response.status_code == 200:
         response_200 = ShareTokenSchema.from_dict(response.json())
 
@@ -51,40 +43,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutSharesAuthTokenResponseDefaultType0 | PutSharesAuthTokenResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PutSharesAuthTokenResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PutSharesAuthTokenResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutSharesAuthTokenResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PutSharesAuthTokenResponseDefaultType0
-    | PutSharesAuthTokenResponseDefaultType1
-    | ShareTokenSchema
-]:
+) -> Response[Any | PutSharesAuthTokenResponseDefault | ShareTokenSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -97,12 +63,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     share_auth_token: str,
-) -> Response[
-    Any
-    | PutSharesAuthTokenResponseDefaultType0
-    | PutSharesAuthTokenResponseDefaultType1
-    | ShareTokenSchema
-]:
+) -> Response[Any | PutSharesAuthTokenResponseDefault | ShareTokenSchema]:
     """Refreshes a token for share
 
     Args:
@@ -113,7 +74,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutSharesAuthTokenResponseDefaultType0 | PutSharesAuthTokenResponseDefaultType1 | ShareTokenSchema]
+        Response[Any | PutSharesAuthTokenResponseDefault | ShareTokenSchema]
     """
 
     kwargs = _get_kwargs(
@@ -131,13 +92,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     share_auth_token: str,
-) -> (
-    Any
-    | PutSharesAuthTokenResponseDefaultType0
-    | PutSharesAuthTokenResponseDefaultType1
-    | ShareTokenSchema
-    | None
-):
+) -> Any | PutSharesAuthTokenResponseDefault | ShareTokenSchema | None:
     """Refreshes a token for share
 
     Args:
@@ -148,7 +103,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutSharesAuthTokenResponseDefaultType0 | PutSharesAuthTokenResponseDefaultType1 | ShareTokenSchema
+        Any | PutSharesAuthTokenResponseDefault | ShareTokenSchema
     """
 
     return sync_detailed(
@@ -161,12 +116,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     share_auth_token: str,
-) -> Response[
-    Any
-    | PutSharesAuthTokenResponseDefaultType0
-    | PutSharesAuthTokenResponseDefaultType1
-    | ShareTokenSchema
-]:
+) -> Response[Any | PutSharesAuthTokenResponseDefault | ShareTokenSchema]:
     """Refreshes a token for share
 
     Args:
@@ -177,7 +127,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutSharesAuthTokenResponseDefaultType0 | PutSharesAuthTokenResponseDefaultType1 | ShareTokenSchema]
+        Response[Any | PutSharesAuthTokenResponseDefault | ShareTokenSchema]
     """
 
     kwargs = _get_kwargs(
@@ -193,13 +143,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     share_auth_token: str,
-) -> (
-    Any
-    | PutSharesAuthTokenResponseDefaultType0
-    | PutSharesAuthTokenResponseDefaultType1
-    | ShareTokenSchema
-    | None
-):
+) -> Any | PutSharesAuthTokenResponseDefault | ShareTokenSchema | None:
     """Refreshes a token for share
 
     Args:
@@ -210,7 +154,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutSharesAuthTokenResponseDefaultType0 | PutSharesAuthTokenResponseDefaultType1 | ShareTokenSchema
+        Any | PutSharesAuthTokenResponseDefault | ShareTokenSchema
     """
 
     return (

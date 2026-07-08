@@ -4,12 +4,7 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.put_auth_token_response_default_type_0 import (
-    PutAuthTokenResponseDefaultType0,
-)
-from ...models.put_auth_token_response_default_type_1 import (
-    PutAuthTokenResponseDefaultType1,
-)
+from ...models.put_auth_token_response_default import PutAuthTokenResponseDefault
 from ...models.token_schema import TokenSchema
 from ...types import Response
 
@@ -26,12 +21,7 @@ def _get_kwargs() -> dict[str, Any]:
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PutAuthTokenResponseDefaultType0
-    | PutAuthTokenResponseDefaultType1
-    | TokenSchema
-):
+) -> Any | PutAuthTokenResponseDefault | TokenSchema:
     if response.status_code == 200:
         response_200 = TokenSchema.from_dict(response.json())
 
@@ -45,36 +35,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> PutAuthTokenResponseDefaultType0 | PutAuthTokenResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PutAuthTokenResponseDefaultType0.from_dict(data)
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PutAuthTokenResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutAuthTokenResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PutAuthTokenResponseDefaultType0
-    | PutAuthTokenResponseDefaultType1
-    | TokenSchema
-]:
+) -> Response[Any | PutAuthTokenResponseDefault | TokenSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -86,12 +54,7 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PutAuthTokenResponseDefaultType0
-    | PutAuthTokenResponseDefaultType1
-    | TokenSchema
-]:
+) -> Response[Any | PutAuthTokenResponseDefault | TokenSchema]:
     """Refresh token
 
     Raises:
@@ -99,7 +62,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutAuthTokenResponseDefaultType0 | PutAuthTokenResponseDefaultType1 | TokenSchema]
+        Response[Any | PutAuthTokenResponseDefault | TokenSchema]
     """
 
     kwargs = _get_kwargs()
@@ -114,13 +77,7 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PutAuthTokenResponseDefaultType0
-    | PutAuthTokenResponseDefaultType1
-    | TokenSchema
-    | None
-):
+) -> Any | PutAuthTokenResponseDefault | TokenSchema | None:
     """Refresh token
 
     Raises:
@@ -128,7 +85,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutAuthTokenResponseDefaultType0 | PutAuthTokenResponseDefaultType1 | TokenSchema
+        Any | PutAuthTokenResponseDefault | TokenSchema
     """
 
     return sync_detailed(
@@ -139,12 +96,7 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PutAuthTokenResponseDefaultType0
-    | PutAuthTokenResponseDefaultType1
-    | TokenSchema
-]:
+) -> Response[Any | PutAuthTokenResponseDefault | TokenSchema]:
     """Refresh token
 
     Raises:
@@ -152,7 +104,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutAuthTokenResponseDefaultType0 | PutAuthTokenResponseDefaultType1 | TokenSchema]
+        Response[Any | PutAuthTokenResponseDefault | TokenSchema]
     """
 
     kwargs = _get_kwargs()
@@ -165,13 +117,7 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PutAuthTokenResponseDefaultType0
-    | PutAuthTokenResponseDefaultType1
-    | TokenSchema
-    | None
-):
+) -> Any | PutAuthTokenResponseDefault | TokenSchema | None:
     """Refresh token
 
     Raises:
@@ -179,7 +125,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutAuthTokenResponseDefaultType0 | PutAuthTokenResponseDefaultType1 | TokenSchema
+        Any | PutAuthTokenResponseDefault | TokenSchema
     """
 
     return (

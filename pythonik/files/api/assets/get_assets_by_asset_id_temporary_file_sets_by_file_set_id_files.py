@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.files_schema import FilesSchema
-from ...models.get_assets_by_asset_id_temporary_file_sets_by_file_set_id_files_response_default_type_0 import (
-    GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType0,
-)
-from ...models.get_assets_by_asset_id_temporary_file_sets_by_file_set_id_files_response_default_type_1 import (
-    GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType1,
+from ...models.get_assets_by_asset_id_temporary_file_sets_by_file_set_id_files_response_default import (
+    GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -19,7 +16,7 @@ def _get_kwargs(
     asset_id: str,
     file_set_id: str,
     *,
-    generate_signed_url: bool | Unset = True,
+    generate_signed_url: bool | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -42,41 +39,17 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    FilesSchema
-    | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType0
-    | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType1
-):
+) -> FilesSchema | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefault:
     if response.status_code == 200:
         response_200 = FilesSchema.from_dict(response.json())
 
         return response_200
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType0
-        | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -84,9 +57,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    FilesSchema
-    | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType0
-    | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType1
+    FilesSchema | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -101,11 +72,9 @@ def sync_detailed(
     file_set_id: str,
     *,
     client: AuthenticatedClient | Client,
-    generate_signed_url: bool | Unset = True,
+    generate_signed_url: bool | Unset = UNSET,
 ) -> Response[
-    FilesSchema
-    | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType0
-    | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType1
+    FilesSchema | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefault
 ]:
     """Get files from a temporary file set
 
@@ -116,14 +85,14 @@ def sync_detailed(
     Args:
         asset_id (str):
         file_set_id (str):
-        generate_signed_url (bool | Unset):  Default: True.
+        generate_signed_url (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[FilesSchema | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType0 | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType1]
+        Response[FilesSchema | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -144,11 +113,10 @@ def sync(
     file_set_id: str,
     *,
     client: AuthenticatedClient | Client,
-    generate_signed_url: bool | Unset = True,
+    generate_signed_url: bool | Unset = UNSET,
 ) -> (
     FilesSchema
-    | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType0
-    | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType1
+    | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefault
     | None
 ):
     """Get files from a temporary file set
@@ -160,14 +128,14 @@ def sync(
     Args:
         asset_id (str):
         file_set_id (str):
-        generate_signed_url (bool | Unset):  Default: True.
+        generate_signed_url (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        FilesSchema | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType0 | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType1
+        FilesSchema | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefault
     """
 
     return sync_detailed(
@@ -183,11 +151,9 @@ async def asyncio_detailed(
     file_set_id: str,
     *,
     client: AuthenticatedClient | Client,
-    generate_signed_url: bool | Unset = True,
+    generate_signed_url: bool | Unset = UNSET,
 ) -> Response[
-    FilesSchema
-    | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType0
-    | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType1
+    FilesSchema | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefault
 ]:
     """Get files from a temporary file set
 
@@ -198,14 +164,14 @@ async def asyncio_detailed(
     Args:
         asset_id (str):
         file_set_id (str):
-        generate_signed_url (bool | Unset):  Default: True.
+        generate_signed_url (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[FilesSchema | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType0 | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType1]
+        Response[FilesSchema | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -224,11 +190,10 @@ async def asyncio(
     file_set_id: str,
     *,
     client: AuthenticatedClient | Client,
-    generate_signed_url: bool | Unset = True,
+    generate_signed_url: bool | Unset = UNSET,
 ) -> (
     FilesSchema
-    | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType0
-    | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType1
+    | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefault
     | None
 ):
     """Get files from a temporary file set
@@ -240,14 +205,14 @@ async def asyncio(
     Args:
         asset_id (str):
         file_set_id (str):
-        generate_signed_url (bool | Unset):  Default: True.
+        generate_signed_url (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        FilesSchema | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType0 | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefaultType1
+        FilesSchema | GetAssetsByAssetIdTemporaryFileSetsByFileSetIdFilesResponseDefault
     """
 
     return (

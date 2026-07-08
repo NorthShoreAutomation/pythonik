@@ -11,11 +11,8 @@ from ...models.asset_transcription_from_subtitle_schema import (
 from ...models.asset_transcription_properties_schema import (
     AssetTranscriptionPropertiesSchema,
 )
-from ...models.post_assets_by_asset_id_versions_by_version_id_transcriptions_subtitles_response_default_type_0 import (
-    PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType0,
-)
-from ...models.post_assets_by_asset_id_versions_by_version_id_transcriptions_subtitles_response_default_type_1 import (
-    PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType1,
+from ...models.post_assets_by_asset_id_versions_by_version_id_transcriptions_subtitles_response_default import (
+    PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefault,
 )
 from ...types import Response
 
@@ -49,8 +46,7 @@ def _parse_response(
 ) -> (
     Any
     | AssetTranscriptionPropertiesSchema
-    | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType0
-    | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType1
+    | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefault
 ):
     if response.status_code == 200:
         response_200 = AssetTranscriptionPropertiesSchema.from_dict(response.json())
@@ -69,31 +65,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType0
-        | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -103,8 +77,7 @@ def _build_response(
 ) -> Response[
     Any
     | AssetTranscriptionPropertiesSchema
-    | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType0
-    | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType1
+    | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -123,8 +96,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | AssetTranscriptionPropertiesSchema
-    | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType0
-    | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType1
+    | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefault
 ]:
     """Add a new transcription properties
 
@@ -142,7 +114,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AssetTranscriptionPropertiesSchema | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType0 | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType1]
+        Response[Any | AssetTranscriptionPropertiesSchema | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -167,8 +139,7 @@ def sync(
 ) -> (
     Any
     | AssetTranscriptionPropertiesSchema
-    | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType0
-    | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType1
+    | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefault
     | None
 ):
     """Add a new transcription properties
@@ -187,7 +158,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AssetTranscriptionPropertiesSchema | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType0 | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType1
+        Any | AssetTranscriptionPropertiesSchema | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefault
     """
 
     return sync_detailed(
@@ -207,8 +178,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | AssetTranscriptionPropertiesSchema
-    | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType0
-    | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType1
+    | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefault
 ]:
     """Add a new transcription properties
 
@@ -226,7 +196,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AssetTranscriptionPropertiesSchema | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType0 | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType1]
+        Response[Any | AssetTranscriptionPropertiesSchema | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -249,8 +219,7 @@ async def asyncio(
 ) -> (
     Any
     | AssetTranscriptionPropertiesSchema
-    | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType0
-    | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType1
+    | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefault
     | None
 ):
     """Add a new transcription properties
@@ -269,7 +238,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AssetTranscriptionPropertiesSchema | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType0 | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefaultType1
+        Any | AssetTranscriptionPropertiesSchema | PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefault
     """
 
     return (

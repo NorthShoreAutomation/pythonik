@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_assets_by_asset_id_proxies_by_proxy_id_multipart_url_part_response_default_type_0 import (
-    GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType0,
-)
-from ...models.get_assets_by_asset_id_proxies_by_proxy_id_multipart_url_part_response_default_type_1 import (
-    GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType1,
+from ...models.get_assets_by_asset_id_proxies_by_proxy_id_multipart_url_part_response_default import (
+    GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefault,
 )
 from ...models.multi_part_upload_ur_ls_schema import MultiPartUploadURLsSchema
 from ...types import UNSET, Response, Unset
@@ -21,8 +18,8 @@ def _get_kwargs(
     *,
     upload_id: str | Unset = UNSET,
     parts_num: int,
-    per_page: int | Unset = 10,
-    page: int | Unset = 1,
+    per_page: int | Unset = UNSET,
+    page: int | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -53,8 +50,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType0
-    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType1
+    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefault
     | MultiPartUploadURLsSchema
 ):
     if response.status_code == 200:
@@ -70,31 +66,11 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType0
-        | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -103,8 +79,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType0
-    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType1
+    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefault
     | MultiPartUploadURLsSchema
 ]:
     return Response(
@@ -122,12 +97,11 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     upload_id: str | Unset = UNSET,
     parts_num: int,
-    per_page: int | Unset = 10,
-    page: int | Unset = 1,
+    per_page: int | Unset = UNSET,
+    page: int | Unset = UNSET,
 ) -> Response[
     Any
-    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType0
-    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType1
+    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefault
     | MultiPartUploadURLsSchema
 ]:
     """Get presigned urls for S3 multipart part upload.
@@ -141,15 +115,15 @@ def sync_detailed(
         proxy_id (str):
         upload_id (str | Unset):
         parts_num (int):
-        per_page (int | Unset):  Default: 10.
-        page (int | Unset):  Default: 1.
+        per_page (int | Unset):
+        page (int | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType0 | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType1 | MultiPartUploadURLsSchema]
+        Response[Any | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefault | MultiPartUploadURLsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -175,12 +149,11 @@ def sync(
     client: AuthenticatedClient | Client,
     upload_id: str | Unset = UNSET,
     parts_num: int,
-    per_page: int | Unset = 10,
-    page: int | Unset = 1,
+    per_page: int | Unset = UNSET,
+    page: int | Unset = UNSET,
 ) -> (
     Any
-    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType0
-    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType1
+    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefault
     | MultiPartUploadURLsSchema
     | None
 ):
@@ -195,15 +168,15 @@ def sync(
         proxy_id (str):
         upload_id (str | Unset):
         parts_num (int):
-        per_page (int | Unset):  Default: 10.
-        page (int | Unset):  Default: 1.
+        per_page (int | Unset):
+        page (int | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType0 | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType1 | MultiPartUploadURLsSchema
+        Any | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefault | MultiPartUploadURLsSchema
     """
 
     return sync_detailed(
@@ -224,12 +197,11 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     upload_id: str | Unset = UNSET,
     parts_num: int,
-    per_page: int | Unset = 10,
-    page: int | Unset = 1,
+    per_page: int | Unset = UNSET,
+    page: int | Unset = UNSET,
 ) -> Response[
     Any
-    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType0
-    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType1
+    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefault
     | MultiPartUploadURLsSchema
 ]:
     """Get presigned urls for S3 multipart part upload.
@@ -243,15 +215,15 @@ async def asyncio_detailed(
         proxy_id (str):
         upload_id (str | Unset):
         parts_num (int):
-        per_page (int | Unset):  Default: 10.
-        page (int | Unset):  Default: 1.
+        per_page (int | Unset):
+        page (int | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType0 | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType1 | MultiPartUploadURLsSchema]
+        Response[Any | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefault | MultiPartUploadURLsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -275,12 +247,11 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     upload_id: str | Unset = UNSET,
     parts_num: int,
-    per_page: int | Unset = 10,
-    page: int | Unset = 1,
+    per_page: int | Unset = UNSET,
+    page: int | Unset = UNSET,
 ) -> (
     Any
-    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType0
-    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType1
+    | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefault
     | MultiPartUploadURLsSchema
     | None
 ):
@@ -295,15 +266,15 @@ async def asyncio(
         proxy_id (str):
         upload_id (str | Unset):
         parts_num (int):
-        per_page (int | Unset):  Default: 10.
-        page (int | Unset):  Default: 1.
+        per_page (int | Unset):
+        page (int | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType0 | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefaultType1 | MultiPartUploadURLsSchema
+        Any | GetAssetsByAssetIdProxiesByProxyIdMultipartUrlPartResponseDefault | MultiPartUploadURLsSchema
     """
 
     return (

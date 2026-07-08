@@ -4,12 +4,7 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_webhooks_response_default_type_0 import (
-    PostWebhooksResponseDefaultType0,
-)
-from ...models.post_webhooks_response_default_type_1 import (
-    PostWebhooksResponseDefaultType1,
-)
+from ...models.post_webhooks_response_default import PostWebhooksResponseDefault
 from ...models.webhook_create_schema import WebhookCreateSchema
 from ...models.webhook_schema import WebhookSchema
 from ...types import Response
@@ -36,12 +31,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostWebhooksResponseDefaultType0
-    | PostWebhooksResponseDefaultType1
-    | WebhookSchema
-):
+) -> Any | PostWebhooksResponseDefault | WebhookSchema:
     if response.status_code == 201:
         response_201 = WebhookSchema.from_dict(response.json())
 
@@ -55,36 +45,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> PostWebhooksResponseDefaultType0 | PostWebhooksResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostWebhooksResponseDefaultType0.from_dict(data)
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostWebhooksResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostWebhooksResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostWebhooksResponseDefaultType0
-    | PostWebhooksResponseDefaultType1
-    | WebhookSchema
-]:
+) -> Response[Any | PostWebhooksResponseDefault | WebhookSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -97,12 +65,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: WebhookCreateSchema,
-) -> Response[
-    Any
-    | PostWebhooksResponseDefaultType0
-    | PostWebhooksResponseDefaultType1
-    | WebhookSchema
-]:
+) -> Response[Any | PostWebhooksResponseDefault | WebhookSchema]:
     """Create a new webhook
 
 
@@ -117,7 +80,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostWebhooksResponseDefaultType0 | PostWebhooksResponseDefaultType1 | WebhookSchema]
+        Response[Any | PostWebhooksResponseDefault | WebhookSchema]
     """
 
     kwargs = _get_kwargs(
@@ -135,13 +98,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: WebhookCreateSchema,
-) -> (
-    Any
-    | PostWebhooksResponseDefaultType0
-    | PostWebhooksResponseDefaultType1
-    | WebhookSchema
-    | None
-):
+) -> Any | PostWebhooksResponseDefault | WebhookSchema | None:
     """Create a new webhook
 
 
@@ -156,7 +113,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostWebhooksResponseDefaultType0 | PostWebhooksResponseDefaultType1 | WebhookSchema
+        Any | PostWebhooksResponseDefault | WebhookSchema
     """
 
     return sync_detailed(
@@ -169,12 +126,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: WebhookCreateSchema,
-) -> Response[
-    Any
-    | PostWebhooksResponseDefaultType0
-    | PostWebhooksResponseDefaultType1
-    | WebhookSchema
-]:
+) -> Response[Any | PostWebhooksResponseDefault | WebhookSchema]:
     """Create a new webhook
 
 
@@ -189,7 +141,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostWebhooksResponseDefaultType0 | PostWebhooksResponseDefaultType1 | WebhookSchema]
+        Response[Any | PostWebhooksResponseDefault | WebhookSchema]
     """
 
     kwargs = _get_kwargs(
@@ -205,13 +157,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: WebhookCreateSchema,
-) -> (
-    Any
-    | PostWebhooksResponseDefaultType0
-    | PostWebhooksResponseDefaultType1
-    | WebhookSchema
-    | None
-):
+) -> Any | PostWebhooksResponseDefault | WebhookSchema | None:
     """Create a new webhook
 
 
@@ -226,7 +172,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostWebhooksResponseDefaultType0 | PostWebhooksResponseDefaultType1 | WebhookSchema
+        Any | PostWebhooksResponseDefault | WebhookSchema
     """
 
     return (

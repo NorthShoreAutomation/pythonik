@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_search_history_by_search_history_id_response_default_type_0 import (
-    DeleteSearchHistoryBySearchHistoryIdResponseDefaultType0,
-)
-from ...models.delete_search_history_by_search_history_id_response_default_type_1 import (
-    DeleteSearchHistoryBySearchHistoryIdResponseDefaultType1,
+from ...models.delete_search_history_by_search_history_id_response_default import (
+    DeleteSearchHistoryBySearchHistoryIdResponseDefault,
 )
 from ...types import Response
 
@@ -30,11 +27,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteSearchHistoryBySearchHistoryIdResponseDefaultType0
-    | DeleteSearchHistoryBySearchHistoryIdResponseDefaultType1
-):
+) -> Any | DeleteSearchHistoryBySearchHistoryIdResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -51,42 +44,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteSearchHistoryBySearchHistoryIdResponseDefaultType0
-        | DeleteSearchHistoryBySearchHistoryIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteSearchHistoryBySearchHistoryIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteSearchHistoryBySearchHistoryIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteSearchHistoryBySearchHistoryIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteSearchHistoryBySearchHistoryIdResponseDefaultType0
-    | DeleteSearchHistoryBySearchHistoryIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteSearchHistoryBySearchHistoryIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -99,11 +66,7 @@ def sync_detailed(
     search_history_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteSearchHistoryBySearchHistoryIdResponseDefaultType0
-    | DeleteSearchHistoryBySearchHistoryIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteSearchHistoryBySearchHistoryIdResponseDefault]:
     """Delete a search from history by its id
 
 
@@ -118,7 +81,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteSearchHistoryBySearchHistoryIdResponseDefaultType0 | DeleteSearchHistoryBySearchHistoryIdResponseDefaultType1]
+        Response[Any | DeleteSearchHistoryBySearchHistoryIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -136,12 +99,7 @@ def sync(
     search_history_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteSearchHistoryBySearchHistoryIdResponseDefaultType0
-    | DeleteSearchHistoryBySearchHistoryIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteSearchHistoryBySearchHistoryIdResponseDefault | None:
     """Delete a search from history by its id
 
 
@@ -156,7 +114,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteSearchHistoryBySearchHistoryIdResponseDefaultType0 | DeleteSearchHistoryBySearchHistoryIdResponseDefaultType1
+        Any | DeleteSearchHistoryBySearchHistoryIdResponseDefault
     """
 
     return sync_detailed(
@@ -169,11 +127,7 @@ async def asyncio_detailed(
     search_history_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteSearchHistoryBySearchHistoryIdResponseDefaultType0
-    | DeleteSearchHistoryBySearchHistoryIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteSearchHistoryBySearchHistoryIdResponseDefault]:
     """Delete a search from history by its id
 
 
@@ -188,7 +142,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteSearchHistoryBySearchHistoryIdResponseDefaultType0 | DeleteSearchHistoryBySearchHistoryIdResponseDefaultType1]
+        Response[Any | DeleteSearchHistoryBySearchHistoryIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -204,12 +158,7 @@ async def asyncio(
     search_history_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteSearchHistoryBySearchHistoryIdResponseDefaultType0
-    | DeleteSearchHistoryBySearchHistoryIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteSearchHistoryBySearchHistoryIdResponseDefault | None:
     """Delete a search from history by its id
 
 
@@ -224,7 +173,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteSearchHistoryBySearchHistoryIdResponseDefaultType0 | DeleteSearchHistoryBySearchHistoryIdResponseDefaultType1
+        Any | DeleteSearchHistoryBySearchHistoryIdResponseDefault
     """
 
     return (

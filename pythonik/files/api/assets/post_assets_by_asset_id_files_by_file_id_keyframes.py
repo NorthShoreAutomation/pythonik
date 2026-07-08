@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_assets_by_asset_id_files_by_file_id_keyframes_response_default_type_0 import (
-    PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType0,
-)
-from ...models.post_assets_by_asset_id_files_by_file_id_keyframes_response_default_type_1 import (
-    PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType1,
+from ...models.post_assets_by_asset_id_files_by_file_id_keyframes_response_default import (
+    PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefault,
 )
 from ...models.transcode_request_schema import TranscodeRequestSchema
 from ...models.transcode_response_schema import TranscodeResponseSchema
@@ -44,8 +41,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefault
     | TranscodeResponseSchema
 ):
     if response.status_code == 200:
@@ -69,35 +65,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType0
-        | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -106,8 +78,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefault
     | TranscodeResponseSchema
 ]:
     return Response(
@@ -126,8 +97,7 @@ def sync_detailed(
     body: TranscodeRequestSchema,
 ) -> Response[
     Any
-    | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefault
     | TranscodeResponseSchema
 ]:
     """Create a transcode job for proxy and keyframes
@@ -146,7 +116,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType0 | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType1 | TranscodeResponseSchema]
+        Response[Any | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefault | TranscodeResponseSchema]
     """
 
     kwargs = _get_kwargs(
@@ -170,8 +140,7 @@ def sync(
     body: TranscodeRequestSchema,
 ) -> (
     Any
-    | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefault
     | TranscodeResponseSchema
     | None
 ):
@@ -191,7 +160,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType0 | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType1 | TranscodeResponseSchema
+        Any | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefault | TranscodeResponseSchema
     """
 
     return sync_detailed(
@@ -210,8 +179,7 @@ async def asyncio_detailed(
     body: TranscodeRequestSchema,
 ) -> Response[
     Any
-    | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefault
     | TranscodeResponseSchema
 ]:
     """Create a transcode job for proxy and keyframes
@@ -230,7 +198,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType0 | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType1 | TranscodeResponseSchema]
+        Response[Any | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefault | TranscodeResponseSchema]
     """
 
     kwargs = _get_kwargs(
@@ -252,8 +220,7 @@ async def asyncio(
     body: TranscodeRequestSchema,
 ) -> (
     Any
-    | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType0
-    | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType1
+    | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefault
     | TranscodeResponseSchema
     | None
 ):
@@ -273,7 +240,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType0 | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefaultType1 | TranscodeResponseSchema
+        Any | PostAssetsByAssetIdFilesByFileIdKeyframesResponseDefault | TranscodeResponseSchema
     """
 
     return (

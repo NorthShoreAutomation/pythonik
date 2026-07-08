@@ -5,11 +5,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.bulk_archive_asset_request_schema import BulkArchiveAssetRequestSchema
-from ...models.post_assets_bulk_archive_response_default_type_0 import (
-    PostAssetsBulkArchiveResponseDefaultType0,
-)
-from ...models.post_assets_bulk_archive_response_default_type_1 import (
-    PostAssetsBulkArchiveResponseDefaultType1,
+from ...models.post_assets_bulk_archive_response_default import (
+    PostAssetsBulkArchiveResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -43,11 +40,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostAssetsBulkArchiveResponseDefaultType0
-    | PostAssetsBulkArchiveResponseDefaultType1
-):
+) -> Any | PostAssetsBulkArchiveResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -68,42 +61,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsBulkArchiveResponseDefaultType0
-        | PostAssetsBulkArchiveResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostAssetsBulkArchiveResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostAssetsBulkArchiveResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostAssetsBulkArchiveResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostAssetsBulkArchiveResponseDefaultType0
-    | PostAssetsBulkArchiveResponseDefaultType1
-]:
+) -> Response[Any | PostAssetsBulkArchiveResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -117,11 +82,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: BulkArchiveAssetRequestSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | PostAssetsBulkArchiveResponseDefaultType0
-    | PostAssetsBulkArchiveResponseDefaultType1
-]:
+) -> Response[Any | PostAssetsBulkArchiveResponseDefault]:
     """Archive multiple assets to a storage.
 
 
@@ -137,7 +98,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsBulkArchiveResponseDefaultType0 | PostAssetsBulkArchiveResponseDefaultType1]
+        Response[Any | PostAssetsBulkArchiveResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -157,12 +118,7 @@ def sync(
     client: AuthenticatedClient | Client,
     body: BulkArchiveAssetRequestSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> (
-    Any
-    | PostAssetsBulkArchiveResponseDefaultType0
-    | PostAssetsBulkArchiveResponseDefaultType1
-    | None
-):
+) -> Any | PostAssetsBulkArchiveResponseDefault | None:
     """Archive multiple assets to a storage.
 
 
@@ -178,7 +134,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsBulkArchiveResponseDefaultType0 | PostAssetsBulkArchiveResponseDefaultType1
+        Any | PostAssetsBulkArchiveResponseDefault
     """
 
     return sync_detailed(
@@ -193,11 +149,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: BulkArchiveAssetRequestSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | PostAssetsBulkArchiveResponseDefaultType0
-    | PostAssetsBulkArchiveResponseDefaultType1
-]:
+) -> Response[Any | PostAssetsBulkArchiveResponseDefault]:
     """Archive multiple assets to a storage.
 
 
@@ -213,7 +165,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsBulkArchiveResponseDefaultType0 | PostAssetsBulkArchiveResponseDefaultType1]
+        Response[Any | PostAssetsBulkArchiveResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -231,12 +183,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     body: BulkArchiveAssetRequestSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> (
-    Any
-    | PostAssetsBulkArchiveResponseDefaultType0
-    | PostAssetsBulkArchiveResponseDefaultType1
-    | None
-):
+) -> Any | PostAssetsBulkArchiveResponseDefault | None:
     """Archive multiple assets to a storage.
 
 
@@ -252,7 +199,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsBulkArchiveResponseDefaultType0 | PostAssetsBulkArchiveResponseDefaultType1
+        Any | PostAssetsBulkArchiveResponseDefault
     """
 
     return (

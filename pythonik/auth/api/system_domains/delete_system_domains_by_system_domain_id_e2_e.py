@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_system_domains_by_system_domain_id_e2e_response_default_type_0 import (
-    DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType0,
-)
-from ...models.delete_system_domains_by_system_domain_id_e2e_response_default_type_1 import (
-    DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType1,
+from ...models.delete_system_domains_by_system_domain_id_e2e_response_default import (
+    DeleteSystemDomainsBySystemDomainIdE2EResponseDefault,
 )
 from ...types import Response
 
@@ -30,11 +27,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType0
-    | DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType1
-):
+) -> Any | DeleteSystemDomainsBySystemDomainIdE2EResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -47,44 +40,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType0
-        | DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteSystemDomainsBySystemDomainIdE2EResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType0
-    | DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType1
-]:
+) -> Response[Any | DeleteSystemDomainsBySystemDomainIdE2EResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -97,11 +62,7 @@ def sync_detailed(
     system_domain_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType0
-    | DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType1
-]:
+) -> Response[Any | DeleteSystemDomainsBySystemDomainIdE2EResponseDefault]:
     """Delete a particular system_domain by id.
 
      (For internal use. Should not be displayed in Swagger docs)
@@ -114,7 +75,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType0 | DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType1]
+        Response[Any | DeleteSystemDomainsBySystemDomainIdE2EResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -132,12 +93,7 @@ def sync(
     system_domain_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType0
-    | DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType1
-    | None
-):
+) -> Any | DeleteSystemDomainsBySystemDomainIdE2EResponseDefault | None:
     """Delete a particular system_domain by id.
 
      (For internal use. Should not be displayed in Swagger docs)
@@ -150,7 +106,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType0 | DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType1
+        Any | DeleteSystemDomainsBySystemDomainIdE2EResponseDefault
     """
 
     return sync_detailed(
@@ -163,11 +119,7 @@ async def asyncio_detailed(
     system_domain_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType0
-    | DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType1
-]:
+) -> Response[Any | DeleteSystemDomainsBySystemDomainIdE2EResponseDefault]:
     """Delete a particular system_domain by id.
 
      (For internal use. Should not be displayed in Swagger docs)
@@ -180,7 +132,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType0 | DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType1]
+        Response[Any | DeleteSystemDomainsBySystemDomainIdE2EResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -196,12 +148,7 @@ async def asyncio(
     system_domain_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType0
-    | DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType1
-    | None
-):
+) -> Any | DeleteSystemDomainsBySystemDomainIdE2EResponseDefault | None:
     """Delete a particular system_domain by id.
 
      (For internal use. Should not be displayed in Swagger docs)
@@ -214,7 +161,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType0 | DeleteSystemDomainsBySystemDomainIdE2EResponseDefaultType1
+        Any | DeleteSystemDomainsBySystemDomainIdE2EResponseDefault
     """
 
     return (

@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_delete_queue_collections_restore_all_response_default_type_0 import (
-    PostDeleteQueueCollectionsRestoreAllResponseDefaultType0,
-)
-from ...models.post_delete_queue_collections_restore_all_response_default_type_1 import (
-    PostDeleteQueueCollectionsRestoreAllResponseDefaultType1,
+from ...models.post_delete_queue_collections_restore_all_response_default import (
+    PostDeleteQueueCollectionsRestoreAllResponseDefault,
 )
 from ...types import Response
 
@@ -25,11 +22,7 @@ def _get_kwargs() -> dict[str, Any]:
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostDeleteQueueCollectionsRestoreAllResponseDefaultType0
-    | PostDeleteQueueCollectionsRestoreAllResponseDefaultType1
-):
+) -> Any | PostDeleteQueueCollectionsRestoreAllResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -42,42 +35,16 @@ def _parse_response(
         response_403 = cast(Any, None)
         return response_403
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostDeleteQueueCollectionsRestoreAllResponseDefaultType0
-        | PostDeleteQueueCollectionsRestoreAllResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostDeleteQueueCollectionsRestoreAllResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostDeleteQueueCollectionsRestoreAllResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostDeleteQueueCollectionsRestoreAllResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostDeleteQueueCollectionsRestoreAllResponseDefaultType0
-    | PostDeleteQueueCollectionsRestoreAllResponseDefaultType1
-]:
+) -> Response[Any | PostDeleteQueueCollectionsRestoreAllResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -89,11 +56,7 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostDeleteQueueCollectionsRestoreAllResponseDefaultType0
-    | PostDeleteQueueCollectionsRestoreAllResponseDefaultType1
-]:
+) -> Response[Any | PostDeleteQueueCollectionsRestoreAllResponseDefault]:
     """Restore all collections from delete queue
 
 
@@ -105,7 +68,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostDeleteQueueCollectionsRestoreAllResponseDefaultType0 | PostDeleteQueueCollectionsRestoreAllResponseDefaultType1]
+        Response[Any | PostDeleteQueueCollectionsRestoreAllResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -120,12 +83,7 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostDeleteQueueCollectionsRestoreAllResponseDefaultType0
-    | PostDeleteQueueCollectionsRestoreAllResponseDefaultType1
-    | None
-):
+) -> Any | PostDeleteQueueCollectionsRestoreAllResponseDefault | None:
     """Restore all collections from delete queue
 
 
@@ -137,7 +95,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostDeleteQueueCollectionsRestoreAllResponseDefaultType0 | PostDeleteQueueCollectionsRestoreAllResponseDefaultType1
+        Any | PostDeleteQueueCollectionsRestoreAllResponseDefault
     """
 
     return sync_detailed(
@@ -148,11 +106,7 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostDeleteQueueCollectionsRestoreAllResponseDefaultType0
-    | PostDeleteQueueCollectionsRestoreAllResponseDefaultType1
-]:
+) -> Response[Any | PostDeleteQueueCollectionsRestoreAllResponseDefault]:
     """Restore all collections from delete queue
 
 
@@ -164,7 +118,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostDeleteQueueCollectionsRestoreAllResponseDefaultType0 | PostDeleteQueueCollectionsRestoreAllResponseDefaultType1]
+        Response[Any | PostDeleteQueueCollectionsRestoreAllResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -177,12 +131,7 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostDeleteQueueCollectionsRestoreAllResponseDefaultType0
-    | PostDeleteQueueCollectionsRestoreAllResponseDefaultType1
-    | None
-):
+) -> Any | PostDeleteQueueCollectionsRestoreAllResponseDefault | None:
     """Restore all collections from delete queue
 
 
@@ -194,7 +143,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostDeleteQueueCollectionsRestoreAllResponseDefaultType0 | PostDeleteQueueCollectionsRestoreAllResponseDefaultType1
+        Any | PostDeleteQueueCollectionsRestoreAllResponseDefault
     """
 
     return (

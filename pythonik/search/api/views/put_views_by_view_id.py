@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.put_views_by_view_id_response_default_type_0 import (
-    PutViewsByViewIdResponseDefaultType0,
-)
-from ...models.put_views_by_view_id_response_default_type_1 import (
-    PutViewsByViewIdResponseDefaultType1,
+from ...models.put_views_by_view_id_response_default import (
+    PutViewsByViewIdResponseDefault,
 )
 from ...models.search_view_schema import SearchViewSchema
 from ...types import Response
@@ -39,12 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PutViewsByViewIdResponseDefaultType0
-    | PutViewsByViewIdResponseDefaultType1
-    | SearchViewSchema
-):
+) -> Any | PutViewsByViewIdResponseDefault | SearchViewSchema:
     if response.status_code == 200:
         response_200 = SearchViewSchema.from_dict(response.json())
 
@@ -62,38 +54,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> PutViewsByViewIdResponseDefaultType0 | PutViewsByViewIdResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PutViewsByViewIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PutViewsByViewIdResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutViewsByViewIdResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PutViewsByViewIdResponseDefaultType0
-    | PutViewsByViewIdResponseDefaultType1
-    | SearchViewSchema
-]:
+) -> Response[Any | PutViewsByViewIdResponseDefault | SearchViewSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -107,12 +75,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: SearchViewSchema,
-) -> Response[
-    Any
-    | PutViewsByViewIdResponseDefaultType0
-    | PutViewsByViewIdResponseDefaultType1
-    | SearchViewSchema
-]:
+) -> Response[Any | PutViewsByViewIdResponseDefault | SearchViewSchema]:
     """Replace a View for the system domain.
 
 
@@ -128,7 +91,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutViewsByViewIdResponseDefaultType0 | PutViewsByViewIdResponseDefaultType1 | SearchViewSchema]
+        Response[Any | PutViewsByViewIdResponseDefault | SearchViewSchema]
     """
 
     kwargs = _get_kwargs(
@@ -148,13 +111,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: SearchViewSchema,
-) -> (
-    Any
-    | PutViewsByViewIdResponseDefaultType0
-    | PutViewsByViewIdResponseDefaultType1
-    | SearchViewSchema
-    | None
-):
+) -> Any | PutViewsByViewIdResponseDefault | SearchViewSchema | None:
     """Replace a View for the system domain.
 
 
@@ -170,7 +127,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutViewsByViewIdResponseDefaultType0 | PutViewsByViewIdResponseDefaultType1 | SearchViewSchema
+        Any | PutViewsByViewIdResponseDefault | SearchViewSchema
     """
 
     return sync_detailed(
@@ -185,12 +142,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: SearchViewSchema,
-) -> Response[
-    Any
-    | PutViewsByViewIdResponseDefaultType0
-    | PutViewsByViewIdResponseDefaultType1
-    | SearchViewSchema
-]:
+) -> Response[Any | PutViewsByViewIdResponseDefault | SearchViewSchema]:
     """Replace a View for the system domain.
 
 
@@ -206,7 +158,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutViewsByViewIdResponseDefaultType0 | PutViewsByViewIdResponseDefaultType1 | SearchViewSchema]
+        Response[Any | PutViewsByViewIdResponseDefault | SearchViewSchema]
     """
 
     kwargs = _get_kwargs(
@@ -224,13 +176,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: SearchViewSchema,
-) -> (
-    Any
-    | PutViewsByViewIdResponseDefaultType0
-    | PutViewsByViewIdResponseDefaultType1
-    | SearchViewSchema
-    | None
-):
+) -> Any | PutViewsByViewIdResponseDefault | SearchViewSchema | None:
     """Replace a View for the system domain.
 
 
@@ -246,7 +192,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutViewsByViewIdResponseDefaultType0 | PutViewsByViewIdResponseDefaultType1 | SearchViewSchema
+        Any | PutViewsByViewIdResponseDefault | SearchViewSchema
     """
 
     return (

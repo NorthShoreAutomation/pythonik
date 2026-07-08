@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.device_token_schema import DeviceTokenSchema
-from ...models.get_users_by_user_id_device_tokens_by_device_token_response_default_type_0 import (
-    GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0,
-)
-from ...models.get_users_by_user_id_device_tokens_by_device_token_response_default_type_1 import (
-    GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1,
+from ...models.get_users_by_user_id_device_tokens_by_device_token_response_default import (
+    GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefault,
 )
 from ...types import Response
 
@@ -33,12 +30,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeviceTokenSchema
-    | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0
-    | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
-):
+) -> Any | DeviceTokenSchema | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefault:
     if response.status_code == 200:
         response_200 = DeviceTokenSchema.from_dict(response.json())
 
@@ -60,35 +52,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0
-        | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -96,10 +64,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | DeviceTokenSchema
-    | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0
-    | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
+    Any | DeviceTokenSchema | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -115,10 +80,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | DeviceTokenSchema
-    | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0
-    | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
+    Any | DeviceTokenSchema | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefault
 ]:
     """Returns a particular device token
 
@@ -131,7 +93,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeviceTokenSchema | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0 | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1]
+        Response[Any | DeviceTokenSchema | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -154,8 +116,7 @@ def sync(
 ) -> (
     Any
     | DeviceTokenSchema
-    | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0
-    | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
+    | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefault
     | None
 ):
     """Returns a particular device token
@@ -169,7 +130,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeviceTokenSchema | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0 | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
+        Any | DeviceTokenSchema | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefault
     """
 
     return sync_detailed(
@@ -185,10 +146,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | DeviceTokenSchema
-    | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0
-    | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
+    Any | DeviceTokenSchema | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefault
 ]:
     """Returns a particular device token
 
@@ -201,7 +159,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeviceTokenSchema | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0 | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1]
+        Response[Any | DeviceTokenSchema | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -222,8 +180,7 @@ async def asyncio(
 ) -> (
     Any
     | DeviceTokenSchema
-    | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0
-    | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
+    | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefault
     | None
 ):
     """Returns a particular device token
@@ -237,7 +194,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeviceTokenSchema | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0 | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
+        Any | DeviceTokenSchema | GetUsersByUserIdDeviceTokensByDeviceTokenResponseDefault
     """
 
     return (

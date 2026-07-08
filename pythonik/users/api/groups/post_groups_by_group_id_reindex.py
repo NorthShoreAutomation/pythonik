@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_groups_by_group_id_reindex_response_default_type_0 import (
-    PostGroupsByGroupIdReindexResponseDefaultType0,
-)
-from ...models.post_groups_by_group_id_reindex_response_default_type_1 import (
-    PostGroupsByGroupIdReindexResponseDefaultType1,
+from ...models.post_groups_by_group_id_reindex_response_default import (
+    PostGroupsByGroupIdReindexResponseDefault,
 )
 from ...models.user_schema import UserSchema
 from ...types import Response
@@ -31,12 +28,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostGroupsByGroupIdReindexResponseDefaultType0
-    | PostGroupsByGroupIdReindexResponseDefaultType1
-    | UserSchema
-):
+) -> Any | PostGroupsByGroupIdReindexResponseDefault | UserSchema:
     if response.status_code == 200:
         response_200 = UserSchema.from_dict(response.json())
 
@@ -54,43 +46,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostGroupsByGroupIdReindexResponseDefaultType0
-        | PostGroupsByGroupIdReindexResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostGroupsByGroupIdReindexResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostGroupsByGroupIdReindexResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostGroupsByGroupIdReindexResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostGroupsByGroupIdReindexResponseDefaultType0
-    | PostGroupsByGroupIdReindexResponseDefaultType1
-    | UserSchema
-]:
+) -> Response[Any | PostGroupsByGroupIdReindexResponseDefault | UserSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -103,12 +68,7 @@ def sync_detailed(
     group_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostGroupsByGroupIdReindexResponseDefaultType0
-    | PostGroupsByGroupIdReindexResponseDefaultType1
-    | UserSchema
-]:
+) -> Response[Any | PostGroupsByGroupIdReindexResponseDefault | UserSchema]:
     """Reindex a particular group by id
 
 
@@ -123,7 +83,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostGroupsByGroupIdReindexResponseDefaultType0 | PostGroupsByGroupIdReindexResponseDefaultType1 | UserSchema]
+        Response[Any | PostGroupsByGroupIdReindexResponseDefault | UserSchema]
     """
 
     kwargs = _get_kwargs(
@@ -141,13 +101,7 @@ def sync(
     group_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostGroupsByGroupIdReindexResponseDefaultType0
-    | PostGroupsByGroupIdReindexResponseDefaultType1
-    | UserSchema
-    | None
-):
+) -> Any | PostGroupsByGroupIdReindexResponseDefault | UserSchema | None:
     """Reindex a particular group by id
 
 
@@ -162,7 +116,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostGroupsByGroupIdReindexResponseDefaultType0 | PostGroupsByGroupIdReindexResponseDefaultType1 | UserSchema
+        Any | PostGroupsByGroupIdReindexResponseDefault | UserSchema
     """
 
     return sync_detailed(
@@ -175,12 +129,7 @@ async def asyncio_detailed(
     group_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostGroupsByGroupIdReindexResponseDefaultType0
-    | PostGroupsByGroupIdReindexResponseDefaultType1
-    | UserSchema
-]:
+) -> Response[Any | PostGroupsByGroupIdReindexResponseDefault | UserSchema]:
     """Reindex a particular group by id
 
 
@@ -195,7 +144,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostGroupsByGroupIdReindexResponseDefaultType0 | PostGroupsByGroupIdReindexResponseDefaultType1 | UserSchema]
+        Response[Any | PostGroupsByGroupIdReindexResponseDefault | UserSchema]
     """
 
     kwargs = _get_kwargs(
@@ -211,13 +160,7 @@ async def asyncio(
     group_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostGroupsByGroupIdReindexResponseDefaultType0
-    | PostGroupsByGroupIdReindexResponseDefaultType1
-    | UserSchema
-    | None
-):
+) -> Any | PostGroupsByGroupIdReindexResponseDefault | UserSchema | None:
     """Reindex a particular group by id
 
 
@@ -232,7 +175,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostGroupsByGroupIdReindexResponseDefaultType0 | PostGroupsByGroupIdReindexResponseDefaultType1 | UserSchema
+        Any | PostGroupsByGroupIdReindexResponseDefault | UserSchema
     """
 
     return (

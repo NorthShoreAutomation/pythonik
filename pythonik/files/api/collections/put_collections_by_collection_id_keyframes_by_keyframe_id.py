@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.collection_keyframe_schema import CollectionKeyframeSchema
-from ...models.put_collections_by_collection_id_keyframes_by_keyframe_id_response_default_type_0 import (
-    PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0,
-)
-from ...models.put_collections_by_collection_id_keyframes_by_keyframe_id_response_default_type_1 import (
-    PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1,
+from ...models.put_collections_by_collection_id_keyframes_by_keyframe_id_response_default import (
+    PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault,
 )
 from ...types import Response
 
@@ -44,8 +41,7 @@ def _parse_response(
 ) -> (
     Any
     | CollectionKeyframeSchema
-    | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0
-    | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1
+    | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault
 ):
     if response.status_code == 200:
         response_200 = CollectionKeyframeSchema.from_dict(response.json())
@@ -64,31 +60,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0
-        | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -98,8 +74,7 @@ def _build_response(
 ) -> Response[
     Any
     | CollectionKeyframeSchema
-    | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0
-    | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1
+    | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -118,8 +93,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | CollectionKeyframeSchema
-    | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0
-    | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1
+    | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault
 ]:
     """Update keyframe information
 
@@ -137,7 +111,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CollectionKeyframeSchema | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0 | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1]
+        Response[Any | CollectionKeyframeSchema | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -162,8 +136,7 @@ def sync(
 ) -> (
     Any
     | CollectionKeyframeSchema
-    | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0
-    | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1
+    | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault
     | None
 ):
     """Update keyframe information
@@ -182,7 +155,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CollectionKeyframeSchema | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0 | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1
+        Any | CollectionKeyframeSchema | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault
     """
 
     return sync_detailed(
@@ -202,8 +175,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | CollectionKeyframeSchema
-    | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0
-    | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1
+    | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault
 ]:
     """Update keyframe information
 
@@ -221,7 +193,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CollectionKeyframeSchema | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0 | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1]
+        Response[Any | CollectionKeyframeSchema | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -244,8 +216,7 @@ async def asyncio(
 ) -> (
     Any
     | CollectionKeyframeSchema
-    | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0
-    | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1
+    | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault
     | None
 ):
     """Update keyframe information
@@ -264,7 +235,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CollectionKeyframeSchema | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType0 | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefaultType1
+        Any | CollectionKeyframeSchema | PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault
     """
 
     return (

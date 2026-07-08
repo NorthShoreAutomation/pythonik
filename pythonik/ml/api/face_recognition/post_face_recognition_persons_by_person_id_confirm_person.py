@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.bulk_confirm_person_schema import BulkConfirmPersonSchema
-from ...models.post_face_recognition_persons_by_person_id_confirm_person_response_default_type_0 import (
-    PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType0,
-)
-from ...models.post_face_recognition_persons_by_person_id_confirm_person_response_default_type_1 import (
-    PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType1,
+from ...models.post_face_recognition_persons_by_person_id_confirm_person_response_default import (
+    PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefault,
 )
 from ...types import Response
 
@@ -39,11 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType0
-    | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType1
-):
+) -> Any | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -60,42 +53,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType0
-        | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType0
-    | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType1
-]:
+) -> Response[Any | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -109,11 +78,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: BulkConfirmPersonSchema,
-) -> Response[
-    Any
-    | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType0
-    | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType1
-]:
+) -> Response[Any | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefault]:
     """Confirms multiple person instances in bulk
 
 
@@ -130,7 +95,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType0 | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType1]
+        Response[Any | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -150,12 +115,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: BulkConfirmPersonSchema,
-) -> (
-    Any
-    | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType0
-    | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType1
-    | None
-):
+) -> Any | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefault | None:
     """Confirms multiple person instances in bulk
 
 
@@ -172,7 +132,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType0 | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType1
+        Any | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefault
     """
 
     return sync_detailed(
@@ -187,11 +147,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: BulkConfirmPersonSchema,
-) -> Response[
-    Any
-    | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType0
-    | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType1
-]:
+) -> Response[Any | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefault]:
     """Confirms multiple person instances in bulk
 
 
@@ -208,7 +164,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType0 | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType1]
+        Response[Any | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -226,12 +182,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: BulkConfirmPersonSchema,
-) -> (
-    Any
-    | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType0
-    | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType1
-    | None
-):
+) -> Any | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefault | None:
     """Confirms multiple person instances in bulk
 
 
@@ -248,7 +199,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType0 | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefaultType1
+        Any | PostFaceRecognitionPersonsByPersonIdConfirmPersonResponseDefault
     """
 
     return (

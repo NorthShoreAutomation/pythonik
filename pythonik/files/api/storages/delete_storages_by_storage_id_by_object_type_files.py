@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_storages_by_storage_id_by_object_type_files_response_default_type_0 import (
-    DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType0,
-)
-from ...models.delete_storages_by_storage_id_by_object_type_files_response_default_type_1 import (
-    DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType1,
+from ...models.delete_storages_by_storage_id_by_object_type_files_response_default import (
+    DeleteStoragesByStorageIdByObjectTypeFilesResponseDefault,
 )
 from ...models.storage_files_delete_bulk_schema import StorageFilesDeleteBulkSchema
 from ...types import Response
@@ -41,14 +38,14 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType0
-    | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType1
-):
+) -> Any | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
+
+    if response.status_code == 204:
+        response_204 = cast(Any, None)
+        return response_204
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -62,44 +59,18 @@ def _parse_response(
         response_501 = cast(Any, None)
         return response_501
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType0
-        | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        DeleteStoragesByStorageIdByObjectTypeFilesResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType0
-    | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType1
-]:
+) -> Response[Any | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -114,11 +85,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: StorageFilesDeleteBulkSchema,
-) -> Response[
-    Any
-    | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType0
-    | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType1
-]:
+) -> Response[Any | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefault]:
     """Delete files from a particular storage from multiple objects
 
 
@@ -136,7 +103,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType0 | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType1]
+        Response[Any | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -158,12 +125,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: StorageFilesDeleteBulkSchema,
-) -> (
-    Any
-    | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType0
-    | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType1
-    | None
-):
+) -> Any | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefault | None:
     """Delete files from a particular storage from multiple objects
 
 
@@ -181,7 +143,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType0 | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType1
+        Any | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefault
     """
 
     return sync_detailed(
@@ -198,11 +160,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: StorageFilesDeleteBulkSchema,
-) -> Response[
-    Any
-    | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType0
-    | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType1
-]:
+) -> Response[Any | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefault]:
     """Delete files from a particular storage from multiple objects
 
 
@@ -220,7 +178,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType0 | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType1]
+        Response[Any | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -240,12 +198,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: StorageFilesDeleteBulkSchema,
-) -> (
-    Any
-    | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType0
-    | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType1
-    | None
-):
+) -> Any | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefault | None:
     """Delete files from a particular storage from multiple objects
 
 
@@ -263,7 +216,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType0 | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefaultType1
+        Any | DeleteStoragesByStorageIdByObjectTypeFilesResponseDefault
     """
 
     return (

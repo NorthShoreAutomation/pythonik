@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_projects_by_project_id_members_by_member_id_response_default_type_0 import (
-    DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType0,
-)
-from ...models.delete_projects_by_project_id_members_by_member_id_response_default_type_1 import (
-    DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType1,
+from ...models.delete_projects_by_project_id_members_by_member_id_response_default import (
+    DeleteProjectsByProjectIdMembersByMemberIdResponseDefault,
 )
 from ...types import Response
 
@@ -32,11 +29,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType0
-    | DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType1
-):
+) -> Any | DeleteProjectsByProjectIdMembersByMemberIdResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -53,44 +46,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType0
-        | DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        DeleteProjectsByProjectIdMembersByMemberIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType0
-    | DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteProjectsByProjectIdMembersByMemberIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -104,11 +71,7 @@ def sync_detailed(
     member_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType0
-    | DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteProjectsByProjectIdMembersByMemberIdResponseDefault]:
     """Delete a particular project member by id
 
 
@@ -124,7 +87,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType0 | DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType1]
+        Response[Any | DeleteProjectsByProjectIdMembersByMemberIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -144,12 +107,7 @@ def sync(
     member_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType0
-    | DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteProjectsByProjectIdMembersByMemberIdResponseDefault | None:
     """Delete a particular project member by id
 
 
@@ -165,7 +123,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType0 | DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType1
+        Any | DeleteProjectsByProjectIdMembersByMemberIdResponseDefault
     """
 
     return sync_detailed(
@@ -180,11 +138,7 @@ async def asyncio_detailed(
     member_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType0
-    | DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteProjectsByProjectIdMembersByMemberIdResponseDefault]:
     """Delete a particular project member by id
 
 
@@ -200,7 +154,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType0 | DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType1]
+        Response[Any | DeleteProjectsByProjectIdMembersByMemberIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -218,12 +172,7 @@ async def asyncio(
     member_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType0
-    | DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteProjectsByProjectIdMembersByMemberIdResponseDefault | None:
     """Delete a particular project member by id
 
 
@@ -239,7 +188,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType0 | DeleteProjectsByProjectIdMembersByMemberIdResponseDefaultType1
+        Any | DeleteProjectsByProjectIdMembersByMemberIdResponseDefault
     """
 
     return (

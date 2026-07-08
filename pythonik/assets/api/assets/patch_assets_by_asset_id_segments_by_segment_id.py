@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.edit_segment_schema import EditSegmentSchema
-from ...models.patch_assets_by_asset_id_segments_by_segment_id_response_default_type_0 import (
-    PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0,
-)
-from ...models.patch_assets_by_asset_id_segments_by_segment_id_response_default_type_1 import (
-    PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1,
+from ...models.patch_assets_by_asset_id_segments_by_segment_id_response_default import (
+    PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefault,
 )
 from ...models.segment_schema import SegmentSchema
 from ...types import UNSET, Response, Unset
@@ -21,7 +18,7 @@ def _get_kwargs(
     segment_id: str,
     *,
     body: EditSegmentSchema,
-    generate_subclip_keyframes: bool | Unset = True,
+    generate_subclip_keyframes: bool | Unset = UNSET,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -50,12 +47,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0
-    | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1
-    | SegmentSchema
-):
+) -> Any | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefault | SegmentSchema:
     if response.status_code == 200:
         response_200 = SegmentSchema.from_dict(response.json())
 
@@ -73,33 +65,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0
-        | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -107,10 +75,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0
-    | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1
-    | SegmentSchema
+    Any | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefault | SegmentSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -126,12 +91,9 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: EditSegmentSchema,
-    generate_subclip_keyframes: bool | Unset = True,
+    generate_subclip_keyframes: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0
-    | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1
-    | SegmentSchema
+    Any | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefault | SegmentSchema
 ]:
     """Update segment
 
@@ -142,7 +104,7 @@ def sync_detailed(
     Args:
         asset_id (str):
         segment_id (str):
-        generate_subclip_keyframes (bool | Unset):  Default: True.
+        generate_subclip_keyframes (bool | Unset):
         body (EditSegmentSchema):
 
     Raises:
@@ -150,7 +112,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0 | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1 | SegmentSchema]
+        Response[Any | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefault | SegmentSchema]
     """
 
     kwargs = _get_kwargs(
@@ -173,13 +135,9 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: EditSegmentSchema,
-    generate_subclip_keyframes: bool | Unset = True,
+    generate_subclip_keyframes: bool | Unset = UNSET,
 ) -> (
-    Any
-    | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0
-    | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1
-    | SegmentSchema
-    | None
+    Any | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefault | SegmentSchema | None
 ):
     """Update segment
 
@@ -190,7 +148,7 @@ def sync(
     Args:
         asset_id (str):
         segment_id (str):
-        generate_subclip_keyframes (bool | Unset):  Default: True.
+        generate_subclip_keyframes (bool | Unset):
         body (EditSegmentSchema):
 
     Raises:
@@ -198,7 +156,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0 | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1 | SegmentSchema
+        Any | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefault | SegmentSchema
     """
 
     return sync_detailed(
@@ -216,12 +174,9 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: EditSegmentSchema,
-    generate_subclip_keyframes: bool | Unset = True,
+    generate_subclip_keyframes: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0
-    | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1
-    | SegmentSchema
+    Any | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefault | SegmentSchema
 ]:
     """Update segment
 
@@ -232,7 +187,7 @@ async def asyncio_detailed(
     Args:
         asset_id (str):
         segment_id (str):
-        generate_subclip_keyframes (bool | Unset):  Default: True.
+        generate_subclip_keyframes (bool | Unset):
         body (EditSegmentSchema):
 
     Raises:
@@ -240,7 +195,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0 | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1 | SegmentSchema]
+        Response[Any | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefault | SegmentSchema]
     """
 
     kwargs = _get_kwargs(
@@ -261,13 +216,9 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: EditSegmentSchema,
-    generate_subclip_keyframes: bool | Unset = True,
+    generate_subclip_keyframes: bool | Unset = UNSET,
 ) -> (
-    Any
-    | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0
-    | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1
-    | SegmentSchema
-    | None
+    Any | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefault | SegmentSchema | None
 ):
     """Update segment
 
@@ -278,7 +229,7 @@ async def asyncio(
     Args:
         asset_id (str):
         segment_id (str):
-        generate_subclip_keyframes (bool | Unset):  Default: True.
+        generate_subclip_keyframes (bool | Unset):
         body (EditSegmentSchema):
 
     Raises:
@@ -286,7 +237,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType0 | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefaultType1 | SegmentSchema
+        Any | PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefault | SegmentSchema
     """
 
     return (

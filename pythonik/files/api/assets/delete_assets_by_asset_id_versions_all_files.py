@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_assets_by_asset_id_versions_all_files_response_default_type_0 import (
-    DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType0,
-)
-from ...models.delete_assets_by_asset_id_versions_all_files_response_default_type_1 import (
-    DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType1,
+from ...models.delete_assets_by_asset_id_versions_all_files_response_default import (
+    DeleteAssetsByAssetIdVersionsAllFilesResponseDefault,
 )
 from ...types import Response
 
@@ -30,11 +27,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType1
-):
+) -> Any | DeleteAssetsByAssetIdVersionsAllFilesResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -47,44 +40,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType0
-        | DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteAssetsByAssetIdVersionsAllFilesResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsByAssetIdVersionsAllFilesResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -97,11 +62,7 @@ def sync_detailed(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsByAssetIdVersionsAllFilesResponseDefault]:
     """Delete asset's files entries by version (Not the actual file, use DELETE file_set for that)
 
 
@@ -116,7 +77,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType0 | DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType1]
+        Response[Any | DeleteAssetsByAssetIdVersionsAllFilesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -134,12 +95,7 @@ def sync(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAssetsByAssetIdVersionsAllFilesResponseDefault | None:
     """Delete asset's files entries by version (Not the actual file, use DELETE file_set for that)
 
 
@@ -154,7 +110,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType0 | DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType1
+        Any | DeleteAssetsByAssetIdVersionsAllFilesResponseDefault
     """
 
     return sync_detailed(
@@ -167,11 +123,7 @@ async def asyncio_detailed(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsByAssetIdVersionsAllFilesResponseDefault]:
     """Delete asset's files entries by version (Not the actual file, use DELETE file_set for that)
 
 
@@ -186,7 +138,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType0 | DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType1]
+        Response[Any | DeleteAssetsByAssetIdVersionsAllFilesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -202,12 +154,7 @@ async def asyncio(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAssetsByAssetIdVersionsAllFilesResponseDefault | None:
     """Delete asset's files entries by version (Not the actual file, use DELETE file_set for that)
 
 
@@ -222,7 +169,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType0 | DeleteAssetsByAssetIdVersionsAllFilesResponseDefaultType1
+        Any | DeleteAssetsByAssetIdVersionsAllFilesResponseDefault
     """
 
     return (

@@ -7,11 +7,8 @@ from ...client import AuthenticatedClient, Client
 from ...models.analysis_transcription_settings_schema import (
     AnalysisTranscriptionSettingsSchema,
 )
-from ...models.get_analysis_settings_transcription_default_response_default_type_0 import (
-    GetAnalysisSettingsTranscriptionDefaultResponseDefaultType0,
-)
-from ...models.get_analysis_settings_transcription_default_response_default_type_1 import (
-    GetAnalysisSettingsTranscriptionDefaultResponseDefaultType1,
+from ...models.get_analysis_settings_transcription_default_response_default import (
+    GetAnalysisSettingsTranscriptionDefaultResponseDefault,
 )
 from ...types import Response
 
@@ -31,8 +28,7 @@ def _parse_response(
 ) -> (
     AnalysisTranscriptionSettingsSchema
     | Any
-    | GetAnalysisSettingsTranscriptionDefaultResponseDefaultType0
-    | GetAnalysisSettingsTranscriptionDefaultResponseDefaultType1
+    | GetAnalysisSettingsTranscriptionDefaultResponseDefault
 ):
     if response.status_code == 200:
         response_200 = AnalysisTranscriptionSettingsSchema.from_dict(response.json())
@@ -51,33 +47,9 @@ def _parse_response(
         response_403 = cast(Any, None)
         return response_403
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAnalysisSettingsTranscriptionDefaultResponseDefaultType0
-        | GetAnalysisSettingsTranscriptionDefaultResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetAnalysisSettingsTranscriptionDefaultResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetAnalysisSettingsTranscriptionDefaultResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAnalysisSettingsTranscriptionDefaultResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -87,8 +59,7 @@ def _build_response(
 ) -> Response[
     AnalysisTranscriptionSettingsSchema
     | Any
-    | GetAnalysisSettingsTranscriptionDefaultResponseDefaultType0
-    | GetAnalysisSettingsTranscriptionDefaultResponseDefaultType1
+    | GetAnalysisSettingsTranscriptionDefaultResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -104,8 +75,7 @@ def sync_detailed(
 ) -> Response[
     AnalysisTranscriptionSettingsSchema
     | Any
-    | GetAnalysisSettingsTranscriptionDefaultResponseDefaultType0
-    | GetAnalysisSettingsTranscriptionDefaultResponseDefaultType1
+    | GetAnalysisSettingsTranscriptionDefaultResponseDefault
 ]:
     """Get default analysis settings for transcription
 
@@ -118,7 +88,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[AnalysisTranscriptionSettingsSchema | Any | GetAnalysisSettingsTranscriptionDefaultResponseDefaultType0 | GetAnalysisSettingsTranscriptionDefaultResponseDefaultType1]
+        Response[AnalysisTranscriptionSettingsSchema | Any | GetAnalysisSettingsTranscriptionDefaultResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -136,8 +106,7 @@ def sync(
 ) -> (
     AnalysisTranscriptionSettingsSchema
     | Any
-    | GetAnalysisSettingsTranscriptionDefaultResponseDefaultType0
-    | GetAnalysisSettingsTranscriptionDefaultResponseDefaultType1
+    | GetAnalysisSettingsTranscriptionDefaultResponseDefault
     | None
 ):
     """Get default analysis settings for transcription
@@ -151,7 +120,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        AnalysisTranscriptionSettingsSchema | Any | GetAnalysisSettingsTranscriptionDefaultResponseDefaultType0 | GetAnalysisSettingsTranscriptionDefaultResponseDefaultType1
+        AnalysisTranscriptionSettingsSchema | Any | GetAnalysisSettingsTranscriptionDefaultResponseDefault
     """
 
     return sync_detailed(
@@ -165,8 +134,7 @@ async def asyncio_detailed(
 ) -> Response[
     AnalysisTranscriptionSettingsSchema
     | Any
-    | GetAnalysisSettingsTranscriptionDefaultResponseDefaultType0
-    | GetAnalysisSettingsTranscriptionDefaultResponseDefaultType1
+    | GetAnalysisSettingsTranscriptionDefaultResponseDefault
 ]:
     """Get default analysis settings for transcription
 
@@ -179,7 +147,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[AnalysisTranscriptionSettingsSchema | Any | GetAnalysisSettingsTranscriptionDefaultResponseDefaultType0 | GetAnalysisSettingsTranscriptionDefaultResponseDefaultType1]
+        Response[AnalysisTranscriptionSettingsSchema | Any | GetAnalysisSettingsTranscriptionDefaultResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -195,8 +163,7 @@ async def asyncio(
 ) -> (
     AnalysisTranscriptionSettingsSchema
     | Any
-    | GetAnalysisSettingsTranscriptionDefaultResponseDefaultType0
-    | GetAnalysisSettingsTranscriptionDefaultResponseDefaultType1
+    | GetAnalysisSettingsTranscriptionDefaultResponseDefault
     | None
 ):
     """Get default analysis settings for transcription
@@ -210,7 +177,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        AnalysisTranscriptionSettingsSchema | Any | GetAnalysisSettingsTranscriptionDefaultResponseDefaultType0 | GetAnalysisSettingsTranscriptionDefaultResponseDefaultType1
+        AnalysisTranscriptionSettingsSchema | Any | GetAnalysisSettingsTranscriptionDefaultResponseDefault
     """
 
     return (

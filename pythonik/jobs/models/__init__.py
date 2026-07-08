@@ -5,32 +5,10 @@ from .action_context_value import ActionContextValue
 from .action_context_value_schema import ActionContextValueSchema
 from .base_query_params_schema import BaseQueryParamsSchema
 from .bulk_job_created_schema import BulkJobCreatedSchema
-from .delete_jobs_by_job_id_response_default_type_0 import (
-    DeleteJobsByJobIdResponseDefaultType0,
-)
-from .delete_jobs_by_job_id_response_default_type_1 import (
-    DeleteJobsByJobIdResponseDefaultType1,
-)
-from .delete_jobs_by_job_id_response_default_type_1_errors import (
-    DeleteJobsByJobIdResponseDefaultType1Errors,
-)
-from .delete_jobs_response_default_type_0 import DeleteJobsResponseDefaultType0
-from .delete_jobs_response_default_type_1 import DeleteJobsResponseDefaultType1
-from .delete_jobs_response_default_type_1_errors import (
-    DeleteJobsResponseDefaultType1Errors,
-)
-from .get_jobs_by_job_id_response_default_type_0 import (
-    GetJobsByJobIdResponseDefaultType0,
-)
-from .get_jobs_by_job_id_response_default_type_1 import (
-    GetJobsByJobIdResponseDefaultType1,
-)
-from .get_jobs_by_job_id_response_default_type_1_errors import (
-    GetJobsByJobIdResponseDefaultType1Errors,
-)
-from .get_jobs_response_default_type_0 import GetJobsResponseDefaultType0
-from .get_jobs_response_default_type_1 import GetJobsResponseDefaultType1
-from .get_jobs_response_default_type_1_errors import GetJobsResponseDefaultType1Errors
+from .delete_jobs_by_job_id_response_default import DeleteJobsByJobIdResponseDefault
+from .delete_jobs_response_default import DeleteJobsResponseDefault
+from .get_jobs_by_job_id_response_default import GetJobsByJobIdResponseDefault
+from .get_jobs_response_default import GetJobsResponseDefault
 from .job_base_schema import JobBaseSchema
 from .job_base_schema_children_progress_type_0 import JobBaseSchemaChildrenProgressType0
 from .job_base_schema_job_context_type_0 import JobBaseSchemaJobContextType0
@@ -102,91 +80,27 @@ from .jobs_schema_facets_type_0 import JobsSchemaFacetsType0
 from .jobs_state_schema import JobsStateSchema
 from .jobs_state_schema_action import JobsStateSchemaAction
 from .list_objects_schema import ListObjectsSchema
-from .patch_jobs_by_job_id_response_default_type_0 import (
-    PatchJobsByJobIdResponseDefaultType0,
+from .patch_jobs_by_job_id_response_default import PatchJobsByJobIdResponseDefault
+from .patch_jobs_by_job_id_steps_by_job_step_id_response_default import (
+    PatchJobsByJobIdStepsByJobStepIdResponseDefault,
 )
-from .patch_jobs_by_job_id_response_default_type_1 import (
-    PatchJobsByJobIdResponseDefaultType1,
+from .patch_jobs_by_job_id_steps_response_default import (
+    PatchJobsByJobIdStepsResponseDefault,
 )
-from .patch_jobs_by_job_id_response_default_type_1_errors import (
-    PatchJobsByJobIdResponseDefaultType1Errors,
+from .patch_jobs_response_default import PatchJobsResponseDefault
+from .post_jobs_by_job_id_reindex_response_default import (
+    PostJobsByJobIdReindexResponseDefault,
 )
-from .patch_jobs_by_job_id_steps_by_job_step_id_response_default_type_0 import (
-    PatchJobsByJobIdStepsByJobStepIdResponseDefaultType0,
+from .post_jobs_response_default import PostJobsResponseDefault
+from .put_jobs_by_job_id_response_default import PutJobsByJobIdResponseDefault
+from .put_jobs_by_job_id_steps_by_job_step_id_response_default import (
+    PutJobsByJobIdStepsByJobStepIdResponseDefault,
 )
-from .patch_jobs_by_job_id_steps_by_job_step_id_response_default_type_1 import (
-    PatchJobsByJobIdStepsByJobStepIdResponseDefaultType1,
+from .put_jobs_by_job_id_steps_response_default import (
+    PutJobsByJobIdStepsResponseDefault,
 )
-from .patch_jobs_by_job_id_steps_by_job_step_id_response_default_type_1_errors import (
-    PatchJobsByJobIdStepsByJobStepIdResponseDefaultType1Errors,
-)
-from .patch_jobs_by_job_id_steps_response_default_type_0 import (
-    PatchJobsByJobIdStepsResponseDefaultType0,
-)
-from .patch_jobs_by_job_id_steps_response_default_type_1 import (
-    PatchJobsByJobIdStepsResponseDefaultType1,
-)
-from .patch_jobs_by_job_id_steps_response_default_type_1_errors import (
-    PatchJobsByJobIdStepsResponseDefaultType1Errors,
-)
-from .patch_jobs_response_default_type_0 import PatchJobsResponseDefaultType0
-from .patch_jobs_response_default_type_1 import PatchJobsResponseDefaultType1
-from .patch_jobs_response_default_type_1_errors import (
-    PatchJobsResponseDefaultType1Errors,
-)
-from .post_jobs_by_job_id_reindex_response_default_type_0 import (
-    PostJobsByJobIdReindexResponseDefaultType0,
-)
-from .post_jobs_by_job_id_reindex_response_default_type_1 import (
-    PostJobsByJobIdReindexResponseDefaultType1,
-)
-from .post_jobs_by_job_id_reindex_response_default_type_1_errors import (
-    PostJobsByJobIdReindexResponseDefaultType1Errors,
-)
-from .post_jobs_response_default_type_0 import PostJobsResponseDefaultType0
-from .post_jobs_response_default_type_1 import PostJobsResponseDefaultType1
-from .post_jobs_response_default_type_1_errors import PostJobsResponseDefaultType1Errors
-from .put_jobs_by_job_id_response_default_type_0 import (
-    PutJobsByJobIdResponseDefaultType0,
-)
-from .put_jobs_by_job_id_response_default_type_1 import (
-    PutJobsByJobIdResponseDefaultType1,
-)
-from .put_jobs_by_job_id_response_default_type_1_errors import (
-    PutJobsByJobIdResponseDefaultType1Errors,
-)
-from .put_jobs_by_job_id_steps_by_job_step_id_response_default_type_0 import (
-    PutJobsByJobIdStepsByJobStepIdResponseDefaultType0,
-)
-from .put_jobs_by_job_id_steps_by_job_step_id_response_default_type_1 import (
-    PutJobsByJobIdStepsByJobStepIdResponseDefaultType1,
-)
-from .put_jobs_by_job_id_steps_by_job_step_id_response_default_type_1_errors import (
-    PutJobsByJobIdStepsByJobStepIdResponseDefaultType1Errors,
-)
-from .put_jobs_by_job_id_steps_response_default_type_0 import (
-    PutJobsByJobIdStepsResponseDefaultType0,
-)
-from .put_jobs_by_job_id_steps_response_default_type_1 import (
-    PutJobsByJobIdStepsResponseDefaultType1,
-)
-from .put_jobs_by_job_id_steps_response_default_type_1_errors import (
-    PutJobsByJobIdStepsResponseDefaultType1Errors,
-)
-from .put_jobs_priority_response_default_type_0 import (
-    PutJobsPriorityResponseDefaultType0,
-)
-from .put_jobs_priority_response_default_type_1 import (
-    PutJobsPriorityResponseDefaultType1,
-)
-from .put_jobs_priority_response_default_type_1_errors import (
-    PutJobsPriorityResponseDefaultType1Errors,
-)
-from .put_jobs_state_response_default_type_0 import PutJobsStateResponseDefaultType0
-from .put_jobs_state_response_default_type_1 import PutJobsStateResponseDefaultType1
-from .put_jobs_state_response_default_type_1_errors import (
-    PutJobsStateResponseDefaultType1Errors,
-)
+from .put_jobs_priority_response_default import PutJobsPriorityResponseDefault
+from .put_jobs_state_response_default import PutJobsStateResponseDefault
 from .reindex_job_schema import ReindexJobSchema
 from .related_object import RelatedObject
 from .related_object_schema import RelatedObjectSchema
@@ -197,18 +111,10 @@ __all__ = (
     "ActionContextValueSchema",
     "BaseQueryParamsSchema",
     "BulkJobCreatedSchema",
-    "DeleteJobsByJobIdResponseDefaultType0",
-    "DeleteJobsByJobIdResponseDefaultType1",
-    "DeleteJobsByJobIdResponseDefaultType1Errors",
-    "DeleteJobsResponseDefaultType0",
-    "DeleteJobsResponseDefaultType1",
-    "DeleteJobsResponseDefaultType1Errors",
-    "GetJobsByJobIdResponseDefaultType0",
-    "GetJobsByJobIdResponseDefaultType1",
-    "GetJobsByJobIdResponseDefaultType1Errors",
-    "GetJobsResponseDefaultType0",
-    "GetJobsResponseDefaultType1",
-    "GetJobsResponseDefaultType1Errors",
+    "DeleteJobsByJobIdResponseDefault",
+    "DeleteJobsResponseDefault",
+    "GetJobsByJobIdResponseDefault",
+    "GetJobsResponseDefault",
     "JobBaseSchema",
     "JobBaseSchemaChildrenProgressType0",
     "JobBaseSchemaJobContextType0",
@@ -268,39 +174,17 @@ __all__ = (
     "JobStepUpdateSchema",
     "JobStepUpdateSchemaStatus",
     "ListObjectsSchema",
-    "PatchJobsByJobIdResponseDefaultType0",
-    "PatchJobsByJobIdResponseDefaultType1",
-    "PatchJobsByJobIdResponseDefaultType1Errors",
-    "PatchJobsByJobIdStepsByJobStepIdResponseDefaultType0",
-    "PatchJobsByJobIdStepsByJobStepIdResponseDefaultType1",
-    "PatchJobsByJobIdStepsByJobStepIdResponseDefaultType1Errors",
-    "PatchJobsByJobIdStepsResponseDefaultType0",
-    "PatchJobsByJobIdStepsResponseDefaultType1",
-    "PatchJobsByJobIdStepsResponseDefaultType1Errors",
-    "PatchJobsResponseDefaultType0",
-    "PatchJobsResponseDefaultType1",
-    "PatchJobsResponseDefaultType1Errors",
-    "PostJobsByJobIdReindexResponseDefaultType0",
-    "PostJobsByJobIdReindexResponseDefaultType1",
-    "PostJobsByJobIdReindexResponseDefaultType1Errors",
-    "PostJobsResponseDefaultType0",
-    "PostJobsResponseDefaultType1",
-    "PostJobsResponseDefaultType1Errors",
-    "PutJobsByJobIdResponseDefaultType0",
-    "PutJobsByJobIdResponseDefaultType1",
-    "PutJobsByJobIdResponseDefaultType1Errors",
-    "PutJobsByJobIdStepsByJobStepIdResponseDefaultType0",
-    "PutJobsByJobIdStepsByJobStepIdResponseDefaultType1",
-    "PutJobsByJobIdStepsByJobStepIdResponseDefaultType1Errors",
-    "PutJobsByJobIdStepsResponseDefaultType0",
-    "PutJobsByJobIdStepsResponseDefaultType1",
-    "PutJobsByJobIdStepsResponseDefaultType1Errors",
-    "PutJobsPriorityResponseDefaultType0",
-    "PutJobsPriorityResponseDefaultType1",
-    "PutJobsPriorityResponseDefaultType1Errors",
-    "PutJobsStateResponseDefaultType0",
-    "PutJobsStateResponseDefaultType1",
-    "PutJobsStateResponseDefaultType1Errors",
+    "PatchJobsByJobIdResponseDefault",
+    "PatchJobsByJobIdStepsByJobStepIdResponseDefault",
+    "PatchJobsByJobIdStepsResponseDefault",
+    "PatchJobsResponseDefault",
+    "PostJobsByJobIdReindexResponseDefault",
+    "PostJobsResponseDefault",
+    "PutJobsByJobIdResponseDefault",
+    "PutJobsByJobIdStepsByJobStepIdResponseDefault",
+    "PutJobsByJobIdStepsResponseDefault",
+    "PutJobsPriorityResponseDefault",
+    "PutJobsStateResponseDefault",
     "ReindexJobSchema",
     "RelatedObject",
     "RelatedObjectSchema",

@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.put_transcode_by_transcode_job_id_priority_by_priority_response_default_type_0 import (
-    PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType0,
-)
-from ...models.put_transcode_by_transcode_job_id_priority_by_priority_response_default_type_1 import (
-    PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType1,
+from ...models.put_transcode_by_transcode_job_id_priority_by_priority_response_default import (
+    PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefault,
 )
 from ...types import Response
 
@@ -32,11 +29,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType0
-    | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType1
-):
+) -> Any | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefault:
     if response.status_code == 200:
         response_200 = cast(Any, None)
         return response_200
@@ -53,42 +46,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType0
-        | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType0
-    | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType1
-]:
+) -> Response[Any | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -102,11 +71,7 @@ def sync_detailed(
     priority: int,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType0
-    | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType1
-]:
+) -> Response[Any | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefault]:
     """Change transcode job priority
 
 
@@ -122,7 +87,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType0 | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType1]
+        Response[Any | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -142,12 +107,7 @@ def sync(
     priority: int,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType0
-    | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType1
-    | None
-):
+) -> Any | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefault | None:
     """Change transcode job priority
 
 
@@ -163,7 +123,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType0 | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType1
+        Any | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefault
     """
 
     return sync_detailed(
@@ -178,11 +138,7 @@ async def asyncio_detailed(
     priority: int,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType0
-    | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType1
-]:
+) -> Response[Any | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefault]:
     """Change transcode job priority
 
 
@@ -198,7 +154,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType0 | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType1]
+        Response[Any | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -216,12 +172,7 @@ async def asyncio(
     priority: int,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType0
-    | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType1
-    | None
-):
+) -> Any | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefault | None:
     """Change transcode job priority
 
 
@@ -237,7 +188,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType0 | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefaultType1
+        Any | PutTranscodeByTranscodeJobIdPriorityByPriorityResponseDefault
     """
 
     return (

@@ -7,11 +7,8 @@ import httpx
 from ...client import AuthenticatedClient, Client
 from ...models.asset_post_schema import AssetPostSchema
 from ...models.asset_schema import AssetSchema
-from ...models.post_assets_by_asset_id_views_response_default_type_0 import (
-    PostAssetsByAssetIdViewsResponseDefaultType0,
-)
-from ...models.post_assets_by_asset_id_views_response_default_type_1 import (
-    PostAssetsByAssetIdViewsResponseDefaultType1,
+from ...models.post_assets_by_asset_id_views_response_default import (
+    PostAssetsByAssetIdViewsResponseDefault,
 )
 from ...types import Response
 
@@ -32,13 +29,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | AssetPostSchema
-    | AssetSchema
-    | PostAssetsByAssetIdViewsResponseDefaultType0
-    | PostAssetsByAssetIdViewsResponseDefaultType1
-):
+) -> Any | AssetPostSchema | AssetSchema | PostAssetsByAssetIdViewsResponseDefault:
     if response.status_code == 200:
 
         def _parse_response_200(data: object) -> AssetPostSchema | AssetSchema:
@@ -76,31 +67,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsByAssetIdViewsResponseDefaultType0
-        | PostAssetsByAssetIdViewsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostAssetsByAssetIdViewsResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostAssetsByAssetIdViewsResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostAssetsByAssetIdViewsResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -108,11 +77,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | AssetPostSchema
-    | AssetSchema
-    | PostAssetsByAssetIdViewsResponseDefaultType0
-    | PostAssetsByAssetIdViewsResponseDefaultType1
+    Any | AssetPostSchema | AssetSchema | PostAssetsByAssetIdViewsResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -127,11 +92,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | AssetPostSchema
-    | AssetSchema
-    | PostAssetsByAssetIdViewsResponseDefaultType0
-    | PostAssetsByAssetIdViewsResponseDefaultType1
+    Any | AssetPostSchema | AssetSchema | PostAssetsByAssetIdViewsResponseDefault
 ]:
     """Mark asset as viewed
 
@@ -147,7 +108,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AssetPostSchema | AssetSchema | PostAssetsByAssetIdViewsResponseDefaultType0 | PostAssetsByAssetIdViewsResponseDefaultType1]
+        Response[Any | AssetPostSchema | AssetSchema | PostAssetsByAssetIdViewsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -166,12 +127,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
 ) -> (
-    Any
-    | AssetPostSchema
-    | AssetSchema
-    | PostAssetsByAssetIdViewsResponseDefaultType0
-    | PostAssetsByAssetIdViewsResponseDefaultType1
-    | None
+    Any | AssetPostSchema | AssetSchema | PostAssetsByAssetIdViewsResponseDefault | None
 ):
     """Mark asset as viewed
 
@@ -187,7 +143,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AssetPostSchema | AssetSchema | PostAssetsByAssetIdViewsResponseDefaultType0 | PostAssetsByAssetIdViewsResponseDefaultType1
+        Any | AssetPostSchema | AssetSchema | PostAssetsByAssetIdViewsResponseDefault
     """
 
     return sync_detailed(
@@ -201,11 +157,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | AssetPostSchema
-    | AssetSchema
-    | PostAssetsByAssetIdViewsResponseDefaultType0
-    | PostAssetsByAssetIdViewsResponseDefaultType1
+    Any | AssetPostSchema | AssetSchema | PostAssetsByAssetIdViewsResponseDefault
 ]:
     """Mark asset as viewed
 
@@ -221,7 +173,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AssetPostSchema | AssetSchema | PostAssetsByAssetIdViewsResponseDefaultType0 | PostAssetsByAssetIdViewsResponseDefaultType1]
+        Response[Any | AssetPostSchema | AssetSchema | PostAssetsByAssetIdViewsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -238,12 +190,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
 ) -> (
-    Any
-    | AssetPostSchema
-    | AssetSchema
-    | PostAssetsByAssetIdViewsResponseDefaultType0
-    | PostAssetsByAssetIdViewsResponseDefaultType1
-    | None
+    Any | AssetPostSchema | AssetSchema | PostAssetsByAssetIdViewsResponseDefault | None
 ):
     """Mark asset as viewed
 
@@ -259,7 +206,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AssetPostSchema | AssetSchema | PostAssetsByAssetIdViewsResponseDefaultType0 | PostAssetsByAssetIdViewsResponseDefaultType1
+        Any | AssetPostSchema | AssetSchema | PostAssetsByAssetIdViewsResponseDefault
     """
 
     return (

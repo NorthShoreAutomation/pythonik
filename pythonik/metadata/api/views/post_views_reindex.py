@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_views_reindex_response_default_type_0 import (
-    PostViewsReindexResponseDefaultType0,
-)
-from ...models.post_views_reindex_response_default_type_1 import (
-    PostViewsReindexResponseDefaultType1,
+from ...models.post_views_reindex_response_default import (
+    PostViewsReindexResponseDefault,
 )
 from ...models.reindex_metadata_view_schema import ReindexMetadataViewSchema
 from ...types import Response
@@ -35,7 +32,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Any | PostViewsReindexResponseDefaultType0 | PostViewsReindexResponseDefaultType1:
+) -> Any | PostViewsReindexResponseDefault:
     if response.status_code == 201:
         response_201 = cast(Any, None)
         return response_201
@@ -44,35 +41,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> PostViewsReindexResponseDefaultType0 | PostViewsReindexResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostViewsReindexResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostViewsReindexResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostViewsReindexResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any | PostViewsReindexResponseDefaultType0 | PostViewsReindexResponseDefaultType1
-]:
+) -> Response[Any | PostViewsReindexResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -85,9 +61,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexMetadataViewSchema,
-) -> Response[
-    Any | PostViewsReindexResponseDefaultType0 | PostViewsReindexResponseDefaultType1
-]:
+) -> Response[Any | PostViewsReindexResponseDefault]:
     """Reindex all metadata views for the current domain
 
 
@@ -102,7 +76,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostViewsReindexResponseDefaultType0 | PostViewsReindexResponseDefaultType1]
+        Response[Any | PostViewsReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -120,12 +94,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexMetadataViewSchema,
-) -> (
-    Any
-    | PostViewsReindexResponseDefaultType0
-    | PostViewsReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostViewsReindexResponseDefault | None:
     """Reindex all metadata views for the current domain
 
 
@@ -140,7 +109,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostViewsReindexResponseDefaultType0 | PostViewsReindexResponseDefaultType1
+        Any | PostViewsReindexResponseDefault
     """
 
     return sync_detailed(
@@ -153,9 +122,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexMetadataViewSchema,
-) -> Response[
-    Any | PostViewsReindexResponseDefaultType0 | PostViewsReindexResponseDefaultType1
-]:
+) -> Response[Any | PostViewsReindexResponseDefault]:
     """Reindex all metadata views for the current domain
 
 
@@ -170,7 +137,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostViewsReindexResponseDefaultType0 | PostViewsReindexResponseDefaultType1]
+        Response[Any | PostViewsReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -186,12 +153,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexMetadataViewSchema,
-) -> (
-    Any
-    | PostViewsReindexResponseDefaultType0
-    | PostViewsReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostViewsReindexResponseDefault | None:
     """Reindex all metadata views for the current domain
 
 
@@ -206,7 +168,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostViewsReindexResponseDefaultType0 | PostViewsReindexResponseDefaultType1
+        Any | PostViewsReindexResponseDefault
     """
 
     return (

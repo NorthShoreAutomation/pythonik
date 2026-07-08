@@ -5,11 +5,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.bulk_share_delete_schema import BulkShareDeleteSchema
-from ...models.delete_shares_bulk_all_response_default_type_0 import (
-    DeleteSharesBulkAllResponseDefaultType0,
-)
-from ...models.delete_shares_bulk_all_response_default_type_1 import (
-    DeleteSharesBulkAllResponseDefaultType1,
+from ...models.delete_shares_bulk_all_response_default import (
+    DeleteSharesBulkAllResponseDefault,
 )
 from ...types import Response
 
@@ -35,11 +32,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteSharesBulkAllResponseDefaultType0
-    | DeleteSharesBulkAllResponseDefaultType1
-):
+) -> Any | DeleteSharesBulkAllResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -56,42 +49,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteSharesBulkAllResponseDefaultType0
-        | DeleteSharesBulkAllResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteSharesBulkAllResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = DeleteSharesBulkAllResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteSharesBulkAllResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteSharesBulkAllResponseDefaultType0
-    | DeleteSharesBulkAllResponseDefaultType1
-]:
+) -> Response[Any | DeleteSharesBulkAllResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -104,11 +69,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: BulkShareDeleteSchema,
-) -> Response[
-    Any
-    | DeleteSharesBulkAllResponseDefaultType0
-    | DeleteSharesBulkAllResponseDefaultType1
-]:
+) -> Response[Any | DeleteSharesBulkAllResponseDefault]:
     """Delete multiple shares by ids
 
 
@@ -123,7 +84,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteSharesBulkAllResponseDefaultType0 | DeleteSharesBulkAllResponseDefaultType1]
+        Response[Any | DeleteSharesBulkAllResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -141,12 +102,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: BulkShareDeleteSchema,
-) -> (
-    Any
-    | DeleteSharesBulkAllResponseDefaultType0
-    | DeleteSharesBulkAllResponseDefaultType1
-    | None
-):
+) -> Any | DeleteSharesBulkAllResponseDefault | None:
     """Delete multiple shares by ids
 
 
@@ -161,7 +117,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteSharesBulkAllResponseDefaultType0 | DeleteSharesBulkAllResponseDefaultType1
+        Any | DeleteSharesBulkAllResponseDefault
     """
 
     return sync_detailed(
@@ -174,11 +130,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: BulkShareDeleteSchema,
-) -> Response[
-    Any
-    | DeleteSharesBulkAllResponseDefaultType0
-    | DeleteSharesBulkAllResponseDefaultType1
-]:
+) -> Response[Any | DeleteSharesBulkAllResponseDefault]:
     """Delete multiple shares by ids
 
 
@@ -193,7 +145,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteSharesBulkAllResponseDefaultType0 | DeleteSharesBulkAllResponseDefaultType1]
+        Response[Any | DeleteSharesBulkAllResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -209,12 +161,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: BulkShareDeleteSchema,
-) -> (
-    Any
-    | DeleteSharesBulkAllResponseDefaultType0
-    | DeleteSharesBulkAllResponseDefaultType1
-    | None
-):
+) -> Any | DeleteSharesBulkAllResponseDefault | None:
     """Delete multiple shares by ids
 
 
@@ -229,7 +176,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteSharesBulkAllResponseDefaultType0 | DeleteSharesBulkAllResponseDefaultType1
+        Any | DeleteSharesBulkAllResponseDefault
     """
 
     return (

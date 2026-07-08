@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_search_history_response_default_type_0 import (
-    GetSearchHistoryResponseDefaultType0,
-)
-from ...models.get_search_history_response_default_type_1 import (
-    GetSearchHistoryResponseDefaultType1,
+from ...models.get_search_history_response_default import (
+    GetSearchHistoryResponseDefault,
 )
 from ...models.search_history_list_schema import SearchHistoryListSchema
 from ...types import Response
@@ -26,12 +23,7 @@ def _get_kwargs() -> dict[str, Any]:
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetSearchHistoryResponseDefaultType0
-    | GetSearchHistoryResponseDefaultType1
-    | SearchHistoryListSchema
-):
+) -> Any | GetSearchHistoryResponseDefault | SearchHistoryListSchema:
     if response.status_code == 200:
         response_200 = SearchHistoryListSchema.from_dict(response.json())
 
@@ -45,38 +37,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> GetSearchHistoryResponseDefaultType0 | GetSearchHistoryResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetSearchHistoryResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetSearchHistoryResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetSearchHistoryResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetSearchHistoryResponseDefaultType0
-    | GetSearchHistoryResponseDefaultType1
-    | SearchHistoryListSchema
-]:
+) -> Response[Any | GetSearchHistoryResponseDefault | SearchHistoryListSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -88,12 +56,7 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetSearchHistoryResponseDefaultType0
-    | GetSearchHistoryResponseDefaultType1
-    | SearchHistoryListSchema
-]:
+) -> Response[Any | GetSearchHistoryResponseDefault | SearchHistoryListSchema]:
     """Returns the current search history
 
 
@@ -105,7 +68,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetSearchHistoryResponseDefaultType0 | GetSearchHistoryResponseDefaultType1 | SearchHistoryListSchema]
+        Response[Any | GetSearchHistoryResponseDefault | SearchHistoryListSchema]
     """
 
     kwargs = _get_kwargs()
@@ -120,13 +83,7 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetSearchHistoryResponseDefaultType0
-    | GetSearchHistoryResponseDefaultType1
-    | SearchHistoryListSchema
-    | None
-):
+) -> Any | GetSearchHistoryResponseDefault | SearchHistoryListSchema | None:
     """Returns the current search history
 
 
@@ -138,7 +95,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetSearchHistoryResponseDefaultType0 | GetSearchHistoryResponseDefaultType1 | SearchHistoryListSchema
+        Any | GetSearchHistoryResponseDefault | SearchHistoryListSchema
     """
 
     return sync_detailed(
@@ -149,12 +106,7 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetSearchHistoryResponseDefaultType0
-    | GetSearchHistoryResponseDefaultType1
-    | SearchHistoryListSchema
-]:
+) -> Response[Any | GetSearchHistoryResponseDefault | SearchHistoryListSchema]:
     """Returns the current search history
 
 
@@ -166,7 +118,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetSearchHistoryResponseDefaultType0 | GetSearchHistoryResponseDefaultType1 | SearchHistoryListSchema]
+        Response[Any | GetSearchHistoryResponseDefault | SearchHistoryListSchema]
     """
 
     kwargs = _get_kwargs()
@@ -179,13 +131,7 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetSearchHistoryResponseDefaultType0
-    | GetSearchHistoryResponseDefaultType1
-    | SearchHistoryListSchema
-    | None
-):
+) -> Any | GetSearchHistoryResponseDefault | SearchHistoryListSchema | None:
     """Returns the current search history
 
 
@@ -197,7 +143,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetSearchHistoryResponseDefaultType0 | GetSearchHistoryResponseDefaultType1 | SearchHistoryListSchema
+        Any | GetSearchHistoryResponseDefault | SearchHistoryListSchema
     """
 
     return (

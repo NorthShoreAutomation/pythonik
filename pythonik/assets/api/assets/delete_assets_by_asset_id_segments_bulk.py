@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_assets_by_asset_id_segments_bulk_response_default_type_0 import (
-    DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType0,
-)
-from ...models.delete_assets_by_asset_id_segments_bulk_response_default_type_1 import (
-    DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType1,
+from ...models.delete_assets_by_asset_id_segments_bulk_response_default import (
+    DeleteAssetsByAssetIdSegmentsBulkResponseDefault,
 )
 from ...models.delete_segments_schema import DeleteSegmentsSchema
 from ...types import UNSET, Response, Unset
@@ -19,8 +16,8 @@ def _get_kwargs(
     asset_id: str,
     *,
     body: DeleteSegmentsSchema,
-    immediately: bool | Unset = True,
-    ignore_reindexing: bool | Unset = True,
+    immediately: bool | Unset = UNSET,
+    ignore_reindexing: bool | Unset = UNSET,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -50,11 +47,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType0
-    | DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType1
-):
+) -> Any | DeleteAssetsByAssetIdSegmentsBulkResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -71,42 +64,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType0
-        | DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteAssetsByAssetIdSegmentsBulkResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType0
-    | DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsByAssetIdSegmentsBulkResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -120,13 +87,9 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: DeleteSegmentsSchema,
-    immediately: bool | Unset = True,
-    ignore_reindexing: bool | Unset = True,
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType0
-    | DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType1
-]:
+    immediately: bool | Unset = UNSET,
+    ignore_reindexing: bool | Unset = UNSET,
+) -> Response[Any | DeleteAssetsByAssetIdSegmentsBulkResponseDefault]:
     """Delete segments with either ids or by type
 
 
@@ -135,8 +98,8 @@ def sync_detailed(
 
     Args:
         asset_id (str):
-        immediately (bool | Unset):  Default: True.
-        ignore_reindexing (bool | Unset):  Default: True.
+        immediately (bool | Unset):
+        ignore_reindexing (bool | Unset):
         body (DeleteSegmentsSchema):
 
     Raises:
@@ -144,7 +107,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType0 | DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType1]
+        Response[Any | DeleteAssetsByAssetIdSegmentsBulkResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -166,14 +129,9 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: DeleteSegmentsSchema,
-    immediately: bool | Unset = True,
-    ignore_reindexing: bool | Unset = True,
-) -> (
-    Any
-    | DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType0
-    | DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType1
-    | None
-):
+    immediately: bool | Unset = UNSET,
+    ignore_reindexing: bool | Unset = UNSET,
+) -> Any | DeleteAssetsByAssetIdSegmentsBulkResponseDefault | None:
     """Delete segments with either ids or by type
 
 
@@ -182,8 +140,8 @@ def sync(
 
     Args:
         asset_id (str):
-        immediately (bool | Unset):  Default: True.
-        ignore_reindexing (bool | Unset):  Default: True.
+        immediately (bool | Unset):
+        ignore_reindexing (bool | Unset):
         body (DeleteSegmentsSchema):
 
     Raises:
@@ -191,7 +149,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType0 | DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType1
+        Any | DeleteAssetsByAssetIdSegmentsBulkResponseDefault
     """
 
     return sync_detailed(
@@ -208,13 +166,9 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: DeleteSegmentsSchema,
-    immediately: bool | Unset = True,
-    ignore_reindexing: bool | Unset = True,
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType0
-    | DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType1
-]:
+    immediately: bool | Unset = UNSET,
+    ignore_reindexing: bool | Unset = UNSET,
+) -> Response[Any | DeleteAssetsByAssetIdSegmentsBulkResponseDefault]:
     """Delete segments with either ids or by type
 
 
@@ -223,8 +177,8 @@ async def asyncio_detailed(
 
     Args:
         asset_id (str):
-        immediately (bool | Unset):  Default: True.
-        ignore_reindexing (bool | Unset):  Default: True.
+        immediately (bool | Unset):
+        ignore_reindexing (bool | Unset):
         body (DeleteSegmentsSchema):
 
     Raises:
@@ -232,7 +186,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType0 | DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType1]
+        Response[Any | DeleteAssetsByAssetIdSegmentsBulkResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -252,14 +206,9 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: DeleteSegmentsSchema,
-    immediately: bool | Unset = True,
-    ignore_reindexing: bool | Unset = True,
-) -> (
-    Any
-    | DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType0
-    | DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType1
-    | None
-):
+    immediately: bool | Unset = UNSET,
+    ignore_reindexing: bool | Unset = UNSET,
+) -> Any | DeleteAssetsByAssetIdSegmentsBulkResponseDefault | None:
     """Delete segments with either ids or by type
 
 
@@ -268,8 +217,8 @@ async def asyncio(
 
     Args:
         asset_id (str):
-        immediately (bool | Unset):  Default: True.
-        ignore_reindexing (bool | Unset):  Default: True.
+        immediately (bool | Unset):
+        ignore_reindexing (bool | Unset):
         body (DeleteSegmentsSchema):
 
     Raises:
@@ -277,7 +226,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType0 | DeleteAssetsByAssetIdSegmentsBulkResponseDefaultType1
+        Any | DeleteAssetsByAssetIdSegmentsBulkResponseDefault
     """
 
     return (

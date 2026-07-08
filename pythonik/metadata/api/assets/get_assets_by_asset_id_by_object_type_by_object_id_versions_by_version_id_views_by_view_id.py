@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_assets_by_asset_id_by_object_type_by_object_id_versions_by_version_id_views_by_view_id_response_default_type_0 import (
-    GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType0,
-)
-from ...models.get_assets_by_asset_id_by_object_type_by_object_id_versions_by_version_id_views_by_view_id_response_default_type_1 import (
-    GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType1,
+from ...models.get_assets_by_asset_id_by_object_type_by_object_id_versions_by_version_id_views_by_view_id_response_default import (
+    GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefault,
 )
 from ...models.metadata_values_schema import MetadataValuesSchema
 from ...types import Response
@@ -41,8 +38,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType0
-    | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType1
+    | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefault
     | MetadataValuesSchema
 ):
     if response.status_code == 200:
@@ -62,31 +58,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType0
-        | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -95,8 +69,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType0
-    | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType1
+    | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefault
     | MetadataValuesSchema
 ]:
     return Response(
@@ -117,8 +90,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
 ) -> Response[
     Any
-    | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType0
-    | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType1
+    | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefault
     | MetadataValuesSchema
 ]:
     """Get asset metadata by object type, object ID, version ID and view ID
@@ -139,7 +111,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType0 | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType1 | MetadataValuesSchema]
+        Response[Any | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefault | MetadataValuesSchema]
     """
 
     kwargs = _get_kwargs(
@@ -167,8 +139,7 @@ def sync(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType0
-    | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType1
+    | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefault
     | MetadataValuesSchema
     | None
 ):
@@ -190,7 +161,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType0 | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType1 | MetadataValuesSchema
+        Any | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefault | MetadataValuesSchema
     """
 
     return sync_detailed(
@@ -213,8 +184,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
 ) -> Response[
     Any
-    | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType0
-    | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType1
+    | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefault
     | MetadataValuesSchema
 ]:
     """Get asset metadata by object type, object ID, version ID and view ID
@@ -235,7 +205,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType0 | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType1 | MetadataValuesSchema]
+        Response[Any | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefault | MetadataValuesSchema]
     """
 
     kwargs = _get_kwargs(
@@ -261,8 +231,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType0
-    | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType1
+    | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefault
     | MetadataValuesSchema
     | None
 ):
@@ -284,7 +253,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType0 | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefaultType1 | MetadataValuesSchema
+        Any | GetAssetsByAssetIdByObjectTypeByObjectIdVersionsByVersionIdViewsByViewIdResponseDefault | MetadataValuesSchema
     """
 
     return (

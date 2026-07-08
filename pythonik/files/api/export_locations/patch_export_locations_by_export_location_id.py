@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.export_location_schema import ExportLocationSchema
-from ...models.patch_export_locations_by_export_location_id_response_default_type_0 import (
-    PatchExportLocationsByExportLocationIdResponseDefaultType0,
-)
-from ...models.patch_export_locations_by_export_location_id_response_default_type_1 import (
-    PatchExportLocationsByExportLocationIdResponseDefaultType1,
+from ...models.patch_export_locations_by_export_location_id_response_default import (
+    PatchExportLocationsByExportLocationIdResponseDefault,
 )
 from ...types import Response
 
@@ -39,12 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | ExportLocationSchema
-    | PatchExportLocationsByExportLocationIdResponseDefaultType0
-    | PatchExportLocationsByExportLocationIdResponseDefaultType1
-):
+) -> Any | ExportLocationSchema | PatchExportLocationsByExportLocationIdResponseDefault:
     if response.status_code == 200:
         response_200 = ExportLocationSchema.from_dict(response.json())
 
@@ -58,33 +50,9 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PatchExportLocationsByExportLocationIdResponseDefaultType0
-        | PatchExportLocationsByExportLocationIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PatchExportLocationsByExportLocationIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PatchExportLocationsByExportLocationIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PatchExportLocationsByExportLocationIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -92,10 +60,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | ExportLocationSchema
-    | PatchExportLocationsByExportLocationIdResponseDefaultType0
-    | PatchExportLocationsByExportLocationIdResponseDefaultType1
+    Any | ExportLocationSchema | PatchExportLocationsByExportLocationIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -111,10 +76,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: ExportLocationSchema,
 ) -> Response[
-    Any
-    | ExportLocationSchema
-    | PatchExportLocationsByExportLocationIdResponseDefaultType0
-    | PatchExportLocationsByExportLocationIdResponseDefaultType1
+    Any | ExportLocationSchema | PatchExportLocationsByExportLocationIdResponseDefault
 ]:
     """Update export_location
 
@@ -131,7 +93,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | ExportLocationSchema | PatchExportLocationsByExportLocationIdResponseDefaultType0 | PatchExportLocationsByExportLocationIdResponseDefaultType1]
+        Response[Any | ExportLocationSchema | PatchExportLocationsByExportLocationIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -154,8 +116,7 @@ def sync(
 ) -> (
     Any
     | ExportLocationSchema
-    | PatchExportLocationsByExportLocationIdResponseDefaultType0
-    | PatchExportLocationsByExportLocationIdResponseDefaultType1
+    | PatchExportLocationsByExportLocationIdResponseDefault
     | None
 ):
     """Update export_location
@@ -173,7 +134,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | ExportLocationSchema | PatchExportLocationsByExportLocationIdResponseDefaultType0 | PatchExportLocationsByExportLocationIdResponseDefaultType1
+        Any | ExportLocationSchema | PatchExportLocationsByExportLocationIdResponseDefault
     """
 
     return sync_detailed(
@@ -189,10 +150,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: ExportLocationSchema,
 ) -> Response[
-    Any
-    | ExportLocationSchema
-    | PatchExportLocationsByExportLocationIdResponseDefaultType0
-    | PatchExportLocationsByExportLocationIdResponseDefaultType1
+    Any | ExportLocationSchema | PatchExportLocationsByExportLocationIdResponseDefault
 ]:
     """Update export_location
 
@@ -209,7 +167,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | ExportLocationSchema | PatchExportLocationsByExportLocationIdResponseDefaultType0 | PatchExportLocationsByExportLocationIdResponseDefaultType1]
+        Response[Any | ExportLocationSchema | PatchExportLocationsByExportLocationIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -230,8 +188,7 @@ async def asyncio(
 ) -> (
     Any
     | ExportLocationSchema
-    | PatchExportLocationsByExportLocationIdResponseDefaultType0
-    | PatchExportLocationsByExportLocationIdResponseDefaultType1
+    | PatchExportLocationsByExportLocationIdResponseDefault
     | None
 ):
     """Update export_location
@@ -249,7 +206,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | ExportLocationSchema | PatchExportLocationsByExportLocationIdResponseDefaultType0 | PatchExportLocationsByExportLocationIdResponseDefaultType1
+        Any | ExportLocationSchema | PatchExportLocationsByExportLocationIdResponseDefault
     """
 
     return (

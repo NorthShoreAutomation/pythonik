@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.file_schema import FileSchema
-from ...models.put_assets_by_asset_id_temporary_files_by_file_id_response_default_type_0 import (
-    PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType0,
-)
-from ...models.put_assets_by_asset_id_temporary_files_by_file_id_response_default_type_1 import (
-    PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType1,
+from ...models.put_assets_by_asset_id_temporary_files_by_file_id_response_default import (
+    PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefault,
 )
 from ...types import Response
 
@@ -41,12 +38,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | FileSchema
-    | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType0
-    | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType1
-):
+) -> Any | FileSchema | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefault:
     if response.status_code == 200:
         response_200 = FileSchema.from_dict(response.json())
 
@@ -68,33 +60,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType0
-        | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType1.from_dict(data)
+    response_default = (
+        PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -102,10 +72,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | FileSchema
-    | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType0
-    | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType1
+    Any | FileSchema | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -122,10 +89,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: FileSchema,
 ) -> Response[
-    Any
-    | FileSchema
-    | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType0
-    | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType1
+    Any | FileSchema | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefault
 ]:
     """Update temporary file's info
 
@@ -143,7 +107,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | FileSchema | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType0 | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType1]
+        Response[Any | FileSchema | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -165,13 +129,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: FileSchema,
-) -> (
-    Any
-    | FileSchema
-    | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType0
-    | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType1
-    | None
-):
+) -> Any | FileSchema | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefault | None:
     """Update temporary file's info
 
 
@@ -188,7 +146,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | FileSchema | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType0 | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType1
+        Any | FileSchema | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefault
     """
 
     return sync_detailed(
@@ -206,10 +164,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: FileSchema,
 ) -> Response[
-    Any
-    | FileSchema
-    | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType0
-    | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType1
+    Any | FileSchema | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefault
 ]:
     """Update temporary file's info
 
@@ -227,7 +182,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | FileSchema | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType0 | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType1]
+        Response[Any | FileSchema | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -247,13 +202,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: FileSchema,
-) -> (
-    Any
-    | FileSchema
-    | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType0
-    | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType1
-    | None
-):
+) -> Any | FileSchema | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefault | None:
     """Update temporary file's info
 
 
@@ -270,7 +219,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | FileSchema | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType0 | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefaultType1
+        Any | FileSchema | PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefault
     """
 
     return (

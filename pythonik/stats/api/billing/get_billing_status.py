@@ -5,11 +5,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.billing_stats_schema import BillingStatsSchema
-from ...models.get_billing_status_response_default_type_0 import (
-    GetBillingStatusResponseDefaultType0,
-)
-from ...models.get_billing_status_response_default_type_1 import (
-    GetBillingStatusResponseDefaultType1,
+from ...models.get_billing_status_response_default import (
+    GetBillingStatusResponseDefault,
 )
 from ...types import Response
 
@@ -26,12 +23,7 @@ def _get_kwargs() -> dict[str, Any]:
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | BillingStatsSchema
-    | GetBillingStatusResponseDefaultType0
-    | GetBillingStatusResponseDefaultType1
-):
+) -> Any | BillingStatsSchema | GetBillingStatusResponseDefault:
     if response.status_code == 200:
         response_200 = BillingStatsSchema.from_dict(response.json())
 
@@ -45,38 +37,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> GetBillingStatusResponseDefaultType0 | GetBillingStatusResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetBillingStatusResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetBillingStatusResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetBillingStatusResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | BillingStatsSchema
-    | GetBillingStatusResponseDefaultType0
-    | GetBillingStatusResponseDefaultType1
-]:
+) -> Response[Any | BillingStatsSchema | GetBillingStatusResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -88,12 +56,7 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | BillingStatsSchema
-    | GetBillingStatusResponseDefaultType0
-    | GetBillingStatusResponseDefaultType1
-]:
+) -> Response[Any | BillingStatsSchema | GetBillingStatusResponseDefault]:
     """Returns billing status
 
 
@@ -105,7 +68,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | BillingStatsSchema | GetBillingStatusResponseDefaultType0 | GetBillingStatusResponseDefaultType1]
+        Response[Any | BillingStatsSchema | GetBillingStatusResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -120,13 +83,7 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | BillingStatsSchema
-    | GetBillingStatusResponseDefaultType0
-    | GetBillingStatusResponseDefaultType1
-    | None
-):
+) -> Any | BillingStatsSchema | GetBillingStatusResponseDefault | None:
     """Returns billing status
 
 
@@ -138,7 +95,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | BillingStatsSchema | GetBillingStatusResponseDefaultType0 | GetBillingStatusResponseDefaultType1
+        Any | BillingStatsSchema | GetBillingStatusResponseDefault
     """
 
     return sync_detailed(
@@ -149,12 +106,7 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | BillingStatsSchema
-    | GetBillingStatusResponseDefaultType0
-    | GetBillingStatusResponseDefaultType1
-]:
+) -> Response[Any | BillingStatsSchema | GetBillingStatusResponseDefault]:
     """Returns billing status
 
 
@@ -166,7 +118,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | BillingStatsSchema | GetBillingStatusResponseDefaultType0 | GetBillingStatusResponseDefaultType1]
+        Response[Any | BillingStatsSchema | GetBillingStatusResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -179,13 +131,7 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | BillingStatsSchema
-    | GetBillingStatusResponseDefaultType0
-    | GetBillingStatusResponseDefaultType1
-    | None
-):
+) -> Any | BillingStatsSchema | GetBillingStatusResponseDefault | None:
     """Returns billing status
 
 
@@ -197,7 +143,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | BillingStatsSchema | GetBillingStatusResponseDefaultType0 | GetBillingStatusResponseDefaultType1
+        Any | BillingStatsSchema | GetBillingStatusResponseDefault
     """
 
     return (

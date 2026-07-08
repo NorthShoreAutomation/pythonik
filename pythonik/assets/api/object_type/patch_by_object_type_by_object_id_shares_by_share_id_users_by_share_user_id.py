@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.patch_by_object_type_by_object_id_shares_by_share_id_users_by_share_user_id_response_default_type_0 import (
-    PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType0,
-)
-from ...models.patch_by_object_type_by_object_id_shares_by_share_id_users_by_share_user_id_response_default_type_1 import (
-    PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType1,
+from ...models.patch_by_object_type_by_object_id_shares_by_share_id_users_by_share_user_id_response_default import (
+    PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefault,
 )
 from ...models.share_user_schema import ShareUserSchema
 from ...types import Response
@@ -47,8 +44,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType0
-    | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType1
+    | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefault
     | ShareUserSchema
 ):
     if response.status_code == 200:
@@ -68,31 +64,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType0
-        | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -101,8 +75,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType0
-    | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType1
+    | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefault
     | ShareUserSchema
 ]:
     return Response(
@@ -123,8 +96,7 @@ def sync_detailed(
     body: ShareUserSchema,
 ) -> Response[
     Any
-    | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType0
-    | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType1
+    | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefault
     | ShareUserSchema
 ]:
     """Update share user
@@ -145,7 +117,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType0 | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType1 | ShareUserSchema]
+        Response[Any | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefault | ShareUserSchema]
     """
 
     kwargs = _get_kwargs(
@@ -173,8 +145,7 @@ def sync(
     body: ShareUserSchema,
 ) -> (
     Any
-    | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType0
-    | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType1
+    | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefault
     | ShareUserSchema
     | None
 ):
@@ -196,7 +167,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType0 | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType1 | ShareUserSchema
+        Any | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefault | ShareUserSchema
     """
 
     return sync_detailed(
@@ -219,8 +190,7 @@ async def asyncio_detailed(
     body: ShareUserSchema,
 ) -> Response[
     Any
-    | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType0
-    | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType1
+    | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefault
     | ShareUserSchema
 ]:
     """Update share user
@@ -241,7 +211,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType0 | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType1 | ShareUserSchema]
+        Response[Any | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefault | ShareUserSchema]
     """
 
     kwargs = _get_kwargs(
@@ -267,8 +237,7 @@ async def asyncio(
     body: ShareUserSchema,
 ) -> (
     Any
-    | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType0
-    | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType1
+    | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefault
     | ShareUserSchema
     | None
 ):
@@ -290,7 +259,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType0 | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefaultType1 | ShareUserSchema
+        Any | PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefault | ShareUserSchema
     """
 
     return (

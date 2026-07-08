@@ -8,11 +8,8 @@ from ...client import AuthenticatedClient, Client
 from ...models.get_by_object_type_by_object_id_response_200 import (
     GetByObjectTypeByObjectIdResponse200,
 )
-from ...models.get_by_object_type_by_object_id_response_default_type_0 import (
-    GetByObjectTypeByObjectIdResponseDefaultType0,
-)
-from ...models.get_by_object_type_by_object_id_response_default_type_1 import (
-    GetByObjectTypeByObjectIdResponseDefaultType1,
+from ...models.get_by_object_type_by_object_id_response_default import (
+    GetByObjectTypeByObjectIdResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -22,7 +19,7 @@ def _get_kwargs(
     object_id: str,
     *,
     check_if_subclip: bool | Unset = UNSET,
-    include_values_for_deleted_fields: bool | Unset = False,
+    include_values_for_deleted_fields: bool | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -50,8 +47,7 @@ def _parse_response(
 ) -> (
     Any
     | GetByObjectTypeByObjectIdResponse200
-    | GetByObjectTypeByObjectIdResponseDefaultType0
-    | GetByObjectTypeByObjectIdResponseDefaultType1
+    | GetByObjectTypeByObjectIdResponseDefault
 ):
     if response.status_code == 200:
         response_200 = GetByObjectTypeByObjectIdResponse200.from_dict(response.json())
@@ -70,31 +66,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetByObjectTypeByObjectIdResponseDefaultType0
-        | GetByObjectTypeByObjectIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetByObjectTypeByObjectIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetByObjectTypeByObjectIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetByObjectTypeByObjectIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -104,8 +78,7 @@ def _build_response(
 ) -> Response[
     Any
     | GetByObjectTypeByObjectIdResponse200
-    | GetByObjectTypeByObjectIdResponseDefaultType0
-    | GetByObjectTypeByObjectIdResponseDefaultType1
+    | GetByObjectTypeByObjectIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -121,12 +94,11 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     check_if_subclip: bool | Unset = UNSET,
-    include_values_for_deleted_fields: bool | Unset = False,
+    include_values_for_deleted_fields: bool | Unset = UNSET,
 ) -> Response[
     Any
     | GetByObjectTypeByObjectIdResponse200
-    | GetByObjectTypeByObjectIdResponseDefaultType0
-    | GetByObjectTypeByObjectIdResponseDefaultType1
+    | GetByObjectTypeByObjectIdResponseDefault
 ]:
     """Get object metadata by object type and object ID
 
@@ -134,14 +106,14 @@ def sync_detailed(
         object_type (str):
         object_id (str):
         check_if_subclip (bool | Unset):
-        include_values_for_deleted_fields (bool | Unset):  Default: False.
+        include_values_for_deleted_fields (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetByObjectTypeByObjectIdResponse200 | GetByObjectTypeByObjectIdResponseDefaultType0 | GetByObjectTypeByObjectIdResponseDefaultType1]
+        Response[Any | GetByObjectTypeByObjectIdResponse200 | GetByObjectTypeByObjectIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -164,12 +136,11 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     check_if_subclip: bool | Unset = UNSET,
-    include_values_for_deleted_fields: bool | Unset = False,
+    include_values_for_deleted_fields: bool | Unset = UNSET,
 ) -> (
     Any
     | GetByObjectTypeByObjectIdResponse200
-    | GetByObjectTypeByObjectIdResponseDefaultType0
-    | GetByObjectTypeByObjectIdResponseDefaultType1
+    | GetByObjectTypeByObjectIdResponseDefault
     | None
 ):
     """Get object metadata by object type and object ID
@@ -178,14 +149,14 @@ def sync(
         object_type (str):
         object_id (str):
         check_if_subclip (bool | Unset):
-        include_values_for_deleted_fields (bool | Unset):  Default: False.
+        include_values_for_deleted_fields (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetByObjectTypeByObjectIdResponse200 | GetByObjectTypeByObjectIdResponseDefaultType0 | GetByObjectTypeByObjectIdResponseDefaultType1
+        Any | GetByObjectTypeByObjectIdResponse200 | GetByObjectTypeByObjectIdResponseDefault
     """
 
     return sync_detailed(
@@ -203,12 +174,11 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     check_if_subclip: bool | Unset = UNSET,
-    include_values_for_deleted_fields: bool | Unset = False,
+    include_values_for_deleted_fields: bool | Unset = UNSET,
 ) -> Response[
     Any
     | GetByObjectTypeByObjectIdResponse200
-    | GetByObjectTypeByObjectIdResponseDefaultType0
-    | GetByObjectTypeByObjectIdResponseDefaultType1
+    | GetByObjectTypeByObjectIdResponseDefault
 ]:
     """Get object metadata by object type and object ID
 
@@ -216,14 +186,14 @@ async def asyncio_detailed(
         object_type (str):
         object_id (str):
         check_if_subclip (bool | Unset):
-        include_values_for_deleted_fields (bool | Unset):  Default: False.
+        include_values_for_deleted_fields (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetByObjectTypeByObjectIdResponse200 | GetByObjectTypeByObjectIdResponseDefaultType0 | GetByObjectTypeByObjectIdResponseDefaultType1]
+        Response[Any | GetByObjectTypeByObjectIdResponse200 | GetByObjectTypeByObjectIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -244,12 +214,11 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     check_if_subclip: bool | Unset = UNSET,
-    include_values_for_deleted_fields: bool | Unset = False,
+    include_values_for_deleted_fields: bool | Unset = UNSET,
 ) -> (
     Any
     | GetByObjectTypeByObjectIdResponse200
-    | GetByObjectTypeByObjectIdResponseDefaultType0
-    | GetByObjectTypeByObjectIdResponseDefaultType1
+    | GetByObjectTypeByObjectIdResponseDefault
     | None
 ):
     """Get object metadata by object type and object ID
@@ -258,14 +227,14 @@ async def asyncio(
         object_type (str):
         object_id (str):
         check_if_subclip (bool | Unset):
-        include_values_for_deleted_fields (bool | Unset):  Default: False.
+        include_values_for_deleted_fields (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetByObjectTypeByObjectIdResponse200 | GetByObjectTypeByObjectIdResponseDefaultType0 | GetByObjectTypeByObjectIdResponseDefaultType1
+        Any | GetByObjectTypeByObjectIdResponse200 | GetByObjectTypeByObjectIdResponseDefault
     """
 
     return (

@@ -7,11 +7,8 @@ from ...client import AuthenticatedClient, Client
 from ...models.get_storages_isg_latest_version_response_200 import (
     GetStoragesIsgLatestVersionResponse200,
 )
-from ...models.get_storages_isg_latest_version_response_default_type_0 import (
-    GetStoragesIsgLatestVersionResponseDefaultType0,
-)
-from ...models.get_storages_isg_latest_version_response_default_type_1 import (
-    GetStoragesIsgLatestVersionResponseDefaultType1,
+from ...models.get_storages_isg_latest_version_response_default import (
+    GetStoragesIsgLatestVersionResponseDefault,
 )
 from ...types import Response
 
@@ -31,8 +28,7 @@ def _parse_response(
 ) -> (
     Any
     | GetStoragesIsgLatestVersionResponse200
-    | GetStoragesIsgLatestVersionResponseDefaultType0
-    | GetStoragesIsgLatestVersionResponseDefaultType1
+    | GetStoragesIsgLatestVersionResponseDefault
 ):
     if response.status_code == 200:
         response_200 = GetStoragesIsgLatestVersionResponse200.from_dict(response.json())
@@ -51,31 +47,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetStoragesIsgLatestVersionResponseDefaultType0
-        | GetStoragesIsgLatestVersionResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetStoragesIsgLatestVersionResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetStoragesIsgLatestVersionResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetStoragesIsgLatestVersionResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -85,8 +59,7 @@ def _build_response(
 ) -> Response[
     Any
     | GetStoragesIsgLatestVersionResponse200
-    | GetStoragesIsgLatestVersionResponseDefaultType0
-    | GetStoragesIsgLatestVersionResponseDefaultType1
+    | GetStoragesIsgLatestVersionResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -102,8 +75,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | GetStoragesIsgLatestVersionResponse200
-    | GetStoragesIsgLatestVersionResponseDefaultType0
-    | GetStoragesIsgLatestVersionResponseDefaultType1
+    | GetStoragesIsgLatestVersionResponseDefault
 ]:
     """Get latest ISG version
 
@@ -116,7 +88,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetStoragesIsgLatestVersionResponse200 | GetStoragesIsgLatestVersionResponseDefaultType0 | GetStoragesIsgLatestVersionResponseDefaultType1]
+        Response[Any | GetStoragesIsgLatestVersionResponse200 | GetStoragesIsgLatestVersionResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -134,8 +106,7 @@ def sync(
 ) -> (
     Any
     | GetStoragesIsgLatestVersionResponse200
-    | GetStoragesIsgLatestVersionResponseDefaultType0
-    | GetStoragesIsgLatestVersionResponseDefaultType1
+    | GetStoragesIsgLatestVersionResponseDefault
     | None
 ):
     """Get latest ISG version
@@ -149,7 +120,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetStoragesIsgLatestVersionResponse200 | GetStoragesIsgLatestVersionResponseDefaultType0 | GetStoragesIsgLatestVersionResponseDefaultType1
+        Any | GetStoragesIsgLatestVersionResponse200 | GetStoragesIsgLatestVersionResponseDefault
     """
 
     return sync_detailed(
@@ -163,8 +134,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | GetStoragesIsgLatestVersionResponse200
-    | GetStoragesIsgLatestVersionResponseDefaultType0
-    | GetStoragesIsgLatestVersionResponseDefaultType1
+    | GetStoragesIsgLatestVersionResponseDefault
 ]:
     """Get latest ISG version
 
@@ -177,7 +147,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetStoragesIsgLatestVersionResponse200 | GetStoragesIsgLatestVersionResponseDefaultType0 | GetStoragesIsgLatestVersionResponseDefaultType1]
+        Response[Any | GetStoragesIsgLatestVersionResponse200 | GetStoragesIsgLatestVersionResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -193,8 +163,7 @@ async def asyncio(
 ) -> (
     Any
     | GetStoragesIsgLatestVersionResponse200
-    | GetStoragesIsgLatestVersionResponseDefaultType0
-    | GetStoragesIsgLatestVersionResponseDefaultType1
+    | GetStoragesIsgLatestVersionResponseDefault
     | None
 ):
     """Get latest ISG version
@@ -208,7 +177,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetStoragesIsgLatestVersionResponse200 | GetStoragesIsgLatestVersionResponseDefaultType0 | GetStoragesIsgLatestVersionResponseDefaultType1
+        Any | GetStoragesIsgLatestVersionResponse200 | GetStoragesIsgLatestVersionResponseDefault
     """
 
     return (

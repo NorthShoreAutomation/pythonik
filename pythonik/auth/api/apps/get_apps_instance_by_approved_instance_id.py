@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.external_auth_schema import ExternalAuthSchema
-from ...models.get_apps_instance_by_approved_instance_id_response_default_type_0 import (
-    GetAppsInstanceByApprovedInstanceIdResponseDefaultType0,
-)
-from ...models.get_apps_instance_by_approved_instance_id_response_default_type_1 import (
-    GetAppsInstanceByApprovedInstanceIdResponseDefaultType1,
+from ...models.get_apps_instance_by_approved_instance_id_response_default import (
+    GetAppsInstanceByApprovedInstanceIdResponseDefault,
 )
 from ...types import Response
 
@@ -31,12 +28,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | ExternalAuthSchema
-    | GetAppsInstanceByApprovedInstanceIdResponseDefaultType0
-    | GetAppsInstanceByApprovedInstanceIdResponseDefaultType1
-):
+) -> Any | ExternalAuthSchema | GetAppsInstanceByApprovedInstanceIdResponseDefault:
     if response.status_code == 200:
         response_200 = ExternalAuthSchema.from_dict(response.json())
 
@@ -50,31 +42,9 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAppsInstanceByApprovedInstanceIdResponseDefaultType0
-        | GetAppsInstanceByApprovedInstanceIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetAppsInstanceByApprovedInstanceIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetAppsInstanceByApprovedInstanceIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAppsInstanceByApprovedInstanceIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -82,10 +52,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | ExternalAuthSchema
-    | GetAppsInstanceByApprovedInstanceIdResponseDefaultType0
-    | GetAppsInstanceByApprovedInstanceIdResponseDefaultType1
+    Any | ExternalAuthSchema | GetAppsInstanceByApprovedInstanceIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -100,10 +67,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | ExternalAuthSchema
-    | GetAppsInstanceByApprovedInstanceIdResponseDefaultType0
-    | GetAppsInstanceByApprovedInstanceIdResponseDefaultType1
+    Any | ExternalAuthSchema | GetAppsInstanceByApprovedInstanceIdResponseDefault
 ]:
     """Gets an approved instance of an app
 
@@ -115,7 +79,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | ExternalAuthSchema | GetAppsInstanceByApprovedInstanceIdResponseDefaultType0 | GetAppsInstanceByApprovedInstanceIdResponseDefaultType1]
+        Response[Any | ExternalAuthSchema | GetAppsInstanceByApprovedInstanceIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -134,11 +98,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
 ) -> (
-    Any
-    | ExternalAuthSchema
-    | GetAppsInstanceByApprovedInstanceIdResponseDefaultType0
-    | GetAppsInstanceByApprovedInstanceIdResponseDefaultType1
-    | None
+    Any | ExternalAuthSchema | GetAppsInstanceByApprovedInstanceIdResponseDefault | None
 ):
     """Gets an approved instance of an app
 
@@ -150,7 +110,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | ExternalAuthSchema | GetAppsInstanceByApprovedInstanceIdResponseDefaultType0 | GetAppsInstanceByApprovedInstanceIdResponseDefaultType1
+        Any | ExternalAuthSchema | GetAppsInstanceByApprovedInstanceIdResponseDefault
     """
 
     return sync_detailed(
@@ -164,10 +124,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | ExternalAuthSchema
-    | GetAppsInstanceByApprovedInstanceIdResponseDefaultType0
-    | GetAppsInstanceByApprovedInstanceIdResponseDefaultType1
+    Any | ExternalAuthSchema | GetAppsInstanceByApprovedInstanceIdResponseDefault
 ]:
     """Gets an approved instance of an app
 
@@ -179,7 +136,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | ExternalAuthSchema | GetAppsInstanceByApprovedInstanceIdResponseDefaultType0 | GetAppsInstanceByApprovedInstanceIdResponseDefaultType1]
+        Response[Any | ExternalAuthSchema | GetAppsInstanceByApprovedInstanceIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -196,11 +153,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
 ) -> (
-    Any
-    | ExternalAuthSchema
-    | GetAppsInstanceByApprovedInstanceIdResponseDefaultType0
-    | GetAppsInstanceByApprovedInstanceIdResponseDefaultType1
-    | None
+    Any | ExternalAuthSchema | GetAppsInstanceByApprovedInstanceIdResponseDefault | None
 ):
     """Gets an approved instance of an app
 
@@ -212,7 +165,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | ExternalAuthSchema | GetAppsInstanceByApprovedInstanceIdResponseDefaultType0 | GetAppsInstanceByApprovedInstanceIdResponseDefaultType1
+        Any | ExternalAuthSchema | GetAppsInstanceByApprovedInstanceIdResponseDefault
     """
 
     return (

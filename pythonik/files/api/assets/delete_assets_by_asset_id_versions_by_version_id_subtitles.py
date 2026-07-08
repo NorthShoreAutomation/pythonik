@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_assets_by_asset_id_versions_by_version_id_subtitles_response_default_type_0 import (
-    DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType0,
-)
-from ...models.delete_assets_by_asset_id_versions_by_version_id_subtitles_response_default_type_1 import (
-    DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType1,
+from ...models.delete_assets_by_asset_id_versions_by_version_id_subtitles_response_default import (
+    DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefault,
 )
 from ...types import Response
 
@@ -32,11 +29,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType1
-):
+) -> Any | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -49,42 +42,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType0
-        | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -98,11 +67,7 @@ def sync_detailed(
     version_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefault]:
     """Delete asset's subtitles by version
 
 
@@ -118,7 +83,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType0 | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType1]
+        Response[Any | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -138,12 +103,7 @@ def sync(
     version_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefault | None:
     """Delete asset's subtitles by version
 
 
@@ -159,7 +119,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType0 | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType1
+        Any | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefault
     """
 
     return sync_detailed(
@@ -174,11 +134,7 @@ async def asyncio_detailed(
     version_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefault]:
     """Delete asset's subtitles by version
 
 
@@ -194,7 +150,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType0 | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType1]
+        Response[Any | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -212,12 +168,7 @@ async def asyncio(
     version_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefault | None:
     """Delete asset's subtitles by version
 
 
@@ -233,7 +184,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType0 | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefaultType1
+        Any | DeleteAssetsByAssetIdVersionsByVersionIdSubtitlesResponseDefault
     """
 
     return (

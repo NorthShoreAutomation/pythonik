@@ -9,11 +9,8 @@ from ...models.custom_action_callback_reply_schema import (
     CustomActionCallbackReplySchema,
 )
 from ...models.custom_action_callback_schema import CustomActionCallbackSchema
-from ...models.post_custom_actions_shared_by_context_by_action_id_callback_response_default_type_0 import (
-    PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType0,
-)
-from ...models.post_custom_actions_shared_by_context_by_action_id_callback_response_default_type_1 import (
-    PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType1,
+from ...models.post_custom_actions_shared_by_context_by_action_id_callback_response_default import (
+    PostCustomActionsSharedByContextByActionIdCallbackResponseDefault,
 )
 from ...types import Response
 
@@ -47,8 +44,7 @@ def _parse_response(
 ) -> (
     Any
     | CustomActionCallbackReplySchema
-    | PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType0
-    | PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType1
+    | PostCustomActionsSharedByContextByActionIdCallbackResponseDefault
 ):
     if response.status_code == 200:
         response_200 = CustomActionCallbackReplySchema.from_dict(response.json())
@@ -67,31 +63,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType0
-        | PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        PostCustomActionsSharedByContextByActionIdCallbackResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -101,8 +77,7 @@ def _build_response(
 ) -> Response[
     Any
     | CustomActionCallbackReplySchema
-    | PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType0
-    | PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType1
+    | PostCustomActionsSharedByContextByActionIdCallbackResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -121,8 +96,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | CustomActionCallbackReplySchema
-    | PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType0
-    | PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType1
+    | PostCustomActionsSharedByContextByActionIdCallbackResponseDefault
 ]:
     """Schedules a celery task that will call custom action on shares
 
@@ -140,7 +114,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CustomActionCallbackReplySchema | PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType0 | PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType1]
+        Response[Any | CustomActionCallbackReplySchema | PostCustomActionsSharedByContextByActionIdCallbackResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -165,8 +139,7 @@ def sync(
 ) -> (
     Any
     | CustomActionCallbackReplySchema
-    | PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType0
-    | PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType1
+    | PostCustomActionsSharedByContextByActionIdCallbackResponseDefault
     | None
 ):
     """Schedules a celery task that will call custom action on shares
@@ -185,7 +158,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CustomActionCallbackReplySchema | PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType0 | PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType1
+        Any | CustomActionCallbackReplySchema | PostCustomActionsSharedByContextByActionIdCallbackResponseDefault
     """
 
     return sync_detailed(
@@ -205,8 +178,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | CustomActionCallbackReplySchema
-    | PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType0
-    | PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType1
+    | PostCustomActionsSharedByContextByActionIdCallbackResponseDefault
 ]:
     """Schedules a celery task that will call custom action on shares
 
@@ -224,7 +196,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CustomActionCallbackReplySchema | PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType0 | PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType1]
+        Response[Any | CustomActionCallbackReplySchema | PostCustomActionsSharedByContextByActionIdCallbackResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -247,8 +219,7 @@ async def asyncio(
 ) -> (
     Any
     | CustomActionCallbackReplySchema
-    | PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType0
-    | PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType1
+    | PostCustomActionsSharedByContextByActionIdCallbackResponseDefault
     | None
 ):
     """Schedules a celery task that will call custom action on shares
@@ -267,7 +238,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CustomActionCallbackReplySchema | PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType0 | PostCustomActionsSharedByContextByActionIdCallbackResponseDefaultType1
+        Any | CustomActionCallbackReplySchema | PostCustomActionsSharedByContextByActionIdCallbackResponseDefault
     """
 
     return (

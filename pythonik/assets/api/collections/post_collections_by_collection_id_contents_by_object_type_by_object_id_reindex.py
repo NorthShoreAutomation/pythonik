@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_collections_by_collection_id_contents_by_object_type_by_object_id_reindex_response_default_type_0 import (
-    PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType0,
-)
-from ...models.post_collections_by_collection_id_contents_by_object_type_by_object_id_reindex_response_default_type_1 import (
-    PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType1,
+from ...models.post_collections_by_collection_id_contents_by_object_type_by_object_id_reindex_response_default import (
+    PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefault,
 )
 from ...models.reindex_collection_content_schema import ReindexCollectionContentSchema
 from ...types import Response
@@ -45,8 +42,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType0
-    | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType1
+    | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefault
 ):
     if response.status_code == 201:
         response_201 = cast(Any, None)
@@ -60,31 +56,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType0
-        | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -93,8 +67,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType0
-    | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType1
+    | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -113,8 +86,7 @@ def sync_detailed(
     body: ReindexCollectionContentSchema,
 ) -> Response[
     Any
-    | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType0
-    | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType1
+    | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefault
 ]:
     """Reindex collection content
 
@@ -133,7 +105,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType0 | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType1]
+        Response[Any | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -159,8 +131,7 @@ def sync(
     body: ReindexCollectionContentSchema,
 ) -> (
     Any
-    | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType0
-    | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType1
+    | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefault
     | None
 ):
     """Reindex collection content
@@ -180,7 +151,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType0 | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType1
+        Any | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefault
     """
 
     return sync_detailed(
@@ -201,8 +172,7 @@ async def asyncio_detailed(
     body: ReindexCollectionContentSchema,
 ) -> Response[
     Any
-    | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType0
-    | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType1
+    | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefault
 ]:
     """Reindex collection content
 
@@ -221,7 +191,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType0 | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType1]
+        Response[Any | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -245,8 +215,7 @@ async def asyncio(
     body: ReindexCollectionContentSchema,
 ) -> (
     Any
-    | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType0
-    | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType1
+    | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefault
     | None
 ):
     """Reindex collection content
@@ -266,7 +235,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType0 | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefaultType1
+        Any | PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefault
     """
 
     return (

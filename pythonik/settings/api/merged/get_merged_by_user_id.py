@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_merged_by_user_id_response_default_type_0 import (
-    GetMergedByUserIdResponseDefaultType0,
-)
-from ...models.get_merged_by_user_id_response_default_type_1 import (
-    GetMergedByUserIdResponseDefaultType1,
+from ...models.get_merged_by_user_id_response_default import (
+    GetMergedByUserIdResponseDefault,
 )
 from ...models.merged_settings_schema import MergedSettingsSchema
 from ...types import UNSET, Response, Unset
@@ -18,7 +15,7 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     user_id: str,
     *,
-    ignore_logo_url: bool | Unset = False,
+    ignore_logo_url: bool | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -40,12 +37,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetMergedByUserIdResponseDefaultType0
-    | GetMergedByUserIdResponseDefaultType1
-    | MergedSettingsSchema
-):
+) -> Any | GetMergedByUserIdResponseDefault | MergedSettingsSchema:
     if response.status_code == 200:
         response_200 = MergedSettingsSchema.from_dict(response.json())
 
@@ -63,38 +55,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> GetMergedByUserIdResponseDefaultType0 | GetMergedByUserIdResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetMergedByUserIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetMergedByUserIdResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetMergedByUserIdResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetMergedByUserIdResponseDefaultType0
-    | GetMergedByUserIdResponseDefaultType1
-    | MergedSettingsSchema
-]:
+) -> Response[Any | GetMergedByUserIdResponseDefault | MergedSettingsSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -107,25 +75,20 @@ def sync_detailed(
     user_id: str,
     *,
     client: AuthenticatedClient | Client,
-    ignore_logo_url: bool | Unset = False,
-) -> Response[
-    Any
-    | GetMergedByUserIdResponseDefaultType0
-    | GetMergedByUserIdResponseDefaultType1
-    | MergedSettingsSchema
-]:
+    ignore_logo_url: bool | Unset = UNSET,
+) -> Response[Any | GetMergedByUserIdResponseDefault | MergedSettingsSchema]:
     """Get merged settings for a specific user
 
     Args:
         user_id (str):
-        ignore_logo_url (bool | Unset):  Default: False.
+        ignore_logo_url (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetMergedByUserIdResponseDefaultType0 | GetMergedByUserIdResponseDefaultType1 | MergedSettingsSchema]
+        Response[Any | GetMergedByUserIdResponseDefault | MergedSettingsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -144,26 +107,20 @@ def sync(
     user_id: str,
     *,
     client: AuthenticatedClient | Client,
-    ignore_logo_url: bool | Unset = False,
-) -> (
-    Any
-    | GetMergedByUserIdResponseDefaultType0
-    | GetMergedByUserIdResponseDefaultType1
-    | MergedSettingsSchema
-    | None
-):
+    ignore_logo_url: bool | Unset = UNSET,
+) -> Any | GetMergedByUserIdResponseDefault | MergedSettingsSchema | None:
     """Get merged settings for a specific user
 
     Args:
         user_id (str):
-        ignore_logo_url (bool | Unset):  Default: False.
+        ignore_logo_url (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetMergedByUserIdResponseDefaultType0 | GetMergedByUserIdResponseDefaultType1 | MergedSettingsSchema
+        Any | GetMergedByUserIdResponseDefault | MergedSettingsSchema
     """
 
     return sync_detailed(
@@ -177,25 +134,20 @@ async def asyncio_detailed(
     user_id: str,
     *,
     client: AuthenticatedClient | Client,
-    ignore_logo_url: bool | Unset = False,
-) -> Response[
-    Any
-    | GetMergedByUserIdResponseDefaultType0
-    | GetMergedByUserIdResponseDefaultType1
-    | MergedSettingsSchema
-]:
+    ignore_logo_url: bool | Unset = UNSET,
+) -> Response[Any | GetMergedByUserIdResponseDefault | MergedSettingsSchema]:
     """Get merged settings for a specific user
 
     Args:
         user_id (str):
-        ignore_logo_url (bool | Unset):  Default: False.
+        ignore_logo_url (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetMergedByUserIdResponseDefaultType0 | GetMergedByUserIdResponseDefaultType1 | MergedSettingsSchema]
+        Response[Any | GetMergedByUserIdResponseDefault | MergedSettingsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -212,26 +164,20 @@ async def asyncio(
     user_id: str,
     *,
     client: AuthenticatedClient | Client,
-    ignore_logo_url: bool | Unset = False,
-) -> (
-    Any
-    | GetMergedByUserIdResponseDefaultType0
-    | GetMergedByUserIdResponseDefaultType1
-    | MergedSettingsSchema
-    | None
-):
+    ignore_logo_url: bool | Unset = UNSET,
+) -> Any | GetMergedByUserIdResponseDefault | MergedSettingsSchema | None:
     """Get merged settings for a specific user
 
     Args:
         user_id (str):
-        ignore_logo_url (bool | Unset):  Default: False.
+        ignore_logo_url (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetMergedByUserIdResponseDefaultType0 | GetMergedByUserIdResponseDefaultType1 | MergedSettingsSchema
+        Any | GetMergedByUserIdResponseDefault | MergedSettingsSchema
     """
 
     return (

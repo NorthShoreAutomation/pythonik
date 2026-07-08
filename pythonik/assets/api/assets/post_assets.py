@@ -9,18 +9,17 @@ from ...models.asset_create_schema import AssetCreateSchema
 from ...models.asset_post_create import AssetPostCreate
 from ...models.asset_post_schema import AssetPostSchema
 from ...models.asset_schema import AssetSchema
-from ...models.post_assets_response_default_type_0 import PostAssetsResponseDefaultType0
-from ...models.post_assets_response_default_type_1 import PostAssetsResponseDefaultType1
+from ...models.post_assets_response_default import PostAssetsResponseDefault
 from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     *,
     body: AssetCreateSchema | AssetPostCreate,
-    apply_default_acls: bool | Unset = True,
-    apply_collection_acls: bool | Unset = False,
-    assign_to_collection: bool | Unset = False,
-    generate_subclip_keyframes: bool | Unset = True,
+    apply_default_acls: bool | Unset = UNSET,
+    apply_collection_acls: bool | Unset = UNSET,
+    assign_to_collection: bool | Unset = UNSET,
+    generate_subclip_keyframes: bool | Unset = UNSET,
     apply_acl_template_id: UUID | Unset = UNSET,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
@@ -61,13 +60,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | AssetPostSchema
-    | AssetSchema
-    | PostAssetsResponseDefaultType0
-    | PostAssetsResponseDefaultType1
-):
+) -> Any | AssetPostSchema | AssetSchema | PostAssetsResponseDefault:
     if response.status_code == 201:
 
         def _parse_response_201(data: object) -> AssetPostSchema | AssetSchema:
@@ -105,37 +98,14 @@ def _parse_response(
         response_403 = cast(Any, None)
         return response_403
 
-    def _parse_response_default(
-        data: object,
-    ) -> PostAssetsResponseDefaultType0 | PostAssetsResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostAssetsResponseDefaultType0.from_dict(data)
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostAssetsResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostAssetsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | AssetPostSchema
-    | AssetSchema
-    | PostAssetsResponseDefaultType0
-    | PostAssetsResponseDefaultType1
-]:
+) -> Response[Any | AssetPostSchema | AssetSchema | PostAssetsResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -148,18 +118,12 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: AssetCreateSchema | AssetPostCreate,
-    apply_default_acls: bool | Unset = True,
-    apply_collection_acls: bool | Unset = False,
-    assign_to_collection: bool | Unset = False,
-    generate_subclip_keyframes: bool | Unset = True,
+    apply_default_acls: bool | Unset = UNSET,
+    apply_collection_acls: bool | Unset = UNSET,
+    assign_to_collection: bool | Unset = UNSET,
+    generate_subclip_keyframes: bool | Unset = UNSET,
     apply_acl_template_id: UUID | Unset = UNSET,
-) -> Response[
-    Any
-    | AssetPostSchema
-    | AssetSchema
-    | PostAssetsResponseDefaultType0
-    | PostAssetsResponseDefaultType1
-]:
+) -> Response[Any | AssetPostSchema | AssetSchema | PostAssetsResponseDefault]:
     """Create a new asset
 
 
@@ -167,10 +131,10 @@ def sync_detailed(
      - can_create_assets
 
     Args:
-        apply_default_acls (bool | Unset):  Default: True.
-        apply_collection_acls (bool | Unset):  Default: False.
-        assign_to_collection (bool | Unset):  Default: False.
-        generate_subclip_keyframes (bool | Unset):  Default: True.
+        apply_default_acls (bool | Unset):
+        apply_collection_acls (bool | Unset):
+        assign_to_collection (bool | Unset):
+        generate_subclip_keyframes (bool | Unset):
         apply_acl_template_id (UUID | Unset):
         body (AssetCreateSchema | AssetPostCreate):
 
@@ -179,7 +143,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AssetPostSchema | AssetSchema | PostAssetsResponseDefaultType0 | PostAssetsResponseDefaultType1]
+        Response[Any | AssetPostSchema | AssetSchema | PostAssetsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -202,19 +166,12 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: AssetCreateSchema | AssetPostCreate,
-    apply_default_acls: bool | Unset = True,
-    apply_collection_acls: bool | Unset = False,
-    assign_to_collection: bool | Unset = False,
-    generate_subclip_keyframes: bool | Unset = True,
+    apply_default_acls: bool | Unset = UNSET,
+    apply_collection_acls: bool | Unset = UNSET,
+    assign_to_collection: bool | Unset = UNSET,
+    generate_subclip_keyframes: bool | Unset = UNSET,
     apply_acl_template_id: UUID | Unset = UNSET,
-) -> (
-    Any
-    | AssetPostSchema
-    | AssetSchema
-    | PostAssetsResponseDefaultType0
-    | PostAssetsResponseDefaultType1
-    | None
-):
+) -> Any | AssetPostSchema | AssetSchema | PostAssetsResponseDefault | None:
     """Create a new asset
 
 
@@ -222,10 +179,10 @@ def sync(
      - can_create_assets
 
     Args:
-        apply_default_acls (bool | Unset):  Default: True.
-        apply_collection_acls (bool | Unset):  Default: False.
-        assign_to_collection (bool | Unset):  Default: False.
-        generate_subclip_keyframes (bool | Unset):  Default: True.
+        apply_default_acls (bool | Unset):
+        apply_collection_acls (bool | Unset):
+        assign_to_collection (bool | Unset):
+        generate_subclip_keyframes (bool | Unset):
         apply_acl_template_id (UUID | Unset):
         body (AssetCreateSchema | AssetPostCreate):
 
@@ -234,7 +191,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AssetPostSchema | AssetSchema | PostAssetsResponseDefaultType0 | PostAssetsResponseDefaultType1
+        Any | AssetPostSchema | AssetSchema | PostAssetsResponseDefault
     """
 
     return sync_detailed(
@@ -252,18 +209,12 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: AssetCreateSchema | AssetPostCreate,
-    apply_default_acls: bool | Unset = True,
-    apply_collection_acls: bool | Unset = False,
-    assign_to_collection: bool | Unset = False,
-    generate_subclip_keyframes: bool | Unset = True,
+    apply_default_acls: bool | Unset = UNSET,
+    apply_collection_acls: bool | Unset = UNSET,
+    assign_to_collection: bool | Unset = UNSET,
+    generate_subclip_keyframes: bool | Unset = UNSET,
     apply_acl_template_id: UUID | Unset = UNSET,
-) -> Response[
-    Any
-    | AssetPostSchema
-    | AssetSchema
-    | PostAssetsResponseDefaultType0
-    | PostAssetsResponseDefaultType1
-]:
+) -> Response[Any | AssetPostSchema | AssetSchema | PostAssetsResponseDefault]:
     """Create a new asset
 
 
@@ -271,10 +222,10 @@ async def asyncio_detailed(
      - can_create_assets
 
     Args:
-        apply_default_acls (bool | Unset):  Default: True.
-        apply_collection_acls (bool | Unset):  Default: False.
-        assign_to_collection (bool | Unset):  Default: False.
-        generate_subclip_keyframes (bool | Unset):  Default: True.
+        apply_default_acls (bool | Unset):
+        apply_collection_acls (bool | Unset):
+        assign_to_collection (bool | Unset):
+        generate_subclip_keyframes (bool | Unset):
         apply_acl_template_id (UUID | Unset):
         body (AssetCreateSchema | AssetPostCreate):
 
@@ -283,7 +234,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AssetPostSchema | AssetSchema | PostAssetsResponseDefaultType0 | PostAssetsResponseDefaultType1]
+        Response[Any | AssetPostSchema | AssetSchema | PostAssetsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -304,19 +255,12 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: AssetCreateSchema | AssetPostCreate,
-    apply_default_acls: bool | Unset = True,
-    apply_collection_acls: bool | Unset = False,
-    assign_to_collection: bool | Unset = False,
-    generate_subclip_keyframes: bool | Unset = True,
+    apply_default_acls: bool | Unset = UNSET,
+    apply_collection_acls: bool | Unset = UNSET,
+    assign_to_collection: bool | Unset = UNSET,
+    generate_subclip_keyframes: bool | Unset = UNSET,
     apply_acl_template_id: UUID | Unset = UNSET,
-) -> (
-    Any
-    | AssetPostSchema
-    | AssetSchema
-    | PostAssetsResponseDefaultType0
-    | PostAssetsResponseDefaultType1
-    | None
-):
+) -> Any | AssetPostSchema | AssetSchema | PostAssetsResponseDefault | None:
     """Create a new asset
 
 
@@ -324,10 +268,10 @@ async def asyncio(
      - can_create_assets
 
     Args:
-        apply_default_acls (bool | Unset):  Default: True.
-        apply_collection_acls (bool | Unset):  Default: False.
-        assign_to_collection (bool | Unset):  Default: False.
-        generate_subclip_keyframes (bool | Unset):  Default: True.
+        apply_default_acls (bool | Unset):
+        apply_collection_acls (bool | Unset):
+        assign_to_collection (bool | Unset):
+        generate_subclip_keyframes (bool | Unset):
         apply_acl_template_id (UUID | Unset):
         body (AssetCreateSchema | AssetPostCreate):
 
@@ -336,7 +280,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AssetPostSchema | AssetSchema | PostAssetsResponseDefaultType0 | PostAssetsResponseDefaultType1
+        Any | AssetPostSchema | AssetSchema | PostAssetsResponseDefault
     """
 
     return (

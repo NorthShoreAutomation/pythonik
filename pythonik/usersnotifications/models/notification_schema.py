@@ -27,7 +27,7 @@ class NotificationSchema:
         event_type (str):
         message_long (str):
         message_short (str):
-        object_id (UUID):
+        object_id (None | UUID):
         object_type (str):
         recipient_id (UUID):
         sender_id (UUID):
@@ -48,7 +48,7 @@ class NotificationSchema:
     event_type: str
     message_long: str
     message_short: str
-    object_id: UUID
+    object_id: None | UUID
     object_type: str
     recipient_id: UUID
     sender_id: UUID
@@ -77,7 +77,11 @@ class NotificationSchema:
 
         message_short = self.message_short
 
-        object_id = str(self.object_id)
+        object_id: None | str
+        if isinstance(self.object_id, UUID):
+            object_id = str(self.object_id)
+        else:
+            object_id = self.object_id
 
         object_type = self.object_type
 
@@ -236,7 +240,20 @@ class NotificationSchema:
 
         message_short = d.pop("message_short")
 
-        object_id = UUID(d.pop("object_id"))
+        def _parse_object_id(data: object) -> None | UUID:
+            if data is None:
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                object_id_type_0 = UUID(data)
+
+                return object_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | UUID, data)
+
+        object_id = _parse_object_id(d.pop("object_id"))
 
         object_type = d.pop("object_type")
 

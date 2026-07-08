@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_users_by_user_id_roles_response_default_type_0 import (
-    GetUsersByUserIdRolesResponseDefaultType0,
-)
-from ...models.get_users_by_user_id_roles_response_default_type_1 import (
-    GetUsersByUserIdRolesResponseDefaultType1,
+from ...models.get_users_by_user_id_roles_response_default import (
+    GetUsersByUserIdRolesResponseDefault,
 )
 from ...models.user_roles_schema import UserRolesSchema
 from ...types import Response
@@ -31,12 +28,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetUsersByUserIdRolesResponseDefaultType0
-    | GetUsersByUserIdRolesResponseDefaultType1
-    | UserRolesSchema
-):
+) -> Any | GetUsersByUserIdRolesResponseDefault | UserRolesSchema:
     if response.status_code == 200:
         response_200 = UserRolesSchema.from_dict(response.json())
 
@@ -50,43 +42,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetUsersByUserIdRolesResponseDefaultType0
-        | GetUsersByUserIdRolesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetUsersByUserIdRolesResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetUsersByUserIdRolesResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetUsersByUserIdRolesResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetUsersByUserIdRolesResponseDefaultType0
-    | GetUsersByUserIdRolesResponseDefaultType1
-    | UserRolesSchema
-]:
+) -> Response[Any | GetUsersByUserIdRolesResponseDefault | UserRolesSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -99,12 +62,7 @@ def sync_detailed(
     user_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetUsersByUserIdRolesResponseDefaultType0
-    | GetUsersByUserIdRolesResponseDefaultType1
-    | UserRolesSchema
-]:
+) -> Response[Any | GetUsersByUserIdRolesResponseDefault | UserRolesSchema]:
     """Returns user roles by user_id
 
 
@@ -119,7 +77,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetUsersByUserIdRolesResponseDefaultType0 | GetUsersByUserIdRolesResponseDefaultType1 | UserRolesSchema]
+        Response[Any | GetUsersByUserIdRolesResponseDefault | UserRolesSchema]
     """
 
     kwargs = _get_kwargs(
@@ -137,13 +95,7 @@ def sync(
     user_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetUsersByUserIdRolesResponseDefaultType0
-    | GetUsersByUserIdRolesResponseDefaultType1
-    | UserRolesSchema
-    | None
-):
+) -> Any | GetUsersByUserIdRolesResponseDefault | UserRolesSchema | None:
     """Returns user roles by user_id
 
 
@@ -158,7 +110,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetUsersByUserIdRolesResponseDefaultType0 | GetUsersByUserIdRolesResponseDefaultType1 | UserRolesSchema
+        Any | GetUsersByUserIdRolesResponseDefault | UserRolesSchema
     """
 
     return sync_detailed(
@@ -171,12 +123,7 @@ async def asyncio_detailed(
     user_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetUsersByUserIdRolesResponseDefaultType0
-    | GetUsersByUserIdRolesResponseDefaultType1
-    | UserRolesSchema
-]:
+) -> Response[Any | GetUsersByUserIdRolesResponseDefault | UserRolesSchema]:
     """Returns user roles by user_id
 
 
@@ -191,7 +138,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetUsersByUserIdRolesResponseDefaultType0 | GetUsersByUserIdRolesResponseDefaultType1 | UserRolesSchema]
+        Response[Any | GetUsersByUserIdRolesResponseDefault | UserRolesSchema]
     """
 
     kwargs = _get_kwargs(
@@ -207,13 +154,7 @@ async def asyncio(
     user_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetUsersByUserIdRolesResponseDefaultType0
-    | GetUsersByUserIdRolesResponseDefaultType1
-    | UserRolesSchema
-    | None
-):
+) -> Any | GetUsersByUserIdRolesResponseDefault | UserRolesSchema | None:
     """Returns user roles by user_id
 
 
@@ -228,7 +169,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetUsersByUserIdRolesResponseDefaultType0 | GetUsersByUserIdRolesResponseDefaultType1 | UserRolesSchema
+        Any | GetUsersByUserIdRolesResponseDefault | UserRolesSchema
     """
 
     return (

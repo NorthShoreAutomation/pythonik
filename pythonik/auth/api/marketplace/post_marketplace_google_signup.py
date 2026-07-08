@@ -5,11 +5,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.marketplace_google_signup_schema import MarketplaceGoogleSignupSchema
-from ...models.post_marketplace_google_signup_response_default_type_0 import (
-    PostMarketplaceGoogleSignupResponseDefaultType0,
-)
-from ...models.post_marketplace_google_signup_response_default_type_1 import (
-    PostMarketplaceGoogleSignupResponseDefaultType1,
+from ...models.post_marketplace_google_signup_response_default import (
+    PostMarketplaceGoogleSignupResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -36,11 +33,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostMarketplaceGoogleSignupResponseDefaultType0
-    | PostMarketplaceGoogleSignupResponseDefaultType1
-):
+) -> Any | PostMarketplaceGoogleSignupResponseDefault:
     if response.status_code == 302:
         response_302 = cast(Any, None)
         return response_302
@@ -49,42 +42,16 @@ def _parse_response(
         response_400 = cast(Any, None)
         return response_400
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostMarketplaceGoogleSignupResponseDefaultType0
-        | PostMarketplaceGoogleSignupResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostMarketplaceGoogleSignupResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostMarketplaceGoogleSignupResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostMarketplaceGoogleSignupResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostMarketplaceGoogleSignupResponseDefaultType0
-    | PostMarketplaceGoogleSignupResponseDefaultType1
-]:
+) -> Response[Any | PostMarketplaceGoogleSignupResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -97,11 +64,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: MarketplaceGoogleSignupSchema | Unset = UNSET,
-) -> Response[
-    Any
-    | PostMarketplaceGoogleSignupResponseDefaultType0
-    | PostMarketplaceGoogleSignupResponseDefaultType1
-]:
+) -> Response[Any | PostMarketplaceGoogleSignupResponseDefault]:
     """Google cloud marketplace signup
 
     Args:
@@ -112,7 +75,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostMarketplaceGoogleSignupResponseDefaultType0 | PostMarketplaceGoogleSignupResponseDefaultType1]
+        Response[Any | PostMarketplaceGoogleSignupResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -130,12 +93,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: MarketplaceGoogleSignupSchema | Unset = UNSET,
-) -> (
-    Any
-    | PostMarketplaceGoogleSignupResponseDefaultType0
-    | PostMarketplaceGoogleSignupResponseDefaultType1
-    | None
-):
+) -> Any | PostMarketplaceGoogleSignupResponseDefault | None:
     """Google cloud marketplace signup
 
     Args:
@@ -146,7 +104,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostMarketplaceGoogleSignupResponseDefaultType0 | PostMarketplaceGoogleSignupResponseDefaultType1
+        Any | PostMarketplaceGoogleSignupResponseDefault
     """
 
     return sync_detailed(
@@ -159,11 +117,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: MarketplaceGoogleSignupSchema | Unset = UNSET,
-) -> Response[
-    Any
-    | PostMarketplaceGoogleSignupResponseDefaultType0
-    | PostMarketplaceGoogleSignupResponseDefaultType1
-]:
+) -> Response[Any | PostMarketplaceGoogleSignupResponseDefault]:
     """Google cloud marketplace signup
 
     Args:
@@ -174,7 +128,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostMarketplaceGoogleSignupResponseDefaultType0 | PostMarketplaceGoogleSignupResponseDefaultType1]
+        Response[Any | PostMarketplaceGoogleSignupResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -190,12 +144,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: MarketplaceGoogleSignupSchema | Unset = UNSET,
-) -> (
-    Any
-    | PostMarketplaceGoogleSignupResponseDefaultType0
-    | PostMarketplaceGoogleSignupResponseDefaultType1
-    | None
-):
+) -> Any | PostMarketplaceGoogleSignupResponseDefault | None:
     """Google cloud marketplace signup
 
     Args:
@@ -206,7 +155,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostMarketplaceGoogleSignupResponseDefaultType0 | PostMarketplaceGoogleSignupResponseDefaultType1
+        Any | PostMarketplaceGoogleSignupResponseDefault
     """
 
     return (

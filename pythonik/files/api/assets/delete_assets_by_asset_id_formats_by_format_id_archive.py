@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_assets_by_asset_id_formats_by_format_id_archive_response_default_type_0 import (
-    DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0,
-)
-from ...models.delete_assets_by_asset_id_formats_by_format_id_archive_response_default_type_1 import (
-    DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1,
+from ...models.delete_assets_by_asset_id_formats_by_format_id_archive_response_default import (
+    DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault,
 )
 from ...models.format_delete_archive_schema import FormatDeleteArchiveSchema
 from ...types import Response
@@ -41,14 +38,14 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0
-    | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1
-):
+) -> Any | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
+
+    if response.status_code == 204:
+        response_204 = cast(Any, None)
+        return response_204
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -62,44 +59,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0
-        | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0
-    | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -114,11 +85,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: FormatDeleteArchiveSchema,
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0
-    | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault]:
     """Delete archived format
 
 
@@ -135,7 +102,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0 | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1]
+        Response[Any | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -157,12 +124,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: FormatDeleteArchiveSchema,
-) -> (
-    Any
-    | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0
-    | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault | None:
     """Delete archived format
 
 
@@ -179,7 +141,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0 | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1
+        Any | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault
     """
 
     return sync_detailed(
@@ -196,11 +158,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: FormatDeleteArchiveSchema,
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0
-    | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault]:
     """Delete archived format
 
 
@@ -217,7 +175,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0 | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1]
+        Response[Any | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -237,12 +195,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: FormatDeleteArchiveSchema,
-) -> (
-    Any
-    | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0
-    | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault | None:
     """Delete archived format
 
 
@@ -259,7 +212,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType0 | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefaultType1
+        Any | DeleteAssetsByAssetIdFormatsByFormatIdArchiveResponseDefault
     """
 
     return (

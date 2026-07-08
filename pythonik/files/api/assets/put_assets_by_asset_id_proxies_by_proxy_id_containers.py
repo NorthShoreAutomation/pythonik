@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.proxy_container_schema import ProxyContainerSchema
-from ...models.put_assets_by_asset_id_proxies_by_proxy_id_containers_response_default_type_0 import (
-    PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType0,
-)
-from ...models.put_assets_by_asset_id_proxies_by_proxy_id_containers_response_default_type_1 import (
-    PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType1,
+from ...models.put_assets_by_asset_id_proxies_by_proxy_id_containers_response_default import (
+    PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -51,8 +48,7 @@ def _parse_response(
 ) -> (
     Any
     | ProxyContainerSchema
-    | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType0
-    | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType1
+    | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefault
 ):
     if response.status_code == 201:
         response_201 = ProxyContainerSchema.from_dict(response.json())
@@ -75,33 +71,11 @@ def _parse_response(
         response_425 = cast(Any, None)
         return response_425
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType0
-        | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -111,8 +85,7 @@ def _build_response(
 ) -> Response[
     Any
     | ProxyContainerSchema
-    | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType0
-    | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType1
+    | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -133,8 +106,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | ProxyContainerSchema
-    | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType0
-    | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType1
+    | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefault
 ]:
     """Create Proxy container.
 
@@ -154,7 +126,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | ProxyContainerSchema | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType0 | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType1]
+        Response[Any | ProxyContainerSchema | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -183,8 +155,7 @@ def sync(
 ) -> (
     Any
     | ProxyContainerSchema
-    | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType0
-    | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType1
+    | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefault
     | None
 ):
     """Create Proxy container.
@@ -205,7 +176,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | ProxyContainerSchema | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType0 | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType1
+        Any | ProxyContainerSchema | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefault
     """
 
     return sync_detailed(
@@ -229,8 +200,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | ProxyContainerSchema
-    | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType0
-    | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType1
+    | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefault
 ]:
     """Create Proxy container.
 
@@ -250,7 +220,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | ProxyContainerSchema | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType0 | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType1]
+        Response[Any | ProxyContainerSchema | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -277,8 +247,7 @@ async def asyncio(
 ) -> (
     Any
     | ProxyContainerSchema
-    | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType0
-    | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType1
+    | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefault
     | None
 ):
     """Create Proxy container.
@@ -299,7 +268,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | ProxyContainerSchema | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType0 | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefaultType1
+        Any | ProxyContainerSchema | PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefault
     """
 
     return (

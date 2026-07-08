@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_apps_by_app_id_response_default_type_0 import (
-    DeleteAppsByAppIdResponseDefaultType0,
-)
-from ...models.delete_apps_by_app_id_response_default_type_1 import (
-    DeleteAppsByAppIdResponseDefaultType1,
+from ...models.delete_apps_by_app_id_response_default import (
+    DeleteAppsByAppIdResponseDefault,
 )
 from ...types import Response
 
@@ -30,9 +27,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any | DeleteAppsByAppIdResponseDefaultType0 | DeleteAppsByAppIdResponseDefaultType1
-):
+) -> Any | DeleteAppsByAppIdResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -45,35 +40,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> DeleteAppsByAppIdResponseDefaultType0 | DeleteAppsByAppIdResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteAppsByAppIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = DeleteAppsByAppIdResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteAppsByAppIdResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any | DeleteAppsByAppIdResponseDefaultType0 | DeleteAppsByAppIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteAppsByAppIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -86,9 +60,7 @@ def sync_detailed(
     app_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any | DeleteAppsByAppIdResponseDefaultType0 | DeleteAppsByAppIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteAppsByAppIdResponseDefault]:
     """Delete a particular app by id
 
 
@@ -103,7 +75,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAppsByAppIdResponseDefaultType0 | DeleteAppsByAppIdResponseDefaultType1]
+        Response[Any | DeleteAppsByAppIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -121,12 +93,7 @@ def sync(
     app_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteAppsByAppIdResponseDefaultType0
-    | DeleteAppsByAppIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAppsByAppIdResponseDefault | None:
     """Delete a particular app by id
 
 
@@ -141,7 +108,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAppsByAppIdResponseDefaultType0 | DeleteAppsByAppIdResponseDefaultType1
+        Any | DeleteAppsByAppIdResponseDefault
     """
 
     return sync_detailed(
@@ -154,9 +121,7 @@ async def asyncio_detailed(
     app_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any | DeleteAppsByAppIdResponseDefaultType0 | DeleteAppsByAppIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteAppsByAppIdResponseDefault]:
     """Delete a particular app by id
 
 
@@ -171,7 +136,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAppsByAppIdResponseDefaultType0 | DeleteAppsByAppIdResponseDefaultType1]
+        Response[Any | DeleteAppsByAppIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -187,12 +152,7 @@ async def asyncio(
     app_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteAppsByAppIdResponseDefaultType0
-    | DeleteAppsByAppIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAppsByAppIdResponseDefault | None:
     """Delete a particular app by id
 
 
@@ -207,7 +167,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAppsByAppIdResponseDefaultType0 | DeleteAppsByAppIdResponseDefaultType1
+        Any | DeleteAppsByAppIdResponseDefault
     """
 
     return (

@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_referral_codes_response_default_type_0 import (
-    PostReferralCodesResponseDefaultType0,
-)
-from ...models.post_referral_codes_response_default_type_1 import (
-    PostReferralCodesResponseDefaultType1,
+from ...models.post_referral_codes_response_default import (
+    PostReferralCodesResponseDefault,
 )
 from ...models.referral_code_schema import ReferralCodeSchema
 from ...types import Response
@@ -35,12 +32,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostReferralCodesResponseDefaultType0
-    | PostReferralCodesResponseDefaultType1
-    | ReferralCodeSchema
-):
+) -> Any | PostReferralCodesResponseDefault | ReferralCodeSchema:
     if response.status_code == 201:
         response_201 = ReferralCodeSchema.from_dict(response.json())
 
@@ -58,38 +50,14 @@ def _parse_response(
         response_409 = cast(Any, None)
         return response_409
 
-    def _parse_response_default(
-        data: object,
-    ) -> PostReferralCodesResponseDefaultType0 | PostReferralCodesResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostReferralCodesResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostReferralCodesResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostReferralCodesResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostReferralCodesResponseDefaultType0
-    | PostReferralCodesResponseDefaultType1
-    | ReferralCodeSchema
-]:
+) -> Response[Any | PostReferralCodesResponseDefault | ReferralCodeSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -102,12 +70,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: ReferralCodeSchema,
-) -> Response[
-    Any
-    | PostReferralCodesResponseDefaultType0
-    | PostReferralCodesResponseDefaultType1
-    | ReferralCodeSchema
-]:
+) -> Response[Any | PostReferralCodesResponseDefault | ReferralCodeSchema]:
     """Create a new referral_code
 
     Args:
@@ -118,7 +81,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostReferralCodesResponseDefaultType0 | PostReferralCodesResponseDefaultType1 | ReferralCodeSchema]
+        Response[Any | PostReferralCodesResponseDefault | ReferralCodeSchema]
     """
 
     kwargs = _get_kwargs(
@@ -136,13 +99,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: ReferralCodeSchema,
-) -> (
-    Any
-    | PostReferralCodesResponseDefaultType0
-    | PostReferralCodesResponseDefaultType1
-    | ReferralCodeSchema
-    | None
-):
+) -> Any | PostReferralCodesResponseDefault | ReferralCodeSchema | None:
     """Create a new referral_code
 
     Args:
@@ -153,7 +110,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostReferralCodesResponseDefaultType0 | PostReferralCodesResponseDefaultType1 | ReferralCodeSchema
+        Any | PostReferralCodesResponseDefault | ReferralCodeSchema
     """
 
     return sync_detailed(
@@ -166,12 +123,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: ReferralCodeSchema,
-) -> Response[
-    Any
-    | PostReferralCodesResponseDefaultType0
-    | PostReferralCodesResponseDefaultType1
-    | ReferralCodeSchema
-]:
+) -> Response[Any | PostReferralCodesResponseDefault | ReferralCodeSchema]:
     """Create a new referral_code
 
     Args:
@@ -182,7 +134,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostReferralCodesResponseDefaultType0 | PostReferralCodesResponseDefaultType1 | ReferralCodeSchema]
+        Response[Any | PostReferralCodesResponseDefault | ReferralCodeSchema]
     """
 
     kwargs = _get_kwargs(
@@ -198,13 +150,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: ReferralCodeSchema,
-) -> (
-    Any
-    | PostReferralCodesResponseDefaultType0
-    | PostReferralCodesResponseDefaultType1
-    | ReferralCodeSchema
-    | None
-):
+) -> Any | PostReferralCodesResponseDefault | ReferralCodeSchema | None:
     """Create a new referral_code
 
     Args:
@@ -215,7 +161,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostReferralCodesResponseDefaultType0 | PostReferralCodesResponseDefaultType1 | ReferralCodeSchema
+        Any | PostReferralCodesResponseDefault | ReferralCodeSchema
     """
 
     return (

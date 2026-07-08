@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_assets_by_asset_id_segments_response_default_type_0 import (
-    PostAssetsByAssetIdSegmentsResponseDefaultType0,
-)
-from ...models.post_assets_by_asset_id_segments_response_default_type_1 import (
-    PostAssetsByAssetIdSegmentsResponseDefaultType1,
+from ...models.post_assets_by_asset_id_segments_response_default import (
+    PostAssetsByAssetIdSegmentsResponseDefault,
 )
 from ...models.segment_schema import SegmentSchema
 from ...types import UNSET, Response, Unset
@@ -42,12 +39,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostAssetsByAssetIdSegmentsResponseDefaultType0
-    | PostAssetsByAssetIdSegmentsResponseDefaultType1
-    | SegmentSchema
-):
+) -> Any | PostAssetsByAssetIdSegmentsResponseDefault | SegmentSchema:
     if response.status_code == 201:
         response_201 = SegmentSchema.from_dict(response.json())
 
@@ -61,43 +53,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsByAssetIdSegmentsResponseDefaultType0
-        | PostAssetsByAssetIdSegmentsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostAssetsByAssetIdSegmentsResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostAssetsByAssetIdSegmentsResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostAssetsByAssetIdSegmentsResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostAssetsByAssetIdSegmentsResponseDefaultType0
-    | PostAssetsByAssetIdSegmentsResponseDefaultType1
-    | SegmentSchema
-]:
+) -> Response[Any | PostAssetsByAssetIdSegmentsResponseDefault | SegmentSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -112,12 +77,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: SegmentSchema,
     share_user_email: str | Unset = UNSET,
-) -> Response[
-    Any
-    | PostAssetsByAssetIdSegmentsResponseDefaultType0
-    | PostAssetsByAssetIdSegmentsResponseDefaultType1
-    | SegmentSchema
-]:
+) -> Response[Any | PostAssetsByAssetIdSegmentsResponseDefault | SegmentSchema]:
     """Create a new segment
 
 
@@ -134,7 +94,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdSegmentsResponseDefaultType0 | PostAssetsByAssetIdSegmentsResponseDefaultType1 | SegmentSchema]
+        Response[Any | PostAssetsByAssetIdSegmentsResponseDefault | SegmentSchema]
     """
 
     kwargs = _get_kwargs(
@@ -156,13 +116,7 @@ def sync(
     client: AuthenticatedClient | Client,
     body: SegmentSchema,
     share_user_email: str | Unset = UNSET,
-) -> (
-    Any
-    | PostAssetsByAssetIdSegmentsResponseDefaultType0
-    | PostAssetsByAssetIdSegmentsResponseDefaultType1
-    | SegmentSchema
-    | None
-):
+) -> Any | PostAssetsByAssetIdSegmentsResponseDefault | SegmentSchema | None:
     """Create a new segment
 
 
@@ -179,7 +133,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdSegmentsResponseDefaultType0 | PostAssetsByAssetIdSegmentsResponseDefaultType1 | SegmentSchema
+        Any | PostAssetsByAssetIdSegmentsResponseDefault | SegmentSchema
     """
 
     return sync_detailed(
@@ -196,12 +150,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: SegmentSchema,
     share_user_email: str | Unset = UNSET,
-) -> Response[
-    Any
-    | PostAssetsByAssetIdSegmentsResponseDefaultType0
-    | PostAssetsByAssetIdSegmentsResponseDefaultType1
-    | SegmentSchema
-]:
+) -> Response[Any | PostAssetsByAssetIdSegmentsResponseDefault | SegmentSchema]:
     """Create a new segment
 
 
@@ -218,7 +167,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdSegmentsResponseDefaultType0 | PostAssetsByAssetIdSegmentsResponseDefaultType1 | SegmentSchema]
+        Response[Any | PostAssetsByAssetIdSegmentsResponseDefault | SegmentSchema]
     """
 
     kwargs = _get_kwargs(
@@ -238,13 +187,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     body: SegmentSchema,
     share_user_email: str | Unset = UNSET,
-) -> (
-    Any
-    | PostAssetsByAssetIdSegmentsResponseDefaultType0
-    | PostAssetsByAssetIdSegmentsResponseDefaultType1
-    | SegmentSchema
-    | None
-):
+) -> Any | PostAssetsByAssetIdSegmentsResponseDefault | SegmentSchema | None:
     """Create a new segment
 
 
@@ -261,7 +204,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdSegmentsResponseDefaultType0 | PostAssetsByAssetIdSegmentsResponseDefaultType1 | SegmentSchema
+        Any | PostAssetsByAssetIdSegmentsResponseDefault | SegmentSchema
     """
 
     return (

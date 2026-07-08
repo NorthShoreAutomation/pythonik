@@ -7,11 +7,8 @@ from ...client import AuthenticatedClient, Client
 from ...models.bulk_archive_saved_search_request_schema import (
     BulkArchiveSavedSearchRequestSchema,
 )
-from ...models.post_saved_searches_bulk_archive_response_default_type_0 import (
-    PostSavedSearchesBulkArchiveResponseDefaultType0,
-)
-from ...models.post_saved_searches_bulk_archive_response_default_type_1 import (
-    PostSavedSearchesBulkArchiveResponseDefaultType1,
+from ...models.post_saved_searches_bulk_archive_response_default import (
+    PostSavedSearchesBulkArchiveResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -45,11 +42,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostSavedSearchesBulkArchiveResponseDefaultType0
-    | PostSavedSearchesBulkArchiveResponseDefaultType1
-):
+) -> Any | PostSavedSearchesBulkArchiveResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -74,42 +67,16 @@ def _parse_response(
         response_409 = cast(Any, None)
         return response_409
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostSavedSearchesBulkArchiveResponseDefaultType0
-        | PostSavedSearchesBulkArchiveResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostSavedSearchesBulkArchiveResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostSavedSearchesBulkArchiveResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostSavedSearchesBulkArchiveResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostSavedSearchesBulkArchiveResponseDefaultType0
-    | PostSavedSearchesBulkArchiveResponseDefaultType1
-]:
+) -> Response[Any | PostSavedSearchesBulkArchiveResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -123,11 +90,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: BulkArchiveSavedSearchRequestSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | PostSavedSearchesBulkArchiveResponseDefaultType0
-    | PostSavedSearchesBulkArchiveResponseDefaultType1
-]:
+) -> Response[Any | PostSavedSearchesBulkArchiveResponseDefault]:
     """Transfer multiple objects.
 
 
@@ -143,7 +106,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSavedSearchesBulkArchiveResponseDefaultType0 | PostSavedSearchesBulkArchiveResponseDefaultType1]
+        Response[Any | PostSavedSearchesBulkArchiveResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -163,12 +126,7 @@ def sync(
     client: AuthenticatedClient | Client,
     body: BulkArchiveSavedSearchRequestSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> (
-    Any
-    | PostSavedSearchesBulkArchiveResponseDefaultType0
-    | PostSavedSearchesBulkArchiveResponseDefaultType1
-    | None
-):
+) -> Any | PostSavedSearchesBulkArchiveResponseDefault | None:
     """Transfer multiple objects.
 
 
@@ -184,7 +142,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSavedSearchesBulkArchiveResponseDefaultType0 | PostSavedSearchesBulkArchiveResponseDefaultType1
+        Any | PostSavedSearchesBulkArchiveResponseDefault
     """
 
     return sync_detailed(
@@ -199,11 +157,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: BulkArchiveSavedSearchRequestSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | PostSavedSearchesBulkArchiveResponseDefaultType0
-    | PostSavedSearchesBulkArchiveResponseDefaultType1
-]:
+) -> Response[Any | PostSavedSearchesBulkArchiveResponseDefault]:
     """Transfer multiple objects.
 
 
@@ -219,7 +173,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSavedSearchesBulkArchiveResponseDefaultType0 | PostSavedSearchesBulkArchiveResponseDefaultType1]
+        Response[Any | PostSavedSearchesBulkArchiveResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -237,12 +191,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     body: BulkArchiveSavedSearchRequestSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> (
-    Any
-    | PostSavedSearchesBulkArchiveResponseDefaultType0
-    | PostSavedSearchesBulkArchiveResponseDefaultType1
-    | None
-):
+) -> Any | PostSavedSearchesBulkArchiveResponseDefault | None:
     """Transfer multiple objects.
 
 
@@ -258,7 +207,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSavedSearchesBulkArchiveResponseDefaultType0 | PostSavedSearchesBulkArchiveResponseDefaultType1
+        Any | PostSavedSearchesBulkArchiveResponseDefault
     """
 
     return (

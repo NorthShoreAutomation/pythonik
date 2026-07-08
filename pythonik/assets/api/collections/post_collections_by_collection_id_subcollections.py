@@ -7,11 +7,8 @@ import httpx
 from ...client import AuthenticatedClient, Client
 from ...models.collection_content_schema import CollectionContentSchema
 from ...models.collection_schema import CollectionSchema
-from ...models.post_collections_by_collection_id_subcollections_response_default_type_0 import (
-    PostCollectionsByCollectionIdSubcollectionsResponseDefaultType0,
-)
-from ...models.post_collections_by_collection_id_subcollections_response_default_type_1 import (
-    PostCollectionsByCollectionIdSubcollectionsResponseDefaultType1,
+from ...models.post_collections_by_collection_id_subcollections_response_default import (
+    PostCollectionsByCollectionIdSubcollectionsResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -52,10 +49,7 @@ def _get_kwargs(
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
-    Any
-    | CollectionSchema
-    | PostCollectionsByCollectionIdSubcollectionsResponseDefaultType0
-    | PostCollectionsByCollectionIdSubcollectionsResponseDefaultType1
+    Any | CollectionSchema | PostCollectionsByCollectionIdSubcollectionsResponseDefault
 ):
     if response.status_code == 201:
         response_201 = CollectionSchema.from_dict(response.json())
@@ -74,33 +68,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostCollectionsByCollectionIdSubcollectionsResponseDefaultType0
-        | PostCollectionsByCollectionIdSubcollectionsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostCollectionsByCollectionIdSubcollectionsResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostCollectionsByCollectionIdSubcollectionsResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PostCollectionsByCollectionIdSubcollectionsResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -108,10 +80,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | CollectionSchema
-    | PostCollectionsByCollectionIdSubcollectionsResponseDefaultType0
-    | PostCollectionsByCollectionIdSubcollectionsResponseDefaultType1
+    Any | CollectionSchema | PostCollectionsByCollectionIdSubcollectionsResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -129,10 +98,7 @@ def sync_detailed(
     copy_acl: str | Unset = UNSET,
     copy_keyframes: str | Unset = UNSET,
 ) -> Response[
-    Any
-    | CollectionSchema
-    | PostCollectionsByCollectionIdSubcollectionsResponseDefaultType0
-    | PostCollectionsByCollectionIdSubcollectionsResponseDefaultType1
+    Any | CollectionSchema | PostCollectionsByCollectionIdSubcollectionsResponseDefault
 ]:
     """Copy a collection (recursively) in to another collection
 
@@ -151,7 +117,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CollectionSchema | PostCollectionsByCollectionIdSubcollectionsResponseDefaultType0 | PostCollectionsByCollectionIdSubcollectionsResponseDefaultType1]
+        Response[Any | CollectionSchema | PostCollectionsByCollectionIdSubcollectionsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -178,8 +144,7 @@ def sync(
 ) -> (
     Any
     | CollectionSchema
-    | PostCollectionsByCollectionIdSubcollectionsResponseDefaultType0
-    | PostCollectionsByCollectionIdSubcollectionsResponseDefaultType1
+    | PostCollectionsByCollectionIdSubcollectionsResponseDefault
     | None
 ):
     """Copy a collection (recursively) in to another collection
@@ -199,7 +164,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CollectionSchema | PostCollectionsByCollectionIdSubcollectionsResponseDefaultType0 | PostCollectionsByCollectionIdSubcollectionsResponseDefaultType1
+        Any | CollectionSchema | PostCollectionsByCollectionIdSubcollectionsResponseDefault
     """
 
     return sync_detailed(
@@ -219,10 +184,7 @@ async def asyncio_detailed(
     copy_acl: str | Unset = UNSET,
     copy_keyframes: str | Unset = UNSET,
 ) -> Response[
-    Any
-    | CollectionSchema
-    | PostCollectionsByCollectionIdSubcollectionsResponseDefaultType0
-    | PostCollectionsByCollectionIdSubcollectionsResponseDefaultType1
+    Any | CollectionSchema | PostCollectionsByCollectionIdSubcollectionsResponseDefault
 ]:
     """Copy a collection (recursively) in to another collection
 
@@ -241,7 +203,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CollectionSchema | PostCollectionsByCollectionIdSubcollectionsResponseDefaultType0 | PostCollectionsByCollectionIdSubcollectionsResponseDefaultType1]
+        Response[Any | CollectionSchema | PostCollectionsByCollectionIdSubcollectionsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -266,8 +228,7 @@ async def asyncio(
 ) -> (
     Any
     | CollectionSchema
-    | PostCollectionsByCollectionIdSubcollectionsResponseDefaultType0
-    | PostCollectionsByCollectionIdSubcollectionsResponseDefaultType1
+    | PostCollectionsByCollectionIdSubcollectionsResponseDefault
     | None
 ):
     """Copy a collection (recursively) in to another collection
@@ -287,7 +248,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CollectionSchema | PostCollectionsByCollectionIdSubcollectionsResponseDefaultType0 | PostCollectionsByCollectionIdSubcollectionsResponseDefaultType1
+        Any | CollectionSchema | PostCollectionsByCollectionIdSubcollectionsResponseDefault
     """
 
     return (

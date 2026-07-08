@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_assets_relation_types_by_relation_type_response_default_type_0 import (
-    DeleteAssetsRelationTypesByRelationTypeResponseDefaultType0,
-)
-from ...models.delete_assets_relation_types_by_relation_type_response_default_type_1 import (
-    DeleteAssetsRelationTypesByRelationTypeResponseDefaultType1,
+from ...models.delete_assets_relation_types_by_relation_type_response_default import (
+    DeleteAssetsRelationTypesByRelationTypeResponseDefault,
 )
 from ...types import Response
 
@@ -30,11 +27,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteAssetsRelationTypesByRelationTypeResponseDefaultType0
-    | DeleteAssetsRelationTypesByRelationTypeResponseDefaultType1
-):
+) -> Any | DeleteAssetsRelationTypesByRelationTypeResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -47,44 +40,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteAssetsRelationTypesByRelationTypeResponseDefaultType0
-        | DeleteAssetsRelationTypesByRelationTypeResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteAssetsRelationTypesByRelationTypeResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteAssetsRelationTypesByRelationTypeResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteAssetsRelationTypesByRelationTypeResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteAssetsRelationTypesByRelationTypeResponseDefaultType0
-    | DeleteAssetsRelationTypesByRelationTypeResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsRelationTypesByRelationTypeResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -97,11 +62,7 @@ def sync_detailed(
     relation_type: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteAssetsRelationTypesByRelationTypeResponseDefaultType0
-    | DeleteAssetsRelationTypesByRelationTypeResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsRelationTypesByRelationTypeResponseDefault]:
     """Delete an asset relation type
 
 
@@ -116,7 +77,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAssetsRelationTypesByRelationTypeResponseDefaultType0 | DeleteAssetsRelationTypesByRelationTypeResponseDefaultType1]
+        Response[Any | DeleteAssetsRelationTypesByRelationTypeResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -134,12 +95,7 @@ def sync(
     relation_type: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteAssetsRelationTypesByRelationTypeResponseDefaultType0
-    | DeleteAssetsRelationTypesByRelationTypeResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAssetsRelationTypesByRelationTypeResponseDefault | None:
     """Delete an asset relation type
 
 
@@ -154,7 +110,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAssetsRelationTypesByRelationTypeResponseDefaultType0 | DeleteAssetsRelationTypesByRelationTypeResponseDefaultType1
+        Any | DeleteAssetsRelationTypesByRelationTypeResponseDefault
     """
 
     return sync_detailed(
@@ -167,11 +123,7 @@ async def asyncio_detailed(
     relation_type: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteAssetsRelationTypesByRelationTypeResponseDefaultType0
-    | DeleteAssetsRelationTypesByRelationTypeResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsRelationTypesByRelationTypeResponseDefault]:
     """Delete an asset relation type
 
 
@@ -186,7 +138,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAssetsRelationTypesByRelationTypeResponseDefaultType0 | DeleteAssetsRelationTypesByRelationTypeResponseDefaultType1]
+        Response[Any | DeleteAssetsRelationTypesByRelationTypeResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -202,12 +154,7 @@ async def asyncio(
     relation_type: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteAssetsRelationTypesByRelationTypeResponseDefaultType0
-    | DeleteAssetsRelationTypesByRelationTypeResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAssetsRelationTypesByRelationTypeResponseDefault | None:
     """Delete an asset relation type
 
 
@@ -222,7 +169,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAssetsRelationTypesByRelationTypeResponseDefaultType0 | DeleteAssetsRelationTypesByRelationTypeResponseDefaultType1
+        Any | DeleteAssetsRelationTypesByRelationTypeResponseDefault
     """
 
     return (

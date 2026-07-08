@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_search_history_by_search_history_id_response_default_type_0 import (
-    GetSearchHistoryBySearchHistoryIdResponseDefaultType0,
-)
-from ...models.get_search_history_by_search_history_id_response_default_type_1 import (
-    GetSearchHistoryBySearchHistoryIdResponseDefaultType1,
+from ...models.get_search_history_by_search_history_id_response_default import (
+    GetSearchHistoryBySearchHistoryIdResponseDefault,
 )
 from ...models.search_documents_schema import SearchDocumentsSchema
 from ...types import UNSET, Response, Unset
@@ -18,8 +15,8 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     search_history_id: str,
     *,
-    generate_signed_download_url: bool | Unset = False,
-    generate_signed_proxy_url: bool | Unset = False,
+    generate_signed_download_url: bool | Unset = UNSET,
+    generate_signed_proxy_url: bool | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -43,12 +40,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetSearchHistoryBySearchHistoryIdResponseDefaultType0
-    | GetSearchHistoryBySearchHistoryIdResponseDefaultType1
-    | SearchDocumentsSchema
-):
+) -> Any | GetSearchHistoryBySearchHistoryIdResponseDefault | SearchDocumentsSchema:
     if response.status_code == 200:
         response_200 = SearchDocumentsSchema.from_dict(response.json())
 
@@ -66,31 +58,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetSearchHistoryBySearchHistoryIdResponseDefaultType0
-        | GetSearchHistoryBySearchHistoryIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetSearchHistoryBySearchHistoryIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetSearchHistoryBySearchHistoryIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetSearchHistoryBySearchHistoryIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -98,10 +68,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | GetSearchHistoryBySearchHistoryIdResponseDefaultType0
-    | GetSearchHistoryBySearchHistoryIdResponseDefaultType1
-    | SearchDocumentsSchema
+    Any | GetSearchHistoryBySearchHistoryIdResponseDefault | SearchDocumentsSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -115,13 +82,10 @@ def sync_detailed(
     search_history_id: str,
     *,
     client: AuthenticatedClient | Client,
-    generate_signed_download_url: bool | Unset = False,
-    generate_signed_proxy_url: bool | Unset = False,
+    generate_signed_download_url: bool | Unset = UNSET,
+    generate_signed_proxy_url: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | GetSearchHistoryBySearchHistoryIdResponseDefaultType0
-    | GetSearchHistoryBySearchHistoryIdResponseDefaultType1
-    | SearchDocumentsSchema
+    Any | GetSearchHistoryBySearchHistoryIdResponseDefault | SearchDocumentsSchema
 ]:
     """Returns results of search history
 
@@ -131,15 +95,15 @@ def sync_detailed(
 
     Args:
         search_history_id (str):
-        generate_signed_download_url (bool | Unset):  Default: False.
-        generate_signed_proxy_url (bool | Unset):  Default: False.
+        generate_signed_download_url (bool | Unset):
+        generate_signed_proxy_url (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetSearchHistoryBySearchHistoryIdResponseDefaultType0 | GetSearchHistoryBySearchHistoryIdResponseDefaultType1 | SearchDocumentsSchema]
+        Response[Any | GetSearchHistoryBySearchHistoryIdResponseDefault | SearchDocumentsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -159,12 +123,11 @@ def sync(
     search_history_id: str,
     *,
     client: AuthenticatedClient | Client,
-    generate_signed_download_url: bool | Unset = False,
-    generate_signed_proxy_url: bool | Unset = False,
+    generate_signed_download_url: bool | Unset = UNSET,
+    generate_signed_proxy_url: bool | Unset = UNSET,
 ) -> (
     Any
-    | GetSearchHistoryBySearchHistoryIdResponseDefaultType0
-    | GetSearchHistoryBySearchHistoryIdResponseDefaultType1
+    | GetSearchHistoryBySearchHistoryIdResponseDefault
     | SearchDocumentsSchema
     | None
 ):
@@ -176,15 +139,15 @@ def sync(
 
     Args:
         search_history_id (str):
-        generate_signed_download_url (bool | Unset):  Default: False.
-        generate_signed_proxy_url (bool | Unset):  Default: False.
+        generate_signed_download_url (bool | Unset):
+        generate_signed_proxy_url (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetSearchHistoryBySearchHistoryIdResponseDefaultType0 | GetSearchHistoryBySearchHistoryIdResponseDefaultType1 | SearchDocumentsSchema
+        Any | GetSearchHistoryBySearchHistoryIdResponseDefault | SearchDocumentsSchema
     """
 
     return sync_detailed(
@@ -199,13 +162,10 @@ async def asyncio_detailed(
     search_history_id: str,
     *,
     client: AuthenticatedClient | Client,
-    generate_signed_download_url: bool | Unset = False,
-    generate_signed_proxy_url: bool | Unset = False,
+    generate_signed_download_url: bool | Unset = UNSET,
+    generate_signed_proxy_url: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | GetSearchHistoryBySearchHistoryIdResponseDefaultType0
-    | GetSearchHistoryBySearchHistoryIdResponseDefaultType1
-    | SearchDocumentsSchema
+    Any | GetSearchHistoryBySearchHistoryIdResponseDefault | SearchDocumentsSchema
 ]:
     """Returns results of search history
 
@@ -215,15 +175,15 @@ async def asyncio_detailed(
 
     Args:
         search_history_id (str):
-        generate_signed_download_url (bool | Unset):  Default: False.
-        generate_signed_proxy_url (bool | Unset):  Default: False.
+        generate_signed_download_url (bool | Unset):
+        generate_signed_proxy_url (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetSearchHistoryBySearchHistoryIdResponseDefaultType0 | GetSearchHistoryBySearchHistoryIdResponseDefaultType1 | SearchDocumentsSchema]
+        Response[Any | GetSearchHistoryBySearchHistoryIdResponseDefault | SearchDocumentsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -241,12 +201,11 @@ async def asyncio(
     search_history_id: str,
     *,
     client: AuthenticatedClient | Client,
-    generate_signed_download_url: bool | Unset = False,
-    generate_signed_proxy_url: bool | Unset = False,
+    generate_signed_download_url: bool | Unset = UNSET,
+    generate_signed_proxy_url: bool | Unset = UNSET,
 ) -> (
     Any
-    | GetSearchHistoryBySearchHistoryIdResponseDefaultType0
-    | GetSearchHistoryBySearchHistoryIdResponseDefaultType1
+    | GetSearchHistoryBySearchHistoryIdResponseDefault
     | SearchDocumentsSchema
     | None
 ):
@@ -258,15 +217,15 @@ async def asyncio(
 
     Args:
         search_history_id (str):
-        generate_signed_download_url (bool | Unset):  Default: False.
-        generate_signed_proxy_url (bool | Unset):  Default: False.
+        generate_signed_download_url (bool | Unset):
+        generate_signed_proxy_url (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetSearchHistoryBySearchHistoryIdResponseDefaultType0 | GetSearchHistoryBySearchHistoryIdResponseDefaultType1 | SearchDocumentsSchema
+        Any | GetSearchHistoryBySearchHistoryIdResponseDefault | SearchDocumentsSchema
     """
 
     return (

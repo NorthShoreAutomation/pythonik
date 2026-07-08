@@ -5,11 +5,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.device_token_schema import DeviceTokenSchema
-from ...models.post_device_tokens_response_default_type_0 import (
-    PostDeviceTokensResponseDefaultType0,
-)
-from ...models.post_device_tokens_response_default_type_1 import (
-    PostDeviceTokensResponseDefaultType1,
+from ...models.post_device_tokens_response_default import (
+    PostDeviceTokensResponseDefault,
 )
 from ...types import Response
 
@@ -35,12 +32,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeviceTokenSchema
-    | PostDeviceTokensResponseDefaultType0
-    | PostDeviceTokensResponseDefaultType1
-):
+) -> Any | DeviceTokenSchema | PostDeviceTokensResponseDefault:
     if response.status_code == 200:
         response_200 = DeviceTokenSchema.from_dict(response.json())
 
@@ -63,38 +55,14 @@ def _parse_response(
         response_403 = cast(Any, None)
         return response_403
 
-    def _parse_response_default(
-        data: object,
-    ) -> PostDeviceTokensResponseDefaultType0 | PostDeviceTokensResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostDeviceTokensResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostDeviceTokensResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostDeviceTokensResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeviceTokenSchema
-    | PostDeviceTokensResponseDefaultType0
-    | PostDeviceTokensResponseDefaultType1
-]:
+) -> Response[Any | DeviceTokenSchema | PostDeviceTokensResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -107,12 +75,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: DeviceTokenSchema,
-) -> Response[
-    Any
-    | DeviceTokenSchema
-    | PostDeviceTokensResponseDefaultType0
-    | PostDeviceTokensResponseDefaultType1
-]:
+) -> Response[Any | DeviceTokenSchema | PostDeviceTokensResponseDefault]:
     """Register a new device token for push notifications
 
     Args:
@@ -123,7 +86,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeviceTokenSchema | PostDeviceTokensResponseDefaultType0 | PostDeviceTokensResponseDefaultType1]
+        Response[Any | DeviceTokenSchema | PostDeviceTokensResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -141,13 +104,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: DeviceTokenSchema,
-) -> (
-    Any
-    | DeviceTokenSchema
-    | PostDeviceTokensResponseDefaultType0
-    | PostDeviceTokensResponseDefaultType1
-    | None
-):
+) -> Any | DeviceTokenSchema | PostDeviceTokensResponseDefault | None:
     """Register a new device token for push notifications
 
     Args:
@@ -158,7 +115,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeviceTokenSchema | PostDeviceTokensResponseDefaultType0 | PostDeviceTokensResponseDefaultType1
+        Any | DeviceTokenSchema | PostDeviceTokensResponseDefault
     """
 
     return sync_detailed(
@@ -171,12 +128,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: DeviceTokenSchema,
-) -> Response[
-    Any
-    | DeviceTokenSchema
-    | PostDeviceTokensResponseDefaultType0
-    | PostDeviceTokensResponseDefaultType1
-]:
+) -> Response[Any | DeviceTokenSchema | PostDeviceTokensResponseDefault]:
     """Register a new device token for push notifications
 
     Args:
@@ -187,7 +139,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeviceTokenSchema | PostDeviceTokensResponseDefaultType0 | PostDeviceTokensResponseDefaultType1]
+        Response[Any | DeviceTokenSchema | PostDeviceTokensResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -203,13 +155,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: DeviceTokenSchema,
-) -> (
-    Any
-    | DeviceTokenSchema
-    | PostDeviceTokensResponseDefaultType0
-    | PostDeviceTokensResponseDefaultType1
-    | None
-):
+) -> Any | DeviceTokenSchema | PostDeviceTokensResponseDefault | None:
     """Register a new device token for push notifications
 
     Args:
@@ -220,7 +166,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeviceTokenSchema | PostDeviceTokensResponseDefaultType0 | PostDeviceTokensResponseDefaultType1
+        Any | DeviceTokenSchema | PostDeviceTokensResponseDefault
     """
 
     return (

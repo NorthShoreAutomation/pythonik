@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.acl_schema import ACLSchema
-from ...models.get_acl_by_object_type_by_object_key_response_default_type_0 import (
-    GetAclByObjectTypeByObjectKeyResponseDefaultType0,
-)
-from ...models.get_acl_by_object_type_by_object_key_response_default_type_1 import (
-    GetAclByObjectTypeByObjectKeyResponseDefaultType1,
+from ...models.get_acl_by_object_type_by_object_key_response_default import (
+    GetAclByObjectTypeByObjectKeyResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -19,7 +16,7 @@ def _get_kwargs(
     object_type: str,
     object_key: str,
     *,
-    exclude_deleted: bool | Unset = False,
+    exclude_deleted: bool | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -42,12 +39,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    ACLSchema
-    | Any
-    | GetAclByObjectTypeByObjectKeyResponseDefaultType0
-    | GetAclByObjectTypeByObjectKeyResponseDefaultType1
-):
+) -> ACLSchema | Any | GetAclByObjectTypeByObjectKeyResponseDefault:
     if response.status_code == 200:
         response_200 = ACLSchema.from_dict(response.json())
 
@@ -61,43 +53,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAclByObjectTypeByObjectKeyResponseDefaultType0
-        | GetAclByObjectTypeByObjectKeyResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetAclByObjectTypeByObjectKeyResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetAclByObjectTypeByObjectKeyResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAclByObjectTypeByObjectKeyResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    ACLSchema
-    | Any
-    | GetAclByObjectTypeByObjectKeyResponseDefaultType0
-    | GetAclByObjectTypeByObjectKeyResponseDefaultType1
-]:
+) -> Response[ACLSchema | Any | GetAclByObjectTypeByObjectKeyResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -111,13 +76,8 @@ def sync_detailed(
     object_key: str,
     *,
     client: AuthenticatedClient | Client,
-    exclude_deleted: bool | Unset = False,
-) -> Response[
-    ACLSchema
-    | Any
-    | GetAclByObjectTypeByObjectKeyResponseDefaultType0
-    | GetAclByObjectTypeByObjectKeyResponseDefaultType1
-]:
+    exclude_deleted: bool | Unset = UNSET,
+) -> Response[ACLSchema | Any | GetAclByObjectTypeByObjectKeyResponseDefault]:
     """List of object permissions
 
 
@@ -127,14 +87,14 @@ def sync_detailed(
     Args:
         object_type (str):
         object_key (str):
-        exclude_deleted (bool | Unset):  Default: False.
+        exclude_deleted (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[ACLSchema | Any | GetAclByObjectTypeByObjectKeyResponseDefaultType0 | GetAclByObjectTypeByObjectKeyResponseDefaultType1]
+        Response[ACLSchema | Any | GetAclByObjectTypeByObjectKeyResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -155,14 +115,8 @@ def sync(
     object_key: str,
     *,
     client: AuthenticatedClient | Client,
-    exclude_deleted: bool | Unset = False,
-) -> (
-    ACLSchema
-    | Any
-    | GetAclByObjectTypeByObjectKeyResponseDefaultType0
-    | GetAclByObjectTypeByObjectKeyResponseDefaultType1
-    | None
-):
+    exclude_deleted: bool | Unset = UNSET,
+) -> ACLSchema | Any | GetAclByObjectTypeByObjectKeyResponseDefault | None:
     """List of object permissions
 
 
@@ -172,14 +126,14 @@ def sync(
     Args:
         object_type (str):
         object_key (str):
-        exclude_deleted (bool | Unset):  Default: False.
+        exclude_deleted (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        ACLSchema | Any | GetAclByObjectTypeByObjectKeyResponseDefaultType0 | GetAclByObjectTypeByObjectKeyResponseDefaultType1
+        ACLSchema | Any | GetAclByObjectTypeByObjectKeyResponseDefault
     """
 
     return sync_detailed(
@@ -195,13 +149,8 @@ async def asyncio_detailed(
     object_key: str,
     *,
     client: AuthenticatedClient | Client,
-    exclude_deleted: bool | Unset = False,
-) -> Response[
-    ACLSchema
-    | Any
-    | GetAclByObjectTypeByObjectKeyResponseDefaultType0
-    | GetAclByObjectTypeByObjectKeyResponseDefaultType1
-]:
+    exclude_deleted: bool | Unset = UNSET,
+) -> Response[ACLSchema | Any | GetAclByObjectTypeByObjectKeyResponseDefault]:
     """List of object permissions
 
 
@@ -211,14 +160,14 @@ async def asyncio_detailed(
     Args:
         object_type (str):
         object_key (str):
-        exclude_deleted (bool | Unset):  Default: False.
+        exclude_deleted (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[ACLSchema | Any | GetAclByObjectTypeByObjectKeyResponseDefaultType0 | GetAclByObjectTypeByObjectKeyResponseDefaultType1]
+        Response[ACLSchema | Any | GetAclByObjectTypeByObjectKeyResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -237,14 +186,8 @@ async def asyncio(
     object_key: str,
     *,
     client: AuthenticatedClient | Client,
-    exclude_deleted: bool | Unset = False,
-) -> (
-    ACLSchema
-    | Any
-    | GetAclByObjectTypeByObjectKeyResponseDefaultType0
-    | GetAclByObjectTypeByObjectKeyResponseDefaultType1
-    | None
-):
+    exclude_deleted: bool | Unset = UNSET,
+) -> ACLSchema | Any | GetAclByObjectTypeByObjectKeyResponseDefault | None:
     """List of object permissions
 
 
@@ -254,14 +197,14 @@ async def asyncio(
     Args:
         object_type (str):
         object_key (str):
-        exclude_deleted (bool | Unset):  Default: False.
+        exclude_deleted (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        ACLSchema | Any | GetAclByObjectTypeByObjectKeyResponseDefaultType0 | GetAclByObjectTypeByObjectKeyResponseDefaultType1
+        ACLSchema | Any | GetAclByObjectTypeByObjectKeyResponseDefault
     """
 
     return (

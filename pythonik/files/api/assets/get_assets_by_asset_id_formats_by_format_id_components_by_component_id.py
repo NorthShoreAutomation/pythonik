@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.components_schema import ComponentsSchema
-from ...models.get_assets_by_asset_id_formats_by_format_id_components_by_component_id_response_default_type_0 import (
-    GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0,
-)
-from ...models.get_assets_by_asset_id_formats_by_format_id_components_by_component_id_response_default_type_1 import (
-    GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1,
+from ...models.get_assets_by_asset_id_formats_by_format_id_components_by_component_id_response_default import (
+    GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault,
 )
 from ...types import Response
 
@@ -38,8 +35,7 @@ def _parse_response(
 ) -> (
     Any
     | ComponentsSchema
-    | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0
-    | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1
+    | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault
 ):
     if response.status_code == 200:
         response_200 = ComponentsSchema.from_dict(response.json())
@@ -58,31 +54,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0
-        | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -92,8 +66,7 @@ def _build_response(
 ) -> Response[
     Any
     | ComponentsSchema
-    | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0
-    | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1
+    | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -112,8 +85,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | ComponentsSchema
-    | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0
-    | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1
+    | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault
 ]:
     """Get a component for a format in an asset
 
@@ -131,7 +103,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | ComponentsSchema | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0 | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1]
+        Response[Any | ComponentsSchema | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -156,8 +128,7 @@ def sync(
 ) -> (
     Any
     | ComponentsSchema
-    | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0
-    | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1
+    | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault
     | None
 ):
     """Get a component for a format in an asset
@@ -176,7 +147,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | ComponentsSchema | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0 | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1
+        Any | ComponentsSchema | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault
     """
 
     return sync_detailed(
@@ -196,8 +167,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | ComponentsSchema
-    | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0
-    | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1
+    | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault
 ]:
     """Get a component for a format in an asset
 
@@ -215,7 +185,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | ComponentsSchema | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0 | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1]
+        Response[Any | ComponentsSchema | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -238,8 +208,7 @@ async def asyncio(
 ) -> (
     Any
     | ComponentsSchema
-    | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0
-    | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1
+    | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault
     | None
 ):
     """Get a component for a format in an asset
@@ -258,7 +227,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | ComponentsSchema | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0 | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1
+        Any | ComponentsSchema | GetAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault
     """
 
     return (

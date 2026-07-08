@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_favorites_all_response_default_type_0 import (
-    DeleteFavoritesAllResponseDefaultType0,
-)
-from ...models.delete_favorites_all_response_default_type_1 import (
-    DeleteFavoritesAllResponseDefaultType1,
+from ...models.delete_favorites_all_response_default import (
+    DeleteFavoritesAllResponseDefault,
 )
 from ...types import Response
 
@@ -25,14 +22,14 @@ def _get_kwargs() -> dict[str, Any]:
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteFavoritesAllResponseDefaultType0
-    | DeleteFavoritesAllResponseDefaultType1
-):
+) -> Any | DeleteFavoritesAllResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
+
+    if response.status_code == 204:
+        response_204 = cast(Any, None)
+        return response_204
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -46,39 +43,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteFavoritesAllResponseDefaultType0 | DeleteFavoritesAllResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteFavoritesAllResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = DeleteFavoritesAllResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteFavoritesAllResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteFavoritesAllResponseDefaultType0
-    | DeleteFavoritesAllResponseDefaultType1
-]:
+) -> Response[Any | DeleteFavoritesAllResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -90,11 +62,7 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteFavoritesAllResponseDefaultType0
-    | DeleteFavoritesAllResponseDefaultType1
-]:
+) -> Response[Any | DeleteFavoritesAllResponseDefault]:
     """Removes all assets/collections from the list of favourites
 
 
@@ -106,7 +74,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteFavoritesAllResponseDefaultType0 | DeleteFavoritesAllResponseDefaultType1]
+        Response[Any | DeleteFavoritesAllResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -121,12 +89,7 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteFavoritesAllResponseDefaultType0
-    | DeleteFavoritesAllResponseDefaultType1
-    | None
-):
+) -> Any | DeleteFavoritesAllResponseDefault | None:
     """Removes all assets/collections from the list of favourites
 
 
@@ -138,7 +101,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteFavoritesAllResponseDefaultType0 | DeleteFavoritesAllResponseDefaultType1
+        Any | DeleteFavoritesAllResponseDefault
     """
 
     return sync_detailed(
@@ -149,11 +112,7 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteFavoritesAllResponseDefaultType0
-    | DeleteFavoritesAllResponseDefaultType1
-]:
+) -> Response[Any | DeleteFavoritesAllResponseDefault]:
     """Removes all assets/collections from the list of favourites
 
 
@@ -165,7 +124,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteFavoritesAllResponseDefaultType0 | DeleteFavoritesAllResponseDefaultType1]
+        Response[Any | DeleteFavoritesAllResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -178,12 +137,7 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteFavoritesAllResponseDefaultType0
-    | DeleteFavoritesAllResponseDefaultType1
-    | None
-):
+) -> Any | DeleteFavoritesAllResponseDefault | None:
     """Removes all assets/collections from the list of favourites
 
 
@@ -195,7 +149,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteFavoritesAllResponseDefaultType0 | DeleteFavoritesAllResponseDefaultType1
+        Any | DeleteFavoritesAllResponseDefault
     """
 
     return (

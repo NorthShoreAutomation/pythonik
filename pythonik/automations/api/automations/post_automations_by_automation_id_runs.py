@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_automations_by_automation_id_runs_response_default_type_0 import (
-    PostAutomationsByAutomationIdRunsResponseDefaultType0,
-)
-from ...models.post_automations_by_automation_id_runs_response_default_type_1 import (
-    PostAutomationsByAutomationIdRunsResponseDefaultType1,
+from ...models.post_automations_by_automation_id_runs_response_default import (
+    PostAutomationsByAutomationIdRunsResponseDefault,
 )
 from ...types import Response
 
@@ -30,11 +27,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostAutomationsByAutomationIdRunsResponseDefaultType0
-    | PostAutomationsByAutomationIdRunsResponseDefaultType1
-):
+) -> Any | PostAutomationsByAutomationIdRunsResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -47,42 +40,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAutomationsByAutomationIdRunsResponseDefaultType0
-        | PostAutomationsByAutomationIdRunsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostAutomationsByAutomationIdRunsResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostAutomationsByAutomationIdRunsResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostAutomationsByAutomationIdRunsResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostAutomationsByAutomationIdRunsResponseDefaultType0
-    | PostAutomationsByAutomationIdRunsResponseDefaultType1
-]:
+) -> Response[Any | PostAutomationsByAutomationIdRunsResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -95,11 +62,7 @@ def sync_detailed(
     automation_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostAutomationsByAutomationIdRunsResponseDefaultType0
-    | PostAutomationsByAutomationIdRunsResponseDefaultType1
-]:
+) -> Response[Any | PostAutomationsByAutomationIdRunsResponseDefault]:
     """Run an automation for existing objects
 
 
@@ -114,7 +77,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAutomationsByAutomationIdRunsResponseDefaultType0 | PostAutomationsByAutomationIdRunsResponseDefaultType1]
+        Response[Any | PostAutomationsByAutomationIdRunsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -132,12 +95,7 @@ def sync(
     automation_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostAutomationsByAutomationIdRunsResponseDefaultType0
-    | PostAutomationsByAutomationIdRunsResponseDefaultType1
-    | None
-):
+) -> Any | PostAutomationsByAutomationIdRunsResponseDefault | None:
     """Run an automation for existing objects
 
 
@@ -152,7 +110,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAutomationsByAutomationIdRunsResponseDefaultType0 | PostAutomationsByAutomationIdRunsResponseDefaultType1
+        Any | PostAutomationsByAutomationIdRunsResponseDefault
     """
 
     return sync_detailed(
@@ -165,11 +123,7 @@ async def asyncio_detailed(
     automation_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostAutomationsByAutomationIdRunsResponseDefaultType0
-    | PostAutomationsByAutomationIdRunsResponseDefaultType1
-]:
+) -> Response[Any | PostAutomationsByAutomationIdRunsResponseDefault]:
     """Run an automation for existing objects
 
 
@@ -184,7 +138,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAutomationsByAutomationIdRunsResponseDefaultType0 | PostAutomationsByAutomationIdRunsResponseDefaultType1]
+        Response[Any | PostAutomationsByAutomationIdRunsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -200,12 +154,7 @@ async def asyncio(
     automation_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostAutomationsByAutomationIdRunsResponseDefaultType0
-    | PostAutomationsByAutomationIdRunsResponseDefaultType1
-    | None
-):
+) -> Any | PostAutomationsByAutomationIdRunsResponseDefault | None:
     """Run an automation for existing objects
 
 
@@ -220,7 +169,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAutomationsByAutomationIdRunsResponseDefaultType0 | PostAutomationsByAutomationIdRunsResponseDefaultType1
+        Any | PostAutomationsByAutomationIdRunsResponseDefault
     """
 
     return (

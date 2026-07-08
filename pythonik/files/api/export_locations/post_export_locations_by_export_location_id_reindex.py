@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_export_locations_by_export_location_id_reindex_response_default_type_0 import (
-    PostExportLocationsByExportLocationIdReindexResponseDefaultType0,
-)
-from ...models.post_export_locations_by_export_location_id_reindex_response_default_type_1 import (
-    PostExportLocationsByExportLocationIdReindexResponseDefaultType1,
+from ...models.post_export_locations_by_export_location_id_reindex_response_default import (
+    PostExportLocationsByExportLocationIdReindexResponseDefault,
 )
 from ...types import Response
 
@@ -30,11 +27,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostExportLocationsByExportLocationIdReindexResponseDefaultType0
-    | PostExportLocationsByExportLocationIdReindexResponseDefaultType1
-):
+) -> Any | PostExportLocationsByExportLocationIdReindexResponseDefault:
     if response.status_code == 201:
         response_201 = cast(Any, None)
         return response_201
@@ -43,44 +36,18 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostExportLocationsByExportLocationIdReindexResponseDefaultType0
-        | PostExportLocationsByExportLocationIdReindexResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostExportLocationsByExportLocationIdReindexResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostExportLocationsByExportLocationIdReindexResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PostExportLocationsByExportLocationIdReindexResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostExportLocationsByExportLocationIdReindexResponseDefaultType0
-    | PostExportLocationsByExportLocationIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostExportLocationsByExportLocationIdReindexResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -93,11 +60,7 @@ def sync_detailed(
     export_location_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostExportLocationsByExportLocationIdReindexResponseDefaultType0
-    | PostExportLocationsByExportLocationIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostExportLocationsByExportLocationIdReindexResponseDefault]:
     """Trigger reindexing of a export location
 
 
@@ -112,7 +75,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostExportLocationsByExportLocationIdReindexResponseDefaultType0 | PostExportLocationsByExportLocationIdReindexResponseDefaultType1]
+        Response[Any | PostExportLocationsByExportLocationIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -130,12 +93,7 @@ def sync(
     export_location_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostExportLocationsByExportLocationIdReindexResponseDefaultType0
-    | PostExportLocationsByExportLocationIdReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostExportLocationsByExportLocationIdReindexResponseDefault | None:
     """Trigger reindexing of a export location
 
 
@@ -150,7 +108,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostExportLocationsByExportLocationIdReindexResponseDefaultType0 | PostExportLocationsByExportLocationIdReindexResponseDefaultType1
+        Any | PostExportLocationsByExportLocationIdReindexResponseDefault
     """
 
     return sync_detailed(
@@ -163,11 +121,7 @@ async def asyncio_detailed(
     export_location_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostExportLocationsByExportLocationIdReindexResponseDefaultType0
-    | PostExportLocationsByExportLocationIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostExportLocationsByExportLocationIdReindexResponseDefault]:
     """Trigger reindexing of a export location
 
 
@@ -182,7 +136,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostExportLocationsByExportLocationIdReindexResponseDefaultType0 | PostExportLocationsByExportLocationIdReindexResponseDefaultType1]
+        Response[Any | PostExportLocationsByExportLocationIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -198,12 +152,7 @@ async def asyncio(
     export_location_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostExportLocationsByExportLocationIdReindexResponseDefaultType0
-    | PostExportLocationsByExportLocationIdReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostExportLocationsByExportLocationIdReindexResponseDefault | None:
     """Trigger reindexing of a export location
 
 
@@ -218,7 +167,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostExportLocationsByExportLocationIdReindexResponseDefaultType0 | PostExportLocationsByExportLocationIdReindexResponseDefaultType1
+        Any | PostExportLocationsByExportLocationIdReindexResponseDefault
     """
 
     return (

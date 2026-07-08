@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_assets_by_asset_id_segments_srt_response_default_type_0 import (
-    GetAssetsByAssetIdSegmentsSrtResponseDefaultType0,
-)
-from ...models.get_assets_by_asset_id_segments_srt_response_default_type_1 import (
-    GetAssetsByAssetIdSegmentsSrtResponseDefaultType1,
+from ...models.get_assets_by_asset_id_segments_srt_response_default import (
+    GetAssetsByAssetIdSegmentsSrtResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -57,12 +54,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetAssetsByAssetIdSegmentsSrtResponseDefaultType0
-    | GetAssetsByAssetIdSegmentsSrtResponseDefaultType1
-    | str
-):
+) -> Any | GetAssetsByAssetIdSegmentsSrtResponseDefault | str:
     if response.status_code == 200:
         response_200 = response.text
         return response_200
@@ -79,43 +71,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsByAssetIdSegmentsSrtResponseDefaultType0
-        | GetAssetsByAssetIdSegmentsSrtResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetAssetsByAssetIdSegmentsSrtResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetAssetsByAssetIdSegmentsSrtResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAssetsByAssetIdSegmentsSrtResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetAssetsByAssetIdSegmentsSrtResponseDefaultType0
-    | GetAssetsByAssetIdSegmentsSrtResponseDefaultType1
-    | str
-]:
+) -> Response[Any | GetAssetsByAssetIdSegmentsSrtResponseDefault | str]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -135,12 +100,7 @@ def sync_detailed(
     segment_type: str | Unset = UNSET,
     segment_color: str | Unset = UNSET,
     words_per_line: int | Unset = UNSET,
-) -> Response[
-    Any
-    | GetAssetsByAssetIdSegmentsSrtResponseDefaultType0
-    | GetAssetsByAssetIdSegmentsSrtResponseDefaultType1
-    | str
-]:
+) -> Response[Any | GetAssetsByAssetIdSegmentsSrtResponseDefault | str]:
     """List of segments as SRT file
 
 
@@ -162,7 +122,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdSegmentsSrtResponseDefaultType0 | GetAssetsByAssetIdSegmentsSrtResponseDefaultType1 | str]
+        Response[Any | GetAssetsByAssetIdSegmentsSrtResponseDefault | str]
     """
 
     kwargs = _get_kwargs(
@@ -194,13 +154,7 @@ def sync(
     segment_type: str | Unset = UNSET,
     segment_color: str | Unset = UNSET,
     words_per_line: int | Unset = UNSET,
-) -> (
-    Any
-    | GetAssetsByAssetIdSegmentsSrtResponseDefaultType0
-    | GetAssetsByAssetIdSegmentsSrtResponseDefaultType1
-    | str
-    | None
-):
+) -> Any | GetAssetsByAssetIdSegmentsSrtResponseDefault | str | None:
     """List of segments as SRT file
 
 
@@ -222,7 +176,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdSegmentsSrtResponseDefaultType0 | GetAssetsByAssetIdSegmentsSrtResponseDefaultType1 | str
+        Any | GetAssetsByAssetIdSegmentsSrtResponseDefault | str
     """
 
     return sync_detailed(
@@ -249,12 +203,7 @@ async def asyncio_detailed(
     segment_type: str | Unset = UNSET,
     segment_color: str | Unset = UNSET,
     words_per_line: int | Unset = UNSET,
-) -> Response[
-    Any
-    | GetAssetsByAssetIdSegmentsSrtResponseDefaultType0
-    | GetAssetsByAssetIdSegmentsSrtResponseDefaultType1
-    | str
-]:
+) -> Response[Any | GetAssetsByAssetIdSegmentsSrtResponseDefault | str]:
     """List of segments as SRT file
 
 
@@ -276,7 +225,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdSegmentsSrtResponseDefaultType0 | GetAssetsByAssetIdSegmentsSrtResponseDefaultType1 | str]
+        Response[Any | GetAssetsByAssetIdSegmentsSrtResponseDefault | str]
     """
 
     kwargs = _get_kwargs(
@@ -306,13 +255,7 @@ async def asyncio(
     segment_type: str | Unset = UNSET,
     segment_color: str | Unset = UNSET,
     words_per_line: int | Unset = UNSET,
-) -> (
-    Any
-    | GetAssetsByAssetIdSegmentsSrtResponseDefaultType0
-    | GetAssetsByAssetIdSegmentsSrtResponseDefaultType1
-    | str
-    | None
-):
+) -> Any | GetAssetsByAssetIdSegmentsSrtResponseDefault | str | None:
     """List of segments as SRT file
 
 
@@ -334,7 +277,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdSegmentsSrtResponseDefaultType0 | GetAssetsByAssetIdSegmentsSrtResponseDefaultType1 | str
+        Any | GetAssetsByAssetIdSegmentsSrtResponseDefault | str
     """
 
     return (

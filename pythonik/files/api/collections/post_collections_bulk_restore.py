@@ -7,11 +7,8 @@ from ...client import AuthenticatedClient, Client
 from ...models.bulk_restore_collection_request_schema import (
     BulkRestoreCollectionRequestSchema,
 )
-from ...models.post_collections_bulk_restore_response_default_type_0 import (
-    PostCollectionsBulkRestoreResponseDefaultType0,
-)
-from ...models.post_collections_bulk_restore_response_default_type_1 import (
-    PostCollectionsBulkRestoreResponseDefaultType1,
+from ...models.post_collections_bulk_restore_response_default import (
+    PostCollectionsBulkRestoreResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -45,11 +42,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostCollectionsBulkRestoreResponseDefaultType0
-    | PostCollectionsBulkRestoreResponseDefaultType1
-):
+) -> Any | PostCollectionsBulkRestoreResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -70,42 +63,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostCollectionsBulkRestoreResponseDefaultType0
-        | PostCollectionsBulkRestoreResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostCollectionsBulkRestoreResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostCollectionsBulkRestoreResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostCollectionsBulkRestoreResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostCollectionsBulkRestoreResponseDefaultType0
-    | PostCollectionsBulkRestoreResponseDefaultType1
-]:
+) -> Response[Any | PostCollectionsBulkRestoreResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -119,11 +86,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: BulkRestoreCollectionRequestSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | PostCollectionsBulkRestoreResponseDefaultType0
-    | PostCollectionsBulkRestoreResponseDefaultType1
-]:
+) -> Response[Any | PostCollectionsBulkRestoreResponseDefault]:
     """Restore multiple collections to a storage.
 
 
@@ -139,7 +102,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostCollectionsBulkRestoreResponseDefaultType0 | PostCollectionsBulkRestoreResponseDefaultType1]
+        Response[Any | PostCollectionsBulkRestoreResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -159,12 +122,7 @@ def sync(
     client: AuthenticatedClient | Client,
     body: BulkRestoreCollectionRequestSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> (
-    Any
-    | PostCollectionsBulkRestoreResponseDefaultType0
-    | PostCollectionsBulkRestoreResponseDefaultType1
-    | None
-):
+) -> Any | PostCollectionsBulkRestoreResponseDefault | None:
     """Restore multiple collections to a storage.
 
 
@@ -180,7 +138,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostCollectionsBulkRestoreResponseDefaultType0 | PostCollectionsBulkRestoreResponseDefaultType1
+        Any | PostCollectionsBulkRestoreResponseDefault
     """
 
     return sync_detailed(
@@ -195,11 +153,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: BulkRestoreCollectionRequestSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | PostCollectionsBulkRestoreResponseDefaultType0
-    | PostCollectionsBulkRestoreResponseDefaultType1
-]:
+) -> Response[Any | PostCollectionsBulkRestoreResponseDefault]:
     """Restore multiple collections to a storage.
 
 
@@ -215,7 +169,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostCollectionsBulkRestoreResponseDefaultType0 | PostCollectionsBulkRestoreResponseDefaultType1]
+        Response[Any | PostCollectionsBulkRestoreResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -233,12 +187,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     body: BulkRestoreCollectionRequestSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> (
-    Any
-    | PostCollectionsBulkRestoreResponseDefaultType0
-    | PostCollectionsBulkRestoreResponseDefaultType1
-    | None
-):
+) -> Any | PostCollectionsBulkRestoreResponseDefault | None:
     """Restore multiple collections to a storage.
 
 
@@ -254,7 +203,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostCollectionsBulkRestoreResponseDefaultType0 | PostCollectionsBulkRestoreResponseDefaultType1
+        Any | PostCollectionsBulkRestoreResponseDefault
     """
 
     return (

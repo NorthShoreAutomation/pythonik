@@ -5,18 +5,15 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.analysis_service_accounts_schema import AnalysisServiceAccountsSchema
-from ...models.get_analysis_service_accounts_response_default_type_0 import (
-    GetAnalysisServiceAccountsResponseDefaultType0,
-)
-from ...models.get_analysis_service_accounts_response_default_type_1 import (
-    GetAnalysisServiceAccountsResponseDefaultType1,
+from ...models.get_analysis_service_accounts_response_default import (
+    GetAnalysisServiceAccountsResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     *,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> dict[str, Any]:
 
@@ -39,12 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    AnalysisServiceAccountsSchema
-    | Any
-    | GetAnalysisServiceAccountsResponseDefaultType0
-    | GetAnalysisServiceAccountsResponseDefaultType1
-):
+) -> AnalysisServiceAccountsSchema | Any | GetAnalysisServiceAccountsResponseDefault:
     if response.status_code == 200:
         response_200 = AnalysisServiceAccountsSchema.from_dict(response.json())
 
@@ -58,31 +50,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAnalysisServiceAccountsResponseDefaultType0
-        | GetAnalysisServiceAccountsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetAnalysisServiceAccountsResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetAnalysisServiceAccountsResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAnalysisServiceAccountsResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -90,10 +60,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    AnalysisServiceAccountsSchema
-    | Any
-    | GetAnalysisServiceAccountsResponseDefaultType0
-    | GetAnalysisServiceAccountsResponseDefaultType1
+    AnalysisServiceAccountsSchema | Any | GetAnalysisServiceAccountsResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -106,13 +73,10 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> Response[
-    AnalysisServiceAccountsSchema
-    | Any
-    | GetAnalysisServiceAccountsResponseDefaultType0
-    | GetAnalysisServiceAccountsResponseDefaultType1
+    AnalysisServiceAccountsSchema | Any | GetAnalysisServiceAccountsResponseDefault
 ]:
     """Get analysis service accounts
 
@@ -121,7 +85,7 @@ def sync_detailed(
      - can_read_analysis_service_accounts
 
     Args:
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -129,7 +93,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[AnalysisServiceAccountsSchema | Any | GetAnalysisServiceAccountsResponseDefaultType0 | GetAnalysisServiceAccountsResponseDefaultType1]
+        Response[AnalysisServiceAccountsSchema | Any | GetAnalysisServiceAccountsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -147,13 +111,12 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> (
     AnalysisServiceAccountsSchema
     | Any
-    | GetAnalysisServiceAccountsResponseDefaultType0
-    | GetAnalysisServiceAccountsResponseDefaultType1
+    | GetAnalysisServiceAccountsResponseDefault
     | None
 ):
     """Get analysis service accounts
@@ -163,7 +126,7 @@ def sync(
      - can_read_analysis_service_accounts
 
     Args:
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -171,7 +134,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        AnalysisServiceAccountsSchema | Any | GetAnalysisServiceAccountsResponseDefaultType0 | GetAnalysisServiceAccountsResponseDefaultType1
+        AnalysisServiceAccountsSchema | Any | GetAnalysisServiceAccountsResponseDefault
     """
 
     return sync_detailed(
@@ -184,13 +147,10 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> Response[
-    AnalysisServiceAccountsSchema
-    | Any
-    | GetAnalysisServiceAccountsResponseDefaultType0
-    | GetAnalysisServiceAccountsResponseDefaultType1
+    AnalysisServiceAccountsSchema | Any | GetAnalysisServiceAccountsResponseDefault
 ]:
     """Get analysis service accounts
 
@@ -199,7 +159,7 @@ async def asyncio_detailed(
      - can_read_analysis_service_accounts
 
     Args:
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -207,7 +167,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[AnalysisServiceAccountsSchema | Any | GetAnalysisServiceAccountsResponseDefaultType0 | GetAnalysisServiceAccountsResponseDefaultType1]
+        Response[AnalysisServiceAccountsSchema | Any | GetAnalysisServiceAccountsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -223,13 +183,12 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> (
     AnalysisServiceAccountsSchema
     | Any
-    | GetAnalysisServiceAccountsResponseDefaultType0
-    | GetAnalysisServiceAccountsResponseDefaultType1
+    | GetAnalysisServiceAccountsResponseDefault
     | None
 ):
     """Get analysis service accounts
@@ -239,7 +198,7 @@ async def asyncio(
      - can_read_analysis_service_accounts
 
     Args:
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -247,7 +206,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        AnalysisServiceAccountsSchema | Any | GetAnalysisServiceAccountsResponseDefaultType0 | GetAnalysisServiceAccountsResponseDefaultType1
+        AnalysisServiceAccountsSchema | Any | GetAnalysisServiceAccountsResponseDefault
     """
 
     return (

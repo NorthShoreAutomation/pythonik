@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_groups_by_group_id_acl_by_object_type_by_object_key_by_permission_response_default_type_0 import (
-    GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0,
-)
-from ...models.get_groups_by_group_id_acl_by_object_type_by_object_key_by_permission_response_default_type_1 import (
-    GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1,
+from ...models.get_groups_by_group_id_acl_by_object_type_by_object_key_by_permission_response_default import (
+    GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefault,
 )
 from ...types import Response
 
@@ -36,11 +33,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0
-    | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1
-):
+) -> Any | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefault:
     if response.status_code == 200:
         response_200 = cast(Any, None)
         return response_200
@@ -57,31 +50,9 @@ def _parse_response(
         response_403 = cast(Any, None)
         return response_403
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0
-        | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -89,9 +60,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0
-    | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1
+    Any | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -109,9 +78,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0
-    | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1
+    Any | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefault
 ]:
     """Check if group has particular permission for an object
 
@@ -130,7 +97,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0 | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1]
+        Response[Any | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -155,10 +122,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
 ) -> (
-    Any
-    | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0
-    | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1
-    | None
+    Any | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefault | None
 ):
     """Check if group has particular permission for an object
 
@@ -177,7 +141,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0 | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1
+        Any | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefault
     """
 
     return sync_detailed(
@@ -197,9 +161,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0
-    | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1
+    Any | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefault
 ]:
     """Check if group has particular permission for an object
 
@@ -218,7 +180,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0 | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1]
+        Response[Any | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -241,10 +203,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
 ) -> (
-    Any
-    | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0
-    | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1
-    | None
+    Any | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefault | None
 ):
     """Check if group has particular permission for an object
 
@@ -263,7 +222,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType0 | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefaultType1
+        Any | GetGroupsByGroupIdAclByObjectTypeByObjectKeyByPermissionResponseDefault
     """
 
     return (

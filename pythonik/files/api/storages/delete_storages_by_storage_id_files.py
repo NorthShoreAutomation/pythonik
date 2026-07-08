@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_storages_by_storage_id_files_response_default_type_0 import (
-    DeleteStoragesByStorageIdFilesResponseDefaultType0,
-)
-from ...models.delete_storages_by_storage_id_files_response_default_type_1 import (
-    DeleteStoragesByStorageIdFilesResponseDefaultType1,
+from ...models.delete_storages_by_storage_id_files_response_default import (
+    DeleteStoragesByStorageIdFilesResponseDefault,
 )
 from ...models.files_elastic_schema import FilesElasticSchema
 from ...types import UNSET, Response, Unset
@@ -67,16 +64,15 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteStoragesByStorageIdFilesResponseDefaultType0
-    | DeleteStoragesByStorageIdFilesResponseDefaultType1
-    | FilesElasticSchema
-):
+) -> Any | DeleteStoragesByStorageIdFilesResponseDefault | FilesElasticSchema:
     if response.status_code == 200:
         response_200 = FilesElasticSchema.from_dict(response.json())
 
         return response_200
+
+    if response.status_code == 204:
+        response_204 = cast(Any, None)
+        return response_204
 
     if response.status_code == 401:
         response_401 = cast(Any, None)
@@ -86,43 +82,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteStoragesByStorageIdFilesResponseDefaultType0
-        | DeleteStoragesByStorageIdFilesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteStoragesByStorageIdFilesResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteStoragesByStorageIdFilesResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteStoragesByStorageIdFilesResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteStoragesByStorageIdFilesResponseDefaultType0
-    | DeleteStoragesByStorageIdFilesResponseDefaultType1
-    | FilesElasticSchema
-]:
+) -> Response[Any | DeleteStoragesByStorageIdFilesResponseDefault | FilesElasticSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -145,12 +114,7 @@ def sync_detailed(
     status: str | Unset = UNSET,
     date_created: str | Unset = UNSET,
     date_modified: str | Unset = UNSET,
-) -> Response[
-    Any
-    | DeleteStoragesByStorageIdFilesResponseDefaultType0
-    | DeleteStoragesByStorageIdFilesResponseDefaultType1
-    | FilesElasticSchema
-]:
+) -> Response[Any | DeleteStoragesByStorageIdFilesResponseDefault | FilesElasticSchema]:
     """DELETE files (with copies in different storages) from a storage folder, or a storage
 
 
@@ -176,7 +140,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteStoragesByStorageIdFilesResponseDefaultType0 | DeleteStoragesByStorageIdFilesResponseDefaultType1 | FilesElasticSchema]
+        Response[Any | DeleteStoragesByStorageIdFilesResponseDefault | FilesElasticSchema]
     """
 
     kwargs = _get_kwargs(
@@ -214,13 +178,7 @@ def sync(
     status: str | Unset = UNSET,
     date_created: str | Unset = UNSET,
     date_modified: str | Unset = UNSET,
-) -> (
-    Any
-    | DeleteStoragesByStorageIdFilesResponseDefaultType0
-    | DeleteStoragesByStorageIdFilesResponseDefaultType1
-    | FilesElasticSchema
-    | None
-):
+) -> Any | DeleteStoragesByStorageIdFilesResponseDefault | FilesElasticSchema | None:
     """DELETE files (with copies in different storages) from a storage folder, or a storage
 
 
@@ -246,7 +204,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteStoragesByStorageIdFilesResponseDefaultType0 | DeleteStoragesByStorageIdFilesResponseDefaultType1 | FilesElasticSchema
+        Any | DeleteStoragesByStorageIdFilesResponseDefault | FilesElasticSchema
     """
 
     return sync_detailed(
@@ -279,12 +237,7 @@ async def asyncio_detailed(
     status: str | Unset = UNSET,
     date_created: str | Unset = UNSET,
     date_modified: str | Unset = UNSET,
-) -> Response[
-    Any
-    | DeleteStoragesByStorageIdFilesResponseDefaultType0
-    | DeleteStoragesByStorageIdFilesResponseDefaultType1
-    | FilesElasticSchema
-]:
+) -> Response[Any | DeleteStoragesByStorageIdFilesResponseDefault | FilesElasticSchema]:
     """DELETE files (with copies in different storages) from a storage folder, or a storage
 
 
@@ -310,7 +263,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteStoragesByStorageIdFilesResponseDefaultType0 | DeleteStoragesByStorageIdFilesResponseDefaultType1 | FilesElasticSchema]
+        Response[Any | DeleteStoragesByStorageIdFilesResponseDefault | FilesElasticSchema]
     """
 
     kwargs = _get_kwargs(
@@ -346,13 +299,7 @@ async def asyncio(
     status: str | Unset = UNSET,
     date_created: str | Unset = UNSET,
     date_modified: str | Unset = UNSET,
-) -> (
-    Any
-    | DeleteStoragesByStorageIdFilesResponseDefaultType0
-    | DeleteStoragesByStorageIdFilesResponseDefaultType1
-    | FilesElasticSchema
-    | None
-):
+) -> Any | DeleteStoragesByStorageIdFilesResponseDefault | FilesElasticSchema | None:
     """DELETE files (with copies in different storages) from a storage folder, or a storage
 
 
@@ -378,7 +325,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteStoragesByStorageIdFilesResponseDefaultType0 | DeleteStoragesByStorageIdFilesResponseDefaultType1 | FilesElasticSchema
+        Any | DeleteStoragesByStorageIdFilesResponseDefault | FilesElasticSchema
     """
 
     return (

@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_acl_by_object_type_content_response_default_type_0 import (
-    DeleteAclByObjectTypeContentResponseDefaultType0,
-)
-from ...models.delete_acl_by_object_type_content_response_default_type_1 import (
-    DeleteAclByObjectTypeContentResponseDefaultType1,
+from ...models.delete_acl_by_object_type_content_response_default import (
+    DeleteAclByObjectTypeContentResponseDefault,
 )
 from ...models.delete_bulk_ac_ls_schema import DeleteBulkACLsSchema
 from ...types import Response
@@ -39,14 +36,14 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteAclByObjectTypeContentResponseDefaultType0
-    | DeleteAclByObjectTypeContentResponseDefaultType1
-):
+) -> Any | DeleteAclByObjectTypeContentResponseDefault:
     if response.status_code == 200:
         response_200 = cast(Any, None)
         return response_200
+
+    if response.status_code == 204:
+        response_204 = cast(Any, None)
+        return response_204
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -56,42 +53,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteAclByObjectTypeContentResponseDefaultType0
-        | DeleteAclByObjectTypeContentResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteAclByObjectTypeContentResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteAclByObjectTypeContentResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteAclByObjectTypeContentResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteAclByObjectTypeContentResponseDefaultType0
-    | DeleteAclByObjectTypeContentResponseDefaultType1
-]:
+) -> Response[Any | DeleteAclByObjectTypeContentResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -105,11 +76,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: DeleteBulkACLsSchema,
-) -> Response[
-    Any
-    | DeleteAclByObjectTypeContentResponseDefaultType0
-    | DeleteAclByObjectTypeContentResponseDefaultType1
-]:
+) -> Response[Any | DeleteAclByObjectTypeContentResponseDefault]:
     """Delete acls for content of multiple objects
 
 
@@ -125,7 +92,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAclByObjectTypeContentResponseDefaultType0 | DeleteAclByObjectTypeContentResponseDefaultType1]
+        Response[Any | DeleteAclByObjectTypeContentResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -145,12 +112,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: DeleteBulkACLsSchema,
-) -> (
-    Any
-    | DeleteAclByObjectTypeContentResponseDefaultType0
-    | DeleteAclByObjectTypeContentResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAclByObjectTypeContentResponseDefault | None:
     """Delete acls for content of multiple objects
 
 
@@ -166,7 +128,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAclByObjectTypeContentResponseDefaultType0 | DeleteAclByObjectTypeContentResponseDefaultType1
+        Any | DeleteAclByObjectTypeContentResponseDefault
     """
 
     return sync_detailed(
@@ -181,11 +143,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: DeleteBulkACLsSchema,
-) -> Response[
-    Any
-    | DeleteAclByObjectTypeContentResponseDefaultType0
-    | DeleteAclByObjectTypeContentResponseDefaultType1
-]:
+) -> Response[Any | DeleteAclByObjectTypeContentResponseDefault]:
     """Delete acls for content of multiple objects
 
 
@@ -201,7 +159,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAclByObjectTypeContentResponseDefaultType0 | DeleteAclByObjectTypeContentResponseDefaultType1]
+        Response[Any | DeleteAclByObjectTypeContentResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -219,12 +177,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: DeleteBulkACLsSchema,
-) -> (
-    Any
-    | DeleteAclByObjectTypeContentResponseDefaultType0
-    | DeleteAclByObjectTypeContentResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAclByObjectTypeContentResponseDefault | None:
     """Delete acls for content of multiple objects
 
 
@@ -240,7 +193,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAclByObjectTypeContentResponseDefaultType0 | DeleteAclByObjectTypeContentResponseDefaultType1
+        Any | DeleteAclByObjectTypeContentResponseDefault
     """
 
     return (

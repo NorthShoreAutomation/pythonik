@@ -5,11 +5,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.discovery_entity_schema import DiscoveryEntitySchema
-from ...models.post_discovery_default_entities_response_default_type_0 import (
-    PostDiscoveryDefaultEntitiesResponseDefaultType0,
-)
-from ...models.post_discovery_default_entities_response_default_type_1 import (
-    PostDiscoveryDefaultEntitiesResponseDefaultType1,
+from ...models.post_discovery_default_entities_response_default import (
+    PostDiscoveryDefaultEntitiesResponseDefault,
 )
 from ...types import Response
 
@@ -35,12 +32,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DiscoveryEntitySchema
-    | PostDiscoveryDefaultEntitiesResponseDefaultType0
-    | PostDiscoveryDefaultEntitiesResponseDefaultType1
-):
+) -> Any | DiscoveryEntitySchema | PostDiscoveryDefaultEntitiesResponseDefault:
     if response.status_code == 201:
         response_201 = DiscoveryEntitySchema.from_dict(response.json())
 
@@ -54,31 +46,9 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostDiscoveryDefaultEntitiesResponseDefaultType0
-        | PostDiscoveryDefaultEntitiesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostDiscoveryDefaultEntitiesResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostDiscoveryDefaultEntitiesResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostDiscoveryDefaultEntitiesResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -86,10 +56,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | DiscoveryEntitySchema
-    | PostDiscoveryDefaultEntitiesResponseDefaultType0
-    | PostDiscoveryDefaultEntitiesResponseDefaultType1
+    Any | DiscoveryEntitySchema | PostDiscoveryDefaultEntitiesResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -104,10 +71,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: DiscoveryEntitySchema,
 ) -> Response[
-    Any
-    | DiscoveryEntitySchema
-    | PostDiscoveryDefaultEntitiesResponseDefaultType0
-    | PostDiscoveryDefaultEntitiesResponseDefaultType1
+    Any | DiscoveryEntitySchema | PostDiscoveryDefaultEntitiesResponseDefault
 ]:
     """Adds a new discovery entity.
 
@@ -129,7 +93,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DiscoveryEntitySchema | PostDiscoveryDefaultEntitiesResponseDefaultType0 | PostDiscoveryDefaultEntitiesResponseDefaultType1]
+        Response[Any | DiscoveryEntitySchema | PostDiscoveryDefaultEntitiesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -147,13 +111,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: DiscoveryEntitySchema,
-) -> (
-    Any
-    | DiscoveryEntitySchema
-    | PostDiscoveryDefaultEntitiesResponseDefaultType0
-    | PostDiscoveryDefaultEntitiesResponseDefaultType1
-    | None
-):
+) -> Any | DiscoveryEntitySchema | PostDiscoveryDefaultEntitiesResponseDefault | None:
     """Adds a new discovery entity.
 
      <br/>This creates an entry for the discovery view to show collections and saved searches.<br/>Object
@@ -174,7 +132,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DiscoveryEntitySchema | PostDiscoveryDefaultEntitiesResponseDefaultType0 | PostDiscoveryDefaultEntitiesResponseDefaultType1
+        Any | DiscoveryEntitySchema | PostDiscoveryDefaultEntitiesResponseDefault
     """
 
     return sync_detailed(
@@ -188,10 +146,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: DiscoveryEntitySchema,
 ) -> Response[
-    Any
-    | DiscoveryEntitySchema
-    | PostDiscoveryDefaultEntitiesResponseDefaultType0
-    | PostDiscoveryDefaultEntitiesResponseDefaultType1
+    Any | DiscoveryEntitySchema | PostDiscoveryDefaultEntitiesResponseDefault
 ]:
     """Adds a new discovery entity.
 
@@ -213,7 +168,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DiscoveryEntitySchema | PostDiscoveryDefaultEntitiesResponseDefaultType0 | PostDiscoveryDefaultEntitiesResponseDefaultType1]
+        Response[Any | DiscoveryEntitySchema | PostDiscoveryDefaultEntitiesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -229,13 +184,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: DiscoveryEntitySchema,
-) -> (
-    Any
-    | DiscoveryEntitySchema
-    | PostDiscoveryDefaultEntitiesResponseDefaultType0
-    | PostDiscoveryDefaultEntitiesResponseDefaultType1
-    | None
-):
+) -> Any | DiscoveryEntitySchema | PostDiscoveryDefaultEntitiesResponseDefault | None:
     """Adds a new discovery entity.
 
      <br/>This creates an entry for the discovery view to show collections and saved searches.<br/>Object
@@ -256,7 +205,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DiscoveryEntitySchema | PostDiscoveryDefaultEntitiesResponseDefaultType0 | PostDiscoveryDefaultEntitiesResponseDefaultType1
+        Any | DiscoveryEntitySchema | PostDiscoveryDefaultEntitiesResponseDefault
     """
 
     return (

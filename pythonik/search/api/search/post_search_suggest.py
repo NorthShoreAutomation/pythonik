@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_search_suggest_response_default_type_0 import (
-    PostSearchSuggestResponseDefaultType0,
-)
-from ...models.post_search_suggest_response_default_type_1 import (
-    PostSearchSuggestResponseDefaultType1,
+from ...models.post_search_suggest_response_default import (
+    PostSearchSuggestResponseDefault,
 )
 from ...models.search_suggest_schema import SearchSuggestSchema
 from ...models.search_suggests_response_schema import SearchSuggestsResponseSchema
@@ -36,12 +33,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostSearchSuggestResponseDefaultType0
-    | PostSearchSuggestResponseDefaultType1
-    | SearchSuggestsResponseSchema
-):
+) -> Any | PostSearchSuggestResponseDefault | SearchSuggestsResponseSchema:
     if response.status_code == 200:
         response_200 = SearchSuggestsResponseSchema.from_dict(response.json())
 
@@ -55,38 +47,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> PostSearchSuggestResponseDefaultType0 | PostSearchSuggestResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostSearchSuggestResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostSearchSuggestResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostSearchSuggestResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostSearchSuggestResponseDefaultType0
-    | PostSearchSuggestResponseDefaultType1
-    | SearchSuggestsResponseSchema
-]:
+) -> Response[Any | PostSearchSuggestResponseDefault | SearchSuggestsResponseSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -99,12 +67,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: SearchSuggestSchema,
-) -> Response[
-    Any
-    | PostSearchSuggestResponseDefaultType0
-    | PostSearchSuggestResponseDefaultType1
-    | SearchSuggestsResponseSchema
-]:
+) -> Response[Any | PostSearchSuggestResponseDefault | SearchSuggestsResponseSchema]:
     """Returns search suggestions for a particular query.
 
 
@@ -119,7 +82,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSearchSuggestResponseDefaultType0 | PostSearchSuggestResponseDefaultType1 | SearchSuggestsResponseSchema]
+        Response[Any | PostSearchSuggestResponseDefault | SearchSuggestsResponseSchema]
     """
 
     kwargs = _get_kwargs(
@@ -137,13 +100,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: SearchSuggestSchema,
-) -> (
-    Any
-    | PostSearchSuggestResponseDefaultType0
-    | PostSearchSuggestResponseDefaultType1
-    | SearchSuggestsResponseSchema
-    | None
-):
+) -> Any | PostSearchSuggestResponseDefault | SearchSuggestsResponseSchema | None:
     """Returns search suggestions for a particular query.
 
 
@@ -158,7 +115,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSearchSuggestResponseDefaultType0 | PostSearchSuggestResponseDefaultType1 | SearchSuggestsResponseSchema
+        Any | PostSearchSuggestResponseDefault | SearchSuggestsResponseSchema
     """
 
     return sync_detailed(
@@ -171,12 +128,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: SearchSuggestSchema,
-) -> Response[
-    Any
-    | PostSearchSuggestResponseDefaultType0
-    | PostSearchSuggestResponseDefaultType1
-    | SearchSuggestsResponseSchema
-]:
+) -> Response[Any | PostSearchSuggestResponseDefault | SearchSuggestsResponseSchema]:
     """Returns search suggestions for a particular query.
 
 
@@ -191,7 +143,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSearchSuggestResponseDefaultType0 | PostSearchSuggestResponseDefaultType1 | SearchSuggestsResponseSchema]
+        Response[Any | PostSearchSuggestResponseDefault | SearchSuggestsResponseSchema]
     """
 
     kwargs = _get_kwargs(
@@ -207,13 +159,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: SearchSuggestSchema,
-) -> (
-    Any
-    | PostSearchSuggestResponseDefaultType0
-    | PostSearchSuggestResponseDefaultType1
-    | SearchSuggestsResponseSchema
-    | None
-):
+) -> Any | PostSearchSuggestResponseDefault | SearchSuggestsResponseSchema | None:
     """Returns search suggestions for a particular query.
 
 
@@ -228,7 +174,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSearchSuggestResponseDefaultType0 | PostSearchSuggestResponseDefaultType1 | SearchSuggestsResponseSchema
+        Any | PostSearchSuggestResponseDefault | SearchSuggestsResponseSchema
     """
 
     return (

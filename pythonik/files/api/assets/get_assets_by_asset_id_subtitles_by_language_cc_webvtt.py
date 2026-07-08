@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_assets_by_asset_id_subtitles_by_language_cc_webvtt_response_default_type_0 import (
-    GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType0,
-)
-from ...models.get_assets_by_asset_id_subtitles_by_language_cc_webvtt_response_default_type_1 import (
-    GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType1,
+from ...models.get_assets_by_asset_id_subtitles_by_language_cc_webvtt_response_default import (
+    GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefault,
 )
 from ...types import Response
 
@@ -32,12 +29,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType0
-    | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType1
-    | str
-):
+) -> Any | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefault | str:
     if response.status_code == 200:
         response_200 = response.text
         return response_200
@@ -50,45 +42,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType0
-        | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType0
-    | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType1
-    | str
-]:
+) -> Response[Any | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefault | str]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -102,12 +67,7 @@ def sync_detailed(
     language: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType0
-    | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType1
-    | str
-]:
+) -> Response[Any | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefault | str]:
     """Get asset's closed captions subtitle file for a particular language
 
 
@@ -123,7 +83,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType0 | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType1 | str]
+        Response[Any | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefault | str]
     """
 
     kwargs = _get_kwargs(
@@ -143,13 +103,7 @@ def sync(
     language: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType0
-    | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType1
-    | str
-    | None
-):
+) -> Any | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefault | str | None:
     """Get asset's closed captions subtitle file for a particular language
 
 
@@ -165,7 +119,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType0 | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType1 | str
+        Any | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefault | str
     """
 
     return sync_detailed(
@@ -180,12 +134,7 @@ async def asyncio_detailed(
     language: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType0
-    | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType1
-    | str
-]:
+) -> Response[Any | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefault | str]:
     """Get asset's closed captions subtitle file for a particular language
 
 
@@ -201,7 +150,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType0 | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType1 | str]
+        Response[Any | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefault | str]
     """
 
     kwargs = _get_kwargs(
@@ -219,13 +168,7 @@ async def asyncio(
     language: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType0
-    | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType1
-    | str
-    | None
-):
+) -> Any | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefault | str | None:
     """Get asset's closed captions subtitle file for a particular language
 
 
@@ -241,7 +184,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType0 | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefaultType1 | str
+        Any | GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefault | str
     """
 
     return (

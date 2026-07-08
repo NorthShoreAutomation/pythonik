@@ -7,11 +7,8 @@ from ...client import AuthenticatedClient, Client
 from ...models.post_users_invite_token_request_response_200 import (
     PostUsersInviteTokenRequestResponse200,
 )
-from ...models.post_users_invite_token_request_response_default_type_0 import (
-    PostUsersInviteTokenRequestResponseDefaultType0,
-)
-from ...models.post_users_invite_token_request_response_default_type_1 import (
-    PostUsersInviteTokenRequestResponseDefaultType1,
+from ...models.post_users_invite_token_request_response_default import (
+    PostUsersInviteTokenRequestResponseDefault,
 )
 from ...models.user_invite_request_link_schema import UserInviteRequestLinkSchema
 from ...types import Response
@@ -41,8 +38,7 @@ def _parse_response(
 ) -> (
     Any
     | PostUsersInviteTokenRequestResponse200
-    | PostUsersInviteTokenRequestResponseDefaultType0
-    | PostUsersInviteTokenRequestResponseDefaultType1
+    | PostUsersInviteTokenRequestResponseDefault
 ):
     if response.status_code == 200:
         response_200 = PostUsersInviteTokenRequestResponse200.from_dict(response.json())
@@ -61,31 +57,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostUsersInviteTokenRequestResponseDefaultType0
-        | PostUsersInviteTokenRequestResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostUsersInviteTokenRequestResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostUsersInviteTokenRequestResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostUsersInviteTokenRequestResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -95,8 +69,7 @@ def _build_response(
 ) -> Response[
     Any
     | PostUsersInviteTokenRequestResponse200
-    | PostUsersInviteTokenRequestResponseDefaultType0
-    | PostUsersInviteTokenRequestResponseDefaultType1
+    | PostUsersInviteTokenRequestResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -113,8 +86,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | PostUsersInviteTokenRequestResponse200
-    | PostUsersInviteTokenRequestResponseDefaultType0
-    | PostUsersInviteTokenRequestResponseDefaultType1
+    | PostUsersInviteTokenRequestResponseDefault
 ]:
     """Request an invite link for user invitation.
 
@@ -130,7 +102,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostUsersInviteTokenRequestResponse200 | PostUsersInviteTokenRequestResponseDefaultType0 | PostUsersInviteTokenRequestResponseDefaultType1]
+        Response[Any | PostUsersInviteTokenRequestResponse200 | PostUsersInviteTokenRequestResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -151,8 +123,7 @@ def sync(
 ) -> (
     Any
     | PostUsersInviteTokenRequestResponse200
-    | PostUsersInviteTokenRequestResponseDefaultType0
-    | PostUsersInviteTokenRequestResponseDefaultType1
+    | PostUsersInviteTokenRequestResponseDefault
     | None
 ):
     """Request an invite link for user invitation.
@@ -169,7 +140,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostUsersInviteTokenRequestResponse200 | PostUsersInviteTokenRequestResponseDefaultType0 | PostUsersInviteTokenRequestResponseDefaultType1
+        Any | PostUsersInviteTokenRequestResponse200 | PostUsersInviteTokenRequestResponseDefault
     """
 
     return sync_detailed(
@@ -185,8 +156,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | PostUsersInviteTokenRequestResponse200
-    | PostUsersInviteTokenRequestResponseDefaultType0
-    | PostUsersInviteTokenRequestResponseDefaultType1
+    | PostUsersInviteTokenRequestResponseDefault
 ]:
     """Request an invite link for user invitation.
 
@@ -202,7 +172,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostUsersInviteTokenRequestResponse200 | PostUsersInviteTokenRequestResponseDefaultType0 | PostUsersInviteTokenRequestResponseDefaultType1]
+        Response[Any | PostUsersInviteTokenRequestResponse200 | PostUsersInviteTokenRequestResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -221,8 +191,7 @@ async def asyncio(
 ) -> (
     Any
     | PostUsersInviteTokenRequestResponse200
-    | PostUsersInviteTokenRequestResponseDefaultType0
-    | PostUsersInviteTokenRequestResponseDefaultType1
+    | PostUsersInviteTokenRequestResponseDefault
     | None
 ):
     """Request an invite link for user invitation.
@@ -239,7 +208,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostUsersInviteTokenRequestResponse200 | PostUsersInviteTokenRequestResponseDefaultType0 | PostUsersInviteTokenRequestResponseDefaultType1
+        Any | PostUsersInviteTokenRequestResponse200 | PostUsersInviteTokenRequestResponseDefault
     """
 
     return (

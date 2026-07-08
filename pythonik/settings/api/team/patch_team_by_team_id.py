@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.group_setting_public_schema import GroupSettingPublicSchema
-from ...models.patch_team_by_team_id_response_default_type_0 import (
-    PatchTeamByTeamIdResponseDefaultType0,
-)
-from ...models.patch_team_by_team_id_response_default_type_1 import (
-    PatchTeamByTeamIdResponseDefaultType1,
+from ...models.patch_team_by_team_id_response_default import (
+    PatchTeamByTeamIdResponseDefault,
 )
 from ...types import Response
 
@@ -39,12 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GroupSettingPublicSchema
-    | PatchTeamByTeamIdResponseDefaultType0
-    | PatchTeamByTeamIdResponseDefaultType1
-):
+) -> Any | GroupSettingPublicSchema | PatchTeamByTeamIdResponseDefault:
     if response.status_code == 200:
         response_200 = GroupSettingPublicSchema.from_dict(response.json())
 
@@ -58,38 +50,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> PatchTeamByTeamIdResponseDefaultType0 | PatchTeamByTeamIdResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PatchTeamByTeamIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PatchTeamByTeamIdResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PatchTeamByTeamIdResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GroupSettingPublicSchema
-    | PatchTeamByTeamIdResponseDefaultType0
-    | PatchTeamByTeamIdResponseDefaultType1
-]:
+) -> Response[Any | GroupSettingPublicSchema | PatchTeamByTeamIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -103,12 +71,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: GroupSettingPublicSchema,
-) -> Response[
-    Any
-    | GroupSettingPublicSchema
-    | PatchTeamByTeamIdResponseDefaultType0
-    | PatchTeamByTeamIdResponseDefaultType1
-]:
+) -> Response[Any | GroupSettingPublicSchema | PatchTeamByTeamIdResponseDefault]:
     """Change team settings
 
 
@@ -124,7 +87,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GroupSettingPublicSchema | PatchTeamByTeamIdResponseDefaultType0 | PatchTeamByTeamIdResponseDefaultType1]
+        Response[Any | GroupSettingPublicSchema | PatchTeamByTeamIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -144,13 +107,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: GroupSettingPublicSchema,
-) -> (
-    Any
-    | GroupSettingPublicSchema
-    | PatchTeamByTeamIdResponseDefaultType0
-    | PatchTeamByTeamIdResponseDefaultType1
-    | None
-):
+) -> Any | GroupSettingPublicSchema | PatchTeamByTeamIdResponseDefault | None:
     """Change team settings
 
 
@@ -166,7 +123,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GroupSettingPublicSchema | PatchTeamByTeamIdResponseDefaultType0 | PatchTeamByTeamIdResponseDefaultType1
+        Any | GroupSettingPublicSchema | PatchTeamByTeamIdResponseDefault
     """
 
     return sync_detailed(
@@ -181,12 +138,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: GroupSettingPublicSchema,
-) -> Response[
-    Any
-    | GroupSettingPublicSchema
-    | PatchTeamByTeamIdResponseDefaultType0
-    | PatchTeamByTeamIdResponseDefaultType1
-]:
+) -> Response[Any | GroupSettingPublicSchema | PatchTeamByTeamIdResponseDefault]:
     """Change team settings
 
 
@@ -202,7 +154,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GroupSettingPublicSchema | PatchTeamByTeamIdResponseDefaultType0 | PatchTeamByTeamIdResponseDefaultType1]
+        Response[Any | GroupSettingPublicSchema | PatchTeamByTeamIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -220,13 +172,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: GroupSettingPublicSchema,
-) -> (
-    Any
-    | GroupSettingPublicSchema
-    | PatchTeamByTeamIdResponseDefaultType0
-    | PatchTeamByTeamIdResponseDefaultType1
-    | None
-):
+) -> Any | GroupSettingPublicSchema | PatchTeamByTeamIdResponseDefault | None:
     """Change team settings
 
 
@@ -242,7 +188,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GroupSettingPublicSchema | PatchTeamByTeamIdResponseDefaultType0 | PatchTeamByTeamIdResponseDefaultType1
+        Any | GroupSettingPublicSchema | PatchTeamByTeamIdResponseDefault
     """
 
     return (

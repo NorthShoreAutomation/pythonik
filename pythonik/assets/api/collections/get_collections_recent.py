@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_collections_recent_response_default_type_0 import (
-    GetCollectionsRecentResponseDefaultType0,
-)
-from ...models.get_collections_recent_response_default_type_1 import (
-    GetCollectionsRecentResponseDefaultType1,
+from ...models.get_collections_recent_response_default import (
+    GetCollectionsRecentResponseDefault,
 )
 from ...models.recent_collections_schema import RecentCollectionsSchema
 from ...types import UNSET, Response, Unset
@@ -17,7 +14,7 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     *,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     search_after: str | Unset = UNSET,
 ) -> dict[str, Any]:
 
@@ -42,12 +39,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetCollectionsRecentResponseDefaultType0
-    | GetCollectionsRecentResponseDefaultType1
-    | RecentCollectionsSchema
-):
+) -> Any | GetCollectionsRecentResponseDefault | RecentCollectionsSchema:
     if response.status_code == 200:
         response_200 = RecentCollectionsSchema.from_dict(response.json())
 
@@ -65,43 +57,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetCollectionsRecentResponseDefaultType0
-        | GetCollectionsRecentResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetCollectionsRecentResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetCollectionsRecentResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetCollectionsRecentResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetCollectionsRecentResponseDefaultType0
-    | GetCollectionsRecentResponseDefaultType1
-    | RecentCollectionsSchema
-]:
+) -> Response[Any | GetCollectionsRecentResponseDefault | RecentCollectionsSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -114,14 +77,9 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     search_after: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetCollectionsRecentResponseDefaultType0
-    | GetCollectionsRecentResponseDefaultType1
-    | RecentCollectionsSchema
-]:
+) -> Response[Any | GetCollectionsRecentResponseDefault | RecentCollectionsSchema]:
     """Get list of recently viewed collections
 
 
@@ -130,7 +88,7 @@ def sync_detailed(
 
     Args:
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         search_after (str | Unset):
 
     Raises:
@@ -138,7 +96,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetCollectionsRecentResponseDefaultType0 | GetCollectionsRecentResponseDefaultType1 | RecentCollectionsSchema]
+        Response[Any | GetCollectionsRecentResponseDefault | RecentCollectionsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -158,15 +116,9 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     search_after: str | Unset = UNSET,
-) -> (
-    Any
-    | GetCollectionsRecentResponseDefaultType0
-    | GetCollectionsRecentResponseDefaultType1
-    | RecentCollectionsSchema
-    | None
-):
+) -> Any | GetCollectionsRecentResponseDefault | RecentCollectionsSchema | None:
     """Get list of recently viewed collections
 
 
@@ -175,7 +127,7 @@ def sync(
 
     Args:
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         search_after (str | Unset):
 
     Raises:
@@ -183,7 +135,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetCollectionsRecentResponseDefaultType0 | GetCollectionsRecentResponseDefaultType1 | RecentCollectionsSchema
+        Any | GetCollectionsRecentResponseDefault | RecentCollectionsSchema
     """
 
     return sync_detailed(
@@ -198,14 +150,9 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     search_after: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetCollectionsRecentResponseDefaultType0
-    | GetCollectionsRecentResponseDefaultType1
-    | RecentCollectionsSchema
-]:
+) -> Response[Any | GetCollectionsRecentResponseDefault | RecentCollectionsSchema]:
     """Get list of recently viewed collections
 
 
@@ -214,7 +161,7 @@ async def asyncio_detailed(
 
     Args:
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         search_after (str | Unset):
 
     Raises:
@@ -222,7 +169,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetCollectionsRecentResponseDefaultType0 | GetCollectionsRecentResponseDefaultType1 | RecentCollectionsSchema]
+        Response[Any | GetCollectionsRecentResponseDefault | RecentCollectionsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -240,15 +187,9 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     search_after: str | Unset = UNSET,
-) -> (
-    Any
-    | GetCollectionsRecentResponseDefaultType0
-    | GetCollectionsRecentResponseDefaultType1
-    | RecentCollectionsSchema
-    | None
-):
+) -> Any | GetCollectionsRecentResponseDefault | RecentCollectionsSchema | None:
     """Get list of recently viewed collections
 
 
@@ -257,7 +198,7 @@ async def asyncio(
 
     Args:
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         search_after (str | Unset):
 
     Raises:
@@ -265,7 +206,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetCollectionsRecentResponseDefaultType0 | GetCollectionsRecentResponseDefaultType1 | RecentCollectionsSchema
+        Any | GetCollectionsRecentResponseDefault | RecentCollectionsSchema
     """
 
     return (

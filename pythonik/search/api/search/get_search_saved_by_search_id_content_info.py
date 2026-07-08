@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_search_saved_by_search_id_content_info_response_default_type_0 import (
-    GetSearchSavedBySearchIdContentInfoResponseDefaultType0,
-)
-from ...models.get_search_saved_by_search_id_content_info_response_default_type_1 import (
-    GetSearchSavedBySearchIdContentInfoResponseDefaultType1,
+from ...models.get_search_saved_by_search_id_content_info_response_default import (
+    GetSearchSavedBySearchIdContentInfoResponseDefault,
 )
 from ...models.search_content_info_schema import SearchContentInfoSchema
 from ...types import UNSET, Response, Unset
@@ -18,8 +15,8 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     search_id: str,
     *,
-    format_name: str | Unset = "ORIGINAL",
-    by_storage_id: bool | Unset = True,
+    format_name: str | Unset = UNSET,
+    by_storage_id: bool | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -43,12 +40,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetSearchSavedBySearchIdContentInfoResponseDefaultType0
-    | GetSearchSavedBySearchIdContentInfoResponseDefaultType1
-    | SearchContentInfoSchema
-):
+) -> Any | GetSearchSavedBySearchIdContentInfoResponseDefault | SearchContentInfoSchema:
     if response.status_code == 200:
         response_200 = SearchContentInfoSchema.from_dict(response.json())
 
@@ -66,31 +58,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetSearchSavedBySearchIdContentInfoResponseDefaultType0
-        | GetSearchSavedBySearchIdContentInfoResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetSearchSavedBySearchIdContentInfoResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetSearchSavedBySearchIdContentInfoResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetSearchSavedBySearchIdContentInfoResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -98,10 +68,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | GetSearchSavedBySearchIdContentInfoResponseDefaultType0
-    | GetSearchSavedBySearchIdContentInfoResponseDefaultType1
-    | SearchContentInfoSchema
+    Any | GetSearchSavedBySearchIdContentInfoResponseDefault | SearchContentInfoSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -115,13 +82,10 @@ def sync_detailed(
     search_id: str,
     *,
     client: AuthenticatedClient | Client,
-    format_name: str | Unset = "ORIGINAL",
-    by_storage_id: bool | Unset = True,
+    format_name: str | Unset = UNSET,
+    by_storage_id: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | GetSearchSavedBySearchIdContentInfoResponseDefaultType0
-    | GetSearchSavedBySearchIdContentInfoResponseDefaultType1
-    | SearchContentInfoSchema
+    Any | GetSearchSavedBySearchIdContentInfoResponseDefault | SearchContentInfoSchema
 ]:
     """Get aggregated information about saved search results
 
@@ -134,15 +98,15 @@ def sync_detailed(
 
     Args:
         search_id (str):
-        format_name (str | Unset):  Default: 'ORIGINAL'.
-        by_storage_id (bool | Unset):  Default: True.
+        format_name (str | Unset):
+        by_storage_id (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetSearchSavedBySearchIdContentInfoResponseDefaultType0 | GetSearchSavedBySearchIdContentInfoResponseDefaultType1 | SearchContentInfoSchema]
+        Response[Any | GetSearchSavedBySearchIdContentInfoResponseDefault | SearchContentInfoSchema]
     """
 
     kwargs = _get_kwargs(
@@ -162,12 +126,11 @@ def sync(
     search_id: str,
     *,
     client: AuthenticatedClient | Client,
-    format_name: str | Unset = "ORIGINAL",
-    by_storage_id: bool | Unset = True,
+    format_name: str | Unset = UNSET,
+    by_storage_id: bool | Unset = UNSET,
 ) -> (
     Any
-    | GetSearchSavedBySearchIdContentInfoResponseDefaultType0
-    | GetSearchSavedBySearchIdContentInfoResponseDefaultType1
+    | GetSearchSavedBySearchIdContentInfoResponseDefault
     | SearchContentInfoSchema
     | None
 ):
@@ -182,15 +145,15 @@ def sync(
 
     Args:
         search_id (str):
-        format_name (str | Unset):  Default: 'ORIGINAL'.
-        by_storage_id (bool | Unset):  Default: True.
+        format_name (str | Unset):
+        by_storage_id (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetSearchSavedBySearchIdContentInfoResponseDefaultType0 | GetSearchSavedBySearchIdContentInfoResponseDefaultType1 | SearchContentInfoSchema
+        Any | GetSearchSavedBySearchIdContentInfoResponseDefault | SearchContentInfoSchema
     """
 
     return sync_detailed(
@@ -205,13 +168,10 @@ async def asyncio_detailed(
     search_id: str,
     *,
     client: AuthenticatedClient | Client,
-    format_name: str | Unset = "ORIGINAL",
-    by_storage_id: bool | Unset = True,
+    format_name: str | Unset = UNSET,
+    by_storage_id: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | GetSearchSavedBySearchIdContentInfoResponseDefaultType0
-    | GetSearchSavedBySearchIdContentInfoResponseDefaultType1
-    | SearchContentInfoSchema
+    Any | GetSearchSavedBySearchIdContentInfoResponseDefault | SearchContentInfoSchema
 ]:
     """Get aggregated information about saved search results
 
@@ -224,15 +184,15 @@ async def asyncio_detailed(
 
     Args:
         search_id (str):
-        format_name (str | Unset):  Default: 'ORIGINAL'.
-        by_storage_id (bool | Unset):  Default: True.
+        format_name (str | Unset):
+        by_storage_id (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetSearchSavedBySearchIdContentInfoResponseDefaultType0 | GetSearchSavedBySearchIdContentInfoResponseDefaultType1 | SearchContentInfoSchema]
+        Response[Any | GetSearchSavedBySearchIdContentInfoResponseDefault | SearchContentInfoSchema]
     """
 
     kwargs = _get_kwargs(
@@ -250,12 +210,11 @@ async def asyncio(
     search_id: str,
     *,
     client: AuthenticatedClient | Client,
-    format_name: str | Unset = "ORIGINAL",
-    by_storage_id: bool | Unset = True,
+    format_name: str | Unset = UNSET,
+    by_storage_id: bool | Unset = UNSET,
 ) -> (
     Any
-    | GetSearchSavedBySearchIdContentInfoResponseDefaultType0
-    | GetSearchSavedBySearchIdContentInfoResponseDefaultType1
+    | GetSearchSavedBySearchIdContentInfoResponseDefault
     | SearchContentInfoSchema
     | None
 ):
@@ -270,15 +229,15 @@ async def asyncio(
 
     Args:
         search_id (str):
-        format_name (str | Unset):  Default: 'ORIGINAL'.
-        by_storage_id (bool | Unset):  Default: True.
+        format_name (str | Unset):
+        by_storage_id (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetSearchSavedBySearchIdContentInfoResponseDefaultType0 | GetSearchSavedBySearchIdContentInfoResponseDefaultType1 | SearchContentInfoSchema
+        Any | GetSearchSavedBySearchIdContentInfoResponseDefault | SearchContentInfoSchema
     """
 
     return (

@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.put_sequences_by_sequence_id_items_by_item_id_position_response_default_type_0 import (
-    PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType0,
-)
-from ...models.put_sequences_by_sequence_id_items_by_item_id_position_response_default_type_1 import (
-    PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType1,
+from ...models.put_sequences_by_sequence_id_items_by_item_id_position_response_default import (
+    PutSequencesBySequenceIdItemsByItemIdPositionResponseDefault,
 )
 from ...models.sequence_item_schema import SequenceItemSchema
 from ...models.sequence_item_update_position_schema import (
@@ -46,14 +43,13 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType0
-    | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType1
+    | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefault
     | SequenceItemSchema
 ):
-    if response.status_code == 201:
-        response_201 = SequenceItemSchema.from_dict(response.json())
+    if response.status_code == 200:
+        response_200 = SequenceItemSchema.from_dict(response.json())
 
-        return response_201
+        return response_200
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -63,33 +59,11 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType0
-        | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PutSequencesBySequenceIdItemsByItemIdPositionResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -98,8 +72,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType0
-    | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType1
+    | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefault
     | SequenceItemSchema
 ]:
     return Response(
@@ -118,8 +91,7 @@ def sync_detailed(
     body: SequenceItemUpdatePositionSchema,
 ) -> Response[
     Any
-    | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType0
-    | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType1
+    | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefault
     | SequenceItemSchema
 ]:
     """Update a sequence item position
@@ -138,7 +110,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType0 | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType1 | SequenceItemSchema]
+        Response[Any | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefault | SequenceItemSchema]
     """
 
     kwargs = _get_kwargs(
@@ -162,8 +134,7 @@ def sync(
     body: SequenceItemUpdatePositionSchema,
 ) -> (
     Any
-    | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType0
-    | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType1
+    | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefault
     | SequenceItemSchema
     | None
 ):
@@ -183,7 +154,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType0 | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType1 | SequenceItemSchema
+        Any | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefault | SequenceItemSchema
     """
 
     return sync_detailed(
@@ -202,8 +173,7 @@ async def asyncio_detailed(
     body: SequenceItemUpdatePositionSchema,
 ) -> Response[
     Any
-    | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType0
-    | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType1
+    | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefault
     | SequenceItemSchema
 ]:
     """Update a sequence item position
@@ -222,7 +192,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType0 | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType1 | SequenceItemSchema]
+        Response[Any | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefault | SequenceItemSchema]
     """
 
     kwargs = _get_kwargs(
@@ -244,8 +214,7 @@ async def asyncio(
     body: SequenceItemUpdatePositionSchema,
 ) -> (
     Any
-    | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType0
-    | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType1
+    | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefault
     | SequenceItemSchema
     | None
 ):
@@ -265,7 +234,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType0 | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefaultType1 | SequenceItemSchema
+        Any | PutSequencesBySequenceIdItemsByItemIdPositionResponseDefault | SequenceItemSchema
     """
 
     return (

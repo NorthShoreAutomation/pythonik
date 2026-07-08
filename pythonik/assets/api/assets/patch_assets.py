@@ -5,12 +5,7 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.bulk_asset_edit_schema import BulkAssetEditSchema
-from ...models.patch_assets_response_default_type_0 import (
-    PatchAssetsResponseDefaultType0,
-)
-from ...models.patch_assets_response_default_type_1 import (
-    PatchAssetsResponseDefaultType1,
-)
+from ...models.patch_assets_response_default import PatchAssetsResponseDefault
 from ...types import Response
 
 
@@ -35,7 +30,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Any | PatchAssetsResponseDefaultType0 | PatchAssetsResponseDefaultType1:
+) -> Any | PatchAssetsResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -48,31 +43,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> PatchAssetsResponseDefaultType0 | PatchAssetsResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PatchAssetsResponseDefaultType0.from_dict(data)
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PatchAssetsResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PatchAssetsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[Any | PatchAssetsResponseDefaultType0 | PatchAssetsResponseDefaultType1]:
+) -> Response[Any | PatchAssetsResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -85,7 +63,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: BulkAssetEditSchema,
-) -> Response[Any | PatchAssetsResponseDefaultType0 | PatchAssetsResponseDefaultType1]:
+) -> Response[Any | PatchAssetsResponseDefault]:
     """Bulk update assets
 
 
@@ -100,7 +78,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PatchAssetsResponseDefaultType0 | PatchAssetsResponseDefaultType1]
+        Response[Any | PatchAssetsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -118,7 +96,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: BulkAssetEditSchema,
-) -> Any | PatchAssetsResponseDefaultType0 | PatchAssetsResponseDefaultType1 | None:
+) -> Any | PatchAssetsResponseDefault | None:
     """Bulk update assets
 
 
@@ -133,7 +111,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PatchAssetsResponseDefaultType0 | PatchAssetsResponseDefaultType1
+        Any | PatchAssetsResponseDefault
     """
 
     return sync_detailed(
@@ -146,7 +124,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: BulkAssetEditSchema,
-) -> Response[Any | PatchAssetsResponseDefaultType0 | PatchAssetsResponseDefaultType1]:
+) -> Response[Any | PatchAssetsResponseDefault]:
     """Bulk update assets
 
 
@@ -161,7 +139,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PatchAssetsResponseDefaultType0 | PatchAssetsResponseDefaultType1]
+        Response[Any | PatchAssetsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -177,7 +155,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: BulkAssetEditSchema,
-) -> Any | PatchAssetsResponseDefaultType0 | PatchAssetsResponseDefaultType1 | None:
+) -> Any | PatchAssetsResponseDefault | None:
     """Bulk update assets
 
 
@@ -192,7 +170,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PatchAssetsResponseDefaultType0 | PatchAssetsResponseDefaultType1
+        Any | PatchAssetsResponseDefault
     """
 
     return (

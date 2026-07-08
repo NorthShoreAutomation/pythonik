@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.approval_schema import ApprovalSchema
-from ...models.get_by_object_type_by_object_id_versions_by_version_id_approvals_request_response_default_type_0 import (
-    GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType0,
-)
-from ...models.get_by_object_type_by_object_id_versions_by_version_id_approvals_request_response_default_type_1 import (
-    GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType1,
+from ...models.get_by_object_type_by_object_id_versions_by_version_id_approvals_request_response_default import (
+    GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefault,
 )
 from ...types import Response
 
@@ -38,8 +35,7 @@ def _parse_response(
 ) -> (
     Any
     | ApprovalSchema
-    | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType0
-    | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType1
+    | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefault
 ):
     if response.status_code == 200:
         response_200 = ApprovalSchema.from_dict(response.json())
@@ -58,31 +54,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType0
-        | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -92,8 +66,7 @@ def _build_response(
 ) -> Response[
     Any
     | ApprovalSchema
-    | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType0
-    | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType1
+    | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -112,8 +85,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | ApprovalSchema
-    | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType0
-    | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType1
+    | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefault
 ]:
     """Returns an objects approval request by version
 
@@ -131,7 +103,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | ApprovalSchema | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType0 | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType1]
+        Response[Any | ApprovalSchema | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -156,8 +128,7 @@ def sync(
 ) -> (
     Any
     | ApprovalSchema
-    | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType0
-    | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType1
+    | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefault
     | None
 ):
     """Returns an objects approval request by version
@@ -176,7 +147,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | ApprovalSchema | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType0 | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType1
+        Any | ApprovalSchema | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefault
     """
 
     return sync_detailed(
@@ -196,8 +167,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | ApprovalSchema
-    | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType0
-    | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType1
+    | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefault
 ]:
     """Returns an objects approval request by version
 
@@ -215,7 +185,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | ApprovalSchema | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType0 | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType1]
+        Response[Any | ApprovalSchema | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -238,8 +208,7 @@ async def asyncio(
 ) -> (
     Any
     | ApprovalSchema
-    | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType0
-    | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType1
+    | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefault
     | None
 ):
     """Returns an objects approval request by version
@@ -258,7 +227,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | ApprovalSchema | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType0 | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefaultType1
+        Any | ApprovalSchema | GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefault
     """
 
     return (

@@ -8,11 +8,8 @@ from ...client import AuthenticatedClient, Client
 from ...models.create_asset_version_from_asset_schema import (
     CreateAssetVersionFromAssetSchema,
 )
-from ...models.post_assets_by_asset_id_versions_from_assets_by_source_asset_id_response_default_type_0 import (
-    PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType0,
-)
-from ...models.post_assets_by_asset_id_versions_from_assets_by_source_asset_id_response_default_type_1 import (
-    PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType1,
+from ...models.post_assets_by_asset_id_versions_from_assets_by_source_asset_id_response_default import (
+    PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefault,
 )
 from ...types import Response
 
@@ -43,11 +40,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType0
-    | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType1
-):
+) -> Any | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -68,31 +61,11 @@ def _parse_response(
         response_409 = cast(Any, None)
         return response_409
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType0
-        | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -100,9 +73,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType0
-    | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType1
+    Any | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -119,9 +90,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: CreateAssetVersionFromAssetSchema,
 ) -> Response[
-    Any
-    | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType0
-    | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType1
+    Any | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefault
 ]:
     """Create a new asset's version from another asset
 
@@ -139,7 +108,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType0 | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType1]
+        Response[Any | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -161,12 +130,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: CreateAssetVersionFromAssetSchema,
-) -> (
-    Any
-    | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType0
-    | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType1
-    | None
-):
+) -> Any | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefault | None:
     """Create a new asset's version from another asset
 
 
@@ -183,7 +147,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType0 | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType1
+        Any | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefault
     """
 
     return sync_detailed(
@@ -201,9 +165,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: CreateAssetVersionFromAssetSchema,
 ) -> Response[
-    Any
-    | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType0
-    | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType1
+    Any | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefault
 ]:
     """Create a new asset's version from another asset
 
@@ -221,7 +183,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType0 | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType1]
+        Response[Any | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -241,12 +203,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: CreateAssetVersionFromAssetSchema,
-) -> (
-    Any
-    | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType0
-    | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType1
-    | None
-):
+) -> Any | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefault | None:
     """Create a new asset's version from another asset
 
 
@@ -263,7 +220,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType0 | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefaultType1
+        Any | PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefault
     """
 
     return (

@@ -5,11 +5,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.jobs_priority_schema import JobsPrioritySchema
-from ...models.put_face_recognition_jobs_priority_response_default_type_0 import (
-    PutFaceRecognitionJobsPriorityResponseDefaultType0,
-)
-from ...models.put_face_recognition_jobs_priority_response_default_type_1 import (
-    PutFaceRecognitionJobsPriorityResponseDefaultType1,
+from ...models.put_face_recognition_jobs_priority_response_default import (
+    PutFaceRecognitionJobsPriorityResponseDefault,
 )
 from ...types import Response
 
@@ -35,11 +32,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PutFaceRecognitionJobsPriorityResponseDefaultType0
-    | PutFaceRecognitionJobsPriorityResponseDefaultType1
-):
+) -> Any | PutFaceRecognitionJobsPriorityResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -52,42 +45,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutFaceRecognitionJobsPriorityResponseDefaultType0
-        | PutFaceRecognitionJobsPriorityResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PutFaceRecognitionJobsPriorityResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PutFaceRecognitionJobsPriorityResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutFaceRecognitionJobsPriorityResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PutFaceRecognitionJobsPriorityResponseDefaultType0
-    | PutFaceRecognitionJobsPriorityResponseDefaultType1
-]:
+) -> Response[Any | PutFaceRecognitionJobsPriorityResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -100,11 +67,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: JobsPrioritySchema,
-) -> Response[
-    Any
-    | PutFaceRecognitionJobsPriorityResponseDefaultType0
-    | PutFaceRecognitionJobsPriorityResponseDefaultType1
-]:
+) -> Response[Any | PutFaceRecognitionJobsPriorityResponseDefault]:
     """Bulk-change priority of FR jobs
 
 
@@ -119,7 +82,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutFaceRecognitionJobsPriorityResponseDefaultType0 | PutFaceRecognitionJobsPriorityResponseDefaultType1]
+        Response[Any | PutFaceRecognitionJobsPriorityResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -137,12 +100,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: JobsPrioritySchema,
-) -> (
-    Any
-    | PutFaceRecognitionJobsPriorityResponseDefaultType0
-    | PutFaceRecognitionJobsPriorityResponseDefaultType1
-    | None
-):
+) -> Any | PutFaceRecognitionJobsPriorityResponseDefault | None:
     """Bulk-change priority of FR jobs
 
 
@@ -157,7 +115,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutFaceRecognitionJobsPriorityResponseDefaultType0 | PutFaceRecognitionJobsPriorityResponseDefaultType1
+        Any | PutFaceRecognitionJobsPriorityResponseDefault
     """
 
     return sync_detailed(
@@ -170,11 +128,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: JobsPrioritySchema,
-) -> Response[
-    Any
-    | PutFaceRecognitionJobsPriorityResponseDefaultType0
-    | PutFaceRecognitionJobsPriorityResponseDefaultType1
-]:
+) -> Response[Any | PutFaceRecognitionJobsPriorityResponseDefault]:
     """Bulk-change priority of FR jobs
 
 
@@ -189,7 +143,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutFaceRecognitionJobsPriorityResponseDefaultType0 | PutFaceRecognitionJobsPriorityResponseDefaultType1]
+        Response[Any | PutFaceRecognitionJobsPriorityResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -205,12 +159,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: JobsPrioritySchema,
-) -> (
-    Any
-    | PutFaceRecognitionJobsPriorityResponseDefaultType0
-    | PutFaceRecognitionJobsPriorityResponseDefaultType1
-    | None
-):
+) -> Any | PutFaceRecognitionJobsPriorityResponseDefault | None:
     """Bulk-change priority of FR jobs
 
 
@@ -225,7 +174,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutFaceRecognitionJobsPriorityResponseDefaultType0 | PutFaceRecognitionJobsPriorityResponseDefaultType1
+        Any | PutFaceRecognitionJobsPriorityResponseDefault
     """
 
     return (

@@ -7,11 +7,8 @@ from ...client import AuthenticatedClient, Client
 from ...models.post_storages_verifications_access_response_200 import (
     PostStoragesVerificationsAccessResponse200,
 )
-from ...models.post_storages_verifications_access_response_default_type_0 import (
-    PostStoragesVerificationsAccessResponseDefaultType0,
-)
-from ...models.post_storages_verifications_access_response_default_type_1 import (
-    PostStoragesVerificationsAccessResponseDefaultType1,
+from ...models.post_storages_verifications_access_response_default import (
+    PostStoragesVerificationsAccessResponseDefault,
 )
 from ...models.storage_access_schema import StorageAccessSchema
 from ...types import Response
@@ -41,8 +38,7 @@ def _parse_response(
 ) -> (
     Any
     | PostStoragesVerificationsAccessResponse200
-    | PostStoragesVerificationsAccessResponseDefaultType0
-    | PostStoragesVerificationsAccessResponseDefaultType1
+    | PostStoragesVerificationsAccessResponseDefault
 ):
     if response.status_code == 200:
         response_200 = PostStoragesVerificationsAccessResponse200.from_dict(
@@ -63,31 +59,9 @@ def _parse_response(
         response_501 = cast(Any, None)
         return response_501
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostStoragesVerificationsAccessResponseDefaultType0
-        | PostStoragesVerificationsAccessResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostStoragesVerificationsAccessResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostStoragesVerificationsAccessResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostStoragesVerificationsAccessResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -97,8 +71,7 @@ def _build_response(
 ) -> Response[
     Any
     | PostStoragesVerificationsAccessResponse200
-    | PostStoragesVerificationsAccessResponseDefaultType0
-    | PostStoragesVerificationsAccessResponseDefaultType1
+    | PostStoragesVerificationsAccessResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -115,8 +88,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | PostStoragesVerificationsAccessResponse200
-    | PostStoragesVerificationsAccessResponseDefaultType0
-    | PostStoragesVerificationsAccessResponseDefaultType1
+    | PostStoragesVerificationsAccessResponseDefault
 ]:
     """Verify access prior to creating a storage
 
@@ -132,7 +104,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostStoragesVerificationsAccessResponse200 | PostStoragesVerificationsAccessResponseDefaultType0 | PostStoragesVerificationsAccessResponseDefaultType1]
+        Response[Any | PostStoragesVerificationsAccessResponse200 | PostStoragesVerificationsAccessResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -153,8 +125,7 @@ def sync(
 ) -> (
     Any
     | PostStoragesVerificationsAccessResponse200
-    | PostStoragesVerificationsAccessResponseDefaultType0
-    | PostStoragesVerificationsAccessResponseDefaultType1
+    | PostStoragesVerificationsAccessResponseDefault
     | None
 ):
     """Verify access prior to creating a storage
@@ -171,7 +142,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostStoragesVerificationsAccessResponse200 | PostStoragesVerificationsAccessResponseDefaultType0 | PostStoragesVerificationsAccessResponseDefaultType1
+        Any | PostStoragesVerificationsAccessResponse200 | PostStoragesVerificationsAccessResponseDefault
     """
 
     return sync_detailed(
@@ -187,8 +158,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | PostStoragesVerificationsAccessResponse200
-    | PostStoragesVerificationsAccessResponseDefaultType0
-    | PostStoragesVerificationsAccessResponseDefaultType1
+    | PostStoragesVerificationsAccessResponseDefault
 ]:
     """Verify access prior to creating a storage
 
@@ -204,7 +174,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostStoragesVerificationsAccessResponse200 | PostStoragesVerificationsAccessResponseDefaultType0 | PostStoragesVerificationsAccessResponseDefaultType1]
+        Response[Any | PostStoragesVerificationsAccessResponse200 | PostStoragesVerificationsAccessResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -223,8 +193,7 @@ async def asyncio(
 ) -> (
     Any
     | PostStoragesVerificationsAccessResponse200
-    | PostStoragesVerificationsAccessResponseDefaultType0
-    | PostStoragesVerificationsAccessResponseDefaultType1
+    | PostStoragesVerificationsAccessResponseDefault
     | None
 ):
     """Verify access prior to creating a storage
@@ -241,7 +210,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostStoragesVerificationsAccessResponse200 | PostStoragesVerificationsAccessResponseDefaultType0 | PostStoragesVerificationsAccessResponseDefaultType1
+        Any | PostStoragesVerificationsAccessResponse200 | PostStoragesVerificationsAccessResponseDefault
     """
 
     return (

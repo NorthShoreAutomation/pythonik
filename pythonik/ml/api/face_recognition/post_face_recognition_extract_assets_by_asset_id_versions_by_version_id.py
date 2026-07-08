@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_face_recognition_extract_assets_by_asset_id_versions_by_version_id_response_default_type_0 import (
-    PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType0,
-)
-from ...models.post_face_recognition_extract_assets_by_asset_id_versions_by_version_id_response_default_type_1 import (
-    PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType1,
+from ...models.post_face_recognition_extract_assets_by_asset_id_versions_by_version_id_response_default import (
+    PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -20,7 +17,7 @@ def _get_kwargs(
     *,
     face_image_analysis_profile_id: str | Unset = UNSET,
     face_video_analysis_profile_id: str | Unset = UNSET,
-    force: bool | Unset = False,
+    force: bool | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -47,11 +44,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType0
-    | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType1
-):
+) -> Any | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -68,31 +61,9 @@ def _parse_response(
         response_403 = cast(Any, None)
         return response_403
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType0
-        | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -100,9 +71,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType0
-    | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType1
+    Any | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -119,11 +88,9 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     face_image_analysis_profile_id: str | Unset = UNSET,
     face_video_analysis_profile_id: str | Unset = UNSET,
-    force: bool | Unset = False,
+    force: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType0
-    | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType1
+    Any | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefault
 ]:
     """Extract face images and face data for an asset
 
@@ -136,14 +103,14 @@ def sync_detailed(
         version_id (str):
         face_image_analysis_profile_id (str | Unset):
         face_video_analysis_profile_id (str | Unset):
-        force (bool | Unset):  Default: False.
+        force (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType0 | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType1]
+        Response[Any | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -168,11 +135,10 @@ def sync(
     client: AuthenticatedClient | Client,
     face_image_analysis_profile_id: str | Unset = UNSET,
     face_video_analysis_profile_id: str | Unset = UNSET,
-    force: bool | Unset = False,
+    force: bool | Unset = UNSET,
 ) -> (
     Any
-    | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType0
-    | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType1
+    | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefault
     | None
 ):
     """Extract face images and face data for an asset
@@ -186,14 +152,14 @@ def sync(
         version_id (str):
         face_image_analysis_profile_id (str | Unset):
         face_video_analysis_profile_id (str | Unset):
-        force (bool | Unset):  Default: False.
+        force (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType0 | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType1
+        Any | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefault
     """
 
     return sync_detailed(
@@ -213,11 +179,9 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     face_image_analysis_profile_id: str | Unset = UNSET,
     face_video_analysis_profile_id: str | Unset = UNSET,
-    force: bool | Unset = False,
+    force: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType0
-    | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType1
+    Any | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefault
 ]:
     """Extract face images and face data for an asset
 
@@ -230,14 +194,14 @@ async def asyncio_detailed(
         version_id (str):
         face_image_analysis_profile_id (str | Unset):
         face_video_analysis_profile_id (str | Unset):
-        force (bool | Unset):  Default: False.
+        force (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType0 | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType1]
+        Response[Any | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -260,11 +224,10 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     face_image_analysis_profile_id: str | Unset = UNSET,
     face_video_analysis_profile_id: str | Unset = UNSET,
-    force: bool | Unset = False,
+    force: bool | Unset = UNSET,
 ) -> (
     Any
-    | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType0
-    | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType1
+    | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefault
     | None
 ):
     """Extract face images and face data for an asset
@@ -278,14 +241,14 @@ async def asyncio(
         version_id (str):
         face_image_analysis_profile_id (str | Unset):
         face_video_analysis_profile_id (str | Unset):
-        force (bool | Unset):  Default: False.
+        force (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType0 | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefaultType1
+        Any | PostFaceRecognitionExtractAssetsByAssetIdVersionsByVersionIdResponseDefault
     """
 
     return (

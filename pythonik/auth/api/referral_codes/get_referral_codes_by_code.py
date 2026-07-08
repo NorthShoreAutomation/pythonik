@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_referral_codes_by_code_response_default_type_0 import (
-    GetReferralCodesByCodeResponseDefaultType0,
-)
-from ...models.get_referral_codes_by_code_response_default_type_1 import (
-    GetReferralCodesByCodeResponseDefaultType1,
+from ...models.get_referral_codes_by_code_response_default import (
+    GetReferralCodesByCodeResponseDefault,
 )
 from ...models.referral_code_schema import ReferralCodeSchema
 from ...types import Response
@@ -31,12 +28,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetReferralCodesByCodeResponseDefaultType0
-    | GetReferralCodesByCodeResponseDefaultType1
-    | ReferralCodeSchema
-):
+) -> Any | GetReferralCodesByCodeResponseDefault | ReferralCodeSchema:
     if response.status_code == 200:
         response_200 = ReferralCodeSchema.from_dict(response.json())
 
@@ -50,43 +42,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetReferralCodesByCodeResponseDefaultType0
-        | GetReferralCodesByCodeResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetReferralCodesByCodeResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetReferralCodesByCodeResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetReferralCodesByCodeResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetReferralCodesByCodeResponseDefaultType0
-    | GetReferralCodesByCodeResponseDefaultType1
-    | ReferralCodeSchema
-]:
+) -> Response[Any | GetReferralCodesByCodeResponseDefault | ReferralCodeSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -99,12 +62,7 @@ def sync_detailed(
     code: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetReferralCodesByCodeResponseDefaultType0
-    | GetReferralCodesByCodeResponseDefaultType1
-    | ReferralCodeSchema
-]:
+) -> Response[Any | GetReferralCodesByCodeResponseDefault | ReferralCodeSchema]:
     """Get a referral_code
 
     Args:
@@ -115,7 +73,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetReferralCodesByCodeResponseDefaultType0 | GetReferralCodesByCodeResponseDefaultType1 | ReferralCodeSchema]
+        Response[Any | GetReferralCodesByCodeResponseDefault | ReferralCodeSchema]
     """
 
     kwargs = _get_kwargs(
@@ -133,13 +91,7 @@ def sync(
     code: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetReferralCodesByCodeResponseDefaultType0
-    | GetReferralCodesByCodeResponseDefaultType1
-    | ReferralCodeSchema
-    | None
-):
+) -> Any | GetReferralCodesByCodeResponseDefault | ReferralCodeSchema | None:
     """Get a referral_code
 
     Args:
@@ -150,7 +102,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetReferralCodesByCodeResponseDefaultType0 | GetReferralCodesByCodeResponseDefaultType1 | ReferralCodeSchema
+        Any | GetReferralCodesByCodeResponseDefault | ReferralCodeSchema
     """
 
     return sync_detailed(
@@ -163,12 +115,7 @@ async def asyncio_detailed(
     code: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetReferralCodesByCodeResponseDefaultType0
-    | GetReferralCodesByCodeResponseDefaultType1
-    | ReferralCodeSchema
-]:
+) -> Response[Any | GetReferralCodesByCodeResponseDefault | ReferralCodeSchema]:
     """Get a referral_code
 
     Args:
@@ -179,7 +126,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetReferralCodesByCodeResponseDefaultType0 | GetReferralCodesByCodeResponseDefaultType1 | ReferralCodeSchema]
+        Response[Any | GetReferralCodesByCodeResponseDefault | ReferralCodeSchema]
     """
 
     kwargs = _get_kwargs(
@@ -195,13 +142,7 @@ async def asyncio(
     code: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetReferralCodesByCodeResponseDefaultType0
-    | GetReferralCodesByCodeResponseDefaultType1
-    | ReferralCodeSchema
-    | None
-):
+) -> Any | GetReferralCodesByCodeResponseDefault | ReferralCodeSchema | None:
     """Get a referral_code
 
     Args:
@@ -212,7 +153,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetReferralCodesByCodeResponseDefaultType0 | GetReferralCodesByCodeResponseDefaultType1 | ReferralCodeSchema
+        Any | GetReferralCodesByCodeResponseDefault | ReferralCodeSchema
     """
 
     return (

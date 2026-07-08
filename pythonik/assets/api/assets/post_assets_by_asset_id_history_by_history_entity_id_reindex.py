@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_assets_by_asset_id_history_by_history_entity_id_reindex_response_default_type_0 import (
-    PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType0,
-)
-from ...models.post_assets_by_asset_id_history_by_history_entity_id_reindex_response_default_type_1 import (
-    PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType1,
+from ...models.post_assets_by_asset_id_history_by_history_entity_id_reindex_response_default import (
+    PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefault,
 )
 from ...types import Response
 
@@ -32,11 +29,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType0
-    | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType1
-):
+) -> Any | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefault:
     if response.status_code == 201:
         response_201 = cast(Any, None)
         return response_201
@@ -49,42 +42,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType0
-        | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType0
-    | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -98,11 +67,7 @@ def sync_detailed(
     history_entity_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType0
-    | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefault]:
     """Reindex asset history entity
 
 
@@ -118,7 +83,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType0 | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType1]
+        Response[Any | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -138,12 +103,7 @@ def sync(
     history_entity_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType0
-    | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefault | None:
     """Reindex asset history entity
 
 
@@ -159,7 +119,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType0 | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType1
+        Any | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefault
     """
 
     return sync_detailed(
@@ -174,11 +134,7 @@ async def asyncio_detailed(
     history_entity_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType0
-    | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefault]:
     """Reindex asset history entity
 
 
@@ -194,7 +150,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType0 | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType1]
+        Response[Any | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -212,12 +168,7 @@ async def asyncio(
     history_entity_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType0
-    | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefault | None:
     """Reindex asset history entity
 
 
@@ -233,7 +184,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType0 | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefaultType1
+        Any | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefault
     """
 
     return (

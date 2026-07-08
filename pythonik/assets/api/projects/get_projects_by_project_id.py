@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_projects_by_project_id_response_default_type_0 import (
-    GetProjectsByProjectIdResponseDefaultType0,
-)
-from ...models.get_projects_by_project_id_response_default_type_1 import (
-    GetProjectsByProjectIdResponseDefaultType1,
+from ...models.get_projects_by_project_id_response_default import (
+    GetProjectsByProjectIdResponseDefault,
 )
 from ...models.project_schema import ProjectSchema
 from ...types import UNSET, Response, Unset
@@ -18,7 +15,7 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     project_id: str,
     *,
-    include_users: bool | Unset = False,
+    include_users: bool | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -40,12 +37,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetProjectsByProjectIdResponseDefaultType0
-    | GetProjectsByProjectIdResponseDefaultType1
-    | ProjectSchema
-):
+) -> Any | GetProjectsByProjectIdResponseDefault | ProjectSchema:
     if response.status_code == 200:
         response_200 = ProjectSchema.from_dict(response.json())
 
@@ -59,43 +51,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetProjectsByProjectIdResponseDefaultType0
-        | GetProjectsByProjectIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetProjectsByProjectIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetProjectsByProjectIdResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetProjectsByProjectIdResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetProjectsByProjectIdResponseDefaultType0
-    | GetProjectsByProjectIdResponseDefaultType1
-    | ProjectSchema
-]:
+) -> Response[Any | GetProjectsByProjectIdResponseDefault | ProjectSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -108,13 +71,8 @@ def sync_detailed(
     project_id: str,
     *,
     client: AuthenticatedClient | Client,
-    include_users: bool | Unset = False,
-) -> Response[
-    Any
-    | GetProjectsByProjectIdResponseDefaultType0
-    | GetProjectsByProjectIdResponseDefaultType1
-    | ProjectSchema
-]:
+    include_users: bool | Unset = UNSET,
+) -> Response[Any | GetProjectsByProjectIdResponseDefault | ProjectSchema]:
     """Returns a particular project by id
 
 
@@ -123,14 +81,14 @@ def sync_detailed(
 
     Args:
         project_id (str):
-        include_users (bool | Unset):  Default: False.
+        include_users (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetProjectsByProjectIdResponseDefaultType0 | GetProjectsByProjectIdResponseDefaultType1 | ProjectSchema]
+        Response[Any | GetProjectsByProjectIdResponseDefault | ProjectSchema]
     """
 
     kwargs = _get_kwargs(
@@ -149,14 +107,8 @@ def sync(
     project_id: str,
     *,
     client: AuthenticatedClient | Client,
-    include_users: bool | Unset = False,
-) -> (
-    Any
-    | GetProjectsByProjectIdResponseDefaultType0
-    | GetProjectsByProjectIdResponseDefaultType1
-    | ProjectSchema
-    | None
-):
+    include_users: bool | Unset = UNSET,
+) -> Any | GetProjectsByProjectIdResponseDefault | ProjectSchema | None:
     """Returns a particular project by id
 
 
@@ -165,14 +117,14 @@ def sync(
 
     Args:
         project_id (str):
-        include_users (bool | Unset):  Default: False.
+        include_users (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetProjectsByProjectIdResponseDefaultType0 | GetProjectsByProjectIdResponseDefaultType1 | ProjectSchema
+        Any | GetProjectsByProjectIdResponseDefault | ProjectSchema
     """
 
     return sync_detailed(
@@ -186,13 +138,8 @@ async def asyncio_detailed(
     project_id: str,
     *,
     client: AuthenticatedClient | Client,
-    include_users: bool | Unset = False,
-) -> Response[
-    Any
-    | GetProjectsByProjectIdResponseDefaultType0
-    | GetProjectsByProjectIdResponseDefaultType1
-    | ProjectSchema
-]:
+    include_users: bool | Unset = UNSET,
+) -> Response[Any | GetProjectsByProjectIdResponseDefault | ProjectSchema]:
     """Returns a particular project by id
 
 
@@ -201,14 +148,14 @@ async def asyncio_detailed(
 
     Args:
         project_id (str):
-        include_users (bool | Unset):  Default: False.
+        include_users (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetProjectsByProjectIdResponseDefaultType0 | GetProjectsByProjectIdResponseDefaultType1 | ProjectSchema]
+        Response[Any | GetProjectsByProjectIdResponseDefault | ProjectSchema]
     """
 
     kwargs = _get_kwargs(
@@ -225,14 +172,8 @@ async def asyncio(
     project_id: str,
     *,
     client: AuthenticatedClient | Client,
-    include_users: bool | Unset = False,
-) -> (
-    Any
-    | GetProjectsByProjectIdResponseDefaultType0
-    | GetProjectsByProjectIdResponseDefaultType1
-    | ProjectSchema
-    | None
-):
+    include_users: bool | Unset = UNSET,
+) -> Any | GetProjectsByProjectIdResponseDefault | ProjectSchema | None:
     """Returns a particular project by id
 
 
@@ -241,14 +182,14 @@ async def asyncio(
 
     Args:
         project_id (str):
-        include_users (bool | Unset):  Default: False.
+        include_users (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetProjectsByProjectIdResponseDefaultType0 | GetProjectsByProjectIdResponseDefaultType1 | ProjectSchema
+        Any | GetProjectsByProjectIdResponseDefault | ProjectSchema
     """
 
     return (

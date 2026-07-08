@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.keyframe_create_schema import KeyframeCreateSchema
-from ...models.post_assets_by_asset_id_method_by_storage_method_keyframes_response_default_type_0 import (
-    PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType0,
-)
-from ...models.post_assets_by_asset_id_method_by_storage_method_keyframes_response_default_type_1 import (
-    PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType1,
+from ...models.post_assets_by_asset_id_method_by_storage_method_keyframes_response_default import (
+    PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -20,7 +17,7 @@ def _get_kwargs(
     storage_method: str,
     *,
     body: KeyframeCreateSchema,
-    use_google_resumable_upload: bool | Unset = False,
+    use_google_resumable_upload: bool | Unset = UNSET,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -52,8 +49,7 @@ def _parse_response(
 ) -> (
     Any
     | KeyframeCreateSchema
-    | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType0
-    | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType1
+    | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefault
 ):
     if response.status_code == 201:
         response_201 = KeyframeCreateSchema.from_dict(response.json())
@@ -68,31 +64,11 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType0
-        | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -102,8 +78,7 @@ def _build_response(
 ) -> Response[
     Any
     | KeyframeCreateSchema
-    | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType0
-    | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType1
+    | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -119,12 +94,11 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: KeyframeCreateSchema,
-    use_google_resumable_upload: bool | Unset = False,
+    use_google_resumable_upload: bool | Unset = UNSET,
 ) -> Response[
     Any
     | KeyframeCreateSchema
-    | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType0
-    | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType1
+    | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefault
 ]:
     """Create keyframe and associate to asset
 
@@ -135,7 +109,7 @@ def sync_detailed(
     Args:
         asset_id (str):
         storage_method (str):
-        use_google_resumable_upload (bool | Unset):  Default: False.
+        use_google_resumable_upload (bool | Unset):
         body (KeyframeCreateSchema):
 
     Raises:
@@ -143,7 +117,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | KeyframeCreateSchema | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType0 | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType1]
+        Response[Any | KeyframeCreateSchema | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -166,12 +140,11 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: KeyframeCreateSchema,
-    use_google_resumable_upload: bool | Unset = False,
+    use_google_resumable_upload: bool | Unset = UNSET,
 ) -> (
     Any
     | KeyframeCreateSchema
-    | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType0
-    | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType1
+    | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefault
     | None
 ):
     """Create keyframe and associate to asset
@@ -183,7 +156,7 @@ def sync(
     Args:
         asset_id (str):
         storage_method (str):
-        use_google_resumable_upload (bool | Unset):  Default: False.
+        use_google_resumable_upload (bool | Unset):
         body (KeyframeCreateSchema):
 
     Raises:
@@ -191,7 +164,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | KeyframeCreateSchema | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType0 | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType1
+        Any | KeyframeCreateSchema | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefault
     """
 
     return sync_detailed(
@@ -209,12 +182,11 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: KeyframeCreateSchema,
-    use_google_resumable_upload: bool | Unset = False,
+    use_google_resumable_upload: bool | Unset = UNSET,
 ) -> Response[
     Any
     | KeyframeCreateSchema
-    | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType0
-    | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType1
+    | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefault
 ]:
     """Create keyframe and associate to asset
 
@@ -225,7 +197,7 @@ async def asyncio_detailed(
     Args:
         asset_id (str):
         storage_method (str):
-        use_google_resumable_upload (bool | Unset):  Default: False.
+        use_google_resumable_upload (bool | Unset):
         body (KeyframeCreateSchema):
 
     Raises:
@@ -233,7 +205,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | KeyframeCreateSchema | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType0 | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType1]
+        Response[Any | KeyframeCreateSchema | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -254,12 +226,11 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: KeyframeCreateSchema,
-    use_google_resumable_upload: bool | Unset = False,
+    use_google_resumable_upload: bool | Unset = UNSET,
 ) -> (
     Any
     | KeyframeCreateSchema
-    | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType0
-    | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType1
+    | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefault
     | None
 ):
     """Create keyframe and associate to asset
@@ -271,7 +242,7 @@ async def asyncio(
     Args:
         asset_id (str):
         storage_method (str):
-        use_google_resumable_upload (bool | Unset):  Default: False.
+        use_google_resumable_upload (bool | Unset):
         body (KeyframeCreateSchema):
 
     Raises:
@@ -279,7 +250,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | KeyframeCreateSchema | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType0 | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefaultType1
+        Any | KeyframeCreateSchema | PostAssetsByAssetIdMethodByStorageMethodKeyframesResponseDefault
     """
 
     return (

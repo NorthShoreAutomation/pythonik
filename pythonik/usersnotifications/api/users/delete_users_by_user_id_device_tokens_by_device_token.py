@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_users_by_user_id_device_tokens_by_device_token_response_default_type_0 import (
-    DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0,
-)
-from ...models.delete_users_by_user_id_device_tokens_by_device_token_response_default_type_1 import (
-    DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1,
+from ...models.delete_users_by_user_id_device_tokens_by_device_token_response_default import (
+    DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefault,
 )
 from ...types import Response
 
@@ -32,11 +29,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0
-    | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
-):
+) -> Any | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -53,44 +46,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0
-        | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0
-    | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
-]:
+) -> Response[Any | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -104,11 +71,7 @@ def sync_detailed(
     device_token: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0
-    | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
-]:
+) -> Response[Any | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefault]:
     """Unregister a device token
 
     Args:
@@ -120,7 +83,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0 | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1]
+        Response[Any | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -140,12 +103,7 @@ def sync(
     device_token: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0
-    | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
-    | None
-):
+) -> Any | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefault | None:
     """Unregister a device token
 
     Args:
@@ -157,7 +115,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0 | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
+        Any | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefault
     """
 
     return sync_detailed(
@@ -172,11 +130,7 @@ async def asyncio_detailed(
     device_token: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0
-    | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
-]:
+) -> Response[Any | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefault]:
     """Unregister a device token
 
     Args:
@@ -188,7 +142,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0 | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1]
+        Response[Any | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -206,12 +160,7 @@ async def asyncio(
     device_token: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0
-    | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
-    | None
-):
+) -> Any | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefault | None:
     """Unregister a device token
 
     Args:
@@ -223,7 +172,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0 | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
+        Any | DeleteUsersByUserIdDeviceTokensByDeviceTokenResponseDefault
     """
 
     return (

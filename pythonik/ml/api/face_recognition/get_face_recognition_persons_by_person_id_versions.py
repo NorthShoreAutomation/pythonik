@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_face_recognition_persons_by_person_id_versions_response_default_type_0 import (
-    GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType0,
-)
-from ...models.get_face_recognition_persons_by_person_id_versions_response_default_type_1 import (
-    GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType1,
+from ...models.get_face_recognition_persons_by_person_id_versions_response_default import (
+    GetFaceRecognitionPersonsByPersonIdVersionsResponseDefault,
 )
 from ...models.person_assets_versions_list_schema import PersonAssetsVersionsListSchema
 from ...types import UNSET, Response, Unset
@@ -19,9 +16,9 @@ def _get_kwargs(
     person_id: str,
     *,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
-    include_admin_details: bool | Unset = True,
-    use_instance_as_main_face: bool | Unset = True,
+    page: int | Unset = UNSET,
+    include_admin_details: bool | Unset = UNSET,
+    use_instance_as_main_face: bool | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -51,8 +48,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType0
-    | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType1
+    | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefault
     | PersonAssetsVersionsListSchema
 ):
     if response.status_code == 200:
@@ -68,33 +64,11 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType0
-        | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        GetFaceRecognitionPersonsByPersonIdVersionsResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -103,8 +77,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType0
-    | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType1
+    | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefault
     | PersonAssetsVersionsListSchema
 ]:
     return Response(
@@ -120,13 +93,12 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
-    include_admin_details: bool | Unset = True,
-    use_instance_as_main_face: bool | Unset = True,
+    page: int | Unset = UNSET,
+    include_admin_details: bool | Unset = UNSET,
+    use_instance_as_main_face: bool | Unset = UNSET,
 ) -> Response[
     Any
-    | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType0
-    | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType1
+    | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefault
     | PersonAssetsVersionsListSchema
 ]:
     """List all person_id instances across assets versions
@@ -138,16 +110,16 @@ def sync_detailed(
     Args:
         person_id (str):
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
-        include_admin_details (bool | Unset):  Default: True.
-        use_instance_as_main_face (bool | Unset):  Default: True.
+        page (int | Unset):
+        include_admin_details (bool | Unset):
+        use_instance_as_main_face (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType0 | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType1 | PersonAssetsVersionsListSchema]
+        Response[Any | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefault | PersonAssetsVersionsListSchema]
     """
 
     kwargs = _get_kwargs(
@@ -170,13 +142,12 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
-    include_admin_details: bool | Unset = True,
-    use_instance_as_main_face: bool | Unset = True,
+    page: int | Unset = UNSET,
+    include_admin_details: bool | Unset = UNSET,
+    use_instance_as_main_face: bool | Unset = UNSET,
 ) -> (
     Any
-    | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType0
-    | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType1
+    | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefault
     | PersonAssetsVersionsListSchema
     | None
 ):
@@ -189,16 +160,16 @@ def sync(
     Args:
         person_id (str):
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
-        include_admin_details (bool | Unset):  Default: True.
-        use_instance_as_main_face (bool | Unset):  Default: True.
+        page (int | Unset):
+        include_admin_details (bool | Unset):
+        use_instance_as_main_face (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType0 | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType1 | PersonAssetsVersionsListSchema
+        Any | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefault | PersonAssetsVersionsListSchema
     """
 
     return sync_detailed(
@@ -216,13 +187,12 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
-    include_admin_details: bool | Unset = True,
-    use_instance_as_main_face: bool | Unset = True,
+    page: int | Unset = UNSET,
+    include_admin_details: bool | Unset = UNSET,
+    use_instance_as_main_face: bool | Unset = UNSET,
 ) -> Response[
     Any
-    | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType0
-    | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType1
+    | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefault
     | PersonAssetsVersionsListSchema
 ]:
     """List all person_id instances across assets versions
@@ -234,16 +204,16 @@ async def asyncio_detailed(
     Args:
         person_id (str):
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
-        include_admin_details (bool | Unset):  Default: True.
-        use_instance_as_main_face (bool | Unset):  Default: True.
+        page (int | Unset):
+        include_admin_details (bool | Unset):
+        use_instance_as_main_face (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType0 | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType1 | PersonAssetsVersionsListSchema]
+        Response[Any | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefault | PersonAssetsVersionsListSchema]
     """
 
     kwargs = _get_kwargs(
@@ -264,13 +234,12 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
-    include_admin_details: bool | Unset = True,
-    use_instance_as_main_face: bool | Unset = True,
+    page: int | Unset = UNSET,
+    include_admin_details: bool | Unset = UNSET,
+    use_instance_as_main_face: bool | Unset = UNSET,
 ) -> (
     Any
-    | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType0
-    | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType1
+    | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefault
     | PersonAssetsVersionsListSchema
     | None
 ):
@@ -283,16 +252,16 @@ async def asyncio(
     Args:
         person_id (str):
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
-        include_admin_details (bool | Unset):  Default: True.
-        use_instance_as_main_face (bool | Unset):  Default: True.
+        page (int | Unset):
+        include_admin_details (bool | Unset):
+        use_instance_as_main_face (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType0 | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefaultType1 | PersonAssetsVersionsListSchema
+        Any | GetFaceRecognitionPersonsByPersonIdVersionsResponseDefault | PersonAssetsVersionsListSchema
     """
 
     return (

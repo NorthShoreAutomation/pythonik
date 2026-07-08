@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_projects_by_project_id_reindex_response_default_type_0 import (
-    PostProjectsByProjectIdReindexResponseDefaultType0,
-)
-from ...models.post_projects_by_project_id_reindex_response_default_type_1 import (
-    PostProjectsByProjectIdReindexResponseDefaultType1,
+from ...models.post_projects_by_project_id_reindex_response_default import (
+    PostProjectsByProjectIdReindexResponseDefault,
 )
 from ...models.reindex_project_schema import ReindexProjectSchema
 from ...types import Response
@@ -39,11 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostProjectsByProjectIdReindexResponseDefaultType0
-    | PostProjectsByProjectIdReindexResponseDefaultType1
-):
+) -> Any | PostProjectsByProjectIdReindexResponseDefault:
     if response.status_code == 201:
         response_201 = cast(Any, None)
         return response_201
@@ -56,42 +49,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostProjectsByProjectIdReindexResponseDefaultType0
-        | PostProjectsByProjectIdReindexResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostProjectsByProjectIdReindexResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostProjectsByProjectIdReindexResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostProjectsByProjectIdReindexResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostProjectsByProjectIdReindexResponseDefaultType0
-    | PostProjectsByProjectIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostProjectsByProjectIdReindexResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -105,11 +72,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexProjectSchema,
-) -> Response[
-    Any
-    | PostProjectsByProjectIdReindexResponseDefaultType0
-    | PostProjectsByProjectIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostProjectsByProjectIdReindexResponseDefault]:
     """Reindex the project
 
 
@@ -125,7 +88,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostProjectsByProjectIdReindexResponseDefaultType0 | PostProjectsByProjectIdReindexResponseDefaultType1]
+        Response[Any | PostProjectsByProjectIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -145,12 +108,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexProjectSchema,
-) -> (
-    Any
-    | PostProjectsByProjectIdReindexResponseDefaultType0
-    | PostProjectsByProjectIdReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostProjectsByProjectIdReindexResponseDefault | None:
     """Reindex the project
 
 
@@ -166,7 +124,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostProjectsByProjectIdReindexResponseDefaultType0 | PostProjectsByProjectIdReindexResponseDefaultType1
+        Any | PostProjectsByProjectIdReindexResponseDefault
     """
 
     return sync_detailed(
@@ -181,11 +139,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexProjectSchema,
-) -> Response[
-    Any
-    | PostProjectsByProjectIdReindexResponseDefaultType0
-    | PostProjectsByProjectIdReindexResponseDefaultType1
-]:
+) -> Response[Any | PostProjectsByProjectIdReindexResponseDefault]:
     """Reindex the project
 
 
@@ -201,7 +155,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostProjectsByProjectIdReindexResponseDefaultType0 | PostProjectsByProjectIdReindexResponseDefaultType1]
+        Response[Any | PostProjectsByProjectIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -219,12 +173,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: ReindexProjectSchema,
-) -> (
-    Any
-    | PostProjectsByProjectIdReindexResponseDefaultType0
-    | PostProjectsByProjectIdReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostProjectsByProjectIdReindexResponseDefault | None:
     """Reindex the project
 
 
@@ -240,7 +189,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostProjectsByProjectIdReindexResponseDefaultType0 | PostProjectsByProjectIdReindexResponseDefaultType1
+        Any | PostProjectsByProjectIdReindexResponseDefault
     """
 
     return (

@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_user_by_user_id_response_default_type_0 import (
-    DeleteUserByUserIdResponseDefaultType0,
-)
-from ...models.delete_user_by_user_id_response_default_type_1 import (
-    DeleteUserByUserIdResponseDefaultType1,
+from ...models.delete_user_by_user_id_response_default import (
+    DeleteUserByUserIdResponseDefault,
 )
 from ...types import Response
 
@@ -30,11 +27,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteUserByUserIdResponseDefaultType0
-    | DeleteUserByUserIdResponseDefaultType1
-):
+) -> Any | DeleteUserByUserIdResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -47,39 +40,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteUserByUserIdResponseDefaultType0 | DeleteUserByUserIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteUserByUserIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = DeleteUserByUserIdResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteUserByUserIdResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteUserByUserIdResponseDefaultType0
-    | DeleteUserByUserIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteUserByUserIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -92,11 +60,7 @@ def sync_detailed(
     user_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteUserByUserIdResponseDefaultType0
-    | DeleteUserByUserIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteUserByUserIdResponseDefault]:
     """Delete user settings
 
     Args:
@@ -107,7 +71,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteUserByUserIdResponseDefaultType0 | DeleteUserByUserIdResponseDefaultType1]
+        Response[Any | DeleteUserByUserIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -125,12 +89,7 @@ def sync(
     user_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteUserByUserIdResponseDefaultType0
-    | DeleteUserByUserIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteUserByUserIdResponseDefault | None:
     """Delete user settings
 
     Args:
@@ -141,7 +100,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteUserByUserIdResponseDefaultType0 | DeleteUserByUserIdResponseDefaultType1
+        Any | DeleteUserByUserIdResponseDefault
     """
 
     return sync_detailed(
@@ -154,11 +113,7 @@ async def asyncio_detailed(
     user_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteUserByUserIdResponseDefaultType0
-    | DeleteUserByUserIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteUserByUserIdResponseDefault]:
     """Delete user settings
 
     Args:
@@ -169,7 +124,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteUserByUserIdResponseDefaultType0 | DeleteUserByUserIdResponseDefaultType1]
+        Response[Any | DeleteUserByUserIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -185,12 +140,7 @@ async def asyncio(
     user_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteUserByUserIdResponseDefaultType0
-    | DeleteUserByUserIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteUserByUserIdResponseDefault | None:
     """Delete user settings
 
     Args:
@@ -201,7 +151,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteUserByUserIdResponseDefaultType0 | DeleteUserByUserIdResponseDefaultType1
+        Any | DeleteUserByUserIdResponseDefault
     """
 
     return (

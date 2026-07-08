@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_storage_gateways_telemetry_response_default_type_0 import (
-    GetStorageGatewaysTelemetryResponseDefaultType0,
-)
-from ...models.get_storage_gateways_telemetry_response_default_type_1 import (
-    GetStorageGatewaysTelemetryResponseDefaultType1,
+from ...models.get_storage_gateways_telemetry_response_default import (
+    GetStorageGatewaysTelemetryResponseDefault,
 )
 from ...models.iconik_storage_gateways_telemetry_schema import (
     IconikStorageGatewaysTelemetrySchema,
@@ -18,7 +15,7 @@ from ...types import UNSET, Response, Unset
 
 def _get_kwargs(
     *,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> dict[str, Any]:
 
@@ -43,8 +40,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | GetStorageGatewaysTelemetryResponseDefaultType0
-    | GetStorageGatewaysTelemetryResponseDefaultType1
+    | GetStorageGatewaysTelemetryResponseDefault
     | IconikStorageGatewaysTelemetrySchema
 ):
     if response.status_code == 200:
@@ -56,31 +52,9 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetStorageGatewaysTelemetryResponseDefaultType0
-        | GetStorageGatewaysTelemetryResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetStorageGatewaysTelemetryResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetStorageGatewaysTelemetryResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetStorageGatewaysTelemetryResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -89,8 +63,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | GetStorageGatewaysTelemetryResponseDefaultType0
-    | GetStorageGatewaysTelemetryResponseDefaultType1
+    | GetStorageGatewaysTelemetryResponseDefault
     | IconikStorageGatewaysTelemetrySchema
 ]:
     return Response(
@@ -104,12 +77,11 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> Response[
     Any
-    | GetStorageGatewaysTelemetryResponseDefaultType0
-    | GetStorageGatewaysTelemetryResponseDefaultType1
+    | GetStorageGatewaysTelemetryResponseDefault
     | IconikStorageGatewaysTelemetrySchema
 ]:
     """Get all telemetry records with optional filtering
@@ -119,7 +91,7 @@ def sync_detailed(
      - can_read_storages
 
     Args:
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -127,7 +99,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetStorageGatewaysTelemetryResponseDefaultType0 | GetStorageGatewaysTelemetryResponseDefaultType1 | IconikStorageGatewaysTelemetrySchema]
+        Response[Any | GetStorageGatewaysTelemetryResponseDefault | IconikStorageGatewaysTelemetrySchema]
     """
 
     kwargs = _get_kwargs(
@@ -145,12 +117,11 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> (
     Any
-    | GetStorageGatewaysTelemetryResponseDefaultType0
-    | GetStorageGatewaysTelemetryResponseDefaultType1
+    | GetStorageGatewaysTelemetryResponseDefault
     | IconikStorageGatewaysTelemetrySchema
     | None
 ):
@@ -161,7 +132,7 @@ def sync(
      - can_read_storages
 
     Args:
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -169,7 +140,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetStorageGatewaysTelemetryResponseDefaultType0 | GetStorageGatewaysTelemetryResponseDefaultType1 | IconikStorageGatewaysTelemetrySchema
+        Any | GetStorageGatewaysTelemetryResponseDefault | IconikStorageGatewaysTelemetrySchema
     """
 
     return sync_detailed(
@@ -182,12 +153,11 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> Response[
     Any
-    | GetStorageGatewaysTelemetryResponseDefaultType0
-    | GetStorageGatewaysTelemetryResponseDefaultType1
+    | GetStorageGatewaysTelemetryResponseDefault
     | IconikStorageGatewaysTelemetrySchema
 ]:
     """Get all telemetry records with optional filtering
@@ -197,7 +167,7 @@ async def asyncio_detailed(
      - can_read_storages
 
     Args:
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -205,7 +175,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetStorageGatewaysTelemetryResponseDefaultType0 | GetStorageGatewaysTelemetryResponseDefaultType1 | IconikStorageGatewaysTelemetrySchema]
+        Response[Any | GetStorageGatewaysTelemetryResponseDefault | IconikStorageGatewaysTelemetrySchema]
     """
 
     kwargs = _get_kwargs(
@@ -221,12 +191,11 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> (
     Any
-    | GetStorageGatewaysTelemetryResponseDefaultType0
-    | GetStorageGatewaysTelemetryResponseDefaultType1
+    | GetStorageGatewaysTelemetryResponseDefault
     | IconikStorageGatewaysTelemetrySchema
     | None
 ):
@@ -237,7 +206,7 @@ async def asyncio(
      - can_read_storages
 
     Args:
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -245,7 +214,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetStorageGatewaysTelemetryResponseDefaultType0 | GetStorageGatewaysTelemetryResponseDefaultType1 | IconikStorageGatewaysTelemetrySchema
+        Any | GetStorageGatewaysTelemetryResponseDefault | IconikStorageGatewaysTelemetrySchema
     """
 
     return (

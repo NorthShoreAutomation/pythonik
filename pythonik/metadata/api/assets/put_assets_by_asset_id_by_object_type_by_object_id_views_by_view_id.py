@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.metadata_values_schema import MetadataValuesSchema
-from ...models.put_assets_by_asset_id_by_object_type_by_object_id_views_by_view_id_response_default_type_0 import (
-    PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0,
-)
-from ...models.put_assets_by_asset_id_by_object_type_by_object_id_views_by_view_id_response_default_type_1 import (
-    PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1,
+from ...models.put_assets_by_asset_id_by_object_type_by_object_id_views_by_view_id_response_default import (
+    PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -56,8 +53,7 @@ def _parse_response(
 ) -> (
     Any
     | MetadataValuesSchema
-    | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-    | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
+    | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefault
 ):
     if response.status_code == 200:
         response_200 = MetadataValuesSchema.from_dict(response.json())
@@ -76,31 +72,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-        | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -110,8 +86,7 @@ def _build_response(
 ) -> Response[
     Any
     | MetadataValuesSchema
-    | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-    | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
+    | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -133,8 +108,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | MetadataValuesSchema
-    | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-    | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
+    | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefault
 ]:
     """Edit view metadata values for sub-objects of an asset (Such as segments)
 
@@ -155,7 +129,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | MetadataValuesSchema | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0 | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1]
+        Response[Any | MetadataValuesSchema | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -186,8 +160,7 @@ def sync(
 ) -> (
     Any
     | MetadataValuesSchema
-    | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-    | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
+    | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefault
     | None
 ):
     """Edit view metadata values for sub-objects of an asset (Such as segments)
@@ -209,7 +182,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | MetadataValuesSchema | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0 | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
+        Any | MetadataValuesSchema | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefault
     """
 
     return sync_detailed(
@@ -235,8 +208,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | MetadataValuesSchema
-    | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-    | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
+    | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefault
 ]:
     """Edit view metadata values for sub-objects of an asset (Such as segments)
 
@@ -257,7 +229,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | MetadataValuesSchema | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0 | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1]
+        Response[Any | MetadataValuesSchema | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -286,8 +258,7 @@ async def asyncio(
 ) -> (
     Any
     | MetadataValuesSchema
-    | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-    | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
+    | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefault
     | None
 ):
     """Edit view metadata values for sub-objects of an asset (Such as segments)
@@ -309,7 +280,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | MetadataValuesSchema | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0 | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
+        Any | MetadataValuesSchema | PutAssetsByAssetIdByObjectTypeByObjectIdViewsByViewIdResponseDefault
     """
 
     return (

@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.components_schema import ComponentsSchema
-from ...models.delete_assets_by_asset_id_formats_by_format_id_components_by_component_id_response_default_type_0 import (
-    DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0,
-)
-from ...models.delete_assets_by_asset_id_formats_by_format_id_components_by_component_id_response_default_type_1 import (
-    DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1,
+from ...models.delete_assets_by_asset_id_formats_by_format_id_components_by_component_id_response_default import (
+    DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault,
 )
 from ...types import Response
 
@@ -38,13 +35,16 @@ def _parse_response(
 ) -> (
     Any
     | ComponentsSchema
-    | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0
-    | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1
+    | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault
 ):
     if response.status_code == 200:
         response_200 = ComponentsSchema.from_dict(response.json())
 
         return response_200
+
+    if response.status_code == 204:
+        response_204 = cast(Any, None)
+        return response_204
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -58,31 +58,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0
-        | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -92,8 +70,7 @@ def _build_response(
 ) -> Response[
     Any
     | ComponentsSchema
-    | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0
-    | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1
+    | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -112,8 +89,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | ComponentsSchema
-    | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0
-    | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1
+    | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault
 ]:
     """Delete a component in a format
 
@@ -131,7 +107,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | ComponentsSchema | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0 | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1]
+        Response[Any | ComponentsSchema | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -156,8 +132,7 @@ def sync(
 ) -> (
     Any
     | ComponentsSchema
-    | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0
-    | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1
+    | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault
     | None
 ):
     """Delete a component in a format
@@ -176,7 +151,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | ComponentsSchema | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0 | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1
+        Any | ComponentsSchema | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault
     """
 
     return sync_detailed(
@@ -196,8 +171,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | ComponentsSchema
-    | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0
-    | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1
+    | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault
 ]:
     """Delete a component in a format
 
@@ -215,7 +189,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | ComponentsSchema | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0 | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1]
+        Response[Any | ComponentsSchema | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -238,8 +212,7 @@ async def asyncio(
 ) -> (
     Any
     | ComponentsSchema
-    | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0
-    | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1
+    | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault
     | None
 ):
     """Delete a component in a format
@@ -258,7 +231,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | ComponentsSchema | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType0 | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefaultType1
+        Any | ComponentsSchema | DeleteAssetsByAssetIdFormatsByFormatIdComponentsByComponentIdResponseDefault
     """
 
     return (

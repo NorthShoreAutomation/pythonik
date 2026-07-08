@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.device_tokens_schema import DeviceTokensSchema
-from ...models.get_users_by_user_id_device_tokens_response_default_type_0 import (
-    GetUsersByUserIdDeviceTokensResponseDefaultType0,
-)
-from ...models.get_users_by_user_id_device_tokens_response_default_type_1 import (
-    GetUsersByUserIdDeviceTokensResponseDefaultType1,
+from ...models.get_users_by_user_id_device_tokens_response_default import (
+    GetUsersByUserIdDeviceTokensResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -18,7 +15,7 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     user_id: str,
     *,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -40,12 +37,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeviceTokensSchema
-    | GetUsersByUserIdDeviceTokensResponseDefaultType0
-    | GetUsersByUserIdDeviceTokensResponseDefaultType1
-):
+) -> Any | DeviceTokensSchema | GetUsersByUserIdDeviceTokensResponseDefault:
     if response.status_code == 200:
         response_200 = DeviceTokensSchema.from_dict(response.json())
 
@@ -63,43 +55,16 @@ def _parse_response(
         response_403 = cast(Any, None)
         return response_403
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetUsersByUserIdDeviceTokensResponseDefaultType0
-        | GetUsersByUserIdDeviceTokensResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetUsersByUserIdDeviceTokensResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetUsersByUserIdDeviceTokensResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetUsersByUserIdDeviceTokensResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeviceTokensSchema
-    | GetUsersByUserIdDeviceTokensResponseDefaultType0
-    | GetUsersByUserIdDeviceTokensResponseDefaultType1
-]:
+) -> Response[Any | DeviceTokensSchema | GetUsersByUserIdDeviceTokensResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -112,25 +77,20 @@ def sync_detailed(
     user_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
-) -> Response[
-    Any
-    | DeviceTokensSchema
-    | GetUsersByUserIdDeviceTokensResponseDefaultType0
-    | GetUsersByUserIdDeviceTokensResponseDefaultType1
-]:
+    per_page: int | Unset = UNSET,
+) -> Response[Any | DeviceTokensSchema | GetUsersByUserIdDeviceTokensResponseDefault]:
     """Returns a list of device tokens for a user
 
     Args:
         user_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeviceTokensSchema | GetUsersByUserIdDeviceTokensResponseDefaultType0 | GetUsersByUserIdDeviceTokensResponseDefaultType1]
+        Response[Any | DeviceTokensSchema | GetUsersByUserIdDeviceTokensResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -149,26 +109,20 @@ def sync(
     user_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
-) -> (
-    Any
-    | DeviceTokensSchema
-    | GetUsersByUserIdDeviceTokensResponseDefaultType0
-    | GetUsersByUserIdDeviceTokensResponseDefaultType1
-    | None
-):
+    per_page: int | Unset = UNSET,
+) -> Any | DeviceTokensSchema | GetUsersByUserIdDeviceTokensResponseDefault | None:
     """Returns a list of device tokens for a user
 
     Args:
         user_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeviceTokensSchema | GetUsersByUserIdDeviceTokensResponseDefaultType0 | GetUsersByUserIdDeviceTokensResponseDefaultType1
+        Any | DeviceTokensSchema | GetUsersByUserIdDeviceTokensResponseDefault
     """
 
     return sync_detailed(
@@ -182,25 +136,20 @@ async def asyncio_detailed(
     user_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
-) -> Response[
-    Any
-    | DeviceTokensSchema
-    | GetUsersByUserIdDeviceTokensResponseDefaultType0
-    | GetUsersByUserIdDeviceTokensResponseDefaultType1
-]:
+    per_page: int | Unset = UNSET,
+) -> Response[Any | DeviceTokensSchema | GetUsersByUserIdDeviceTokensResponseDefault]:
     """Returns a list of device tokens for a user
 
     Args:
         user_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeviceTokensSchema | GetUsersByUserIdDeviceTokensResponseDefaultType0 | GetUsersByUserIdDeviceTokensResponseDefaultType1]
+        Response[Any | DeviceTokensSchema | GetUsersByUserIdDeviceTokensResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -217,26 +166,20 @@ async def asyncio(
     user_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
-) -> (
-    Any
-    | DeviceTokensSchema
-    | GetUsersByUserIdDeviceTokensResponseDefaultType0
-    | GetUsersByUserIdDeviceTokensResponseDefaultType1
-    | None
-):
+    per_page: int | Unset = UNSET,
+) -> Any | DeviceTokensSchema | GetUsersByUserIdDeviceTokensResponseDefault | None:
     """Returns a list of device tokens for a user
 
     Args:
         user_id (str):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeviceTokensSchema | GetUsersByUserIdDeviceTokensResponseDefaultType0 | GetUsersByUserIdDeviceTokensResponseDefaultType1
+        Any | DeviceTokensSchema | GetUsersByUserIdDeviceTokensResponseDefault
     """
 
     return (

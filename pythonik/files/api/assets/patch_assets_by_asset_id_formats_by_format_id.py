@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.format_schema import FormatSchema
-from ...models.patch_assets_by_asset_id_formats_by_format_id_response_default_type_0 import (
-    PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType0,
-)
-from ...models.patch_assets_by_asset_id_formats_by_format_id_response_default_type_1 import (
-    PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType1,
+from ...models.patch_assets_by_asset_id_formats_by_format_id_response_default import (
+    PatchAssetsByAssetIdFormatsByFormatIdResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -20,7 +17,7 @@ def _get_kwargs(
     format_id: str,
     *,
     body: FormatSchema,
-    sync_components: bool | Unset = False,
+    sync_components: bool | Unset = UNSET,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -49,12 +46,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | FormatSchema
-    | PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType0
-    | PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType1
-):
+) -> Any | FormatSchema | PatchAssetsByAssetIdFormatsByFormatIdResponseDefault:
     if response.status_code == 200:
         response_200 = FormatSchema.from_dict(response.json())
 
@@ -72,33 +64,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType0
-        | PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PatchAssetsByAssetIdFormatsByFormatIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -106,10 +74,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | FormatSchema
-    | PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType0
-    | PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType1
+    Any | FormatSchema | PatchAssetsByAssetIdFormatsByFormatIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -125,12 +90,9 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: FormatSchema,
-    sync_components: bool | Unset = False,
+    sync_components: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | FormatSchema
-    | PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType0
-    | PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType1
+    Any | FormatSchema | PatchAssetsByAssetIdFormatsByFormatIdResponseDefault
 ]:
     """Update format information
 
@@ -141,7 +103,7 @@ def sync_detailed(
     Args:
         asset_id (str):
         format_id (str):
-        sync_components (bool | Unset):  Default: False.
+        sync_components (bool | Unset):
         body (FormatSchema):
 
     Raises:
@@ -149,7 +111,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | FormatSchema | PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType0 | PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType1]
+        Response[Any | FormatSchema | PatchAssetsByAssetIdFormatsByFormatIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -172,14 +134,8 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: FormatSchema,
-    sync_components: bool | Unset = False,
-) -> (
-    Any
-    | FormatSchema
-    | PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType0
-    | PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType1
-    | None
-):
+    sync_components: bool | Unset = UNSET,
+) -> Any | FormatSchema | PatchAssetsByAssetIdFormatsByFormatIdResponseDefault | None:
     """Update format information
 
 
@@ -189,7 +145,7 @@ def sync(
     Args:
         asset_id (str):
         format_id (str):
-        sync_components (bool | Unset):  Default: False.
+        sync_components (bool | Unset):
         body (FormatSchema):
 
     Raises:
@@ -197,7 +153,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | FormatSchema | PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType0 | PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType1
+        Any | FormatSchema | PatchAssetsByAssetIdFormatsByFormatIdResponseDefault
     """
 
     return sync_detailed(
@@ -215,12 +171,9 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: FormatSchema,
-    sync_components: bool | Unset = False,
+    sync_components: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | FormatSchema
-    | PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType0
-    | PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType1
+    Any | FormatSchema | PatchAssetsByAssetIdFormatsByFormatIdResponseDefault
 ]:
     """Update format information
 
@@ -231,7 +184,7 @@ async def asyncio_detailed(
     Args:
         asset_id (str):
         format_id (str):
-        sync_components (bool | Unset):  Default: False.
+        sync_components (bool | Unset):
         body (FormatSchema):
 
     Raises:
@@ -239,7 +192,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | FormatSchema | PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType0 | PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType1]
+        Response[Any | FormatSchema | PatchAssetsByAssetIdFormatsByFormatIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -260,14 +213,8 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: FormatSchema,
-    sync_components: bool | Unset = False,
-) -> (
-    Any
-    | FormatSchema
-    | PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType0
-    | PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType1
-    | None
-):
+    sync_components: bool | Unset = UNSET,
+) -> Any | FormatSchema | PatchAssetsByAssetIdFormatsByFormatIdResponseDefault | None:
     """Update format information
 
 
@@ -277,7 +224,7 @@ async def asyncio(
     Args:
         asset_id (str):
         format_id (str):
-        sync_components (bool | Unset):  Default: False.
+        sync_components (bool | Unset):
         body (FormatSchema):
 
     Raises:
@@ -285,7 +232,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | FormatSchema | PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType0 | PatchAssetsByAssetIdFormatsByFormatIdResponseDefaultType1
+        Any | FormatSchema | PatchAssetsByAssetIdFormatsByFormatIdResponseDefault
     """
 
     return (

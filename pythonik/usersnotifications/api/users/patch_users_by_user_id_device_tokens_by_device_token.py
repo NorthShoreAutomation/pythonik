@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.device_token_schema import DeviceTokenSchema
-from ...models.patch_users_by_user_id_device_tokens_by_device_token_response_default_type_0 import (
-    PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0,
-)
-from ...models.patch_users_by_user_id_device_tokens_by_device_token_response_default_type_1 import (
-    PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1,
+from ...models.patch_users_by_user_id_device_tokens_by_device_token_response_default import (
+    PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefault,
 )
 from ...types import Response
 
@@ -42,10 +39,7 @@ def _get_kwargs(
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
-    Any
-    | DeviceTokenSchema
-    | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0
-    | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
+    Any | DeviceTokenSchema | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefault
 ):
     if response.status_code == 200:
         response_200 = DeviceTokenSchema.from_dict(response.json())
@@ -68,33 +62,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0
-        | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -102,10 +74,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | DeviceTokenSchema
-    | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0
-    | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
+    Any | DeviceTokenSchema | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -122,10 +91,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: DeviceTokenSchema,
 ) -> Response[
-    Any
-    | DeviceTokenSchema
-    | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0
-    | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
+    Any | DeviceTokenSchema | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefault
 ]:
     """Update device token metadata
 
@@ -139,7 +105,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeviceTokenSchema | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0 | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1]
+        Response[Any | DeviceTokenSchema | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -164,8 +130,7 @@ def sync(
 ) -> (
     Any
     | DeviceTokenSchema
-    | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0
-    | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
+    | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefault
     | None
 ):
     """Update device token metadata
@@ -180,7 +145,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeviceTokenSchema | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0 | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
+        Any | DeviceTokenSchema | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefault
     """
 
     return sync_detailed(
@@ -198,10 +163,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: DeviceTokenSchema,
 ) -> Response[
-    Any
-    | DeviceTokenSchema
-    | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0
-    | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
+    Any | DeviceTokenSchema | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefault
 ]:
     """Update device token metadata
 
@@ -215,7 +177,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeviceTokenSchema | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0 | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1]
+        Response[Any | DeviceTokenSchema | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -238,8 +200,7 @@ async def asyncio(
 ) -> (
     Any
     | DeviceTokenSchema
-    | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0
-    | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
+    | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefault
     | None
 ):
     """Update device token metadata
@@ -254,7 +215,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeviceTokenSchema | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType0 | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefaultType1
+        Any | DeviceTokenSchema | PatchUsersByUserIdDeviceTokensByDeviceTokenResponseDefault
     """
 
     return (

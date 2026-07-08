@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.gateway_report_schema import GatewayReportSchema
-from ...models.get_storages_by_storage_id_gateway_report_response_default_type_0 import (
-    GetStoragesByStorageIdGatewayReportResponseDefaultType0,
-)
-from ...models.get_storages_by_storage_id_gateway_report_response_default_type_1 import (
-    GetStoragesByStorageIdGatewayReportResponseDefaultType1,
+from ...models.get_storages_by_storage_id_gateway_report_response_default import (
+    GetStoragesByStorageIdGatewayReportResponseDefault,
 )
 from ...types import Response
 
@@ -31,12 +28,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GatewayReportSchema
-    | GetStoragesByStorageIdGatewayReportResponseDefaultType0
-    | GetStoragesByStorageIdGatewayReportResponseDefaultType1
-):
+) -> Any | GatewayReportSchema | GetStoragesByStorageIdGatewayReportResponseDefault:
     if response.status_code == 200:
         response_200 = GatewayReportSchema.from_dict(response.json())
 
@@ -54,31 +46,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetStoragesByStorageIdGatewayReportResponseDefaultType0
-        | GetStoragesByStorageIdGatewayReportResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetStoragesByStorageIdGatewayReportResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetStoragesByStorageIdGatewayReportResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetStoragesByStorageIdGatewayReportResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -86,10 +56,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | GatewayReportSchema
-    | GetStoragesByStorageIdGatewayReportResponseDefaultType0
-    | GetStoragesByStorageIdGatewayReportResponseDefaultType1
+    Any | GatewayReportSchema | GetStoragesByStorageIdGatewayReportResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -104,10 +71,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | GatewayReportSchema
-    | GetStoragesByStorageIdGatewayReportResponseDefaultType0
-    | GetStoragesByStorageIdGatewayReportResponseDefaultType1
+    Any | GatewayReportSchema | GetStoragesByStorageIdGatewayReportResponseDefault
 ]:
     """Get storage gateway report
 
@@ -119,7 +83,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GatewayReportSchema | GetStoragesByStorageIdGatewayReportResponseDefaultType0 | GetStoragesByStorageIdGatewayReportResponseDefaultType1]
+        Response[Any | GatewayReportSchema | GetStoragesByStorageIdGatewayReportResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -140,8 +104,7 @@ def sync(
 ) -> (
     Any
     | GatewayReportSchema
-    | GetStoragesByStorageIdGatewayReportResponseDefaultType0
-    | GetStoragesByStorageIdGatewayReportResponseDefaultType1
+    | GetStoragesByStorageIdGatewayReportResponseDefault
     | None
 ):
     """Get storage gateway report
@@ -154,7 +117,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GatewayReportSchema | GetStoragesByStorageIdGatewayReportResponseDefaultType0 | GetStoragesByStorageIdGatewayReportResponseDefaultType1
+        Any | GatewayReportSchema | GetStoragesByStorageIdGatewayReportResponseDefault
     """
 
     return sync_detailed(
@@ -168,10 +131,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | GatewayReportSchema
-    | GetStoragesByStorageIdGatewayReportResponseDefaultType0
-    | GetStoragesByStorageIdGatewayReportResponseDefaultType1
+    Any | GatewayReportSchema | GetStoragesByStorageIdGatewayReportResponseDefault
 ]:
     """Get storage gateway report
 
@@ -183,7 +143,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GatewayReportSchema | GetStoragesByStorageIdGatewayReportResponseDefaultType0 | GetStoragesByStorageIdGatewayReportResponseDefaultType1]
+        Response[Any | GatewayReportSchema | GetStoragesByStorageIdGatewayReportResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -202,8 +162,7 @@ async def asyncio(
 ) -> (
     Any
     | GatewayReportSchema
-    | GetStoragesByStorageIdGatewayReportResponseDefaultType0
-    | GetStoragesByStorageIdGatewayReportResponseDefaultType1
+    | GetStoragesByStorageIdGatewayReportResponseDefault
     | None
 ):
     """Get storage gateway report
@@ -216,7 +175,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GatewayReportSchema | GetStoragesByStorageIdGatewayReportResponseDefaultType0 | GetStoragesByStorageIdGatewayReportResponseDefaultType1
+        Any | GatewayReportSchema | GetStoragesByStorageIdGatewayReportResponseDefault
     """
 
     return (

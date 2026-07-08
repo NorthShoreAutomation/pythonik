@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.patch_search_saved_by_search_id_response_default_type_0 import (
-    PatchSearchSavedBySearchIdResponseDefaultType0,
-)
-from ...models.patch_search_saved_by_search_id_response_default_type_1 import (
-    PatchSearchSavedBySearchIdResponseDefaultType1,
+from ...models.patch_search_saved_by_search_id_response_default import (
+    PatchSearchSavedBySearchIdResponseDefault,
 )
 from ...models.saved_search_schema import SavedSearchSchema
 from ...models.search_documents_schema import SearchDocumentsSchema
@@ -40,12 +37,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PatchSearchSavedBySearchIdResponseDefaultType0
-    | PatchSearchSavedBySearchIdResponseDefaultType1
-    | SearchDocumentsSchema
-):
+) -> Any | PatchSearchSavedBySearchIdResponseDefault | SearchDocumentsSchema:
     if response.status_code == 200:
         response_200 = SearchDocumentsSchema.from_dict(response.json())
 
@@ -63,43 +55,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PatchSearchSavedBySearchIdResponseDefaultType0
-        | PatchSearchSavedBySearchIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PatchSearchSavedBySearchIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PatchSearchSavedBySearchIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PatchSearchSavedBySearchIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PatchSearchSavedBySearchIdResponseDefaultType0
-    | PatchSearchSavedBySearchIdResponseDefaultType1
-    | SearchDocumentsSchema
-]:
+) -> Response[Any | PatchSearchSavedBySearchIdResponseDefault | SearchDocumentsSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -113,12 +78,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: SavedSearchSchema,
-) -> Response[
-    Any
-    | PatchSearchSavedBySearchIdResponseDefaultType0
-    | PatchSearchSavedBySearchIdResponseDefaultType1
-    | SearchDocumentsSchema
-]:
+) -> Response[Any | PatchSearchSavedBySearchIdResponseDefault | SearchDocumentsSchema]:
     """Search and save this search
 
 
@@ -134,7 +94,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PatchSearchSavedBySearchIdResponseDefaultType0 | PatchSearchSavedBySearchIdResponseDefaultType1 | SearchDocumentsSchema]
+        Response[Any | PatchSearchSavedBySearchIdResponseDefault | SearchDocumentsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -154,13 +114,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: SavedSearchSchema,
-) -> (
-    Any
-    | PatchSearchSavedBySearchIdResponseDefaultType0
-    | PatchSearchSavedBySearchIdResponseDefaultType1
-    | SearchDocumentsSchema
-    | None
-):
+) -> Any | PatchSearchSavedBySearchIdResponseDefault | SearchDocumentsSchema | None:
     """Search and save this search
 
 
@@ -176,7 +130,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PatchSearchSavedBySearchIdResponseDefaultType0 | PatchSearchSavedBySearchIdResponseDefaultType1 | SearchDocumentsSchema
+        Any | PatchSearchSavedBySearchIdResponseDefault | SearchDocumentsSchema
     """
 
     return sync_detailed(
@@ -191,12 +145,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: SavedSearchSchema,
-) -> Response[
-    Any
-    | PatchSearchSavedBySearchIdResponseDefaultType0
-    | PatchSearchSavedBySearchIdResponseDefaultType1
-    | SearchDocumentsSchema
-]:
+) -> Response[Any | PatchSearchSavedBySearchIdResponseDefault | SearchDocumentsSchema]:
     """Search and save this search
 
 
@@ -212,7 +161,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PatchSearchSavedBySearchIdResponseDefaultType0 | PatchSearchSavedBySearchIdResponseDefaultType1 | SearchDocumentsSchema]
+        Response[Any | PatchSearchSavedBySearchIdResponseDefault | SearchDocumentsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -230,13 +179,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: SavedSearchSchema,
-) -> (
-    Any
-    | PatchSearchSavedBySearchIdResponseDefaultType0
-    | PatchSearchSavedBySearchIdResponseDefaultType1
-    | SearchDocumentsSchema
-    | None
-):
+) -> Any | PatchSearchSavedBySearchIdResponseDefault | SearchDocumentsSchema | None:
     """Search and save this search
 
 
@@ -252,7 +195,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PatchSearchSavedBySearchIdResponseDefaultType0 | PatchSearchSavedBySearchIdResponseDefaultType1 | SearchDocumentsSchema
+        Any | PatchSearchSavedBySearchIdResponseDefault | SearchDocumentsSchema
     """
 
     return (

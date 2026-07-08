@@ -5,12 +5,7 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.acl_templates_schema import ACLTemplatesSchema
-from ...models.get_acl_templates_response_default_type_0 import (
-    GetAclTemplatesResponseDefaultType0,
-)
-from ...models.get_acl_templates_response_default_type_1 import (
-    GetAclTemplatesResponseDefaultType1,
-)
+from ...models.get_acl_templates_response_default import GetAclTemplatesResponseDefault
 from ...types import Response
 
 
@@ -26,12 +21,7 @@ def _get_kwargs() -> dict[str, Any]:
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    ACLTemplatesSchema
-    | Any
-    | GetAclTemplatesResponseDefaultType0
-    | GetAclTemplatesResponseDefaultType1
-):
+) -> ACLTemplatesSchema | Any | GetAclTemplatesResponseDefault:
     if response.status_code == 200:
         response_200 = ACLTemplatesSchema.from_dict(response.json())
 
@@ -45,38 +35,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> GetAclTemplatesResponseDefaultType0 | GetAclTemplatesResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetAclTemplatesResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetAclTemplatesResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAclTemplatesResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    ACLTemplatesSchema
-    | Any
-    | GetAclTemplatesResponseDefaultType0
-    | GetAclTemplatesResponseDefaultType1
-]:
+) -> Response[ACLTemplatesSchema | Any | GetAclTemplatesResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -88,12 +54,7 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    ACLTemplatesSchema
-    | Any
-    | GetAclTemplatesResponseDefaultType0
-    | GetAclTemplatesResponseDefaultType1
-]:
+) -> Response[ACLTemplatesSchema | Any | GetAclTemplatesResponseDefault]:
     """Retreive all acl templates
 
 
@@ -105,7 +66,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[ACLTemplatesSchema | Any | GetAclTemplatesResponseDefaultType0 | GetAclTemplatesResponseDefaultType1]
+        Response[ACLTemplatesSchema | Any | GetAclTemplatesResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -120,13 +81,7 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    ACLTemplatesSchema
-    | Any
-    | GetAclTemplatesResponseDefaultType0
-    | GetAclTemplatesResponseDefaultType1
-    | None
-):
+) -> ACLTemplatesSchema | Any | GetAclTemplatesResponseDefault | None:
     """Retreive all acl templates
 
 
@@ -138,7 +93,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        ACLTemplatesSchema | Any | GetAclTemplatesResponseDefaultType0 | GetAclTemplatesResponseDefaultType1
+        ACLTemplatesSchema | Any | GetAclTemplatesResponseDefault
     """
 
     return sync_detailed(
@@ -149,12 +104,7 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    ACLTemplatesSchema
-    | Any
-    | GetAclTemplatesResponseDefaultType0
-    | GetAclTemplatesResponseDefaultType1
-]:
+) -> Response[ACLTemplatesSchema | Any | GetAclTemplatesResponseDefault]:
     """Retreive all acl templates
 
 
@@ -166,7 +116,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[ACLTemplatesSchema | Any | GetAclTemplatesResponseDefaultType0 | GetAclTemplatesResponseDefaultType1]
+        Response[ACLTemplatesSchema | Any | GetAclTemplatesResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -179,13 +129,7 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    ACLTemplatesSchema
-    | Any
-    | GetAclTemplatesResponseDefaultType0
-    | GetAclTemplatesResponseDefaultType1
-    | None
-):
+) -> ACLTemplatesSchema | Any | GetAclTemplatesResponseDefault | None:
     """Retreive all acl templates
 
 
@@ -197,7 +141,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        ACLTemplatesSchema | Any | GetAclTemplatesResponseDefaultType0 | GetAclTemplatesResponseDefaultType1
+        ACLTemplatesSchema | Any | GetAclTemplatesResponseDefault
     """
 
     return (

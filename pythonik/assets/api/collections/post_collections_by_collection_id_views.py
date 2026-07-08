@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.collection_schema import CollectionSchema
-from ...models.post_collections_by_collection_id_views_response_default_type_0 import (
-    PostCollectionsByCollectionIdViewsResponseDefaultType0,
-)
-from ...models.post_collections_by_collection_id_views_response_default_type_1 import (
-    PostCollectionsByCollectionIdViewsResponseDefaultType1,
+from ...models.post_collections_by_collection_id_views_response_default import (
+    PostCollectionsByCollectionIdViewsResponseDefault,
 )
 from ...types import Response
 
@@ -31,12 +28,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | CollectionSchema
-    | PostCollectionsByCollectionIdViewsResponseDefaultType0
-    | PostCollectionsByCollectionIdViewsResponseDefaultType1
-):
+) -> Any | CollectionSchema | PostCollectionsByCollectionIdViewsResponseDefault:
     if response.status_code == 200:
         response_200 = CollectionSchema.from_dict(response.json())
 
@@ -54,31 +46,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostCollectionsByCollectionIdViewsResponseDefaultType0
-        | PostCollectionsByCollectionIdViewsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostCollectionsByCollectionIdViewsResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostCollectionsByCollectionIdViewsResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostCollectionsByCollectionIdViewsResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -86,10 +56,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | CollectionSchema
-    | PostCollectionsByCollectionIdViewsResponseDefaultType0
-    | PostCollectionsByCollectionIdViewsResponseDefaultType1
+    Any | CollectionSchema | PostCollectionsByCollectionIdViewsResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -104,10 +71,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | CollectionSchema
-    | PostCollectionsByCollectionIdViewsResponseDefaultType0
-    | PostCollectionsByCollectionIdViewsResponseDefaultType1
+    Any | CollectionSchema | PostCollectionsByCollectionIdViewsResponseDefault
 ]:
     """Mark collection as viewed
 
@@ -123,7 +87,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CollectionSchema | PostCollectionsByCollectionIdViewsResponseDefaultType0 | PostCollectionsByCollectionIdViewsResponseDefaultType1]
+        Response[Any | CollectionSchema | PostCollectionsByCollectionIdViewsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -141,13 +105,7 @@ def sync(
     collection_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | CollectionSchema
-    | PostCollectionsByCollectionIdViewsResponseDefaultType0
-    | PostCollectionsByCollectionIdViewsResponseDefaultType1
-    | None
-):
+) -> Any | CollectionSchema | PostCollectionsByCollectionIdViewsResponseDefault | None:
     """Mark collection as viewed
 
 
@@ -162,7 +120,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CollectionSchema | PostCollectionsByCollectionIdViewsResponseDefaultType0 | PostCollectionsByCollectionIdViewsResponseDefaultType1
+        Any | CollectionSchema | PostCollectionsByCollectionIdViewsResponseDefault
     """
 
     return sync_detailed(
@@ -176,10 +134,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | CollectionSchema
-    | PostCollectionsByCollectionIdViewsResponseDefaultType0
-    | PostCollectionsByCollectionIdViewsResponseDefaultType1
+    Any | CollectionSchema | PostCollectionsByCollectionIdViewsResponseDefault
 ]:
     """Mark collection as viewed
 
@@ -195,7 +150,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CollectionSchema | PostCollectionsByCollectionIdViewsResponseDefaultType0 | PostCollectionsByCollectionIdViewsResponseDefaultType1]
+        Response[Any | CollectionSchema | PostCollectionsByCollectionIdViewsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -211,13 +166,7 @@ async def asyncio(
     collection_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | CollectionSchema
-    | PostCollectionsByCollectionIdViewsResponseDefaultType0
-    | PostCollectionsByCollectionIdViewsResponseDefaultType1
-    | None
-):
+) -> Any | CollectionSchema | PostCollectionsByCollectionIdViewsResponseDefault | None:
     """Mark collection as viewed
 
 
@@ -232,7 +181,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CollectionSchema | PostCollectionsByCollectionIdViewsResponseDefaultType0 | PostCollectionsByCollectionIdViewsResponseDefaultType1
+        Any | CollectionSchema | PostCollectionsByCollectionIdViewsResponseDefault
     """
 
     return (

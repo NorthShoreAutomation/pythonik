@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.keyframe_schema import KeyframeSchema
-from ...models.post_assets_by_asset_id_custom_keyframe_by_poster_id_response_default_type_0 import (
-    PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType0,
-)
-from ...models.post_assets_by_asset_id_custom_keyframe_by_poster_id_response_default_type_1 import (
-    PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType1,
+from ...models.post_assets_by_asset_id_custom_keyframe_by_poster_id_response_default import (
+    PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -42,12 +39,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | KeyframeSchema
-    | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType0
-    | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType1
-):
+) -> Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefault:
     if response.status_code == 201:
         response_201 = KeyframeSchema.from_dict(response.json())
 
@@ -61,33 +53,11 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType0
-        | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -95,10 +65,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | KeyframeSchema
-    | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType0
-    | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType1
+    Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -115,10 +82,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     overwrite: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | KeyframeSchema
-    | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType0
-    | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType1
+    Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefault
 ]:
     """Set keyframe of type poster as asset keyframe
 
@@ -136,7 +100,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType0 | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType1]
+        Response[Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -161,8 +125,7 @@ def sync(
 ) -> (
     Any
     | KeyframeSchema
-    | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType0
-    | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType1
+    | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefault
     | None
 ):
     """Set keyframe of type poster as asset keyframe
@@ -181,7 +144,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType0 | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType1
+        Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefault
     """
 
     return sync_detailed(
@@ -199,10 +162,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     overwrite: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | KeyframeSchema
-    | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType0
-    | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType1
+    Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefault
 ]:
     """Set keyframe of type poster as asset keyframe
 
@@ -220,7 +180,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType0 | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType1]
+        Response[Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -243,8 +203,7 @@ async def asyncio(
 ) -> (
     Any
     | KeyframeSchema
-    | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType0
-    | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType1
+    | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefault
     | None
 ):
     """Set keyframe of type poster as asset keyframe
@@ -263,7 +222,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType0 | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefaultType1
+        Any | KeyframeSchema | PostAssetsByAssetIdCustomKeyframeByPosterIdResponseDefault
     """
 
     return (

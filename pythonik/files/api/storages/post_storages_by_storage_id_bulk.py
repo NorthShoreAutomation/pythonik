@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.bulk_transfer_to_storage_schema import BulkTransferToStorageSchema
-from ...models.post_storages_by_storage_id_bulk_response_default_type_0 import (
-    PostStoragesByStorageIdBulkResponseDefaultType0,
-)
-from ...models.post_storages_by_storage_id_bulk_response_default_type_1 import (
-    PostStoragesByStorageIdBulkResponseDefaultType1,
+from ...models.post_storages_by_storage_id_bulk_response_default import (
+    PostStoragesByStorageIdBulkResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -47,11 +44,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostStoragesByStorageIdBulkResponseDefaultType0
-    | PostStoragesByStorageIdBulkResponseDefaultType1
-):
+) -> Any | PostStoragesByStorageIdBulkResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -68,42 +61,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostStoragesByStorageIdBulkResponseDefaultType0
-        | PostStoragesByStorageIdBulkResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostStoragesByStorageIdBulkResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostStoragesByStorageIdBulkResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostStoragesByStorageIdBulkResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostStoragesByStorageIdBulkResponseDefaultType0
-    | PostStoragesByStorageIdBulkResponseDefaultType1
-]:
+) -> Response[Any | PostStoragesByStorageIdBulkResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -118,11 +85,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: BulkTransferToStorageSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | PostStoragesByStorageIdBulkResponseDefaultType0
-    | PostStoragesByStorageIdBulkResponseDefaultType1
-]:
+) -> Response[Any | PostStoragesByStorageIdBulkResponseDefault]:
     """Queue copying of files from current storage to specified one
 
 
@@ -140,7 +103,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostStoragesByStorageIdBulkResponseDefaultType0 | PostStoragesByStorageIdBulkResponseDefaultType1]
+        Response[Any | PostStoragesByStorageIdBulkResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -162,12 +125,7 @@ def sync(
     client: AuthenticatedClient | Client,
     body: BulkTransferToStorageSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> (
-    Any
-    | PostStoragesByStorageIdBulkResponseDefaultType0
-    | PostStoragesByStorageIdBulkResponseDefaultType1
-    | None
-):
+) -> Any | PostStoragesByStorageIdBulkResponseDefault | None:
     """Queue copying of files from current storage to specified one
 
 
@@ -185,7 +143,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostStoragesByStorageIdBulkResponseDefaultType0 | PostStoragesByStorageIdBulkResponseDefaultType1
+        Any | PostStoragesByStorageIdBulkResponseDefault
     """
 
     return sync_detailed(
@@ -202,11 +160,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: BulkTransferToStorageSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | PostStoragesByStorageIdBulkResponseDefaultType0
-    | PostStoragesByStorageIdBulkResponseDefaultType1
-]:
+) -> Response[Any | PostStoragesByStorageIdBulkResponseDefault]:
     """Queue copying of files from current storage to specified one
 
 
@@ -224,7 +178,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostStoragesByStorageIdBulkResponseDefaultType0 | PostStoragesByStorageIdBulkResponseDefaultType1]
+        Response[Any | PostStoragesByStorageIdBulkResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -244,12 +198,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     body: BulkTransferToStorageSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> (
-    Any
-    | PostStoragesByStorageIdBulkResponseDefaultType0
-    | PostStoragesByStorageIdBulkResponseDefaultType1
-    | None
-):
+) -> Any | PostStoragesByStorageIdBulkResponseDefault | None:
     """Queue copying of files from current storage to specified one
 
 
@@ -267,7 +216,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostStoragesByStorageIdBulkResponseDefaultType0 | PostStoragesByStorageIdBulkResponseDefaultType1
+        Any | PostStoragesByStorageIdBulkResponseDefault
     """
 
     return (

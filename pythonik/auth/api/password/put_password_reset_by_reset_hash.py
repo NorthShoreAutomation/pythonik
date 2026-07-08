@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.put_password_reset_by_reset_hash_response_default_type_0 import (
-    PutPasswordResetByResetHashResponseDefaultType0,
-)
-from ...models.put_password_reset_by_reset_hash_response_default_type_1 import (
-    PutPasswordResetByResetHashResponseDefaultType1,
+from ...models.put_password_reset_by_reset_hash_response_default import (
+    PutPasswordResetByResetHashResponseDefault,
 )
 from ...models.reset_password_schema import ResetPasswordSchema
 from ...types import Response
@@ -39,11 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PutPasswordResetByResetHashResponseDefaultType0
-    | PutPasswordResetByResetHashResponseDefaultType1
-):
+) -> Any | PutPasswordResetByResetHashResponseDefault:
     if response.status_code == 200:
         response_200 = cast(Any, None)
         return response_200
@@ -56,42 +49,16 @@ def _parse_response(
         response_419 = cast(Any, None)
         return response_419
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutPasswordResetByResetHashResponseDefaultType0
-        | PutPasswordResetByResetHashResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PutPasswordResetByResetHashResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PutPasswordResetByResetHashResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutPasswordResetByResetHashResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PutPasswordResetByResetHashResponseDefaultType0
-    | PutPasswordResetByResetHashResponseDefaultType1
-]:
+) -> Response[Any | PutPasswordResetByResetHashResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -105,11 +72,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: ResetPasswordSchema,
-) -> Response[
-    Any
-    | PutPasswordResetByResetHashResponseDefaultType0
-    | PutPasswordResetByResetHashResponseDefaultType1
-]:
+) -> Response[Any | PutPasswordResetByResetHashResponseDefault]:
     """Changes password to a new one
 
     Args:
@@ -121,7 +84,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutPasswordResetByResetHashResponseDefaultType0 | PutPasswordResetByResetHashResponseDefaultType1]
+        Response[Any | PutPasswordResetByResetHashResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -141,12 +104,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: ResetPasswordSchema,
-) -> (
-    Any
-    | PutPasswordResetByResetHashResponseDefaultType0
-    | PutPasswordResetByResetHashResponseDefaultType1
-    | None
-):
+) -> Any | PutPasswordResetByResetHashResponseDefault | None:
     """Changes password to a new one
 
     Args:
@@ -158,7 +116,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutPasswordResetByResetHashResponseDefaultType0 | PutPasswordResetByResetHashResponseDefaultType1
+        Any | PutPasswordResetByResetHashResponseDefault
     """
 
     return sync_detailed(
@@ -173,11 +131,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: ResetPasswordSchema,
-) -> Response[
-    Any
-    | PutPasswordResetByResetHashResponseDefaultType0
-    | PutPasswordResetByResetHashResponseDefaultType1
-]:
+) -> Response[Any | PutPasswordResetByResetHashResponseDefault]:
     """Changes password to a new one
 
     Args:
@@ -189,7 +143,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutPasswordResetByResetHashResponseDefaultType0 | PutPasswordResetByResetHashResponseDefaultType1]
+        Response[Any | PutPasswordResetByResetHashResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -207,12 +161,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: ResetPasswordSchema,
-) -> (
-    Any
-    | PutPasswordResetByResetHashResponseDefaultType0
-    | PutPasswordResetByResetHashResponseDefaultType1
-    | None
-):
+) -> Any | PutPasswordResetByResetHashResponseDefault | None:
     """Changes password to a new one
 
     Args:
@@ -224,7 +173,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutPasswordResetByResetHashResponseDefaultType0 | PutPasswordResetByResetHashResponseDefaultType1
+        Any | PutPasswordResetByResetHashResponseDefault
     """
 
     return (

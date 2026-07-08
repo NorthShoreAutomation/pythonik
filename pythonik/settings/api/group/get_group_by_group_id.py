@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_group_by_group_id_response_default_type_0 import (
-    GetGroupByGroupIdResponseDefaultType0,
-)
-from ...models.get_group_by_group_id_response_default_type_1 import (
-    GetGroupByGroupIdResponseDefaultType1,
+from ...models.get_group_by_group_id_response_default import (
+    GetGroupByGroupIdResponseDefault,
 )
 from ...models.group_setting_public_schema import GroupSettingPublicSchema
 from ...types import Response
@@ -31,12 +28,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetGroupByGroupIdResponseDefaultType0
-    | GetGroupByGroupIdResponseDefaultType1
-    | GroupSettingPublicSchema
-):
+) -> Any | GetGroupByGroupIdResponseDefault | GroupSettingPublicSchema:
     if response.status_code == 200:
         response_200 = GroupSettingPublicSchema.from_dict(response.json())
 
@@ -54,38 +46,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> GetGroupByGroupIdResponseDefaultType0 | GetGroupByGroupIdResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetGroupByGroupIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetGroupByGroupIdResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetGroupByGroupIdResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetGroupByGroupIdResponseDefaultType0
-    | GetGroupByGroupIdResponseDefaultType1
-    | GroupSettingPublicSchema
-]:
+) -> Response[Any | GetGroupByGroupIdResponseDefault | GroupSettingPublicSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -98,12 +66,7 @@ def sync_detailed(
     group_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetGroupByGroupIdResponseDefaultType0
-    | GetGroupByGroupIdResponseDefaultType1
-    | GroupSettingPublicSchema
-]:
+) -> Response[Any | GetGroupByGroupIdResponseDefault | GroupSettingPublicSchema]:
     """Group settings
 
     Args:
@@ -114,7 +77,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetGroupByGroupIdResponseDefaultType0 | GetGroupByGroupIdResponseDefaultType1 | GroupSettingPublicSchema]
+        Response[Any | GetGroupByGroupIdResponseDefault | GroupSettingPublicSchema]
     """
 
     kwargs = _get_kwargs(
@@ -132,13 +95,7 @@ def sync(
     group_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetGroupByGroupIdResponseDefaultType0
-    | GetGroupByGroupIdResponseDefaultType1
-    | GroupSettingPublicSchema
-    | None
-):
+) -> Any | GetGroupByGroupIdResponseDefault | GroupSettingPublicSchema | None:
     """Group settings
 
     Args:
@@ -149,7 +106,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetGroupByGroupIdResponseDefaultType0 | GetGroupByGroupIdResponseDefaultType1 | GroupSettingPublicSchema
+        Any | GetGroupByGroupIdResponseDefault | GroupSettingPublicSchema
     """
 
     return sync_detailed(
@@ -162,12 +119,7 @@ async def asyncio_detailed(
     group_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetGroupByGroupIdResponseDefaultType0
-    | GetGroupByGroupIdResponseDefaultType1
-    | GroupSettingPublicSchema
-]:
+) -> Response[Any | GetGroupByGroupIdResponseDefault | GroupSettingPublicSchema]:
     """Group settings
 
     Args:
@@ -178,7 +130,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetGroupByGroupIdResponseDefaultType0 | GetGroupByGroupIdResponseDefaultType1 | GroupSettingPublicSchema]
+        Response[Any | GetGroupByGroupIdResponseDefault | GroupSettingPublicSchema]
     """
 
     kwargs = _get_kwargs(
@@ -194,13 +146,7 @@ async def asyncio(
     group_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetGroupByGroupIdResponseDefaultType0
-    | GetGroupByGroupIdResponseDefaultType1
-    | GroupSettingPublicSchema
-    | None
-):
+) -> Any | GetGroupByGroupIdResponseDefault | GroupSettingPublicSchema | None:
     """Group settings
 
     Args:
@@ -211,7 +157,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetGroupByGroupIdResponseDefaultType0 | GetGroupByGroupIdResponseDefaultType1 | GroupSettingPublicSchema
+        Any | GetGroupByGroupIdResponseDefault | GroupSettingPublicSchema
     """
 
     return (

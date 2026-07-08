@@ -5,11 +5,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.discovery_view_settings_schema import DiscoveryViewSettingsSchema
-from ...models.put_discovery_default_response_default_type_0 import (
-    PutDiscoveryDefaultResponseDefaultType0,
-)
-from ...models.put_discovery_default_response_default_type_1 import (
-    PutDiscoveryDefaultResponseDefaultType1,
+from ...models.put_discovery_default_response_default import (
+    PutDiscoveryDefaultResponseDefault,
 )
 from ...types import Response
 
@@ -35,12 +32,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DiscoveryViewSettingsSchema
-    | PutDiscoveryDefaultResponseDefaultType0
-    | PutDiscoveryDefaultResponseDefaultType1
-):
+) -> Any | DiscoveryViewSettingsSchema | PutDiscoveryDefaultResponseDefault:
     if response.status_code == 200:
         response_200 = DiscoveryViewSettingsSchema.from_dict(response.json())
 
@@ -54,43 +46,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutDiscoveryDefaultResponseDefaultType0
-        | PutDiscoveryDefaultResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PutDiscoveryDefaultResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PutDiscoveryDefaultResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutDiscoveryDefaultResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DiscoveryViewSettingsSchema
-    | PutDiscoveryDefaultResponseDefaultType0
-    | PutDiscoveryDefaultResponseDefaultType1
-]:
+) -> Response[Any | DiscoveryViewSettingsSchema | PutDiscoveryDefaultResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -103,12 +66,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: DiscoveryViewSettingsSchema,
-) -> Response[
-    Any
-    | DiscoveryViewSettingsSchema
-    | PutDiscoveryDefaultResponseDefaultType0
-    | PutDiscoveryDefaultResponseDefaultType1
-]:
+) -> Response[Any | DiscoveryViewSettingsSchema | PutDiscoveryDefaultResponseDefault]:
     """Update default discovery view
 
 
@@ -123,7 +81,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DiscoveryViewSettingsSchema | PutDiscoveryDefaultResponseDefaultType0 | PutDiscoveryDefaultResponseDefaultType1]
+        Response[Any | DiscoveryViewSettingsSchema | PutDiscoveryDefaultResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -141,13 +99,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: DiscoveryViewSettingsSchema,
-) -> (
-    Any
-    | DiscoveryViewSettingsSchema
-    | PutDiscoveryDefaultResponseDefaultType0
-    | PutDiscoveryDefaultResponseDefaultType1
-    | None
-):
+) -> Any | DiscoveryViewSettingsSchema | PutDiscoveryDefaultResponseDefault | None:
     """Update default discovery view
 
 
@@ -162,7 +114,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DiscoveryViewSettingsSchema | PutDiscoveryDefaultResponseDefaultType0 | PutDiscoveryDefaultResponseDefaultType1
+        Any | DiscoveryViewSettingsSchema | PutDiscoveryDefaultResponseDefault
     """
 
     return sync_detailed(
@@ -175,12 +127,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: DiscoveryViewSettingsSchema,
-) -> Response[
-    Any
-    | DiscoveryViewSettingsSchema
-    | PutDiscoveryDefaultResponseDefaultType0
-    | PutDiscoveryDefaultResponseDefaultType1
-]:
+) -> Response[Any | DiscoveryViewSettingsSchema | PutDiscoveryDefaultResponseDefault]:
     """Update default discovery view
 
 
@@ -195,7 +142,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DiscoveryViewSettingsSchema | PutDiscoveryDefaultResponseDefaultType0 | PutDiscoveryDefaultResponseDefaultType1]
+        Response[Any | DiscoveryViewSettingsSchema | PutDiscoveryDefaultResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -211,13 +158,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: DiscoveryViewSettingsSchema,
-) -> (
-    Any
-    | DiscoveryViewSettingsSchema
-    | PutDiscoveryDefaultResponseDefaultType0
-    | PutDiscoveryDefaultResponseDefaultType1
-    | None
-):
+) -> Any | DiscoveryViewSettingsSchema | PutDiscoveryDefaultResponseDefault | None:
     """Update default discovery view
 
 
@@ -232,7 +173,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DiscoveryViewSettingsSchema | PutDiscoveryDefaultResponseDefaultType0 | PutDiscoveryDefaultResponseDefaultType1
+        Any | DiscoveryViewSettingsSchema | PutDiscoveryDefaultResponseDefault
     """
 
     return (

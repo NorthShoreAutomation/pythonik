@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_transcoder_usage_by_by_period_response_default_type_0 import (
-    GetTranscoderUsageByByPeriodResponseDefaultType0,
-)
-from ...models.get_transcoder_usage_by_by_period_response_default_type_1 import (
-    GetTranscoderUsageByByPeriodResponseDefaultType1,
+from ...models.get_transcoder_usage_by_by_period_response_default import (
+    GetTranscoderUsageByByPeriodResponseDefault,
 )
 from ...models.transcoder_usages_schema import TranscoderUsagesSchema
 from ...types import UNSET, Response, Unset
@@ -43,12 +40,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetTranscoderUsageByByPeriodResponseDefaultType0
-    | GetTranscoderUsageByByPeriodResponseDefaultType1
-    | TranscoderUsagesSchema
-):
+) -> Any | GetTranscoderUsageByByPeriodResponseDefault | TranscoderUsagesSchema:
     if response.status_code == 200:
         response_200 = TranscoderUsagesSchema.from_dict(response.json())
 
@@ -66,31 +58,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetTranscoderUsageByByPeriodResponseDefaultType0
-        | GetTranscoderUsageByByPeriodResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetTranscoderUsageByByPeriodResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetTranscoderUsageByByPeriodResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetTranscoderUsageByByPeriodResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -98,10 +68,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | GetTranscoderUsageByByPeriodResponseDefaultType0
-    | GetTranscoderUsageByByPeriodResponseDefaultType1
-    | TranscoderUsagesSchema
+    Any | GetTranscoderUsageByByPeriodResponseDefault | TranscoderUsagesSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -118,10 +85,7 @@ def sync_detailed(
     from_date: str | Unset = UNSET,
     to_date: str | Unset = UNSET,
 ) -> Response[
-    Any
-    | GetTranscoderUsageByByPeriodResponseDefaultType0
-    | GetTranscoderUsageByByPeriodResponseDefaultType1
-    | TranscoderUsagesSchema
+    Any | GetTranscoderUsageByByPeriodResponseDefault | TranscoderUsagesSchema
 ]:
     """Returns transcoder_usage for all transcoders
 
@@ -139,7 +103,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetTranscoderUsageByByPeriodResponseDefaultType0 | GetTranscoderUsageByByPeriodResponseDefaultType1 | TranscoderUsagesSchema]
+        Response[Any | GetTranscoderUsageByByPeriodResponseDefault | TranscoderUsagesSchema]
     """
 
     kwargs = _get_kwargs(
@@ -161,13 +125,7 @@ def sync(
     client: AuthenticatedClient | Client,
     from_date: str | Unset = UNSET,
     to_date: str | Unset = UNSET,
-) -> (
-    Any
-    | GetTranscoderUsageByByPeriodResponseDefaultType0
-    | GetTranscoderUsageByByPeriodResponseDefaultType1
-    | TranscoderUsagesSchema
-    | None
-):
+) -> Any | GetTranscoderUsageByByPeriodResponseDefault | TranscoderUsagesSchema | None:
     """Returns transcoder_usage for all transcoders
 
 
@@ -184,7 +142,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetTranscoderUsageByByPeriodResponseDefaultType0 | GetTranscoderUsageByByPeriodResponseDefaultType1 | TranscoderUsagesSchema
+        Any | GetTranscoderUsageByByPeriodResponseDefault | TranscoderUsagesSchema
     """
 
     return sync_detailed(
@@ -202,10 +160,7 @@ async def asyncio_detailed(
     from_date: str | Unset = UNSET,
     to_date: str | Unset = UNSET,
 ) -> Response[
-    Any
-    | GetTranscoderUsageByByPeriodResponseDefaultType0
-    | GetTranscoderUsageByByPeriodResponseDefaultType1
-    | TranscoderUsagesSchema
+    Any | GetTranscoderUsageByByPeriodResponseDefault | TranscoderUsagesSchema
 ]:
     """Returns transcoder_usage for all transcoders
 
@@ -223,7 +178,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetTranscoderUsageByByPeriodResponseDefaultType0 | GetTranscoderUsageByByPeriodResponseDefaultType1 | TranscoderUsagesSchema]
+        Response[Any | GetTranscoderUsageByByPeriodResponseDefault | TranscoderUsagesSchema]
     """
 
     kwargs = _get_kwargs(
@@ -243,13 +198,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     from_date: str | Unset = UNSET,
     to_date: str | Unset = UNSET,
-) -> (
-    Any
-    | GetTranscoderUsageByByPeriodResponseDefaultType0
-    | GetTranscoderUsageByByPeriodResponseDefaultType1
-    | TranscoderUsagesSchema
-    | None
-):
+) -> Any | GetTranscoderUsageByByPeriodResponseDefault | TranscoderUsagesSchema | None:
     """Returns transcoder_usage for all transcoders
 
 
@@ -266,7 +215,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetTranscoderUsageByByPeriodResponseDefaultType0 | GetTranscoderUsageByByPeriodResponseDefaultType1 | TranscoderUsagesSchema
+        Any | GetTranscoderUsageByByPeriodResponseDefault | TranscoderUsagesSchema
     """
 
     return (

@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_storages_matching_by_purpose_method_by_method_response_default_type_0 import (
-    GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType0,
-)
-from ...models.get_storages_matching_by_purpose_method_by_method_response_default_type_1 import (
-    GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType1,
+from ...models.get_storages_matching_by_purpose_method_by_method_response_default import (
+    GetStoragesMatchingByPurposeMethodByMethodResponseDefault,
 )
 from ...models.storage_schema import StorageSchema
 from ...types import Response
@@ -33,12 +30,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType0
-    | GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType1
-    | StorageSchema
-):
+) -> Any | GetStoragesMatchingByPurposeMethodByMethodResponseDefault | StorageSchema:
     if response.status_code == 200:
         response_200 = StorageSchema.from_dict(response.json())
 
@@ -52,33 +44,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType0
-        | GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        GetStoragesMatchingByPurposeMethodByMethodResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -86,10 +56,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType0
-    | GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType1
-    | StorageSchema
+    Any | GetStoragesMatchingByPurposeMethodByMethodResponseDefault | StorageSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -105,10 +72,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType0
-    | GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType1
-    | StorageSchema
+    Any | GetStoragesMatchingByPurposeMethodByMethodResponseDefault | StorageSchema
 ]:
     """Returns a remote storage matching type and method
 
@@ -125,7 +89,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType0 | GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType1 | StorageSchema]
+        Response[Any | GetStoragesMatchingByPurposeMethodByMethodResponseDefault | StorageSchema]
     """
 
     kwargs = _get_kwargs(
@@ -147,8 +111,7 @@ def sync(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType0
-    | GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType1
+    | GetStoragesMatchingByPurposeMethodByMethodResponseDefault
     | StorageSchema
     | None
 ):
@@ -167,7 +130,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType0 | GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType1 | StorageSchema
+        Any | GetStoragesMatchingByPurposeMethodByMethodResponseDefault | StorageSchema
     """
 
     return sync_detailed(
@@ -183,10 +146,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType0
-    | GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType1
-    | StorageSchema
+    Any | GetStoragesMatchingByPurposeMethodByMethodResponseDefault | StorageSchema
 ]:
     """Returns a remote storage matching type and method
 
@@ -203,7 +163,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType0 | GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType1 | StorageSchema]
+        Response[Any | GetStoragesMatchingByPurposeMethodByMethodResponseDefault | StorageSchema]
     """
 
     kwargs = _get_kwargs(
@@ -223,8 +183,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType0
-    | GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType1
+    | GetStoragesMatchingByPurposeMethodByMethodResponseDefault
     | StorageSchema
     | None
 ):
@@ -243,7 +202,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType0 | GetStoragesMatchingByPurposeMethodByMethodResponseDefaultType1 | StorageSchema
+        Any | GetStoragesMatchingByPurposeMethodByMethodResponseDefault | StorageSchema
     """
 
     return (

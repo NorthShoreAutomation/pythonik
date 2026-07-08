@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_auth_saml_idp_by_identity_provider_id_response_default_type_0 import (
-    GetAuthSamlIdpByIdentityProviderIdResponseDefaultType0,
-)
-from ...models.get_auth_saml_idp_by_identity_provider_id_response_default_type_1 import (
-    GetAuthSamlIdpByIdentityProviderIdResponseDefaultType1,
+from ...models.get_auth_saml_idp_by_identity_provider_id_response_default import (
+    GetAuthSamlIdpByIdentityProviderIdResponseDefault,
 )
 from ...models.identity_provider_schema import IdentityProviderSchema
 from ...types import Response
@@ -31,12 +28,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetAuthSamlIdpByIdentityProviderIdResponseDefaultType0
-    | GetAuthSamlIdpByIdentityProviderIdResponseDefaultType1
-    | IdentityProviderSchema
-):
+) -> Any | GetAuthSamlIdpByIdentityProviderIdResponseDefault | IdentityProviderSchema:
     if response.status_code == 200:
         response_200 = IdentityProviderSchema.from_dict(response.json())
 
@@ -54,31 +46,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAuthSamlIdpByIdentityProviderIdResponseDefaultType0
-        | GetAuthSamlIdpByIdentityProviderIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetAuthSamlIdpByIdentityProviderIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetAuthSamlIdpByIdentityProviderIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAuthSamlIdpByIdentityProviderIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -86,10 +56,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | GetAuthSamlIdpByIdentityProviderIdResponseDefaultType0
-    | GetAuthSamlIdpByIdentityProviderIdResponseDefaultType1
-    | IdentityProviderSchema
+    Any | GetAuthSamlIdpByIdentityProviderIdResponseDefault | IdentityProviderSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -104,10 +71,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | GetAuthSamlIdpByIdentityProviderIdResponseDefaultType0
-    | GetAuthSamlIdpByIdentityProviderIdResponseDefaultType1
-    | IdentityProviderSchema
+    Any | GetAuthSamlIdpByIdentityProviderIdResponseDefault | IdentityProviderSchema
 ]:
     """Get a particular identity provider by id
 
@@ -123,7 +87,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAuthSamlIdpByIdentityProviderIdResponseDefaultType0 | GetAuthSamlIdpByIdentityProviderIdResponseDefaultType1 | IdentityProviderSchema]
+        Response[Any | GetAuthSamlIdpByIdentityProviderIdResponseDefault | IdentityProviderSchema]
     """
 
     kwargs = _get_kwargs(
@@ -143,8 +107,7 @@ def sync(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetAuthSamlIdpByIdentityProviderIdResponseDefaultType0
-    | GetAuthSamlIdpByIdentityProviderIdResponseDefaultType1
+    | GetAuthSamlIdpByIdentityProviderIdResponseDefault
     | IdentityProviderSchema
     | None
 ):
@@ -162,7 +125,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAuthSamlIdpByIdentityProviderIdResponseDefaultType0 | GetAuthSamlIdpByIdentityProviderIdResponseDefaultType1 | IdentityProviderSchema
+        Any | GetAuthSamlIdpByIdentityProviderIdResponseDefault | IdentityProviderSchema
     """
 
     return sync_detailed(
@@ -176,10 +139,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | GetAuthSamlIdpByIdentityProviderIdResponseDefaultType0
-    | GetAuthSamlIdpByIdentityProviderIdResponseDefaultType1
-    | IdentityProviderSchema
+    Any | GetAuthSamlIdpByIdentityProviderIdResponseDefault | IdentityProviderSchema
 ]:
     """Get a particular identity provider by id
 
@@ -195,7 +155,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAuthSamlIdpByIdentityProviderIdResponseDefaultType0 | GetAuthSamlIdpByIdentityProviderIdResponseDefaultType1 | IdentityProviderSchema]
+        Response[Any | GetAuthSamlIdpByIdentityProviderIdResponseDefault | IdentityProviderSchema]
     """
 
     kwargs = _get_kwargs(
@@ -213,8 +173,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetAuthSamlIdpByIdentityProviderIdResponseDefaultType0
-    | GetAuthSamlIdpByIdentityProviderIdResponseDefaultType1
+    | GetAuthSamlIdpByIdentityProviderIdResponseDefault
     | IdentityProviderSchema
     | None
 ):
@@ -232,7 +191,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAuthSamlIdpByIdentityProviderIdResponseDefaultType0 | GetAuthSamlIdpByIdentityProviderIdResponseDefaultType1 | IdentityProviderSchema
+        Any | GetAuthSamlIdpByIdentityProviderIdResponseDefault | IdentityProviderSchema
     """
 
     return (

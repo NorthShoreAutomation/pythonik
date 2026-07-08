@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_projects_by_project_id_members_response_default_type_0 import (
-    PostProjectsByProjectIdMembersResponseDefaultType0,
-)
-from ...models.post_projects_by_project_id_members_response_default_type_1 import (
-    PostProjectsByProjectIdMembersResponseDefaultType1,
+from ...models.post_projects_by_project_id_members_response_default import (
+    PostProjectsByProjectIdMembersResponseDefault,
 )
 from ...models.project_member_create_schema import ProjectMemberCreateSchema
 from ...models.project_member_schema import ProjectMemberSchema
@@ -40,12 +37,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostProjectsByProjectIdMembersResponseDefaultType0
-    | PostProjectsByProjectIdMembersResponseDefaultType1
-    | ProjectMemberSchema
-):
+) -> Any | PostProjectsByProjectIdMembersResponseDefault | ProjectMemberSchema:
     if response.status_code == 201:
         response_201 = ProjectMemberSchema.from_dict(response.json())
 
@@ -59,31 +51,9 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostProjectsByProjectIdMembersResponseDefaultType0
-        | PostProjectsByProjectIdMembersResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostProjectsByProjectIdMembersResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostProjectsByProjectIdMembersResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostProjectsByProjectIdMembersResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -91,10 +61,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | PostProjectsByProjectIdMembersResponseDefaultType0
-    | PostProjectsByProjectIdMembersResponseDefaultType1
-    | ProjectMemberSchema
+    Any | PostProjectsByProjectIdMembersResponseDefault | ProjectMemberSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -110,10 +77,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: ProjectMemberCreateSchema,
 ) -> Response[
-    Any
-    | PostProjectsByProjectIdMembersResponseDefaultType0
-    | PostProjectsByProjectIdMembersResponseDefaultType1
-    | ProjectMemberSchema
+    Any | PostProjectsByProjectIdMembersResponseDefault | ProjectMemberSchema
 ]:
     """Add a member to a project
 
@@ -130,7 +94,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostProjectsByProjectIdMembersResponseDefaultType0 | PostProjectsByProjectIdMembersResponseDefaultType1 | ProjectMemberSchema]
+        Response[Any | PostProjectsByProjectIdMembersResponseDefault | ProjectMemberSchema]
     """
 
     kwargs = _get_kwargs(
@@ -150,13 +114,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: ProjectMemberCreateSchema,
-) -> (
-    Any
-    | PostProjectsByProjectIdMembersResponseDefaultType0
-    | PostProjectsByProjectIdMembersResponseDefaultType1
-    | ProjectMemberSchema
-    | None
-):
+) -> Any | PostProjectsByProjectIdMembersResponseDefault | ProjectMemberSchema | None:
     """Add a member to a project
 
 
@@ -172,7 +130,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostProjectsByProjectIdMembersResponseDefaultType0 | PostProjectsByProjectIdMembersResponseDefaultType1 | ProjectMemberSchema
+        Any | PostProjectsByProjectIdMembersResponseDefault | ProjectMemberSchema
     """
 
     return sync_detailed(
@@ -188,10 +146,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: ProjectMemberCreateSchema,
 ) -> Response[
-    Any
-    | PostProjectsByProjectIdMembersResponseDefaultType0
-    | PostProjectsByProjectIdMembersResponseDefaultType1
-    | ProjectMemberSchema
+    Any | PostProjectsByProjectIdMembersResponseDefault | ProjectMemberSchema
 ]:
     """Add a member to a project
 
@@ -208,7 +163,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostProjectsByProjectIdMembersResponseDefaultType0 | PostProjectsByProjectIdMembersResponseDefaultType1 | ProjectMemberSchema]
+        Response[Any | PostProjectsByProjectIdMembersResponseDefault | ProjectMemberSchema]
     """
 
     kwargs = _get_kwargs(
@@ -226,13 +181,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: ProjectMemberCreateSchema,
-) -> (
-    Any
-    | PostProjectsByProjectIdMembersResponseDefaultType0
-    | PostProjectsByProjectIdMembersResponseDefaultType1
-    | ProjectMemberSchema
-    | None
-):
+) -> Any | PostProjectsByProjectIdMembersResponseDefault | ProjectMemberSchema | None:
     """Add a member to a project
 
 
@@ -248,7 +197,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostProjectsByProjectIdMembersResponseDefaultType0 | PostProjectsByProjectIdMembersResponseDefaultType1 | ProjectMemberSchema
+        Any | PostProjectsByProjectIdMembersResponseDefault | ProjectMemberSchema
     """
 
     return (

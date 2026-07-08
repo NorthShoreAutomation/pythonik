@@ -6,12 +6,7 @@ import httpx
 from ...client import AuthenticatedClient, Client
 from ...models.nltf_parse_request_schema import NltfParseRequestSchema
 from ...models.nltf_parse_response_schema import NltfParseResponseSchema
-from ...models.post_nltf_parse_response_default_type_0 import (
-    PostNltfParseResponseDefaultType0,
-)
-from ...models.post_nltf_parse_response_default_type_1 import (
-    PostNltfParseResponseDefaultType1,
-)
+from ...models.post_nltf_parse_response_default import PostNltfParseResponseDefault
 from ...types import Response
 
 
@@ -36,12 +31,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | NltfParseResponseSchema
-    | PostNltfParseResponseDefaultType0
-    | PostNltfParseResponseDefaultType1
-):
+) -> Any | NltfParseResponseSchema | PostNltfParseResponseDefault:
     if response.status_code == 200:
         response_200 = NltfParseResponseSchema.from_dict(response.json())
 
@@ -71,36 +61,14 @@ def _parse_response(
         response_503 = cast(Any, None)
         return response_503
 
-    def _parse_response_default(
-        data: object,
-    ) -> PostNltfParseResponseDefaultType0 | PostNltfParseResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostNltfParseResponseDefaultType0.from_dict(data)
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostNltfParseResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostNltfParseResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | NltfParseResponseSchema
-    | PostNltfParseResponseDefaultType0
-    | PostNltfParseResponseDefaultType1
-]:
+) -> Response[Any | NltfParseResponseSchema | PostNltfParseResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -113,12 +81,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: NltfParseRequestSchema,
-) -> Response[
-    Any
-    | NltfParseResponseSchema
-    | PostNltfParseResponseDefaultType0
-    | PostNltfParseResponseDefaultType1
-]:
+) -> Response[Any | NltfParseResponseSchema | PostNltfParseResponseDefault]:
     """Parse a natural language query into structured search filters
 
 
@@ -133,7 +96,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | NltfParseResponseSchema | PostNltfParseResponseDefaultType0 | PostNltfParseResponseDefaultType1]
+        Response[Any | NltfParseResponseSchema | PostNltfParseResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -151,13 +114,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: NltfParseRequestSchema,
-) -> (
-    Any
-    | NltfParseResponseSchema
-    | PostNltfParseResponseDefaultType0
-    | PostNltfParseResponseDefaultType1
-    | None
-):
+) -> Any | NltfParseResponseSchema | PostNltfParseResponseDefault | None:
     """Parse a natural language query into structured search filters
 
 
@@ -172,7 +129,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | NltfParseResponseSchema | PostNltfParseResponseDefaultType0 | PostNltfParseResponseDefaultType1
+        Any | NltfParseResponseSchema | PostNltfParseResponseDefault
     """
 
     return sync_detailed(
@@ -185,12 +142,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: NltfParseRequestSchema,
-) -> Response[
-    Any
-    | NltfParseResponseSchema
-    | PostNltfParseResponseDefaultType0
-    | PostNltfParseResponseDefaultType1
-]:
+) -> Response[Any | NltfParseResponseSchema | PostNltfParseResponseDefault]:
     """Parse a natural language query into structured search filters
 
 
@@ -205,7 +157,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | NltfParseResponseSchema | PostNltfParseResponseDefaultType0 | PostNltfParseResponseDefaultType1]
+        Response[Any | NltfParseResponseSchema | PostNltfParseResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -221,13 +173,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: NltfParseRequestSchema,
-) -> (
-    Any
-    | NltfParseResponseSchema
-    | PostNltfParseResponseDefaultType0
-    | PostNltfParseResponseDefaultType1
-    | None
-):
+) -> Any | NltfParseResponseSchema | PostNltfParseResponseDefault | None:
     """Parse a natural language query into structured search filters
 
 
@@ -242,7 +188,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | NltfParseResponseSchema | PostNltfParseResponseDefaultType0 | PostNltfParseResponseDefaultType1
+        Any | NltfParseResponseSchema | PostNltfParseResponseDefault
     """
 
     return (

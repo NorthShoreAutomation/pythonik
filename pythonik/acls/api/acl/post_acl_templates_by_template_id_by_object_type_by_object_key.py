@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_acl_templates_by_template_id_by_object_type_by_object_key_response_default_type_0 import (
-    PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType0,
-)
-from ...models.post_acl_templates_by_template_id_by_object_type_by_object_key_response_default_type_1 import (
-    PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType1,
+from ...models.post_acl_templates_by_template_id_by_object_type_by_object_key_response_default import (
+    PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -46,11 +43,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType0
-    | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType1
-):
+) -> Any | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefault:
     if response.status_code == 200:
         response_200 = cast(Any, None)
         return response_200
@@ -71,42 +64,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType0
-        | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType0
-    | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType1
-]:
+) -> Response[Any | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -123,11 +92,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     ignore_reindexing: bool | Unset = UNSET,
     restrict_acls_collection_id: str | Unset = UNSET,
-) -> Response[
-    Any
-    | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType0
-    | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType1
-]:
+) -> Response[Any | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefault]:
     """Apply template permissions to an object
 
     Args:
@@ -142,7 +107,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType0 | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType1]
+        Response[Any | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -168,12 +133,7 @@ def sync(
     client: AuthenticatedClient | Client,
     ignore_reindexing: bool | Unset = UNSET,
     restrict_acls_collection_id: str | Unset = UNSET,
-) -> (
-    Any
-    | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType0
-    | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType1
-    | None
-):
+) -> Any | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefault | None:
     """Apply template permissions to an object
 
     Args:
@@ -188,7 +148,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType0 | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType1
+        Any | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefault
     """
 
     return sync_detailed(
@@ -209,11 +169,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     ignore_reindexing: bool | Unset = UNSET,
     restrict_acls_collection_id: str | Unset = UNSET,
-) -> Response[
-    Any
-    | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType0
-    | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType1
-]:
+) -> Response[Any | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefault]:
     """Apply template permissions to an object
 
     Args:
@@ -228,7 +184,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType0 | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType1]
+        Response[Any | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -252,12 +208,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     ignore_reindexing: bool | Unset = UNSET,
     restrict_acls_collection_id: str | Unset = UNSET,
-) -> (
-    Any
-    | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType0
-    | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType1
-    | None
-):
+) -> Any | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefault | None:
     """Apply template permissions to an object
 
     Args:
@@ -272,7 +223,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType0 | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefaultType1
+        Any | PostAclTemplatesByTemplateIdByObjectTypeByObjectKeyResponseDefault
     """
 
     return (

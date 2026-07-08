@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_storages_files_reindex_response_default_type_0 import (
-    PostStoragesFilesReindexResponseDefaultType0,
-)
-from ...models.post_storages_files_reindex_response_default_type_1 import (
-    PostStoragesFilesReindexResponseDefaultType1,
+from ...models.post_storages_files_reindex_response_default import (
+    PostStoragesFilesReindexResponseDefault,
 )
 from ...types import Response
 
@@ -25,11 +22,7 @@ def _get_kwargs() -> dict[str, Any]:
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostStoragesFilesReindexResponseDefaultType0
-    | PostStoragesFilesReindexResponseDefaultType1
-):
+) -> Any | PostStoragesFilesReindexResponseDefault:
     if response.status_code == 201:
         response_201 = cast(Any, None)
         return response_201
@@ -38,42 +31,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostStoragesFilesReindexResponseDefaultType0
-        | PostStoragesFilesReindexResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostStoragesFilesReindexResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostStoragesFilesReindexResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostStoragesFilesReindexResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostStoragesFilesReindexResponseDefaultType0
-    | PostStoragesFilesReindexResponseDefaultType1
-]:
+) -> Response[Any | PostStoragesFilesReindexResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -85,11 +52,7 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostStoragesFilesReindexResponseDefaultType0
-    | PostStoragesFilesReindexResponseDefaultType1
-]:
+) -> Response[Any | PostStoragesFilesReindexResponseDefault]:
     """Trigger reindexing of all files
 
 
@@ -101,7 +64,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostStoragesFilesReindexResponseDefaultType0 | PostStoragesFilesReindexResponseDefaultType1]
+        Response[Any | PostStoragesFilesReindexResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -116,12 +79,7 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostStoragesFilesReindexResponseDefaultType0
-    | PostStoragesFilesReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostStoragesFilesReindexResponseDefault | None:
     """Trigger reindexing of all files
 
 
@@ -133,7 +91,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostStoragesFilesReindexResponseDefaultType0 | PostStoragesFilesReindexResponseDefaultType1
+        Any | PostStoragesFilesReindexResponseDefault
     """
 
     return sync_detailed(
@@ -144,11 +102,7 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostStoragesFilesReindexResponseDefaultType0
-    | PostStoragesFilesReindexResponseDefaultType1
-]:
+) -> Response[Any | PostStoragesFilesReindexResponseDefault]:
     """Trigger reindexing of all files
 
 
@@ -160,7 +114,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostStoragesFilesReindexResponseDefaultType0 | PostStoragesFilesReindexResponseDefaultType1]
+        Response[Any | PostStoragesFilesReindexResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -173,12 +127,7 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostStoragesFilesReindexResponseDefaultType0
-    | PostStoragesFilesReindexResponseDefaultType1
-    | None
-):
+) -> Any | PostStoragesFilesReindexResponseDefault | None:
     """Trigger reindexing of all files
 
 
@@ -190,7 +139,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostStoragesFilesReindexResponseDefaultType0 | PostStoragesFilesReindexResponseDefaultType1
+        Any | PostStoragesFilesReindexResponseDefault
     """
 
     return (

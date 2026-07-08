@@ -7,11 +7,8 @@ import httpx
 from ...client import AuthenticatedClient, Client
 from ...models.complete_invitation_schema import CompleteInvitationSchema
 from ...models.invitation_response_schema import InvitationResponseSchema
-from ...models.put_invitation_complete_by_reset_hash_response_default_type_0 import (
-    PutInvitationCompleteByResetHashResponseDefaultType0,
-)
-from ...models.put_invitation_complete_by_reset_hash_response_default_type_1 import (
-    PutInvitationCompleteByResetHashResponseDefaultType1,
+from ...models.put_invitation_complete_by_reset_hash_response_default import (
+    PutInvitationCompleteByResetHashResponseDefault,
 )
 from ...types import Response
 
@@ -40,12 +37,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | InvitationResponseSchema
-    | PutInvitationCompleteByResetHashResponseDefaultType0
-    | PutInvitationCompleteByResetHashResponseDefaultType1
-):
+) -> Any | InvitationResponseSchema | PutInvitationCompleteByResetHashResponseDefault:
     if response.status_code == 200:
         response_200 = InvitationResponseSchema.from_dict(response.json())
 
@@ -59,31 +51,9 @@ def _parse_response(
         response_419 = cast(Any, None)
         return response_419
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutInvitationCompleteByResetHashResponseDefaultType0
-        | PutInvitationCompleteByResetHashResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PutInvitationCompleteByResetHashResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PutInvitationCompleteByResetHashResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutInvitationCompleteByResetHashResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -91,10 +61,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | InvitationResponseSchema
-    | PutInvitationCompleteByResetHashResponseDefaultType0
-    | PutInvitationCompleteByResetHashResponseDefaultType1
+    Any | InvitationResponseSchema | PutInvitationCompleteByResetHashResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -110,10 +77,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: CompleteInvitationSchema,
 ) -> Response[
-    Any
-    | InvitationResponseSchema
-    | PutInvitationCompleteByResetHashResponseDefaultType0
-    | PutInvitationCompleteByResetHashResponseDefaultType1
+    Any | InvitationResponseSchema | PutInvitationCompleteByResetHashResponseDefault
 ]:
     """Completes invitation by setting password and other user details
 
@@ -126,7 +90,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | InvitationResponseSchema | PutInvitationCompleteByResetHashResponseDefaultType0 | PutInvitationCompleteByResetHashResponseDefaultType1]
+        Response[Any | InvitationResponseSchema | PutInvitationCompleteByResetHashResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -149,8 +113,7 @@ def sync(
 ) -> (
     Any
     | InvitationResponseSchema
-    | PutInvitationCompleteByResetHashResponseDefaultType0
-    | PutInvitationCompleteByResetHashResponseDefaultType1
+    | PutInvitationCompleteByResetHashResponseDefault
     | None
 ):
     """Completes invitation by setting password and other user details
@@ -164,7 +127,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | InvitationResponseSchema | PutInvitationCompleteByResetHashResponseDefaultType0 | PutInvitationCompleteByResetHashResponseDefaultType1
+        Any | InvitationResponseSchema | PutInvitationCompleteByResetHashResponseDefault
     """
 
     return sync_detailed(
@@ -180,10 +143,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: CompleteInvitationSchema,
 ) -> Response[
-    Any
-    | InvitationResponseSchema
-    | PutInvitationCompleteByResetHashResponseDefaultType0
-    | PutInvitationCompleteByResetHashResponseDefaultType1
+    Any | InvitationResponseSchema | PutInvitationCompleteByResetHashResponseDefault
 ]:
     """Completes invitation by setting password and other user details
 
@@ -196,7 +156,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | InvitationResponseSchema | PutInvitationCompleteByResetHashResponseDefaultType0 | PutInvitationCompleteByResetHashResponseDefaultType1]
+        Response[Any | InvitationResponseSchema | PutInvitationCompleteByResetHashResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -217,8 +177,7 @@ async def asyncio(
 ) -> (
     Any
     | InvitationResponseSchema
-    | PutInvitationCompleteByResetHashResponseDefaultType0
-    | PutInvitationCompleteByResetHashResponseDefaultType1
+    | PutInvitationCompleteByResetHashResponseDefault
     | None
 ):
     """Completes invitation by setting password and other user details
@@ -232,7 +191,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | InvitationResponseSchema | PutInvitationCompleteByResetHashResponseDefaultType0 | PutInvitationCompleteByResetHashResponseDefaultType1
+        Any | InvitationResponseSchema | PutInvitationCompleteByResetHashResponseDefault
     """
 
     return (

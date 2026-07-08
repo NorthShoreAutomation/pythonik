@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.custom_action_schema import CustomActionSchema
-from ...models.put_custom_actions_by_context_by_action_id_response_default_type_0 import (
-    PutCustomActionsByContextByActionIdResponseDefaultType0,
-)
-from ...models.put_custom_actions_by_context_by_action_id_response_default_type_1 import (
-    PutCustomActionsByContextByActionIdResponseDefaultType1,
+from ...models.put_custom_actions_by_context_by_action_id_response_default import (
+    PutCustomActionsByContextByActionIdResponseDefault,
 )
 from ...types import Response
 
@@ -41,12 +38,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | CustomActionSchema
-    | PutCustomActionsByContextByActionIdResponseDefaultType0
-    | PutCustomActionsByContextByActionIdResponseDefaultType1
-):
+) -> Any | CustomActionSchema | PutCustomActionsByContextByActionIdResponseDefault:
     if response.status_code == 200:
         response_200 = CustomActionSchema.from_dict(response.json())
 
@@ -60,31 +52,9 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutCustomActionsByContextByActionIdResponseDefaultType0
-        | PutCustomActionsByContextByActionIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PutCustomActionsByContextByActionIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PutCustomActionsByContextByActionIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutCustomActionsByContextByActionIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -92,10 +62,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | CustomActionSchema
-    | PutCustomActionsByContextByActionIdResponseDefaultType0
-    | PutCustomActionsByContextByActionIdResponseDefaultType1
+    Any | CustomActionSchema | PutCustomActionsByContextByActionIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -112,10 +79,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: CustomActionSchema,
 ) -> Response[
-    Any
-    | CustomActionSchema
-    | PutCustomActionsByContextByActionIdResponseDefaultType0
-    | PutCustomActionsByContextByActionIdResponseDefaultType1
+    Any | CustomActionSchema | PutCustomActionsByContextByActionIdResponseDefault
 ]:
     """Update an custom action
 
@@ -129,7 +93,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CustomActionSchema | PutCustomActionsByContextByActionIdResponseDefaultType0 | PutCustomActionsByContextByActionIdResponseDefaultType1]
+        Response[Any | CustomActionSchema | PutCustomActionsByContextByActionIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -152,11 +116,7 @@ def sync(
     client: AuthenticatedClient | Client,
     body: CustomActionSchema,
 ) -> (
-    Any
-    | CustomActionSchema
-    | PutCustomActionsByContextByActionIdResponseDefaultType0
-    | PutCustomActionsByContextByActionIdResponseDefaultType1
-    | None
+    Any | CustomActionSchema | PutCustomActionsByContextByActionIdResponseDefault | None
 ):
     """Update an custom action
 
@@ -170,7 +130,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CustomActionSchema | PutCustomActionsByContextByActionIdResponseDefaultType0 | PutCustomActionsByContextByActionIdResponseDefaultType1
+        Any | CustomActionSchema | PutCustomActionsByContextByActionIdResponseDefault
     """
 
     return sync_detailed(
@@ -188,10 +148,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: CustomActionSchema,
 ) -> Response[
-    Any
-    | CustomActionSchema
-    | PutCustomActionsByContextByActionIdResponseDefaultType0
-    | PutCustomActionsByContextByActionIdResponseDefaultType1
+    Any | CustomActionSchema | PutCustomActionsByContextByActionIdResponseDefault
 ]:
     """Update an custom action
 
@@ -205,7 +162,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CustomActionSchema | PutCustomActionsByContextByActionIdResponseDefaultType0 | PutCustomActionsByContextByActionIdResponseDefaultType1]
+        Response[Any | CustomActionSchema | PutCustomActionsByContextByActionIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -226,11 +183,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     body: CustomActionSchema,
 ) -> (
-    Any
-    | CustomActionSchema
-    | PutCustomActionsByContextByActionIdResponseDefaultType0
-    | PutCustomActionsByContextByActionIdResponseDefaultType1
-    | None
+    Any | CustomActionSchema | PutCustomActionsByContextByActionIdResponseDefault | None
 ):
     """Update an custom action
 
@@ -244,7 +197,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CustomActionSchema | PutCustomActionsByContextByActionIdResponseDefaultType0 | PutCustomActionsByContextByActionIdResponseDefaultType1
+        Any | CustomActionSchema | PutCustomActionsByContextByActionIdResponseDefault
     """
 
     return (

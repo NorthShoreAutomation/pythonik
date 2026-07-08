@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.collection_content_info_schema import CollectionContentInfoSchema
-from ...models.get_collections_by_collection_id_content_info_response_default_type_0 import (
-    GetCollectionsByCollectionIdContentInfoResponseDefaultType0,
-)
-from ...models.get_collections_by_collection_id_content_info_response_default_type_1 import (
-    GetCollectionsByCollectionIdContentInfoResponseDefaultType1,
+from ...models.get_collections_by_collection_id_content_info_response_default import (
+    GetCollectionsByCollectionIdContentInfoResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -18,10 +15,10 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     collection_id: str,
     *,
-    only_active: bool | Unset = True,
-    include_subcollections: bool | Unset = True,
+    only_active: bool | Unset = UNSET,
+    include_subcollections: bool | Unset = UNSET,
     format_name: str | Unset = UNSET,
-    by_storage_id: bool | Unset = True,
+    by_storage_id: bool | Unset = UNSET,
     types: bool | Unset = UNSET,
 ) -> dict[str, Any]:
 
@@ -55,8 +52,7 @@ def _parse_response(
 ) -> (
     Any
     | CollectionContentInfoSchema
-    | GetCollectionsByCollectionIdContentInfoResponseDefaultType0
-    | GetCollectionsByCollectionIdContentInfoResponseDefaultType1
+    | GetCollectionsByCollectionIdContentInfoResponseDefault
 ):
     if response.status_code == 200:
         response_200 = CollectionContentInfoSchema.from_dict(response.json())
@@ -75,33 +71,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetCollectionsByCollectionIdContentInfoResponseDefaultType0
-        | GetCollectionsByCollectionIdContentInfoResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetCollectionsByCollectionIdContentInfoResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetCollectionsByCollectionIdContentInfoResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetCollectionsByCollectionIdContentInfoResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -111,8 +83,7 @@ def _build_response(
 ) -> Response[
     Any
     | CollectionContentInfoSchema
-    | GetCollectionsByCollectionIdContentInfoResponseDefaultType0
-    | GetCollectionsByCollectionIdContentInfoResponseDefaultType1
+    | GetCollectionsByCollectionIdContentInfoResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -126,16 +97,15 @@ def sync_detailed(
     collection_id: str,
     *,
     client: AuthenticatedClient | Client,
-    only_active: bool | Unset = True,
-    include_subcollections: bool | Unset = True,
+    only_active: bool | Unset = UNSET,
+    include_subcollections: bool | Unset = UNSET,
     format_name: str | Unset = UNSET,
-    by_storage_id: bool | Unset = True,
+    by_storage_id: bool | Unset = UNSET,
     types: bool | Unset = UNSET,
 ) -> Response[
     Any
     | CollectionContentInfoSchema
-    | GetCollectionsByCollectionIdContentInfoResponseDefaultType0
-    | GetCollectionsByCollectionIdContentInfoResponseDefaultType1
+    | GetCollectionsByCollectionIdContentInfoResponseDefault
 ]:
     """Get aggregated information about collection
 
@@ -148,10 +118,10 @@ def sync_detailed(
 
     Args:
         collection_id (str):
-        only_active (bool | Unset):  Default: True.
-        include_subcollections (bool | Unset):  Default: True.
+        only_active (bool | Unset):
+        include_subcollections (bool | Unset):
         format_name (str | Unset):
-        by_storage_id (bool | Unset):  Default: True.
+        by_storage_id (bool | Unset):
         types (bool | Unset):
 
     Raises:
@@ -159,7 +129,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CollectionContentInfoSchema | GetCollectionsByCollectionIdContentInfoResponseDefaultType0 | GetCollectionsByCollectionIdContentInfoResponseDefaultType1]
+        Response[Any | CollectionContentInfoSchema | GetCollectionsByCollectionIdContentInfoResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -182,16 +152,15 @@ def sync(
     collection_id: str,
     *,
     client: AuthenticatedClient | Client,
-    only_active: bool | Unset = True,
-    include_subcollections: bool | Unset = True,
+    only_active: bool | Unset = UNSET,
+    include_subcollections: bool | Unset = UNSET,
     format_name: str | Unset = UNSET,
-    by_storage_id: bool | Unset = True,
+    by_storage_id: bool | Unset = UNSET,
     types: bool | Unset = UNSET,
 ) -> (
     Any
     | CollectionContentInfoSchema
-    | GetCollectionsByCollectionIdContentInfoResponseDefaultType0
-    | GetCollectionsByCollectionIdContentInfoResponseDefaultType1
+    | GetCollectionsByCollectionIdContentInfoResponseDefault
     | None
 ):
     """Get aggregated information about collection
@@ -205,10 +174,10 @@ def sync(
 
     Args:
         collection_id (str):
-        only_active (bool | Unset):  Default: True.
-        include_subcollections (bool | Unset):  Default: True.
+        only_active (bool | Unset):
+        include_subcollections (bool | Unset):
         format_name (str | Unset):
-        by_storage_id (bool | Unset):  Default: True.
+        by_storage_id (bool | Unset):
         types (bool | Unset):
 
     Raises:
@@ -216,7 +185,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CollectionContentInfoSchema | GetCollectionsByCollectionIdContentInfoResponseDefaultType0 | GetCollectionsByCollectionIdContentInfoResponseDefaultType1
+        Any | CollectionContentInfoSchema | GetCollectionsByCollectionIdContentInfoResponseDefault
     """
 
     return sync_detailed(
@@ -234,16 +203,15 @@ async def asyncio_detailed(
     collection_id: str,
     *,
     client: AuthenticatedClient | Client,
-    only_active: bool | Unset = True,
-    include_subcollections: bool | Unset = True,
+    only_active: bool | Unset = UNSET,
+    include_subcollections: bool | Unset = UNSET,
     format_name: str | Unset = UNSET,
-    by_storage_id: bool | Unset = True,
+    by_storage_id: bool | Unset = UNSET,
     types: bool | Unset = UNSET,
 ) -> Response[
     Any
     | CollectionContentInfoSchema
-    | GetCollectionsByCollectionIdContentInfoResponseDefaultType0
-    | GetCollectionsByCollectionIdContentInfoResponseDefaultType1
+    | GetCollectionsByCollectionIdContentInfoResponseDefault
 ]:
     """Get aggregated information about collection
 
@@ -256,10 +224,10 @@ async def asyncio_detailed(
 
     Args:
         collection_id (str):
-        only_active (bool | Unset):  Default: True.
-        include_subcollections (bool | Unset):  Default: True.
+        only_active (bool | Unset):
+        include_subcollections (bool | Unset):
         format_name (str | Unset):
-        by_storage_id (bool | Unset):  Default: True.
+        by_storage_id (bool | Unset):
         types (bool | Unset):
 
     Raises:
@@ -267,7 +235,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CollectionContentInfoSchema | GetCollectionsByCollectionIdContentInfoResponseDefaultType0 | GetCollectionsByCollectionIdContentInfoResponseDefaultType1]
+        Response[Any | CollectionContentInfoSchema | GetCollectionsByCollectionIdContentInfoResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -288,16 +256,15 @@ async def asyncio(
     collection_id: str,
     *,
     client: AuthenticatedClient | Client,
-    only_active: bool | Unset = True,
-    include_subcollections: bool | Unset = True,
+    only_active: bool | Unset = UNSET,
+    include_subcollections: bool | Unset = UNSET,
     format_name: str | Unset = UNSET,
-    by_storage_id: bool | Unset = True,
+    by_storage_id: bool | Unset = UNSET,
     types: bool | Unset = UNSET,
 ) -> (
     Any
     | CollectionContentInfoSchema
-    | GetCollectionsByCollectionIdContentInfoResponseDefaultType0
-    | GetCollectionsByCollectionIdContentInfoResponseDefaultType1
+    | GetCollectionsByCollectionIdContentInfoResponseDefault
     | None
 ):
     """Get aggregated information about collection
@@ -311,10 +278,10 @@ async def asyncio(
 
     Args:
         collection_id (str):
-        only_active (bool | Unset):  Default: True.
-        include_subcollections (bool | Unset):  Default: True.
+        only_active (bool | Unset):
+        include_subcollections (bool | Unset):
         format_name (str | Unset):
-        by_storage_id (bool | Unset):  Default: True.
+        by_storage_id (bool | Unset):
         types (bool | Unset):
 
     Raises:
@@ -322,7 +289,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CollectionContentInfoSchema | GetCollectionsByCollectionIdContentInfoResponseDefaultType0 | GetCollectionsByCollectionIdContentInfoResponseDefaultType1
+        Any | CollectionContentInfoSchema | GetCollectionsByCollectionIdContentInfoResponseDefault
     """
 
     return (

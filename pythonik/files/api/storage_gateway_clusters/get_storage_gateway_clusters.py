@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_storage_gateway_clusters_response_default_type_0 import (
-    GetStorageGatewayClustersResponseDefaultType0,
-)
-from ...models.get_storage_gateway_clusters_response_default_type_1 import (
-    GetStorageGatewayClustersResponseDefaultType1,
+from ...models.get_storage_gateway_clusters_response_default import (
+    GetStorageGatewayClustersResponseDefault,
 )
 from ...models.iconik_storage_gateway_clusters_schema import (
     IconikStorageGatewayClustersSchema,
@@ -18,8 +15,8 @@ from ...types import UNSET, Response, Unset
 
 def _get_kwargs(
     *,
-    page: int | Unset = 1,
-    per_page: int | Unset = 10,
+    page: int | Unset = UNSET,
+    per_page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
     query: str | Unset = UNSET,
     view_nodes: bool | Unset = UNSET,
@@ -54,10 +51,7 @@ def _get_kwargs(
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
-    Any
-    | GetStorageGatewayClustersResponseDefaultType0
-    | GetStorageGatewayClustersResponseDefaultType1
-    | IconikStorageGatewayClustersSchema
+    Any | GetStorageGatewayClustersResponseDefault | IconikStorageGatewayClustersSchema
 ):
     if response.status_code == 200:
         response_200 = IconikStorageGatewayClustersSchema.from_dict(response.json())
@@ -68,31 +62,9 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetStorageGatewayClustersResponseDefaultType0
-        | GetStorageGatewayClustersResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetStorageGatewayClustersResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetStorageGatewayClustersResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetStorageGatewayClustersResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -100,10 +72,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | GetStorageGatewayClustersResponseDefaultType0
-    | GetStorageGatewayClustersResponseDefaultType1
-    | IconikStorageGatewayClustersSchema
+    Any | GetStorageGatewayClustersResponseDefault | IconikStorageGatewayClustersSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -116,23 +85,20 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-    page: int | Unset = 1,
-    per_page: int | Unset = 10,
+    page: int | Unset = UNSET,
+    per_page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
     query: str | Unset = UNSET,
     view_nodes: bool | Unset = UNSET,
     view_stats: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | GetStorageGatewayClustersResponseDefaultType0
-    | GetStorageGatewayClustersResponseDefaultType1
-    | IconikStorageGatewayClustersSchema
+    Any | GetStorageGatewayClustersResponseDefault | IconikStorageGatewayClustersSchema
 ]:
     """Get all storage gateway clusters
 
     Args:
-        page (int | Unset):  Default: 1.
-        per_page (int | Unset):  Default: 10.
+        page (int | Unset):
+        per_page (int | Unset):
         sort (str | Unset):
         query (str | Unset):
         view_nodes (bool | Unset):
@@ -143,7 +109,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetStorageGatewayClustersResponseDefaultType0 | GetStorageGatewayClustersResponseDefaultType1 | IconikStorageGatewayClustersSchema]
+        Response[Any | GetStorageGatewayClustersResponseDefault | IconikStorageGatewayClustersSchema]
     """
 
     kwargs = _get_kwargs(
@@ -165,24 +131,23 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-    page: int | Unset = 1,
-    per_page: int | Unset = 10,
+    page: int | Unset = UNSET,
+    per_page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
     query: str | Unset = UNSET,
     view_nodes: bool | Unset = UNSET,
     view_stats: bool | Unset = UNSET,
 ) -> (
     Any
-    | GetStorageGatewayClustersResponseDefaultType0
-    | GetStorageGatewayClustersResponseDefaultType1
+    | GetStorageGatewayClustersResponseDefault
     | IconikStorageGatewayClustersSchema
     | None
 ):
     """Get all storage gateway clusters
 
     Args:
-        page (int | Unset):  Default: 1.
-        per_page (int | Unset):  Default: 10.
+        page (int | Unset):
+        per_page (int | Unset):
         sort (str | Unset):
         query (str | Unset):
         view_nodes (bool | Unset):
@@ -193,7 +158,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetStorageGatewayClustersResponseDefaultType0 | GetStorageGatewayClustersResponseDefaultType1 | IconikStorageGatewayClustersSchema
+        Any | GetStorageGatewayClustersResponseDefault | IconikStorageGatewayClustersSchema
     """
 
     return sync_detailed(
@@ -210,23 +175,20 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-    page: int | Unset = 1,
-    per_page: int | Unset = 10,
+    page: int | Unset = UNSET,
+    per_page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
     query: str | Unset = UNSET,
     view_nodes: bool | Unset = UNSET,
     view_stats: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | GetStorageGatewayClustersResponseDefaultType0
-    | GetStorageGatewayClustersResponseDefaultType1
-    | IconikStorageGatewayClustersSchema
+    Any | GetStorageGatewayClustersResponseDefault | IconikStorageGatewayClustersSchema
 ]:
     """Get all storage gateway clusters
 
     Args:
-        page (int | Unset):  Default: 1.
-        per_page (int | Unset):  Default: 10.
+        page (int | Unset):
+        per_page (int | Unset):
         sort (str | Unset):
         query (str | Unset):
         view_nodes (bool | Unset):
@@ -237,7 +199,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetStorageGatewayClustersResponseDefaultType0 | GetStorageGatewayClustersResponseDefaultType1 | IconikStorageGatewayClustersSchema]
+        Response[Any | GetStorageGatewayClustersResponseDefault | IconikStorageGatewayClustersSchema]
     """
 
     kwargs = _get_kwargs(
@@ -257,24 +219,23 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-    page: int | Unset = 1,
-    per_page: int | Unset = 10,
+    page: int | Unset = UNSET,
+    per_page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
     query: str | Unset = UNSET,
     view_nodes: bool | Unset = UNSET,
     view_stats: bool | Unset = UNSET,
 ) -> (
     Any
-    | GetStorageGatewayClustersResponseDefaultType0
-    | GetStorageGatewayClustersResponseDefaultType1
+    | GetStorageGatewayClustersResponseDefault
     | IconikStorageGatewayClustersSchema
     | None
 ):
     """Get all storage gateway clusters
 
     Args:
-        page (int | Unset):  Default: 1.
-        per_page (int | Unset):  Default: 10.
+        page (int | Unset):
+        per_page (int | Unset):
         sort (str | Unset):
         query (str | Unset):
         view_nodes (bool | Unset):
@@ -285,7 +246,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetStorageGatewayClustersResponseDefaultType0 | GetStorageGatewayClustersResponseDefaultType1 | IconikStorageGatewayClustersSchema
+        Any | GetStorageGatewayClustersResponseDefault | IconikStorageGatewayClustersSchema
     """
 
     return (

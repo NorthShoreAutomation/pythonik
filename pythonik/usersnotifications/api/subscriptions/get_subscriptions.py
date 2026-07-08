@@ -4,12 +4,7 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_subscriptions_response_default_type_0 import (
-    GetSubscriptionsResponseDefaultType0,
-)
-from ...models.get_subscriptions_response_default_type_1 import (
-    GetSubscriptionsResponseDefaultType1,
-)
+from ...models.get_subscriptions_response_default import GetSubscriptionsResponseDefault
 from ...models.subscriptions_schema import SubscriptionsSchema
 from ...types import Response
 
@@ -26,12 +21,7 @@ def _get_kwargs() -> dict[str, Any]:
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetSubscriptionsResponseDefaultType0
-    | GetSubscriptionsResponseDefaultType1
-    | SubscriptionsSchema
-):
+) -> Any | GetSubscriptionsResponseDefault | SubscriptionsSchema:
     if response.status_code == 200:
         response_200 = SubscriptionsSchema.from_dict(response.json())
 
@@ -49,38 +39,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> GetSubscriptionsResponseDefaultType0 | GetSubscriptionsResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetSubscriptionsResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetSubscriptionsResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetSubscriptionsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetSubscriptionsResponseDefaultType0
-    | GetSubscriptionsResponseDefaultType1
-    | SubscriptionsSchema
-]:
+) -> Response[Any | GetSubscriptionsResponseDefault | SubscriptionsSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -92,12 +58,7 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetSubscriptionsResponseDefaultType0
-    | GetSubscriptionsResponseDefaultType1
-    | SubscriptionsSchema
-]:
+) -> Response[Any | GetSubscriptionsResponseDefault | SubscriptionsSchema]:
     """Returns all user subscriptions
 
 
@@ -109,7 +70,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetSubscriptionsResponseDefaultType0 | GetSubscriptionsResponseDefaultType1 | SubscriptionsSchema]
+        Response[Any | GetSubscriptionsResponseDefault | SubscriptionsSchema]
     """
 
     kwargs = _get_kwargs()
@@ -124,13 +85,7 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetSubscriptionsResponseDefaultType0
-    | GetSubscriptionsResponseDefaultType1
-    | SubscriptionsSchema
-    | None
-):
+) -> Any | GetSubscriptionsResponseDefault | SubscriptionsSchema | None:
     """Returns all user subscriptions
 
 
@@ -142,7 +97,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetSubscriptionsResponseDefaultType0 | GetSubscriptionsResponseDefaultType1 | SubscriptionsSchema
+        Any | GetSubscriptionsResponseDefault | SubscriptionsSchema
     """
 
     return sync_detailed(
@@ -153,12 +108,7 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetSubscriptionsResponseDefaultType0
-    | GetSubscriptionsResponseDefaultType1
-    | SubscriptionsSchema
-]:
+) -> Response[Any | GetSubscriptionsResponseDefault | SubscriptionsSchema]:
     """Returns all user subscriptions
 
 
@@ -170,7 +120,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetSubscriptionsResponseDefaultType0 | GetSubscriptionsResponseDefaultType1 | SubscriptionsSchema]
+        Response[Any | GetSubscriptionsResponseDefault | SubscriptionsSchema]
     """
 
     kwargs = _get_kwargs()
@@ -183,13 +133,7 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetSubscriptionsResponseDefaultType0
-    | GetSubscriptionsResponseDefaultType1
-    | SubscriptionsSchema
-    | None
-):
+) -> Any | GetSubscriptionsResponseDefault | SubscriptionsSchema | None:
     """Returns all user subscriptions
 
 
@@ -201,7 +145,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetSubscriptionsResponseDefaultType0 | GetSubscriptionsResponseDefaultType1 | SubscriptionsSchema
+        Any | GetSubscriptionsResponseDefault | SubscriptionsSchema
     """
 
     return (

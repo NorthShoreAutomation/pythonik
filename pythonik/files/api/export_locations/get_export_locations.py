@@ -5,11 +5,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.export_locations_schema import ExportLocationsSchema
-from ...models.get_export_locations_response_default_type_0 import (
-    GetExportLocationsResponseDefaultType0,
-)
-from ...models.get_export_locations_response_default_type_1 import (
-    GetExportLocationsResponseDefaultType1,
+from ...models.get_export_locations_response_default import (
+    GetExportLocationsResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -18,7 +15,7 @@ def _get_kwargs(
     *,
     query: str | Unset = UNSET,
     ids: str | Unset = UNSET,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
     sort: str | Unset = UNSET,
 ) -> dict[str, Any]:
@@ -48,12 +45,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | ExportLocationsSchema
-    | GetExportLocationsResponseDefaultType0
-    | GetExportLocationsResponseDefaultType1
-):
+) -> Any | ExportLocationsSchema | GetExportLocationsResponseDefault:
     if response.status_code == 200:
         response_200 = ExportLocationsSchema.from_dict(response.json())
 
@@ -63,40 +55,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetExportLocationsResponseDefaultType0 | GetExportLocationsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetExportLocationsResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetExportLocationsResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetExportLocationsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | ExportLocationsSchema
-    | GetExportLocationsResponseDefaultType0
-    | GetExportLocationsResponseDefaultType1
-]:
+) -> Response[Any | ExportLocationsSchema | GetExportLocationsResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -110,15 +76,10 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     query: str | Unset = UNSET,
     ids: str | Unset = UNSET,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
     sort: str | Unset = UNSET,
-) -> Response[
-    Any
-    | ExportLocationsSchema
-    | GetExportLocationsResponseDefaultType0
-    | GetExportLocationsResponseDefaultType1
-]:
+) -> Response[Any | ExportLocationsSchema | GetExportLocationsResponseDefault]:
     """Get all export_locations
 
 
@@ -128,7 +89,7 @@ def sync_detailed(
     Args:
         query (str | Unset):
         ids (str | Unset):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
         sort (str | Unset):
 
@@ -137,7 +98,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | ExportLocationsSchema | GetExportLocationsResponseDefaultType0 | GetExportLocationsResponseDefaultType1]
+        Response[Any | ExportLocationsSchema | GetExportLocationsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -160,16 +121,10 @@ def sync(
     client: AuthenticatedClient | Client,
     query: str | Unset = UNSET,
     ids: str | Unset = UNSET,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
     sort: str | Unset = UNSET,
-) -> (
-    Any
-    | ExportLocationsSchema
-    | GetExportLocationsResponseDefaultType0
-    | GetExportLocationsResponseDefaultType1
-    | None
-):
+) -> Any | ExportLocationsSchema | GetExportLocationsResponseDefault | None:
     """Get all export_locations
 
 
@@ -179,7 +134,7 @@ def sync(
     Args:
         query (str | Unset):
         ids (str | Unset):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
         sort (str | Unset):
 
@@ -188,7 +143,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | ExportLocationsSchema | GetExportLocationsResponseDefaultType0 | GetExportLocationsResponseDefaultType1
+        Any | ExportLocationsSchema | GetExportLocationsResponseDefault
     """
 
     return sync_detailed(
@@ -206,15 +161,10 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     query: str | Unset = UNSET,
     ids: str | Unset = UNSET,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
     sort: str | Unset = UNSET,
-) -> Response[
-    Any
-    | ExportLocationsSchema
-    | GetExportLocationsResponseDefaultType0
-    | GetExportLocationsResponseDefaultType1
-]:
+) -> Response[Any | ExportLocationsSchema | GetExportLocationsResponseDefault]:
     """Get all export_locations
 
 
@@ -224,7 +174,7 @@ async def asyncio_detailed(
     Args:
         query (str | Unset):
         ids (str | Unset):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
         sort (str | Unset):
 
@@ -233,7 +183,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | ExportLocationsSchema | GetExportLocationsResponseDefaultType0 | GetExportLocationsResponseDefaultType1]
+        Response[Any | ExportLocationsSchema | GetExportLocationsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -254,16 +204,10 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     query: str | Unset = UNSET,
     ids: str | Unset = UNSET,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
     sort: str | Unset = UNSET,
-) -> (
-    Any
-    | ExportLocationsSchema
-    | GetExportLocationsResponseDefaultType0
-    | GetExportLocationsResponseDefaultType1
-    | None
-):
+) -> Any | ExportLocationsSchema | GetExportLocationsResponseDefault | None:
     """Get all export_locations
 
 
@@ -273,7 +217,7 @@ async def asyncio(
     Args:
         query (str | Unset):
         ids (str | Unset):
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
         sort (str | Unset):
 
@@ -282,7 +226,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | ExportLocationsSchema | GetExportLocationsResponseDefaultType0 | GetExportLocationsResponseDefaultType1
+        Any | ExportLocationsSchema | GetExportLocationsResponseDefault
     """
 
     return (

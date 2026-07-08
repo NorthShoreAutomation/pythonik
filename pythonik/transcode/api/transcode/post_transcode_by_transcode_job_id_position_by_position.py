@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_transcode_by_transcode_job_id_position_by_position_response_default_type_0 import (
-    PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType0,
-)
-from ...models.post_transcode_by_transcode_job_id_position_by_position_response_default_type_1 import (
-    PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType1,
+from ...models.post_transcode_by_transcode_job_id_position_by_position_response_default import (
+    PostTranscodeByTranscodeJobIdPositionByPositionResponseDefault,
 )
 from ...types import Response
 
@@ -32,11 +29,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType0
-    | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType1
-):
+) -> Any | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefault:
     if response.status_code == 200:
         response_200 = cast(Any, None)
         return response_200
@@ -53,42 +46,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType0
-        | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        PostTranscodeByTranscodeJobIdPositionByPositionResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType0
-    | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType1
-]:
+) -> Response[Any | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -102,11 +71,7 @@ def sync_detailed(
     position: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType0
-    | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType1
-]:
+) -> Response[Any | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefault]:
     """Move transcode job to top or bottom of the queue
 
 
@@ -122,7 +87,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType0 | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType1]
+        Response[Any | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -142,12 +107,7 @@ def sync(
     position: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType0
-    | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType1
-    | None
-):
+) -> Any | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefault | None:
     """Move transcode job to top or bottom of the queue
 
 
@@ -163,7 +123,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType0 | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType1
+        Any | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefault
     """
 
     return sync_detailed(
@@ -178,11 +138,7 @@ async def asyncio_detailed(
     position: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType0
-    | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType1
-]:
+) -> Response[Any | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefault]:
     """Move transcode job to top or bottom of the queue
 
 
@@ -198,7 +154,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType0 | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType1]
+        Response[Any | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -216,12 +172,7 @@ async def asyncio(
     position: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType0
-    | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType1
-    | None
-):
+) -> Any | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefault | None:
     """Move transcode job to top or bottom of the queue
 
 
@@ -237,7 +188,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType0 | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefaultType1
+        Any | PostTranscodeByTranscodeJobIdPositionByPositionResponseDefault
     """
 
     return (

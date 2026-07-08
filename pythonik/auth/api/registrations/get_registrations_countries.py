@@ -5,11 +5,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.countries_schema import CountriesSchema
-from ...models.get_registrations_countries_response_default_type_0 import (
-    GetRegistrationsCountriesResponseDefaultType0,
-)
-from ...models.get_registrations_countries_response_default_type_1 import (
-    GetRegistrationsCountriesResponseDefaultType1,
+from ...models.get_registrations_countries_response_default import (
+    GetRegistrationsCountriesResponseDefault,
 )
 from ...types import Response
 
@@ -26,12 +23,7 @@ def _get_kwargs() -> dict[str, Any]:
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | CountriesSchema
-    | GetRegistrationsCountriesResponseDefaultType0
-    | GetRegistrationsCountriesResponseDefaultType1
-):
+) -> Any | CountriesSchema | GetRegistrationsCountriesResponseDefault:
     if response.status_code == 200:
         response_200 = CountriesSchema.from_dict(response.json())
 
@@ -45,43 +37,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetRegistrationsCountriesResponseDefaultType0
-        | GetRegistrationsCountriesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetRegistrationsCountriesResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetRegistrationsCountriesResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetRegistrationsCountriesResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | CountriesSchema
-    | GetRegistrationsCountriesResponseDefaultType0
-    | GetRegistrationsCountriesResponseDefaultType1
-]:
+) -> Response[Any | CountriesSchema | GetRegistrationsCountriesResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -93,12 +58,7 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | CountriesSchema
-    | GetRegistrationsCountriesResponseDefaultType0
-    | GetRegistrationsCountriesResponseDefaultType1
-]:
+) -> Response[Any | CountriesSchema | GetRegistrationsCountriesResponseDefault]:
     """Returns list of countries
 
     Raises:
@@ -106,7 +66,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CountriesSchema | GetRegistrationsCountriesResponseDefaultType0 | GetRegistrationsCountriesResponseDefaultType1]
+        Response[Any | CountriesSchema | GetRegistrationsCountriesResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -121,13 +81,7 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | CountriesSchema
-    | GetRegistrationsCountriesResponseDefaultType0
-    | GetRegistrationsCountriesResponseDefaultType1
-    | None
-):
+) -> Any | CountriesSchema | GetRegistrationsCountriesResponseDefault | None:
     """Returns list of countries
 
     Raises:
@@ -135,7 +89,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CountriesSchema | GetRegistrationsCountriesResponseDefaultType0 | GetRegistrationsCountriesResponseDefaultType1
+        Any | CountriesSchema | GetRegistrationsCountriesResponseDefault
     """
 
     return sync_detailed(
@@ -146,12 +100,7 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | CountriesSchema
-    | GetRegistrationsCountriesResponseDefaultType0
-    | GetRegistrationsCountriesResponseDefaultType1
-]:
+) -> Response[Any | CountriesSchema | GetRegistrationsCountriesResponseDefault]:
     """Returns list of countries
 
     Raises:
@@ -159,7 +108,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CountriesSchema | GetRegistrationsCountriesResponseDefaultType0 | GetRegistrationsCountriesResponseDefaultType1]
+        Response[Any | CountriesSchema | GetRegistrationsCountriesResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -172,13 +121,7 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | CountriesSchema
-    | GetRegistrationsCountriesResponseDefaultType0
-    | GetRegistrationsCountriesResponseDefaultType1
-    | None
-):
+) -> Any | CountriesSchema | GetRegistrationsCountriesResponseDefault | None:
     """Returns list of countries
 
     Raises:
@@ -186,7 +129,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CountriesSchema | GetRegistrationsCountriesResponseDefaultType0 | GetRegistrationsCountriesResponseDefaultType1
+        Any | CountriesSchema | GetRegistrationsCountriesResponseDefault
     """
 
     return (

@@ -4,8 +4,7 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_search_response_default_type_0 import PostSearchResponseDefaultType0
-from ...models.post_search_response_default_type_1 import PostSearchResponseDefaultType1
+from ...models.post_search_response_default import PostSearchResponseDefault
 from ...models.search_criteria_schema import SearchCriteriaSchema
 from ...models.search_documents_schema import SearchDocumentsSchema
 from ...types import UNSET, Response, Unset
@@ -15,13 +14,13 @@ def _get_kwargs(
     *,
     body: SearchCriteriaSchema,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
-    generate_signed_url: bool | Unset = True,
-    generate_signed_download_url: bool | Unset = False,
-    generate_signed_proxy_url: bool | Unset = False,
-    save_search_history: bool | Unset = True,
+    generate_signed_url: bool | Unset = UNSET,
+    generate_signed_download_url: bool | Unset = UNSET,
+    generate_signed_proxy_url: bool | Unset = UNSET,
+    save_search_history: bool | Unset = UNSET,
     types: str | Unset = UNSET,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
@@ -64,12 +63,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostSearchResponseDefaultType0
-    | PostSearchResponseDefaultType1
-    | SearchDocumentsSchema
-):
+) -> Any | PostSearchResponseDefault | SearchDocumentsSchema:
     if response.status_code == 200:
         response_200 = SearchDocumentsSchema.from_dict(response.json())
 
@@ -87,36 +81,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> PostSearchResponseDefaultType0 | PostSearchResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostSearchResponseDefaultType0.from_dict(data)
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostSearchResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostSearchResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostSearchResponseDefaultType0
-    | PostSearchResponseDefaultType1
-    | SearchDocumentsSchema
-]:
+) -> Response[Any | PostSearchResponseDefault | SearchDocumentsSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -130,20 +102,15 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: SearchCriteriaSchema,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
-    generate_signed_url: bool | Unset = True,
-    generate_signed_download_url: bool | Unset = False,
-    generate_signed_proxy_url: bool | Unset = False,
-    save_search_history: bool | Unset = True,
+    generate_signed_url: bool | Unset = UNSET,
+    generate_signed_download_url: bool | Unset = UNSET,
+    generate_signed_proxy_url: bool | Unset = UNSET,
+    save_search_history: bool | Unset = UNSET,
     types: str | Unset = UNSET,
-) -> Response[
-    Any
-    | PostSearchResponseDefaultType0
-    | PostSearchResponseDefaultType1
-    | SearchDocumentsSchema
-]:
+) -> Response[Any | PostSearchResponseDefault | SearchDocumentsSchema]:
     """Search
 
 
@@ -152,13 +119,13 @@ def sync_detailed(
 
     Args:
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
-        generate_signed_url (bool | Unset):  Default: True.
-        generate_signed_download_url (bool | Unset):  Default: False.
-        generate_signed_proxy_url (bool | Unset):  Default: False.
-        save_search_history (bool | Unset):  Default: True.
+        generate_signed_url (bool | Unset):
+        generate_signed_download_url (bool | Unset):
+        generate_signed_proxy_url (bool | Unset):
+        save_search_history (bool | Unset):
         types (str | Unset):
         body (SearchCriteriaSchema):
 
@@ -167,7 +134,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSearchResponseDefaultType0 | PostSearchResponseDefaultType1 | SearchDocumentsSchema]
+        Response[Any | PostSearchResponseDefault | SearchDocumentsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -195,21 +162,15 @@ def sync(
     client: AuthenticatedClient | Client,
     body: SearchCriteriaSchema,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
-    generate_signed_url: bool | Unset = True,
-    generate_signed_download_url: bool | Unset = False,
-    generate_signed_proxy_url: bool | Unset = False,
-    save_search_history: bool | Unset = True,
+    generate_signed_url: bool | Unset = UNSET,
+    generate_signed_download_url: bool | Unset = UNSET,
+    generate_signed_proxy_url: bool | Unset = UNSET,
+    save_search_history: bool | Unset = UNSET,
     types: str | Unset = UNSET,
-) -> (
-    Any
-    | PostSearchResponseDefaultType0
-    | PostSearchResponseDefaultType1
-    | SearchDocumentsSchema
-    | None
-):
+) -> Any | PostSearchResponseDefault | SearchDocumentsSchema | None:
     """Search
 
 
@@ -218,13 +179,13 @@ def sync(
 
     Args:
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
-        generate_signed_url (bool | Unset):  Default: True.
-        generate_signed_download_url (bool | Unset):  Default: False.
-        generate_signed_proxy_url (bool | Unset):  Default: False.
-        save_search_history (bool | Unset):  Default: True.
+        generate_signed_url (bool | Unset):
+        generate_signed_download_url (bool | Unset):
+        generate_signed_proxy_url (bool | Unset):
+        save_search_history (bool | Unset):
         types (str | Unset):
         body (SearchCriteriaSchema):
 
@@ -233,7 +194,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSearchResponseDefaultType0 | PostSearchResponseDefaultType1 | SearchDocumentsSchema
+        Any | PostSearchResponseDefault | SearchDocumentsSchema
     """
 
     return sync_detailed(
@@ -256,20 +217,15 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: SearchCriteriaSchema,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
-    generate_signed_url: bool | Unset = True,
-    generate_signed_download_url: bool | Unset = False,
-    generate_signed_proxy_url: bool | Unset = False,
-    save_search_history: bool | Unset = True,
+    generate_signed_url: bool | Unset = UNSET,
+    generate_signed_download_url: bool | Unset = UNSET,
+    generate_signed_proxy_url: bool | Unset = UNSET,
+    save_search_history: bool | Unset = UNSET,
     types: str | Unset = UNSET,
-) -> Response[
-    Any
-    | PostSearchResponseDefaultType0
-    | PostSearchResponseDefaultType1
-    | SearchDocumentsSchema
-]:
+) -> Response[Any | PostSearchResponseDefault | SearchDocumentsSchema]:
     """Search
 
 
@@ -278,13 +234,13 @@ async def asyncio_detailed(
 
     Args:
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
-        generate_signed_url (bool | Unset):  Default: True.
-        generate_signed_download_url (bool | Unset):  Default: False.
-        generate_signed_proxy_url (bool | Unset):  Default: False.
-        save_search_history (bool | Unset):  Default: True.
+        generate_signed_url (bool | Unset):
+        generate_signed_download_url (bool | Unset):
+        generate_signed_proxy_url (bool | Unset):
+        save_search_history (bool | Unset):
         types (str | Unset):
         body (SearchCriteriaSchema):
 
@@ -293,7 +249,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSearchResponseDefaultType0 | PostSearchResponseDefaultType1 | SearchDocumentsSchema]
+        Response[Any | PostSearchResponseDefault | SearchDocumentsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -319,21 +275,15 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     body: SearchCriteriaSchema,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
-    generate_signed_url: bool | Unset = True,
-    generate_signed_download_url: bool | Unset = False,
-    generate_signed_proxy_url: bool | Unset = False,
-    save_search_history: bool | Unset = True,
+    generate_signed_url: bool | Unset = UNSET,
+    generate_signed_download_url: bool | Unset = UNSET,
+    generate_signed_proxy_url: bool | Unset = UNSET,
+    save_search_history: bool | Unset = UNSET,
     types: str | Unset = UNSET,
-) -> (
-    Any
-    | PostSearchResponseDefaultType0
-    | PostSearchResponseDefaultType1
-    | SearchDocumentsSchema
-    | None
-):
+) -> Any | PostSearchResponseDefault | SearchDocumentsSchema | None:
     """Search
 
 
@@ -342,13 +292,13 @@ async def asyncio(
 
     Args:
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
-        generate_signed_url (bool | Unset):  Default: True.
-        generate_signed_download_url (bool | Unset):  Default: False.
-        generate_signed_proxy_url (bool | Unset):  Default: False.
-        save_search_history (bool | Unset):  Default: True.
+        generate_signed_url (bool | Unset):
+        generate_signed_download_url (bool | Unset):
+        generate_signed_proxy_url (bool | Unset):
+        save_search_history (bool | Unset):
         types (str | Unset):
         body (SearchCriteriaSchema):
 
@@ -357,7 +307,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSearchResponseDefaultType0 | PostSearchResponseDefaultType1 | SearchDocumentsSchema
+        Any | PostSearchResponseDefault | SearchDocumentsSchema
     """
 
     return (

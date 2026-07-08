@@ -7,11 +7,8 @@ import httpx
 from ...client import AuthenticatedClient, Client
 from ...models.asset_post_schema import AssetPostSchema
 from ...models.asset_schema import AssetSchema
-from ...models.get_assets_by_asset_id_response_default_type_0 import (
-    GetAssetsByAssetIdResponseDefaultType0,
-)
-from ...models.get_assets_by_asset_id_response_default_type_1 import (
-    GetAssetsByAssetIdResponseDefaultType1,
+from ...models.get_assets_by_asset_id_response_default import (
+    GetAssetsByAssetIdResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -19,8 +16,8 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     asset_id: str,
     *,
-    include_collections: bool | Unset = False,
-    include_users: bool | Unset = False,
+    include_collections: bool | Unset = UNSET,
+    include_users: bool | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -44,13 +41,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | AssetPostSchema
-    | AssetSchema
-    | GetAssetsByAssetIdResponseDefaultType0
-    | GetAssetsByAssetIdResponseDefaultType1
-):
+) -> Any | AssetPostSchema | AssetSchema | GetAssetsByAssetIdResponseDefault:
     if response.status_code == 200:
 
         def _parse_response_200(data: object) -> AssetPostSchema | AssetSchema:
@@ -88,41 +79,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsByAssetIdResponseDefaultType0 | GetAssetsByAssetIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetAssetsByAssetIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetAssetsByAssetIdResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAssetsByAssetIdResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | AssetPostSchema
-    | AssetSchema
-    | GetAssetsByAssetIdResponseDefaultType0
-    | GetAssetsByAssetIdResponseDefaultType1
-]:
+) -> Response[Any | AssetPostSchema | AssetSchema | GetAssetsByAssetIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -135,15 +99,9 @@ def sync_detailed(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-    include_collections: bool | Unset = False,
-    include_users: bool | Unset = False,
-) -> Response[
-    Any
-    | AssetPostSchema
-    | AssetSchema
-    | GetAssetsByAssetIdResponseDefaultType0
-    | GetAssetsByAssetIdResponseDefaultType1
-]:
+    include_collections: bool | Unset = UNSET,
+    include_users: bool | Unset = UNSET,
+) -> Response[Any | AssetPostSchema | AssetSchema | GetAssetsByAssetIdResponseDefault]:
     """Returns a particular asset by id
 
 
@@ -152,15 +110,15 @@ def sync_detailed(
 
     Args:
         asset_id (str):
-        include_collections (bool | Unset):  Default: False.
-        include_users (bool | Unset):  Default: False.
+        include_collections (bool | Unset):
+        include_users (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AssetPostSchema | AssetSchema | GetAssetsByAssetIdResponseDefaultType0 | GetAssetsByAssetIdResponseDefaultType1]
+        Response[Any | AssetPostSchema | AssetSchema | GetAssetsByAssetIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -180,16 +138,9 @@ def sync(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-    include_collections: bool | Unset = False,
-    include_users: bool | Unset = False,
-) -> (
-    Any
-    | AssetPostSchema
-    | AssetSchema
-    | GetAssetsByAssetIdResponseDefaultType0
-    | GetAssetsByAssetIdResponseDefaultType1
-    | None
-):
+    include_collections: bool | Unset = UNSET,
+    include_users: bool | Unset = UNSET,
+) -> Any | AssetPostSchema | AssetSchema | GetAssetsByAssetIdResponseDefault | None:
     """Returns a particular asset by id
 
 
@@ -198,15 +149,15 @@ def sync(
 
     Args:
         asset_id (str):
-        include_collections (bool | Unset):  Default: False.
-        include_users (bool | Unset):  Default: False.
+        include_collections (bool | Unset):
+        include_users (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AssetPostSchema | AssetSchema | GetAssetsByAssetIdResponseDefaultType0 | GetAssetsByAssetIdResponseDefaultType1
+        Any | AssetPostSchema | AssetSchema | GetAssetsByAssetIdResponseDefault
     """
 
     return sync_detailed(
@@ -221,15 +172,9 @@ async def asyncio_detailed(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-    include_collections: bool | Unset = False,
-    include_users: bool | Unset = False,
-) -> Response[
-    Any
-    | AssetPostSchema
-    | AssetSchema
-    | GetAssetsByAssetIdResponseDefaultType0
-    | GetAssetsByAssetIdResponseDefaultType1
-]:
+    include_collections: bool | Unset = UNSET,
+    include_users: bool | Unset = UNSET,
+) -> Response[Any | AssetPostSchema | AssetSchema | GetAssetsByAssetIdResponseDefault]:
     """Returns a particular asset by id
 
 
@@ -238,15 +183,15 @@ async def asyncio_detailed(
 
     Args:
         asset_id (str):
-        include_collections (bool | Unset):  Default: False.
-        include_users (bool | Unset):  Default: False.
+        include_collections (bool | Unset):
+        include_users (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AssetPostSchema | AssetSchema | GetAssetsByAssetIdResponseDefaultType0 | GetAssetsByAssetIdResponseDefaultType1]
+        Response[Any | AssetPostSchema | AssetSchema | GetAssetsByAssetIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -264,16 +209,9 @@ async def asyncio(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-    include_collections: bool | Unset = False,
-    include_users: bool | Unset = False,
-) -> (
-    Any
-    | AssetPostSchema
-    | AssetSchema
-    | GetAssetsByAssetIdResponseDefaultType0
-    | GetAssetsByAssetIdResponseDefaultType1
-    | None
-):
+    include_collections: bool | Unset = UNSET,
+    include_users: bool | Unset = UNSET,
+) -> Any | AssetPostSchema | AssetSchema | GetAssetsByAssetIdResponseDefault | None:
     """Returns a particular asset by id
 
 
@@ -282,15 +220,15 @@ async def asyncio(
 
     Args:
         asset_id (str):
-        include_collections (bool | Unset):  Default: False.
-        include_users (bool | Unset):  Default: False.
+        include_collections (bool | Unset):
+        include_users (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AssetPostSchema | AssetSchema | GetAssetsByAssetIdResponseDefaultType0 | GetAssetsByAssetIdResponseDefaultType1
+        Any | AssetPostSchema | AssetSchema | GetAssetsByAssetIdResponseDefault
     """
 
     return (

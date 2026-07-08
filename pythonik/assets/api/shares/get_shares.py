@@ -4,8 +4,7 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_shares_response_default_type_0 import GetSharesResponseDefaultType0
-from ...models.get_shares_response_default_type_1 import GetSharesResponseDefaultType1
+from ...models.get_shares_response_default import GetSharesResponseDefault
 from ...models.shares_elastic_schema import SharesElasticSchema
 from ...types import UNSET, Response, Unset
 
@@ -21,10 +20,10 @@ def _get_kwargs(
     date_created: str | Unset = UNSET,
     date_modified: str | Unset = UNSET,
     expires: str | Unset = UNSET,
-    include_created_by_me: bool | Unset = False,
-    include_member_of: bool | Unset = False,
-    page: int | Unset = 1,
-    per_page: int | Unset = 10,
+    include_created_by_me: bool | Unset = UNSET,
+    include_member_of: bool | Unset = UNSET,
+    page: int | Unset = UNSET,
+    per_page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
     sort: str | Unset = UNSET,
@@ -77,12 +76,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetSharesResponseDefaultType0
-    | GetSharesResponseDefaultType1
-    | SharesElasticSchema
-):
+) -> Any | GetSharesResponseDefault | SharesElasticSchema:
     if response.status_code == 200:
         response_200 = SharesElasticSchema.from_dict(response.json())
 
@@ -100,36 +94,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> GetSharesResponseDefaultType0 | GetSharesResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetSharesResponseDefaultType0.from_dict(data)
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetSharesResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetSharesResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetSharesResponseDefaultType0
-    | GetSharesResponseDefaultType1
-    | SharesElasticSchema
-]:
+) -> Response[Any | GetSharesResponseDefault | SharesElasticSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -150,19 +122,14 @@ def sync_detailed(
     date_created: str | Unset = UNSET,
     date_modified: str | Unset = UNSET,
     expires: str | Unset = UNSET,
-    include_created_by_me: bool | Unset = False,
-    include_member_of: bool | Unset = False,
-    page: int | Unset = 1,
-    per_page: int | Unset = 10,
+    include_created_by_me: bool | Unset = UNSET,
+    include_member_of: bool | Unset = UNSET,
+    page: int | Unset = UNSET,
+    per_page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
     sort: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetSharesResponseDefaultType0
-    | GetSharesResponseDefaultType1
-    | SharesElasticSchema
-]:
+) -> Response[Any | GetSharesResponseDefault | SharesElasticSchema]:
     """Get a list of user's shares
 
 
@@ -179,10 +146,10 @@ def sync_detailed(
         date_created (str | Unset):
         date_modified (str | Unset):
         expires (str | Unset):
-        include_created_by_me (bool | Unset):  Default: False.
-        include_member_of (bool | Unset):  Default: False.
-        page (int | Unset):  Default: 1.
-        per_page (int | Unset):  Default: 10.
+        include_created_by_me (bool | Unset):
+        include_member_of (bool | Unset):
+        page (int | Unset):
+        per_page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
         sort (str | Unset):
@@ -192,7 +159,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetSharesResponseDefaultType0 | GetSharesResponseDefaultType1 | SharesElasticSchema]
+        Response[Any | GetSharesResponseDefault | SharesElasticSchema]
     """
 
     kwargs = _get_kwargs(
@@ -233,20 +200,14 @@ def sync(
     date_created: str | Unset = UNSET,
     date_modified: str | Unset = UNSET,
     expires: str | Unset = UNSET,
-    include_created_by_me: bool | Unset = False,
-    include_member_of: bool | Unset = False,
-    page: int | Unset = 1,
-    per_page: int | Unset = 10,
+    include_created_by_me: bool | Unset = UNSET,
+    include_member_of: bool | Unset = UNSET,
+    page: int | Unset = UNSET,
+    per_page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
     sort: str | Unset = UNSET,
-) -> (
-    Any
-    | GetSharesResponseDefaultType0
-    | GetSharesResponseDefaultType1
-    | SharesElasticSchema
-    | None
-):
+) -> Any | GetSharesResponseDefault | SharesElasticSchema | None:
     """Get a list of user's shares
 
 
@@ -263,10 +224,10 @@ def sync(
         date_created (str | Unset):
         date_modified (str | Unset):
         expires (str | Unset):
-        include_created_by_me (bool | Unset):  Default: False.
-        include_member_of (bool | Unset):  Default: False.
-        page (int | Unset):  Default: 1.
-        per_page (int | Unset):  Default: 10.
+        include_created_by_me (bool | Unset):
+        include_member_of (bool | Unset):
+        page (int | Unset):
+        per_page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
         sort (str | Unset):
@@ -276,7 +237,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetSharesResponseDefaultType0 | GetSharesResponseDefaultType1 | SharesElasticSchema
+        Any | GetSharesResponseDefault | SharesElasticSchema
     """
 
     return sync_detailed(
@@ -312,19 +273,14 @@ async def asyncio_detailed(
     date_created: str | Unset = UNSET,
     date_modified: str | Unset = UNSET,
     expires: str | Unset = UNSET,
-    include_created_by_me: bool | Unset = False,
-    include_member_of: bool | Unset = False,
-    page: int | Unset = 1,
-    per_page: int | Unset = 10,
+    include_created_by_me: bool | Unset = UNSET,
+    include_member_of: bool | Unset = UNSET,
+    page: int | Unset = UNSET,
+    per_page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
     sort: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetSharesResponseDefaultType0
-    | GetSharesResponseDefaultType1
-    | SharesElasticSchema
-]:
+) -> Response[Any | GetSharesResponseDefault | SharesElasticSchema]:
     """Get a list of user's shares
 
 
@@ -341,10 +297,10 @@ async def asyncio_detailed(
         date_created (str | Unset):
         date_modified (str | Unset):
         expires (str | Unset):
-        include_created_by_me (bool | Unset):  Default: False.
-        include_member_of (bool | Unset):  Default: False.
-        page (int | Unset):  Default: 1.
-        per_page (int | Unset):  Default: 10.
+        include_created_by_me (bool | Unset):
+        include_member_of (bool | Unset):
+        page (int | Unset):
+        per_page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
         sort (str | Unset):
@@ -354,7 +310,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetSharesResponseDefaultType0 | GetSharesResponseDefaultType1 | SharesElasticSchema]
+        Response[Any | GetSharesResponseDefault | SharesElasticSchema]
     """
 
     kwargs = _get_kwargs(
@@ -393,20 +349,14 @@ async def asyncio(
     date_created: str | Unset = UNSET,
     date_modified: str | Unset = UNSET,
     expires: str | Unset = UNSET,
-    include_created_by_me: bool | Unset = False,
-    include_member_of: bool | Unset = False,
-    page: int | Unset = 1,
-    per_page: int | Unset = 10,
+    include_created_by_me: bool | Unset = UNSET,
+    include_member_of: bool | Unset = UNSET,
+    page: int | Unset = UNSET,
+    per_page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
     sort: str | Unset = UNSET,
-) -> (
-    Any
-    | GetSharesResponseDefaultType0
-    | GetSharesResponseDefaultType1
-    | SharesElasticSchema
-    | None
-):
+) -> Any | GetSharesResponseDefault | SharesElasticSchema | None:
     """Get a list of user's shares
 
 
@@ -423,10 +373,10 @@ async def asyncio(
         date_created (str | Unset):
         date_modified (str | Unset):
         expires (str | Unset):
-        include_created_by_me (bool | Unset):  Default: False.
-        include_member_of (bool | Unset):  Default: False.
-        page (int | Unset):  Default: 1.
-        per_page (int | Unset):  Default: 10.
+        include_created_by_me (bool | Unset):
+        include_member_of (bool | Unset):
+        page (int | Unset):
+        per_page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
         sort (str | Unset):
@@ -436,7 +386,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetSharesResponseDefaultType0 | GetSharesResponseDefaultType1 | SharesElasticSchema
+        Any | GetSharesResponseDefault | SharesElasticSchema
     """
 
     return (

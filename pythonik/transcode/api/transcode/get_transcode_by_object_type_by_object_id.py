@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_transcode_by_object_type_by_object_id_response_default_type_0 import (
-    GetTranscodeByObjectTypeByObjectIdResponseDefaultType0,
-)
-from ...models.get_transcode_by_object_type_by_object_id_response_default_type_1 import (
-    GetTranscodeByObjectTypeByObjectIdResponseDefaultType1,
+from ...models.get_transcode_by_object_type_by_object_id_response_default import (
+    GetTranscodeByObjectTypeByObjectIdResponseDefault,
 )
 from ...models.transcode_es_queue_records_schema import TranscodeESQueueRecordsSchema
 from ...types import Response
@@ -35,8 +32,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | GetTranscodeByObjectTypeByObjectIdResponseDefaultType0
-    | GetTranscodeByObjectTypeByObjectIdResponseDefaultType1
+    | GetTranscodeByObjectTypeByObjectIdResponseDefault
     | TranscodeESQueueRecordsSchema
 ):
     if response.status_code == 200:
@@ -48,31 +44,9 @@ def _parse_response(
         response_400 = cast(Any, None)
         return response_400
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetTranscodeByObjectTypeByObjectIdResponseDefaultType0
-        | GetTranscodeByObjectTypeByObjectIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetTranscodeByObjectTypeByObjectIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetTranscodeByObjectTypeByObjectIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetTranscodeByObjectTypeByObjectIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -81,8 +55,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | GetTranscodeByObjectTypeByObjectIdResponseDefaultType0
-    | GetTranscodeByObjectTypeByObjectIdResponseDefaultType1
+    | GetTranscodeByObjectTypeByObjectIdResponseDefault
     | TranscodeESQueueRecordsSchema
 ]:
     return Response(
@@ -100,8 +73,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
 ) -> Response[
     Any
-    | GetTranscodeByObjectTypeByObjectIdResponseDefaultType0
-    | GetTranscodeByObjectTypeByObjectIdResponseDefaultType1
+    | GetTranscodeByObjectTypeByObjectIdResponseDefault
     | TranscodeESQueueRecordsSchema
 ]:
     """Returns list of transcode queue records by object_id
@@ -119,7 +91,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetTranscodeByObjectTypeByObjectIdResponseDefaultType0 | GetTranscodeByObjectTypeByObjectIdResponseDefaultType1 | TranscodeESQueueRecordsSchema]
+        Response[Any | GetTranscodeByObjectTypeByObjectIdResponseDefault | TranscodeESQueueRecordsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -141,8 +113,7 @@ def sync(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetTranscodeByObjectTypeByObjectIdResponseDefaultType0
-    | GetTranscodeByObjectTypeByObjectIdResponseDefaultType1
+    | GetTranscodeByObjectTypeByObjectIdResponseDefault
     | TranscodeESQueueRecordsSchema
     | None
 ):
@@ -161,7 +132,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetTranscodeByObjectTypeByObjectIdResponseDefaultType0 | GetTranscodeByObjectTypeByObjectIdResponseDefaultType1 | TranscodeESQueueRecordsSchema
+        Any | GetTranscodeByObjectTypeByObjectIdResponseDefault | TranscodeESQueueRecordsSchema
     """
 
     return sync_detailed(
@@ -178,8 +149,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
 ) -> Response[
     Any
-    | GetTranscodeByObjectTypeByObjectIdResponseDefaultType0
-    | GetTranscodeByObjectTypeByObjectIdResponseDefaultType1
+    | GetTranscodeByObjectTypeByObjectIdResponseDefault
     | TranscodeESQueueRecordsSchema
 ]:
     """Returns list of transcode queue records by object_id
@@ -197,7 +167,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetTranscodeByObjectTypeByObjectIdResponseDefaultType0 | GetTranscodeByObjectTypeByObjectIdResponseDefaultType1 | TranscodeESQueueRecordsSchema]
+        Response[Any | GetTranscodeByObjectTypeByObjectIdResponseDefault | TranscodeESQueueRecordsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -217,8 +187,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetTranscodeByObjectTypeByObjectIdResponseDefaultType0
-    | GetTranscodeByObjectTypeByObjectIdResponseDefaultType1
+    | GetTranscodeByObjectTypeByObjectIdResponseDefault
     | TranscodeESQueueRecordsSchema
     | None
 ):
@@ -237,7 +206,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetTranscodeByObjectTypeByObjectIdResponseDefaultType0 | GetTranscodeByObjectTypeByObjectIdResponseDefaultType1 | TranscodeESQueueRecordsSchema
+        Any | GetTranscodeByObjectTypeByObjectIdResponseDefault | TranscodeESQueueRecordsSchema
     """
 
     return (

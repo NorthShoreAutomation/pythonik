@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.metadata_values_schema import MetadataValuesSchema
-from ...models.put_by_object_type_by_object_id_views_by_view_id_response_default_type_0 import (
-    PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0,
-)
-from ...models.put_by_object_type_by_object_id_views_by_view_id_response_default_type_1 import (
-    PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1,
+from ...models.put_by_object_type_by_object_id_views_by_view_id_response_default import (
+    PutByObjectTypeByObjectIdViewsByViewIdResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -54,12 +51,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | MetadataValuesSchema
-    | PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-    | PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
-):
+) -> Any | MetadataValuesSchema | PutByObjectTypeByObjectIdViewsByViewIdResponseDefault:
     if response.status_code == 200:
         response_200 = MetadataValuesSchema.from_dict(response.json())
 
@@ -77,33 +69,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-        | PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutByObjectTypeByObjectIdViewsByViewIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -111,10 +79,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | MetadataValuesSchema
-    | PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-    | PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
+    Any | MetadataValuesSchema | PutByObjectTypeByObjectIdViewsByViewIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -134,10 +99,7 @@ def sync_detailed(
     check_if_subclip: bool | Unset = UNSET,
     ignore_unchanged: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | MetadataValuesSchema
-    | PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-    | PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
+    Any | MetadataValuesSchema | PutByObjectTypeByObjectIdViewsByViewIdResponseDefault
 ]:
     """Edit view metadata values for a single object
 
@@ -158,7 +120,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | MetadataValuesSchema | PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0 | PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1]
+        Response[Any | MetadataValuesSchema | PutByObjectTypeByObjectIdViewsByViewIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -189,8 +151,7 @@ def sync(
 ) -> (
     Any
     | MetadataValuesSchema
-    | PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-    | PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
+    | PutByObjectTypeByObjectIdViewsByViewIdResponseDefault
     | None
 ):
     """Edit view metadata values for a single object
@@ -212,7 +173,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | MetadataValuesSchema | PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0 | PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
+        Any | MetadataValuesSchema | PutByObjectTypeByObjectIdViewsByViewIdResponseDefault
     """
 
     return sync_detailed(
@@ -236,10 +197,7 @@ async def asyncio_detailed(
     check_if_subclip: bool | Unset = UNSET,
     ignore_unchanged: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | MetadataValuesSchema
-    | PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-    | PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
+    Any | MetadataValuesSchema | PutByObjectTypeByObjectIdViewsByViewIdResponseDefault
 ]:
     """Edit view metadata values for a single object
 
@@ -260,7 +218,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | MetadataValuesSchema | PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0 | PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1]
+        Response[Any | MetadataValuesSchema | PutByObjectTypeByObjectIdViewsByViewIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -289,8 +247,7 @@ async def asyncio(
 ) -> (
     Any
     | MetadataValuesSchema
-    | PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0
-    | PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
+    | PutByObjectTypeByObjectIdViewsByViewIdResponseDefault
     | None
 ):
     """Edit view metadata values for a single object
@@ -312,7 +269,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | MetadataValuesSchema | PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType0 | PutByObjectTypeByObjectIdViewsByViewIdResponseDefaultType1
+        Any | MetadataValuesSchema | PutByObjectTypeByObjectIdViewsByViewIdResponseDefault
     """
 
     return (

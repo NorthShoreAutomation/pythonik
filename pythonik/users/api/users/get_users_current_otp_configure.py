@@ -7,11 +7,8 @@ from ...client import AuthenticatedClient, Client
 from ...models.get_users_current_otp_configure_response_200 import (
     GetUsersCurrentOtpConfigureResponse200,
 )
-from ...models.get_users_current_otp_configure_response_default_type_0 import (
-    GetUsersCurrentOtpConfigureResponseDefaultType0,
-)
-from ...models.get_users_current_otp_configure_response_default_type_1 import (
-    GetUsersCurrentOtpConfigureResponseDefaultType1,
+from ...models.get_users_current_otp_configure_response_default import (
+    GetUsersCurrentOtpConfigureResponseDefault,
 )
 from ...types import Response
 
@@ -31,8 +28,7 @@ def _parse_response(
 ) -> (
     Any
     | GetUsersCurrentOtpConfigureResponse200
-    | GetUsersCurrentOtpConfigureResponseDefaultType0
-    | GetUsersCurrentOtpConfigureResponseDefaultType1
+    | GetUsersCurrentOtpConfigureResponseDefault
 ):
     if response.status_code == 200:
         response_200 = GetUsersCurrentOtpConfigureResponse200.from_dict(response.json())
@@ -47,31 +43,9 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetUsersCurrentOtpConfigureResponseDefaultType0
-        | GetUsersCurrentOtpConfigureResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetUsersCurrentOtpConfigureResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetUsersCurrentOtpConfigureResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetUsersCurrentOtpConfigureResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -81,8 +55,7 @@ def _build_response(
 ) -> Response[
     Any
     | GetUsersCurrentOtpConfigureResponse200
-    | GetUsersCurrentOtpConfigureResponseDefaultType0
-    | GetUsersCurrentOtpConfigureResponseDefaultType1
+    | GetUsersCurrentOtpConfigureResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -98,8 +71,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | GetUsersCurrentOtpConfigureResponse200
-    | GetUsersCurrentOtpConfigureResponseDefaultType0
-    | GetUsersCurrentOtpConfigureResponseDefaultType1
+    | GetUsersCurrentOtpConfigureResponseDefault
 ]:
     """Get current otp settings.
 
@@ -108,7 +80,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetUsersCurrentOtpConfigureResponse200 | GetUsersCurrentOtpConfigureResponseDefaultType0 | GetUsersCurrentOtpConfigureResponseDefaultType1]
+        Response[Any | GetUsersCurrentOtpConfigureResponse200 | GetUsersCurrentOtpConfigureResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -126,8 +98,7 @@ def sync(
 ) -> (
     Any
     | GetUsersCurrentOtpConfigureResponse200
-    | GetUsersCurrentOtpConfigureResponseDefaultType0
-    | GetUsersCurrentOtpConfigureResponseDefaultType1
+    | GetUsersCurrentOtpConfigureResponseDefault
     | None
 ):
     """Get current otp settings.
@@ -137,7 +108,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetUsersCurrentOtpConfigureResponse200 | GetUsersCurrentOtpConfigureResponseDefaultType0 | GetUsersCurrentOtpConfigureResponseDefaultType1
+        Any | GetUsersCurrentOtpConfigureResponse200 | GetUsersCurrentOtpConfigureResponseDefault
     """
 
     return sync_detailed(
@@ -151,8 +122,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | GetUsersCurrentOtpConfigureResponse200
-    | GetUsersCurrentOtpConfigureResponseDefaultType0
-    | GetUsersCurrentOtpConfigureResponseDefaultType1
+    | GetUsersCurrentOtpConfigureResponseDefault
 ]:
     """Get current otp settings.
 
@@ -161,7 +131,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetUsersCurrentOtpConfigureResponse200 | GetUsersCurrentOtpConfigureResponseDefaultType0 | GetUsersCurrentOtpConfigureResponseDefaultType1]
+        Response[Any | GetUsersCurrentOtpConfigureResponse200 | GetUsersCurrentOtpConfigureResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -177,8 +147,7 @@ async def asyncio(
 ) -> (
     Any
     | GetUsersCurrentOtpConfigureResponse200
-    | GetUsersCurrentOtpConfigureResponseDefaultType0
-    | GetUsersCurrentOtpConfigureResponseDefaultType1
+    | GetUsersCurrentOtpConfigureResponseDefault
     | None
 ):
     """Get current otp settings.
@@ -188,7 +157,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetUsersCurrentOtpConfigureResponse200 | GetUsersCurrentOtpConfigureResponseDefaultType0 | GetUsersCurrentOtpConfigureResponseDefaultType1
+        Any | GetUsersCurrentOtpConfigureResponse200 | GetUsersCurrentOtpConfigureResponseDefault
     """
 
     return (

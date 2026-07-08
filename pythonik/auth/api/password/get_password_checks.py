@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_password_checks_response_default_type_0 import (
-    GetPasswordChecksResponseDefaultType0,
-)
-from ...models.get_password_checks_response_default_type_1 import (
-    GetPasswordChecksResponseDefaultType1,
+from ...models.get_password_checks_response_default import (
+    GetPasswordChecksResponseDefault,
 )
 from ...models.password_checks_schema import PasswordChecksSchema
 from ...types import Response
@@ -26,12 +23,7 @@ def _get_kwargs() -> dict[str, Any]:
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetPasswordChecksResponseDefaultType0
-    | GetPasswordChecksResponseDefaultType1
-    | PasswordChecksSchema
-):
+) -> Any | GetPasswordChecksResponseDefault | PasswordChecksSchema:
     if response.status_code == 200:
         response_200 = PasswordChecksSchema.from_dict(response.json())
 
@@ -45,38 +37,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> GetPasswordChecksResponseDefaultType0 | GetPasswordChecksResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetPasswordChecksResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetPasswordChecksResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetPasswordChecksResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetPasswordChecksResponseDefaultType0
-    | GetPasswordChecksResponseDefaultType1
-    | PasswordChecksSchema
-]:
+) -> Response[Any | GetPasswordChecksResponseDefault | PasswordChecksSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -88,12 +56,7 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetPasswordChecksResponseDefaultType0
-    | GetPasswordChecksResponseDefaultType1
-    | PasswordChecksSchema
-]:
+) -> Response[Any | GetPasswordChecksResponseDefault | PasswordChecksSchema]:
     """Returns a list of password checks required for the password to be safe
 
     Raises:
@@ -101,7 +64,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetPasswordChecksResponseDefaultType0 | GetPasswordChecksResponseDefaultType1 | PasswordChecksSchema]
+        Response[Any | GetPasswordChecksResponseDefault | PasswordChecksSchema]
     """
 
     kwargs = _get_kwargs()
@@ -116,13 +79,7 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetPasswordChecksResponseDefaultType0
-    | GetPasswordChecksResponseDefaultType1
-    | PasswordChecksSchema
-    | None
-):
+) -> Any | GetPasswordChecksResponseDefault | PasswordChecksSchema | None:
     """Returns a list of password checks required for the password to be safe
 
     Raises:
@@ -130,7 +87,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetPasswordChecksResponseDefaultType0 | GetPasswordChecksResponseDefaultType1 | PasswordChecksSchema
+        Any | GetPasswordChecksResponseDefault | PasswordChecksSchema
     """
 
     return sync_detailed(
@@ -141,12 +98,7 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetPasswordChecksResponseDefaultType0
-    | GetPasswordChecksResponseDefaultType1
-    | PasswordChecksSchema
-]:
+) -> Response[Any | GetPasswordChecksResponseDefault | PasswordChecksSchema]:
     """Returns a list of password checks required for the password to be safe
 
     Raises:
@@ -154,7 +106,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetPasswordChecksResponseDefaultType0 | GetPasswordChecksResponseDefaultType1 | PasswordChecksSchema]
+        Response[Any | GetPasswordChecksResponseDefault | PasswordChecksSchema]
     """
 
     kwargs = _get_kwargs()
@@ -167,13 +119,7 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetPasswordChecksResponseDefaultType0
-    | GetPasswordChecksResponseDefaultType1
-    | PasswordChecksSchema
-    | None
-):
+) -> Any | GetPasswordChecksResponseDefault | PasswordChecksSchema | None:
     """Returns a list of password checks required for the password to be safe
 
     Raises:
@@ -181,7 +127,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetPasswordChecksResponseDefaultType0 | GetPasswordChecksResponseDefaultType1 | PasswordChecksSchema
+        Any | GetPasswordChecksResponseDefault | PasswordChecksSchema
     """
 
     return (

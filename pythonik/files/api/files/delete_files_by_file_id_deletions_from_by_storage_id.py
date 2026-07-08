@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_files_by_file_id_deletions_from_by_storage_id_response_default_type_0 import (
-    DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType0,
-)
-from ...models.delete_files_by_file_id_deletions_from_by_storage_id_response_default_type_1 import (
-    DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType1,
+from ...models.delete_files_by_file_id_deletions_from_by_storage_id_response_default import (
+    DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefault,
 )
 from ...types import Response
 
@@ -32,11 +29,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType0
-    | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType1
-):
+) -> Any | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -45,44 +38,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType0
-        | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType0
-    | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -96,11 +63,7 @@ def sync_detailed(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType0
-    | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefault]:
     """Delete file deletion job after handling it
 
 
@@ -116,7 +79,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType0 | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType1]
+        Response[Any | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -136,12 +99,7 @@ def sync(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType0
-    | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefault | None:
     """Delete file deletion job after handling it
 
 
@@ -157,7 +115,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType0 | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType1
+        Any | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefault
     """
 
     return sync_detailed(
@@ -172,11 +130,7 @@ async def asyncio_detailed(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType0
-    | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefault]:
     """Delete file deletion job after handling it
 
 
@@ -192,7 +146,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType0 | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType1]
+        Response[Any | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -210,12 +164,7 @@ async def asyncio(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType0
-    | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefault | None:
     """Delete file deletion job after handling it
 
 
@@ -231,7 +180,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType0 | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefaultType1
+        Any | DeleteFilesByFileIdDeletionsFromByStorageIdResponseDefault
     """
 
     return (

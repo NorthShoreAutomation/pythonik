@@ -4,12 +4,7 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_auth_token_response_default_type_0 import (
-    DeleteAuthTokenResponseDefaultType0,
-)
-from ...models.delete_auth_token_response_default_type_1 import (
-    DeleteAuthTokenResponseDefaultType1,
-)
+from ...models.delete_auth_token_response_default import DeleteAuthTokenResponseDefault
 from ...types import Response
 
 
@@ -25,10 +20,14 @@ def _get_kwargs() -> dict[str, Any]:
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Any | DeleteAuthTokenResponseDefaultType0 | DeleteAuthTokenResponseDefaultType1:
+) -> Any | DeleteAuthTokenResponseDefault:
     if response.status_code == 200:
         response_200 = cast(Any, None)
         return response_200
+
+    if response.status_code == 204:
+        response_204 = cast(Any, None)
+        return response_204
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -38,35 +37,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> DeleteAuthTokenResponseDefaultType0 | DeleteAuthTokenResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteAuthTokenResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = DeleteAuthTokenResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteAuthTokenResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any | DeleteAuthTokenResponseDefaultType0 | DeleteAuthTokenResponseDefaultType1
-]:
+) -> Response[Any | DeleteAuthTokenResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -78,9 +56,7 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any | DeleteAuthTokenResponseDefaultType0 | DeleteAuthTokenResponseDefaultType1
-]:
+) -> Response[Any | DeleteAuthTokenResponseDefault]:
     """Revoke token
 
     Raises:
@@ -88,7 +64,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAuthTokenResponseDefaultType0 | DeleteAuthTokenResponseDefaultType1]
+        Response[Any | DeleteAuthTokenResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -103,12 +79,7 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteAuthTokenResponseDefaultType0
-    | DeleteAuthTokenResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAuthTokenResponseDefault | None:
     """Revoke token
 
     Raises:
@@ -116,7 +87,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAuthTokenResponseDefaultType0 | DeleteAuthTokenResponseDefaultType1
+        Any | DeleteAuthTokenResponseDefault
     """
 
     return sync_detailed(
@@ -127,9 +98,7 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any | DeleteAuthTokenResponseDefaultType0 | DeleteAuthTokenResponseDefaultType1
-]:
+) -> Response[Any | DeleteAuthTokenResponseDefault]:
     """Revoke token
 
     Raises:
@@ -137,7 +106,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAuthTokenResponseDefaultType0 | DeleteAuthTokenResponseDefaultType1]
+        Response[Any | DeleteAuthTokenResponseDefault]
     """
 
     kwargs = _get_kwargs()
@@ -150,12 +119,7 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteAuthTokenResponseDefaultType0
-    | DeleteAuthTokenResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAuthTokenResponseDefault | None:
     """Revoke token
 
     Raises:
@@ -163,7 +127,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAuthTokenResponseDefaultType0 | DeleteAuthTokenResponseDefaultType1
+        Any | DeleteAuthTokenResponseDefault
     """
 
     return (

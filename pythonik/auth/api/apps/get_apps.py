@@ -5,14 +5,13 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.apps_schema import AppsSchema
-from ...models.get_apps_response_default_type_0 import GetAppsResponseDefaultType0
-from ...models.get_apps_response_default_type_1 import GetAppsResponseDefaultType1
+from ...models.get_apps_response_default import GetAppsResponseDefault
 from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     *,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> dict[str, Any]:
 
@@ -35,7 +34,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Any | AppsSchema | GetAppsResponseDefaultType0 | GetAppsResponseDefaultType1:
+) -> Any | AppsSchema | GetAppsResponseDefault:
     if response.status_code == 200:
         response_200 = AppsSchema.from_dict(response.json())
 
@@ -45,33 +44,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> GetAppsResponseDefaultType0 | GetAppsResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetAppsResponseDefaultType0.from_dict(data)
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetAppsResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAppsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any | AppsSchema | GetAppsResponseDefaultType0 | GetAppsResponseDefaultType1
-]:
+) -> Response[Any | AppsSchema | GetAppsResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -83,11 +63,9 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> Response[
-    Any | AppsSchema | GetAppsResponseDefaultType0 | GetAppsResponseDefaultType1
-]:
+) -> Response[Any | AppsSchema | GetAppsResponseDefault]:
     """List of apps
 
 
@@ -95,7 +73,7 @@ def sync_detailed(
      - can_read_apps
 
     Args:
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -103,7 +81,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AppsSchema | GetAppsResponseDefaultType0 | GetAppsResponseDefaultType1]
+        Response[Any | AppsSchema | GetAppsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -121,11 +99,9 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> (
-    Any | AppsSchema | GetAppsResponseDefaultType0 | GetAppsResponseDefaultType1 | None
-):
+) -> Any | AppsSchema | GetAppsResponseDefault | None:
     """List of apps
 
 
@@ -133,7 +109,7 @@ def sync(
      - can_read_apps
 
     Args:
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -141,7 +117,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AppsSchema | GetAppsResponseDefaultType0 | GetAppsResponseDefaultType1
+        Any | AppsSchema | GetAppsResponseDefault
     """
 
     return sync_detailed(
@@ -154,11 +130,9 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> Response[
-    Any | AppsSchema | GetAppsResponseDefaultType0 | GetAppsResponseDefaultType1
-]:
+) -> Response[Any | AppsSchema | GetAppsResponseDefault]:
     """List of apps
 
 
@@ -166,7 +140,7 @@ async def asyncio_detailed(
      - can_read_apps
 
     Args:
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -174,7 +148,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AppsSchema | GetAppsResponseDefaultType0 | GetAppsResponseDefaultType1]
+        Response[Any | AppsSchema | GetAppsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -190,11 +164,9 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
+    per_page: int | Unset = UNSET,
     last_id: str | Unset = UNSET,
-) -> (
-    Any | AppsSchema | GetAppsResponseDefaultType0 | GetAppsResponseDefaultType1 | None
-):
+) -> Any | AppsSchema | GetAppsResponseDefault | None:
     """List of apps
 
 
@@ -202,7 +174,7 @@ async def asyncio(
      - can_read_apps
 
     Args:
-        per_page (int | Unset):  Default: 10.
+        per_page (int | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -210,7 +182,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AppsSchema | GetAppsResponseDefaultType0 | GetAppsResponseDefaultType1
+        Any | AppsSchema | GetAppsResponseDefault
     """
 
     return (

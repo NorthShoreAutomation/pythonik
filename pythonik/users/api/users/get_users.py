@@ -4,16 +4,15 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_users_response_default_type_0 import GetUsersResponseDefaultType0
-from ...models.get_users_response_default_type_1 import GetUsersResponseDefaultType1
+from ...models.get_users_response_default import GetUsersResponseDefault
 from ...models.users_schema import UsersSchema
 from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     *,
-    page: int | Unset = 1,
-    per_page: int | Unset = 10,
+    page: int | Unset = UNSET,
+    per_page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
     date_created: str | Unset = UNSET,
     date_modified: str | Unset = UNSET,
@@ -83,7 +82,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Any | GetUsersResponseDefaultType0 | GetUsersResponseDefaultType1 | UsersSchema:
+) -> Any | GetUsersResponseDefault | UsersSchema:
     if response.status_code == 200:
         response_200 = UsersSchema.from_dict(response.json())
 
@@ -101,33 +100,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> GetUsersResponseDefaultType0 | GetUsersResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetUsersResponseDefaultType0.from_dict(data)
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetUsersResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetUsersResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any | GetUsersResponseDefaultType0 | GetUsersResponseDefaultType1 | UsersSchema
-]:
+) -> Response[Any | GetUsersResponseDefault | UsersSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -139,8 +119,8 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-    page: int | Unset = 1,
-    per_page: int | Unset = 10,
+    page: int | Unset = UNSET,
+    per_page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
     date_created: str | Unset = UNSET,
     date_modified: str | Unset = UNSET,
@@ -157,9 +137,7 @@ def sync_detailed(
     status: str | Unset = UNSET,
     query: str | Unset = UNSET,
     ids: str | Unset = UNSET,
-) -> Response[
-    Any | GetUsersResponseDefaultType0 | GetUsersResponseDefaultType1 | UsersSchema
-]:
+) -> Response[Any | GetUsersResponseDefault | UsersSchema]:
     """List of users with details
 
 
@@ -167,8 +145,8 @@ def sync_detailed(
      - can_read_users
 
     Args:
-        page (int | Unset):  Default: 1.
-        per_page (int | Unset):  Default: 10.
+        page (int | Unset):
+        per_page (int | Unset):
         sort (str | Unset):
         date_created (str | Unset):
         date_modified (str | Unset):
@@ -191,7 +169,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetUsersResponseDefaultType0 | GetUsersResponseDefaultType1 | UsersSchema]
+        Response[Any | GetUsersResponseDefault | UsersSchema]
     """
 
     kwargs = _get_kwargs(
@@ -225,8 +203,8 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-    page: int | Unset = 1,
-    per_page: int | Unset = 10,
+    page: int | Unset = UNSET,
+    per_page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
     date_created: str | Unset = UNSET,
     date_modified: str | Unset = UNSET,
@@ -243,13 +221,7 @@ def sync(
     status: str | Unset = UNSET,
     query: str | Unset = UNSET,
     ids: str | Unset = UNSET,
-) -> (
-    Any
-    | GetUsersResponseDefaultType0
-    | GetUsersResponseDefaultType1
-    | UsersSchema
-    | None
-):
+) -> Any | GetUsersResponseDefault | UsersSchema | None:
     """List of users with details
 
 
@@ -257,8 +229,8 @@ def sync(
      - can_read_users
 
     Args:
-        page (int | Unset):  Default: 1.
-        per_page (int | Unset):  Default: 10.
+        page (int | Unset):
+        per_page (int | Unset):
         sort (str | Unset):
         date_created (str | Unset):
         date_modified (str | Unset):
@@ -281,7 +253,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetUsersResponseDefaultType0 | GetUsersResponseDefaultType1 | UsersSchema
+        Any | GetUsersResponseDefault | UsersSchema
     """
 
     return sync_detailed(
@@ -310,8 +282,8 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-    page: int | Unset = 1,
-    per_page: int | Unset = 10,
+    page: int | Unset = UNSET,
+    per_page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
     date_created: str | Unset = UNSET,
     date_modified: str | Unset = UNSET,
@@ -328,9 +300,7 @@ async def asyncio_detailed(
     status: str | Unset = UNSET,
     query: str | Unset = UNSET,
     ids: str | Unset = UNSET,
-) -> Response[
-    Any | GetUsersResponseDefaultType0 | GetUsersResponseDefaultType1 | UsersSchema
-]:
+) -> Response[Any | GetUsersResponseDefault | UsersSchema]:
     """List of users with details
 
 
@@ -338,8 +308,8 @@ async def asyncio_detailed(
      - can_read_users
 
     Args:
-        page (int | Unset):  Default: 1.
-        per_page (int | Unset):  Default: 10.
+        page (int | Unset):
+        per_page (int | Unset):
         sort (str | Unset):
         date_created (str | Unset):
         date_modified (str | Unset):
@@ -362,7 +332,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetUsersResponseDefaultType0 | GetUsersResponseDefaultType1 | UsersSchema]
+        Response[Any | GetUsersResponseDefault | UsersSchema]
     """
 
     kwargs = _get_kwargs(
@@ -394,8 +364,8 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-    page: int | Unset = 1,
-    per_page: int | Unset = 10,
+    page: int | Unset = UNSET,
+    per_page: int | Unset = UNSET,
     sort: str | Unset = UNSET,
     date_created: str | Unset = UNSET,
     date_modified: str | Unset = UNSET,
@@ -412,13 +382,7 @@ async def asyncio(
     status: str | Unset = UNSET,
     query: str | Unset = UNSET,
     ids: str | Unset = UNSET,
-) -> (
-    Any
-    | GetUsersResponseDefaultType0
-    | GetUsersResponseDefaultType1
-    | UsersSchema
-    | None
-):
+) -> Any | GetUsersResponseDefault | UsersSchema | None:
     """List of users with details
 
 
@@ -426,8 +390,8 @@ async def asyncio(
      - can_read_users
 
     Args:
-        page (int | Unset):  Default: 1.
-        per_page (int | Unset):  Default: 10.
+        page (int | Unset):
+        per_page (int | Unset):
         sort (str | Unset):
         date_created (str | Unset):
         date_modified (str | Unset):
@@ -450,7 +414,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetUsersResponseDefaultType0 | GetUsersResponseDefaultType1 | UsersSchema
+        Any | GetUsersResponseDefault | UsersSchema
     """
 
     return (

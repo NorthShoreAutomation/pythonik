@@ -5,12 +5,7 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.jobs_priority_schema import JobsPrioritySchema
-from ...models.put_jobs_priority_response_default_type_0 import (
-    PutJobsPriorityResponseDefaultType0,
-)
-from ...models.put_jobs_priority_response_default_type_1 import (
-    PutJobsPriorityResponseDefaultType1,
-)
+from ...models.put_jobs_priority_response_default import PutJobsPriorityResponseDefault
 from ...types import Response
 
 
@@ -35,10 +30,11 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Any | PutJobsPriorityResponseDefaultType0 | PutJobsPriorityResponseDefaultType1:
-    if response.status_code == 201:
-        response_201 = cast(Any, None)
-        return response_201
+) -> Any | JobsPrioritySchema | PutJobsPriorityResponseDefault:
+    if response.status_code == 200:
+        response_200 = JobsPrioritySchema.from_dict(response.json())
+
+        return response_200
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -52,35 +48,14 @@ def _parse_response(
         response_403 = cast(Any, None)
         return response_403
 
-    def _parse_response_default(
-        data: object,
-    ) -> PutJobsPriorityResponseDefaultType0 | PutJobsPriorityResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PutJobsPriorityResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PutJobsPriorityResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutJobsPriorityResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any | PutJobsPriorityResponseDefaultType0 | PutJobsPriorityResponseDefaultType1
-]:
+) -> Response[Any | JobsPrioritySchema | PutJobsPriorityResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -93,9 +68,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: JobsPrioritySchema,
-) -> Response[
-    Any | PutJobsPriorityResponseDefaultType0 | PutJobsPriorityResponseDefaultType1
-]:
+) -> Response[Any | JobsPrioritySchema | PutJobsPriorityResponseDefault]:
     """Change jobs priority
 
 
@@ -110,7 +83,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutJobsPriorityResponseDefaultType0 | PutJobsPriorityResponseDefaultType1]
+        Response[Any | JobsPrioritySchema | PutJobsPriorityResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -128,12 +101,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: JobsPrioritySchema,
-) -> (
-    Any
-    | PutJobsPriorityResponseDefaultType0
-    | PutJobsPriorityResponseDefaultType1
-    | None
-):
+) -> Any | JobsPrioritySchema | PutJobsPriorityResponseDefault | None:
     """Change jobs priority
 
 
@@ -148,7 +116,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutJobsPriorityResponseDefaultType0 | PutJobsPriorityResponseDefaultType1
+        Any | JobsPrioritySchema | PutJobsPriorityResponseDefault
     """
 
     return sync_detailed(
@@ -161,9 +129,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: JobsPrioritySchema,
-) -> Response[
-    Any | PutJobsPriorityResponseDefaultType0 | PutJobsPriorityResponseDefaultType1
-]:
+) -> Response[Any | JobsPrioritySchema | PutJobsPriorityResponseDefault]:
     """Change jobs priority
 
 
@@ -178,7 +144,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutJobsPriorityResponseDefaultType0 | PutJobsPriorityResponseDefaultType1]
+        Response[Any | JobsPrioritySchema | PutJobsPriorityResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -194,12 +160,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: JobsPrioritySchema,
-) -> (
-    Any
-    | PutJobsPriorityResponseDefaultType0
-    | PutJobsPriorityResponseDefaultType1
-    | None
-):
+) -> Any | JobsPrioritySchema | PutJobsPriorityResponseDefault | None:
     """Change jobs priority
 
 
@@ -214,7 +175,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutJobsPriorityResponseDefaultType0 | PutJobsPriorityResponseDefaultType1
+        Any | JobsPrioritySchema | PutJobsPriorityResponseDefault
     """
 
     return (

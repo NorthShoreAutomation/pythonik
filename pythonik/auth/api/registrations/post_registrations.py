@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_registrations_response_default_type_0 import (
-    PostRegistrationsResponseDefaultType0,
-)
-from ...models.post_registrations_response_default_type_1 import (
-    PostRegistrationsResponseDefaultType1,
+from ...models.post_registrations_response_default import (
+    PostRegistrationsResponseDefault,
 )
 from ...models.registration_schema import RegistrationSchema
 from ...types import Response
@@ -35,12 +32,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostRegistrationsResponseDefaultType0
-    | PostRegistrationsResponseDefaultType1
-    | RegistrationSchema
-):
+) -> Any | PostRegistrationsResponseDefault | RegistrationSchema:
     if response.status_code == 201:
         response_201 = RegistrationSchema.from_dict(response.json())
 
@@ -54,38 +46,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> PostRegistrationsResponseDefaultType0 | PostRegistrationsResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostRegistrationsResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostRegistrationsResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostRegistrationsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostRegistrationsResponseDefaultType0
-    | PostRegistrationsResponseDefaultType1
-    | RegistrationSchema
-]:
+) -> Response[Any | PostRegistrationsResponseDefault | RegistrationSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -98,12 +66,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: RegistrationSchema,
-) -> Response[
-    Any
-    | PostRegistrationsResponseDefaultType0
-    | PostRegistrationsResponseDefaultType1
-    | RegistrationSchema
-]:
+) -> Response[Any | PostRegistrationsResponseDefault | RegistrationSchema]:
     """Create a new registration
 
     Args:
@@ -114,7 +77,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostRegistrationsResponseDefaultType0 | PostRegistrationsResponseDefaultType1 | RegistrationSchema]
+        Response[Any | PostRegistrationsResponseDefault | RegistrationSchema]
     """
 
     kwargs = _get_kwargs(
@@ -132,13 +95,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: RegistrationSchema,
-) -> (
-    Any
-    | PostRegistrationsResponseDefaultType0
-    | PostRegistrationsResponseDefaultType1
-    | RegistrationSchema
-    | None
-):
+) -> Any | PostRegistrationsResponseDefault | RegistrationSchema | None:
     """Create a new registration
 
     Args:
@@ -149,7 +106,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostRegistrationsResponseDefaultType0 | PostRegistrationsResponseDefaultType1 | RegistrationSchema
+        Any | PostRegistrationsResponseDefault | RegistrationSchema
     """
 
     return sync_detailed(
@@ -162,12 +119,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: RegistrationSchema,
-) -> Response[
-    Any
-    | PostRegistrationsResponseDefaultType0
-    | PostRegistrationsResponseDefaultType1
-    | RegistrationSchema
-]:
+) -> Response[Any | PostRegistrationsResponseDefault | RegistrationSchema]:
     """Create a new registration
 
     Args:
@@ -178,7 +130,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostRegistrationsResponseDefaultType0 | PostRegistrationsResponseDefaultType1 | RegistrationSchema]
+        Response[Any | PostRegistrationsResponseDefault | RegistrationSchema]
     """
 
     kwargs = _get_kwargs(
@@ -194,13 +146,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: RegistrationSchema,
-) -> (
-    Any
-    | PostRegistrationsResponseDefaultType0
-    | PostRegistrationsResponseDefaultType1
-    | RegistrationSchema
-    | None
-):
+) -> Any | PostRegistrationsResponseDefault | RegistrationSchema | None:
     """Create a new registration
 
     Args:
@@ -211,7 +157,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostRegistrationsResponseDefaultType0 | PostRegistrationsResponseDefaultType1 | RegistrationSchema
+        Any | PostRegistrationsResponseDefault | RegistrationSchema
     """
 
     return (

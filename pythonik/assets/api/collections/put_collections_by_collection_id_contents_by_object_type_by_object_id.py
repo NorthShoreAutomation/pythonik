@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.collection_content_ordering_schema import CollectionContentOrderingSchema
-from ...models.put_collections_by_collection_id_contents_by_object_type_by_object_id_response_default_type_0 import (
-    PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType0,
-)
-from ...models.put_collections_by_collection_id_contents_by_object_type_by_object_id_response_default_type_1 import (
-    PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType1,
+from ...models.put_collections_by_collection_id_contents_by_object_type_by_object_id_response_default import (
+    PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefault,
 )
 from ...types import Response
 
@@ -43,11 +40,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType0
-    | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType1
-):
+) -> Any | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefault:
     if response.status_code == 200:
         response_200 = cast(Any, None)
         return response_200
@@ -64,31 +57,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType0
-        | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -96,9 +67,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType0
-    | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType1
+    Any | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -116,9 +85,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: CollectionContentOrderingSchema,
 ) -> Response[
-    Any
-    | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType0
-    | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType1
+    Any | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefault
 ]:
     """Update an order of a particular content object in a collection
 
@@ -137,7 +104,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType0 | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType1]
+        Response[Any | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -163,8 +130,7 @@ def sync(
     body: CollectionContentOrderingSchema,
 ) -> (
     Any
-    | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType0
-    | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType1
+    | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefault
     | None
 ):
     """Update an order of a particular content object in a collection
@@ -184,7 +150,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType0 | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType1
+        Any | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefault
     """
 
     return sync_detailed(
@@ -204,9 +170,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: CollectionContentOrderingSchema,
 ) -> Response[
-    Any
-    | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType0
-    | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType1
+    Any | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefault
 ]:
     """Update an order of a particular content object in a collection
 
@@ -225,7 +189,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType0 | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType1]
+        Response[Any | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -249,8 +213,7 @@ async def asyncio(
     body: CollectionContentOrderingSchema,
 ) -> (
     Any
-    | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType0
-    | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType1
+    | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefault
     | None
 ):
     """Update an order of a particular content object in a collection
@@ -270,7 +233,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType0 | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefaultType1
+        Any | PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefault
     """
 
     return (

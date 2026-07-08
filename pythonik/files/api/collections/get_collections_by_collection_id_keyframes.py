@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.collection_keyframes_schema import CollectionKeyframesSchema
-from ...models.get_collections_by_collection_id_keyframes_response_default_type_0 import (
-    GetCollectionsByCollectionIdKeyframesResponseDefaultType0,
-)
-from ...models.get_collections_by_collection_id_keyframes_response_default_type_1 import (
-    GetCollectionsByCollectionIdKeyframesResponseDefaultType1,
+from ...models.get_collections_by_collection_id_keyframes_response_default import (
+    GetCollectionsByCollectionIdKeyframesResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -18,8 +15,8 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     collection_id: str,
     *,
-    per_page: int | Unset = 10,
-    generate_signed_url: bool | Unset = True,
+    per_page: int | Unset = UNSET,
+    generate_signed_url: bool | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> dict[str, Any]:
 
@@ -49,8 +46,7 @@ def _parse_response(
 ) -> (
     Any
     | CollectionKeyframesSchema
-    | GetCollectionsByCollectionIdKeyframesResponseDefaultType0
-    | GetCollectionsByCollectionIdKeyframesResponseDefaultType1
+    | GetCollectionsByCollectionIdKeyframesResponseDefault
 ):
     if response.status_code == 200:
         response_200 = CollectionKeyframesSchema.from_dict(response.json())
@@ -65,33 +61,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetCollectionsByCollectionIdKeyframesResponseDefaultType0
-        | GetCollectionsByCollectionIdKeyframesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetCollectionsByCollectionIdKeyframesResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetCollectionsByCollectionIdKeyframesResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetCollectionsByCollectionIdKeyframesResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -101,8 +73,7 @@ def _build_response(
 ) -> Response[
     Any
     | CollectionKeyframesSchema
-    | GetCollectionsByCollectionIdKeyframesResponseDefaultType0
-    | GetCollectionsByCollectionIdKeyframesResponseDefaultType1
+    | GetCollectionsByCollectionIdKeyframesResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -116,14 +87,13 @@ def sync_detailed(
     collection_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
-    generate_signed_url: bool | Unset = True,
+    per_page: int | Unset = UNSET,
+    generate_signed_url: bool | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> Response[
     Any
     | CollectionKeyframesSchema
-    | GetCollectionsByCollectionIdKeyframesResponseDefaultType0
-    | GetCollectionsByCollectionIdKeyframesResponseDefaultType1
+    | GetCollectionsByCollectionIdKeyframesResponseDefault
 ]:
     """Get all collection's keyframes
 
@@ -133,8 +103,8 @@ def sync_detailed(
 
     Args:
         collection_id (str):
-        per_page (int | Unset):  Default: 10.
-        generate_signed_url (bool | Unset):  Default: True.
+        per_page (int | Unset):
+        generate_signed_url (bool | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -142,7 +112,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CollectionKeyframesSchema | GetCollectionsByCollectionIdKeyframesResponseDefaultType0 | GetCollectionsByCollectionIdKeyframesResponseDefaultType1]
+        Response[Any | CollectionKeyframesSchema | GetCollectionsByCollectionIdKeyframesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -163,14 +133,13 @@ def sync(
     collection_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
-    generate_signed_url: bool | Unset = True,
+    per_page: int | Unset = UNSET,
+    generate_signed_url: bool | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> (
     Any
     | CollectionKeyframesSchema
-    | GetCollectionsByCollectionIdKeyframesResponseDefaultType0
-    | GetCollectionsByCollectionIdKeyframesResponseDefaultType1
+    | GetCollectionsByCollectionIdKeyframesResponseDefault
     | None
 ):
     """Get all collection's keyframes
@@ -181,8 +150,8 @@ def sync(
 
     Args:
         collection_id (str):
-        per_page (int | Unset):  Default: 10.
-        generate_signed_url (bool | Unset):  Default: True.
+        per_page (int | Unset):
+        generate_signed_url (bool | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -190,7 +159,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CollectionKeyframesSchema | GetCollectionsByCollectionIdKeyframesResponseDefaultType0 | GetCollectionsByCollectionIdKeyframesResponseDefaultType1
+        Any | CollectionKeyframesSchema | GetCollectionsByCollectionIdKeyframesResponseDefault
     """
 
     return sync_detailed(
@@ -206,14 +175,13 @@ async def asyncio_detailed(
     collection_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
-    generate_signed_url: bool | Unset = True,
+    per_page: int | Unset = UNSET,
+    generate_signed_url: bool | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> Response[
     Any
     | CollectionKeyframesSchema
-    | GetCollectionsByCollectionIdKeyframesResponseDefaultType0
-    | GetCollectionsByCollectionIdKeyframesResponseDefaultType1
+    | GetCollectionsByCollectionIdKeyframesResponseDefault
 ]:
     """Get all collection's keyframes
 
@@ -223,8 +191,8 @@ async def asyncio_detailed(
 
     Args:
         collection_id (str):
-        per_page (int | Unset):  Default: 10.
-        generate_signed_url (bool | Unset):  Default: True.
+        per_page (int | Unset):
+        generate_signed_url (bool | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -232,7 +200,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CollectionKeyframesSchema | GetCollectionsByCollectionIdKeyframesResponseDefaultType0 | GetCollectionsByCollectionIdKeyframesResponseDefaultType1]
+        Response[Any | CollectionKeyframesSchema | GetCollectionsByCollectionIdKeyframesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -251,14 +219,13 @@ async def asyncio(
     collection_id: str,
     *,
     client: AuthenticatedClient | Client,
-    per_page: int | Unset = 10,
-    generate_signed_url: bool | Unset = True,
+    per_page: int | Unset = UNSET,
+    generate_signed_url: bool | Unset = UNSET,
     last_id: str | Unset = UNSET,
 ) -> (
     Any
     | CollectionKeyframesSchema
-    | GetCollectionsByCollectionIdKeyframesResponseDefaultType0
-    | GetCollectionsByCollectionIdKeyframesResponseDefaultType1
+    | GetCollectionsByCollectionIdKeyframesResponseDefault
     | None
 ):
     """Get all collection's keyframes
@@ -269,8 +236,8 @@ async def asyncio(
 
     Args:
         collection_id (str):
-        per_page (int | Unset):  Default: 10.
-        generate_signed_url (bool | Unset):  Default: True.
+        per_page (int | Unset):
+        generate_signed_url (bool | Unset):
         last_id (str | Unset):
 
     Raises:
@@ -278,7 +245,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CollectionKeyframesSchema | GetCollectionsByCollectionIdKeyframesResponseDefaultType0 | GetCollectionsByCollectionIdKeyframesResponseDefaultType1
+        Any | CollectionKeyframesSchema | GetCollectionsByCollectionIdKeyframesResponseDefault
     """
 
     return (

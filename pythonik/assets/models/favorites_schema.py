@@ -23,7 +23,7 @@ class FavoritesSchema:
         first_url (None | str | Unset):
         last_url (None | str | Unset):
         next_url (None | str | Unset):
-        objects (AssetElasticSchema | CollectionElastic | None | Unset):
+        objects (list[AssetElasticSchema | CollectionElastic] | None | Unset):
         page (int | None | Unset):
         pages (int | None | Unset):
         per_page (int | None | Unset):
@@ -36,7 +36,7 @@ class FavoritesSchema:
     first_url: None | str | Unset = UNSET
     last_url: None | str | Unset = UNSET
     next_url: None | str | Unset = UNSET
-    objects: AssetElasticSchema | CollectionElastic | None | Unset = UNSET
+    objects: list[AssetElasticSchema | CollectionElastic] | None | Unset = UNSET
     page: int | None | Unset = UNSET
     pages: int | None | Unset = UNSET
     per_page: int | None | Unset = UNSET
@@ -48,7 +48,6 @@ class FavoritesSchema:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.asset_elastic_schema import AssetElasticSchema
-        from ..models.collection_elastic import CollectionElastic
 
         first_url: None | str | Unset
         if isinstance(self.first_url, Unset):
@@ -68,13 +67,20 @@ class FavoritesSchema:
         else:
             next_url = self.next_url
 
-        objects: dict[str, Any] | None | Unset
+        objects: list[dict[str, Any]] | None | Unset
         if isinstance(self.objects, Unset):
             objects = UNSET
-        elif isinstance(self.objects, AssetElasticSchema):
-            objects = self.objects.to_dict()
-        elif isinstance(self.objects, CollectionElastic):
-            objects = self.objects.to_dict()
+        elif isinstance(self.objects, list):
+            objects = []
+            for objects_type_0_item_data in self.objects:
+                objects_type_0_item: dict[str, Any]
+                if isinstance(objects_type_0_item_data, AssetElasticSchema):
+                    objects_type_0_item = objects_type_0_item_data.to_dict()
+                else:
+                    objects_type_0_item = objects_type_0_item_data.to_dict()
+
+                objects.append(objects_type_0_item)
+
         else:
             objects = self.objects
 
@@ -187,32 +193,51 @@ class FavoritesSchema:
 
         def _parse_objects(
             data: object,
-        ) -> AssetElasticSchema | CollectionElastic | None | Unset:
+        ) -> list[AssetElasticSchema | CollectionElastic] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, list):
                     raise TypeError()
-                componentsschemas_asset_or_collection_schema_type_0 = (
-                    AssetElasticSchema.from_dict(data)
-                )
+                objects_type_0 = []
+                _objects_type_0 = data
+                for objects_type_0_item_data in _objects_type_0:
 
-                return componentsschemas_asset_or_collection_schema_type_0
+                    def _parse_objects_type_0_item(
+                        data: object,
+                    ) -> AssetElasticSchema | CollectionElastic:
+                        try:
+                            if not isinstance(data, dict):
+                                raise TypeError()
+                            componentsschemas_asset_or_collection_schema_type_0 = (
+                                AssetElasticSchema.from_dict(data)
+                            )
+
+                            return componentsschemas_asset_or_collection_schema_type_0
+                        except (TypeError, ValueError, AttributeError, KeyError):
+                            pass
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        componentsschemas_asset_or_collection_schema_type_1 = (
+                            CollectionElastic.from_dict(data)
+                        )
+
+                        return componentsschemas_asset_or_collection_schema_type_1
+
+                    objects_type_0_item = _parse_objects_type_0_item(
+                        objects_type_0_item_data
+                    )
+
+                    objects_type_0.append(objects_type_0_item)
+
+                return objects_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            try:
-                if not isinstance(data, dict):
-                    raise TypeError()
-                componentsschemas_asset_or_collection_schema_type_1 = (
-                    CollectionElastic.from_dict(data)
-                )
-
-                return componentsschemas_asset_or_collection_schema_type_1
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            return cast(AssetElasticSchema | CollectionElastic | None | Unset, data)
+            return cast(
+                list[AssetElasticSchema | CollectionElastic] | None | Unset, data
+            )
 
         objects = _parse_objects(d.pop("objects", UNSET))
 

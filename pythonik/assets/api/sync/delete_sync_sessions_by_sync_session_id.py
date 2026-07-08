@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_sync_sessions_by_sync_session_id_response_default_type_0 import (
-    DeleteSyncSessionsBySyncSessionIdResponseDefaultType0,
-)
-from ...models.delete_sync_sessions_by_sync_session_id_response_default_type_1 import (
-    DeleteSyncSessionsBySyncSessionIdResponseDefaultType1,
+from ...models.delete_sync_sessions_by_sync_session_id_response_default import (
+    DeleteSyncSessionsBySyncSessionIdResponseDefault,
 )
 from ...types import Response
 
@@ -30,11 +27,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteSyncSessionsBySyncSessionIdResponseDefaultType0
-    | DeleteSyncSessionsBySyncSessionIdResponseDefaultType1
-):
+) -> Any | DeleteSyncSessionsBySyncSessionIdResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -51,42 +44,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteSyncSessionsBySyncSessionIdResponseDefaultType0
-        | DeleteSyncSessionsBySyncSessionIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteSyncSessionsBySyncSessionIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteSyncSessionsBySyncSessionIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = DeleteSyncSessionsBySyncSessionIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteSyncSessionsBySyncSessionIdResponseDefaultType0
-    | DeleteSyncSessionsBySyncSessionIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteSyncSessionsBySyncSessionIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -99,11 +66,7 @@ def sync_detailed(
     sync_session_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteSyncSessionsBySyncSessionIdResponseDefaultType0
-    | DeleteSyncSessionsBySyncSessionIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteSyncSessionsBySyncSessionIdResponseDefault]:
     """Delete a particular sync session by id
 
     Args:
@@ -114,7 +77,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteSyncSessionsBySyncSessionIdResponseDefaultType0 | DeleteSyncSessionsBySyncSessionIdResponseDefaultType1]
+        Response[Any | DeleteSyncSessionsBySyncSessionIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -132,12 +95,7 @@ def sync(
     sync_session_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteSyncSessionsBySyncSessionIdResponseDefaultType0
-    | DeleteSyncSessionsBySyncSessionIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteSyncSessionsBySyncSessionIdResponseDefault | None:
     """Delete a particular sync session by id
 
     Args:
@@ -148,7 +106,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteSyncSessionsBySyncSessionIdResponseDefaultType0 | DeleteSyncSessionsBySyncSessionIdResponseDefaultType1
+        Any | DeleteSyncSessionsBySyncSessionIdResponseDefault
     """
 
     return sync_detailed(
@@ -161,11 +119,7 @@ async def asyncio_detailed(
     sync_session_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteSyncSessionsBySyncSessionIdResponseDefaultType0
-    | DeleteSyncSessionsBySyncSessionIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteSyncSessionsBySyncSessionIdResponseDefault]:
     """Delete a particular sync session by id
 
     Args:
@@ -176,7 +130,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteSyncSessionsBySyncSessionIdResponseDefaultType0 | DeleteSyncSessionsBySyncSessionIdResponseDefaultType1]
+        Response[Any | DeleteSyncSessionsBySyncSessionIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -192,12 +146,7 @@ async def asyncio(
     sync_session_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteSyncSessionsBySyncSessionIdResponseDefaultType0
-    | DeleteSyncSessionsBySyncSessionIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteSyncSessionsBySyncSessionIdResponseDefault | None:
     """Delete a particular sync session by id
 
     Args:
@@ -208,7 +157,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteSyncSessionsBySyncSessionIdResponseDefaultType0 | DeleteSyncSessionsBySyncSessionIdResponseDefaultType1
+        Any | DeleteSyncSessionsBySyncSessionIdResponseDefault
     """
 
     return (

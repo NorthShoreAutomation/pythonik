@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.put_assets_by_asset_id_subtitles_by_subtitle_id_response_default_type_0 import (
-    PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0,
-)
-from ...models.put_assets_by_asset_id_subtitles_by_subtitle_id_response_default_type_1 import (
-    PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1,
+from ...models.put_assets_by_asset_id_subtitles_by_subtitle_id_response_default import (
+    PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault,
 )
 from ...models.subtitle_schema import SubtitleSchema
 from ...types import Response
@@ -41,12 +38,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0
-    | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1
-    | SubtitleSchema
-):
+) -> Any | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault | SubtitleSchema:
     if response.status_code == 200:
         response_200 = SubtitleSchema.from_dict(response.json())
 
@@ -64,33 +56,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0
-        | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -98,10 +66,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0
-    | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1
-    | SubtitleSchema
+    Any | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault | SubtitleSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -118,10 +83,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: SubtitleSchema,
 ) -> Response[
-    Any
-    | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0
-    | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1
-    | SubtitleSchema
+    Any | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault | SubtitleSchema
 ]:
     """Update subtitle information
 
@@ -139,7 +101,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0 | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1 | SubtitleSchema]
+        Response[Any | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault | SubtitleSchema]
     """
 
     kwargs = _get_kwargs(
@@ -162,11 +124,7 @@ def sync(
     client: AuthenticatedClient | Client,
     body: SubtitleSchema,
 ) -> (
-    Any
-    | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0
-    | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1
-    | SubtitleSchema
-    | None
+    Any | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault | SubtitleSchema | None
 ):
     """Update subtitle information
 
@@ -184,7 +142,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0 | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1 | SubtitleSchema
+        Any | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault | SubtitleSchema
     """
 
     return sync_detailed(
@@ -202,10 +160,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: SubtitleSchema,
 ) -> Response[
-    Any
-    | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0
-    | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1
-    | SubtitleSchema
+    Any | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault | SubtitleSchema
 ]:
     """Update subtitle information
 
@@ -223,7 +178,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0 | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1 | SubtitleSchema]
+        Response[Any | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault | SubtitleSchema]
     """
 
     kwargs = _get_kwargs(
@@ -244,11 +199,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     body: SubtitleSchema,
 ) -> (
-    Any
-    | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0
-    | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1
-    | SubtitleSchema
-    | None
+    Any | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault | SubtitleSchema | None
 ):
     """Update subtitle information
 
@@ -266,7 +217,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType0 | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefaultType1 | SubtitleSchema
+        Any | PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault | SubtitleSchema
     """
 
     return (

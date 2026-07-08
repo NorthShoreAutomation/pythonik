@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_assets_by_asset_id_versions_all_keyframes_response_default_type_0 import (
-    DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType0,
-)
-from ...models.delete_assets_by_asset_id_versions_all_keyframes_response_default_type_1 import (
-    DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType1,
+from ...models.delete_assets_by_asset_id_versions_all_keyframes_response_default import (
+    DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefault,
 )
 from ...types import Response
 
@@ -30,11 +27,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType1
-):
+) -> Any | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -51,46 +44,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType0
-        | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -103,11 +68,7 @@ def sync_detailed(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefault]:
     """Delete asset's keyframes all versions
 
 
@@ -122,7 +83,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType0 | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType1]
+        Response[Any | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -140,12 +101,7 @@ def sync(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefault | None:
     """Delete asset's keyframes all versions
 
 
@@ -160,7 +116,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType0 | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType1
+        Any | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefault
     """
 
     return sync_detailed(
@@ -173,11 +129,7 @@ async def asyncio_detailed(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType1
-]:
+) -> Response[Any | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefault]:
     """Delete asset's keyframes all versions
 
 
@@ -192,7 +144,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType0 | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType1]
+        Response[Any | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -208,12 +160,7 @@ async def asyncio(
     asset_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType0
-    | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType1
-    | None
-):
+) -> Any | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefault | None:
     """Delete asset's keyframes all versions
 
 
@@ -228,7 +175,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType0 | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefaultType1
+        Any | DeleteAssetsByAssetIdVersionsAllKeyframesResponseDefault
     """
 
     return (

@@ -8,11 +8,8 @@ from ...models.magic_link_check_setting_schema import MagicLinkCheckSettingSchem
 from ...models.post_shares_magic_link_enabled_response_200 import (
     PostSharesMagicLinkEnabledResponse200,
 )
-from ...models.post_shares_magic_link_enabled_response_default_type_0 import (
-    PostSharesMagicLinkEnabledResponseDefaultType0,
-)
-from ...models.post_shares_magic_link_enabled_response_default_type_1 import (
-    PostSharesMagicLinkEnabledResponseDefaultType1,
+from ...models.post_shares_magic_link_enabled_response_default import (
+    PostSharesMagicLinkEnabledResponseDefault,
 )
 from ...types import Response
 
@@ -41,8 +38,7 @@ def _parse_response(
 ) -> (
     Any
     | PostSharesMagicLinkEnabledResponse200
-    | PostSharesMagicLinkEnabledResponseDefaultType0
-    | PostSharesMagicLinkEnabledResponseDefaultType1
+    | PostSharesMagicLinkEnabledResponseDefault
 ):
     if response.status_code == 200:
         response_200 = PostSharesMagicLinkEnabledResponse200.from_dict(response.json())
@@ -61,31 +57,9 @@ def _parse_response(
         response_429 = cast(Any, None)
         return response_429
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostSharesMagicLinkEnabledResponseDefaultType0
-        | PostSharesMagicLinkEnabledResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostSharesMagicLinkEnabledResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostSharesMagicLinkEnabledResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostSharesMagicLinkEnabledResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -95,8 +69,7 @@ def _build_response(
 ) -> Response[
     Any
     | PostSharesMagicLinkEnabledResponse200
-    | PostSharesMagicLinkEnabledResponseDefaultType0
-    | PostSharesMagicLinkEnabledResponseDefaultType1
+    | PostSharesMagicLinkEnabledResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -113,8 +86,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | PostSharesMagicLinkEnabledResponse200
-    | PostSharesMagicLinkEnabledResponseDefaultType0
-    | PostSharesMagicLinkEnabledResponseDefaultType1
+    | PostSharesMagicLinkEnabledResponseDefault
 ]:
     """Check if magic link authentication is enabled for the share's system domain.
 
@@ -126,7 +98,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSharesMagicLinkEnabledResponse200 | PostSharesMagicLinkEnabledResponseDefaultType0 | PostSharesMagicLinkEnabledResponseDefaultType1]
+        Response[Any | PostSharesMagicLinkEnabledResponse200 | PostSharesMagicLinkEnabledResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -147,8 +119,7 @@ def sync(
 ) -> (
     Any
     | PostSharesMagicLinkEnabledResponse200
-    | PostSharesMagicLinkEnabledResponseDefaultType0
-    | PostSharesMagicLinkEnabledResponseDefaultType1
+    | PostSharesMagicLinkEnabledResponseDefault
     | None
 ):
     """Check if magic link authentication is enabled for the share's system domain.
@@ -161,7 +132,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSharesMagicLinkEnabledResponse200 | PostSharesMagicLinkEnabledResponseDefaultType0 | PostSharesMagicLinkEnabledResponseDefaultType1
+        Any | PostSharesMagicLinkEnabledResponse200 | PostSharesMagicLinkEnabledResponseDefault
     """
 
     return sync_detailed(
@@ -177,8 +148,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | PostSharesMagicLinkEnabledResponse200
-    | PostSharesMagicLinkEnabledResponseDefaultType0
-    | PostSharesMagicLinkEnabledResponseDefaultType1
+    | PostSharesMagicLinkEnabledResponseDefault
 ]:
     """Check if magic link authentication is enabled for the share's system domain.
 
@@ -190,7 +160,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSharesMagicLinkEnabledResponse200 | PostSharesMagicLinkEnabledResponseDefaultType0 | PostSharesMagicLinkEnabledResponseDefaultType1]
+        Response[Any | PostSharesMagicLinkEnabledResponse200 | PostSharesMagicLinkEnabledResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -209,8 +179,7 @@ async def asyncio(
 ) -> (
     Any
     | PostSharesMagicLinkEnabledResponse200
-    | PostSharesMagicLinkEnabledResponseDefaultType0
-    | PostSharesMagicLinkEnabledResponseDefaultType1
+    | PostSharesMagicLinkEnabledResponseDefault
     | None
 ):
     """Check if magic link authentication is enabled for the share's system domain.
@@ -223,7 +192,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSharesMagicLinkEnabledResponse200 | PostSharesMagicLinkEnabledResponseDefaultType0 | PostSharesMagicLinkEnabledResponseDefaultType1
+        Any | PostSharesMagicLinkEnabledResponse200 | PostSharesMagicLinkEnabledResponseDefault
     """
 
     return (

@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_system_logs_recipients_by_logs_recipient_id_response_default_type_0 import (
-    DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0,
-)
-from ...models.delete_system_logs_recipients_by_logs_recipient_id_response_default_type_1 import (
-    DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1,
+from ...models.delete_system_logs_recipients_by_logs_recipient_id_response_default import (
+    DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefault,
 )
 from ...types import Response
 
@@ -30,11 +27,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0
-    | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1
-):
+) -> Any | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -51,44 +44,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0
-        | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0
-    | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -101,11 +68,7 @@ def sync_detailed(
     logs_recipient_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0
-    | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefault]:
     """Delete logs recipient settings
 
 
@@ -120,7 +83,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0 | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1]
+        Response[Any | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -138,12 +101,7 @@ def sync(
     logs_recipient_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0
-    | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefault | None:
     """Delete logs recipient settings
 
 
@@ -158,7 +116,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0 | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1
+        Any | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefault
     """
 
     return sync_detailed(
@@ -171,11 +129,7 @@ async def asyncio_detailed(
     logs_recipient_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0
-    | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefault]:
     """Delete logs recipient settings
 
 
@@ -190,7 +144,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0 | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1]
+        Response[Any | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -206,12 +160,7 @@ async def asyncio(
     logs_recipient_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0
-    | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefault | None:
     """Delete logs recipient settings
 
 
@@ -226,7 +175,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType0 | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefaultType1
+        Any | DeleteSystemLogsRecipientsByLogsRecipientIdResponseDefault
     """
 
     return (

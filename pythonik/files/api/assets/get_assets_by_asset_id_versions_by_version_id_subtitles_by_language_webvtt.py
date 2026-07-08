@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_assets_by_asset_id_versions_by_version_id_subtitles_by_language_webvtt_response_default_type_0 import (
-    GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType0,
-)
-from ...models.get_assets_by_asset_id_versions_by_version_id_subtitles_by_language_webvtt_response_default_type_1 import (
-    GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType1,
+from ...models.get_assets_by_asset_id_versions_by_version_id_subtitles_by_language_webvtt_response_default import (
+    GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefault,
 )
 from ...types import Response
 
@@ -36,8 +33,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType0
-    | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType1
+    | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefault
     | str
 ):
     if response.status_code == 200:
@@ -52,31 +48,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType0
-        | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -85,8 +59,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType0
-    | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType1
+    | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefault
     | str
 ]:
     return Response(
@@ -105,8 +78,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
 ) -> Response[
     Any
-    | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType0
-    | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType1
+    | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefault
     | str
 ]:
     """Get asset's subtitle file for a particular language by version
@@ -125,7 +97,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType0 | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType1 | str]
+        Response[Any | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefault | str]
     """
 
     kwargs = _get_kwargs(
@@ -149,8 +121,7 @@ def sync(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType0
-    | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType1
+    | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefault
     | str
     | None
 ):
@@ -170,7 +141,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType0 | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType1 | str
+        Any | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefault | str
     """
 
     return sync_detailed(
@@ -189,8 +160,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
 ) -> Response[
     Any
-    | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType0
-    | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType1
+    | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefault
     | str
 ]:
     """Get asset's subtitle file for a particular language by version
@@ -209,7 +179,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType0 | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType1 | str]
+        Response[Any | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefault | str]
     """
 
     kwargs = _get_kwargs(
@@ -231,8 +201,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType0
-    | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType1
+    | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefault
     | str
     | None
 ):
@@ -252,7 +221,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType0 | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefaultType1 | str
+        Any | GetAssetsByAssetIdVersionsByVersionIdSubtitlesByLanguageWebvttResponseDefault | str
     """
 
     return (

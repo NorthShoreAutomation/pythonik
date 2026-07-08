@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_assets_by_asset_id_relations_by_relation_type_by_related_to_asset_id_response_default_type_0 import (
-    PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType0,
-)
-from ...models.post_assets_by_asset_id_relations_by_relation_type_by_related_to_asset_id_response_default_type_1 import (
-    PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType1,
+from ...models.post_assets_by_asset_id_relations_by_relation_type_by_related_to_asset_id_response_default import (
+    PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefault,
 )
 from ...models.relation_schema import RelationSchema
 from ...types import Response
@@ -45,8 +42,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType0
-    | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType1
+    | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefault
     | RelationSchema
 ):
     if response.status_code == 200:
@@ -67,31 +63,9 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType0
-        | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -100,8 +74,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType0
-    | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType1
+    | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefault
     | RelationSchema
 ]:
     return Response(
@@ -121,8 +94,7 @@ def sync_detailed(
     body: RelationSchema,
 ) -> Response[
     Any
-    | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType0
-    | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType1
+    | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefault
     | RelationSchema
 ]:
     """Create a new asset relation
@@ -142,7 +114,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType0 | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType1 | RelationSchema]
+        Response[Any | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefault | RelationSchema]
     """
 
     kwargs = _get_kwargs(
@@ -168,8 +140,7 @@ def sync(
     body: RelationSchema,
 ) -> (
     Any
-    | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType0
-    | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType1
+    | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefault
     | RelationSchema
     | None
 ):
@@ -190,7 +161,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType0 | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType1 | RelationSchema
+        Any | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefault | RelationSchema
     """
 
     return sync_detailed(
@@ -211,8 +182,7 @@ async def asyncio_detailed(
     body: RelationSchema,
 ) -> Response[
     Any
-    | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType0
-    | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType1
+    | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefault
     | RelationSchema
 ]:
     """Create a new asset relation
@@ -232,7 +202,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType0 | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType1 | RelationSchema]
+        Response[Any | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefault | RelationSchema]
     """
 
     kwargs = _get_kwargs(
@@ -256,8 +226,7 @@ async def asyncio(
     body: RelationSchema,
 ) -> (
     Any
-    | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType0
-    | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType1
+    | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefault
     | RelationSchema
     | None
 ):
@@ -278,7 +247,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType0 | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefaultType1 | RelationSchema
+        Any | PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefault | RelationSchema
     """
 
     return (

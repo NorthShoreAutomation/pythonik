@@ -7,11 +7,8 @@ import httpx
 from ...client import AuthenticatedClient, Client
 from ...models.billing_expiration_update_schema import BillingExpirationUpdateSchema
 from ...models.billing_schema import BillingSchema
-from ...models.put_billing_expiration_by_system_domain_id_by_billing_id_response_default_type_0 import (
-    PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType0,
-)
-from ...models.put_billing_expiration_by_system_domain_id_by_billing_id_response_default_type_1 import (
-    PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType1,
+from ...models.put_billing_expiration_by_system_domain_id_by_billing_id_response_default import (
+    PutBillingExpirationBySystemDomainIdByBillingIdResponseDefault,
 )
 from ...types import Response
 
@@ -43,10 +40,7 @@ def _get_kwargs(
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
-    Any
-    | BillingSchema
-    | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType0
-    | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType1
+    Any | BillingSchema | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefault
 ):
     if response.status_code == 200:
         response_200 = BillingSchema.from_dict(response.json())
@@ -65,31 +59,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType0
-        | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        PutBillingExpirationBySystemDomainIdByBillingIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -97,10 +71,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | BillingSchema
-    | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType0
-    | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType1
+    Any | BillingSchema | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -117,10 +88,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: BillingExpirationUpdateSchema,
 ) -> Response[
-    Any
-    | BillingSchema
-    | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType0
-    | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType1
+    Any | BillingSchema | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefault
 ]:
     """Update billing expiration record (Requires super admin access).
 
@@ -134,7 +102,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | BillingSchema | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType0 | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType1]
+        Response[Any | BillingSchema | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -159,8 +127,7 @@ def sync(
 ) -> (
     Any
     | BillingSchema
-    | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType0
-    | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType1
+    | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefault
     | None
 ):
     """Update billing expiration record (Requires super admin access).
@@ -175,7 +142,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | BillingSchema | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType0 | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType1
+        Any | BillingSchema | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefault
     """
 
     return sync_detailed(
@@ -193,10 +160,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: BillingExpirationUpdateSchema,
 ) -> Response[
-    Any
-    | BillingSchema
-    | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType0
-    | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType1
+    Any | BillingSchema | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefault
 ]:
     """Update billing expiration record (Requires super admin access).
 
@@ -210,7 +174,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | BillingSchema | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType0 | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType1]
+        Response[Any | BillingSchema | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -233,8 +197,7 @@ async def asyncio(
 ) -> (
     Any
     | BillingSchema
-    | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType0
-    | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType1
+    | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefault
     | None
 ):
     """Update billing expiration record (Requires super admin access).
@@ -249,7 +212,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | BillingSchema | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType0 | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefaultType1
+        Any | BillingSchema | PutBillingExpirationBySystemDomainIdByBillingIdResponseDefault
     """
 
     return (

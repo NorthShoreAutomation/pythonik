@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.patch_system_domains_by_system_domain_id_response_default_type_0 import (
-    PatchSystemDomainsBySystemDomainIdResponseDefaultType0,
-)
-from ...models.patch_system_domains_by_system_domain_id_response_default_type_1 import (
-    PatchSystemDomainsBySystemDomainIdResponseDefaultType1,
+from ...models.patch_system_domains_by_system_domain_id_response_default import (
+    PatchSystemDomainsBySystemDomainIdResponseDefault,
 )
 from ...models.system_domain_super_admin_schema import SystemDomainSuperAdminSchema
 from ...types import Response
@@ -41,8 +38,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | PatchSystemDomainsBySystemDomainIdResponseDefaultType0
-    | PatchSystemDomainsBySystemDomainIdResponseDefaultType1
+    | PatchSystemDomainsBySystemDomainIdResponseDefault
     | SystemDomainSuperAdminSchema
 ):
     if response.status_code == 200:
@@ -62,31 +58,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PatchSystemDomainsBySystemDomainIdResponseDefaultType0
-        | PatchSystemDomainsBySystemDomainIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PatchSystemDomainsBySystemDomainIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PatchSystemDomainsBySystemDomainIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PatchSystemDomainsBySystemDomainIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -95,8 +69,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | PatchSystemDomainsBySystemDomainIdResponseDefaultType0
-    | PatchSystemDomainsBySystemDomainIdResponseDefaultType1
+    | PatchSystemDomainsBySystemDomainIdResponseDefault
     | SystemDomainSuperAdminSchema
 ]:
     return Response(
@@ -114,8 +87,7 @@ def sync_detailed(
     body: SystemDomainSuperAdminSchema,
 ) -> Response[
     Any
-    | PatchSystemDomainsBySystemDomainIdResponseDefaultType0
-    | PatchSystemDomainsBySystemDomainIdResponseDefaultType1
+    | PatchSystemDomainsBySystemDomainIdResponseDefault
     | SystemDomainSuperAdminSchema
 ]:
     """Update system domain
@@ -129,7 +101,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PatchSystemDomainsBySystemDomainIdResponseDefaultType0 | PatchSystemDomainsBySystemDomainIdResponseDefaultType1 | SystemDomainSuperAdminSchema]
+        Response[Any | PatchSystemDomainsBySystemDomainIdResponseDefault | SystemDomainSuperAdminSchema]
     """
 
     kwargs = _get_kwargs(
@@ -151,8 +123,7 @@ def sync(
     body: SystemDomainSuperAdminSchema,
 ) -> (
     Any
-    | PatchSystemDomainsBySystemDomainIdResponseDefaultType0
-    | PatchSystemDomainsBySystemDomainIdResponseDefaultType1
+    | PatchSystemDomainsBySystemDomainIdResponseDefault
     | SystemDomainSuperAdminSchema
     | None
 ):
@@ -167,7 +138,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PatchSystemDomainsBySystemDomainIdResponseDefaultType0 | PatchSystemDomainsBySystemDomainIdResponseDefaultType1 | SystemDomainSuperAdminSchema
+        Any | PatchSystemDomainsBySystemDomainIdResponseDefault | SystemDomainSuperAdminSchema
     """
 
     return sync_detailed(
@@ -184,8 +155,7 @@ async def asyncio_detailed(
     body: SystemDomainSuperAdminSchema,
 ) -> Response[
     Any
-    | PatchSystemDomainsBySystemDomainIdResponseDefaultType0
-    | PatchSystemDomainsBySystemDomainIdResponseDefaultType1
+    | PatchSystemDomainsBySystemDomainIdResponseDefault
     | SystemDomainSuperAdminSchema
 ]:
     """Update system domain
@@ -199,7 +169,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PatchSystemDomainsBySystemDomainIdResponseDefaultType0 | PatchSystemDomainsBySystemDomainIdResponseDefaultType1 | SystemDomainSuperAdminSchema]
+        Response[Any | PatchSystemDomainsBySystemDomainIdResponseDefault | SystemDomainSuperAdminSchema]
     """
 
     kwargs = _get_kwargs(
@@ -219,8 +189,7 @@ async def asyncio(
     body: SystemDomainSuperAdminSchema,
 ) -> (
     Any
-    | PatchSystemDomainsBySystemDomainIdResponseDefaultType0
-    | PatchSystemDomainsBySystemDomainIdResponseDefaultType1
+    | PatchSystemDomainsBySystemDomainIdResponseDefault
     | SystemDomainSuperAdminSchema
     | None
 ):
@@ -235,7 +204,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PatchSystemDomainsBySystemDomainIdResponseDefaultType0 | PatchSystemDomainsBySystemDomainIdResponseDefaultType1 | SystemDomainSuperAdminSchema
+        Any | PatchSystemDomainsBySystemDomainIdResponseDefault | SystemDomainSuperAdminSchema
     """
 
     return (

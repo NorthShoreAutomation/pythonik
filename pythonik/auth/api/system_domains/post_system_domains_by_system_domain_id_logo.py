@@ -11,11 +11,8 @@ from ...models.post_system_domains_by_system_domain_id_logo_body import (
 from ...models.post_system_domains_by_system_domain_id_logo_response_201 import (
     PostSystemDomainsBySystemDomainIdLogoResponse201,
 )
-from ...models.post_system_domains_by_system_domain_id_logo_response_default_type_0 import (
-    PostSystemDomainsBySystemDomainIdLogoResponseDefaultType0,
-)
-from ...models.post_system_domains_by_system_domain_id_logo_response_default_type_1 import (
-    PostSystemDomainsBySystemDomainIdLogoResponseDefaultType1,
+from ...models.post_system_domains_by_system_domain_id_logo_response_default import (
+    PostSystemDomainsBySystemDomainIdLogoResponseDefault,
 )
 from ...types import Response
 
@@ -46,8 +43,7 @@ def _parse_response(
 ) -> (
     Any
     | PostSystemDomainsBySystemDomainIdLogoResponse201
-    | PostSystemDomainsBySystemDomainIdLogoResponseDefaultType0
-    | PostSystemDomainsBySystemDomainIdLogoResponseDefaultType1
+    | PostSystemDomainsBySystemDomainIdLogoResponseDefault
 ):
     if response.status_code == 201:
         response_201 = PostSystemDomainsBySystemDomainIdLogoResponse201.from_dict(
@@ -64,33 +60,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostSystemDomainsBySystemDomainIdLogoResponseDefaultType0
-        | PostSystemDomainsBySystemDomainIdLogoResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostSystemDomainsBySystemDomainIdLogoResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostSystemDomainsBySystemDomainIdLogoResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostSystemDomainsBySystemDomainIdLogoResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -100,8 +72,7 @@ def _build_response(
 ) -> Response[
     Any
     | PostSystemDomainsBySystemDomainIdLogoResponse201
-    | PostSystemDomainsBySystemDomainIdLogoResponseDefaultType0
-    | PostSystemDomainsBySystemDomainIdLogoResponseDefaultType1
+    | PostSystemDomainsBySystemDomainIdLogoResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -119,8 +90,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | PostSystemDomainsBySystemDomainIdLogoResponse201
-    | PostSystemDomainsBySystemDomainIdLogoResponseDefaultType0
-    | PostSystemDomainsBySystemDomainIdLogoResponseDefaultType1
+    | PostSystemDomainsBySystemDomainIdLogoResponseDefault
 ]:
     """Upload system domain logo image.
 
@@ -133,7 +103,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSystemDomainsBySystemDomainIdLogoResponse201 | PostSystemDomainsBySystemDomainIdLogoResponseDefaultType0 | PostSystemDomainsBySystemDomainIdLogoResponseDefaultType1]
+        Response[Any | PostSystemDomainsBySystemDomainIdLogoResponse201 | PostSystemDomainsBySystemDomainIdLogoResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -156,8 +126,7 @@ def sync(
 ) -> (
     Any
     | PostSystemDomainsBySystemDomainIdLogoResponse201
-    | PostSystemDomainsBySystemDomainIdLogoResponseDefaultType0
-    | PostSystemDomainsBySystemDomainIdLogoResponseDefaultType1
+    | PostSystemDomainsBySystemDomainIdLogoResponseDefault
     | None
 ):
     """Upload system domain logo image.
@@ -171,7 +140,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSystemDomainsBySystemDomainIdLogoResponse201 | PostSystemDomainsBySystemDomainIdLogoResponseDefaultType0 | PostSystemDomainsBySystemDomainIdLogoResponseDefaultType1
+        Any | PostSystemDomainsBySystemDomainIdLogoResponse201 | PostSystemDomainsBySystemDomainIdLogoResponseDefault
     """
 
     return sync_detailed(
@@ -189,8 +158,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | PostSystemDomainsBySystemDomainIdLogoResponse201
-    | PostSystemDomainsBySystemDomainIdLogoResponseDefaultType0
-    | PostSystemDomainsBySystemDomainIdLogoResponseDefaultType1
+    | PostSystemDomainsBySystemDomainIdLogoResponseDefault
 ]:
     """Upload system domain logo image.
 
@@ -203,7 +171,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSystemDomainsBySystemDomainIdLogoResponse201 | PostSystemDomainsBySystemDomainIdLogoResponseDefaultType0 | PostSystemDomainsBySystemDomainIdLogoResponseDefaultType1]
+        Response[Any | PostSystemDomainsBySystemDomainIdLogoResponse201 | PostSystemDomainsBySystemDomainIdLogoResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -224,8 +192,7 @@ async def asyncio(
 ) -> (
     Any
     | PostSystemDomainsBySystemDomainIdLogoResponse201
-    | PostSystemDomainsBySystemDomainIdLogoResponseDefaultType0
-    | PostSystemDomainsBySystemDomainIdLogoResponseDefaultType1
+    | PostSystemDomainsBySystemDomainIdLogoResponseDefault
     | None
 ):
     """Upload system domain logo image.
@@ -239,7 +206,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSystemDomainsBySystemDomainIdLogoResponse201 | PostSystemDomainsBySystemDomainIdLogoResponseDefaultType0 | PostSystemDomainsBySystemDomainIdLogoResponseDefaultType1
+        Any | PostSystemDomainsBySystemDomainIdLogoResponse201 | PostSystemDomainsBySystemDomainIdLogoResponseDefault
     """
 
     return (

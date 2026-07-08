@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_projects_by_project_id_members_by_member_id_response_default_type_0 import (
-    GetProjectsByProjectIdMembersByMemberIdResponseDefaultType0,
-)
-from ...models.get_projects_by_project_id_members_by_member_id_response_default_type_1 import (
-    GetProjectsByProjectIdMembersByMemberIdResponseDefaultType1,
+from ...models.get_projects_by_project_id_members_by_member_id_response_default import (
+    GetProjectsByProjectIdMembersByMemberIdResponseDefault,
 )
 from ...models.project_member_schema import ProjectMemberSchema
 from ...types import Response
@@ -33,12 +30,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetProjectsByProjectIdMembersByMemberIdResponseDefaultType0
-    | GetProjectsByProjectIdMembersByMemberIdResponseDefaultType1
-    | ProjectMemberSchema
-):
+) -> Any | GetProjectsByProjectIdMembersByMemberIdResponseDefault | ProjectMemberSchema:
     if response.status_code == 200:
         response_200 = ProjectMemberSchema.from_dict(response.json())
 
@@ -52,33 +44,9 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetProjectsByProjectIdMembersByMemberIdResponseDefaultType0
-        | GetProjectsByProjectIdMembersByMemberIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetProjectsByProjectIdMembersByMemberIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetProjectsByProjectIdMembersByMemberIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetProjectsByProjectIdMembersByMemberIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -86,10 +54,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | GetProjectsByProjectIdMembersByMemberIdResponseDefaultType0
-    | GetProjectsByProjectIdMembersByMemberIdResponseDefaultType1
-    | ProjectMemberSchema
+    Any | GetProjectsByProjectIdMembersByMemberIdResponseDefault | ProjectMemberSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -105,10 +70,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | GetProjectsByProjectIdMembersByMemberIdResponseDefaultType0
-    | GetProjectsByProjectIdMembersByMemberIdResponseDefaultType1
-    | ProjectMemberSchema
+    Any | GetProjectsByProjectIdMembersByMemberIdResponseDefault | ProjectMemberSchema
 ]:
     """Returns a particular project member by id
 
@@ -125,7 +87,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetProjectsByProjectIdMembersByMemberIdResponseDefaultType0 | GetProjectsByProjectIdMembersByMemberIdResponseDefaultType1 | ProjectMemberSchema]
+        Response[Any | GetProjectsByProjectIdMembersByMemberIdResponseDefault | ProjectMemberSchema]
     """
 
     kwargs = _get_kwargs(
@@ -147,8 +109,7 @@ def sync(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetProjectsByProjectIdMembersByMemberIdResponseDefaultType0
-    | GetProjectsByProjectIdMembersByMemberIdResponseDefaultType1
+    | GetProjectsByProjectIdMembersByMemberIdResponseDefault
     | ProjectMemberSchema
     | None
 ):
@@ -167,7 +128,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetProjectsByProjectIdMembersByMemberIdResponseDefaultType0 | GetProjectsByProjectIdMembersByMemberIdResponseDefaultType1 | ProjectMemberSchema
+        Any | GetProjectsByProjectIdMembersByMemberIdResponseDefault | ProjectMemberSchema
     """
 
     return sync_detailed(
@@ -183,10 +144,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[
-    Any
-    | GetProjectsByProjectIdMembersByMemberIdResponseDefaultType0
-    | GetProjectsByProjectIdMembersByMemberIdResponseDefaultType1
-    | ProjectMemberSchema
+    Any | GetProjectsByProjectIdMembersByMemberIdResponseDefault | ProjectMemberSchema
 ]:
     """Returns a particular project member by id
 
@@ -203,7 +161,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetProjectsByProjectIdMembersByMemberIdResponseDefaultType0 | GetProjectsByProjectIdMembersByMemberIdResponseDefaultType1 | ProjectMemberSchema]
+        Response[Any | GetProjectsByProjectIdMembersByMemberIdResponseDefault | ProjectMemberSchema]
     """
 
     kwargs = _get_kwargs(
@@ -223,8 +181,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetProjectsByProjectIdMembersByMemberIdResponseDefaultType0
-    | GetProjectsByProjectIdMembersByMemberIdResponseDefaultType1
+    | GetProjectsByProjectIdMembersByMemberIdResponseDefault
     | ProjectMemberSchema
     | None
 ):
@@ -243,7 +200,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetProjectsByProjectIdMembersByMemberIdResponseDefaultType0 | GetProjectsByProjectIdMembersByMemberIdResponseDefaultType1 | ProjectMemberSchema
+        Any | GetProjectsByProjectIdMembersByMemberIdResponseDefault | ProjectMemberSchema
     """
 
     return (

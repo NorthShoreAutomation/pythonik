@@ -5,8 +5,7 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.bulk_asset_edit_schema import BulkAssetEditSchema
-from ...models.put_assets_response_default_type_0 import PutAssetsResponseDefaultType0
-from ...models.put_assets_response_default_type_1 import PutAssetsResponseDefaultType1
+from ...models.put_assets_response_default import PutAssetsResponseDefault
 from ...types import Response
 
 
@@ -31,7 +30,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Any | PutAssetsResponseDefaultType0 | PutAssetsResponseDefaultType1:
+) -> Any | PutAssetsResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -44,31 +43,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> PutAssetsResponseDefaultType0 | PutAssetsResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PutAssetsResponseDefaultType0.from_dict(data)
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PutAssetsResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutAssetsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[Any | PutAssetsResponseDefaultType0 | PutAssetsResponseDefaultType1]:
+) -> Response[Any | PutAssetsResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -81,7 +63,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: BulkAssetEditSchema,
-) -> Response[Any | PutAssetsResponseDefaultType0 | PutAssetsResponseDefaultType1]:
+) -> Response[Any | PutAssetsResponseDefault]:
     """Bulk update assets
 
 
@@ -96,7 +78,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutAssetsResponseDefaultType0 | PutAssetsResponseDefaultType1]
+        Response[Any | PutAssetsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -114,7 +96,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: BulkAssetEditSchema,
-) -> Any | PutAssetsResponseDefaultType0 | PutAssetsResponseDefaultType1 | None:
+) -> Any | PutAssetsResponseDefault | None:
     """Bulk update assets
 
 
@@ -129,7 +111,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutAssetsResponseDefaultType0 | PutAssetsResponseDefaultType1
+        Any | PutAssetsResponseDefault
     """
 
     return sync_detailed(
@@ -142,7 +124,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: BulkAssetEditSchema,
-) -> Response[Any | PutAssetsResponseDefaultType0 | PutAssetsResponseDefaultType1]:
+) -> Response[Any | PutAssetsResponseDefault]:
     """Bulk update assets
 
 
@@ -157,7 +139,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutAssetsResponseDefaultType0 | PutAssetsResponseDefaultType1]
+        Response[Any | PutAssetsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -173,7 +155,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: BulkAssetEditSchema,
-) -> Any | PutAssetsResponseDefaultType0 | PutAssetsResponseDefaultType1 | None:
+) -> Any | PutAssetsResponseDefault | None:
     """Bulk update assets
 
 
@@ -188,7 +170,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutAssetsResponseDefaultType0 | PutAssetsResponseDefaultType1
+        Any | PutAssetsResponseDefault
     """
 
     return (

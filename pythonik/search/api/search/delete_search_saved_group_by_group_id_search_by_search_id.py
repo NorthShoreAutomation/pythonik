@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.delete_search_saved_group_by_group_id_search_by_search_id_response_default_type_0 import (
-    DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType0,
-)
-from ...models.delete_search_saved_group_by_group_id_search_by_search_id_response_default_type_1 import (
-    DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType1,
+from ...models.delete_search_saved_group_by_group_id_search_by_search_id_response_default import (
+    DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefault,
 )
 from ...types import Response
 
@@ -32,14 +29,14 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType0
-    | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType1
-):
+) -> Any | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefault:
     if response.status_code == 200:
         response_200 = cast(Any, None)
         return response_200
+
+    if response.status_code == 204:
+        response_204 = cast(Any, None)
+        return response_204
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -53,42 +50,18 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType0
-        | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType0
-    | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -102,11 +75,7 @@ def sync_detailed(
     search_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType0
-    | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefault]:
     """Delete saved search from search group
 
 
@@ -122,7 +91,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType0 | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType1]
+        Response[Any | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -142,12 +111,7 @@ def sync(
     search_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType0
-    | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefault | None:
     """Delete saved search from search group
 
 
@@ -163,7 +127,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType0 | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType1
+        Any | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefault
     """
 
     return sync_detailed(
@@ -178,11 +142,7 @@ async def asyncio_detailed(
     search_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType0
-    | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType1
-]:
+) -> Response[Any | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefault]:
     """Delete saved search from search group
 
 
@@ -198,7 +158,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType0 | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType1]
+        Response[Any | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -216,12 +176,7 @@ async def asyncio(
     search_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType0
-    | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType1
-    | None
-):
+) -> Any | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefault | None:
     """Delete saved search from search group
 
 
@@ -237,7 +192,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType0 | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefaultType1
+        Any | DeleteSearchSavedGroupByGroupIdSearchBySearchIdResponseDefault
     """
 
     return (

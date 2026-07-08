@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.combined_permissions_schema import CombinedPermissionsSchema
-from ...models.get_acl_by_object_type_by_object_key_permissions_response_default_type_0 import (
-    GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType0,
-)
-from ...models.get_acl_by_object_type_by_object_key_permissions_response_default_type_1 import (
-    GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType1,
+from ...models.get_acl_by_object_type_by_object_key_permissions_response_default import (
+    GetAclByObjectTypeByObjectKeyPermissionsResponseDefault,
 )
 from ...types import Response
 
@@ -36,8 +33,7 @@ def _parse_response(
 ) -> (
     Any
     | CombinedPermissionsSchema
-    | GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType0
-    | GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType1
+    | GetAclByObjectTypeByObjectKeyPermissionsResponseDefault
 ):
     if response.status_code == 200:
         response_200 = CombinedPermissionsSchema.from_dict(response.json())
@@ -52,33 +48,11 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType0
-        | GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType1.from_dict(data)
+    response_default = (
+        GetAclByObjectTypeByObjectKeyPermissionsResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -88,8 +62,7 @@ def _build_response(
 ) -> Response[
     Any
     | CombinedPermissionsSchema
-    | GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType0
-    | GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType1
+    | GetAclByObjectTypeByObjectKeyPermissionsResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -107,8 +80,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | CombinedPermissionsSchema
-    | GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType0
-    | GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType1
+    | GetAclByObjectTypeByObjectKeyPermissionsResponseDefault
 ]:
     """List of permissions for the user
 
@@ -121,7 +93,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CombinedPermissionsSchema | GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType0 | GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType1]
+        Response[Any | CombinedPermissionsSchema | GetAclByObjectTypeByObjectKeyPermissionsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -144,8 +116,7 @@ def sync(
 ) -> (
     Any
     | CombinedPermissionsSchema
-    | GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType0
-    | GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType1
+    | GetAclByObjectTypeByObjectKeyPermissionsResponseDefault
     | None
 ):
     """List of permissions for the user
@@ -159,7 +130,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CombinedPermissionsSchema | GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType0 | GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType1
+        Any | CombinedPermissionsSchema | GetAclByObjectTypeByObjectKeyPermissionsResponseDefault
     """
 
     return sync_detailed(
@@ -177,8 +148,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | CombinedPermissionsSchema
-    | GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType0
-    | GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType1
+    | GetAclByObjectTypeByObjectKeyPermissionsResponseDefault
 ]:
     """List of permissions for the user
 
@@ -191,7 +161,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CombinedPermissionsSchema | GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType0 | GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType1]
+        Response[Any | CombinedPermissionsSchema | GetAclByObjectTypeByObjectKeyPermissionsResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -212,8 +182,7 @@ async def asyncio(
 ) -> (
     Any
     | CombinedPermissionsSchema
-    | GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType0
-    | GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType1
+    | GetAclByObjectTypeByObjectKeyPermissionsResponseDefault
     | None
 ):
     """List of permissions for the user
@@ -227,7 +196,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CombinedPermissionsSchema | GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType0 | GetAclByObjectTypeByObjectKeyPermissionsResponseDefaultType1
+        Any | CombinedPermissionsSchema | GetAclByObjectTypeByObjectKeyPermissionsResponseDefault
     """
 
     return (

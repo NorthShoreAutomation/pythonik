@@ -5,11 +5,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.automation_runs_schema import AutomationRunsSchema
-from ...models.get_automations_usage_by_day_response_default_type_0 import (
-    GetAutomationsUsageByDayResponseDefaultType0,
-)
-from ...models.get_automations_usage_by_day_response_default_type_1 import (
-    GetAutomationsUsageByDayResponseDefaultType1,
+from ...models.get_automations_usage_by_day_response_default import (
+    GetAutomationsUsageByDayResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -39,12 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | AutomationRunsSchema
-    | GetAutomationsUsageByDayResponseDefaultType0
-    | GetAutomationsUsageByDayResponseDefaultType1
-):
+) -> Any | AutomationRunsSchema | GetAutomationsUsageByDayResponseDefault:
     if response.status_code == 200:
         response_200 = AutomationRunsSchema.from_dict(response.json())
 
@@ -62,43 +54,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetAutomationsUsageByDayResponseDefaultType0
-        | GetAutomationsUsageByDayResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetAutomationsUsageByDayResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetAutomationsUsageByDayResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetAutomationsUsageByDayResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | AutomationRunsSchema
-    | GetAutomationsUsageByDayResponseDefaultType0
-    | GetAutomationsUsageByDayResponseDefaultType1
-]:
+) -> Response[Any | AutomationRunsSchema | GetAutomationsUsageByDayResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -112,12 +77,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     from_date: str | Unset = UNSET,
     to_date: str | Unset = UNSET,
-) -> Response[
-    Any
-    | AutomationRunsSchema
-    | GetAutomationsUsageByDayResponseDefaultType0
-    | GetAutomationsUsageByDayResponseDefaultType1
-]:
+) -> Response[Any | AutomationRunsSchema | GetAutomationsUsageByDayResponseDefault]:
     """Returns automation runs by day.
 
 
@@ -133,7 +93,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AutomationRunsSchema | GetAutomationsUsageByDayResponseDefaultType0 | GetAutomationsUsageByDayResponseDefaultType1]
+        Response[Any | AutomationRunsSchema | GetAutomationsUsageByDayResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -153,13 +113,7 @@ def sync(
     client: AuthenticatedClient | Client,
     from_date: str | Unset = UNSET,
     to_date: str | Unset = UNSET,
-) -> (
-    Any
-    | AutomationRunsSchema
-    | GetAutomationsUsageByDayResponseDefaultType0
-    | GetAutomationsUsageByDayResponseDefaultType1
-    | None
-):
+) -> Any | AutomationRunsSchema | GetAutomationsUsageByDayResponseDefault | None:
     """Returns automation runs by day.
 
 
@@ -175,7 +129,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AutomationRunsSchema | GetAutomationsUsageByDayResponseDefaultType0 | GetAutomationsUsageByDayResponseDefaultType1
+        Any | AutomationRunsSchema | GetAutomationsUsageByDayResponseDefault
     """
 
     return sync_detailed(
@@ -190,12 +144,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     from_date: str | Unset = UNSET,
     to_date: str | Unset = UNSET,
-) -> Response[
-    Any
-    | AutomationRunsSchema
-    | GetAutomationsUsageByDayResponseDefaultType0
-    | GetAutomationsUsageByDayResponseDefaultType1
-]:
+) -> Response[Any | AutomationRunsSchema | GetAutomationsUsageByDayResponseDefault]:
     """Returns automation runs by day.
 
 
@@ -211,7 +160,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AutomationRunsSchema | GetAutomationsUsageByDayResponseDefaultType0 | GetAutomationsUsageByDayResponseDefaultType1]
+        Response[Any | AutomationRunsSchema | GetAutomationsUsageByDayResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -229,13 +178,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     from_date: str | Unset = UNSET,
     to_date: str | Unset = UNSET,
-) -> (
-    Any
-    | AutomationRunsSchema
-    | GetAutomationsUsageByDayResponseDefaultType0
-    | GetAutomationsUsageByDayResponseDefaultType1
-    | None
-):
+) -> Any | AutomationRunsSchema | GetAutomationsUsageByDayResponseDefault | None:
     """Returns automation runs by day.
 
 
@@ -251,7 +194,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AutomationRunsSchema | GetAutomationsUsageByDayResponseDefaultType0 | GetAutomationsUsageByDayResponseDefaultType1
+        Any | AutomationRunsSchema | GetAutomationsUsageByDayResponseDefault
     """
 
     return (

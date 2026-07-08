@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.put_storages_by_storage_id_search_document_response_default_type_0 import (
-    PutStoragesByStorageIdSearchDocumentResponseDefaultType0,
-)
-from ...models.put_storages_by_storage_id_search_document_response_default_type_1 import (
-    PutStoragesByStorageIdSearchDocumentResponseDefaultType1,
+from ...models.put_storages_by_storage_id_search_document_response_default import (
+    PutStoragesByStorageIdSearchDocumentResponseDefault,
 )
 from ...models.storage_schema import StorageSchema
 from ...types import Response
@@ -39,11 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PutStoragesByStorageIdSearchDocumentResponseDefaultType0
-    | PutStoragesByStorageIdSearchDocumentResponseDefaultType1
-):
+) -> Any | PutStoragesByStorageIdSearchDocumentResponseDefault:
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204
@@ -60,42 +53,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutStoragesByStorageIdSearchDocumentResponseDefaultType0
-        | PutStoragesByStorageIdSearchDocumentResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PutStoragesByStorageIdSearchDocumentResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PutStoragesByStorageIdSearchDocumentResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutStoragesByStorageIdSearchDocumentResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PutStoragesByStorageIdSearchDocumentResponseDefaultType0
-    | PutStoragesByStorageIdSearchDocumentResponseDefaultType1
-]:
+) -> Response[Any | PutStoragesByStorageIdSearchDocumentResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -109,11 +76,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: StorageSchema,
-) -> Response[
-    Any
-    | PutStoragesByStorageIdSearchDocumentResponseDefaultType0
-    | PutStoragesByStorageIdSearchDocumentResponseDefaultType1
-]:
+) -> Response[Any | PutStoragesByStorageIdSearchDocumentResponseDefault]:
     """Update search document for storage
 
 
@@ -129,7 +92,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutStoragesByStorageIdSearchDocumentResponseDefaultType0 | PutStoragesByStorageIdSearchDocumentResponseDefaultType1]
+        Response[Any | PutStoragesByStorageIdSearchDocumentResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -149,12 +112,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: StorageSchema,
-) -> (
-    Any
-    | PutStoragesByStorageIdSearchDocumentResponseDefaultType0
-    | PutStoragesByStorageIdSearchDocumentResponseDefaultType1
-    | None
-):
+) -> Any | PutStoragesByStorageIdSearchDocumentResponseDefault | None:
     """Update search document for storage
 
 
@@ -170,7 +128,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutStoragesByStorageIdSearchDocumentResponseDefaultType0 | PutStoragesByStorageIdSearchDocumentResponseDefaultType1
+        Any | PutStoragesByStorageIdSearchDocumentResponseDefault
     """
 
     return sync_detailed(
@@ -185,11 +143,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: StorageSchema,
-) -> Response[
-    Any
-    | PutStoragesByStorageIdSearchDocumentResponseDefaultType0
-    | PutStoragesByStorageIdSearchDocumentResponseDefaultType1
-]:
+) -> Response[Any | PutStoragesByStorageIdSearchDocumentResponseDefault]:
     """Update search document for storage
 
 
@@ -205,7 +159,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PutStoragesByStorageIdSearchDocumentResponseDefaultType0 | PutStoragesByStorageIdSearchDocumentResponseDefaultType1]
+        Response[Any | PutStoragesByStorageIdSearchDocumentResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -223,12 +177,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: StorageSchema,
-) -> (
-    Any
-    | PutStoragesByStorageIdSearchDocumentResponseDefaultType0
-    | PutStoragesByStorageIdSearchDocumentResponseDefaultType1
-    | None
-):
+) -> Any | PutStoragesByStorageIdSearchDocumentResponseDefault | None:
     """Update search document for storage
 
 
@@ -244,7 +193,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PutStoragesByStorageIdSearchDocumentResponseDefaultType0 | PutStoragesByStorageIdSearchDocumentResponseDefaultType1
+        Any | PutStoragesByStorageIdSearchDocumentResponseDefault
     """
 
     return (

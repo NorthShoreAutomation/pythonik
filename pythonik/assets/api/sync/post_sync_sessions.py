@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_sync_sessions_response_default_type_0 import (
-    PostSyncSessionsResponseDefaultType0,
-)
-from ...models.post_sync_sessions_response_default_type_1 import (
-    PostSyncSessionsResponseDefaultType1,
+from ...models.post_sync_sessions_response_default import (
+    PostSyncSessionsResponseDefault,
 )
 from ...models.sync_session_create_schema import SyncSessionCreateSchema
 from ...models.sync_session_schema import SyncSessionSchema
@@ -36,12 +33,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostSyncSessionsResponseDefaultType0
-    | PostSyncSessionsResponseDefaultType1
-    | SyncSessionSchema
-):
+) -> Any | PostSyncSessionsResponseDefault | SyncSessionSchema:
     if response.status_code == 201:
         response_201 = SyncSessionSchema.from_dict(response.json())
 
@@ -55,38 +47,14 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> PostSyncSessionsResponseDefaultType0 | PostSyncSessionsResponseDefaultType1:
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostSyncSessionsResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostSyncSessionsResponseDefaultType1.from_dict(data)
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostSyncSessionsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostSyncSessionsResponseDefaultType0
-    | PostSyncSessionsResponseDefaultType1
-    | SyncSessionSchema
-]:
+) -> Response[Any | PostSyncSessionsResponseDefault | SyncSessionSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -99,12 +67,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: SyncSessionCreateSchema,
-) -> Response[
-    Any
-    | PostSyncSessionsResponseDefaultType0
-    | PostSyncSessionsResponseDefaultType1
-    | SyncSessionSchema
-]:
+) -> Response[Any | PostSyncSessionsResponseDefault | SyncSessionSchema]:
     """Create a new sync session
 
     Args:
@@ -115,7 +78,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSyncSessionsResponseDefaultType0 | PostSyncSessionsResponseDefaultType1 | SyncSessionSchema]
+        Response[Any | PostSyncSessionsResponseDefault | SyncSessionSchema]
     """
 
     kwargs = _get_kwargs(
@@ -133,13 +96,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: SyncSessionCreateSchema,
-) -> (
-    Any
-    | PostSyncSessionsResponseDefaultType0
-    | PostSyncSessionsResponseDefaultType1
-    | SyncSessionSchema
-    | None
-):
+) -> Any | PostSyncSessionsResponseDefault | SyncSessionSchema | None:
     """Create a new sync session
 
     Args:
@@ -150,7 +107,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSyncSessionsResponseDefaultType0 | PostSyncSessionsResponseDefaultType1 | SyncSessionSchema
+        Any | PostSyncSessionsResponseDefault | SyncSessionSchema
     """
 
     return sync_detailed(
@@ -163,12 +120,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: SyncSessionCreateSchema,
-) -> Response[
-    Any
-    | PostSyncSessionsResponseDefaultType0
-    | PostSyncSessionsResponseDefaultType1
-    | SyncSessionSchema
-]:
+) -> Response[Any | PostSyncSessionsResponseDefault | SyncSessionSchema]:
     """Create a new sync session
 
     Args:
@@ -179,7 +131,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSyncSessionsResponseDefaultType0 | PostSyncSessionsResponseDefaultType1 | SyncSessionSchema]
+        Response[Any | PostSyncSessionsResponseDefault | SyncSessionSchema]
     """
 
     kwargs = _get_kwargs(
@@ -195,13 +147,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: SyncSessionCreateSchema,
-) -> (
-    Any
-    | PostSyncSessionsResponseDefaultType0
-    | PostSyncSessionsResponseDefaultType1
-    | SyncSessionSchema
-    | None
-):
+) -> Any | PostSyncSessionsResponseDefault | SyncSessionSchema | None:
     """Create a new sync session
 
     Args:
@@ -212,7 +158,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSyncSessionsResponseDefaultType0 | PostSyncSessionsResponseDefaultType1 | SyncSessionSchema
+        Any | PostSyncSessionsResponseDefault | SyncSessionSchema
     """
 
     return (

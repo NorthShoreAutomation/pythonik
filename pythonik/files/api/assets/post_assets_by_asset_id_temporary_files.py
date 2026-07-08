@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.post_assets_by_asset_id_temporary_files_response_default_type_0 import (
-    PostAssetsByAssetIdTemporaryFilesResponseDefaultType0,
-)
-from ...models.post_assets_by_asset_id_temporary_files_response_default_type_1 import (
-    PostAssetsByAssetIdTemporaryFilesResponseDefaultType1,
+from ...models.post_assets_by_asset_id_temporary_files_response_default import (
+    PostAssetsByAssetIdTemporaryFilesResponseDefault,
 )
 from ...models.temporary_file_create_schema import TemporaryFileCreateSchema
 from ...types import UNSET, Response, Unset
@@ -47,12 +44,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostAssetsByAssetIdTemporaryFilesResponseDefaultType0
-    | PostAssetsByAssetIdTemporaryFilesResponseDefaultType1
-    | TemporaryFileCreateSchema
-):
+) -> Any | PostAssetsByAssetIdTemporaryFilesResponseDefault | TemporaryFileCreateSchema:
     if response.status_code == 201:
         response_201 = TemporaryFileCreateSchema.from_dict(response.json())
 
@@ -66,31 +58,9 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAssetsByAssetIdTemporaryFilesResponseDefaultType0
-        | PostAssetsByAssetIdTemporaryFilesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostAssetsByAssetIdTemporaryFilesResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PostAssetsByAssetIdTemporaryFilesResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostAssetsByAssetIdTemporaryFilesResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -98,10 +68,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | PostAssetsByAssetIdTemporaryFilesResponseDefaultType0
-    | PostAssetsByAssetIdTemporaryFilesResponseDefaultType1
-    | TemporaryFileCreateSchema
+    Any | PostAssetsByAssetIdTemporaryFilesResponseDefault | TemporaryFileCreateSchema
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -118,10 +85,7 @@ def sync_detailed(
     body: TemporaryFileCreateSchema,
     store: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | PostAssetsByAssetIdTemporaryFilesResponseDefaultType0
-    | PostAssetsByAssetIdTemporaryFilesResponseDefaultType1
-    | TemporaryFileCreateSchema
+    Any | PostAssetsByAssetIdTemporaryFilesResponseDefault | TemporaryFileCreateSchema
 ]:
     """Create temporary transfer file for FILE storage transfers
 
@@ -139,7 +103,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdTemporaryFilesResponseDefaultType0 | PostAssetsByAssetIdTemporaryFilesResponseDefaultType1 | TemporaryFileCreateSchema]
+        Response[Any | PostAssetsByAssetIdTemporaryFilesResponseDefault | TemporaryFileCreateSchema]
     """
 
     kwargs = _get_kwargs(
@@ -163,8 +127,7 @@ def sync(
     store: bool | Unset = UNSET,
 ) -> (
     Any
-    | PostAssetsByAssetIdTemporaryFilesResponseDefaultType0
-    | PostAssetsByAssetIdTemporaryFilesResponseDefaultType1
+    | PostAssetsByAssetIdTemporaryFilesResponseDefault
     | TemporaryFileCreateSchema
     | None
 ):
@@ -184,7 +147,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdTemporaryFilesResponseDefaultType0 | PostAssetsByAssetIdTemporaryFilesResponseDefaultType1 | TemporaryFileCreateSchema
+        Any | PostAssetsByAssetIdTemporaryFilesResponseDefault | TemporaryFileCreateSchema
     """
 
     return sync_detailed(
@@ -202,10 +165,7 @@ async def asyncio_detailed(
     body: TemporaryFileCreateSchema,
     store: bool | Unset = UNSET,
 ) -> Response[
-    Any
-    | PostAssetsByAssetIdTemporaryFilesResponseDefaultType0
-    | PostAssetsByAssetIdTemporaryFilesResponseDefaultType1
-    | TemporaryFileCreateSchema
+    Any | PostAssetsByAssetIdTemporaryFilesResponseDefault | TemporaryFileCreateSchema
 ]:
     """Create temporary transfer file for FILE storage transfers
 
@@ -223,7 +183,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAssetsByAssetIdTemporaryFilesResponseDefaultType0 | PostAssetsByAssetIdTemporaryFilesResponseDefaultType1 | TemporaryFileCreateSchema]
+        Response[Any | PostAssetsByAssetIdTemporaryFilesResponseDefault | TemporaryFileCreateSchema]
     """
 
     kwargs = _get_kwargs(
@@ -245,8 +205,7 @@ async def asyncio(
     store: bool | Unset = UNSET,
 ) -> (
     Any
-    | PostAssetsByAssetIdTemporaryFilesResponseDefaultType0
-    | PostAssetsByAssetIdTemporaryFilesResponseDefaultType1
+    | PostAssetsByAssetIdTemporaryFilesResponseDefault
     | TemporaryFileCreateSchema
     | None
 ):
@@ -266,7 +225,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAssetsByAssetIdTemporaryFilesResponseDefaultType0 | PostAssetsByAssetIdTemporaryFilesResponseDefaultType1 | TemporaryFileCreateSchema
+        Any | PostAssetsByAssetIdTemporaryFilesResponseDefault | TemporaryFileCreateSchema
     """
 
     return (

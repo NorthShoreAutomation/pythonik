@@ -5,11 +5,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.bulk_metadata_filling_schema import BulkMetadataFillingSchema
-from ...models.post_metadata_filling_bulk_response_default_type_0 import (
-    PostMetadataFillingBulkResponseDefaultType0,
-)
-from ...models.post_metadata_filling_bulk_response_default_type_1 import (
-    PostMetadataFillingBulkResponseDefaultType1,
+from ...models.post_metadata_filling_bulk_response_default import (
+    PostMetadataFillingBulkResponseDefault,
 )
 from ...types import Response
 
@@ -35,11 +32,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostMetadataFillingBulkResponseDefaultType0
-    | PostMetadataFillingBulkResponseDefaultType1
-):
+) -> Any | PostMetadataFillingBulkResponseDefault:
     if response.status_code == 201:
         response_201 = cast(Any, None)
         return response_201
@@ -56,42 +49,14 @@ def _parse_response(
         response_403 = cast(Any, None)
         return response_403
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostMetadataFillingBulkResponseDefaultType0
-        | PostMetadataFillingBulkResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PostMetadataFillingBulkResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostMetadataFillingBulkResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PostMetadataFillingBulkResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostMetadataFillingBulkResponseDefaultType0
-    | PostMetadataFillingBulkResponseDefaultType1
-]:
+) -> Response[Any | PostMetadataFillingBulkResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -104,11 +69,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: BulkMetadataFillingSchema,
-) -> Response[
-    Any
-    | PostMetadataFillingBulkResponseDefaultType0
-    | PostMetadataFillingBulkResponseDefaultType1
-]:
+) -> Response[Any | PostMetadataFillingBulkResponseDefault]:
     """Run bulk AI metadata filling
 
 
@@ -124,7 +85,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostMetadataFillingBulkResponseDefaultType0 | PostMetadataFillingBulkResponseDefaultType1]
+        Response[Any | PostMetadataFillingBulkResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -142,12 +103,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: BulkMetadataFillingSchema,
-) -> (
-    Any
-    | PostMetadataFillingBulkResponseDefaultType0
-    | PostMetadataFillingBulkResponseDefaultType1
-    | None
-):
+) -> Any | PostMetadataFillingBulkResponseDefault | None:
     """Run bulk AI metadata filling
 
 
@@ -163,7 +119,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostMetadataFillingBulkResponseDefaultType0 | PostMetadataFillingBulkResponseDefaultType1
+        Any | PostMetadataFillingBulkResponseDefault
     """
 
     return sync_detailed(
@@ -176,11 +132,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: BulkMetadataFillingSchema,
-) -> Response[
-    Any
-    | PostMetadataFillingBulkResponseDefaultType0
-    | PostMetadataFillingBulkResponseDefaultType1
-]:
+) -> Response[Any | PostMetadataFillingBulkResponseDefault]:
     """Run bulk AI metadata filling
 
 
@@ -196,7 +148,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostMetadataFillingBulkResponseDefaultType0 | PostMetadataFillingBulkResponseDefaultType1]
+        Response[Any | PostMetadataFillingBulkResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -212,12 +164,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: BulkMetadataFillingSchema,
-) -> (
-    Any
-    | PostMetadataFillingBulkResponseDefaultType0
-    | PostMetadataFillingBulkResponseDefaultType1
-    | None
-):
+) -> Any | PostMetadataFillingBulkResponseDefault | None:
     """Run bulk AI metadata filling
 
 
@@ -233,7 +180,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostMetadataFillingBulkResponseDefaultType0 | PostMetadataFillingBulkResponseDefaultType1
+        Any | PostMetadataFillingBulkResponseDefault
     """
 
     return (

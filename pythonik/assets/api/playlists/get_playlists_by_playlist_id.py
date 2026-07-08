@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_playlists_by_playlist_id_response_default_type_0 import (
-    GetPlaylistsByPlaylistIdResponseDefaultType0,
-)
-from ...models.get_playlists_by_playlist_id_response_default_type_1 import (
-    GetPlaylistsByPlaylistIdResponseDefaultType1,
+from ...models.get_playlists_by_playlist_id_response_default import (
+    GetPlaylistsByPlaylistIdResponseDefault,
 )
 from ...models.playlist_schema import PlaylistSchema
 from ...types import Response
@@ -31,12 +28,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetPlaylistsByPlaylistIdResponseDefaultType0
-    | GetPlaylistsByPlaylistIdResponseDefaultType1
-    | PlaylistSchema
-):
+) -> Any | GetPlaylistsByPlaylistIdResponseDefault | PlaylistSchema:
     if response.status_code == 200:
         response_200 = PlaylistSchema.from_dict(response.json())
 
@@ -50,43 +42,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetPlaylistsByPlaylistIdResponseDefaultType0
-        | GetPlaylistsByPlaylistIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetPlaylistsByPlaylistIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetPlaylistsByPlaylistIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetPlaylistsByPlaylistIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetPlaylistsByPlaylistIdResponseDefaultType0
-    | GetPlaylistsByPlaylistIdResponseDefaultType1
-    | PlaylistSchema
-]:
+) -> Response[Any | GetPlaylistsByPlaylistIdResponseDefault | PlaylistSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -99,12 +64,7 @@ def sync_detailed(
     playlist_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetPlaylistsByPlaylistIdResponseDefaultType0
-    | GetPlaylistsByPlaylistIdResponseDefaultType1
-    | PlaylistSchema
-]:
+) -> Response[Any | GetPlaylistsByPlaylistIdResponseDefault | PlaylistSchema]:
     """Returns a particular playlist by id
 
 
@@ -119,7 +79,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetPlaylistsByPlaylistIdResponseDefaultType0 | GetPlaylistsByPlaylistIdResponseDefaultType1 | PlaylistSchema]
+        Response[Any | GetPlaylistsByPlaylistIdResponseDefault | PlaylistSchema]
     """
 
     kwargs = _get_kwargs(
@@ -137,13 +97,7 @@ def sync(
     playlist_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetPlaylistsByPlaylistIdResponseDefaultType0
-    | GetPlaylistsByPlaylistIdResponseDefaultType1
-    | PlaylistSchema
-    | None
-):
+) -> Any | GetPlaylistsByPlaylistIdResponseDefault | PlaylistSchema | None:
     """Returns a particular playlist by id
 
 
@@ -158,7 +112,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetPlaylistsByPlaylistIdResponseDefaultType0 | GetPlaylistsByPlaylistIdResponseDefaultType1 | PlaylistSchema
+        Any | GetPlaylistsByPlaylistIdResponseDefault | PlaylistSchema
     """
 
     return sync_detailed(
@@ -171,12 +125,7 @@ async def asyncio_detailed(
     playlist_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetPlaylistsByPlaylistIdResponseDefaultType0
-    | GetPlaylistsByPlaylistIdResponseDefaultType1
-    | PlaylistSchema
-]:
+) -> Response[Any | GetPlaylistsByPlaylistIdResponseDefault | PlaylistSchema]:
     """Returns a particular playlist by id
 
 
@@ -191,7 +140,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetPlaylistsByPlaylistIdResponseDefaultType0 | GetPlaylistsByPlaylistIdResponseDefaultType1 | PlaylistSchema]
+        Response[Any | GetPlaylistsByPlaylistIdResponseDefault | PlaylistSchema]
     """
 
     kwargs = _get_kwargs(
@@ -207,13 +156,7 @@ async def asyncio(
     playlist_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetPlaylistsByPlaylistIdResponseDefaultType0
-    | GetPlaylistsByPlaylistIdResponseDefaultType1
-    | PlaylistSchema
-    | None
-):
+) -> Any | GetPlaylistsByPlaylistIdResponseDefault | PlaylistSchema | None:
     """Returns a particular playlist by id
 
 
@@ -228,7 +171,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetPlaylistsByPlaylistIdResponseDefaultType0 | GetPlaylistsByPlaylistIdResponseDefaultType1 | PlaylistSchema
+        Any | GetPlaylistsByPlaylistIdResponseDefault | PlaylistSchema
     """
 
     return (

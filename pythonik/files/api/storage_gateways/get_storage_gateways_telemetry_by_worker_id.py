@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_storage_gateways_telemetry_by_worker_id_response_default_type_0 import (
-    GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType0,
-)
-from ...models.get_storage_gateways_telemetry_by_worker_id_response_default_type_1 import (
-    GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType1,
+from ...models.get_storage_gateways_telemetry_by_worker_id_response_default import (
+    GetStorageGatewaysTelemetryByWorkerIdResponseDefault,
 )
 from ...models.iconik_storage_gateway_telemetry_schema import (
     IconikStorageGatewayTelemetrySchema,
@@ -35,8 +32,7 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType0
-    | GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType1
+    | GetStorageGatewaysTelemetryByWorkerIdResponseDefault
     | IconikStorageGatewayTelemetrySchema
 ):
     if response.status_code == 200:
@@ -52,33 +48,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType0
-        | GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType0.from_dict(
-                    data
-                )
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetStorageGatewaysTelemetryByWorkerIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -87,8 +59,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType0
-    | GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType1
+    | GetStorageGatewaysTelemetryByWorkerIdResponseDefault
     | IconikStorageGatewayTelemetrySchema
 ]:
     return Response(
@@ -105,8 +76,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
 ) -> Response[
     Any
-    | GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType0
-    | GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType1
+    | GetStorageGatewaysTelemetryByWorkerIdResponseDefault
     | IconikStorageGatewayTelemetrySchema
 ]:
     """Get telemetry for a specific worker
@@ -123,7 +93,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType0 | GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType1 | IconikStorageGatewayTelemetrySchema]
+        Response[Any | GetStorageGatewaysTelemetryByWorkerIdResponseDefault | IconikStorageGatewayTelemetrySchema]
     """
 
     kwargs = _get_kwargs(
@@ -143,8 +113,7 @@ def sync(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType0
-    | GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType1
+    | GetStorageGatewaysTelemetryByWorkerIdResponseDefault
     | IconikStorageGatewayTelemetrySchema
     | None
 ):
@@ -162,7 +131,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType0 | GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType1 | IconikStorageGatewayTelemetrySchema
+        Any | GetStorageGatewaysTelemetryByWorkerIdResponseDefault | IconikStorageGatewayTelemetrySchema
     """
 
     return sync_detailed(
@@ -177,8 +146,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
 ) -> Response[
     Any
-    | GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType0
-    | GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType1
+    | GetStorageGatewaysTelemetryByWorkerIdResponseDefault
     | IconikStorageGatewayTelemetrySchema
 ]:
     """Get telemetry for a specific worker
@@ -195,7 +163,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType0 | GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType1 | IconikStorageGatewayTelemetrySchema]
+        Response[Any | GetStorageGatewaysTelemetryByWorkerIdResponseDefault | IconikStorageGatewayTelemetrySchema]
     """
 
     kwargs = _get_kwargs(
@@ -213,8 +181,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
 ) -> (
     Any
-    | GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType0
-    | GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType1
+    | GetStorageGatewaysTelemetryByWorkerIdResponseDefault
     | IconikStorageGatewayTelemetrySchema
     | None
 ):
@@ -232,7 +199,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType0 | GetStorageGatewaysTelemetryByWorkerIdResponseDefaultType1 | IconikStorageGatewayTelemetrySchema
+        Any | GetStorageGatewaysTelemetryByWorkerIdResponseDefault | IconikStorageGatewayTelemetrySchema
     """
 
     return (

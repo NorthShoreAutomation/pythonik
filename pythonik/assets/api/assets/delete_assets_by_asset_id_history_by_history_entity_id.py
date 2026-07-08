@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.asset_history_schema import AssetHistorySchema
-from ...models.delete_assets_by_asset_id_history_by_history_entity_id_response_default_type_0 import (
-    DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType0,
-)
-from ...models.delete_assets_by_asset_id_history_by_history_entity_id_response_default_type_1 import (
-    DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType1,
+from ...models.delete_assets_by_asset_id_history_by_history_entity_id_response_default import (
+    DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefault,
 )
 from ...types import Response
 
@@ -36,13 +33,16 @@ def _parse_response(
 ) -> (
     Any
     | AssetHistorySchema
-    | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType0
-    | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType1
+    | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefault
 ):
     if response.status_code == 201:
         response_201 = AssetHistorySchema.from_dict(response.json())
 
         return response_201
+
+    if response.status_code == 204:
+        response_204 = cast(Any, None)
+        return response_204
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -52,33 +52,11 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType0
-        | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType1.from_dict(
-                data
-            )
+    response_default = (
+        DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -88,8 +66,7 @@ def _build_response(
 ) -> Response[
     Any
     | AssetHistorySchema
-    | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType0
-    | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType1
+    | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -107,8 +84,7 @@ def sync_detailed(
 ) -> Response[
     Any
     | AssetHistorySchema
-    | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType0
-    | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType1
+    | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefault
 ]:
     """Deletes an asset history entity
 
@@ -125,7 +101,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AssetHistorySchema | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType0 | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType1]
+        Response[Any | AssetHistorySchema | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -148,8 +124,7 @@ def sync(
 ) -> (
     Any
     | AssetHistorySchema
-    | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType0
-    | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType1
+    | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefault
     | None
 ):
     """Deletes an asset history entity
@@ -167,7 +142,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AssetHistorySchema | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType0 | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType1
+        Any | AssetHistorySchema | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefault
     """
 
     return sync_detailed(
@@ -185,8 +160,7 @@ async def asyncio_detailed(
 ) -> Response[
     Any
     | AssetHistorySchema
-    | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType0
-    | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType1
+    | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefault
 ]:
     """Deletes an asset history entity
 
@@ -203,7 +177,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AssetHistorySchema | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType0 | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType1]
+        Response[Any | AssetHistorySchema | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -224,8 +198,7 @@ async def asyncio(
 ) -> (
     Any
     | AssetHistorySchema
-    | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType0
-    | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType1
+    | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefault
     | None
 ):
     """Deletes an asset history entity
@@ -243,7 +216,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AssetHistorySchema | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType0 | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType1
+        Any | AssetHistorySchema | DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefault
     """
 
     return (

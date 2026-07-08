@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.analyze_schema import AnalyzeSchema
-from ...models.post_analyze_assets_by_asset_id_profiles_default_by_media_type_response_default_type_0 import (
-    PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType0,
-)
-from ...models.post_analyze_assets_by_asset_id_profiles_default_by_media_type_response_default_type_1 import (
-    PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType1,
+from ...models.post_analyze_assets_by_asset_id_profiles_default_by_media_type_response_default import (
+    PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -42,11 +39,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType0
-    | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType1
-):
+) -> Any | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefault:
     if response.status_code == 201:
         response_201 = cast(Any, None)
         return response_201
@@ -59,31 +52,11 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType0
-        | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
@@ -91,9 +64,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType0
-    | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType1
+    Any | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -110,9 +81,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: AnalyzeSchema | Unset = UNSET,
 ) -> Response[
-    Any
-    | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType0
-    | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType1
+    Any | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefault
 ]:
     """Start a job that sends an asset for analysis
 
@@ -131,7 +100,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType0 | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType1]
+        Response[Any | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -153,12 +122,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: AnalyzeSchema | Unset = UNSET,
-) -> (
-    Any
-    | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType0
-    | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType1
-    | None
-):
+) -> Any | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefault | None:
     """Start a job that sends an asset for analysis
 
      with a default analysis profile of specified media typewith a default analysis profile of specified
@@ -176,7 +140,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType0 | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType1
+        Any | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefault
     """
 
     return sync_detailed(
@@ -194,9 +158,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: AnalyzeSchema | Unset = UNSET,
 ) -> Response[
-    Any
-    | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType0
-    | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType1
+    Any | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefault
 ]:
     """Start a job that sends an asset for analysis
 
@@ -215,7 +177,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType0 | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType1]
+        Response[Any | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -235,12 +197,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: AnalyzeSchema | Unset = UNSET,
-) -> (
-    Any
-    | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType0
-    | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType1
-    | None
-):
+) -> Any | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefault | None:
     """Start a job that sends an asset for analysis
 
      with a default analysis profile of specified media typewith a default analysis profile of specified
@@ -258,7 +215,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType0 | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefaultType1
+        Any | PostAnalyzeAssetsByAssetIdProfilesDefaultByMediaTypeResponseDefault
     """
 
     return (

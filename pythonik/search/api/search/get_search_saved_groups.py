@@ -4,11 +4,8 @@ from typing import Any, cast
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_search_saved_groups_response_default_type_0 import (
-    GetSearchSavedGroupsResponseDefaultType0,
-)
-from ...models.get_search_saved_groups_response_default_type_1 import (
-    GetSearchSavedGroupsResponseDefaultType1,
+from ...models.get_search_saved_groups_response_default import (
+    GetSearchSavedGroupsResponseDefault,
 )
 from ...models.saved_search_groups_schema import SavedSearchGroupsSchema
 from ...types import UNSET, Response, Unset
@@ -17,7 +14,7 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     *,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     ids: str | Unset = UNSET,
     sort: str | Unset = UNSET,
 ) -> dict[str, Any]:
@@ -45,12 +42,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetSearchSavedGroupsResponseDefaultType0
-    | GetSearchSavedGroupsResponseDefaultType1
-    | SavedSearchGroupsSchema
-):
+) -> Any | GetSearchSavedGroupsResponseDefault | SavedSearchGroupsSchema:
     if response.status_code == 200:
         response_200 = SavedSearchGroupsSchema.from_dict(response.json())
 
@@ -68,43 +60,14 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetSearchSavedGroupsResponseDefaultType0
-        | GetSearchSavedGroupsResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetSearchSavedGroupsResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = GetSearchSavedGroupsResponseDefaultType1.from_dict(
-            data
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetSearchSavedGroupsResponseDefault.from_dict(response.json())
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetSearchSavedGroupsResponseDefaultType0
-    | GetSearchSavedGroupsResponseDefaultType1
-    | SavedSearchGroupsSchema
-]:
+) -> Response[Any | GetSearchSavedGroupsResponseDefault | SavedSearchGroupsSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -117,15 +80,10 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     ids: str | Unset = UNSET,
     sort: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetSearchSavedGroupsResponseDefaultType0
-    | GetSearchSavedGroupsResponseDefaultType1
-    | SavedSearchGroupsSchema
-]:
+) -> Response[Any | GetSearchSavedGroupsResponseDefault | SavedSearchGroupsSchema]:
     """Returns paginated list of search groups
 
 
@@ -134,7 +92,7 @@ def sync_detailed(
 
     Args:
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         ids (str | Unset):
         sort (str | Unset):
 
@@ -143,7 +101,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetSearchSavedGroupsResponseDefaultType0 | GetSearchSavedGroupsResponseDefaultType1 | SavedSearchGroupsSchema]
+        Response[Any | GetSearchSavedGroupsResponseDefault | SavedSearchGroupsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -164,16 +122,10 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     ids: str | Unset = UNSET,
     sort: str | Unset = UNSET,
-) -> (
-    Any
-    | GetSearchSavedGroupsResponseDefaultType0
-    | GetSearchSavedGroupsResponseDefaultType1
-    | SavedSearchGroupsSchema
-    | None
-):
+) -> Any | GetSearchSavedGroupsResponseDefault | SavedSearchGroupsSchema | None:
     """Returns paginated list of search groups
 
 
@@ -182,7 +134,7 @@ def sync(
 
     Args:
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         ids (str | Unset):
         sort (str | Unset):
 
@@ -191,7 +143,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetSearchSavedGroupsResponseDefaultType0 | GetSearchSavedGroupsResponseDefaultType1 | SavedSearchGroupsSchema
+        Any | GetSearchSavedGroupsResponseDefault | SavedSearchGroupsSchema
     """
 
     return sync_detailed(
@@ -207,15 +159,10 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     ids: str | Unset = UNSET,
     sort: str | Unset = UNSET,
-) -> Response[
-    Any
-    | GetSearchSavedGroupsResponseDefaultType0
-    | GetSearchSavedGroupsResponseDefaultType1
-    | SavedSearchGroupsSchema
-]:
+) -> Response[Any | GetSearchSavedGroupsResponseDefault | SavedSearchGroupsSchema]:
     """Returns paginated list of search groups
 
 
@@ -224,7 +171,7 @@ async def asyncio_detailed(
 
     Args:
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         ids (str | Unset):
         sort (str | Unset):
 
@@ -233,7 +180,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetSearchSavedGroupsResponseDefaultType0 | GetSearchSavedGroupsResponseDefaultType1 | SavedSearchGroupsSchema]
+        Response[Any | GetSearchSavedGroupsResponseDefault | SavedSearchGroupsSchema]
     """
 
     kwargs = _get_kwargs(
@@ -252,16 +199,10 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     per_page: int | Unset = UNSET,
-    page: int | Unset = 1,
+    page: int | Unset = UNSET,
     ids: str | Unset = UNSET,
     sort: str | Unset = UNSET,
-) -> (
-    Any
-    | GetSearchSavedGroupsResponseDefaultType0
-    | GetSearchSavedGroupsResponseDefaultType1
-    | SavedSearchGroupsSchema
-    | None
-):
+) -> Any | GetSearchSavedGroupsResponseDefault | SavedSearchGroupsSchema | None:
     """Returns paginated list of search groups
 
 
@@ -270,7 +211,7 @@ async def asyncio(
 
     Args:
         per_page (int | Unset):
-        page (int | Unset):  Default: 1.
+        page (int | Unset):
         ids (str | Unset):
         sort (str | Unset):
 
@@ -279,7 +220,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetSearchSavedGroupsResponseDefaultType0 | GetSearchSavedGroupsResponseDefaultType1 | SavedSearchGroupsSchema
+        Any | GetSearchSavedGroupsResponseDefault | SavedSearchGroupsSchema
     """
 
     return (

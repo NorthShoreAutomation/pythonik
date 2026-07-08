@@ -8,11 +8,8 @@ from ...client import AuthenticatedClient, Client
 from ...models.bulk_transfer_collection_request_schema import (
     BulkTransferCollectionRequestSchema,
 )
-from ...models.post_collections_storages_by_storage_id_bulk_transfer_response_default_type_0 import (
-    PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType0,
-)
-from ...models.post_collections_storages_by_storage_id_bulk_transfer_response_default_type_1 import (
-    PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType1,
+from ...models.post_collections_storages_by_storage_id_bulk_transfer_response_default import (
+    PostCollectionsStoragesByStorageIdBulkTransferResponseDefault,
 )
 from ...types import UNSET, Response, Unset
 
@@ -49,11 +46,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType0
-    | PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType1
-):
+) -> Any | PostCollectionsStoragesByStorageIdBulkTransferResponseDefault:
     if response.status_code == 202:
         response_202 = cast(Any, None)
         return response_202
@@ -78,42 +71,18 @@ def _parse_response(
         response_409 = cast(Any, None)
         return response_409
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType0
-        | PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType0.from_dict(
-                data
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType1.from_dict(
-            data
+    response_default = (
+        PostCollectionsStoragesByStorageIdBulkTransferResponseDefault.from_dict(
+            response.json()
         )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType0
-    | PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType1
-]:
+) -> Response[Any | PostCollectionsStoragesByStorageIdBulkTransferResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -128,11 +97,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: BulkTransferCollectionRequestSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType0
-    | PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType1
-]:
+) -> Response[Any | PostCollectionsStoragesByStorageIdBulkTransferResponseDefault]:
     """Transfer multiple objects.
 
 
@@ -149,7 +114,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType0 | PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType1]
+        Response[Any | PostCollectionsStoragesByStorageIdBulkTransferResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -171,12 +136,7 @@ def sync(
     client: AuthenticatedClient | Client,
     body: BulkTransferCollectionRequestSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> (
-    Any
-    | PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType0
-    | PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType1
-    | None
-):
+) -> Any | PostCollectionsStoragesByStorageIdBulkTransferResponseDefault | None:
     """Transfer multiple objects.
 
 
@@ -193,7 +153,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType0 | PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType1
+        Any | PostCollectionsStoragesByStorageIdBulkTransferResponseDefault
     """
 
     return sync_detailed(
@@ -210,11 +170,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: BulkTransferCollectionRequestSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> Response[
-    Any
-    | PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType0
-    | PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType1
-]:
+) -> Response[Any | PostCollectionsStoragesByStorageIdBulkTransferResponseDefault]:
     """Transfer multiple objects.
 
 
@@ -231,7 +187,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType0 | PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType1]
+        Response[Any | PostCollectionsStoragesByStorageIdBulkTransferResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -251,12 +207,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     body: BulkTransferCollectionRequestSchema,
     allow_host_transfer: bool | Unset = UNSET,
-) -> (
-    Any
-    | PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType0
-    | PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType1
-    | None
-):
+) -> Any | PostCollectionsStoragesByStorageIdBulkTransferResponseDefault | None:
     """Transfer multiple objects.
 
 
@@ -273,7 +224,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType0 | PostCollectionsStoragesByStorageIdBulkTransferResponseDefaultType1
+        Any | PostCollectionsStoragesByStorageIdBulkTransferResponseDefault
     """
 
     return (

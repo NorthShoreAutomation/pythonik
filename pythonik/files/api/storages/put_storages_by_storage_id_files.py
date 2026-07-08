@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.file_base_schema import FileBaseSchema
-from ...models.put_storages_by_storage_id_files_response_default_type_0 import (
-    PutStoragesByStorageIdFilesResponseDefaultType0,
-)
-from ...models.put_storages_by_storage_id_files_response_default_type_1 import (
-    PutStoragesByStorageIdFilesResponseDefaultType1,
+from ...models.put_storages_by_storage_id_files_response_default import (
+    PutStoragesByStorageIdFilesResponseDefault,
 )
 from ...types import Response
 
@@ -39,12 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | FileBaseSchema
-    | PutStoragesByStorageIdFilesResponseDefaultType0
-    | PutStoragesByStorageIdFilesResponseDefaultType1
-):
+) -> Any | FileBaseSchema | PutStoragesByStorageIdFilesResponseDefault:
     if response.status_code == 200:
         response_200 = FileBaseSchema.from_dict(response.json())
 
@@ -66,43 +58,16 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutStoragesByStorageIdFilesResponseDefaultType0
-        | PutStoragesByStorageIdFilesResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PutStoragesByStorageIdFilesResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PutStoragesByStorageIdFilesResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutStoragesByStorageIdFilesResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | FileBaseSchema
-    | PutStoragesByStorageIdFilesResponseDefaultType0
-    | PutStoragesByStorageIdFilesResponseDefaultType1
-]:
+) -> Response[Any | FileBaseSchema | PutStoragesByStorageIdFilesResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -116,12 +81,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: FileBaseSchema,
-) -> Response[
-    Any
-    | FileBaseSchema
-    | PutStoragesByStorageIdFilesResponseDefaultType0
-    | PutStoragesByStorageIdFilesResponseDefaultType1
-]:
+) -> Response[Any | FileBaseSchema | PutStoragesByStorageIdFilesResponseDefault]:
     """Update file by storage ID and path
 
 
@@ -137,7 +97,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | FileBaseSchema | PutStoragesByStorageIdFilesResponseDefaultType0 | PutStoragesByStorageIdFilesResponseDefaultType1]
+        Response[Any | FileBaseSchema | PutStoragesByStorageIdFilesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -157,13 +117,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: FileBaseSchema,
-) -> (
-    Any
-    | FileBaseSchema
-    | PutStoragesByStorageIdFilesResponseDefaultType0
-    | PutStoragesByStorageIdFilesResponseDefaultType1
-    | None
-):
+) -> Any | FileBaseSchema | PutStoragesByStorageIdFilesResponseDefault | None:
     """Update file by storage ID and path
 
 
@@ -179,7 +133,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | FileBaseSchema | PutStoragesByStorageIdFilesResponseDefaultType0 | PutStoragesByStorageIdFilesResponseDefaultType1
+        Any | FileBaseSchema | PutStoragesByStorageIdFilesResponseDefault
     """
 
     return sync_detailed(
@@ -194,12 +148,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: FileBaseSchema,
-) -> Response[
-    Any
-    | FileBaseSchema
-    | PutStoragesByStorageIdFilesResponseDefaultType0
-    | PutStoragesByStorageIdFilesResponseDefaultType1
-]:
+) -> Response[Any | FileBaseSchema | PutStoragesByStorageIdFilesResponseDefault]:
     """Update file by storage ID and path
 
 
@@ -215,7 +164,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | FileBaseSchema | PutStoragesByStorageIdFilesResponseDefaultType0 | PutStoragesByStorageIdFilesResponseDefaultType1]
+        Response[Any | FileBaseSchema | PutStoragesByStorageIdFilesResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -233,13 +182,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: FileBaseSchema,
-) -> (
-    Any
-    | FileBaseSchema
-    | PutStoragesByStorageIdFilesResponseDefaultType0
-    | PutStoragesByStorageIdFilesResponseDefaultType1
-    | None
-):
+) -> Any | FileBaseSchema | PutStoragesByStorageIdFilesResponseDefault | None:
     """Update file by storage ID and path
 
 
@@ -255,7 +198,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | FileBaseSchema | PutStoragesByStorageIdFilesResponseDefaultType0 | PutStoragesByStorageIdFilesResponseDefaultType1
+        Any | FileBaseSchema | PutStoragesByStorageIdFilesResponseDefault
     """
 
     return (

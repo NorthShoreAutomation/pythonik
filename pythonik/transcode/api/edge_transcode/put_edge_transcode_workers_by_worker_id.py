@@ -6,11 +6,8 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.edge_transcode_worker_schema import EdgeTranscodeWorkerSchema
-from ...models.put_edge_transcode_workers_by_worker_id_response_default_type_0 import (
-    PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType0,
-)
-from ...models.put_edge_transcode_workers_by_worker_id_response_default_type_1 import (
-    PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType1,
+from ...models.put_edge_transcode_workers_by_worker_id_response_default import (
+    PutEdgeTranscodeWorkersByWorkerIdResponseDefault,
 )
 from ...types import Response
 
@@ -39,12 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | EdgeTranscodeWorkerSchema
-    | PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType0
-    | PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType1
-):
+) -> Any | EdgeTranscodeWorkerSchema | PutEdgeTranscodeWorkersByWorkerIdResponseDefault:
     if response.status_code == 201:
         response_201 = EdgeTranscodeWorkerSchema.from_dict(response.json())
 
@@ -62,31 +54,9 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType0
-        | PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = PutEdgeTranscodeWorkersByWorkerIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
@@ -94,10 +64,7 @@ def _parse_response(
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
-    Any
-    | EdgeTranscodeWorkerSchema
-    | PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType0
-    | PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType1
+    Any | EdgeTranscodeWorkerSchema | PutEdgeTranscodeWorkersByWorkerIdResponseDefault
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -113,10 +80,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: EdgeTranscodeWorkerSchema,
 ) -> Response[
-    Any
-    | EdgeTranscodeWorkerSchema
-    | PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType0
-    | PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType1
+    Any | EdgeTranscodeWorkerSchema | PutEdgeTranscodeWorkersByWorkerIdResponseDefault
 ]:
     """Update a edge transcode worker
 
@@ -134,7 +98,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | EdgeTranscodeWorkerSchema | PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType0 | PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType1]
+        Response[Any | EdgeTranscodeWorkerSchema | PutEdgeTranscodeWorkersByWorkerIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -157,8 +121,7 @@ def sync(
 ) -> (
     Any
     | EdgeTranscodeWorkerSchema
-    | PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType0
-    | PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType1
+    | PutEdgeTranscodeWorkersByWorkerIdResponseDefault
     | None
 ):
     """Update a edge transcode worker
@@ -177,7 +140,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | EdgeTranscodeWorkerSchema | PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType0 | PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType1
+        Any | EdgeTranscodeWorkerSchema | PutEdgeTranscodeWorkersByWorkerIdResponseDefault
     """
 
     return sync_detailed(
@@ -193,10 +156,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: EdgeTranscodeWorkerSchema,
 ) -> Response[
-    Any
-    | EdgeTranscodeWorkerSchema
-    | PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType0
-    | PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType1
+    Any | EdgeTranscodeWorkerSchema | PutEdgeTranscodeWorkersByWorkerIdResponseDefault
 ]:
     """Update a edge transcode worker
 
@@ -214,7 +174,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | EdgeTranscodeWorkerSchema | PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType0 | PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType1]
+        Response[Any | EdgeTranscodeWorkerSchema | PutEdgeTranscodeWorkersByWorkerIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -235,8 +195,7 @@ async def asyncio(
 ) -> (
     Any
     | EdgeTranscodeWorkerSchema
-    | PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType0
-    | PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType1
+    | PutEdgeTranscodeWorkersByWorkerIdResponseDefault
     | None
 ):
     """Update a edge transcode worker
@@ -255,7 +214,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | EdgeTranscodeWorkerSchema | PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType0 | PutEdgeTranscodeWorkersByWorkerIdResponseDefaultType1
+        Any | EdgeTranscodeWorkerSchema | PutEdgeTranscodeWorkersByWorkerIdResponseDefault
     """
 
     return (

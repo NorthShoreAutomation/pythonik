@@ -5,11 +5,8 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.get_sequences_by_sequence_id_response_default_type_0 import (
-    GetSequencesBySequenceIdResponseDefaultType0,
-)
-from ...models.get_sequences_by_sequence_id_response_default_type_1 import (
-    GetSequencesBySequenceIdResponseDefaultType1,
+from ...models.get_sequences_by_sequence_id_response_default import (
+    GetSequencesBySequenceIdResponseDefault,
 )
 from ...models.sequence_schema import SequenceSchema
 from ...types import Response
@@ -31,12 +28,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> (
-    Any
-    | GetSequencesBySequenceIdResponseDefaultType0
-    | GetSequencesBySequenceIdResponseDefaultType1
-    | SequenceSchema
-):
+) -> Any | GetSequencesBySequenceIdResponseDefault | SequenceSchema:
     if response.status_code == 200:
         response_200 = SequenceSchema.from_dict(response.json())
 
@@ -50,43 +42,16 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
-    def _parse_response_default(
-        data: object,
-    ) -> (
-        GetSequencesBySequenceIdResponseDefaultType0
-        | GetSequencesBySequenceIdResponseDefaultType1
-    ):
-        try:
-            if not isinstance(data, dict):
-                raise TypeError()
-            response_default_type_0 = (
-                GetSequencesBySequenceIdResponseDefaultType0.from_dict(data)
-            )
-
-            return response_default_type_0
-        except (TypeError, ValueError, AttributeError, KeyError):
-            pass
-        if not isinstance(data, dict):
-            raise TypeError()
-        response_default_type_1 = (
-            GetSequencesBySequenceIdResponseDefaultType1.from_dict(data)
-        )
-
-        return response_default_type_1
-
-    response_default = _parse_response_default(response.json())
+    response_default = GetSequencesBySequenceIdResponseDefault.from_dict(
+        response.json()
+    )
 
     return response_default
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any
-    | GetSequencesBySequenceIdResponseDefaultType0
-    | GetSequencesBySequenceIdResponseDefaultType1
-    | SequenceSchema
-]:
+) -> Response[Any | GetSequencesBySequenceIdResponseDefault | SequenceSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -99,12 +64,7 @@ def sync_detailed(
     sequence_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetSequencesBySequenceIdResponseDefaultType0
-    | GetSequencesBySequenceIdResponseDefaultType1
-    | SequenceSchema
-]:
+) -> Response[Any | GetSequencesBySequenceIdResponseDefault | SequenceSchema]:
     """Returns a particular sequence by id
 
 
@@ -119,7 +79,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetSequencesBySequenceIdResponseDefaultType0 | GetSequencesBySequenceIdResponseDefaultType1 | SequenceSchema]
+        Response[Any | GetSequencesBySequenceIdResponseDefault | SequenceSchema]
     """
 
     kwargs = _get_kwargs(
@@ -137,13 +97,7 @@ def sync(
     sequence_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetSequencesBySequenceIdResponseDefaultType0
-    | GetSequencesBySequenceIdResponseDefaultType1
-    | SequenceSchema
-    | None
-):
+) -> Any | GetSequencesBySequenceIdResponseDefault | SequenceSchema | None:
     """Returns a particular sequence by id
 
 
@@ -158,7 +112,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetSequencesBySequenceIdResponseDefaultType0 | GetSequencesBySequenceIdResponseDefaultType1 | SequenceSchema
+        Any | GetSequencesBySequenceIdResponseDefault | SequenceSchema
     """
 
     return sync_detailed(
@@ -171,12 +125,7 @@ async def asyncio_detailed(
     sequence_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any
-    | GetSequencesBySequenceIdResponseDefaultType0
-    | GetSequencesBySequenceIdResponseDefaultType1
-    | SequenceSchema
-]:
+) -> Response[Any | GetSequencesBySequenceIdResponseDefault | SequenceSchema]:
     """Returns a particular sequence by id
 
 
@@ -191,7 +140,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GetSequencesBySequenceIdResponseDefaultType0 | GetSequencesBySequenceIdResponseDefaultType1 | SequenceSchema]
+        Response[Any | GetSequencesBySequenceIdResponseDefault | SequenceSchema]
     """
 
     kwargs = _get_kwargs(
@@ -207,13 +156,7 @@ async def asyncio(
     sequence_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | GetSequencesBySequenceIdResponseDefaultType0
-    | GetSequencesBySequenceIdResponseDefaultType1
-    | SequenceSchema
-    | None
-):
+) -> Any | GetSequencesBySequenceIdResponseDefault | SequenceSchema | None:
     """Returns a particular sequence by id
 
 
@@ -228,7 +171,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GetSequencesBySequenceIdResponseDefaultType0 | GetSequencesBySequenceIdResponseDefaultType1 | SequenceSchema
+        Any | GetSequencesBySequenceIdResponseDefault | SequenceSchema
     """
 
     return (

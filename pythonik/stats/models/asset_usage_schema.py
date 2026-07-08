@@ -2,23 +2,16 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.asset_usage_schema_asset_type import AssetUsageSchemaAssetType
+from ..models.asset_usage_schema_operation_source import AssetUsageSchemaOperationSource
 from ..models.asset_usage_schema_operation_type import AssetUsageSchemaOperationType
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.asset_usage_schema_asset_type_type_1 import (
-        AssetUsageSchemaAssetTypeType1,
-    )
-    from ..models.asset_usage_schema_operation_source_type_1 import (
-        AssetUsageSchemaOperationSourceType1,
-    )
-
 
 T = TypeVar("T", bound="AssetUsageSchema")
 
@@ -31,11 +24,11 @@ class AssetUsageSchema:
         operation_type (AssetUsageSchemaOperationType):
         system_name (str):
         user_id (UUID):
-        asset_type (AssetUsageSchemaAssetTypeType1 | None | Unset):
+        asset_type (AssetUsageSchemaAssetType | None | Unset):
         date (datetime.date | None | Unset):
         id (None | Unset | UUID):
         metadata (None | str | Unset):
-        operation_source (AssetUsageSchemaOperationSourceType1 | None | Unset):
+        operation_source (AssetUsageSchemaOperationSource | None | Unset):
         system_domain_id (None | Unset | UUID):
         time (datetime.datetime | None | Unset):
     """
@@ -44,23 +37,16 @@ class AssetUsageSchema:
     operation_type: AssetUsageSchemaOperationType
     system_name: str
     user_id: UUID
-    asset_type: AssetUsageSchemaAssetTypeType1 | None | Unset = UNSET
+    asset_type: AssetUsageSchemaAssetType | None | Unset = UNSET
     date: datetime.date | None | Unset = UNSET
     id: None | Unset | UUID = UNSET
     metadata: None | str | Unset = UNSET
-    operation_source: AssetUsageSchemaOperationSourceType1 | None | Unset = UNSET
+    operation_source: AssetUsageSchemaOperationSource | None | Unset = UNSET
     system_domain_id: None | Unset | UUID = UNSET
     time: datetime.datetime | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.asset_usage_schema_asset_type_type_1 import (
-            AssetUsageSchemaAssetTypeType1,
-        )
-        from ..models.asset_usage_schema_operation_source_type_1 import (
-            AssetUsageSchemaOperationSourceType1,
-        )
-
         asset_id = str(self.asset_id)
 
         operation_type = self.operation_type.value
@@ -69,11 +55,11 @@ class AssetUsageSchema:
 
         user_id = str(self.user_id)
 
-        asset_type: dict[str, Any] | None | Unset
+        asset_type: None | str | Unset
         if isinstance(self.asset_type, Unset):
             asset_type = UNSET
-        elif isinstance(self.asset_type, AssetUsageSchemaAssetTypeType1):
-            asset_type = self.asset_type.to_dict()
+        elif isinstance(self.asset_type, AssetUsageSchemaAssetType):
+            asset_type = self.asset_type.value
         else:
             asset_type = self.asset_type
 
@@ -99,11 +85,11 @@ class AssetUsageSchema:
         else:
             metadata = self.metadata
 
-        operation_source: dict[str, Any] | None | Unset
+        operation_source: None | str | Unset
         if isinstance(self.operation_source, Unset):
             operation_source = UNSET
-        elif isinstance(self.operation_source, AssetUsageSchemaOperationSourceType1):
-            operation_source = self.operation_source.to_dict()
+        elif isinstance(self.operation_source, AssetUsageSchemaOperationSource):
+            operation_source = self.operation_source.value
         else:
             operation_source = self.operation_source
 
@@ -152,13 +138,6 @@ class AssetUsageSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.asset_usage_schema_asset_type_type_1 import (
-            AssetUsageSchemaAssetTypeType1,
-        )
-        from ..models.asset_usage_schema_operation_source_type_1 import (
-            AssetUsageSchemaOperationSourceType1,
-        )
-
         d = dict(src_dict)
         asset_id = UUID(d.pop("asset_id"))
 
@@ -168,22 +147,20 @@ class AssetUsageSchema:
 
         user_id = UUID(d.pop("user_id"))
 
-        def _parse_asset_type(
-            data: object,
-        ) -> AssetUsageSchemaAssetTypeType1 | None | Unset:
+        def _parse_asset_type(data: object) -> AssetUsageSchemaAssetType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                asset_type_type_1 = AssetUsageSchemaAssetTypeType1.from_dict(data)
+                asset_type_type_1 = AssetUsageSchemaAssetType(data)
 
                 return asset_type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AssetUsageSchemaAssetTypeType1 | None | Unset, data)
+            return cast(AssetUsageSchemaAssetType | None | Unset, data)
 
         asset_type = _parse_asset_type(d.pop("asset_type", UNSET))
 
@@ -232,22 +209,20 @@ class AssetUsageSchema:
 
         def _parse_operation_source(
             data: object,
-        ) -> AssetUsageSchemaOperationSourceType1 | None | Unset:
+        ) -> AssetUsageSchemaOperationSource | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                operation_source_type_1 = (
-                    AssetUsageSchemaOperationSourceType1.from_dict(data)
-                )
+                operation_source_type_1 = AssetUsageSchemaOperationSource(data)
 
                 return operation_source_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AssetUsageSchemaOperationSourceType1 | None | Unset, data)
+            return cast(AssetUsageSchemaOperationSource | None | Unset, data)
 
         operation_source = _parse_operation_source(d.pop("operation_source", UNSET))
 

@@ -7,9 +7,11 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.merged_settings_schema_drm import MergedSettingsSchemaDrm
 from ..models.merged_settings_schema_mfa_methods_type_0_item import (
     MergedSettingsSchemaMfaMethodsType0Item,
 )
+from ..models.merged_settings_schema_watermark import MergedSettingsSchemaWatermark
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -18,10 +20,6 @@ if TYPE_CHECKING:
     from ..models.default_share_options_type_schema import DefaultShareOptionsTypeSchema
     from ..models.facet_field_schema import FacetFieldSchema
     from ..models.jobs_dashboard_schema import JobsDashboardSchema
-    from ..models.merged_settings_schema_drm_type_1 import MergedSettingsSchemaDrmType1
-    from ..models.merged_settings_schema_watermark_type_1 import (
-        MergedSettingsSchemaWatermarkType1,
-    )
     from ..models.password_checks_type import PasswordChecksType
     from ..models.search_display_field import SearchDisplayField
     from ..models.usage_history import UsageHistory
@@ -60,7 +58,7 @@ class MergedSettingsSchema:
             Unit: hours
         disable_billing_page (bool | None | Unset):
         domain_has_preloaded_assets (bool | None | Unset):
-        drm (MergedSettingsSchemaDrmType1 | None | Unset):
+        drm (MergedSettingsSchemaDrm | None | Unset):
         drm_enforce (bool | None | Unset): Whether to require hardware DRM for playback when DRM is enabled Default:
             True.
         enable_ai_metadata_filling (bool | None | Unset):
@@ -118,7 +116,7 @@ class MergedSettingsSchema:
         update_saml_primary_group_on_login (bool | None | Unset):
         usage_history (None | Unset | UsageHistory):
         use_asset_name_on_download (bool | None | Unset):
-        watermark (MergedSettingsSchemaWatermarkType1 | None | Unset):
+        watermark (MergedSettingsSchemaWatermark | None | Unset):
         watermark_options (None | Unset | WatermarkOptionsType):
     """
 
@@ -145,7 +143,7 @@ class MergedSettingsSchema:
     delete_grace_period: int | None | Unset = UNSET
     disable_billing_page: bool | None | Unset = UNSET
     domain_has_preloaded_assets: bool | None | Unset = UNSET
-    drm: MergedSettingsSchemaDrmType1 | None | Unset = UNSET
+    drm: MergedSettingsSchemaDrm | None | Unset = UNSET
     drm_enforce: bool | None | Unset = True
     enable_ai_metadata_filling: bool | None | Unset = UNSET
     enable_face_recognition: bool | None | Unset = UNSET
@@ -200,7 +198,7 @@ class MergedSettingsSchema:
     update_saml_primary_group_on_login: bool | None | Unset = UNSET
     usage_history: None | Unset | UsageHistory = UNSET
     use_asset_name_on_download: bool | None | Unset = UNSET
-    watermark: MergedSettingsSchemaWatermarkType1 | None | Unset = UNSET
+    watermark: MergedSettingsSchemaWatermark | None | Unset = UNSET
     watermark_options: None | Unset | WatermarkOptionsType = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -210,12 +208,6 @@ class MergedSettingsSchema:
             DefaultShareOptionsTypeSchema,
         )
         from ..models.jobs_dashboard_schema import JobsDashboardSchema
-        from ..models.merged_settings_schema_drm_type_1 import (
-            MergedSettingsSchemaDrmType1,
-        )
-        from ..models.merged_settings_schema_watermark_type_1 import (
-            MergedSettingsSchemaWatermarkType1,
-        )
         from ..models.password_checks_type import PasswordChecksType
         from ..models.usage_history import UsageHistory
         from ..models.watermark_options_type import WatermarkOptionsType
@@ -380,11 +372,11 @@ class MergedSettingsSchema:
         else:
             domain_has_preloaded_assets = self.domain_has_preloaded_assets
 
-        drm: dict[str, Any] | None | Unset
+        drm: None | str | Unset
         if isinstance(self.drm, Unset):
             drm = UNSET
-        elif isinstance(self.drm, MergedSettingsSchemaDrmType1):
-            drm = self.drm.to_dict()
+        elif isinstance(self.drm, MergedSettingsSchemaDrm):
+            drm = self.drm.value
         else:
             drm = self.drm
 
@@ -773,11 +765,11 @@ class MergedSettingsSchema:
         else:
             use_asset_name_on_download = self.use_asset_name_on_download
 
-        watermark: dict[str, Any] | None | Unset
+        watermark: None | str | Unset
         if isinstance(self.watermark, Unset):
             watermark = UNSET
-        elif isinstance(self.watermark, MergedSettingsSchemaWatermarkType1):
-            watermark = self.watermark.to_dict()
+        elif isinstance(self.watermark, MergedSettingsSchemaWatermark):
+            watermark = self.watermark.value
         else:
             watermark = self.watermark
 
@@ -986,12 +978,6 @@ class MergedSettingsSchema:
         )
         from ..models.facet_field_schema import FacetFieldSchema
         from ..models.jobs_dashboard_schema import JobsDashboardSchema
-        from ..models.merged_settings_schema_drm_type_1 import (
-            MergedSettingsSchemaDrmType1,
-        )
-        from ..models.merged_settings_schema_watermark_type_1 import (
-            MergedSettingsSchemaWatermarkType1,
-        )
         from ..models.password_checks_type import PasswordChecksType
         from ..models.search_display_field import SearchDisplayField
         from ..models.usage_history import UsageHistory
@@ -1305,20 +1291,20 @@ class MergedSettingsSchema:
             d.pop("domain_has_preloaded_assets", UNSET)
         )
 
-        def _parse_drm(data: object) -> MergedSettingsSchemaDrmType1 | None | Unset:
+        def _parse_drm(data: object) -> MergedSettingsSchemaDrm | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                drm_type_1 = MergedSettingsSchemaDrmType1.from_dict(data)
+                drm_type_1 = MergedSettingsSchemaDrm(data)
 
                 return drm_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(MergedSettingsSchemaDrmType1 | None | Unset, data)
+            return cast(MergedSettingsSchemaDrm | None | Unset, data)
 
         drm = _parse_drm(d.pop("drm", UNSET))
 
@@ -2043,20 +2029,20 @@ class MergedSettingsSchema:
 
         def _parse_watermark(
             data: object,
-        ) -> MergedSettingsSchemaWatermarkType1 | None | Unset:
+        ) -> MergedSettingsSchemaWatermark | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                watermark_type_1 = MergedSettingsSchemaWatermarkType1.from_dict(data)
+                watermark_type_1 = MergedSettingsSchemaWatermark(data)
 
                 return watermark_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(MergedSettingsSchemaWatermarkType1 | None | Unset, data)
+            return cast(MergedSettingsSchemaWatermark | None | Unset, data)
 
         watermark = _parse_watermark(d.pop("watermark", UNSET))
 

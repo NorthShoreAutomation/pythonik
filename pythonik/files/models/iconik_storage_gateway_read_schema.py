@@ -11,12 +11,12 @@ from attrs import field as _attrs_field
 from ..models.iconik_storage_gateway_read_schema_roles_type_0_item import (
     IconikStorageGatewayReadSchemaRolesType0Item,
 )
+from ..models.iconik_storage_gateway_read_schema_status import (
+    IconikStorageGatewayReadSchemaStatus,
+)
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.iconik_storage_gateway_read_schema_status_type_1 import (
-        IconikStorageGatewayReadSchemaStatusType1,
-    )
     from ..models.iconik_storage_gateway_read_schema_storages_type_0 import (
         IconikStorageGatewayReadSchemaStoragesType0,
     )
@@ -49,7 +49,7 @@ class IconikStorageGatewayReadSchema:
         roles (list[IconikStorageGatewayReadSchemaRolesType0Item] | None | Unset): Set of roles this gateway can perform
             when part of cluster
         settings (ISGConfigSettingsSchema | None | Unset): Application configuration settings as key-value pairs
-        status (IconikStorageGatewayReadSchemaStatusType1 | None | Unset):
+        status (IconikStorageGatewayReadSchemaStatus | None | Unset):
         storage_addr (None | str | Unset): Server address for direct transfers between storage gateways
         storages (IconikStorageGatewayReadSchemaStoragesType0 | None | Unset): Storage mount points mapped by storage ID
         telemetry (IconikStorageGatewayTelemetry | None | Unset):
@@ -68,16 +68,13 @@ class IconikStorageGatewayReadSchema:
     public_identity: None | str | Unset = UNSET
     roles: list[IconikStorageGatewayReadSchemaRolesType0Item] | None | Unset = UNSET
     settings: ISGConfigSettingsSchema | None | Unset = UNSET
-    status: IconikStorageGatewayReadSchemaStatusType1 | None | Unset = UNSET
+    status: IconikStorageGatewayReadSchemaStatus | None | Unset = UNSET
     storage_addr: None | str | Unset = UNSET
     storages: IconikStorageGatewayReadSchemaStoragesType0 | None | Unset = UNSET
     telemetry: IconikStorageGatewayTelemetry | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.iconik_storage_gateway_read_schema_status_type_1 import (
-            IconikStorageGatewayReadSchemaStatusType1,
-        )
         from ..models.iconik_storage_gateway_read_schema_storages_type_0 import (
             IconikStorageGatewayReadSchemaStoragesType0,
         )
@@ -193,11 +190,11 @@ class IconikStorageGatewayReadSchema:
         else:
             settings = self.settings
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, IconikStorageGatewayReadSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, IconikStorageGatewayReadSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -266,9 +263,6 @@ class IconikStorageGatewayReadSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.iconik_storage_gateway_read_schema_status_type_1 import (
-            IconikStorageGatewayReadSchemaStatusType1,
-        )
         from ..models.iconik_storage_gateway_read_schema_storages_type_0 import (
             IconikStorageGatewayReadSchemaStoragesType0,
         )
@@ -493,22 +487,20 @@ class IconikStorageGatewayReadSchema:
 
         def _parse_status(
             data: object,
-        ) -> IconikStorageGatewayReadSchemaStatusType1 | None | Unset:
+        ) -> IconikStorageGatewayReadSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = IconikStorageGatewayReadSchemaStatusType1.from_dict(
-                    data
-                )
+                status_type_1 = IconikStorageGatewayReadSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(IconikStorageGatewayReadSchemaStatusType1 | None | Unset, data)
+            return cast(IconikStorageGatewayReadSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

@@ -2,21 +2,16 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.share_schema_drm import ShareSchemaDrm
+from ..models.share_schema_population_status import ShareSchemaPopulationStatus
+from ..models.share_schema_watermark import ShareSchemaWatermark
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.share_schema_drm_type_1 import ShareSchemaDrmType1
-    from ..models.share_schema_population_status_type_1 import (
-        ShareSchemaPopulationStatusType1,
-    )
-    from ..models.share_schema_watermark_type_1 import ShareSchemaWatermarkType1
-
 
 T = TypeVar("T", bound="ShareSchema")
 
@@ -38,7 +33,7 @@ class ShareSchema:
         allow_view_versions (bool | None | Unset):
         automatic_approval_share (bool | None | Unset):
         date_created (datetime.datetime | None | Unset):
-        drm (None | ShareSchemaDrmType1 | Unset):
+        drm (None | ShareSchemaDrm | Unset):
         expires (datetime.datetime | None | Unset):
         has_password (bool | None | Unset):
         id (None | str | Unset):
@@ -48,7 +43,7 @@ class ShareSchema:
         object_id (None | str | Unset):
         object_type (None | str | Unset):
         owner_id (None | str | Unset):
-        population_status (None | ShareSchemaPopulationStatusType1 | Unset):
+        population_status (None | ShareSchemaPopulationStatus | Unset):
         project_id (None | Unset | UUID): Project ID if the share is created from a project
         review_experience_public_beta (bool | None | Unset):
         show_existing_comments (bool | None | Unset):
@@ -57,7 +52,7 @@ class ShareSchema:
         title (None | str | Unset):
         upload_storage_id (None | Unset | UUID):
         url (None | str | Unset):
-        watermark (None | ShareSchemaWatermarkType1 | Unset):
+        watermark (None | ShareSchemaWatermark | Unset):
     """
 
     allow_approving_comments: bool
@@ -73,7 +68,7 @@ class ShareSchema:
     allow_view_versions: bool | None | Unset = UNSET
     automatic_approval_share: bool | None | Unset = UNSET
     date_created: datetime.datetime | None | Unset = UNSET
-    drm: None | ShareSchemaDrmType1 | Unset = UNSET
+    drm: None | ShareSchemaDrm | Unset = UNSET
     expires: datetime.datetime | None | Unset = UNSET
     has_password: bool | None | Unset = UNSET
     id: None | str | Unset = UNSET
@@ -83,7 +78,7 @@ class ShareSchema:
     object_id: None | str | Unset = UNSET
     object_type: None | str | Unset = UNSET
     owner_id: None | str | Unset = UNSET
-    population_status: None | ShareSchemaPopulationStatusType1 | Unset = UNSET
+    population_status: None | ShareSchemaPopulationStatus | Unset = UNSET
     project_id: None | Unset | UUID = UNSET
     review_experience_public_beta: bool | None | Unset = UNSET
     show_existing_comments: bool | None | Unset = UNSET
@@ -92,16 +87,10 @@ class ShareSchema:
     title: None | str | Unset = UNSET
     upload_storage_id: None | Unset | UUID = UNSET
     url: None | str | Unset = UNSET
-    watermark: None | ShareSchemaWatermarkType1 | Unset = UNSET
+    watermark: None | ShareSchemaWatermark | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.share_schema_drm_type_1 import ShareSchemaDrmType1
-        from ..models.share_schema_population_status_type_1 import (
-            ShareSchemaPopulationStatusType1,
-        )
-        from ..models.share_schema_watermark_type_1 import ShareSchemaWatermarkType1
-
         allow_approving_comments = self.allow_approving_comments
 
         allow_comments = self.allow_comments
@@ -166,11 +155,11 @@ class ShareSchema:
         else:
             date_created = self.date_created
 
-        drm: dict[str, Any] | None | Unset
+        drm: None | str | Unset
         if isinstance(self.drm, Unset):
             drm = UNSET
-        elif isinstance(self.drm, ShareSchemaDrmType1):
-            drm = self.drm.to_dict()
+        elif isinstance(self.drm, ShareSchemaDrm):
+            drm = self.drm.value
         else:
             drm = self.drm
 
@@ -233,11 +222,11 @@ class ShareSchema:
         else:
             owner_id = self.owner_id
 
-        population_status: dict[str, Any] | None | Unset
+        population_status: None | str | Unset
         if isinstance(self.population_status, Unset):
             population_status = UNSET
-        elif isinstance(self.population_status, ShareSchemaPopulationStatusType1):
-            population_status = self.population_status.to_dict()
+        elif isinstance(self.population_status, ShareSchemaPopulationStatus):
+            population_status = self.population_status.value
         else:
             population_status = self.population_status
 
@@ -293,11 +282,11 @@ class ShareSchema:
         else:
             url = self.url
 
-        watermark: dict[str, Any] | None | Unset
+        watermark: None | str | Unset
         if isinstance(self.watermark, Unset):
             watermark = UNSET
-        elif isinstance(self.watermark, ShareSchemaWatermarkType1):
-            watermark = self.watermark.to_dict()
+        elif isinstance(self.watermark, ShareSchemaWatermark):
+            watermark = self.watermark.value
         else:
             watermark = self.watermark
 
@@ -376,12 +365,6 @@ class ShareSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.share_schema_drm_type_1 import ShareSchemaDrmType1
-        from ..models.share_schema_population_status_type_1 import (
-            ShareSchemaPopulationStatusType1,
-        )
-        from ..models.share_schema_watermark_type_1 import ShareSchemaWatermarkType1
-
         d = dict(src_dict)
         allow_approving_comments = d.pop("allow_approving_comments")
 
@@ -492,20 +475,20 @@ class ShareSchema:
 
         date_created = _parse_date_created(d.pop("date_created", UNSET))
 
-        def _parse_drm(data: object) -> None | ShareSchemaDrmType1 | Unset:
+        def _parse_drm(data: object) -> None | ShareSchemaDrm | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                drm_type_1 = ShareSchemaDrmType1.from_dict(data)
+                drm_type_1 = ShareSchemaDrm(data)
 
                 return drm_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | ShareSchemaDrmType1 | Unset, data)
+            return cast(None | ShareSchemaDrm | Unset, data)
 
         drm = _parse_drm(d.pop("drm", UNSET))
 
@@ -608,22 +591,20 @@ class ShareSchema:
 
         def _parse_population_status(
             data: object,
-        ) -> None | ShareSchemaPopulationStatusType1 | Unset:
+        ) -> None | ShareSchemaPopulationStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                population_status_type_1 = ShareSchemaPopulationStatusType1.from_dict(
-                    data
-                )
+                population_status_type_1 = ShareSchemaPopulationStatus(data)
 
                 return population_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | ShareSchemaPopulationStatusType1 | Unset, data)
+            return cast(None | ShareSchemaPopulationStatus | Unset, data)
 
         population_status = _parse_population_status(d.pop("population_status", UNSET))
 
@@ -719,20 +700,20 @@ class ShareSchema:
 
         url = _parse_url(d.pop("url", UNSET))
 
-        def _parse_watermark(data: object) -> None | ShareSchemaWatermarkType1 | Unset:
+        def _parse_watermark(data: object) -> None | ShareSchemaWatermark | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                watermark_type_1 = ShareSchemaWatermarkType1.from_dict(data)
+                watermark_type_1 = ShareSchemaWatermark(data)
 
                 return watermark_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | ShareSchemaWatermarkType1 | Unset, data)
+            return cast(None | ShareSchemaWatermark | Unset, data)
 
         watermark = _parse_watermark(d.pop("watermark", UNSET))
 

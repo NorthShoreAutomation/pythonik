@@ -1,16 +1,13 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.analyze_schema_force_type import AnalyzeSchemaForceType
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.analyze_schema_force_type_type_1 import AnalyzeSchemaForceTypeType1
-
 
 T = TypeVar("T", bound="AnalyzeSchema")
 
@@ -20,31 +17,27 @@ class AnalyzeSchema:
     """
     Attributes:
         force (bool | None | Unset):  Default: False.
-        force_type (AnalyzeSchemaForceTypeType1 | None | Unset):
+        force_type (AnalyzeSchemaForceType | None | Unset):
         service_name (None | str | Unset):
     """
 
     force: bool | None | Unset = False
-    force_type: AnalyzeSchemaForceTypeType1 | None | Unset = UNSET
+    force_type: AnalyzeSchemaForceType | None | Unset = UNSET
     service_name: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.analyze_schema_force_type_type_1 import (
-            AnalyzeSchemaForceTypeType1,
-        )
-
         force: bool | None | Unset
         if isinstance(self.force, Unset):
             force = UNSET
         else:
             force = self.force
 
-        force_type: dict[str, Any] | None | Unset
+        force_type: None | str | Unset
         if isinstance(self.force_type, Unset):
             force_type = UNSET
-        elif isinstance(self.force_type, AnalyzeSchemaForceTypeType1):
-            force_type = self.force_type.to_dict()
+        elif isinstance(self.force_type, AnalyzeSchemaForceType):
+            force_type = self.force_type.value
         else:
             force_type = self.force_type
 
@@ -68,10 +61,6 @@ class AnalyzeSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.analyze_schema_force_type_type_1 import (
-            AnalyzeSchemaForceTypeType1,
-        )
-
         d = dict(src_dict)
 
         def _parse_force(data: object) -> bool | None | Unset:
@@ -83,22 +72,20 @@ class AnalyzeSchema:
 
         force = _parse_force(d.pop("force", UNSET))
 
-        def _parse_force_type(
-            data: object,
-        ) -> AnalyzeSchemaForceTypeType1 | None | Unset:
+        def _parse_force_type(data: object) -> AnalyzeSchemaForceType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                force_type_type_1 = AnalyzeSchemaForceTypeType1.from_dict(data)
+                force_type_type_1 = AnalyzeSchemaForceType(data)
 
                 return force_type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AnalyzeSchemaForceTypeType1 | None | Unset, data)
+            return cast(AnalyzeSchemaForceType | None | Unset, data)
 
         force_type = _parse_force_type(d.pop("force_type", UNSET))
 

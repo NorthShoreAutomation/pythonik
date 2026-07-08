@@ -1,18 +1,13 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.job_child_progress_schema_status import JobChildProgressSchemaStatus
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.job_child_progress_schema_status_type_1 import (
-        JobChildProgressSchemaStatusType1,
-    )
-
 
 T = TypeVar("T", bound="JobChildProgressSchema")
 
@@ -23,19 +18,15 @@ class JobChildProgressSchema:
     Attributes:
         progress_processed (int | None | Unset):
         progress_total (int | None | Unset):
-        status (JobChildProgressSchemaStatusType1 | None | Unset):
+        status (JobChildProgressSchemaStatus | None | Unset):
     """
 
     progress_processed: int | None | Unset = UNSET
     progress_total: int | None | Unset = UNSET
-    status: JobChildProgressSchemaStatusType1 | None | Unset = UNSET
+    status: JobChildProgressSchemaStatus | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.job_child_progress_schema_status_type_1 import (
-            JobChildProgressSchemaStatusType1,
-        )
-
         progress_processed: int | None | Unset
         if isinstance(self.progress_processed, Unset):
             progress_processed = UNSET
@@ -48,11 +39,11 @@ class JobChildProgressSchema:
         else:
             progress_total = self.progress_total
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, JobChildProgressSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, JobChildProgressSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -70,10 +61,6 @@ class JobChildProgressSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.job_child_progress_schema_status_type_1 import (
-            JobChildProgressSchemaStatusType1,
-        )
-
         d = dict(src_dict)
 
         def _parse_progress_processed(data: object) -> int | None | Unset:
@@ -96,22 +83,20 @@ class JobChildProgressSchema:
 
         progress_total = _parse_progress_total(d.pop("progress_total", UNSET))
 
-        def _parse_status(
-            data: object,
-        ) -> JobChildProgressSchemaStatusType1 | None | Unset:
+        def _parse_status(data: object) -> JobChildProgressSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = JobChildProgressSchemaStatusType1.from_dict(data)
+                status_type_1 = JobChildProgressSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(JobChildProgressSchemaStatusType1 | None | Unset, data)
+            return cast(JobChildProgressSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

@@ -2,20 +2,15 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.team_schema_default_user_type import TeamSchemaDefaultUserType
+from ..models.team_schema_group_type import TeamSchemaGroupType
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.team_schema_default_user_type_type_1 import (
-        TeamSchemaDefaultUserTypeType1,
-    )
-    from ..models.team_schema_group_type_type_1 import TeamSchemaGroupTypeType1
-
 
 T = TypeVar("T", bound="TeamSchema")
 
@@ -28,10 +23,10 @@ class TeamSchema:
         alias (None | str | Unset):
         date_created (datetime.datetime | None | Unset):
         date_modified (datetime.datetime | None | Unset):
-        default_user_type (None | TeamSchemaDefaultUserTypeType1 | Unset):
+        default_user_type (None | TeamSchemaDefaultUserType | Unset):
         description (None | str | Unset):
         external_id (None | str | Unset):
-        group_type (None | TeamSchemaGroupTypeType1 | Unset):
+        group_type (None | TeamSchemaGroupType | Unset):
         id (None | Unset | UUID):
         is_legacy_everyone (bool | None | Unset):
         is_saml_group (bool | None | Unset):
@@ -43,10 +38,10 @@ class TeamSchema:
     alias: None | str | Unset = UNSET
     date_created: datetime.datetime | None | Unset = UNSET
     date_modified: datetime.datetime | None | Unset = UNSET
-    default_user_type: None | TeamSchemaDefaultUserTypeType1 | Unset = UNSET
+    default_user_type: None | TeamSchemaDefaultUserType | Unset = UNSET
     description: None | str | Unset = UNSET
     external_id: None | str | Unset = UNSET
-    group_type: None | TeamSchemaGroupTypeType1 | Unset = UNSET
+    group_type: None | TeamSchemaGroupType | Unset = UNSET
     id: None | Unset | UUID = UNSET
     is_legacy_everyone: bool | None | Unset = UNSET
     is_saml_group: bool | None | Unset = UNSET
@@ -55,11 +50,6 @@ class TeamSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.team_schema_default_user_type_type_1 import (
-            TeamSchemaDefaultUserTypeType1,
-        )
-        from ..models.team_schema_group_type_type_1 import TeamSchemaGroupTypeType1
-
         name = self.name
 
         alias: None | str | Unset
@@ -84,11 +74,11 @@ class TeamSchema:
         else:
             date_modified = self.date_modified
 
-        default_user_type: dict[str, Any] | None | Unset
+        default_user_type: None | str | Unset
         if isinstance(self.default_user_type, Unset):
             default_user_type = UNSET
-        elif isinstance(self.default_user_type, TeamSchemaDefaultUserTypeType1):
-            default_user_type = self.default_user_type.to_dict()
+        elif isinstance(self.default_user_type, TeamSchemaDefaultUserType):
+            default_user_type = self.default_user_type.value
         else:
             default_user_type = self.default_user_type
 
@@ -104,11 +94,11 @@ class TeamSchema:
         else:
             external_id = self.external_id
 
-        group_type: dict[str, Any] | None | Unset
+        group_type: None | str | Unset
         if isinstance(self.group_type, Unset):
             group_type = UNSET
-        elif isinstance(self.group_type, TeamSchemaGroupTypeType1):
-            group_type = self.group_type.to_dict()
+        elif isinstance(self.group_type, TeamSchemaGroupType):
+            group_type = self.group_type.value
         else:
             group_type = self.group_type
 
@@ -180,11 +170,6 @@ class TeamSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.team_schema_default_user_type_type_1 import (
-            TeamSchemaDefaultUserTypeType1,
-        )
-        from ..models.team_schema_group_type_type_1 import TeamSchemaGroupTypeType1
-
         d = dict(src_dict)
         name = d.pop("name")
 
@@ -233,22 +218,20 @@ class TeamSchema:
 
         def _parse_default_user_type(
             data: object,
-        ) -> None | TeamSchemaDefaultUserTypeType1 | Unset:
+        ) -> None | TeamSchemaDefaultUserType | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                default_user_type_type_1 = TeamSchemaDefaultUserTypeType1.from_dict(
-                    data
-                )
+                default_user_type_type_1 = TeamSchemaDefaultUserType(data)
 
                 return default_user_type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | TeamSchemaDefaultUserTypeType1 | Unset, data)
+            return cast(None | TeamSchemaDefaultUserType | Unset, data)
 
         default_user_type = _parse_default_user_type(d.pop("default_user_type", UNSET))
 
@@ -270,20 +253,20 @@ class TeamSchema:
 
         external_id = _parse_external_id(d.pop("external_id", UNSET))
 
-        def _parse_group_type(data: object) -> None | TeamSchemaGroupTypeType1 | Unset:
+        def _parse_group_type(data: object) -> None | TeamSchemaGroupType | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                group_type_type_1 = TeamSchemaGroupTypeType1.from_dict(data)
+                group_type_type_1 = TeamSchemaGroupType(data)
 
                 return group_type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | TeamSchemaGroupTypeType1 | Unset, data)
+            return cast(None | TeamSchemaGroupType | Unset, data)
 
         group_type = _parse_group_type(d.pop("group_type", UNSET))
 

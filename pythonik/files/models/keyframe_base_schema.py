@@ -7,13 +7,11 @@ from typing import TYPE_CHECKING, Any, TypeVar, cast
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.keyframe_base_schema_status import KeyframeBaseSchemaStatus
 from ..models.keyframe_base_schema_type import KeyframeBaseSchemaType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.keyframe_base_schema_status_type_1 import (
-        KeyframeBaseSchemaStatusType1,
-    )
     from ..models.resolution_type import ResolutionType
     from ..models.time_code_type import TimeCodeType
 
@@ -36,7 +34,7 @@ class KeyframeBaseSchema:
         resolution (None | ResolutionType | Unset):
         rotation (int | None | Unset):
         size (int | None | Unset):
-        status (KeyframeBaseSchemaStatusType1 | None | Unset):
+        status (KeyframeBaseSchemaStatus | None | Unset):
         time_code (None | TimeCodeType | Unset):
         url (None | str | Unset):
     """
@@ -52,15 +50,12 @@ class KeyframeBaseSchema:
     resolution: None | ResolutionType | Unset = UNSET
     rotation: int | None | Unset = UNSET
     size: int | None | Unset = UNSET
-    status: KeyframeBaseSchemaStatusType1 | None | Unset = UNSET
+    status: KeyframeBaseSchemaStatus | None | Unset = UNSET
     time_code: None | TimeCodeType | Unset = UNSET
     url: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.keyframe_base_schema_status_type_1 import (
-            KeyframeBaseSchemaStatusType1,
-        )
         from ..models.resolution_type import ResolutionType
         from ..models.time_code_type import TimeCodeType
 
@@ -132,11 +127,11 @@ class KeyframeBaseSchema:
         else:
             size = self.size
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, KeyframeBaseSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, KeyframeBaseSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -192,9 +187,6 @@ class KeyframeBaseSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.keyframe_base_schema_status_type_1 import (
-            KeyframeBaseSchemaStatusType1,
-        )
         from ..models.resolution_type import ResolutionType
         from ..models.time_code_type import TimeCodeType
 
@@ -317,20 +309,20 @@ class KeyframeBaseSchema:
 
         size = _parse_size(d.pop("size", UNSET))
 
-        def _parse_status(data: object) -> KeyframeBaseSchemaStatusType1 | None | Unset:
+        def _parse_status(data: object) -> KeyframeBaseSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = KeyframeBaseSchemaStatusType1.from_dict(data)
+                status_type_1 = KeyframeBaseSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(KeyframeBaseSchemaStatusType1 | None | Unset, data)
+            return cast(KeyframeBaseSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

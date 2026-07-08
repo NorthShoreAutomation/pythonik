@@ -16,11 +16,11 @@ from .combined_permissions_schema import CombinedPermissionsSchema
 from .copy_inherited_acl_schema import CopyInheritedACLSchema
 from .create_ac_ls_result_schema import CreateACLsResultSchema
 from .create_ac_ls_schema import CreateACLsSchema
-from .create_ac_ls_schema_mode_type_1 import CreateACLsSchemaModeType1
+from .create_ac_ls_schema_mode import CreateACLsSchemaMode
 from .create_ac_ls_schema_multiple import CreateACLsSchemaMultiple
-from .create_ac_ls_schema_multiple_mode_type_1 import CreateACLsSchemaMultipleModeType1
+from .create_ac_ls_schema_multiple_mode import CreateACLsSchemaMultipleMode
 from .create_bulk_ac_ls_schema import CreateBulkACLsSchema
-from .create_bulk_ac_ls_schema_mode_type_1 import CreateBulkACLsSchemaModeType1
+from .create_bulk_ac_ls_schema_mode import CreateBulkACLsSchemaMode
 from .create_multiple_ac_ls_schema import CreateMultipleACLsSchema
 from .create_share_ac_ls_schema import CreateShareACLsSchema
 from .delete_ac_ls_schema import DeleteACLsSchema
@@ -342,11 +342,11 @@ __all__ = (
     "CopyInheritedACLSchema",
     "CreateACLsResultSchema",
     "CreateACLsSchema",
-    "CreateACLsSchemaModeType1",
+    "CreateACLsSchemaMode",
     "CreateACLsSchemaMultiple",
-    "CreateACLsSchemaMultipleModeType1",
+    "CreateACLsSchemaMultipleMode",
     "CreateBulkACLsSchema",
-    "CreateBulkACLsSchemaModeType1",
+    "CreateBulkACLsSchemaMode",
     "CreateMultipleACLsSchema",
     "CreateShareACLsSchema",
     "DeleteAclByObjectTypeContentResponseDefaultType0",

@@ -2,19 +2,14 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.collection_input_schema_status import CollectionInputSchemaStatus
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.collection_input_schema_status_type_1 import (
-        CollectionInputSchemaStatusType1,
-    )
-
 
 T = TypeVar("T", bound="CollectionInputSchema")
 
@@ -32,7 +27,7 @@ class CollectionInputSchema:
         is_root (bool | None | Unset):
         keyframe_asset_ids (list[UUID] | None | Unset):
         parent_id (None | Unset | UUID):
-        status (CollectionInputSchemaStatusType1 | None | Unset):
+        status (CollectionInputSchemaStatus | None | Unset):
         storage_id (None | Unset | UUID):
     """
 
@@ -45,15 +40,11 @@ class CollectionInputSchema:
     is_root: bool | None | Unset = UNSET
     keyframe_asset_ids: list[UUID] | None | Unset = UNSET
     parent_id: None | Unset | UUID = UNSET
-    status: CollectionInputSchemaStatusType1 | None | Unset = UNSET
+    status: CollectionInputSchemaStatus | None | Unset = UNSET
     storage_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.collection_input_schema_status_type_1 import (
-            CollectionInputSchemaStatusType1,
-        )
-
         title = self.title
 
         category: None | str | Unset
@@ -120,11 +111,11 @@ class CollectionInputSchema:
         else:
             parent_id = self.parent_id
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, CollectionInputSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, CollectionInputSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -168,10 +159,6 @@ class CollectionInputSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.collection_input_schema_status_type_1 import (
-            CollectionInputSchemaStatusType1,
-        )
-
         d = dict(src_dict)
         title = d.pop("title")
 
@@ -296,22 +283,20 @@ class CollectionInputSchema:
 
         parent_id = _parse_parent_id(d.pop("parent_id", UNSET))
 
-        def _parse_status(
-            data: object,
-        ) -> CollectionInputSchemaStatusType1 | None | Unset:
+        def _parse_status(data: object) -> CollectionInputSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = CollectionInputSchemaStatusType1.from_dict(data)
+                status_type_1 = CollectionInputSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(CollectionInputSchemaStatusType1 | None | Unset, data)
+            return cast(CollectionInputSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

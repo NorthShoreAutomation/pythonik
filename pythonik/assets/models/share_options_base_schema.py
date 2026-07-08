@@ -1,22 +1,15 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.share_options_base_schema_drm import ShareOptionsBaseSchemaDrm
+from ..models.share_options_base_schema_watermark import ShareOptionsBaseSchemaWatermark
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.share_options_base_schema_drm_type_1 import (
-        ShareOptionsBaseSchemaDrmType1,
-    )
-    from ..models.share_options_base_schema_watermark_type_1 import (
-        ShareOptionsBaseSchemaWatermarkType1,
-    )
-
 
 T = TypeVar("T", bound="ShareOptionsBaseSchema")
 
@@ -37,14 +30,14 @@ class ShareOptionsBaseSchema:
         allow_view_transcriptions (bool | None | Unset):
         allow_view_versions (bool | None | Unset):
         automatic_approval_share (bool | None | Unset):
-        drm (None | ShareOptionsBaseSchemaDrmType1 | Unset):
+        drm (None | ShareOptionsBaseSchemaDrm | Unset):
         is_approval (bool | None | Unset):
         metadata_views (list[str] | None | Unset):
         review_experience_public_beta (bool | None | Unset):
         show_existing_comments (bool | None | Unset):
         show_watermark (bool | None | Unset):
         upload_storage_id (None | Unset | UUID):
-        watermark (None | ShareOptionsBaseSchemaWatermarkType1 | Unset):
+        watermark (None | ShareOptionsBaseSchemaWatermark | Unset):
     """
 
     allow_approving_comments: bool
@@ -59,24 +52,17 @@ class ShareOptionsBaseSchema:
     allow_view_transcriptions: bool | None | Unset = UNSET
     allow_view_versions: bool | None | Unset = UNSET
     automatic_approval_share: bool | None | Unset = UNSET
-    drm: None | ShareOptionsBaseSchemaDrmType1 | Unset = UNSET
+    drm: None | ShareOptionsBaseSchemaDrm | Unset = UNSET
     is_approval: bool | None | Unset = UNSET
     metadata_views: list[str] | None | Unset = UNSET
     review_experience_public_beta: bool | None | Unset = UNSET
     show_existing_comments: bool | None | Unset = UNSET
     show_watermark: bool | None | Unset = UNSET
     upload_storage_id: None | Unset | UUID = UNSET
-    watermark: None | ShareOptionsBaseSchemaWatermarkType1 | Unset = UNSET
+    watermark: None | ShareOptionsBaseSchemaWatermark | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.share_options_base_schema_drm_type_1 import (
-            ShareOptionsBaseSchemaDrmType1,
-        )
-        from ..models.share_options_base_schema_watermark_type_1 import (
-            ShareOptionsBaseSchemaWatermarkType1,
-        )
-
         allow_approving_comments = self.allow_approving_comments
 
         allow_comments = self.allow_comments
@@ -133,11 +119,11 @@ class ShareOptionsBaseSchema:
         else:
             automatic_approval_share = self.automatic_approval_share
 
-        drm: dict[str, Any] | None | Unset
+        drm: None | str | Unset
         if isinstance(self.drm, Unset):
             drm = UNSET
-        elif isinstance(self.drm, ShareOptionsBaseSchemaDrmType1):
-            drm = self.drm.to_dict()
+        elif isinstance(self.drm, ShareOptionsBaseSchemaDrm):
+            drm = self.drm.value
         else:
             drm = self.drm
 
@@ -182,11 +168,11 @@ class ShareOptionsBaseSchema:
         else:
             upload_storage_id = self.upload_storage_id
 
-        watermark: dict[str, Any] | None | Unset
+        watermark: None | str | Unset
         if isinstance(self.watermark, Unset):
             watermark = UNSET
-        elif isinstance(self.watermark, ShareOptionsBaseSchemaWatermarkType1):
-            watermark = self.watermark.to_dict()
+        elif isinstance(self.watermark, ShareOptionsBaseSchemaWatermark):
+            watermark = self.watermark.value
         else:
             watermark = self.watermark
 
@@ -239,13 +225,6 @@ class ShareOptionsBaseSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.share_options_base_schema_drm_type_1 import (
-            ShareOptionsBaseSchemaDrmType1,
-        )
-        from ..models.share_options_base_schema_watermark_type_1 import (
-            ShareOptionsBaseSchemaWatermarkType1,
-        )
-
         d = dict(src_dict)
         allow_approving_comments = d.pop("allow_approving_comments")
 
@@ -339,20 +318,20 @@ class ShareOptionsBaseSchema:
             d.pop("automatic_approval_share", UNSET)
         )
 
-        def _parse_drm(data: object) -> None | ShareOptionsBaseSchemaDrmType1 | Unset:
+        def _parse_drm(data: object) -> None | ShareOptionsBaseSchemaDrm | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                drm_type_1 = ShareOptionsBaseSchemaDrmType1.from_dict(data)
+                drm_type_1 = ShareOptionsBaseSchemaDrm(data)
 
                 return drm_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | ShareOptionsBaseSchemaDrmType1 | Unset, data)
+            return cast(None | ShareOptionsBaseSchemaDrm | Unset, data)
 
         drm = _parse_drm(d.pop("drm", UNSET))
 
@@ -432,20 +411,20 @@ class ShareOptionsBaseSchema:
 
         def _parse_watermark(
             data: object,
-        ) -> None | ShareOptionsBaseSchemaWatermarkType1 | Unset:
+        ) -> None | ShareOptionsBaseSchemaWatermark | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                watermark_type_1 = ShareOptionsBaseSchemaWatermarkType1.from_dict(data)
+                watermark_type_1 = ShareOptionsBaseSchemaWatermark(data)
 
                 return watermark_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | ShareOptionsBaseSchemaWatermarkType1 | Unset, data)
+            return cast(None | ShareOptionsBaseSchemaWatermark | Unset, data)
 
         watermark = _parse_watermark(d.pop("watermark", UNSET))
 

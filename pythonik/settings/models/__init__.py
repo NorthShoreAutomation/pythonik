@@ -7,7 +7,7 @@ from .dashboard_collections_tree_schema import DashboardCollectionsTreeSchema
 from .dashboard_comments_feed_schema import DashboardCommentsFeedSchema
 from .dashboard_header_schema import DashboardHeaderSchema
 from .dashboard_schema import DashboardSchema
-from .dashboard_schema_view_type_type_1 import DashboardSchemaViewTypeType1
+from .dashboard_schema_view_type import DashboardSchemaViewType
 from .dashboard_widget import DashboardWidget
 from .dashboard_widget_schema import DashboardWidgetSchema
 from .default_share_options_type_schema import DefaultShareOptionsTypeSchema
@@ -153,7 +153,7 @@ from .get_user_by_user_id_response_default_type_1_errors import (
     GetUserByUserIdResponseDefaultType1Errors,
 )
 from .global_settings_schema import GlobalSettingsSchema
-from .global_settings_schema_log_level_type_1 import GlobalSettingsSchemaLogLevelType1
+from .global_settings_schema_log_level import GlobalSettingsSchemaLogLevel
 from .group_setting_public_schema import GroupSettingPublicSchema
 from .group_setting_schema import GroupSettingSchema
 from .group_settings_id_schema import GroupSettingsIDSchema
@@ -161,19 +161,19 @@ from .jobs_dashboard import JobsDashboard
 from .jobs_dashboard_schema import JobsDashboardSchema
 from .jobs_dashboard_widget import JobsDashboardWidget
 from .jobs_dashboard_widget_schema import JobsDashboardWidgetSchema
-from .jobs_dashboard_widget_schema_type_type_1 import JobsDashboardWidgetSchemaTypeType1
-from .jobs_dashboard_widget_type_type_1 import JobsDashboardWidgetTypeType1
+from .jobs_dashboard_widget_schema_type import JobsDashboardWidgetSchemaType
+from .jobs_dashboard_widget_type import JobsDashboardWidgetType
 from .jobs_widget_option import JobsWidgetOption
 from .jobs_widget_option_filter_schema import JobsWidgetOptionFilterSchema
 from .jobs_widget_option_filters_type_0 import JobsWidgetOptionFiltersType0
 from .jobs_widget_option_schema import JobsWidgetOptionSchema
 from .jobs_widget_option_schema_filters_type_0 import JobsWidgetOptionSchemaFiltersType0
 from .merged_settings_schema import MergedSettingsSchema
-from .merged_settings_schema_drm_type_1 import MergedSettingsSchemaDrmType1
+from .merged_settings_schema_drm import MergedSettingsSchemaDrm
 from .merged_settings_schema_mfa_methods_type_0_item import (
     MergedSettingsSchemaMfaMethodsType0Item,
 )
-from .merged_settings_schema_watermark_type_1 import MergedSettingsSchemaWatermarkType1
+from .merged_settings_schema_watermark import MergedSettingsSchemaWatermark
 from .password_checks_type import PasswordChecksType
 from .password_checks_type_schema import PasswordChecksTypeSchema
 from .patch_group_by_group_id_response_default_type_0 import (
@@ -292,23 +292,21 @@ from .put_user_by_user_id_response_default_type_1_errors import (
 from .search_display_field import SearchDisplayField
 from .search_display_field_schema import SearchDisplayFieldSchema
 from .sort import Sort
-from .sort_order_type_1 import SortOrderType1
+from .sort_order import SortOrder
 from .sort_schema import SortSchema
-from .sort_schema_order_type_1 import SortSchemaOrderType1
+from .sort_schema_order import SortSchemaOrder
 from .system_setting_public_schema import SystemSettingPublicSchema
-from .system_setting_public_schema_drm_type_1 import SystemSettingPublicSchemaDrmType1
+from .system_setting_public_schema_drm import SystemSettingPublicSchemaDrm
 from .system_setting_public_schema_mfa_methods_type_0_item import (
     SystemSettingPublicSchemaMfaMethodsType0Item,
 )
-from .system_setting_public_schema_watermark_type_1 import (
-    SystemSettingPublicSchemaWatermarkType1,
-)
+from .system_setting_public_schema_watermark import SystemSettingPublicSchemaWatermark
 from .system_setting_schema import SystemSettingSchema
-from .system_setting_schema_drm_type_1 import SystemSettingSchemaDrmType1
+from .system_setting_schema_drm import SystemSettingSchemaDrm
 from .system_setting_schema_mfa_methods_type_0_item import (
     SystemSettingSchemaMfaMethodsType0Item,
 )
-from .system_setting_schema_watermark_type_1 import SystemSettingSchemaWatermarkType1
+from .system_setting_schema_watermark import SystemSettingSchemaWatermark
 from .usage_history import UsageHistory
 from .usage_history_schema import UsageHistorySchema
 from .usage_history_widget import UsageHistoryWidget
@@ -317,24 +315,18 @@ from .user_setting_remove_attributes_schema import UserSettingRemoveAttributesSc
 from .user_setting_schema import UserSettingSchema
 from .watermark_options_type import WatermarkOptionsType
 from .watermark_options_type_schema import WatermarkOptionsTypeSchema
-from .watermark_options_type_schema_show_for_groups_type_1 import (
-    WatermarkOptionsTypeSchemaShowForGroupsType1,
+from .watermark_options_type_schema_show_for_groups import (
+    WatermarkOptionsTypeSchemaShowForGroups,
 )
-from .watermark_options_type_schema_show_in_context_type_1 import (
-    WatermarkOptionsTypeSchemaShowInContextType1,
+from .watermark_options_type_schema_show_in_context import (
+    WatermarkOptionsTypeSchemaShowInContext,
 )
-from .watermark_options_type_schema_text_appearance_type_1 import (
-    WatermarkOptionsTypeSchemaTextAppearanceType1,
+from .watermark_options_type_schema_text_appearance import (
+    WatermarkOptionsTypeSchemaTextAppearance,
 )
-from .watermark_options_type_show_for_groups_type_1 import (
-    WatermarkOptionsTypeShowForGroupsType1,
-)
-from .watermark_options_type_show_in_context_type_1 import (
-    WatermarkOptionsTypeShowInContextType1,
-)
-from .watermark_options_type_text_appearance_type_1 import (
-    WatermarkOptionsTypeTextAppearanceType1,
-)
+from .watermark_options_type_show_for_groups import WatermarkOptionsTypeShowForGroups
+from .watermark_options_type_show_in_context import WatermarkOptionsTypeShowInContext
+from .watermark_options_type_text_appearance import WatermarkOptionsTypeTextAppearance
 
 __all__ = (
     "AllowedIPSchema",
@@ -344,7 +336,7 @@ __all__ = (
     "DashboardCommentsFeedSchema",
     "DashboardHeaderSchema",
     "DashboardSchema",
-    "DashboardSchemaViewTypeType1",
+    "DashboardSchemaViewType",
     "DashboardWidget",
     "DashboardWidgetSchema",
     "DefaultShareOptionsTypeSchema",
@@ -398,7 +390,7 @@ __all__ = (
     "GetUserByUserIdResponseDefaultType1",
     "GetUserByUserIdResponseDefaultType1Errors",
     "GlobalSettingsSchema",
-    "GlobalSettingsSchemaLogLevelType1",
+    "GlobalSettingsSchemaLogLevel",
     "GroupSettingPublicSchema",
     "GroupSettingSchema",
     "GroupSettingsIDSchema",
@@ -406,17 +398,17 @@ __all__ = (
     "JobsDashboardSchema",
     "JobsDashboardWidget",
     "JobsDashboardWidgetSchema",
-    "JobsDashboardWidgetSchemaTypeType1",
-    "JobsDashboardWidgetTypeType1",
+    "JobsDashboardWidgetSchemaType",
+    "JobsDashboardWidgetType",
     "JobsWidgetOption",
     "JobsWidgetOptionFilterSchema",
     "JobsWidgetOptionFiltersType0",
     "JobsWidgetOptionSchema",
     "JobsWidgetOptionSchemaFiltersType0",
     "MergedSettingsSchema",
-    "MergedSettingsSchemaDrmType1",
+    "MergedSettingsSchemaDrm",
     "MergedSettingsSchemaMfaMethodsType0Item",
-    "MergedSettingsSchemaWatermarkType1",
+    "MergedSettingsSchemaWatermark",
     "PasswordChecksType",
     "PasswordChecksTypeSchema",
     "PatchGroupByGroupIdResponseDefaultType0",
@@ -461,17 +453,17 @@ __all__ = (
     "SearchDisplayField",
     "SearchDisplayFieldSchema",
     "Sort",
-    "SortOrderType1",
+    "SortOrder",
     "SortSchema",
-    "SortSchemaOrderType1",
+    "SortSchemaOrder",
     "SystemSettingPublicSchema",
-    "SystemSettingPublicSchemaDrmType1",
+    "SystemSettingPublicSchemaDrm",
     "SystemSettingPublicSchemaMfaMethodsType0Item",
-    "SystemSettingPublicSchemaWatermarkType1",
+    "SystemSettingPublicSchemaWatermark",
     "SystemSettingSchema",
-    "SystemSettingSchemaDrmType1",
+    "SystemSettingSchemaDrm",
     "SystemSettingSchemaMfaMethodsType0Item",
-    "SystemSettingSchemaWatermarkType1",
+    "SystemSettingSchemaWatermark",
     "UsageHistory",
     "UsageHistorySchema",
     "UsageHistoryWidget",
@@ -480,10 +472,10 @@ __all__ = (
     "UserSettingSchema",
     "WatermarkOptionsType",
     "WatermarkOptionsTypeSchema",
-    "WatermarkOptionsTypeSchemaShowForGroupsType1",
-    "WatermarkOptionsTypeSchemaShowInContextType1",
-    "WatermarkOptionsTypeSchemaTextAppearanceType1",
-    "WatermarkOptionsTypeShowForGroupsType1",
-    "WatermarkOptionsTypeShowInContextType1",
-    "WatermarkOptionsTypeTextAppearanceType1",
+    "WatermarkOptionsTypeSchemaShowForGroups",
+    "WatermarkOptionsTypeSchemaShowInContext",
+    "WatermarkOptionsTypeSchemaTextAppearance",
+    "WatermarkOptionsTypeShowForGroups",
+    "WatermarkOptionsTypeShowInContext",
+    "WatermarkOptionsTypeTextAppearance",
 )

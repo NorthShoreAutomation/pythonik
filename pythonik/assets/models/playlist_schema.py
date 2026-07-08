@@ -8,6 +8,7 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.playlist_schema_status import PlaylistSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -15,7 +16,6 @@ if TYPE_CHECKING:
     from ..models.playlist_schema_keyframes_type_0_item import (
         PlaylistSchemaKeyframesType0Item,
     )
-    from ..models.playlist_schema_status_type_1 import PlaylistSchemaStatusType1
 
 
 T = TypeVar("T", bound="PlaylistSchema")
@@ -37,7 +37,7 @@ class PlaylistSchema:
         keyframes (list[PlaylistSchemaKeyframesType0Item] | None | Unset):
         playlist_items (list[PlaylistItemSchema] | None | Unset):
         project_id (None | Unset | UUID):
-        status (None | PlaylistSchemaStatusType1 | Unset):
+        status (None | PlaylistSchemaStatus | Unset):
         system_domain_id (None | Unset | UUID):
     """
 
@@ -53,13 +53,11 @@ class PlaylistSchema:
     keyframes: list[PlaylistSchemaKeyframesType0Item] | None | Unset = UNSET
     playlist_items: list[PlaylistItemSchema] | None | Unset = UNSET
     project_id: None | Unset | UUID = UNSET
-    status: None | PlaylistSchemaStatusType1 | Unset = UNSET
+    status: None | PlaylistSchemaStatus | Unset = UNSET
     system_domain_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.playlist_schema_status_type_1 import PlaylistSchemaStatusType1
-
         name = self.name
 
         created_by_user: None | str | Unset
@@ -162,11 +160,11 @@ class PlaylistSchema:
         else:
             project_id = self.project_id
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, PlaylistSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, PlaylistSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -220,7 +218,6 @@ class PlaylistSchema:
         from ..models.playlist_schema_keyframes_type_0_item import (
             PlaylistSchemaKeyframesType0Item,
         )
-        from ..models.playlist_schema_status_type_1 import PlaylistSchemaStatusType1
 
         d = dict(src_dict)
         name = d.pop("name")
@@ -431,20 +428,20 @@ class PlaylistSchema:
 
         project_id = _parse_project_id(d.pop("project_id", UNSET))
 
-        def _parse_status(data: object) -> None | PlaylistSchemaStatusType1 | Unset:
+        def _parse_status(data: object) -> None | PlaylistSchemaStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = PlaylistSchemaStatusType1.from_dict(data)
+                status_type_1 = PlaylistSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | PlaylistSchemaStatusType1 | Unset, data)
+            return cast(None | PlaylistSchemaStatus | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

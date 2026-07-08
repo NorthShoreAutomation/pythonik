@@ -1,24 +1,21 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.auth_0_settings_schema_cert_fingerprint_algorithm import (
+    Auth0SettingsSchemaCertFingerprintAlgorithm,
+)
+from ..models.auth_0_settings_schema_digest_algorithm import (
+    Auth0SettingsSchemaDigestAlgorithm,
+)
+from ..models.auth_0_settings_schema_signature_algorithm import (
+    Auth0SettingsSchemaSignatureAlgorithm,
+)
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.auth_0_settings_schema_cert_fingerprint_algorithm_type_1 import (
-        Auth0SettingsSchemaCertFingerprintAlgorithmType1,
-    )
-    from ..models.auth_0_settings_schema_digest_algorithm_type_1 import (
-        Auth0SettingsSchemaDigestAlgorithmType1,
-    )
-    from ..models.auth_0_settings_schema_signature_algorithm_type_1 import (
-        Auth0SettingsSchemaSignatureAlgorithmType1,
-    )
-
 
 T = TypeVar("T", bound="Auth0SettingsSchema")
 
@@ -31,11 +28,11 @@ class Auth0SettingsSchema:
         auth0_name (str):
         auth0_region (str):
         cert_fingerprint (None | str | Unset):
-        cert_fingerprint_algorithm (Auth0SettingsSchemaCertFingerprintAlgorithmType1 | None | Unset):
-        digest_algorithm (Auth0SettingsSchemaDigestAlgorithmType1 | None | Unset):
+        cert_fingerprint_algorithm (Auth0SettingsSchemaCertFingerprintAlgorithm | None | Unset):
+        digest_algorithm (Auth0SettingsSchemaDigestAlgorithm | None | Unset):
         domain_name (None | str | Unset):
         idp_x509cert (None | str | Unset):
-        signature_algorithm (Auth0SettingsSchemaSignatureAlgorithmType1 | None | Unset):
+        signature_algorithm (Auth0SettingsSchemaSignatureAlgorithm | None | Unset):
     """
 
     auth0_client_id: str
@@ -43,27 +40,15 @@ class Auth0SettingsSchema:
     auth0_region: str
     cert_fingerprint: None | str | Unset = UNSET
     cert_fingerprint_algorithm: (
-        Auth0SettingsSchemaCertFingerprintAlgorithmType1 | None | Unset
+        Auth0SettingsSchemaCertFingerprintAlgorithm | None | Unset
     ) = UNSET
-    digest_algorithm: Auth0SettingsSchemaDigestAlgorithmType1 | None | Unset = UNSET
+    digest_algorithm: Auth0SettingsSchemaDigestAlgorithm | None | Unset = UNSET
     domain_name: None | str | Unset = UNSET
     idp_x509cert: None | str | Unset = UNSET
-    signature_algorithm: Auth0SettingsSchemaSignatureAlgorithmType1 | None | Unset = (
-        UNSET
-    )
+    signature_algorithm: Auth0SettingsSchemaSignatureAlgorithm | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.auth_0_settings_schema_cert_fingerprint_algorithm_type_1 import (
-            Auth0SettingsSchemaCertFingerprintAlgorithmType1,
-        )
-        from ..models.auth_0_settings_schema_digest_algorithm_type_1 import (
-            Auth0SettingsSchemaDigestAlgorithmType1,
-        )
-        from ..models.auth_0_settings_schema_signature_algorithm_type_1 import (
-            Auth0SettingsSchemaSignatureAlgorithmType1,
-        )
-
         auth0_client_id = self.auth0_client_id
 
         auth0_name = self.auth0_name
@@ -76,22 +61,21 @@ class Auth0SettingsSchema:
         else:
             cert_fingerprint = self.cert_fingerprint
 
-        cert_fingerprint_algorithm: dict[str, Any] | None | Unset
+        cert_fingerprint_algorithm: None | str | Unset
         if isinstance(self.cert_fingerprint_algorithm, Unset):
             cert_fingerprint_algorithm = UNSET
         elif isinstance(
-            self.cert_fingerprint_algorithm,
-            Auth0SettingsSchemaCertFingerprintAlgorithmType1,
+            self.cert_fingerprint_algorithm, Auth0SettingsSchemaCertFingerprintAlgorithm
         ):
-            cert_fingerprint_algorithm = self.cert_fingerprint_algorithm.to_dict()
+            cert_fingerprint_algorithm = self.cert_fingerprint_algorithm.value
         else:
             cert_fingerprint_algorithm = self.cert_fingerprint_algorithm
 
-        digest_algorithm: dict[str, Any] | None | Unset
+        digest_algorithm: None | str | Unset
         if isinstance(self.digest_algorithm, Unset):
             digest_algorithm = UNSET
-        elif isinstance(self.digest_algorithm, Auth0SettingsSchemaDigestAlgorithmType1):
-            digest_algorithm = self.digest_algorithm.to_dict()
+        elif isinstance(self.digest_algorithm, Auth0SettingsSchemaDigestAlgorithm):
+            digest_algorithm = self.digest_algorithm.value
         else:
             digest_algorithm = self.digest_algorithm
 
@@ -107,13 +91,13 @@ class Auth0SettingsSchema:
         else:
             idp_x509cert = self.idp_x509cert
 
-        signature_algorithm: dict[str, Any] | None | Unset
+        signature_algorithm: None | str | Unset
         if isinstance(self.signature_algorithm, Unset):
             signature_algorithm = UNSET
         elif isinstance(
-            self.signature_algorithm, Auth0SettingsSchemaSignatureAlgorithmType1
+            self.signature_algorithm, Auth0SettingsSchemaSignatureAlgorithm
         ):
-            signature_algorithm = self.signature_algorithm.to_dict()
+            signature_algorithm = self.signature_algorithm.value
         else:
             signature_algorithm = self.signature_algorithm
 
@@ -143,16 +127,6 @@ class Auth0SettingsSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.auth_0_settings_schema_cert_fingerprint_algorithm_type_1 import (
-            Auth0SettingsSchemaCertFingerprintAlgorithmType1,
-        )
-        from ..models.auth_0_settings_schema_digest_algorithm_type_1 import (
-            Auth0SettingsSchemaDigestAlgorithmType1,
-        )
-        from ..models.auth_0_settings_schema_signature_algorithm_type_1 import (
-            Auth0SettingsSchemaSignatureAlgorithmType1,
-        )
-
         d = dict(src_dict)
         auth0_client_id = d.pop("auth0_client_id")
 
@@ -171,23 +145,23 @@ class Auth0SettingsSchema:
 
         def _parse_cert_fingerprint_algorithm(
             data: object,
-        ) -> Auth0SettingsSchemaCertFingerprintAlgorithmType1 | None | Unset:
+        ) -> Auth0SettingsSchemaCertFingerprintAlgorithm | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
                 cert_fingerprint_algorithm_type_1 = (
-                    Auth0SettingsSchemaCertFingerprintAlgorithmType1.from_dict(data)
+                    Auth0SettingsSchemaCertFingerprintAlgorithm(data)
                 )
 
                 return cert_fingerprint_algorithm_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(
-                Auth0SettingsSchemaCertFingerprintAlgorithmType1 | None | Unset, data
+                Auth0SettingsSchemaCertFingerprintAlgorithm | None | Unset, data
             )
 
         cert_fingerprint_algorithm = _parse_cert_fingerprint_algorithm(
@@ -196,22 +170,20 @@ class Auth0SettingsSchema:
 
         def _parse_digest_algorithm(
             data: object,
-        ) -> Auth0SettingsSchemaDigestAlgorithmType1 | None | Unset:
+        ) -> Auth0SettingsSchemaDigestAlgorithm | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                digest_algorithm_type_1 = (
-                    Auth0SettingsSchemaDigestAlgorithmType1.from_dict(data)
-                )
+                digest_algorithm_type_1 = Auth0SettingsSchemaDigestAlgorithm(data)
 
                 return digest_algorithm_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Auth0SettingsSchemaDigestAlgorithmType1 | None | Unset, data)
+            return cast(Auth0SettingsSchemaDigestAlgorithm | None | Unset, data)
 
         digest_algorithm = _parse_digest_algorithm(d.pop("digest_algorithm", UNSET))
 
@@ -235,22 +207,20 @@ class Auth0SettingsSchema:
 
         def _parse_signature_algorithm(
             data: object,
-        ) -> Auth0SettingsSchemaSignatureAlgorithmType1 | None | Unset:
+        ) -> Auth0SettingsSchemaSignatureAlgorithm | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                signature_algorithm_type_1 = (
-                    Auth0SettingsSchemaSignatureAlgorithmType1.from_dict(data)
-                )
+                signature_algorithm_type_1 = Auth0SettingsSchemaSignatureAlgorithm(data)
 
                 return signature_algorithm_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Auth0SettingsSchemaSignatureAlgorithmType1 | None | Unset, data)
+            return cast(Auth0SettingsSchemaSignatureAlgorithm | None | Unset, data)
 
         signature_algorithm = _parse_signature_algorithm(
             d.pop("signature_algorithm", UNSET)

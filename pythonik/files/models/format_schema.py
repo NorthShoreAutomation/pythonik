@@ -8,18 +8,16 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.format_schema_archive_status import FormatSchemaArchiveStatus
+from ..models.format_schema_status import FormatSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.component_schema import ComponentSchema
     from ..models.external_references import ExternalReferences
-    from ..models.format_schema_archive_status_type_1 import (
-        FormatSchemaArchiveStatusType1,
-    )
     from ..models.format_schema_metadata_type_0_item import (
         FormatSchemaMetadataType0Item,
     )
-    from ..models.format_schema_status_type_1 import FormatSchemaStatusType1
 
 
 T = TypeVar("T", bound="FormatSchema")
@@ -30,7 +28,7 @@ class FormatSchema:
     """
     Attributes:
         name (str):
-        archive_status (FormatSchemaArchiveStatusType1 | None | Unset):
+        archive_status (FormatSchemaArchiveStatus | None | Unset):
         asset_id (None | Unset | UUID):
         components (list[ComponentSchema] | None | Unset):
         date_created (datetime.datetime | None | Unset):
@@ -42,7 +40,7 @@ class FormatSchema:
         is_online (bool | None | Unset):
         metadata (list[FormatSchemaMetadataType0Item] | None | Unset): Sequence cannot have more than 10000. Excess
             values will be stripped
-        status (FormatSchemaStatusType1 | None | Unset):
+        status (FormatSchemaStatus | None | Unset):
         storage_methods (list[str] | None | Unset):
         user_id (None | Unset | UUID):
         version_id (None | Unset | UUID):
@@ -50,7 +48,7 @@ class FormatSchema:
     """
 
     name: str
-    archive_status: FormatSchemaArchiveStatusType1 | None | Unset = UNSET
+    archive_status: FormatSchemaArchiveStatus | None | Unset = UNSET
     asset_id: None | Unset | UUID = UNSET
     components: list[ComponentSchema] | None | Unset = UNSET
     date_created: datetime.datetime | None | Unset = UNSET
@@ -61,7 +59,7 @@ class FormatSchema:
     id: None | Unset | UUID = UNSET
     is_online: bool | None | Unset = UNSET
     metadata: list[FormatSchemaMetadataType0Item] | None | Unset = UNSET
-    status: FormatSchemaStatusType1 | None | Unset = UNSET
+    status: FormatSchemaStatus | None | Unset = UNSET
     storage_methods: list[str] | None | Unset = UNSET
     user_id: None | Unset | UUID = UNSET
     version_id: None | Unset | UUID = UNSET
@@ -69,18 +67,13 @@ class FormatSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.format_schema_archive_status_type_1 import (
-            FormatSchemaArchiveStatusType1,
-        )
-        from ..models.format_schema_status_type_1 import FormatSchemaStatusType1
-
         name = self.name
 
-        archive_status: dict[str, Any] | None | Unset
+        archive_status: None | str | Unset
         if isinstance(self.archive_status, Unset):
             archive_status = UNSET
-        elif isinstance(self.archive_status, FormatSchemaArchiveStatusType1):
-            archive_status = self.archive_status.to_dict()
+        elif isinstance(self.archive_status, FormatSchemaArchiveStatus):
+            archive_status = self.archive_status.value
         else:
             archive_status = self.archive_status
 
@@ -176,11 +169,11 @@ class FormatSchema:
         else:
             metadata = self.metadata
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, FormatSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, FormatSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -264,33 +257,29 @@ class FormatSchema:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.component_schema import ComponentSchema
         from ..models.external_references import ExternalReferences
-        from ..models.format_schema_archive_status_type_1 import (
-            FormatSchemaArchiveStatusType1,
-        )
         from ..models.format_schema_metadata_type_0_item import (
             FormatSchemaMetadataType0Item,
         )
-        from ..models.format_schema_status_type_1 import FormatSchemaStatusType1
 
         d = dict(src_dict)
         name = d.pop("name")
 
         def _parse_archive_status(
             data: object,
-        ) -> FormatSchemaArchiveStatusType1 | None | Unset:
+        ) -> FormatSchemaArchiveStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                archive_status_type_1 = FormatSchemaArchiveStatusType1.from_dict(data)
+                archive_status_type_1 = FormatSchemaArchiveStatus(data)
 
                 return archive_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(FormatSchemaArchiveStatusType1 | None | Unset, data)
+            return cast(FormatSchemaArchiveStatus | None | Unset, data)
 
         archive_status = _parse_archive_status(d.pop("archive_status", UNSET))
 
@@ -483,20 +472,20 @@ class FormatSchema:
 
         metadata = _parse_metadata(d.pop("metadata", UNSET))
 
-        def _parse_status(data: object) -> FormatSchemaStatusType1 | None | Unset:
+        def _parse_status(data: object) -> FormatSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = FormatSchemaStatusType1.from_dict(data)
+                status_type_1 = FormatSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(FormatSchemaStatusType1 | None | Unset, data)
+            return cast(FormatSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

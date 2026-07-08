@@ -1,19 +1,16 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.user_invite_request_link_schema_type import (
+    UserInviteRequestLinkSchemaType,
+)
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.user_invite_request_link_schema_type_type_1 import (
-        UserInviteRequestLinkSchemaTypeType1,
-    )
-
 
 T = TypeVar("T", bound="UserInviteRequestLinkSchema")
 
@@ -25,20 +22,16 @@ class UserInviteRequestLinkSchema:
         primary_group (UUID):
         groups (list[UUID] | None | Unset):
         is_admin (bool | None | Unset):  Default: False.
-        type_ (None | Unset | UserInviteRequestLinkSchemaTypeType1):
+        type_ (None | Unset | UserInviteRequestLinkSchemaType):
     """
 
     primary_group: UUID
     groups: list[UUID] | None | Unset = UNSET
     is_admin: bool | None | Unset = False
-    type_: None | Unset | UserInviteRequestLinkSchemaTypeType1 = UNSET
+    type_: None | Unset | UserInviteRequestLinkSchemaType = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.user_invite_request_link_schema_type_type_1 import (
-            UserInviteRequestLinkSchemaTypeType1,
-        )
-
         primary_group = str(self.primary_group)
 
         groups: list[str] | None | Unset
@@ -59,11 +52,11 @@ class UserInviteRequestLinkSchema:
         else:
             is_admin = self.is_admin
 
-        type_: dict[str, Any] | None | Unset
+        type_: None | str | Unset
         if isinstance(self.type_, Unset):
             type_ = UNSET
-        elif isinstance(self.type_, UserInviteRequestLinkSchemaTypeType1):
-            type_ = self.type_.to_dict()
+        elif isinstance(self.type_, UserInviteRequestLinkSchemaType):
+            type_ = self.type_.value
         else:
             type_ = self.type_
 
@@ -85,10 +78,6 @@ class UserInviteRequestLinkSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.user_invite_request_link_schema_type_type_1 import (
-            UserInviteRequestLinkSchemaTypeType1,
-        )
-
         d = dict(src_dict)
         primary_group = UUID(d.pop("primary_group"))
 
@@ -125,20 +114,20 @@ class UserInviteRequestLinkSchema:
 
         def _parse_type_(
             data: object,
-        ) -> None | Unset | UserInviteRequestLinkSchemaTypeType1:
+        ) -> None | Unset | UserInviteRequestLinkSchemaType:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                type_type_1 = UserInviteRequestLinkSchemaTypeType1.from_dict(data)
+                type_type_1 = UserInviteRequestLinkSchemaType(data)
 
                 return type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | Unset | UserInviteRequestLinkSchemaTypeType1, data)
+            return cast(None | Unset | UserInviteRequestLinkSchemaType, data)
 
         type_ = _parse_type_(d.pop("type", UNSET))
 

@@ -1,19 +1,16 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.get_assets_latest_version_schema_object_type import (
+    GetAssetsLatestVersionSchemaObjectType,
+)
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.get_assets_latest_version_schema_object_type_type_1 import (
-        GetAssetsLatestVersionSchemaObjectTypeType1,
-    )
-
 
 T = TypeVar("T", bound="GetAssetsLatestVersionSchema")
 
@@ -24,19 +21,15 @@ class GetAssetsLatestVersionSchema:
     Attributes:
         object_ids (list[UUID]):
         include_in_progress (bool | None | Unset):  Default: False.
-        object_type (GetAssetsLatestVersionSchemaObjectTypeType1 | None | Unset):
+        object_type (GetAssetsLatestVersionSchemaObjectType | None | Unset):
     """
 
     object_ids: list[UUID]
     include_in_progress: bool | None | Unset = False
-    object_type: GetAssetsLatestVersionSchemaObjectTypeType1 | None | Unset = UNSET
+    object_type: GetAssetsLatestVersionSchemaObjectType | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.get_assets_latest_version_schema_object_type_type_1 import (
-            GetAssetsLatestVersionSchemaObjectTypeType1,
-        )
-
         object_ids = []
         for object_ids_item_data in self.object_ids:
             object_ids_item = str(object_ids_item_data)
@@ -48,11 +41,11 @@ class GetAssetsLatestVersionSchema:
         else:
             include_in_progress = self.include_in_progress
 
-        object_type: dict[str, Any] | None | Unset
+        object_type: None | str | Unset
         if isinstance(self.object_type, Unset):
             object_type = UNSET
-        elif isinstance(self.object_type, GetAssetsLatestVersionSchemaObjectTypeType1):
-            object_type = self.object_type.to_dict()
+        elif isinstance(self.object_type, GetAssetsLatestVersionSchemaObjectType):
+            object_type = self.object_type.value
         else:
             object_type = self.object_type
 
@@ -72,10 +65,6 @@ class GetAssetsLatestVersionSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.get_assets_latest_version_schema_object_type_type_1 import (
-            GetAssetsLatestVersionSchemaObjectTypeType1,
-        )
-
         d = dict(src_dict)
         object_ids = []
         _object_ids = d.pop("object_ids")
@@ -97,24 +86,20 @@ class GetAssetsLatestVersionSchema:
 
         def _parse_object_type(
             data: object,
-        ) -> GetAssetsLatestVersionSchemaObjectTypeType1 | None | Unset:
+        ) -> GetAssetsLatestVersionSchemaObjectType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                object_type_type_1 = (
-                    GetAssetsLatestVersionSchemaObjectTypeType1.from_dict(data)
-                )
+                object_type_type_1 = GetAssetsLatestVersionSchemaObjectType(data)
 
                 return object_type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(
-                GetAssetsLatestVersionSchemaObjectTypeType1 | None | Unset, data
-            )
+            return cast(GetAssetsLatestVersionSchemaObjectType | None | Unset, data)
 
         object_type = _parse_object_type(d.pop("object_type", UNSET))
 

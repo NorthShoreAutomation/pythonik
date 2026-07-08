@@ -10,14 +10,12 @@ from attrs import field as _attrs_field
 
 from ..models.storage_private_data_schema_method import StoragePrivateDataSchemaMethod
 from ..models.storage_private_data_schema_purpose import StoragePrivateDataSchemaPurpose
+from ..models.storage_private_data_schema_status import StoragePrivateDataSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.storage_private_data_schema_settings import (
         StoragePrivateDataSchemaSettings,
-    )
-    from ..models.storage_private_data_schema_status_type_1 import (
-        StoragePrivateDataSchemaStatusType1,
     )
 
 
@@ -38,7 +36,7 @@ class StoragePrivateDataSchema:
         id (None | Unset | UUID):
         last_scanned (datetime.datetime | None | Unset):
         scanner_status (None | str | Unset):
-        status (None | StoragePrivateDataSchemaStatusType1 | Unset):
+        status (None | StoragePrivateDataSchemaStatus | Unset):
         status_message (None | str | Unset):
         version (None | str | Unset):
     """
@@ -53,16 +51,12 @@ class StoragePrivateDataSchema:
     id: None | Unset | UUID = UNSET
     last_scanned: datetime.datetime | None | Unset = UNSET
     scanner_status: None | str | Unset = UNSET
-    status: None | StoragePrivateDataSchemaStatusType1 | Unset = UNSET
+    status: None | StoragePrivateDataSchemaStatus | Unset = UNSET
     status_message: None | str | Unset = UNSET
     version: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.storage_private_data_schema_status_type_1 import (
-            StoragePrivateDataSchemaStatusType1,
-        )
-
         method = self.method.value
 
         name = self.name
@@ -111,11 +105,11 @@ class StoragePrivateDataSchema:
         else:
             scanner_status = self.scanner_status
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, StoragePrivateDataSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, StoragePrivateDataSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -166,9 +160,6 @@ class StoragePrivateDataSchema:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.storage_private_data_schema_settings import (
             StoragePrivateDataSchemaSettings,
-        )
-        from ..models.storage_private_data_schema_status_type_1 import (
-            StoragePrivateDataSchemaStatusType1,
         )
 
         d = dict(src_dict)
@@ -252,20 +243,20 @@ class StoragePrivateDataSchema:
 
         def _parse_status(
             data: object,
-        ) -> None | StoragePrivateDataSchemaStatusType1 | Unset:
+        ) -> None | StoragePrivateDataSchemaStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = StoragePrivateDataSchemaStatusType1.from_dict(data)
+                status_type_1 = StoragePrivateDataSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | StoragePrivateDataSchemaStatusType1 | Unset, data)
+            return cast(None | StoragePrivateDataSchemaStatus | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

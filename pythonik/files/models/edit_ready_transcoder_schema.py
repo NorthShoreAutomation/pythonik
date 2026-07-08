@@ -1,18 +1,15 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.edit_ready_transcoder_schema_videocodec import (
+    EditReadyTranscoderSchemaVideocodec,
+)
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.edit_ready_transcoder_schema_videocodec_type_1 import (
-        EditReadyTranscoderSchemaVideocodecType1,
-    )
-
 
 T = TypeVar("T", bound="EditReadyTranscoderSchema")
 
@@ -38,7 +35,7 @@ class EditReadyTranscoderSchema:
         min_height (int | None | Unset):
         min_width (int | None | Unset):
         overwrite_edit_proxy (bool | None | Unset):
-        videocodec (EditReadyTranscoderSchemaVideocodecType1 | None | Unset):
+        videocodec (EditReadyTranscoderSchemaVideocodec | None | Unset):
     """
 
     width: int
@@ -58,14 +55,10 @@ class EditReadyTranscoderSchema:
     min_height: int | None | Unset = UNSET
     min_width: int | None | Unset = UNSET
     overwrite_edit_proxy: bool | None | Unset = UNSET
-    videocodec: EditReadyTranscoderSchemaVideocodecType1 | None | Unset = UNSET
+    videocodec: EditReadyTranscoderSchemaVideocodec | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.edit_ready_transcoder_schema_videocodec_type_1 import (
-            EditReadyTranscoderSchemaVideocodecType1,
-        )
-
         width = self.width
 
         apply_color_conversion: bool | None | Unset
@@ -170,11 +163,11 @@ class EditReadyTranscoderSchema:
         else:
             overwrite_edit_proxy = self.overwrite_edit_proxy
 
-        videocodec: dict[str, Any] | None | Unset
+        videocodec: None | str | Unset
         if isinstance(self.videocodec, Unset):
             videocodec = UNSET
-        elif isinstance(self.videocodec, EditReadyTranscoderSchemaVideocodecType1):
-            videocodec = self.videocodec.to_dict()
+        elif isinstance(self.videocodec, EditReadyTranscoderSchemaVideocodec):
+            videocodec = self.videocodec.value
         else:
             videocodec = self.videocodec
 
@@ -226,10 +219,6 @@ class EditReadyTranscoderSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.edit_ready_transcoder_schema_videocodec_type_1 import (
-            EditReadyTranscoderSchemaVideocodecType1,
-        )
-
         d = dict(src_dict)
         width = d.pop("width")
 
@@ -407,22 +396,20 @@ class EditReadyTranscoderSchema:
 
         def _parse_videocodec(
             data: object,
-        ) -> EditReadyTranscoderSchemaVideocodecType1 | None | Unset:
+        ) -> EditReadyTranscoderSchemaVideocodec | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                videocodec_type_1 = EditReadyTranscoderSchemaVideocodecType1.from_dict(
-                    data
-                )
+                videocodec_type_1 = EditReadyTranscoderSchemaVideocodec(data)
 
                 return videocodec_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(EditReadyTranscoderSchemaVideocodecType1 | None | Unset, data)
+            return cast(EditReadyTranscoderSchemaVideocodec | None | Unset, data)
 
         videocodec = _parse_videocodec(d.pop("videocodec", UNSET))
 

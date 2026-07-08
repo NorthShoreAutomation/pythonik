@@ -8,10 +8,10 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.proxy_base_schema_status import ProxyBaseSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.proxy_base_schema_status_type_1 import ProxyBaseSchemaStatusType1
     from ..models.resolution_type import ResolutionType
 
 
@@ -41,7 +41,7 @@ class ProxyBaseSchema:
         rotation (int | None | Unset):
         size (int | None | Unset):
         start_time_code (None | str | Unset):
-        status (None | ProxyBaseSchemaStatusType1 | Unset):
+        status (None | ProxyBaseSchemaStatus | Unset):
         url (None | str | Unset):
         version_id (None | Unset | UUID):
     """
@@ -65,13 +65,12 @@ class ProxyBaseSchema:
     rotation: int | None | Unset = UNSET
     size: int | None | Unset = UNSET
     start_time_code: None | str | Unset = UNSET
-    status: None | ProxyBaseSchemaStatusType1 | Unset = UNSET
+    status: None | ProxyBaseSchemaStatus | Unset = UNSET
     url: None | str | Unset = UNSET
     version_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.proxy_base_schema_status_type_1 import ProxyBaseSchemaStatusType1
         from ..models.resolution_type import ResolutionType
 
         asset_id: None | str | Unset
@@ -198,11 +197,11 @@ class ProxyBaseSchema:
         else:
             start_time_code = self.start_time_code
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, ProxyBaseSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, ProxyBaseSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -272,7 +271,6 @@ class ProxyBaseSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.proxy_base_schema_status_type_1 import ProxyBaseSchemaStatusType1
         from ..models.resolution_type import ResolutionType
 
         d = dict(src_dict)
@@ -488,20 +486,20 @@ class ProxyBaseSchema:
 
         start_time_code = _parse_start_time_code(d.pop("start_time_code", UNSET))
 
-        def _parse_status(data: object) -> None | ProxyBaseSchemaStatusType1 | Unset:
+        def _parse_status(data: object) -> None | ProxyBaseSchemaStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = ProxyBaseSchemaStatusType1.from_dict(data)
+                status_type_1 = ProxyBaseSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | ProxyBaseSchemaStatusType1 | Unset, data)
+            return cast(None | ProxyBaseSchemaStatus | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

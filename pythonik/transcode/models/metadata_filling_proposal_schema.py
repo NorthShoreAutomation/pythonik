@@ -2,19 +2,16 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.metadata_filling_proposal_schema_review_status import (
+    MetadataFillingProposalSchemaReviewStatus,
+)
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.metadata_filling_proposal_schema_review_status_type_1 import (
-        MetadataFillingProposalSchemaReviewStatusType1,
-    )
-
 
 T = TypeVar("T", bound="MetadataFillingProposalSchema")
 
@@ -30,7 +27,7 @@ class MetadataFillingProposalSchema:
         field_values (Any | Unset):
         job_id (None | Unset | UUID):
         parent_job_id (None | Unset | UUID):
-        review_status (MetadataFillingProposalSchemaReviewStatusType1 | None | Unset):
+        review_status (MetadataFillingProposalSchemaReviewStatus | None | Unset):
         user_id (None | Unset | UUID):
         version_id (None | Unset | UUID):
         view_id (None | Unset | UUID):
@@ -44,7 +41,7 @@ class MetadataFillingProposalSchema:
     field_values: Any | Unset = UNSET
     job_id: None | Unset | UUID = UNSET
     parent_job_id: None | Unset | UUID = UNSET
-    review_status: MetadataFillingProposalSchemaReviewStatusType1 | None | Unset = UNSET
+    review_status: MetadataFillingProposalSchemaReviewStatus | None | Unset = UNSET
     user_id: None | Unset | UUID = UNSET
     version_id: None | Unset | UUID = UNSET
     view_id: None | Unset | UUID = UNSET
@@ -52,10 +49,6 @@ class MetadataFillingProposalSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.metadata_filling_proposal_schema_review_status_type_1 import (
-            MetadataFillingProposalSchemaReviewStatusType1,
-        )
-
         asset_id: None | str | Unset
         if isinstance(self.asset_id, Unset):
             asset_id = UNSET
@@ -108,13 +101,11 @@ class MetadataFillingProposalSchema:
         else:
             parent_job_id = self.parent_job_id
 
-        review_status: dict[str, Any] | None | Unset
+        review_status: None | str | Unset
         if isinstance(self.review_status, Unset):
             review_status = UNSET
-        elif isinstance(
-            self.review_status, MetadataFillingProposalSchemaReviewStatusType1
-        ):
-            review_status = self.review_status.to_dict()
+        elif isinstance(self.review_status, MetadataFillingProposalSchemaReviewStatus):
+            review_status = self.review_status.value
         else:
             review_status = self.review_status
 
@@ -183,10 +174,6 @@ class MetadataFillingProposalSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.metadata_filling_proposal_schema_review_status_type_1 import (
-            MetadataFillingProposalSchemaReviewStatusType1,
-        )
-
         d = dict(src_dict)
 
         def _parse_asset_id(data: object) -> None | Unset | UUID:
@@ -295,24 +282,20 @@ class MetadataFillingProposalSchema:
 
         def _parse_review_status(
             data: object,
-        ) -> MetadataFillingProposalSchemaReviewStatusType1 | None | Unset:
+        ) -> MetadataFillingProposalSchemaReviewStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                review_status_type_1 = (
-                    MetadataFillingProposalSchemaReviewStatusType1.from_dict(data)
-                )
+                review_status_type_1 = MetadataFillingProposalSchemaReviewStatus(data)
 
                 return review_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(
-                MetadataFillingProposalSchemaReviewStatusType1 | None | Unset, data
-            )
+            return cast(MetadataFillingProposalSchemaReviewStatus | None | Unset, data)
 
         review_status = _parse_review_status(d.pop("review_status", UNSET))
 

@@ -9,6 +9,7 @@ from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..models.segment_elastic_schema_segment_type import SegmentElasticSchemaSegmentType
+from ..models.segment_elastic_schema_status import SegmentElasticSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -16,9 +17,6 @@ if TYPE_CHECKING:
     from ..models.face_bounding_box_schema import FaceBoundingBoxSchema
     from ..models.segment_elastic_schema_metadata_type_0 import (
         SegmentElasticSchemaMetadataType0,
-    )
-    from ..models.segment_elastic_schema_status_type_1 import (
-        SegmentElasticSchemaStatusType1,
     )
     from ..models.transcription_type import TranscriptionType
     from ..models.user import User
@@ -54,7 +52,7 @@ class SegmentElasticSchema:
         segment_track (None | str | Unset):
         share_id (None | Unset | UUID): ID of a share if the segment is created from a share
         share_user_email (None | str | Unset):
-        status (None | SegmentElasticSchemaStatusType1 | Unset):
+        status (None | SegmentElasticSchemaStatus | Unset):
         subclip_id (None | Unset | UUID):
         time_end_milliseconds (int | None | Unset):
         time_start_milliseconds (int | None | Unset):
@@ -92,7 +90,7 @@ class SegmentElasticSchema:
     segment_track: None | str | Unset = UNSET
     share_id: None | Unset | UUID = UNSET
     share_user_email: None | str | Unset = UNSET
-    status: None | SegmentElasticSchemaStatusType1 | Unset = UNSET
+    status: None | SegmentElasticSchemaStatus | Unset = UNSET
     subclip_id: None | Unset | UUID = UNSET
     time_end_milliseconds: int | None | Unset = UNSET
     time_start_milliseconds: int | None | Unset = UNSET
@@ -111,9 +109,6 @@ class SegmentElasticSchema:
         from ..models.drawing_schema import DrawingSchema
         from ..models.segment_elastic_schema_metadata_type_0 import (
             SegmentElasticSchemaMetadataType0,
-        )
-        from ..models.segment_elastic_schema_status_type_1 import (
-            SegmentElasticSchemaStatusType1,
         )
         from ..models.transcription_type import TranscriptionType
         from ..models.user import User
@@ -284,11 +279,11 @@ class SegmentElasticSchema:
         else:
             share_user_email = self.share_user_email
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, SegmentElasticSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, SegmentElasticSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -462,9 +457,6 @@ class SegmentElasticSchema:
         from ..models.face_bounding_box_schema import FaceBoundingBoxSchema
         from ..models.segment_elastic_schema_metadata_type_0 import (
             SegmentElasticSchemaMetadataType0,
-        )
-        from ..models.segment_elastic_schema_status_type_1 import (
-            SegmentElasticSchemaStatusType1,
         )
         from ..models.transcription_type import TranscriptionType
         from ..models.user import User
@@ -787,22 +779,20 @@ class SegmentElasticSchema:
 
         share_user_email = _parse_share_user_email(d.pop("share_user_email", UNSET))
 
-        def _parse_status(
-            data: object,
-        ) -> None | SegmentElasticSchemaStatusType1 | Unset:
+        def _parse_status(data: object) -> None | SegmentElasticSchemaStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = SegmentElasticSchemaStatusType1.from_dict(data)
+                status_type_1 = SegmentElasticSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | SegmentElasticSchemaStatusType1 | Unset, data)
+            return cast(None | SegmentElasticSchemaStatus | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

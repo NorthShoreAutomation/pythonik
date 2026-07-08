@@ -1,19 +1,16 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.transcode_action_parameters_schema_preferred_storage_method import (
+    TranscodeActionParametersSchemaPreferredStorageMethod,
+)
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.transcode_action_parameters_schema_preferred_storage_method_type_1 import (
-        TranscodeActionParametersSchemaPreferredStorageMethodType1,
-    )
-
 
 T = TypeVar("T", bound="TranscodeActionParametersSchema")
 
@@ -25,7 +22,7 @@ class TranscodeActionParametersSchema:
         format_name (None | str | Unset):  Default: 'ORIGINAL'.
         prefer_any_cloud (bool | None | Unset):
         preferred_storage_id (None | Unset | UUID):
-        preferred_storage_method (None | TranscodeActionParametersSchemaPreferredStorageMethodType1 | Unset):
+        preferred_storage_method (None | TranscodeActionParametersSchemaPreferredStorageMethod | Unset):
         priority (int | None | Unset):
     """
 
@@ -33,16 +30,12 @@ class TranscodeActionParametersSchema:
     prefer_any_cloud: bool | None | Unset = UNSET
     preferred_storage_id: None | Unset | UUID = UNSET
     preferred_storage_method: (
-        None | TranscodeActionParametersSchemaPreferredStorageMethodType1 | Unset
+        None | TranscodeActionParametersSchemaPreferredStorageMethod | Unset
     ) = UNSET
     priority: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.transcode_action_parameters_schema_preferred_storage_method_type_1 import (
-            TranscodeActionParametersSchemaPreferredStorageMethodType1,
-        )
-
         format_name: None | str | Unset
         if isinstance(self.format_name, Unset):
             format_name = UNSET
@@ -63,14 +56,14 @@ class TranscodeActionParametersSchema:
         else:
             preferred_storage_id = self.preferred_storage_id
 
-        preferred_storage_method: dict[str, Any] | None | Unset
+        preferred_storage_method: None | str | Unset
         if isinstance(self.preferred_storage_method, Unset):
             preferred_storage_method = UNSET
         elif isinstance(
             self.preferred_storage_method,
-            TranscodeActionParametersSchemaPreferredStorageMethodType1,
+            TranscodeActionParametersSchemaPreferredStorageMethod,
         ):
-            preferred_storage_method = self.preferred_storage_method.to_dict()
+            preferred_storage_method = self.preferred_storage_method.value
         else:
             preferred_storage_method = self.preferred_storage_method
 
@@ -98,10 +91,6 @@ class TranscodeActionParametersSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.transcode_action_parameters_schema_preferred_storage_method_type_1 import (
-            TranscodeActionParametersSchemaPreferredStorageMethodType1,
-        )
-
         d = dict(src_dict)
 
         def _parse_format_name(data: object) -> None | str | Unset:
@@ -143,25 +132,23 @@ class TranscodeActionParametersSchema:
 
         def _parse_preferred_storage_method(
             data: object,
-        ) -> None | TranscodeActionParametersSchemaPreferredStorageMethodType1 | Unset:
+        ) -> None | TranscodeActionParametersSchemaPreferredStorageMethod | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                preferred_storage_method_type_1 = TranscodeActionParametersSchemaPreferredStorageMethodType1.from_dict(
-                    data
+                preferred_storage_method_type_1 = (
+                    TranscodeActionParametersSchemaPreferredStorageMethod(data)
                 )
 
                 return preferred_storage_method_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(
-                None
-                | TranscodeActionParametersSchemaPreferredStorageMethodType1
-                | Unset,
+                None | TranscodeActionParametersSchemaPreferredStorageMethod | Unset,
                 data,
             )
 

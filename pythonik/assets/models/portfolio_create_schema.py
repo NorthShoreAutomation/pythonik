@@ -8,13 +8,11 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.portfolio_create_schema_status import PortfolioCreateSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.portfolio_config_schema import PortfolioConfigSchema
-    from ..models.portfolio_create_schema_status_type_1 import (
-        PortfolioCreateSchemaStatusType1,
-    )
 
 
 T = TypeVar("T", bound="PortfolioCreateSchema")
@@ -31,7 +29,7 @@ class PortfolioCreateSchema:
         date_created (datetime.datetime | None | Unset):
         date_modified (datetime.datetime | None | Unset):
         id (None | Unset | UUID):
-        status (None | PortfolioCreateSchemaStatusType1 | Unset):
+        status (None | PortfolioCreateSchemaStatus | Unset):
         system_domain_id (None | Unset | UUID):
     """
 
@@ -42,15 +40,12 @@ class PortfolioCreateSchema:
     date_created: datetime.datetime | None | Unset = UNSET
     date_modified: datetime.datetime | None | Unset = UNSET
     id: None | Unset | UUID = UNSET
-    status: None | PortfolioCreateSchemaStatusType1 | Unset = UNSET
+    status: None | PortfolioCreateSchemaStatus | Unset = UNSET
     system_domain_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.portfolio_config_schema import PortfolioConfigSchema
-        from ..models.portfolio_create_schema_status_type_1 import (
-            PortfolioCreateSchemaStatusType1,
-        )
 
         name = self.name
 
@@ -96,11 +91,11 @@ class PortfolioCreateSchema:
         else:
             id = self.id
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, PortfolioCreateSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, PortfolioCreateSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -140,9 +135,6 @@ class PortfolioCreateSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.portfolio_config_schema import PortfolioConfigSchema
-        from ..models.portfolio_create_schema_status_type_1 import (
-            PortfolioCreateSchemaStatusType1,
-        )
 
         d = dict(src_dict)
         name = d.pop("name")
@@ -234,22 +226,20 @@ class PortfolioCreateSchema:
 
         id = _parse_id(d.pop("id", UNSET))
 
-        def _parse_status(
-            data: object,
-        ) -> None | PortfolioCreateSchemaStatusType1 | Unset:
+        def _parse_status(data: object) -> None | PortfolioCreateSchemaStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = PortfolioCreateSchemaStatusType1.from_dict(data)
+                status_type_1 = PortfolioCreateSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | PortfolioCreateSchemaStatusType1 | Unset, data)
+            return cast(None | PortfolioCreateSchemaStatus | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

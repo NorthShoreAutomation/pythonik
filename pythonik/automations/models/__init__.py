@@ -9,9 +9,7 @@ from .add_to_collection_action_parameters import AddToCollectionActionParameters
 from .add_to_collection_action_schema import AddToCollectionActionSchema
 from .add_to_collection_action_schema_type import AddToCollectionActionSchemaType
 from .analyze_action_parameters import AnalyzeActionParameters
-from .analyze_action_parameters_force_type_type_1 import (
-    AnalyzeActionParametersForceTypeType1,
-)
+from .analyze_action_parameters_force_type import AnalyzeActionParametersForceType
 from .analyze_action_schema import AnalyzeActionSchema
 from .analyze_action_schema_type import AnalyzeActionSchemaType
 from .archive_action_parameters import ArchiveActionParameters
@@ -39,15 +37,13 @@ from .asset_transferred_to_storage_trigger_schema_type import (
 from .automation_history_schema import AutomationHistorySchema
 from .automation_history_schema_status import AutomationHistorySchemaStatus
 from .automation_internal_schema import AutomationInternalSchema
-from .automation_internal_schema_status_type_1 import (
-    AutomationInternalSchemaStatusType1,
-)
+from .automation_internal_schema_status import AutomationInternalSchemaStatus
 from .automation_run_estimate_schema import AutomationRunEstimateSchema
 from .automation_run_estimate_schema_facets_type_0 import (
     AutomationRunEstimateSchemaFacetsType0,
 )
 from .automation_schema import AutomationSchema
-from .automation_schema_status_type_1 import AutomationSchemaStatusType1
+from .automation_schema_status import AutomationSchemaStatus
 from .automation_stats_object_schema import AutomationStatsObjectSchema
 from .automation_stats_object_schema_type import AutomationStatsObjectSchemaType
 from .automation_stats_schema import AutomationStatsSchema
@@ -120,8 +116,8 @@ from .delete_file_set_action_schema_type import DeleteFileSetActionSchemaType
 from .delete_file_set_action_type import DeleteFileSetActionType
 from .export_action import ExportAction
 from .export_action_parameters import ExportActionParameters
-from .export_action_parameters_metadata_format_type_1 import (
-    ExportActionParametersMetadataFormatType1,
+from .export_action_parameters_metadata_format import (
+    ExportActionParametersMetadataFormat,
 )
 from .export_action_schema import ExportActionSchema
 from .export_action_schema_type import ExportActionSchemaType
@@ -173,9 +169,7 @@ from .metadata_field_value_update_schema import MetadataFieldValueUpdateSchema
 from .metadata_field_value_update_schema_field_values_type_0_item import (
     MetadataFieldValueUpdateSchemaFieldValuesType0Item,
 )
-from .metadata_field_value_update_schema_mode_type_1 import (
-    MetadataFieldValueUpdateSchemaModeType1,
-)
+from .metadata_field_value_update_schema_mode import MetadataFieldValueUpdateSchemaMode
 from .metadata_update_action import MetadataUpdateAction
 from .metadata_update_action_parameters import MetadataUpdateActionParameters
 from .metadata_update_action_parameters_metadata_values import (
@@ -288,9 +282,7 @@ from .request_original_action_schema_type import RequestOriginalActionSchemaType
 from .request_original_action_type import RequestOriginalActionType
 from .request_review_action import RequestReviewAction
 from .request_review_action_parameters import RequestReviewActionParameters
-from .request_review_action_parameters_status_type_1 import (
-    RequestReviewActionParametersStatusType1,
-)
+from .request_review_action_parameters_status import RequestReviewActionParametersStatus
 from .request_review_action_schema import RequestReviewActionSchema
 from .request_review_action_schema_type import RequestReviewActionSchemaType
 from .request_review_action_type import RequestReviewActionType
@@ -327,12 +319,12 @@ from .term_schema import TermSchema
 from .term_schema_external_type_0 import TermSchemaExternalType0
 from .transcode_action import TranscodeAction
 from .transcode_action_parameters import TranscodeActionParameters
-from .transcode_action_parameters_preferred_storage_method_type_1 import (
-    TranscodeActionParametersPreferredStorageMethodType1,
+from .transcode_action_parameters_preferred_storage_method import (
+    TranscodeActionParametersPreferredStorageMethod,
 )
 from .transcode_action_parameters_schema import TranscodeActionParametersSchema
-from .transcode_action_parameters_schema_preferred_storage_method_type_1 import (
-    TranscodeActionParametersSchemaPreferredStorageMethodType1,
+from .transcode_action_parameters_schema_preferred_storage_method import (
+    TranscodeActionParametersSchemaPreferredStorageMethod,
 )
 from .transcode_action_schema import TranscodeActionSchema
 from .transcode_action_schema_type import TranscodeActionSchemaType
@@ -362,13 +354,13 @@ from .trigger_custom_action_schema_type import TriggerCustomActionSchemaType
 from .trigger_custom_action_type import TriggerCustomActionType
 from .trigger_event_type import TriggerEventType
 from .trigger_operations_type_0_item import TriggerOperationsType0Item
-from .trigger_realm_type_1 import TriggerRealmType1
+from .trigger_realm import TriggerRealm
 from .trigger_schema import TriggerSchema
 from .trigger_schema_base import TriggerSchemaBase
 from .trigger_schema_base_parameters_type_0 import TriggerSchemaBaseParametersType0
 from .trigger_schema_event_type import TriggerSchemaEventType
 from .trigger_schema_operations_type_0_item import TriggerSchemaOperationsType0Item
-from .trigger_schema_realm_type_1 import TriggerSchemaRealmType1
+from .trigger_schema_realm import TriggerSchemaRealm
 from .trigger_schema_type import TriggerSchemaType
 from .trigger_type import TriggerType
 from .triggers_schema import TriggersSchema
@@ -393,7 +385,7 @@ __all__ = (
     "AddToCollectionActionSchema",
     "AddToCollectionActionSchemaType",
     "AnalyzeActionParameters",
-    "AnalyzeActionParametersForceTypeType1",
+    "AnalyzeActionParametersForceType",
     "AnalyzeActionSchema",
     "AnalyzeActionSchemaType",
     "ArchiveActionParameters",
@@ -417,11 +409,11 @@ __all__ = (
     "AutomationHistorySchema",
     "AutomationHistorySchemaStatus",
     "AutomationInternalSchema",
-    "AutomationInternalSchemaStatusType1",
+    "AutomationInternalSchemaStatus",
     "AutomationRunEstimateSchema",
     "AutomationRunEstimateSchemaFacetsType0",
     "AutomationSchema",
-    "AutomationSchemaStatusType1",
+    "AutomationSchemaStatus",
     "AutomationsInternalSchema",
     "AutomationsSchema",
     "AutomationStatsObjectSchema",
@@ -470,7 +462,7 @@ __all__ = (
     "DeleteFileSetActionType",
     "ExportAction",
     "ExportActionParameters",
-    "ExportActionParametersMetadataFormatType1",
+    "ExportActionParametersMetadataFormat",
     "ExportActionSchema",
     "ExportActionSchemaType",
     "ExportActionType",
@@ -497,7 +489,7 @@ __all__ = (
     "MetadataFieldValueSchemaFieldValuesType0Item",
     "MetadataFieldValueUpdateSchema",
     "MetadataFieldValueUpdateSchemaFieldValuesType0Item",
-    "MetadataFieldValueUpdateSchemaModeType1",
+    "MetadataFieldValueUpdateSchemaMode",
     "MetadataUpdateAction",
     "MetadataUpdateActionParameters",
     "MetadataUpdateActionParametersMetadataValues",
@@ -554,7 +546,7 @@ __all__ = (
     "RequestOriginalActionType",
     "RequestReviewAction",
     "RequestReviewActionParameters",
-    "RequestReviewActionParametersStatusType1",
+    "RequestReviewActionParametersStatus",
     "RequestReviewActionSchema",
     "RequestReviewActionSchemaType",
     "RequestReviewActionType",
@@ -585,9 +577,9 @@ __all__ = (
     "TermSchemaExternalType0",
     "TranscodeAction",
     "TranscodeActionParameters",
-    "TranscodeActionParametersPreferredStorageMethodType1",
+    "TranscodeActionParametersPreferredStorageMethod",
     "TranscodeActionParametersSchema",
-    "TranscodeActionParametersSchemaPreferredStorageMethodType1",
+    "TranscodeActionParametersSchemaPreferredStorageMethod",
     "TranscodeActionSchema",
     "TranscodeActionSchemaType",
     "TranscodeActionType",
@@ -612,13 +604,13 @@ __all__ = (
     "TriggerCustomActionType",
     "TriggerEventType",
     "TriggerOperationsType0Item",
-    "TriggerRealmType1",
+    "TriggerRealm",
     "TriggerSchema",
     "TriggerSchemaBase",
     "TriggerSchemaBaseParametersType0",
     "TriggerSchemaEventType",
     "TriggerSchemaOperationsType0Item",
-    "TriggerSchemaRealmType1",
+    "TriggerSchemaRealm",
     "TriggerSchemaType",
     "TriggersSchema",
     "TriggerType",

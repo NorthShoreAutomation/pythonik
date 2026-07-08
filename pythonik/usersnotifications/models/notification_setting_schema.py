@@ -7,12 +7,12 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.notification_setting_schema_protocol import (
+    NotificationSettingSchemaProtocol,
+)
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.notification_setting_schema_protocol_type_1 import (
-        NotificationSettingSchemaProtocolType1,
-    )
     from ..models.notification_setting_schema_settings_type_0 import (
         NotificationSettingSchemaSettingsType0,
     )
@@ -28,7 +28,7 @@ class NotificationSettingSchema:
         enabled (bool):
         event_type (str):
         object_type (str):
-        protocol (None | NotificationSettingSchemaProtocolType1 | Unset):
+        protocol (None | NotificationSettingSchemaProtocol | Unset):
         recipient_id (None | Unset | UUID):
         settings (None | NotificationSettingSchemaSettingsType0 | Unset):
         sub_object_type (None | str | Unset):
@@ -38,7 +38,7 @@ class NotificationSettingSchema:
     enabled: bool
     event_type: str
     object_type: str
-    protocol: None | NotificationSettingSchemaProtocolType1 | Unset = UNSET
+    protocol: None | NotificationSettingSchemaProtocol | Unset = UNSET
     recipient_id: None | Unset | UUID = UNSET
     settings: None | NotificationSettingSchemaSettingsType0 | Unset = UNSET
     sub_object_type: None | str | Unset = UNSET
@@ -46,9 +46,6 @@ class NotificationSettingSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.notification_setting_schema_protocol_type_1 import (
-            NotificationSettingSchemaProtocolType1,
-        )
         from ..models.notification_setting_schema_settings_type_0 import (
             NotificationSettingSchemaSettingsType0,
         )
@@ -59,11 +56,11 @@ class NotificationSettingSchema:
 
         object_type = self.object_type
 
-        protocol: dict[str, Any] | None | Unset
+        protocol: None | str | Unset
         if isinstance(self.protocol, Unset):
             protocol = UNSET
-        elif isinstance(self.protocol, NotificationSettingSchemaProtocolType1):
-            protocol = self.protocol.to_dict()
+        elif isinstance(self.protocol, NotificationSettingSchemaProtocol):
+            protocol = self.protocol.value
         else:
             protocol = self.protocol
 
@@ -121,9 +118,6 @@ class NotificationSettingSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.notification_setting_schema_protocol_type_1 import (
-            NotificationSettingSchemaProtocolType1,
-        )
         from ..models.notification_setting_schema_settings_type_0 import (
             NotificationSettingSchemaSettingsType0,
         )
@@ -137,20 +131,20 @@ class NotificationSettingSchema:
 
         def _parse_protocol(
             data: object,
-        ) -> None | NotificationSettingSchemaProtocolType1 | Unset:
+        ) -> None | NotificationSettingSchemaProtocol | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                protocol_type_1 = NotificationSettingSchemaProtocolType1.from_dict(data)
+                protocol_type_1 = NotificationSettingSchemaProtocol(data)
 
                 return protocol_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | NotificationSettingSchemaProtocolType1 | Unset, data)
+            return cast(None | NotificationSettingSchemaProtocol | Unset, data)
 
         protocol = _parse_protocol(d.pop("protocol", UNSET))
 

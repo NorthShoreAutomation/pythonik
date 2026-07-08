@@ -9,16 +9,14 @@ from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..models.custom_action_schema_context import CustomActionSchemaContext
+from ..models.custom_action_schema_status import CustomActionSchemaStatus
+from ..models.custom_action_schema_type import CustomActionSchemaType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.custom_action_schema_headers_type_0 import (
         CustomActionSchemaHeadersType0,
     )
-    from ..models.custom_action_schema_status_type_1 import (
-        CustomActionSchemaStatusType1,
-    )
-    from ..models.custom_action_schema_type_type_1 import CustomActionSchemaTypeType1
 
 
 T = TypeVar("T", bound="CustomActionSchema")
@@ -41,10 +39,10 @@ class CustomActionSchema:
         last_error_date (datetime.datetime | None | Unset):
         metadata_view (None | Unset | UUID):
         publish_template_id (None | str | Unset):
-        status (CustomActionSchemaStatusType1 | None | Unset):
+        status (CustomActionSchemaStatus | None | Unset):
         system_domain_id (None | Unset | UUID):
         transcoder_id (None | Unset | UUID):
-        type_ (CustomActionSchemaTypeType1 | None | Unset):
+        type_ (CustomActionSchemaType | None | Unset):
     """
 
     context: CustomActionSchemaContext
@@ -60,21 +58,15 @@ class CustomActionSchema:
     last_error_date: datetime.datetime | None | Unset = UNSET
     metadata_view: None | Unset | UUID = UNSET
     publish_template_id: None | str | Unset = UNSET
-    status: CustomActionSchemaStatusType1 | None | Unset = UNSET
+    status: CustomActionSchemaStatus | None | Unset = UNSET
     system_domain_id: None | Unset | UUID = UNSET
     transcoder_id: None | Unset | UUID = UNSET
-    type_: CustomActionSchemaTypeType1 | None | Unset = UNSET
+    type_: CustomActionSchemaType | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.custom_action_schema_headers_type_0 import (
             CustomActionSchemaHeadersType0,
-        )
-        from ..models.custom_action_schema_status_type_1 import (
-            CustomActionSchemaStatusType1,
-        )
-        from ..models.custom_action_schema_type_type_1 import (
-            CustomActionSchemaTypeType1,
         )
 
         context = self.context.value
@@ -157,11 +149,11 @@ class CustomActionSchema:
         else:
             publish_template_id = self.publish_template_id
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, CustomActionSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, CustomActionSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -181,11 +173,11 @@ class CustomActionSchema:
         else:
             transcoder_id = self.transcoder_id
 
-        type_: dict[str, Any] | None | Unset
+        type_: None | str | Unset
         if isinstance(self.type_, Unset):
             type_ = UNSET
-        elif isinstance(self.type_, CustomActionSchemaTypeType1):
-            type_ = self.type_.to_dict()
+        elif isinstance(self.type_, CustomActionSchemaType):
+            type_ = self.type_.value
         else:
             type_ = self.type_
 
@@ -233,12 +225,6 @@ class CustomActionSchema:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.custom_action_schema_headers_type_0 import (
             CustomActionSchemaHeadersType0,
-        )
-        from ..models.custom_action_schema_status_type_1 import (
-            CustomActionSchemaStatusType1,
-        )
-        from ..models.custom_action_schema_type_type_1 import (
-            CustomActionSchemaTypeType1,
         )
 
         d = dict(src_dict)
@@ -398,20 +384,20 @@ class CustomActionSchema:
             d.pop("publish_template_id", UNSET)
         )
 
-        def _parse_status(data: object) -> CustomActionSchemaStatusType1 | None | Unset:
+        def _parse_status(data: object) -> CustomActionSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = CustomActionSchemaStatusType1.from_dict(data)
+                status_type_1 = CustomActionSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(CustomActionSchemaStatusType1 | None | Unset, data)
+            return cast(CustomActionSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 
@@ -449,20 +435,20 @@ class CustomActionSchema:
 
         transcoder_id = _parse_transcoder_id(d.pop("transcoder_id", UNSET))
 
-        def _parse_type_(data: object) -> CustomActionSchemaTypeType1 | None | Unset:
+        def _parse_type_(data: object) -> CustomActionSchemaType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                type_type_1 = CustomActionSchemaTypeType1.from_dict(data)
+                type_type_1 = CustomActionSchemaType(data)
 
                 return type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(CustomActionSchemaTypeType1 | None | Unset, data)
+            return cast(CustomActionSchemaType | None | Unset, data)
 
         type_ = _parse_type_(d.pop("type", UNSET))
 

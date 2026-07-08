@@ -9,6 +9,7 @@ from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..models.edit_segment_schema_segment_type import EditSegmentSchemaSegmentType
+from ..models.edit_segment_schema_status import EditSegmentSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -16,7 +17,6 @@ if TYPE_CHECKING:
     from ..models.edit_segment_schema_metadata_type_0 import (
         EditSegmentSchemaMetadataType0,
     )
-    from ..models.edit_segment_schema_status_type_1 import EditSegmentSchemaStatusType1
     from ..models.face_bounding_box import FaceBoundingBox
     from ..models.transcription_type import TranscriptionType
     from ..models.user import User
@@ -51,7 +51,7 @@ class EditSegmentSchema:
         segment_track (None | str | Unset):
         share_id (None | Unset | UUID): ID of a share if the segment is created from a share
         share_user_email (None | str | Unset):
-        status (EditSegmentSchemaStatusType1 | None | Unset):
+        status (EditSegmentSchemaStatus | None | Unset):
         subclip_id (None | Unset | UUID):
         time_end_milliseconds (int | None | Unset):
         time_start_milliseconds (int | None | Unset):
@@ -88,7 +88,7 @@ class EditSegmentSchema:
     segment_track: None | str | Unset = UNSET
     share_id: None | Unset | UUID = UNSET
     share_user_email: None | str | Unset = UNSET
-    status: EditSegmentSchemaStatusType1 | None | Unset = UNSET
+    status: EditSegmentSchemaStatus | None | Unset = UNSET
     subclip_id: None | Unset | UUID = UNSET
     time_end_milliseconds: int | None | Unset = UNSET
     time_start_milliseconds: int | None | Unset = UNSET
@@ -107,9 +107,6 @@ class EditSegmentSchema:
         from ..models.drawing_schema import DrawingSchema
         from ..models.edit_segment_schema_metadata_type_0 import (
             EditSegmentSchemaMetadataType0,
-        )
-        from ..models.edit_segment_schema_status_type_1 import (
-            EditSegmentSchemaStatusType1,
         )
         from ..models.transcription_type import TranscriptionType
         from ..models.user import User
@@ -274,11 +271,11 @@ class EditSegmentSchema:
         else:
             share_user_email = self.share_user_email
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, EditSegmentSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, EditSegmentSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -449,9 +446,6 @@ class EditSegmentSchema:
         from ..models.drawing_schema import DrawingSchema
         from ..models.edit_segment_schema_metadata_type_0 import (
             EditSegmentSchemaMetadataType0,
-        )
-        from ..models.edit_segment_schema_status_type_1 import (
-            EditSegmentSchemaStatusType1,
         )
         from ..models.face_bounding_box import FaceBoundingBox
         from ..models.transcription_type import TranscriptionType
@@ -766,20 +760,20 @@ class EditSegmentSchema:
 
         share_user_email = _parse_share_user_email(d.pop("share_user_email", UNSET))
 
-        def _parse_status(data: object) -> EditSegmentSchemaStatusType1 | None | Unset:
+        def _parse_status(data: object) -> EditSegmentSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = EditSegmentSchemaStatusType1.from_dict(data)
+                status_type_1 = EditSegmentSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(EditSegmentSchemaStatusType1 | None | Unset, data)
+            return cast(EditSegmentSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

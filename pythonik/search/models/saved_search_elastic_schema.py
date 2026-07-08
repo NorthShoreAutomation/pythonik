@@ -2,13 +2,17 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.search_criteria_saved import SearchCriteriaSaved
+
 
 T = TypeVar("T", bound="SavedSearchElasticSchema")
 
@@ -18,7 +22,7 @@ class SavedSearchElasticSchema:
     """
     Attributes:
         name (str):
-        criteria (None | str | Unset):
+        criteria (None | SearchCriteriaSaved | Unset):
         date_created (datetime.datetime | None | Unset):
         date_modified (datetime.datetime | None | Unset):
         favoured (bool | None | Unset):
@@ -28,7 +32,7 @@ class SavedSearchElasticSchema:
     """
 
     name: str
-    criteria: None | str | Unset = UNSET
+    criteria: None | SearchCriteriaSaved | Unset = UNSET
     date_created: datetime.datetime | None | Unset = UNSET
     date_modified: datetime.datetime | None | Unset = UNSET
     favoured: bool | None | Unset = UNSET
@@ -38,11 +42,15 @@ class SavedSearchElasticSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.search_criteria_saved import SearchCriteriaSaved
+
         name = self.name
 
-        criteria: None | str | Unset
+        criteria: dict[str, Any] | None | Unset
         if isinstance(self.criteria, Unset):
             criteria = UNSET
+        elif isinstance(self.criteria, SearchCriteriaSaved):
+            criteria = self.criteria.to_dict()
         else:
             criteria = self.criteria
 
@@ -119,15 +127,25 @@ class SavedSearchElasticSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.search_criteria_saved import SearchCriteriaSaved
+
         d = dict(src_dict)
         name = d.pop("name")
 
-        def _parse_criteria(data: object) -> None | str | Unset:
+        def _parse_criteria(data: object) -> None | SearchCriteriaSaved | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(None | str | Unset, data)
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                criteria_type_1 = SearchCriteriaSaved.from_dict(data)
+
+                return criteria_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | SearchCriteriaSaved | Unset, data)
 
         criteria = _parse_criteria(d.pop("criteria", UNSET))
 

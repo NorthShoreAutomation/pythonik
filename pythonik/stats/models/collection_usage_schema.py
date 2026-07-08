@@ -2,22 +2,19 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.collection_usage_schema_operation_source import (
+    CollectionUsageSchemaOperationSource,
+)
 from ..models.collection_usage_schema_operation_type import (
     CollectionUsageSchemaOperationType,
 )
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.collection_usage_schema_operation_source_type_1 import (
-        CollectionUsageSchemaOperationSourceType1,
-    )
-
 
 T = TypeVar("T", bound="CollectionUsageSchema")
 
@@ -33,7 +30,7 @@ class CollectionUsageSchema:
         date (datetime.date | None | Unset):
         id (None | Unset | UUID):
         metadata (None | str | Unset):
-        operation_source (CollectionUsageSchemaOperationSourceType1 | None | Unset):
+        operation_source (CollectionUsageSchemaOperationSource | None | Unset):
         system_domain_id (None | Unset | UUID):
         time (datetime.datetime | None | Unset):
     """
@@ -45,16 +42,12 @@ class CollectionUsageSchema:
     date: datetime.date | None | Unset = UNSET
     id: None | Unset | UUID = UNSET
     metadata: None | str | Unset = UNSET
-    operation_source: CollectionUsageSchemaOperationSourceType1 | None | Unset = UNSET
+    operation_source: CollectionUsageSchemaOperationSource | None | Unset = UNSET
     system_domain_id: None | Unset | UUID = UNSET
     time: datetime.datetime | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.collection_usage_schema_operation_source_type_1 import (
-            CollectionUsageSchemaOperationSourceType1,
-        )
-
         collection_id = str(self.collection_id)
 
         operation_type = self.operation_type.value
@@ -85,13 +78,11 @@ class CollectionUsageSchema:
         else:
             metadata = self.metadata
 
-        operation_source: dict[str, Any] | None | Unset
+        operation_source: None | str | Unset
         if isinstance(self.operation_source, Unset):
             operation_source = UNSET
-        elif isinstance(
-            self.operation_source, CollectionUsageSchemaOperationSourceType1
-        ):
-            operation_source = self.operation_source.to_dict()
+        elif isinstance(self.operation_source, CollectionUsageSchemaOperationSource):
+            operation_source = self.operation_source.value
         else:
             operation_source = self.operation_source
 
@@ -138,10 +129,6 @@ class CollectionUsageSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.collection_usage_schema_operation_source_type_1 import (
-            CollectionUsageSchemaOperationSourceType1,
-        )
-
         d = dict(src_dict)
         collection_id = UUID(d.pop("collection_id"))
 
@@ -196,22 +183,20 @@ class CollectionUsageSchema:
 
         def _parse_operation_source(
             data: object,
-        ) -> CollectionUsageSchemaOperationSourceType1 | None | Unset:
+        ) -> CollectionUsageSchemaOperationSource | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                operation_source_type_1 = (
-                    CollectionUsageSchemaOperationSourceType1.from_dict(data)
-                )
+                operation_source_type_1 = CollectionUsageSchemaOperationSource(data)
 
                 return operation_source_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(CollectionUsageSchemaOperationSourceType1 | None | Unset, data)
+            return cast(CollectionUsageSchemaOperationSource | None | Unset, data)
 
         operation_source = _parse_operation_source(d.pop("operation_source", UNSET))
 

@@ -7,15 +7,15 @@ from typing import TYPE_CHECKING, Any, TypeVar, cast
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.collection_keyframe_update_schema_status import (
+    CollectionKeyframeUpdateSchemaStatus,
+)
 from ..models.collection_keyframe_update_schema_type import (
     CollectionKeyframeUpdateSchemaType,
 )
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.collection_keyframe_update_schema_status_type_1 import (
-        CollectionKeyframeUpdateSchemaStatusType1,
-    )
     from ..models.resolution_type import ResolutionType
     from ..models.time_code_type import TimeCodeType
 
@@ -38,7 +38,7 @@ class CollectionKeyframeUpdateSchema:
         resolution (None | ResolutionType | Unset):
         rotation (int | None | Unset):
         size (int | None | Unset):
-        status (CollectionKeyframeUpdateSchemaStatusType1 | None | Unset):
+        status (CollectionKeyframeUpdateSchemaStatus | None | Unset):
         time_code (None | TimeCodeType | Unset):
         url (None | str | Unset):
     """
@@ -54,15 +54,12 @@ class CollectionKeyframeUpdateSchema:
     resolution: None | ResolutionType | Unset = UNSET
     rotation: int | None | Unset = UNSET
     size: int | None | Unset = UNSET
-    status: CollectionKeyframeUpdateSchemaStatusType1 | None | Unset = UNSET
+    status: CollectionKeyframeUpdateSchemaStatus | None | Unset = UNSET
     time_code: None | TimeCodeType | Unset = UNSET
     url: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.collection_keyframe_update_schema_status_type_1 import (
-            CollectionKeyframeUpdateSchemaStatusType1,
-        )
         from ..models.resolution_type import ResolutionType
         from ..models.time_code_type import TimeCodeType
 
@@ -134,11 +131,11 @@ class CollectionKeyframeUpdateSchema:
         else:
             size = self.size
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, CollectionKeyframeUpdateSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, CollectionKeyframeUpdateSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -194,9 +191,6 @@ class CollectionKeyframeUpdateSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.collection_keyframe_update_schema_status_type_1 import (
-            CollectionKeyframeUpdateSchemaStatusType1,
-        )
         from ..models.resolution_type import ResolutionType
         from ..models.time_code_type import TimeCodeType
 
@@ -321,22 +315,20 @@ class CollectionKeyframeUpdateSchema:
 
         def _parse_status(
             data: object,
-        ) -> CollectionKeyframeUpdateSchemaStatusType1 | None | Unset:
+        ) -> CollectionKeyframeUpdateSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = CollectionKeyframeUpdateSchemaStatusType1.from_dict(
-                    data
-                )
+                status_type_1 = CollectionKeyframeUpdateSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(CollectionKeyframeUpdateSchemaStatusType1 | None | Unset, data)
+            return cast(CollectionKeyframeUpdateSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

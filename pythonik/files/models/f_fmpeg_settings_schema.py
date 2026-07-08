@@ -1,18 +1,15 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.f_fmpeg_settings_schema_scaling_method import (
+    FFmpegSettingsSchemaScalingMethod,
+)
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.f_fmpeg_settings_schema_scaling_method_type_1 import (
-        FFmpegSettingsSchemaScalingMethodType1,
-    )
-
 
 T = TypeVar("T", bound="FFmpegSettingsSchema")
 
@@ -39,7 +36,7 @@ class FFmpegSettingsSchema:
         overlay_coordinates (None | str | Unset):
         overlay_url (None | str | Unset):
         priority (int | None | Unset):
-        scaling_method (FFmpegSettingsSchemaScalingMethodType1 | None | Unset):
+        scaling_method (FFmpegSettingsSchemaScalingMethod | None | Unset):
         width (int | None | Unset):
     """
 
@@ -61,15 +58,11 @@ class FFmpegSettingsSchema:
     overlay_coordinates: None | str | Unset = UNSET
     overlay_url: None | str | Unset = UNSET
     priority: int | None | Unset = UNSET
-    scaling_method: FFmpegSettingsSchemaScalingMethodType1 | None | Unset = UNSET
+    scaling_method: FFmpegSettingsSchemaScalingMethod | None | Unset = UNSET
     width: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.f_fmpeg_settings_schema_scaling_method_type_1 import (
-            FFmpegSettingsSchemaScalingMethodType1,
-        )
-
         audio_bitrate: int | None | Unset
         if isinstance(self.audio_bitrate, Unset):
             audio_bitrate = UNSET
@@ -184,11 +177,11 @@ class FFmpegSettingsSchema:
         else:
             priority = self.priority
 
-        scaling_method: dict[str, Any] | None | Unset
+        scaling_method: None | str | Unset
         if isinstance(self.scaling_method, Unset):
             scaling_method = UNSET
-        elif isinstance(self.scaling_method, FFmpegSettingsSchemaScalingMethodType1):
-            scaling_method = self.scaling_method.to_dict()
+        elif isinstance(self.scaling_method, FFmpegSettingsSchemaScalingMethod):
+            scaling_method = self.scaling_method.value
         else:
             scaling_method = self.scaling_method
 
@@ -248,10 +241,6 @@ class FFmpegSettingsSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.f_fmpeg_settings_schema_scaling_method_type_1 import (
-            FFmpegSettingsSchemaScalingMethodType1,
-        )
-
         d = dict(src_dict)
 
         def _parse_audio_bitrate(data: object) -> int | None | Unset:
@@ -440,22 +429,20 @@ class FFmpegSettingsSchema:
 
         def _parse_scaling_method(
             data: object,
-        ) -> FFmpegSettingsSchemaScalingMethodType1 | None | Unset:
+        ) -> FFmpegSettingsSchemaScalingMethod | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                scaling_method_type_1 = (
-                    FFmpegSettingsSchemaScalingMethodType1.from_dict(data)
-                )
+                scaling_method_type_1 = FFmpegSettingsSchemaScalingMethod(data)
 
                 return scaling_method_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(FFmpegSettingsSchemaScalingMethodType1 | None | Unset, data)
+            return cast(FFmpegSettingsSchemaScalingMethod | None | Unset, data)
 
         scaling_method = _parse_scaling_method(d.pop("scaling_method", UNSET))
 

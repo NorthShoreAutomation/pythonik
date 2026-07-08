@@ -1,19 +1,14 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.asset_export_schema_metadata_format import AssetExportSchemaMetadataFormat
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.asset_export_schema_metadata_format_type_1 import (
-        AssetExportSchemaMetadataFormatType1,
-    )
-
 
 T = TypeVar("T", bound="AssetExportSchema")
 
@@ -26,7 +21,7 @@ class AssetExportSchema:
         export_to_asset_folder (bool | None | Unset):
         file_name (None | str | Unset):
         format_id (None | Unset | UUID):
-        metadata_format (AssetExportSchemaMetadataFormatType1 | None | Unset):
+        metadata_format (AssetExportSchemaMetadataFormat | None | Unset):
         metadata_view (None | Unset | UUID):
         overwrite (bool | None | Unset):
         preferred_original_storage_id (None | Unset | UUID):
@@ -37,7 +32,7 @@ class AssetExportSchema:
     export_to_asset_folder: bool | None | Unset = UNSET
     file_name: None | str | Unset = UNSET
     format_id: None | Unset | UUID = UNSET
-    metadata_format: AssetExportSchemaMetadataFormatType1 | None | Unset = UNSET
+    metadata_format: AssetExportSchemaMetadataFormat | None | Unset = UNSET
     metadata_view: None | Unset | UUID = UNSET
     overwrite: bool | None | Unset = UNSET
     preferred_original_storage_id: None | Unset | UUID = UNSET
@@ -45,10 +40,6 @@ class AssetExportSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.asset_export_schema_metadata_format_type_1 import (
-            AssetExportSchemaMetadataFormatType1,
-        )
-
         export_metadata: bool | None | Unset
         if isinstance(self.export_metadata, Unset):
             export_metadata = UNSET
@@ -75,11 +66,11 @@ class AssetExportSchema:
         else:
             format_id = self.format_id
 
-        metadata_format: dict[str, Any] | None | Unset
+        metadata_format: None | str | Unset
         if isinstance(self.metadata_format, Unset):
             metadata_format = UNSET
-        elif isinstance(self.metadata_format, AssetExportSchemaMetadataFormatType1):
-            metadata_format = self.metadata_format.to_dict()
+        elif isinstance(self.metadata_format, AssetExportSchemaMetadataFormat):
+            metadata_format = self.metadata_format.value
         else:
             metadata_format = self.metadata_format
 
@@ -145,10 +136,6 @@ class AssetExportSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.asset_export_schema_metadata_format_type_1 import (
-            AssetExportSchemaMetadataFormatType1,
-        )
-
         d = dict(src_dict)
 
         def _parse_export_metadata(data: object) -> bool | None | Unset:
@@ -199,22 +186,20 @@ class AssetExportSchema:
 
         def _parse_metadata_format(
             data: object,
-        ) -> AssetExportSchemaMetadataFormatType1 | None | Unset:
+        ) -> AssetExportSchemaMetadataFormat | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                metadata_format_type_1 = AssetExportSchemaMetadataFormatType1.from_dict(
-                    data
-                )
+                metadata_format_type_1 = AssetExportSchemaMetadataFormat(data)
 
                 return metadata_format_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AssetExportSchemaMetadataFormatType1 | None | Unset, data)
+            return cast(AssetExportSchemaMetadataFormat | None | Unset, data)
 
         metadata_format = _parse_metadata_format(d.pop("metadata_format", UNSET))
 

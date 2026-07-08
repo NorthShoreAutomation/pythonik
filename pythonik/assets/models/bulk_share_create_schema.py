@@ -2,25 +2,18 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.bulk_share_create_schema_drm import BulkShareCreateSchemaDrm
+from ..models.bulk_share_create_schema_object_type import (
+    BulkShareCreateSchemaObjectType,
+)
+from ..models.bulk_share_create_schema_watermark import BulkShareCreateSchemaWatermark
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.bulk_share_create_schema_drm_type_1 import (
-        BulkShareCreateSchemaDrmType1,
-    )
-    from ..models.bulk_share_create_schema_object_type_type_1 import (
-        BulkShareCreateSchemaObjectTypeType1,
-    )
-    from ..models.bulk_share_create_schema_watermark_type_1 import (
-        BulkShareCreateSchemaWatermarkType1,
-    )
-
 
 T = TypeVar("T", bound="BulkShareCreateSchema")
 
@@ -43,14 +36,14 @@ class BulkShareCreateSchema:
         allow_view_transcriptions (bool | None | Unset):
         allow_view_versions (bool | None | Unset):
         automatic_approval_share (bool | None | Unset):
-        drm (BulkShareCreateSchemaDrmType1 | None | Unset):
+        drm (BulkShareCreateSchemaDrm | None | Unset):
         emails (list[str] | None | Unset):
         expires (datetime.datetime | None | Unset):
         id (None | str | Unset):
         is_approval (bool | None | Unset):
         message (None | str | Unset):
         metadata_views (list[str] | None | Unset):
-        object_type (BulkShareCreateSchemaObjectTypeType1 | None | Unset):
+        object_type (BulkShareCreateSchemaObjectType | None | Unset):
         owner_id (None | str | Unset):
         password (None | str | Unset):
         review_experience_public_beta (bool | None | Unset):
@@ -59,7 +52,7 @@ class BulkShareCreateSchema:
         show_watermark (bool | None | Unset):
         system_domain_id (None | str | Unset):
         upload_storage_id (None | Unset | UUID):
-        watermark (BulkShareCreateSchemaWatermarkType1 | None | Unset):
+        watermark (BulkShareCreateSchemaWatermark | None | Unset):
     """
 
     allow_approving_comments: bool
@@ -76,14 +69,14 @@ class BulkShareCreateSchema:
     allow_view_transcriptions: bool | None | Unset = UNSET
     allow_view_versions: bool | None | Unset = UNSET
     automatic_approval_share: bool | None | Unset = UNSET
-    drm: BulkShareCreateSchemaDrmType1 | None | Unset = UNSET
+    drm: BulkShareCreateSchemaDrm | None | Unset = UNSET
     emails: list[str] | None | Unset = UNSET
     expires: datetime.datetime | None | Unset = UNSET
     id: None | str | Unset = UNSET
     is_approval: bool | None | Unset = UNSET
     message: None | str | Unset = UNSET
     metadata_views: list[str] | None | Unset = UNSET
-    object_type: BulkShareCreateSchemaObjectTypeType1 | None | Unset = UNSET
+    object_type: BulkShareCreateSchemaObjectType | None | Unset = UNSET
     owner_id: None | str | Unset = UNSET
     password: None | str | Unset = UNSET
     review_experience_public_beta: bool | None | Unset = UNSET
@@ -92,20 +85,10 @@ class BulkShareCreateSchema:
     show_watermark: bool | None | Unset = UNSET
     system_domain_id: None | str | Unset = UNSET
     upload_storage_id: None | Unset | UUID = UNSET
-    watermark: BulkShareCreateSchemaWatermarkType1 | None | Unset = UNSET
+    watermark: BulkShareCreateSchemaWatermark | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.bulk_share_create_schema_drm_type_1 import (
-            BulkShareCreateSchemaDrmType1,
-        )
-        from ..models.bulk_share_create_schema_object_type_type_1 import (
-            BulkShareCreateSchemaObjectTypeType1,
-        )
-        from ..models.bulk_share_create_schema_watermark_type_1 import (
-            BulkShareCreateSchemaWatermarkType1,
-        )
-
         allow_approving_comments = self.allow_approving_comments
 
         allow_comments = self.allow_comments
@@ -169,11 +152,11 @@ class BulkShareCreateSchema:
         else:
             automatic_approval_share = self.automatic_approval_share
 
-        drm: dict[str, Any] | None | Unset
+        drm: None | str | Unset
         if isinstance(self.drm, Unset):
             drm = UNSET
-        elif isinstance(self.drm, BulkShareCreateSchemaDrmType1):
-            drm = self.drm.to_dict()
+        elif isinstance(self.drm, BulkShareCreateSchemaDrm):
+            drm = self.drm.value
         else:
             drm = self.drm
 
@@ -221,11 +204,11 @@ class BulkShareCreateSchema:
         else:
             metadata_views = self.metadata_views
 
-        object_type: dict[str, Any] | None | Unset
+        object_type: None | str | Unset
         if isinstance(self.object_type, Unset):
             object_type = UNSET
-        elif isinstance(self.object_type, BulkShareCreateSchemaObjectTypeType1):
-            object_type = self.object_type.to_dict()
+        elif isinstance(self.object_type, BulkShareCreateSchemaObjectType):
+            object_type = self.object_type.value
         else:
             object_type = self.object_type
 
@@ -279,11 +262,11 @@ class BulkShareCreateSchema:
         else:
             upload_storage_id = self.upload_storage_id
 
-        watermark: dict[str, Any] | None | Unset
+        watermark: None | str | Unset
         if isinstance(self.watermark, Unset):
             watermark = UNSET
-        elif isinstance(self.watermark, BulkShareCreateSchemaWatermarkType1):
-            watermark = self.watermark.to_dict()
+        elif isinstance(self.watermark, BulkShareCreateSchemaWatermark):
+            watermark = self.watermark.value
         else:
             watermark = self.watermark
 
@@ -356,16 +339,6 @@ class BulkShareCreateSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.bulk_share_create_schema_drm_type_1 import (
-            BulkShareCreateSchemaDrmType1,
-        )
-        from ..models.bulk_share_create_schema_object_type_type_1 import (
-            BulkShareCreateSchemaObjectTypeType1,
-        )
-        from ..models.bulk_share_create_schema_watermark_type_1 import (
-            BulkShareCreateSchemaWatermarkType1,
-        )
-
         d = dict(src_dict)
         allow_approving_comments = d.pop("allow_approving_comments")
 
@@ -468,20 +441,20 @@ class BulkShareCreateSchema:
             d.pop("automatic_approval_share", UNSET)
         )
 
-        def _parse_drm(data: object) -> BulkShareCreateSchemaDrmType1 | None | Unset:
+        def _parse_drm(data: object) -> BulkShareCreateSchemaDrm | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                drm_type_1 = BulkShareCreateSchemaDrmType1.from_dict(data)
+                drm_type_1 = BulkShareCreateSchemaDrm(data)
 
                 return drm_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(BulkShareCreateSchemaDrmType1 | None | Unset, data)
+            return cast(BulkShareCreateSchemaDrm | None | Unset, data)
 
         drm = _parse_drm(d.pop("drm", UNSET))
 
@@ -565,22 +538,20 @@ class BulkShareCreateSchema:
 
         def _parse_object_type(
             data: object,
-        ) -> BulkShareCreateSchemaObjectTypeType1 | None | Unset:
+        ) -> BulkShareCreateSchemaObjectType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                object_type_type_1 = BulkShareCreateSchemaObjectTypeType1.from_dict(
-                    data
-                )
+                object_type_type_1 = BulkShareCreateSchemaObjectType(data)
 
                 return object_type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(BulkShareCreateSchemaObjectTypeType1 | None | Unset, data)
+            return cast(BulkShareCreateSchemaObjectType | None | Unset, data)
 
         object_type = _parse_object_type(d.pop("object_type", UNSET))
 
@@ -670,20 +641,20 @@ class BulkShareCreateSchema:
 
         def _parse_watermark(
             data: object,
-        ) -> BulkShareCreateSchemaWatermarkType1 | None | Unset:
+        ) -> BulkShareCreateSchemaWatermark | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                watermark_type_1 = BulkShareCreateSchemaWatermarkType1.from_dict(data)
+                watermark_type_1 = BulkShareCreateSchemaWatermark(data)
 
                 return watermark_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(BulkShareCreateSchemaWatermarkType1 | None | Unset, data)
+            return cast(BulkShareCreateSchemaWatermark | None | Unset, data)
 
         watermark = _parse_watermark(d.pop("watermark", UNSET))
 

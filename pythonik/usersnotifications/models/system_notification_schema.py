@@ -8,14 +8,12 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.system_notification_schema_status import SystemNotificationSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.system_notification_schema_context_type_0 import (
         SystemNotificationSchemaContextType0,
-    )
-    from ..models.system_notification_schema_status_type_1 import (
-        SystemNotificationSchemaStatusType1,
     )
 
 
@@ -41,7 +39,7 @@ class SystemNotificationSchema:
         object_id (None | Unset | UUID):
         share_id (None | Unset | UUID):
         share_user_id (None | Unset | UUID):
-        status (None | SystemNotificationSchemaStatusType1 | Unset):
+        status (None | SystemNotificationSchemaStatus | Unset):
         sub_object_id (None | Unset | UUID):
         sub_object_type (None | str | Unset):
         user_id (None | Unset | UUID):
@@ -62,7 +60,7 @@ class SystemNotificationSchema:
     object_id: None | Unset | UUID = UNSET
     share_id: None | Unset | UUID = UNSET
     share_user_id: None | Unset | UUID = UNSET
-    status: None | SystemNotificationSchemaStatusType1 | Unset = UNSET
+    status: None | SystemNotificationSchemaStatus | Unset = UNSET
     sub_object_id: None | Unset | UUID = UNSET
     sub_object_type: None | str | Unset = UNSET
     user_id: None | Unset | UUID = UNSET
@@ -71,9 +69,6 @@ class SystemNotificationSchema:
     def to_dict(self) -> dict[str, Any]:
         from ..models.system_notification_schema_context_type_0 import (
             SystemNotificationSchemaContextType0,
-        )
-        from ..models.system_notification_schema_status_type_1 import (
-            SystemNotificationSchemaStatusType1,
         )
 
         event_type = self.event_type
@@ -158,11 +153,11 @@ class SystemNotificationSchema:
         else:
             share_user_id = self.share_user_id
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, SystemNotificationSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, SystemNotificationSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -232,9 +227,6 @@ class SystemNotificationSchema:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.system_notification_schema_context_type_0 import (
             SystemNotificationSchemaContextType0,
-        )
-        from ..models.system_notification_schema_status_type_1 import (
-            SystemNotificationSchemaStatusType1,
         )
 
         d = dict(src_dict)
@@ -397,20 +389,20 @@ class SystemNotificationSchema:
 
         def _parse_status(
             data: object,
-        ) -> None | SystemNotificationSchemaStatusType1 | Unset:
+        ) -> None | SystemNotificationSchemaStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = SystemNotificationSchemaStatusType1.from_dict(data)
+                status_type_1 = SystemNotificationSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | SystemNotificationSchemaStatusType1 | Unset, data)
+            return cast(None | SystemNotificationSchemaStatus | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

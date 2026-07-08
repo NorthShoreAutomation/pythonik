@@ -1,18 +1,15 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.file_existence_check_schema_file_type import (
+    FileExistenceCheckSchemaFileType,
+)
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.file_existence_check_schema_file_type_type_1 import (
-        FileExistenceCheckSchemaFileTypeType1,
-    )
-
 
 T = TypeVar("T", bound="FileExistenceCheckSchema")
 
@@ -23,32 +20,28 @@ class FileExistenceCheckSchema:
     Attributes:
         directory_path (str):
         file_name (str):
-        file_type (FileExistenceCheckSchemaFileTypeType1 | None | Unset):
+        file_type (FileExistenceCheckSchemaFileType | None | Unset):
         template (None | str | Unset):
         template_engine (None | str | Unset):
     """
 
     directory_path: str
     file_name: str
-    file_type: FileExistenceCheckSchemaFileTypeType1 | None | Unset = UNSET
+    file_type: FileExistenceCheckSchemaFileType | None | Unset = UNSET
     template: None | str | Unset = UNSET
     template_engine: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.file_existence_check_schema_file_type_type_1 import (
-            FileExistenceCheckSchemaFileTypeType1,
-        )
-
         directory_path = self.directory_path
 
         file_name = self.file_name
 
-        file_type: dict[str, Any] | None | Unset
+        file_type: None | str | Unset
         if isinstance(self.file_type, Unset):
             file_type = UNSET
-        elif isinstance(self.file_type, FileExistenceCheckSchemaFileTypeType1):
-            file_type = self.file_type.to_dict()
+        elif isinstance(self.file_type, FileExistenceCheckSchemaFileType):
+            file_type = self.file_type.value
         else:
             file_type = self.file_type
 
@@ -83,10 +76,6 @@ class FileExistenceCheckSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.file_existence_check_schema_file_type_type_1 import (
-            FileExistenceCheckSchemaFileTypeType1,
-        )
-
         d = dict(src_dict)
         directory_path = d.pop("directory_path")
 
@@ -94,20 +83,20 @@ class FileExistenceCheckSchema:
 
         def _parse_file_type(
             data: object,
-        ) -> FileExistenceCheckSchemaFileTypeType1 | None | Unset:
+        ) -> FileExistenceCheckSchemaFileType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                file_type_type_1 = FileExistenceCheckSchemaFileTypeType1.from_dict(data)
+                file_type_type_1 = FileExistenceCheckSchemaFileType(data)
 
                 return file_type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(FileExistenceCheckSchemaFileTypeType1 | None | Unset, data)
+            return cast(FileExistenceCheckSchemaFileType | None | Unset, data)
 
         file_type = _parse_file_type(d.pop("file_type", UNSET))
 

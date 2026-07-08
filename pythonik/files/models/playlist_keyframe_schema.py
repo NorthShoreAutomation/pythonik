@@ -8,13 +8,11 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.playlist_keyframe_schema_status import PlaylistKeyframeSchemaStatus
 from ..models.playlist_keyframe_schema_type import PlaylistKeyframeSchemaType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.playlist_keyframe_schema_status_type_1 import (
-        PlaylistKeyframeSchemaStatusType1,
-    )
     from ..models.resolution_type import ResolutionType
     from ..models.time_code_type import TimeCodeType
 
@@ -39,7 +37,7 @@ class PlaylistKeyframeSchema:
         resolution (None | ResolutionType | Unset):
         rotation (int | None | Unset):
         size (int | None | Unset):
-        status (None | PlaylistKeyframeSchemaStatusType1 | Unset):
+        status (None | PlaylistKeyframeSchemaStatus | Unset):
         storage_id (None | Unset | UUID):
         time_code (None | TimeCodeType | Unset):
         url (None | str | Unset):
@@ -58,16 +56,13 @@ class PlaylistKeyframeSchema:
     resolution: None | ResolutionType | Unset = UNSET
     rotation: int | None | Unset = UNSET
     size: int | None | Unset = UNSET
-    status: None | PlaylistKeyframeSchemaStatusType1 | Unset = UNSET
+    status: None | PlaylistKeyframeSchemaStatus | Unset = UNSET
     storage_id: None | Unset | UUID = UNSET
     time_code: None | TimeCodeType | Unset = UNSET
     url: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.playlist_keyframe_schema_status_type_1 import (
-            PlaylistKeyframeSchemaStatusType1,
-        )
         from ..models.resolution_type import ResolutionType
         from ..models.time_code_type import TimeCodeType
 
@@ -155,11 +150,11 @@ class PlaylistKeyframeSchema:
         else:
             size = self.size
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, PlaylistKeyframeSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, PlaylistKeyframeSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -229,9 +224,6 @@ class PlaylistKeyframeSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.playlist_keyframe_schema_status_type_1 import (
-            PlaylistKeyframeSchemaStatusType1,
-        )
         from ..models.resolution_type import ResolutionType
         from ..models.time_code_type import TimeCodeType
 
@@ -388,22 +380,20 @@ class PlaylistKeyframeSchema:
 
         size = _parse_size(d.pop("size", UNSET))
 
-        def _parse_status(
-            data: object,
-        ) -> None | PlaylistKeyframeSchemaStatusType1 | Unset:
+        def _parse_status(data: object) -> None | PlaylistKeyframeSchemaStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = PlaylistKeyframeSchemaStatusType1.from_dict(data)
+                status_type_1 = PlaylistKeyframeSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | PlaylistKeyframeSchemaStatusType1 | Unset, data)
+            return cast(None | PlaylistKeyframeSchemaStatus | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

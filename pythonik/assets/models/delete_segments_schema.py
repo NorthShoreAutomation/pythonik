@@ -1,19 +1,14 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.delete_segments_schema_segment_type import DeleteSegmentsSchemaSegmentType
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.delete_segments_schema_segment_type_type_1 import (
-        DeleteSegmentsSchemaSegmentTypeType1,
-    )
-
 
 T = TypeVar("T", bound="DeleteSegmentsSchema")
 
@@ -23,20 +18,16 @@ class DeleteSegmentsSchema:
     """
     Attributes:
         segment_ids (list[UUID] | None | Unset):
-        segment_type (DeleteSegmentsSchemaSegmentTypeType1 | None | Unset):
+        segment_type (DeleteSegmentsSchemaSegmentType | None | Unset):
         version_id (None | Unset | UUID):
     """
 
     segment_ids: list[UUID] | None | Unset = UNSET
-    segment_type: DeleteSegmentsSchemaSegmentTypeType1 | None | Unset = UNSET
+    segment_type: DeleteSegmentsSchemaSegmentType | None | Unset = UNSET
     version_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.delete_segments_schema_segment_type_type_1 import (
-            DeleteSegmentsSchemaSegmentTypeType1,
-        )
-
         segment_ids: list[str] | None | Unset
         if isinstance(self.segment_ids, Unset):
             segment_ids = UNSET
@@ -49,11 +40,11 @@ class DeleteSegmentsSchema:
         else:
             segment_ids = self.segment_ids
 
-        segment_type: dict[str, Any] | None | Unset
+        segment_type: None | str | Unset
         if isinstance(self.segment_type, Unset):
             segment_type = UNSET
-        elif isinstance(self.segment_type, DeleteSegmentsSchemaSegmentTypeType1):
-            segment_type = self.segment_type.to_dict()
+        elif isinstance(self.segment_type, DeleteSegmentsSchemaSegmentType):
+            segment_type = self.segment_type.value
         else:
             segment_type = self.segment_type
 
@@ -79,10 +70,6 @@ class DeleteSegmentsSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.delete_segments_schema_segment_type_type_1 import (
-            DeleteSegmentsSchemaSegmentTypeType1,
-        )
-
         d = dict(src_dict)
 
         def _parse_segment_ids(data: object) -> list[UUID] | None | Unset:
@@ -109,22 +96,20 @@ class DeleteSegmentsSchema:
 
         def _parse_segment_type(
             data: object,
-        ) -> DeleteSegmentsSchemaSegmentTypeType1 | None | Unset:
+        ) -> DeleteSegmentsSchemaSegmentType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                segment_type_type_1 = DeleteSegmentsSchemaSegmentTypeType1.from_dict(
-                    data
-                )
+                segment_type_type_1 = DeleteSegmentsSchemaSegmentType(data)
 
                 return segment_type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(DeleteSegmentsSchemaSegmentTypeType1 | None | Unset, data)
+            return cast(DeleteSegmentsSchemaSegmentType | None | Unset, data)
 
         segment_type = _parse_segment_type(d.pop("segment_type", UNSET))
 

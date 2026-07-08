@@ -8,12 +8,10 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.portfolio_base_schema_status import PortfolioBaseSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.portfolio_base_schema_status_type_1 import (
-        PortfolioBaseSchemaStatusType1,
-    )
     from ..models.portfolio_config import PortfolioConfig
 
 
@@ -31,7 +29,7 @@ class PortfolioBaseSchema:
         date_modified (datetime.datetime | None | Unset):
         id (None | Unset | UUID):
         playlist_id (None | Unset | UUID):
-        status (None | PortfolioBaseSchemaStatusType1 | Unset):
+        status (None | PortfolioBaseSchemaStatus | Unset):
         system_domain_id (None | Unset | UUID):
     """
 
@@ -42,14 +40,11 @@ class PortfolioBaseSchema:
     date_modified: datetime.datetime | None | Unset = UNSET
     id: None | Unset | UUID = UNSET
     playlist_id: None | Unset | UUID = UNSET
-    status: None | PortfolioBaseSchemaStatusType1 | Unset = UNSET
+    status: None | PortfolioBaseSchemaStatus | Unset = UNSET
     system_domain_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.portfolio_base_schema_status_type_1 import (
-            PortfolioBaseSchemaStatusType1,
-        )
         from ..models.portfolio_config import PortfolioConfig
 
         name = self.name
@@ -102,11 +97,11 @@ class PortfolioBaseSchema:
         else:
             playlist_id = self.playlist_id
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, PortfolioBaseSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, PortfolioBaseSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -146,9 +141,6 @@ class PortfolioBaseSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.portfolio_base_schema_status_type_1 import (
-            PortfolioBaseSchemaStatusType1,
-        )
         from ..models.portfolio_config import PortfolioConfig
 
         d = dict(src_dict)
@@ -256,22 +248,20 @@ class PortfolioBaseSchema:
 
         playlist_id = _parse_playlist_id(d.pop("playlist_id", UNSET))
 
-        def _parse_status(
-            data: object,
-        ) -> None | PortfolioBaseSchemaStatusType1 | Unset:
+        def _parse_status(data: object) -> None | PortfolioBaseSchemaStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = PortfolioBaseSchemaStatusType1.from_dict(data)
+                status_type_1 = PortfolioBaseSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | PortfolioBaseSchemaStatusType1 | Unset, data)
+            return cast(None | PortfolioBaseSchemaStatus | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

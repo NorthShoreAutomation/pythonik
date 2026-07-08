@@ -8,11 +8,11 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.face_schema_status import FaceSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.face_landmark_schema import FaceLandmarkSchema
-    from ..models.face_schema_status_type_1 import FaceSchemaStatusType1
 
 
 T = TypeVar("T", bound="FaceSchema")
@@ -36,7 +36,7 @@ class FaceSchema:
         image_url (None | str | Unset):
         landmarks (list[FaceLandmarkSchema] | None | Unset):
         person_id (None | Unset | UUID):
-        status (FaceSchemaStatusType1 | None | Unset):
+        status (FaceSchemaStatus | None | Unset):
         storage_id (None | Unset | UUID):
         system_domain_id (None | Unset | UUID):
         timestamp_ms (int | None | Unset):
@@ -57,7 +57,7 @@ class FaceSchema:
     image_url: None | str | Unset = UNSET
     landmarks: list[FaceLandmarkSchema] | None | Unset = UNSET
     person_id: None | Unset | UUID = UNSET
-    status: FaceSchemaStatusType1 | None | Unset = UNSET
+    status: FaceSchemaStatus | None | Unset = UNSET
     storage_id: None | Unset | UUID = UNSET
     system_domain_id: None | Unset | UUID = UNSET
     timestamp_ms: int | None | Unset = UNSET
@@ -65,8 +65,6 @@ class FaceSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.face_schema_status_type_1 import FaceSchemaStatusType1
-
         asset_id: None | str | Unset
         if isinstance(self.asset_id, Unset):
             asset_id = UNSET
@@ -184,11 +182,11 @@ class FaceSchema:
         else:
             person_id = self.person_id
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, FaceSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, FaceSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -269,7 +267,6 @@ class FaceSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.face_landmark_schema import FaceLandmarkSchema
-        from ..models.face_schema_status_type_1 import FaceSchemaStatusType1
 
         d = dict(src_dict)
 
@@ -501,20 +498,20 @@ class FaceSchema:
 
         person_id = _parse_person_id(d.pop("person_id", UNSET))
 
-        def _parse_status(data: object) -> FaceSchemaStatusType1 | None | Unset:
+        def _parse_status(data: object) -> FaceSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = FaceSchemaStatusType1.from_dict(data)
+                status_type_1 = FaceSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(FaceSchemaStatusType1 | None | Unset, data)
+            return cast(FaceSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

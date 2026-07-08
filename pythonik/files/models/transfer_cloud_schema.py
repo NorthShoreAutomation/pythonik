@@ -8,14 +8,12 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.transfer_cloud_schema_status import TransferCloudSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.transfer_cloud_schema_job_steps_type_0 import (
         TransferCloudSchemaJobStepsType0,
-    )
-    from ..models.transfer_cloud_schema_status_type_1 import (
-        TransferCloudSchemaStatusType1,
     )
 
 
@@ -46,7 +44,7 @@ class TransferCloudSchema:
         original_url (None | str | Unset):
         parent_job_id (None | Unset | UUID):
         priority (int | None | Unset):
-        status (None | TransferCloudSchemaStatusType1 | Unset):
+        status (None | TransferCloudSchemaStatus | Unset):
         success (None | str | Unset):
         transfer_type (None | Unset | UUID):
         user_id (None | Unset | UUID):
@@ -72,7 +70,7 @@ class TransferCloudSchema:
     original_url: None | str | Unset = UNSET
     parent_job_id: None | Unset | UUID = UNSET
     priority: int | None | Unset = UNSET
-    status: None | TransferCloudSchemaStatusType1 | Unset = UNSET
+    status: None | TransferCloudSchemaStatus | Unset = UNSET
     success: None | str | Unset = UNSET
     transfer_type: None | Unset | UUID = UNSET
     user_id: None | Unset | UUID = UNSET
@@ -81,9 +79,6 @@ class TransferCloudSchema:
     def to_dict(self) -> dict[str, Any]:
         from ..models.transfer_cloud_schema_job_steps_type_0 import (
             TransferCloudSchemaJobStepsType0,
-        )
-        from ..models.transfer_cloud_schema_status_type_1 import (
-            TransferCloudSchemaStatusType1,
         )
 
         asset_id: None | str | Unset
@@ -239,11 +234,11 @@ class TransferCloudSchema:
         else:
             priority = self.priority
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, TransferCloudSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, TransferCloudSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -329,9 +324,6 @@ class TransferCloudSchema:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.transfer_cloud_schema_job_steps_type_0 import (
             TransferCloudSchemaJobStepsType0,
-        )
-        from ..models.transfer_cloud_schema_status_type_1 import (
-            TransferCloudSchemaStatusType1,
         )
 
         d = dict(src_dict)
@@ -649,22 +641,20 @@ class TransferCloudSchema:
 
         priority = _parse_priority(d.pop("priority", UNSET))
 
-        def _parse_status(
-            data: object,
-        ) -> None | TransferCloudSchemaStatusType1 | Unset:
+        def _parse_status(data: object) -> None | TransferCloudSchemaStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = TransferCloudSchemaStatusType1.from_dict(data)
+                status_type_1 = TransferCloudSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | TransferCloudSchemaStatusType1 | Unset, data)
+            return cast(None | TransferCloudSchemaStatus | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

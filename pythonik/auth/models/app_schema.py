@@ -2,20 +2,15 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.app_schema_oauth_client_type import AppSchemaOauthClientType
+from ..models.app_schema_type import AppSchemaType
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.app_schema_oauth_client_type_type_1 import (
-        AppSchemaOauthClientTypeType1,
-    )
-    from ..models.app_schema_type_type_1 import AppSchemaTypeType1
-
 
 T = TypeVar("T", bound="AppSchema")
 
@@ -31,10 +26,10 @@ class AppSchema:
         default_user_id (None | Unset | UUID):
         description (None | str | Unset):
         id (None | Unset | UUID):
-        oauth_client_type (AppSchemaOauthClientTypeType1 | None | Unset):
+        oauth_client_type (AppSchemaOauthClientType | None | Unset):
         redirect_uris (list[str] | None | Unset):
         system_domain_id (None | Unset | UUID):
-        type_ (AppSchemaTypeType1 | None | Unset):
+        type_ (AppSchemaType | None | Unset):
         url (None | str | Unset):
     """
 
@@ -45,19 +40,14 @@ class AppSchema:
     default_user_id: None | Unset | UUID = UNSET
     description: None | str | Unset = UNSET
     id: None | Unset | UUID = UNSET
-    oauth_client_type: AppSchemaOauthClientTypeType1 | None | Unset = UNSET
+    oauth_client_type: AppSchemaOauthClientType | None | Unset = UNSET
     redirect_uris: list[str] | None | Unset = UNSET
     system_domain_id: None | Unset | UUID = UNSET
-    type_: AppSchemaTypeType1 | None | Unset = UNSET
+    type_: AppSchemaType | None | Unset = UNSET
     url: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.app_schema_oauth_client_type_type_1 import (
-            AppSchemaOauthClientTypeType1,
-        )
-        from ..models.app_schema_type_type_1 import AppSchemaTypeType1
-
         name = self.name
 
         allowed_scopes: list[str] | None | Unset
@@ -107,11 +97,11 @@ class AppSchema:
         else:
             id = self.id
 
-        oauth_client_type: dict[str, Any] | None | Unset
+        oauth_client_type: None | str | Unset
         if isinstance(self.oauth_client_type, Unset):
             oauth_client_type = UNSET
-        elif isinstance(self.oauth_client_type, AppSchemaOauthClientTypeType1):
-            oauth_client_type = self.oauth_client_type.to_dict()
+        elif isinstance(self.oauth_client_type, AppSchemaOauthClientType):
+            oauth_client_type = self.oauth_client_type.value
         else:
             oauth_client_type = self.oauth_client_type
 
@@ -132,11 +122,11 @@ class AppSchema:
         else:
             system_domain_id = self.system_domain_id
 
-        type_: dict[str, Any] | None | Unset
+        type_: None | str | Unset
         if isinstance(self.type_, Unset):
             type_ = UNSET
-        elif isinstance(self.type_, AppSchemaTypeType1):
-            type_ = self.type_.to_dict()
+        elif isinstance(self.type_, AppSchemaType):
+            type_ = self.type_.value
         else:
             type_ = self.type_
 
@@ -180,11 +170,6 @@ class AppSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.app_schema_oauth_client_type_type_1 import (
-            AppSchemaOauthClientTypeType1,
-        )
-        from ..models.app_schema_type_type_1 import AppSchemaTypeType1
-
         d = dict(src_dict)
         name = d.pop("name")
 
@@ -284,20 +269,20 @@ class AppSchema:
 
         def _parse_oauth_client_type(
             data: object,
-        ) -> AppSchemaOauthClientTypeType1 | None | Unset:
+        ) -> AppSchemaOauthClientType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                oauth_client_type_type_1 = AppSchemaOauthClientTypeType1.from_dict(data)
+                oauth_client_type_type_1 = AppSchemaOauthClientType(data)
 
                 return oauth_client_type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AppSchemaOauthClientTypeType1 | None | Unset, data)
+            return cast(AppSchemaOauthClientType | None | Unset, data)
 
         oauth_client_type = _parse_oauth_client_type(d.pop("oauth_client_type", UNSET))
 
@@ -335,20 +320,20 @@ class AppSchema:
 
         system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
 
-        def _parse_type_(data: object) -> AppSchemaTypeType1 | None | Unset:
+        def _parse_type_(data: object) -> AppSchemaType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                type_type_1 = AppSchemaTypeType1.from_dict(data)
+                type_type_1 = AppSchemaType(data)
 
                 return type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AppSchemaTypeType1 | None | Unset, data)
+            return cast(AppSchemaType | None | Unset, data)
 
         type_ = _parse_type_(d.pop("type", UNSET))
 

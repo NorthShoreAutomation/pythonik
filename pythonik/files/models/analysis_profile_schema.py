@@ -8,12 +8,12 @@ from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..models.analysis_profile_schema_media_type import AnalysisProfileSchemaMediaType
+from ..models.analysis_profile_schema_service_type import (
+    AnalysisProfileSchemaServiceType,
+)
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.analysis_profile_schema_service_type_type_1 import (
-        AnalysisProfileSchemaServiceTypeType1,
-    )
     from ..models.analysis_profile_schema_settings_type_0 import (
         AnalysisProfileSchemaSettingsType0,
     )
@@ -32,7 +32,7 @@ class AnalysisProfileSchema:
         enabled (bool | None | Unset):
         id (None | Unset | UUID):
         is_default (bool | None | Unset):
-        service_type (AnalysisProfileSchemaServiceTypeType1 | None | Unset):
+        service_type (AnalysisProfileSchemaServiceType | None | Unset):
         settings (AnalysisProfileSchemaSettingsType0 | None | Unset):
     """
 
@@ -42,14 +42,11 @@ class AnalysisProfileSchema:
     enabled: bool | None | Unset = UNSET
     id: None | Unset | UUID = UNSET
     is_default: bool | None | Unset = UNSET
-    service_type: AnalysisProfileSchemaServiceTypeType1 | None | Unset = UNSET
+    service_type: AnalysisProfileSchemaServiceType | None | Unset = UNSET
     settings: AnalysisProfileSchemaSettingsType0 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.analysis_profile_schema_service_type_type_1 import (
-            AnalysisProfileSchemaServiceTypeType1,
-        )
         from ..models.analysis_profile_schema_settings_type_0 import (
             AnalysisProfileSchemaSettingsType0,
         )
@@ -80,11 +77,11 @@ class AnalysisProfileSchema:
         else:
             is_default = self.is_default
 
-        service_type: dict[str, Any] | None | Unset
+        service_type: None | str | Unset
         if isinstance(self.service_type, Unset):
             service_type = UNSET
-        elif isinstance(self.service_type, AnalysisProfileSchemaServiceTypeType1):
-            service_type = self.service_type.to_dict()
+        elif isinstance(self.service_type, AnalysisProfileSchemaServiceType):
+            service_type = self.service_type.value
         else:
             service_type = self.service_type
 
@@ -120,9 +117,6 @@ class AnalysisProfileSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.analysis_profile_schema_service_type_type_1 import (
-            AnalysisProfileSchemaServiceTypeType1,
-        )
         from ..models.analysis_profile_schema_settings_type_0 import (
             AnalysisProfileSchemaSettingsType0,
         )
@@ -171,22 +165,20 @@ class AnalysisProfileSchema:
 
         def _parse_service_type(
             data: object,
-        ) -> AnalysisProfileSchemaServiceTypeType1 | None | Unset:
+        ) -> AnalysisProfileSchemaServiceType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                service_type_type_1 = AnalysisProfileSchemaServiceTypeType1.from_dict(
-                    data
-                )
+                service_type_type_1 = AnalysisProfileSchemaServiceType(data)
 
                 return service_type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AnalysisProfileSchemaServiceTypeType1 | None | Unset, data)
+            return cast(AnalysisProfileSchemaServiceType | None | Unset, data)
 
         service_type = _parse_service_type(d.pop("service_type", UNSET))
 

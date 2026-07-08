@@ -1,49 +1,41 @@
 """Contains all the data models used in inputs/outputs"""
 
 from .approval_by_schema import ApprovalBySchema
-from .approval_by_schema_status_type_1 import ApprovalBySchemaStatusType1
+from .approval_by_schema_status import ApprovalBySchemaStatus
 from .approval_job_schema import ApprovalJobSchema
 from .approval_schema import ApprovalSchema
-from .approval_schema_status_type_1 import ApprovalSchemaStatusType1
-from .approval_schema_user_status_type_1 import ApprovalSchemaUserStatusType1
+from .approval_schema_status import ApprovalSchemaStatus
+from .approval_schema_user_status import ApprovalSchemaUserStatus
 from .approvals_by_schema import ApprovalsBySchema
 from .asset_base_schema import AssetBaseSchema
-from .asset_base_schema_analyze_status_type_1 import AssetBaseSchemaAnalyzeStatusType1
-from .asset_base_schema_archive_status_type_1 import AssetBaseSchemaArchiveStatusType1
-from .asset_base_schema_face_recognition_status_type_1 import (
-    AssetBaseSchemaFaceRecognitionStatusType1,
+from .asset_base_schema_analyze_status import AssetBaseSchemaAnalyzeStatus
+from .asset_base_schema_archive_status import AssetBaseSchemaArchiveStatus
+from .asset_base_schema_face_recognition_status import (
+    AssetBaseSchemaFaceRecognitionStatus,
 )
-from .asset_base_schema_status_type_1 import AssetBaseSchemaStatusType1
-from .asset_base_schema_type_type_1 import AssetBaseSchemaTypeType1
+from .asset_base_schema_status import AssetBaseSchemaStatus
+from .asset_base_schema_type import AssetBaseSchemaType
 from .asset_create_schema import AssetCreateSchema
-from .asset_create_schema_analyze_status_type_1 import (
-    AssetCreateSchemaAnalyzeStatusType1,
+from .asset_create_schema_analyze_status import AssetCreateSchemaAnalyzeStatus
+from .asset_create_schema_archive_status import AssetCreateSchemaArchiveStatus
+from .asset_create_schema_face_recognition_status import (
+    AssetCreateSchemaFaceRecognitionStatus,
 )
-from .asset_create_schema_archive_status_type_1 import (
-    AssetCreateSchemaArchiveStatusType1,
-)
-from .asset_create_schema_face_recognition_status_type_1 import (
-    AssetCreateSchemaFaceRecognitionStatusType1,
-)
-from .asset_create_schema_status_type_1 import AssetCreateSchemaStatusType1
-from .asset_create_schema_type_type_1 import AssetCreateSchemaTypeType1
+from .asset_create_schema_status import AssetCreateSchemaStatus
+from .asset_create_schema_type import AssetCreateSchemaType
 from .asset_edit_schema import AssetEditSchema
-from .asset_edit_schema_analyze_status_type_1 import AssetEditSchemaAnalyzeStatusType1
-from .asset_edit_schema_archive_status_type_1 import AssetEditSchemaArchiveStatusType1
-from .asset_edit_schema_face_recognition_status_type_1 import (
-    AssetEditSchemaFaceRecognitionStatusType1,
+from .asset_edit_schema_analyze_status import AssetEditSchemaAnalyzeStatus
+from .asset_edit_schema_archive_status import AssetEditSchemaArchiveStatus
+from .asset_edit_schema_face_recognition_status import (
+    AssetEditSchemaFaceRecognitionStatus,
 )
-from .asset_edit_schema_status_type_1 import AssetEditSchemaStatusType1
-from .asset_edit_schema_type_type_1 import AssetEditSchemaTypeType1
+from .asset_edit_schema_status import AssetEditSchemaStatus
+from .asset_edit_schema_type import AssetEditSchemaType
 from .asset_elastic_schema import AssetElasticSchema
-from .asset_elastic_schema_analyze_status_type_1 import (
-    AssetElasticSchemaAnalyzeStatusType1,
-)
-from .asset_elastic_schema_archive_status_type_1 import (
-    AssetElasticSchemaArchiveStatusType1,
-)
-from .asset_elastic_schema_face_recognition_status_type_1 import (
-    AssetElasticSchemaFaceRecognitionStatusType1,
+from .asset_elastic_schema_analyze_status import AssetElasticSchemaAnalyzeStatus
+from .asset_elastic_schema_archive_status import AssetElasticSchemaArchiveStatus
+from .asset_elastic_schema_face_recognition_status import (
+    AssetElasticSchemaFaceRecognitionStatus,
 )
 from .asset_elastic_schema_files_type_0_item import AssetElasticSchemaFilesType0Item
 from .asset_elastic_schema_formats_type_0_item import AssetElasticSchemaFormatsType0Item
@@ -52,8 +44,8 @@ from .asset_elastic_schema_keyframes_type_0_item import (
 )
 from .asset_elastic_schema_metadata_type_0 import AssetElasticSchemaMetadataType0
 from .asset_elastic_schema_proxies_type_0_item import AssetElasticSchemaProxiesType0Item
-from .asset_elastic_schema_status_type_1 import AssetElasticSchemaStatusType1
-from .asset_elastic_schema_type_type_1 import AssetElasticSchemaTypeType1
+from .asset_elastic_schema_status import AssetElasticSchemaStatus
+from .asset_elastic_schema_type import AssetElasticSchemaType
 from .asset_history_base_schema import AssetHistoryBaseSchema
 from .asset_history_base_schema_operation_type import (
     AssetHistoryBaseSchemaOperationType,
@@ -74,80 +66,64 @@ from .asset_history_schema import AssetHistorySchema
 from .asset_history_schema_operation_type import AssetHistorySchemaOperationType
 from .asset_person_change_schema import AssetPersonChangeSchema
 from .asset_post_create import AssetPostCreate
-from .asset_post_create_analyze_status_type_1 import AssetPostCreateAnalyzeStatusType1
-from .asset_post_create_archive_status_type_1 import AssetPostCreateArchiveStatusType1
-from .asset_post_create_face_recognition_status_type_1 import (
-    AssetPostCreateFaceRecognitionStatusType1,
+from .asset_post_create_analyze_status import AssetPostCreateAnalyzeStatus
+from .asset_post_create_archive_status import AssetPostCreateArchiveStatus
+from .asset_post_create_face_recognition_status import (
+    AssetPostCreateFaceRecognitionStatus,
 )
-from .asset_post_create_publication_status_type_1 import (
-    AssetPostCreatePublicationStatusType1,
-)
+from .asset_post_create_publication_status import AssetPostCreatePublicationStatus
 from .asset_post_create_schema import AssetPostCreateSchema
-from .asset_post_create_schema_analyze_status_type_1 import (
-    AssetPostCreateSchemaAnalyzeStatusType1,
+from .asset_post_create_schema_analyze_status import AssetPostCreateSchemaAnalyzeStatus
+from .asset_post_create_schema_archive_status import AssetPostCreateSchemaArchiveStatus
+from .asset_post_create_schema_face_recognition_status import (
+    AssetPostCreateSchemaFaceRecognitionStatus,
 )
-from .asset_post_create_schema_archive_status_type_1 import (
-    AssetPostCreateSchemaArchiveStatusType1,
+from .asset_post_create_schema_publication_status import (
+    AssetPostCreateSchemaPublicationStatus,
 )
-from .asset_post_create_schema_face_recognition_status_type_1 import (
-    AssetPostCreateSchemaFaceRecognitionStatusType1,
-)
-from .asset_post_create_schema_publication_status_type_1 import (
-    AssetPostCreateSchemaPublicationStatusType1,
-)
-from .asset_post_create_schema_status_type_1 import AssetPostCreateSchemaStatusType1
-from .asset_post_create_schema_type_type_1 import AssetPostCreateSchemaTypeType1
-from .asset_post_create_status_type_1 import AssetPostCreateStatusType1
-from .asset_post_create_type_type_1 import AssetPostCreateTypeType1
+from .asset_post_create_schema_status import AssetPostCreateSchemaStatus
+from .asset_post_create_schema_type import AssetPostCreateSchemaType
+from .asset_post_create_status import AssetPostCreateStatus
+from .asset_post_create_type import AssetPostCreateType
 from .asset_post_edit import AssetPostEdit
-from .asset_post_edit_analyze_status_type_1 import AssetPostEditAnalyzeStatusType1
-from .asset_post_edit_archive_status_type_1 import AssetPostEditArchiveStatusType1
-from .asset_post_edit_face_recognition_status_type_1 import (
-    AssetPostEditFaceRecognitionStatusType1,
-)
-from .asset_post_edit_publication_status_type_1 import (
-    AssetPostEditPublicationStatusType1,
-)
+from .asset_post_edit_analyze_status import AssetPostEditAnalyzeStatus
+from .asset_post_edit_archive_status import AssetPostEditArchiveStatus
+from .asset_post_edit_face_recognition_status import AssetPostEditFaceRecognitionStatus
+from .asset_post_edit_publication_status import AssetPostEditPublicationStatus
 from .asset_post_edit_schema import AssetPostEditSchema
-from .asset_post_edit_schema_analyze_status_type_1 import (
-    AssetPostEditSchemaAnalyzeStatusType1,
+from .asset_post_edit_schema_analyze_status import AssetPostEditSchemaAnalyzeStatus
+from .asset_post_edit_schema_archive_status import AssetPostEditSchemaArchiveStatus
+from .asset_post_edit_schema_face_recognition_status import (
+    AssetPostEditSchemaFaceRecognitionStatus,
 )
-from .asset_post_edit_schema_archive_status_type_1 import (
-    AssetPostEditSchemaArchiveStatusType1,
+from .asset_post_edit_schema_publication_status import (
+    AssetPostEditSchemaPublicationStatus,
 )
-from .asset_post_edit_schema_face_recognition_status_type_1 import (
-    AssetPostEditSchemaFaceRecognitionStatusType1,
-)
-from .asset_post_edit_schema_publication_status_type_1 import (
-    AssetPostEditSchemaPublicationStatusType1,
-)
-from .asset_post_edit_schema_status_type_1 import AssetPostEditSchemaStatusType1
-from .asset_post_edit_schema_type_type_1 import AssetPostEditSchemaTypeType1
-from .asset_post_edit_status_type_1 import AssetPostEditStatusType1
-from .asset_post_edit_type_type_1 import AssetPostEditTypeType1
+from .asset_post_edit_schema_status import AssetPostEditSchemaStatus
+from .asset_post_edit_schema_type import AssetPostEditSchemaType
+from .asset_post_edit_status import AssetPostEditStatus
+from .asset_post_edit_type import AssetPostEditType
 from .asset_post_elastic import AssetPostElastic
-from .asset_post_elastic_analyze_status_type_1 import AssetPostElasticAnalyzeStatusType1
-from .asset_post_elastic_archive_status_type_1 import AssetPostElasticArchiveStatusType1
-from .asset_post_elastic_face_recognition_status_type_1 import (
-    AssetPostElasticFaceRecognitionStatusType1,
+from .asset_post_elastic_analyze_status import AssetPostElasticAnalyzeStatus
+from .asset_post_elastic_archive_status import AssetPostElasticArchiveStatus
+from .asset_post_elastic_face_recognition_status import (
+    AssetPostElasticFaceRecognitionStatus,
 )
 from .asset_post_elastic_files_type_0_item import AssetPostElasticFilesType0Item
 from .asset_post_elastic_formats_type_0_item import AssetPostElasticFormatsType0Item
 from .asset_post_elastic_keyframes_type_0_item import AssetPostElasticKeyframesType0Item
 from .asset_post_elastic_metadata_type_0 import AssetPostElasticMetadataType0
 from .asset_post_elastic_proxies_type_0_item import AssetPostElasticProxiesType0Item
-from .asset_post_elastic_publication_status_type_1 import (
-    AssetPostElasticPublicationStatusType1,
-)
+from .asset_post_elastic_publication_status import AssetPostElasticPublicationStatus
 from .asset_post_elastic_schema import AssetPostElasticSchema
-from .asset_post_elastic_schema_analyze_status_type_1 import (
-    AssetPostElasticSchemaAnalyzeStatusType1,
+from .asset_post_elastic_schema_analyze_status import (
+    AssetPostElasticSchemaAnalyzeStatus,
 )
-from .asset_post_elastic_schema_archive_status_type_1 import (
-    AssetPostElasticSchemaArchiveStatusType1,
+from .asset_post_elastic_schema_archive_status import (
+    AssetPostElasticSchemaArchiveStatus,
 )
-from .asset_post_elastic_schema_face_recognition_status_type_1 import (
-    AssetPostElasticSchemaFaceRecognitionStatusType1,
+from .asset_post_elastic_schema_face_recognition_status import (
+    AssetPostElasticSchemaFaceRecognitionStatus,
 )
 from .asset_post_elastic_schema_files_type_0_item import (
     AssetPostElasticSchemaFilesType0Item,
@@ -164,37 +140,33 @@ from .asset_post_elastic_schema_metadata_type_0 import (
 from .asset_post_elastic_schema_proxies_type_0_item import (
     AssetPostElasticSchemaProxiesType0Item,
 )
-from .asset_post_elastic_schema_publication_status_type_1 import (
-    AssetPostElasticSchemaPublicationStatusType1,
+from .asset_post_elastic_schema_publication_status import (
+    AssetPostElasticSchemaPublicationStatus,
 )
-from .asset_post_elastic_schema_status_type_1 import AssetPostElasticSchemaStatusType1
-from .asset_post_elastic_schema_type_type_1 import AssetPostElasticSchemaTypeType1
-from .asset_post_elastic_status_type_1 import AssetPostElasticStatusType1
-from .asset_post_elastic_type_type_1 import AssetPostElasticTypeType1
+from .asset_post_elastic_schema_status import AssetPostElasticSchemaStatus
+from .asset_post_elastic_schema_type import AssetPostElasticSchemaType
+from .asset_post_elastic_status import AssetPostElasticStatus
+from .asset_post_elastic_type import AssetPostElasticType
 from .asset_post_schema import AssetPostSchema
-from .asset_post_schema_analyze_status_type_1 import AssetPostSchemaAnalyzeStatusType1
-from .asset_post_schema_archive_status_type_1 import AssetPostSchemaArchiveStatusType1
-from .asset_post_schema_face_recognition_status_type_1 import (
-    AssetPostSchemaFaceRecognitionStatusType1,
+from .asset_post_schema_analyze_status import AssetPostSchemaAnalyzeStatus
+from .asset_post_schema_archive_status import AssetPostSchemaArchiveStatus
+from .asset_post_schema_face_recognition_status import (
+    AssetPostSchemaFaceRecognitionStatus,
 )
-from .asset_post_schema_publication_status_type_1 import (
-    AssetPostSchemaPublicationStatusType1,
-)
-from .asset_post_schema_status_type_1 import AssetPostSchemaStatusType1
-from .asset_post_schema_type_type_1 import AssetPostSchemaTypeType1
+from .asset_post_schema_publication_status import AssetPostSchemaPublicationStatus
+from .asset_post_schema_status import AssetPostSchemaStatus
+from .asset_post_schema_type import AssetPostSchemaType
 from .asset_schema import AssetSchema
-from .asset_schema_analyze_status_type_1 import AssetSchemaAnalyzeStatusType1
-from .asset_schema_archive_status_type_1 import AssetSchemaArchiveStatusType1
-from .asset_schema_face_recognition_status_type_1 import (
-    AssetSchemaFaceRecognitionStatusType1,
-)
-from .asset_schema_status_type_1 import AssetSchemaStatusType1
-from .asset_schema_type_type_1 import AssetSchemaTypeType1
+from .asset_schema_analyze_status import AssetSchemaAnalyzeStatus
+from .asset_schema_archive_status import AssetSchemaArchiveStatus
+from .asset_schema_face_recognition_status import AssetSchemaFaceRecognitionStatus
+from .asset_schema_status import AssetSchemaStatus
+from .asset_schema_type import AssetSchemaType
 from .asset_transcription_from_subtitle_schema import (
     AssetTranscriptionFromSubtitleSchema,
 )
-from .asset_transcription_from_subtitle_schema_format_type_1 import (
-    AssetTranscriptionFromSubtitleSchemaFormatType1,
+from .asset_transcription_from_subtitle_schema_format import (
+    AssetTranscriptionFromSubtitleSchemaFormat,
 )
 from .asset_transcription_properties_schema import AssetTranscriptionPropertiesSchema
 from .asset_transcription_properties_schema_speaker_labels_type_0 import (
@@ -202,28 +174,20 @@ from .asset_transcription_properties_schema_speaker_labels_type_0 import (
 )
 from .asset_transcriptions_properties_schema import AssetTranscriptionsPropertiesSchema
 from .asset_version import AssetVersion
-from .asset_version_analyze_status_type_1 import AssetVersionAnalyzeStatusType1
-from .asset_version_archive_status_type_1 import AssetVersionArchiveStatusType1
-from .asset_version_face_recognition_status_type_1 import (
-    AssetVersionFaceRecognitionStatusType1,
-)
+from .asset_version_analyze_status import AssetVersionAnalyzeStatus
+from .asset_version_archive_status import AssetVersionArchiveStatus
+from .asset_version_face_recognition_status import AssetVersionFaceRecognitionStatus
 from .asset_version_lookup_schema import AssetVersionLookupSchema
 from .asset_version_schema import AssetVersionSchema
-from .asset_version_schema_analyze_status_type_1 import (
-    AssetVersionSchemaAnalyzeStatusType1,
+from .asset_version_schema_analyze_status import AssetVersionSchemaAnalyzeStatus
+from .asset_version_schema_archive_status import AssetVersionSchemaArchiveStatus
+from .asset_version_schema_face_recognition_status import (
+    AssetVersionSchemaFaceRecognitionStatus,
 )
-from .asset_version_schema_archive_status_type_1 import (
-    AssetVersionSchemaArchiveStatusType1,
-)
-from .asset_version_schema_face_recognition_status_type_1 import (
-    AssetVersionSchemaFaceRecognitionStatusType1,
-)
-from .asset_version_schema_status_type_1 import AssetVersionSchemaStatusType1
-from .asset_version_schema_transcribe_status_type_1 import (
-    AssetVersionSchemaTranscribeStatusType1,
-)
-from .asset_version_status_type_1 import AssetVersionStatusType1
-from .asset_version_transcribe_status_type_1 import AssetVersionTranscribeStatusType1
+from .asset_version_schema_status import AssetVersionSchemaStatus
+from .asset_version_schema_transcribe_status import AssetVersionSchemaTranscribeStatus
+from .asset_version_status import AssetVersionStatus
+from .asset_version_transcribe_status import AssetVersionTranscribeStatus
 from .asset_versions_schema import AssetVersionsSchema
 from .assets_history_query_params_schema import AssetsHistoryQueryParamsSchema
 from .assets_query_params_schema import AssetsQueryParamsSchema
@@ -318,23 +282,19 @@ from .bulk_set_approval_schema import BulkSetApprovalSchema
 from .bulk_set_approval_schema_object_type import BulkSetApprovalSchemaObjectType
 from .bulk_set_approval_schema_status import BulkSetApprovalSchemaStatus
 from .bulk_share_create_schema import BulkShareCreateSchema
-from .bulk_share_create_schema_drm_type_1 import BulkShareCreateSchemaDrmType1
-from .bulk_share_create_schema_object_type_type_1 import (
-    BulkShareCreateSchemaObjectTypeType1,
-)
-from .bulk_share_create_schema_watermark_type_1 import (
-    BulkShareCreateSchemaWatermarkType1,
-)
+from .bulk_share_create_schema_drm import BulkShareCreateSchemaDrm
+from .bulk_share_create_schema_object_type import BulkShareCreateSchemaObjectType
+from .bulk_share_create_schema_watermark import BulkShareCreateSchemaWatermark
 from .bulk_share_delete_schema import BulkShareDeleteSchema
 from .collection_base_schema import CollectionBaseSchema
-from .collection_base_schema_custom_order_status_type_1 import (
-    CollectionBaseSchemaCustomOrderStatusType1,
+from .collection_base_schema_custom_order_status import (
+    CollectionBaseSchemaCustomOrderStatus,
 )
 from .collection_base_schema_keyframes_type_0_item import (
     CollectionBaseSchemaKeyframesType0Item,
 )
 from .collection_base_schema_metadata_type_0 import CollectionBaseSchemaMetadataType0
-from .collection_base_schema_status_type_1 import CollectionBaseSchemaStatusType1
+from .collection_base_schema_status import CollectionBaseSchemaStatus
 from .collection_content_info_schema import CollectionContentInfoSchema
 from .collection_content_ordering_schema import CollectionContentOrderingSchema
 from .collection_content_query_params_schema import CollectionContentQueryParamsSchema
@@ -342,17 +302,16 @@ from .collection_content_query_params_schema_types_type_0_item import (
     CollectionContentQueryParamsSchemaTypesType0Item,
 )
 from .collection_content_schema import CollectionContentSchema
+from .collection_contents_schema import CollectionContentsSchema
 from .collection_elastic import CollectionElastic
-from .collection_elastic_custom_order_status_type_1 import (
-    CollectionElasticCustomOrderStatusType1,
-)
+from .collection_elastic_custom_order_status import CollectionElasticCustomOrderStatus
 from .collection_elastic_keyframes_type_0_item import (
     CollectionElasticKeyframesType0Item,
 )
 from .collection_elastic_metadata_type_0 import CollectionElasticMetadataType0
 from .collection_elastic_schema import CollectionElasticSchema
-from .collection_elastic_schema_custom_order_status_type_1 import (
-    CollectionElasticSchemaCustomOrderStatusType1,
+from .collection_elastic_schema_custom_order_status import (
+    CollectionElasticSchemaCustomOrderStatus,
 )
 from .collection_elastic_schema_keyframes_type_0_item import (
     CollectionElasticSchemaKeyframesType0Item,
@@ -360,17 +319,15 @@ from .collection_elastic_schema_keyframes_type_0_item import (
 from .collection_elastic_schema_metadata_type_0 import (
     CollectionElasticSchemaMetadataType0,
 )
-from .collection_elastic_schema_status_type_1 import CollectionElasticSchemaStatusType1
-from .collection_elastic_status_type_1 import CollectionElasticStatusType1
+from .collection_elastic_schema_status import CollectionElasticSchemaStatus
+from .collection_elastic_status import CollectionElasticStatus
 from .collection_input_schema import CollectionInputSchema
-from .collection_input_schema_status_type_1 import CollectionInputSchemaStatusType1
+from .collection_input_schema_status import CollectionInputSchemaStatus
 from .collection_schema import CollectionSchema
-from .collection_schema_custom_order_status_type_1 import (
-    CollectionSchemaCustomOrderStatusType1,
-)
+from .collection_schema_custom_order_status import CollectionSchemaCustomOrderStatus
 from .collection_schema_keyframes_type_0_item import CollectionSchemaKeyframesType0Item
 from .collection_schema_metadata_type_0 import CollectionSchemaMetadataType0
-from .collection_schema_status_type_1 import CollectionSchemaStatusType1
+from .collection_schema_status import CollectionSchemaStatus
 from .collection_size_schema import CollectionSizeSchema
 from .collections_query_params_schema import CollectionsQueryParamsSchema
 from .collections_schema import CollectionsSchema
@@ -435,15 +392,13 @@ from .custom_action_create_schema_context import CustomActionCreateSchemaContext
 from .custom_action_create_schema_headers_type_0 import (
     CustomActionCreateSchemaHeadersType0,
 )
-from .custom_action_create_schema_status_type_1 import (
-    CustomActionCreateSchemaStatusType1,
-)
-from .custom_action_create_schema_type_type_1 import CustomActionCreateSchemaTypeType1
+from .custom_action_create_schema_status import CustomActionCreateSchemaStatus
+from .custom_action_create_schema_type import CustomActionCreateSchemaType
 from .custom_action_schema import CustomActionSchema
 from .custom_action_schema_context import CustomActionSchemaContext
 from .custom_action_schema_headers_type_0 import CustomActionSchemaHeadersType0
-from .custom_action_schema_status_type_1 import CustomActionSchemaStatusType1
-from .custom_action_schema_type_type_1 import CustomActionSchemaTypeType1
+from .custom_action_schema_status import CustomActionSchemaStatus
+from .custom_action_schema_type import CustomActionSchemaType
 from .custom_actions_schema import CustomActionsSchema
 from .delete_assets_by_asset_id_history_by_history_entity_id_response_default_type_0 import (
     DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType0,
@@ -739,9 +694,7 @@ from .delete_queue_collections_query_params_schema import (
 )
 from .delete_queue_schema import DeleteQueueSchema
 from .delete_segments_schema import DeleteSegmentsSchema
-from .delete_segments_schema_segment_type_type_1 import (
-    DeleteSegmentsSchemaSegmentTypeType1,
-)
+from .delete_segments_schema_segment_type import DeleteSegmentsSchemaSegmentType
 from .delete_sequences_by_sequence_id_items_by_item_id_response_default_type_0 import (
     DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType0,
 )
@@ -811,33 +764,31 @@ from .edit_asset_segment_schema_metadata_type_0 import (
     EditAssetSegmentSchemaMetadataType0,
 )
 from .edit_asset_segment_schema_segment_type import EditAssetSegmentSchemaSegmentType
-from .edit_asset_segment_schema_status_type_1 import EditAssetSegmentSchemaStatusType1
+from .edit_asset_segment_schema_status import EditAssetSegmentSchemaStatus
 from .edit_asset_segment_segment_type import EditAssetSegmentSegmentType
-from .edit_asset_segment_status_type_1 import EditAssetSegmentStatusType1
+from .edit_asset_segment_status import EditAssetSegmentStatus
 from .edit_asset_version import EditAssetVersion
-from .edit_asset_version_analyze_status_type_1 import EditAssetVersionAnalyzeStatusType1
-from .edit_asset_version_archive_status_type_1 import EditAssetVersionArchiveStatusType1
-from .edit_asset_version_face_recognition_status_type_1 import (
-    EditAssetVersionFaceRecognitionStatusType1,
+from .edit_asset_version_analyze_status import EditAssetVersionAnalyzeStatus
+from .edit_asset_version_archive_status import EditAssetVersionArchiveStatus
+from .edit_asset_version_face_recognition_status import (
+    EditAssetVersionFaceRecognitionStatus,
 )
 from .edit_asset_version_schema import EditAssetVersionSchema
-from .edit_asset_version_schema_analyze_status_type_1 import (
-    EditAssetVersionSchemaAnalyzeStatusType1,
+from .edit_asset_version_schema_analyze_status import (
+    EditAssetVersionSchemaAnalyzeStatus,
 )
-from .edit_asset_version_schema_archive_status_type_1 import (
-    EditAssetVersionSchemaArchiveStatusType1,
+from .edit_asset_version_schema_archive_status import (
+    EditAssetVersionSchemaArchiveStatus,
 )
-from .edit_asset_version_schema_face_recognition_status_type_1 import (
-    EditAssetVersionSchemaFaceRecognitionStatusType1,
+from .edit_asset_version_schema_face_recognition_status import (
+    EditAssetVersionSchemaFaceRecognitionStatus,
 )
-from .edit_asset_version_schema_status_type_1 import EditAssetVersionSchemaStatusType1
-from .edit_asset_version_schema_transcribe_status_type_1 import (
-    EditAssetVersionSchemaTranscribeStatusType1,
+from .edit_asset_version_schema_status import EditAssetVersionSchemaStatus
+from .edit_asset_version_schema_transcribe_status import (
+    EditAssetVersionSchemaTranscribeStatus,
 )
-from .edit_asset_version_status_type_1 import EditAssetVersionStatusType1
-from .edit_asset_version_transcribe_status_type_1 import (
-    EditAssetVersionTranscribeStatusType1,
-)
+from .edit_asset_version_status import EditAssetVersionStatus
+from .edit_asset_version_transcribe_status import EditAssetVersionTranscribeStatus
 from .edit_person_asset_version_schema import EditPersonAssetVersionSchema
 from .edit_person_status_schema import EditPersonStatusSchema
 from .edit_segment_for_bulk import EditSegmentForBulk
@@ -849,15 +800,13 @@ from .edit_segment_for_bulk_schema_metadata_type_0 import (
 from .edit_segment_for_bulk_schema_segment_type import (
     EditSegmentForBulkSchemaSegmentType,
 )
-from .edit_segment_for_bulk_schema_status_type_1 import (
-    EditSegmentForBulkSchemaStatusType1,
-)
+from .edit_segment_for_bulk_schema_status import EditSegmentForBulkSchemaStatus
 from .edit_segment_for_bulk_segment_type import EditSegmentForBulkSegmentType
-from .edit_segment_for_bulk_status_type_1 import EditSegmentForBulkStatusType1
+from .edit_segment_for_bulk_status import EditSegmentForBulkStatus
 from .edit_segment_schema import EditSegmentSchema
 from .edit_segment_schema_metadata_type_0 import EditSegmentSchemaMetadataType0
 from .edit_segment_schema_segment_type import EditSegmentSchemaSegmentType
-from .edit_segment_schema_status_type_1 import EditSegmentSchemaStatusType1
+from .edit_segment_schema_status import EditSegmentSchemaStatus
 from .face_bounding_box import FaceBoundingBox
 from .face_bounding_box_schema import FaceBoundingBoxSchema
 from .face_landmark import FaceLandmark
@@ -990,8 +939,8 @@ from .get_assets_by_asset_id_versions_by_version_id_transcriptions_properties_re
     GetAssetsByAssetIdVersionsByVersionIdTranscriptionsPropertiesResponseDefaultType1Errors,
 )
 from .get_assets_latest_version_schema import GetAssetsLatestVersionSchema
-from .get_assets_latest_version_schema_object_type_type_1 import (
-    GetAssetsLatestVersionSchemaObjectTypeType1,
+from .get_assets_latest_version_schema_object_type import (
+    GetAssetsLatestVersionSchemaObjectType,
 )
 from .get_assets_recent_response_default_type_0 import (
     GetAssetsRecentResponseDefaultType0,
@@ -1345,11 +1294,9 @@ from .get_sequences_response_default_type_1_errors import (
     GetSequencesResponseDefaultType1Errors,
 )
 from .get_share_schema import GetShareSchema
-from .get_share_schema_drm_type_1 import GetShareSchemaDrmType1
-from .get_share_schema_population_status_type_1 import (
-    GetShareSchemaPopulationStatusType1,
-)
-from .get_share_schema_watermark_type_1 import GetShareSchemaWatermarkType1
+from .get_share_schema_drm import GetShareSchemaDrm
+from .get_share_schema_population_status import GetShareSchemaPopulationStatus
+from .get_share_schema_watermark import GetShareSchemaWatermark
 from .get_shares_all_response_default_type_0 import GetSharesAllResponseDefaultType0
 from .get_shares_all_response_default_type_1 import GetSharesAllResponseDefaultType1
 from .get_shares_all_response_default_type_1_errors import (
@@ -1407,8 +1354,8 @@ from .magic_link_allowlist_entry_schema_entry_type import (
 )
 from .magic_link_allowlist_list_schema import MagicLinkAllowlistListSchema
 from .magic_link_allowlist_update_schema import MagicLinkAllowlistUpdateSchema
-from .magic_link_allowlist_update_schema_entry_type_type_1 import (
-    MagicLinkAllowlistUpdateSchemaEntryTypeType1,
+from .magic_link_allowlist_update_schema_entry_type import (
+    MagicLinkAllowlistUpdateSchemaEntryType,
 )
 from .magic_link_check_setting_schema import MagicLinkCheckSettingSchema
 from .magic_link_request_schema import MagicLinkRequestSchema
@@ -1562,22 +1509,22 @@ from .playlist_base_schema import PlaylistBaseSchema
 from .playlist_base_schema_keyframes_type_0_item import (
     PlaylistBaseSchemaKeyframesType0Item,
 )
-from .playlist_base_schema_status_type_1 import PlaylistBaseSchemaStatusType1
+from .playlist_base_schema_status import PlaylistBaseSchemaStatus
 from .playlist_create_schema import PlaylistCreateSchema
 from .playlist_create_schema_keyframes_type_0_item import (
     PlaylistCreateSchemaKeyframesType0Item,
 )
-from .playlist_create_schema_status_type_1 import PlaylistCreateSchemaStatusType1
+from .playlist_create_schema_status import PlaylistCreateSchemaStatus
 from .playlist_item import PlaylistItem
 from .playlist_item_elastic_schema import PlaylistItemElasticSchema
-from .playlist_item_elastic_schema_analyze_status_type_1 import (
-    PlaylistItemElasticSchemaAnalyzeStatusType1,
+from .playlist_item_elastic_schema_analyze_status import (
+    PlaylistItemElasticSchemaAnalyzeStatus,
 )
-from .playlist_item_elastic_schema_archive_status_type_1 import (
-    PlaylistItemElasticSchemaArchiveStatusType1,
+from .playlist_item_elastic_schema_archive_status import (
+    PlaylistItemElasticSchemaArchiveStatus,
 )
-from .playlist_item_elastic_schema_face_recognition_status_type_1 import (
-    PlaylistItemElasticSchemaFaceRecognitionStatusType1,
+from .playlist_item_elastic_schema_face_recognition_status import (
+    PlaylistItemElasticSchemaFaceRecognitionStatus,
 )
 from .playlist_item_elastic_schema_files_type_0_item import (
     PlaylistItemElasticSchemaFilesType0Item,
@@ -1594,10 +1541,8 @@ from .playlist_item_elastic_schema_metadata_type_0 import (
 from .playlist_item_elastic_schema_proxies_type_0_item import (
     PlaylistItemElasticSchemaProxiesType0Item,
 )
-from .playlist_item_elastic_schema_status_type_1 import (
-    PlaylistItemElasticSchemaStatusType1,
-)
-from .playlist_item_elastic_schema_type_type_1 import PlaylistItemElasticSchemaTypeType1
+from .playlist_item_elastic_schema_status import PlaylistItemElasticSchemaStatus
+from .playlist_item_elastic_schema_type import PlaylistItemElasticSchemaType
 from .playlist_item_object_type import PlaylistItemObjectType
 from .playlist_item_schema import PlaylistItemSchema
 from .playlist_item_schema_object_type import PlaylistItemSchemaObjectType
@@ -1607,18 +1552,18 @@ from .playlist_items_schema import PlaylistItemsSchema
 from .playlist_keyframes_type_0_item import PlaylistKeyframesType0Item
 from .playlist_schema import PlaylistSchema
 from .playlist_schema_keyframes_type_0_item import PlaylistSchemaKeyframesType0Item
-from .playlist_schema_status_type_1 import PlaylistSchemaStatusType1
-from .playlist_status_type_1 import PlaylistStatusType1
+from .playlist_schema_status import PlaylistSchemaStatus
+from .playlist_status import PlaylistStatus
 from .playlists_query_params_schema import PlaylistsQueryParamsSchema
 from .playlists_schema import PlaylistsSchema
 from .portfolio_base_schema import PortfolioBaseSchema
-from .portfolio_base_schema_status_type_1 import PortfolioBaseSchemaStatusType1
+from .portfolio_base_schema_status import PortfolioBaseSchemaStatus
 from .portfolio_config import PortfolioConfig
 from .portfolio_config_schema import PortfolioConfigSchema
 from .portfolio_create_schema import PortfolioCreateSchema
-from .portfolio_create_schema_status_type_1 import PortfolioCreateSchemaStatusType1
+from .portfolio_create_schema_status import PortfolioCreateSchemaStatus
 from .portfolio_schema import PortfolioSchema
-from .portfolio_schema_status_type_1 import PortfolioSchemaStatusType1
+from .portfolio_schema_status import PortfolioSchemaStatus
 from .portfolios_query_params_schema import PortfoliosQueryParamsSchema
 from .portfolios_schema import PortfoliosSchema
 from .post_approvals_bulk_remove_response_default_type_0 import (
@@ -2262,16 +2207,16 @@ from .post_sync_sessions_response_default_type_1_errors import (
 )
 from .process_bulk_persons_schema import ProcessBulkPersonsSchema
 from .project_base_schema import ProjectBaseSchema
-from .project_base_schema_status_type_1 import ProjectBaseSchemaStatusType1
+from .project_base_schema_status import ProjectBaseSchemaStatus
 from .project_create_schema import ProjectCreateSchema
-from .project_create_schema_status_type_1 import ProjectCreateSchemaStatusType1
+from .project_create_schema_status import ProjectCreateSchemaStatus
 from .project_member_base_schema import ProjectMemberBaseSchema
 from .project_member_create_schema import ProjectMemberCreateSchema
 from .project_member_schema import ProjectMemberSchema
 from .project_members_query_params_schema import ProjectMembersQueryParamsSchema
 from .project_members_schema import ProjectMembersSchema
 from .project_schema import ProjectSchema
-from .project_schema_status_type_1 import ProjectSchemaStatusType1
+from .project_schema_status import ProjectSchemaStatus
 from .projects_query_params_schema import ProjectsQueryParamsSchema
 from .projects_schema import ProjectsSchema
 from .publication_job_thumbnail_schema_base import PublicationJobThumbnailSchemaBase
@@ -2574,19 +2519,19 @@ from .segment import Segment
 from .segment_base_schema import SegmentBaseSchema
 from .segment_base_schema_metadata_type_0 import SegmentBaseSchemaMetadataType0
 from .segment_base_schema_segment_type import SegmentBaseSchemaSegmentType
-from .segment_base_schema_status_type_1 import SegmentBaseSchemaStatusType1
+from .segment_base_schema_status import SegmentBaseSchemaStatus
 from .segment_elastic_schema import SegmentElasticSchema
 from .segment_elastic_schema_metadata_type_0 import SegmentElasticSchemaMetadataType0
 from .segment_elastic_schema_segment_type import SegmentElasticSchemaSegmentType
-from .segment_elastic_schema_status_type_1 import SegmentElasticSchemaStatusType1
+from .segment_elastic_schema_status import SegmentElasticSchemaStatus
 from .segment_metadata_type_0 import SegmentMetadataType0
 from .segment_query_params_schema import SegmentQueryParamsSchema
 from .segment_schema import SegmentSchema
 from .segment_schema_metadata_type_0 import SegmentSchemaMetadataType0
 from .segment_schema_segment_type import SegmentSchemaSegmentType
-from .segment_schema_status_type_1 import SegmentSchemaStatusType1
+from .segment_schema_status import SegmentSchemaStatus
 from .segment_segment_type import SegmentSegmentType
-from .segment_status_type_1 import SegmentStatusType1
+from .segment_status import SegmentStatus
 from .segments_schema import SegmentsSchema
 from .segments_schema_facets_type_0 import SegmentsSchemaFacetsType0
 from .sequence_base_schema import SequenceBaseSchema
@@ -2600,44 +2545,36 @@ from .sequence_schema import SequenceSchema
 from .sequences_query_params_schema import SequencesQueryParamsSchema
 from .sequences_schema import SequencesSchema
 from .share_base_schema import ShareBaseSchema
-from .share_base_schema_drm_type_1 import ShareBaseSchemaDrmType1
-from .share_base_schema_population_status_type_1 import (
-    ShareBaseSchemaPopulationStatusType1,
-)
-from .share_base_schema_watermark_type_1 import ShareBaseSchemaWatermarkType1
+from .share_base_schema_drm import ShareBaseSchemaDrm
+from .share_base_schema_population_status import ShareBaseSchemaPopulationStatus
+from .share_base_schema_watermark import ShareBaseSchemaWatermark
 from .share_create_schema import ShareCreateSchema
-from .share_create_schema_drm_type_1 import ShareCreateSchemaDrmType1
-from .share_create_schema_watermark_type_1 import ShareCreateSchemaWatermarkType1
+from .share_create_schema_drm import ShareCreateSchemaDrm
+from .share_create_schema_watermark import ShareCreateSchemaWatermark
 from .share_elastic_schema import ShareElasticSchema
 from .share_elastic_schema_approval_type_0 import ShareElasticSchemaApprovalType0
-from .share_elastic_schema_drm_type_1 import ShareElasticSchemaDrmType1
-from .share_elastic_schema_population_status_type_1 import (
-    ShareElasticSchemaPopulationStatusType1,
-)
-from .share_elastic_schema_watermark_type_1 import ShareElasticSchemaWatermarkType1
+from .share_elastic_schema_drm import ShareElasticSchemaDrm
+from .share_elastic_schema_population_status import ShareElasticSchemaPopulationStatus
+from .share_elastic_schema_watermark import ShareElasticSchemaWatermark
 from .share_login_schema import ShareLoginSchema
 from .share_options_base_schema import ShareOptionsBaseSchema
-from .share_options_base_schema_drm_type_1 import ShareOptionsBaseSchemaDrmType1
-from .share_options_base_schema_watermark_type_1 import (
-    ShareOptionsBaseSchemaWatermarkType1,
-)
+from .share_options_base_schema_drm import ShareOptionsBaseSchemaDrm
+from .share_options_base_schema_watermark import ShareOptionsBaseSchemaWatermark
 from .share_roles import ShareRoles
 from .share_schema import ShareSchema
-from .share_schema_drm_type_1 import ShareSchemaDrmType1
-from .share_schema_population_status_type_1 import ShareSchemaPopulationStatusType1
-from .share_schema_watermark_type_1 import ShareSchemaWatermarkType1
+from .share_schema_drm import ShareSchemaDrm
+from .share_schema_population_status import ShareSchemaPopulationStatus
+from .share_schema_watermark import ShareSchemaWatermark
 from .share_token_schema import ShareTokenSchema
 from .share_token_schema_drm import ShareTokenSchemaDrm
 from .share_token_schema_watermark import ShareTokenSchemaWatermark
 from .share_url_create_schema import ShareURLCreateSchema
-from .share_url_create_schema_drm_type_1 import ShareURLCreateSchemaDrmType1
-from .share_url_create_schema_watermark_type_1 import ShareURLCreateSchemaWatermarkType1
+from .share_url_create_schema_drm import ShareURLCreateSchemaDrm
+from .share_url_create_schema_watermark import ShareURLCreateSchemaWatermark
 from .share_url_schema import ShareURLSchema
-from .share_url_schema_drm_type_1 import ShareURLSchemaDrmType1
-from .share_url_schema_population_status_type_1 import (
-    ShareURLSchemaPopulationStatusType1,
-)
-from .share_url_schema_watermark_type_1 import ShareURLSchemaWatermarkType1
+from .share_url_schema_drm import ShareURLSchemaDrm
+from .share_url_schema_population_status import ShareURLSchemaPopulationStatus
+from .share_url_schema_watermark import ShareURLSchemaWatermark
 from .share_user import ShareUser
 from .share_user_schema import ShareUserSchema
 from .share_users_elastic import ShareUsersElastic
@@ -2654,11 +2591,11 @@ from .synchronize_collection_keyframes_schema import (
     SynchronizeCollectionKeyframesSchema,
 )
 from .theme import Theme
-from .theme_base_type_1 import ThemeBaseType1
+from .theme_base import ThemeBase
 from .theme_colors import ThemeColors
 from .theme_colors_schema import ThemeColorsSchema
 from .theme_schema import ThemeSchema
-from .theme_schema_base_type_1 import ThemeSchemaBaseType1
+from .theme_schema_base import ThemeSchemaBase
 from .theme_typography import ThemeTypography
 from .theme_typography_schema import ThemeTypographySchema
 from .transcription_element_type import TranscriptionElementType
@@ -2674,41 +2611,41 @@ from .user_schema import UserSchema
 
 __all__ = (
     "ApprovalBySchema",
-    "ApprovalBySchemaStatusType1",
+    "ApprovalBySchemaStatus",
     "ApprovalJobSchema",
     "ApprovalsBySchema",
     "ApprovalSchema",
-    "ApprovalSchemaStatusType1",
-    "ApprovalSchemaUserStatusType1",
+    "ApprovalSchemaStatus",
+    "ApprovalSchemaUserStatus",
     "AssetBaseSchema",
-    "AssetBaseSchemaAnalyzeStatusType1",
-    "AssetBaseSchemaArchiveStatusType1",
-    "AssetBaseSchemaFaceRecognitionStatusType1",
-    "AssetBaseSchemaStatusType1",
-    "AssetBaseSchemaTypeType1",
+    "AssetBaseSchemaAnalyzeStatus",
+    "AssetBaseSchemaArchiveStatus",
+    "AssetBaseSchemaFaceRecognitionStatus",
+    "AssetBaseSchemaStatus",
+    "AssetBaseSchemaType",
     "AssetCreateSchema",
-    "AssetCreateSchemaAnalyzeStatusType1",
-    "AssetCreateSchemaArchiveStatusType1",
-    "AssetCreateSchemaFaceRecognitionStatusType1",
-    "AssetCreateSchemaStatusType1",
-    "AssetCreateSchemaTypeType1",
+    "AssetCreateSchemaAnalyzeStatus",
+    "AssetCreateSchemaArchiveStatus",
+    "AssetCreateSchemaFaceRecognitionStatus",
+    "AssetCreateSchemaStatus",
+    "AssetCreateSchemaType",
     "AssetEditSchema",
-    "AssetEditSchemaAnalyzeStatusType1",
-    "AssetEditSchemaArchiveStatusType1",
-    "AssetEditSchemaFaceRecognitionStatusType1",
-    "AssetEditSchemaStatusType1",
-    "AssetEditSchemaTypeType1",
+    "AssetEditSchemaAnalyzeStatus",
+    "AssetEditSchemaArchiveStatus",
+    "AssetEditSchemaFaceRecognitionStatus",
+    "AssetEditSchemaStatus",
+    "AssetEditSchemaType",
     "AssetElasticSchema",
-    "AssetElasticSchemaAnalyzeStatusType1",
-    "AssetElasticSchemaArchiveStatusType1",
-    "AssetElasticSchemaFaceRecognitionStatusType1",
+    "AssetElasticSchemaAnalyzeStatus",
+    "AssetElasticSchemaArchiveStatus",
+    "AssetElasticSchemaFaceRecognitionStatus",
     "AssetElasticSchemaFilesType0Item",
     "AssetElasticSchemaFormatsType0Item",
     "AssetElasticSchemaKeyframesType0Item",
     "AssetElasticSchemaMetadataType0",
     "AssetElasticSchemaProxiesType0Item",
-    "AssetElasticSchemaStatusType1",
-    "AssetElasticSchemaTypeType1",
+    "AssetElasticSchemaStatus",
+    "AssetElasticSchemaType",
     "AssetHistoryBaseSchema",
     "AssetHistoryBaseSchemaOperationType",
     "AssetHistoryBulkSchema",
@@ -2721,93 +2658,93 @@ __all__ = (
     "AssetHistorySchemaOperationType",
     "AssetPersonChangeSchema",
     "AssetPostCreate",
-    "AssetPostCreateAnalyzeStatusType1",
-    "AssetPostCreateArchiveStatusType1",
-    "AssetPostCreateFaceRecognitionStatusType1",
-    "AssetPostCreatePublicationStatusType1",
+    "AssetPostCreateAnalyzeStatus",
+    "AssetPostCreateArchiveStatus",
+    "AssetPostCreateFaceRecognitionStatus",
+    "AssetPostCreatePublicationStatus",
     "AssetPostCreateSchema",
-    "AssetPostCreateSchemaAnalyzeStatusType1",
-    "AssetPostCreateSchemaArchiveStatusType1",
-    "AssetPostCreateSchemaFaceRecognitionStatusType1",
-    "AssetPostCreateSchemaPublicationStatusType1",
-    "AssetPostCreateSchemaStatusType1",
-    "AssetPostCreateSchemaTypeType1",
-    "AssetPostCreateStatusType1",
-    "AssetPostCreateTypeType1",
+    "AssetPostCreateSchemaAnalyzeStatus",
+    "AssetPostCreateSchemaArchiveStatus",
+    "AssetPostCreateSchemaFaceRecognitionStatus",
+    "AssetPostCreateSchemaPublicationStatus",
+    "AssetPostCreateSchemaStatus",
+    "AssetPostCreateSchemaType",
+    "AssetPostCreateStatus",
+    "AssetPostCreateType",
     "AssetPostEdit",
-    "AssetPostEditAnalyzeStatusType1",
-    "AssetPostEditArchiveStatusType1",
-    "AssetPostEditFaceRecognitionStatusType1",
-    "AssetPostEditPublicationStatusType1",
+    "AssetPostEditAnalyzeStatus",
+    "AssetPostEditArchiveStatus",
+    "AssetPostEditFaceRecognitionStatus",
+    "AssetPostEditPublicationStatus",
     "AssetPostEditSchema",
-    "AssetPostEditSchemaAnalyzeStatusType1",
-    "AssetPostEditSchemaArchiveStatusType1",
-    "AssetPostEditSchemaFaceRecognitionStatusType1",
-    "AssetPostEditSchemaPublicationStatusType1",
-    "AssetPostEditSchemaStatusType1",
-    "AssetPostEditSchemaTypeType1",
-    "AssetPostEditStatusType1",
-    "AssetPostEditTypeType1",
+    "AssetPostEditSchemaAnalyzeStatus",
+    "AssetPostEditSchemaArchiveStatus",
+    "AssetPostEditSchemaFaceRecognitionStatus",
+    "AssetPostEditSchemaPublicationStatus",
+    "AssetPostEditSchemaStatus",
+    "AssetPostEditSchemaType",
+    "AssetPostEditStatus",
+    "AssetPostEditType",
     "AssetPostElastic",
-    "AssetPostElasticAnalyzeStatusType1",
-    "AssetPostElasticArchiveStatusType1",
-    "AssetPostElasticFaceRecognitionStatusType1",
+    "AssetPostElasticAnalyzeStatus",
+    "AssetPostElasticArchiveStatus",
+    "AssetPostElasticFaceRecognitionStatus",
     "AssetPostElasticFilesType0Item",
     "AssetPostElasticFormatsType0Item",
     "AssetPostElasticKeyframesType0Item",
     "AssetPostElasticMetadataType0",
     "AssetPostElasticProxiesType0Item",
-    "AssetPostElasticPublicationStatusType1",
+    "AssetPostElasticPublicationStatus",
     "AssetPostElasticSchema",
-    "AssetPostElasticSchemaAnalyzeStatusType1",
-    "AssetPostElasticSchemaArchiveStatusType1",
-    "AssetPostElasticSchemaFaceRecognitionStatusType1",
+    "AssetPostElasticSchemaAnalyzeStatus",
+    "AssetPostElasticSchemaArchiveStatus",
+    "AssetPostElasticSchemaFaceRecognitionStatus",
     "AssetPostElasticSchemaFilesType0Item",
     "AssetPostElasticSchemaFormatsType0Item",
     "AssetPostElasticSchemaKeyframesType0Item",
     "AssetPostElasticSchemaMetadataType0",
     "AssetPostElasticSchemaProxiesType0Item",
-    "AssetPostElasticSchemaPublicationStatusType1",
-    "AssetPostElasticSchemaStatusType1",
-    "AssetPostElasticSchemaTypeType1",
-    "AssetPostElasticStatusType1",
-    "AssetPostElasticTypeType1",
+    "AssetPostElasticSchemaPublicationStatus",
+    "AssetPostElasticSchemaStatus",
+    "AssetPostElasticSchemaType",
+    "AssetPostElasticStatus",
+    "AssetPostElasticType",
     "AssetPostSchema",
-    "AssetPostSchemaAnalyzeStatusType1",
-    "AssetPostSchemaArchiveStatusType1",
-    "AssetPostSchemaFaceRecognitionStatusType1",
-    "AssetPostSchemaPublicationStatusType1",
-    "AssetPostSchemaStatusType1",
-    "AssetPostSchemaTypeType1",
+    "AssetPostSchemaAnalyzeStatus",
+    "AssetPostSchemaArchiveStatus",
+    "AssetPostSchemaFaceRecognitionStatus",
+    "AssetPostSchemaPublicationStatus",
+    "AssetPostSchemaStatus",
+    "AssetPostSchemaType",
     "AssetSchema",
-    "AssetSchemaAnalyzeStatusType1",
-    "AssetSchemaArchiveStatusType1",
-    "AssetSchemaFaceRecognitionStatusType1",
-    "AssetSchemaStatusType1",
-    "AssetSchemaTypeType1",
+    "AssetSchemaAnalyzeStatus",
+    "AssetSchemaArchiveStatus",
+    "AssetSchemaFaceRecognitionStatus",
+    "AssetSchemaStatus",
+    "AssetSchemaType",
     "AssetsHistoryQueryParamsSchema",
     "AssetsQueryParamsSchema",
     "AssetsQueryParamsSchemaTypesType0Item",
     "AssetsSchema",
     "AssetTranscriptionFromSubtitleSchema",
-    "AssetTranscriptionFromSubtitleSchemaFormatType1",
+    "AssetTranscriptionFromSubtitleSchemaFormat",
     "AssetTranscriptionPropertiesSchema",
     "AssetTranscriptionPropertiesSchemaSpeakerLabelsType0",
     "AssetTranscriptionsPropertiesSchema",
     "AssetVersion",
-    "AssetVersionAnalyzeStatusType1",
-    "AssetVersionArchiveStatusType1",
-    "AssetVersionFaceRecognitionStatusType1",
+    "AssetVersionAnalyzeStatus",
+    "AssetVersionArchiveStatus",
+    "AssetVersionFaceRecognitionStatus",
     "AssetVersionLookupSchema",
     "AssetVersionSchema",
-    "AssetVersionSchemaAnalyzeStatusType1",
-    "AssetVersionSchemaArchiveStatusType1",
-    "AssetVersionSchemaFaceRecognitionStatusType1",
-    "AssetVersionSchemaStatusType1",
-    "AssetVersionSchemaTranscribeStatusType1",
+    "AssetVersionSchemaAnalyzeStatus",
+    "AssetVersionSchemaArchiveStatus",
+    "AssetVersionSchemaFaceRecognitionStatus",
+    "AssetVersionSchemaStatus",
+    "AssetVersionSchemaTranscribeStatus",
     "AssetVersionsSchema",
-    "AssetVersionStatusType1",
-    "AssetVersionTranscribeStatusType1",
+    "AssetVersionStatus",
+    "AssetVersionTranscribeStatus",
     "BaseQueryParamsSchema",
     "BulkActionSchema",
     "BulkActionSchemaObjectType",
@@ -2857,37 +2794,38 @@ __all__ = (
     "BulkSetApprovalSchemaObjectType",
     "BulkSetApprovalSchemaStatus",
     "BulkShareCreateSchema",
-    "BulkShareCreateSchemaDrmType1",
-    "BulkShareCreateSchemaObjectTypeType1",
-    "BulkShareCreateSchemaWatermarkType1",
+    "BulkShareCreateSchemaDrm",
+    "BulkShareCreateSchemaObjectType",
+    "BulkShareCreateSchemaWatermark",
     "BulkShareDeleteSchema",
     "CollectionBaseSchema",
-    "CollectionBaseSchemaCustomOrderStatusType1",
+    "CollectionBaseSchemaCustomOrderStatus",
     "CollectionBaseSchemaKeyframesType0Item",
     "CollectionBaseSchemaMetadataType0",
-    "CollectionBaseSchemaStatusType1",
+    "CollectionBaseSchemaStatus",
     "CollectionContentInfoSchema",
     "CollectionContentOrderingSchema",
     "CollectionContentQueryParamsSchema",
     "CollectionContentQueryParamsSchemaTypesType0Item",
     "CollectionContentSchema",
+    "CollectionContentsSchema",
     "CollectionElastic",
-    "CollectionElasticCustomOrderStatusType1",
+    "CollectionElasticCustomOrderStatus",
     "CollectionElasticKeyframesType0Item",
     "CollectionElasticMetadataType0",
     "CollectionElasticSchema",
-    "CollectionElasticSchemaCustomOrderStatusType1",
+    "CollectionElasticSchemaCustomOrderStatus",
     "CollectionElasticSchemaKeyframesType0Item",
     "CollectionElasticSchemaMetadataType0",
-    "CollectionElasticSchemaStatusType1",
-    "CollectionElasticStatusType1",
+    "CollectionElasticSchemaStatus",
+    "CollectionElasticStatus",
     "CollectionInputSchema",
-    "CollectionInputSchemaStatusType1",
+    "CollectionInputSchemaStatus",
     "CollectionSchema",
-    "CollectionSchemaCustomOrderStatusType1",
+    "CollectionSchemaCustomOrderStatus",
     "CollectionSchemaKeyframesType0Item",
     "CollectionSchemaMetadataType0",
-    "CollectionSchemaStatusType1",
+    "CollectionSchemaStatus",
     "CollectionSizeSchema",
     "CollectionsQueryParamsSchema",
     "CollectionsSchema",
@@ -2918,13 +2856,13 @@ __all__ = (
     "CustomActionCreateSchema",
     "CustomActionCreateSchemaContext",
     "CustomActionCreateSchemaHeadersType0",
-    "CustomActionCreateSchemaStatusType1",
-    "CustomActionCreateSchemaTypeType1",
+    "CustomActionCreateSchemaStatus",
+    "CustomActionCreateSchemaType",
     "CustomActionSchema",
     "CustomActionSchemaContext",
     "CustomActionSchemaHeadersType0",
-    "CustomActionSchemaStatusType1",
-    "CustomActionSchemaTypeType1",
+    "CustomActionSchemaStatus",
+    "CustomActionSchemaType",
     "CustomActionsSchema",
     "DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType0",
     "DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefaultType1",
@@ -3026,7 +2964,7 @@ __all__ = (
     "DeleteQueueCollectionsQueryParamsSchema",
     "DeleteQueueSchema",
     "DeleteSegmentsSchema",
-    "DeleteSegmentsSchemaSegmentTypeType1",
+    "DeleteSegmentsSchemaSegmentType",
     "DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType0",
     "DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType1",
     "DeleteSequencesBySequenceIdItemsByItemIdResponseDefaultType1Errors",
@@ -3058,21 +2996,21 @@ __all__ = (
     "EditAssetSegmentSchema",
     "EditAssetSegmentSchemaMetadataType0",
     "EditAssetSegmentSchemaSegmentType",
-    "EditAssetSegmentSchemaStatusType1",
+    "EditAssetSegmentSchemaStatus",
     "EditAssetSegmentSegmentType",
-    "EditAssetSegmentStatusType1",
+    "EditAssetSegmentStatus",
     "EditAssetVersion",
-    "EditAssetVersionAnalyzeStatusType1",
-    "EditAssetVersionArchiveStatusType1",
-    "EditAssetVersionFaceRecognitionStatusType1",
+    "EditAssetVersionAnalyzeStatus",
+    "EditAssetVersionArchiveStatus",
+    "EditAssetVersionFaceRecognitionStatus",
     "EditAssetVersionSchema",
-    "EditAssetVersionSchemaAnalyzeStatusType1",
-    "EditAssetVersionSchemaArchiveStatusType1",
-    "EditAssetVersionSchemaFaceRecognitionStatusType1",
-    "EditAssetVersionSchemaStatusType1",
-    "EditAssetVersionSchemaTranscribeStatusType1",
-    "EditAssetVersionStatusType1",
-    "EditAssetVersionTranscribeStatusType1",
+    "EditAssetVersionSchemaAnalyzeStatus",
+    "EditAssetVersionSchemaArchiveStatus",
+    "EditAssetVersionSchemaFaceRecognitionStatus",
+    "EditAssetVersionSchemaStatus",
+    "EditAssetVersionSchemaTranscribeStatus",
+    "EditAssetVersionStatus",
+    "EditAssetVersionTranscribeStatus",
     "EditPersonAssetVersionSchema",
     "EditPersonStatusSchema",
     "EditSegmentForBulk",
@@ -3080,13 +3018,13 @@ __all__ = (
     "EditSegmentForBulkSchema",
     "EditSegmentForBulkSchemaMetadataType0",
     "EditSegmentForBulkSchemaSegmentType",
-    "EditSegmentForBulkSchemaStatusType1",
+    "EditSegmentForBulkSchemaStatus",
     "EditSegmentForBulkSegmentType",
-    "EditSegmentForBulkStatusType1",
+    "EditSegmentForBulkStatus",
     "EditSegmentSchema",
     "EditSegmentSchemaMetadataType0",
     "EditSegmentSchemaSegmentType",
-    "EditSegmentSchemaStatusType1",
+    "EditSegmentSchemaStatus",
     "FaceBoundingBox",
     "FaceBoundingBoxSchema",
     "FaceLandmark",
@@ -3135,7 +3073,7 @@ __all__ = (
     "GetAssetsByAssetIdVersionsByVersionIdTranscriptionsPropertiesResponseDefaultType1",
     "GetAssetsByAssetIdVersionsByVersionIdTranscriptionsPropertiesResponseDefaultType1Errors",
     "GetAssetsLatestVersionSchema",
-    "GetAssetsLatestVersionSchemaObjectTypeType1",
+    "GetAssetsLatestVersionSchemaObjectType",
     "GetAssetsRecentResponseDefaultType0",
     "GetAssetsRecentResponseDefaultType1",
     "GetAssetsRecentResponseDefaultType1Errors",
@@ -3276,9 +3214,9 @@ __all__ = (
     "GetSharesAuthTokenResponseDefaultType1",
     "GetSharesAuthTokenResponseDefaultType1Errors",
     "GetShareSchema",
-    "GetShareSchemaDrmType1",
-    "GetShareSchemaPopulationStatusType1",
-    "GetShareSchemaWatermarkType1",
+    "GetShareSchemaDrm",
+    "GetShareSchemaPopulationStatus",
+    "GetShareSchemaWatermark",
     "GetSharesResponseDefaultType0",
     "GetSharesResponseDefaultType1",
     "GetSharesResponseDefaultType1Errors",
@@ -3292,7 +3230,7 @@ __all__ = (
     "MagicLinkAllowlistEntrySchemaEntryType",
     "MagicLinkAllowlistListSchema",
     "MagicLinkAllowlistUpdateSchema",
-    "MagicLinkAllowlistUpdateSchemaEntryTypeType1",
+    "MagicLinkAllowlistUpdateSchemaEntryType",
     "MagicLinkCheckSettingSchema",
     "MagicLinkRequestSchema",
     "MagicLinkValidateSchema",
@@ -3349,22 +3287,22 @@ __all__ = (
     "Playlist",
     "PlaylistBaseSchema",
     "PlaylistBaseSchemaKeyframesType0Item",
-    "PlaylistBaseSchemaStatusType1",
+    "PlaylistBaseSchemaStatus",
     "PlaylistCreateSchema",
     "PlaylistCreateSchemaKeyframesType0Item",
-    "PlaylistCreateSchemaStatusType1",
+    "PlaylistCreateSchemaStatus",
     "PlaylistItem",
     "PlaylistItemElasticSchema",
-    "PlaylistItemElasticSchemaAnalyzeStatusType1",
-    "PlaylistItemElasticSchemaArchiveStatusType1",
-    "PlaylistItemElasticSchemaFaceRecognitionStatusType1",
+    "PlaylistItemElasticSchemaAnalyzeStatus",
+    "PlaylistItemElasticSchemaArchiveStatus",
+    "PlaylistItemElasticSchemaFaceRecognitionStatus",
     "PlaylistItemElasticSchemaFilesType0Item",
     "PlaylistItemElasticSchemaFormatsType0Item",
     "PlaylistItemElasticSchemaKeyframesType0Item",
     "PlaylistItemElasticSchemaMetadataType0",
     "PlaylistItemElasticSchemaProxiesType0Item",
-    "PlaylistItemElasticSchemaStatusType1",
-    "PlaylistItemElasticSchemaTypeType1",
+    "PlaylistItemElasticSchemaStatus",
+    "PlaylistItemElasticSchemaType",
     "PlaylistItemObjectType",
     "PlaylistItemSchema",
     "PlaylistItemSchemaObjectType",
@@ -3374,18 +3312,18 @@ __all__ = (
     "PlaylistKeyframesType0Item",
     "PlaylistSchema",
     "PlaylistSchemaKeyframesType0Item",
-    "PlaylistSchemaStatusType1",
+    "PlaylistSchemaStatus",
     "PlaylistsQueryParamsSchema",
     "PlaylistsSchema",
-    "PlaylistStatusType1",
+    "PlaylistStatus",
     "PortfolioBaseSchema",
-    "PortfolioBaseSchemaStatusType1",
+    "PortfolioBaseSchemaStatus",
     "PortfolioConfig",
     "PortfolioConfigSchema",
     "PortfolioCreateSchema",
-    "PortfolioCreateSchemaStatusType1",
+    "PortfolioCreateSchemaStatus",
     "PortfolioSchema",
-    "PortfolioSchemaStatusType1",
+    "PortfolioSchemaStatus",
     "PortfoliosQueryParamsSchema",
     "PortfoliosSchema",
     "PostApprovalsBulkRemoveResponseDefaultType0",
@@ -3611,16 +3549,16 @@ __all__ = (
     "PostSyncSessionsResponseDefaultType1Errors",
     "ProcessBulkPersonsSchema",
     "ProjectBaseSchema",
-    "ProjectBaseSchemaStatusType1",
+    "ProjectBaseSchemaStatus",
     "ProjectCreateSchema",
-    "ProjectCreateSchemaStatusType1",
+    "ProjectCreateSchemaStatus",
     "ProjectMemberBaseSchema",
     "ProjectMemberCreateSchema",
     "ProjectMemberSchema",
     "ProjectMembersQueryParamsSchema",
     "ProjectMembersSchema",
     "ProjectSchema",
-    "ProjectSchemaStatusType1",
+    "ProjectSchemaStatus",
     "ProjectsQueryParamsSchema",
     "ProjectsSchema",
     "PublicationJobThumbnailSchemaBase",
@@ -3751,21 +3689,21 @@ __all__ = (
     "SegmentBaseSchema",
     "SegmentBaseSchemaMetadataType0",
     "SegmentBaseSchemaSegmentType",
-    "SegmentBaseSchemaStatusType1",
+    "SegmentBaseSchemaStatus",
     "SegmentElasticSchema",
     "SegmentElasticSchemaMetadataType0",
     "SegmentElasticSchemaSegmentType",
-    "SegmentElasticSchemaStatusType1",
+    "SegmentElasticSchemaStatus",
     "SegmentMetadataType0",
     "SegmentQueryParamsSchema",
     "SegmentSchema",
     "SegmentSchemaMetadataType0",
     "SegmentSchemaSegmentType",
-    "SegmentSchemaStatusType1",
+    "SegmentSchemaStatus",
     "SegmentSegmentType",
     "SegmentsSchema",
     "SegmentsSchemaFacetsType0",
-    "SegmentStatusType1",
+    "SegmentStatus",
     "SequenceBaseSchema",
     "SequenceCreateSchema",
     "SequenceItemSchema",
@@ -3777,26 +3715,26 @@ __all__ = (
     "SequencesQueryParamsSchema",
     "SequencesSchema",
     "ShareBaseSchema",
-    "ShareBaseSchemaDrmType1",
-    "ShareBaseSchemaPopulationStatusType1",
-    "ShareBaseSchemaWatermarkType1",
+    "ShareBaseSchemaDrm",
+    "ShareBaseSchemaPopulationStatus",
+    "ShareBaseSchemaWatermark",
     "ShareCreateSchema",
-    "ShareCreateSchemaDrmType1",
-    "ShareCreateSchemaWatermarkType1",
+    "ShareCreateSchemaDrm",
+    "ShareCreateSchemaWatermark",
     "ShareElasticSchema",
     "ShareElasticSchemaApprovalType0",
-    "ShareElasticSchemaDrmType1",
-    "ShareElasticSchemaPopulationStatusType1",
-    "ShareElasticSchemaWatermarkType1",
+    "ShareElasticSchemaDrm",
+    "ShareElasticSchemaPopulationStatus",
+    "ShareElasticSchemaWatermark",
     "ShareLoginSchema",
     "ShareOptionsBaseSchema",
-    "ShareOptionsBaseSchemaDrmType1",
-    "ShareOptionsBaseSchemaWatermarkType1",
+    "ShareOptionsBaseSchemaDrm",
+    "ShareOptionsBaseSchemaWatermark",
     "ShareRoles",
     "ShareSchema",
-    "ShareSchemaDrmType1",
-    "ShareSchemaPopulationStatusType1",
-    "ShareSchemaWatermarkType1",
+    "ShareSchemaDrm",
+    "ShareSchemaPopulationStatus",
+    "ShareSchemaWatermark",
     "SharesElasticSchema",
     "SharesElasticSchemaFacetsType0",
     "SharesSchema",
@@ -3804,12 +3742,12 @@ __all__ = (
     "ShareTokenSchemaDrm",
     "ShareTokenSchemaWatermark",
     "ShareURLCreateSchema",
-    "ShareURLCreateSchemaDrmType1",
-    "ShareURLCreateSchemaWatermarkType1",
+    "ShareURLCreateSchemaDrm",
+    "ShareURLCreateSchemaWatermark",
     "ShareURLSchema",
-    "ShareURLSchemaDrmType1",
-    "ShareURLSchemaPopulationStatusType1",
-    "ShareURLSchemaWatermarkType1",
+    "ShareURLSchemaDrm",
+    "ShareURLSchemaPopulationStatus",
+    "ShareURLSchemaWatermark",
     "ShareUser",
     "ShareUserSchema",
     "ShareUsersElastic",
@@ -3821,11 +3759,11 @@ __all__ = (
     "SyncSessionCreateSchema",
     "SyncSessionSchema",
     "Theme",
-    "ThemeBaseType1",
+    "ThemeBase",
     "ThemeColors",
     "ThemeColorsSchema",
     "ThemeSchema",
-    "ThemeSchemaBaseType1",
+    "ThemeSchemaBase",
     "ThemeTypography",
     "ThemeTypographySchema",
     "TranscriptionElementType",

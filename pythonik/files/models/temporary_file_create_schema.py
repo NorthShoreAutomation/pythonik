@@ -8,16 +8,14 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.temporary_file_create_schema_status import TemporaryFileCreateSchemaStatus
+from ..models.temporary_file_create_schema_template_engine import (
+    TemporaryFileCreateSchemaTemplateEngine,
+)
 from ..models.temporary_file_create_schema_type import TemporaryFileCreateSchemaType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.temporary_file_create_schema_status_type_1 import (
-        TemporaryFileCreateSchemaStatusType1,
-    )
-    from ..models.temporary_file_create_schema_template_engine_type_1 import (
-        TemporaryFileCreateSchemaTemplateEngineType1,
-    )
     from ..models.temporary_file_create_schema_upload_credentials_type_0 import (
         TemporaryFileCreateSchemaUploadCredentialsType0,
     )
@@ -48,11 +46,11 @@ class TemporaryFileCreateSchema:
         parent_id (None | Unset | UUID):
         path_exist (bool | None | Unset):
         size (int | None | Unset):
-        status (None | TemporaryFileCreateSchemaStatusType1 | Unset):
+        status (None | TemporaryFileCreateSchemaStatus | Unset):
         storage_id (None | Unset | UUID):
         storage_method (None | str | Unset):
         template (None | str | Unset):
-        template_engine (None | TemporaryFileCreateSchemaTemplateEngineType1 | Unset):
+        template_engine (None | TemporaryFileCreateSchemaTemplateEngine | Unset):
         upload_credentials (None | TemporaryFileCreateSchemaUploadCredentialsType0 | Unset):
         upload_filename (None | str | Unset):
         upload_method (None | str | Unset):
@@ -79,11 +77,11 @@ class TemporaryFileCreateSchema:
     parent_id: None | Unset | UUID = UNSET
     path_exist: bool | None | Unset = UNSET
     size: int | None | Unset = UNSET
-    status: None | TemporaryFileCreateSchemaStatusType1 | Unset = UNSET
+    status: None | TemporaryFileCreateSchemaStatus | Unset = UNSET
     storage_id: None | Unset | UUID = UNSET
     storage_method: None | str | Unset = UNSET
     template: None | str | Unset = UNSET
-    template_engine: None | TemporaryFileCreateSchemaTemplateEngineType1 | Unset = UNSET
+    template_engine: None | TemporaryFileCreateSchemaTemplateEngine | Unset = UNSET
     upload_credentials: (
         None | TemporaryFileCreateSchemaUploadCredentialsType0 | Unset
     ) = UNSET
@@ -95,12 +93,6 @@ class TemporaryFileCreateSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.temporary_file_create_schema_status_type_1 import (
-            TemporaryFileCreateSchemaStatusType1,
-        )
-        from ..models.temporary_file_create_schema_template_engine_type_1 import (
-            TemporaryFileCreateSchemaTemplateEngineType1,
-        )
         from ..models.temporary_file_create_schema_upload_credentials_type_0 import (
             TemporaryFileCreateSchemaUploadCredentialsType0,
         )
@@ -219,11 +211,11 @@ class TemporaryFileCreateSchema:
         else:
             size = self.size
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, TemporaryFileCreateSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, TemporaryFileCreateSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -247,13 +239,11 @@ class TemporaryFileCreateSchema:
         else:
             template = self.template
 
-        template_engine: dict[str, Any] | None | Unset
+        template_engine: None | str | Unset
         if isinstance(self.template_engine, Unset):
             template_engine = UNSET
-        elif isinstance(
-            self.template_engine, TemporaryFileCreateSchemaTemplateEngineType1
-        ):
-            template_engine = self.template_engine.to_dict()
+        elif isinstance(self.template_engine, TemporaryFileCreateSchemaTemplateEngine):
+            template_engine = self.template_engine.value
         else:
             template_engine = self.template_engine
 
@@ -367,12 +357,6 @@ class TemporaryFileCreateSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.temporary_file_create_schema_status_type_1 import (
-            TemporaryFileCreateSchemaStatusType1,
-        )
-        from ..models.temporary_file_create_schema_template_engine_type_1 import (
-            TemporaryFileCreateSchemaTemplateEngineType1,
-        )
         from ..models.temporary_file_create_schema_upload_credentials_type_0 import (
             TemporaryFileCreateSchemaUploadCredentialsType0,
         )
@@ -597,20 +581,20 @@ class TemporaryFileCreateSchema:
 
         def _parse_status(
             data: object,
-        ) -> None | TemporaryFileCreateSchemaStatusType1 | Unset:
+        ) -> None | TemporaryFileCreateSchemaStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = TemporaryFileCreateSchemaStatusType1.from_dict(data)
+                status_type_1 = TemporaryFileCreateSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | TemporaryFileCreateSchemaStatusType1 | Unset, data)
+            return cast(None | TemporaryFileCreateSchemaStatus | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 
@@ -651,24 +635,20 @@ class TemporaryFileCreateSchema:
 
         def _parse_template_engine(
             data: object,
-        ) -> None | TemporaryFileCreateSchemaTemplateEngineType1 | Unset:
+        ) -> None | TemporaryFileCreateSchemaTemplateEngine | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                template_engine_type_1 = (
-                    TemporaryFileCreateSchemaTemplateEngineType1.from_dict(data)
-                )
+                template_engine_type_1 = TemporaryFileCreateSchemaTemplateEngine(data)
 
                 return template_engine_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(
-                None | TemporaryFileCreateSchemaTemplateEngineType1 | Unset, data
-            )
+            return cast(None | TemporaryFileCreateSchemaTemplateEngine | Unset, data)
 
         template_engine = _parse_template_engine(d.pop("template_engine", UNSET))
 

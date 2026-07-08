@@ -2,22 +2,15 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.gateway_report_schema_start_status import GatewayReportSchemaStartStatus
+from ..models.gateway_report_schema_status import GatewayReportSchemaStatus
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.gateway_report_schema_start_status_type_1 import (
-        GatewayReportSchemaStartStatusType1,
-    )
-    from ..models.gateway_report_schema_status_type_1 import (
-        GatewayReportSchemaStatusType1,
-    )
-
 
 T = TypeVar("T", bound="GatewayReportSchema")
 
@@ -45,9 +38,9 @@ class GatewayReportSchema:
         scanned_files_number (int | None | Unset):
         skipped_files_number (int | None | Unset):
         start_last_date (datetime.datetime | None | Unset):
-        start_status (GatewayReportSchemaStartStatusType1 | None | Unset):
+        start_status (GatewayReportSchemaStartStatus | None | Unset):
         start_status_message (None | str | Unset):
-        status (GatewayReportSchemaStatusType1 | None | Unset):
+        status (GatewayReportSchemaStatus | None | Unset):
         storage_id (None | Unset | UUID):
         total_files_number (int | None | Unset):
         total_folders_number (int | None | Unset):
@@ -75,9 +68,9 @@ class GatewayReportSchema:
     scanned_files_number: int | None | Unset = UNSET
     skipped_files_number: int | None | Unset = UNSET
     start_last_date: datetime.datetime | None | Unset = UNSET
-    start_status: GatewayReportSchemaStartStatusType1 | None | Unset = UNSET
+    start_status: GatewayReportSchemaStartStatus | None | Unset = UNSET
     start_status_message: None | str | Unset = UNSET
-    status: GatewayReportSchemaStatusType1 | None | Unset = UNSET
+    status: GatewayReportSchemaStatus | None | Unset = UNSET
     storage_id: None | Unset | UUID = UNSET
     total_files_number: int | None | Unset = UNSET
     total_folders_number: int | None | Unset = UNSET
@@ -87,13 +80,6 @@ class GatewayReportSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.gateway_report_schema_start_status_type_1 import (
-            GatewayReportSchemaStartStatusType1,
-        )
-        from ..models.gateway_report_schema_status_type_1 import (
-            GatewayReportSchemaStatusType1,
-        )
-
         await_checksum_files_number: int | None | Unset
         if isinstance(self.await_checksum_files_number, Unset):
             await_checksum_files_number = UNSET
@@ -220,11 +206,11 @@ class GatewayReportSchema:
         else:
             start_last_date = self.start_last_date
 
-        start_status: dict[str, Any] | None | Unset
+        start_status: None | str | Unset
         if isinstance(self.start_status, Unset):
             start_status = UNSET
-        elif isinstance(self.start_status, GatewayReportSchemaStartStatusType1):
-            start_status = self.start_status.to_dict()
+        elif isinstance(self.start_status, GatewayReportSchemaStartStatus):
+            start_status = self.start_status.value
         else:
             start_status = self.start_status
 
@@ -234,11 +220,11 @@ class GatewayReportSchema:
         else:
             start_status_message = self.start_status_message
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, GatewayReportSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, GatewayReportSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -348,13 +334,6 @@ class GatewayReportSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.gateway_report_schema_start_status_type_1 import (
-            GatewayReportSchemaStartStatusType1,
-        )
-        from ..models.gateway_report_schema_status_type_1 import (
-            GatewayReportSchemaStatusType1,
-        )
-
         d = dict(src_dict)
 
         def _parse_await_checksum_files_number(data: object) -> int | None | Unset:
@@ -590,22 +569,20 @@ class GatewayReportSchema:
 
         def _parse_start_status(
             data: object,
-        ) -> GatewayReportSchemaStartStatusType1 | None | Unset:
+        ) -> GatewayReportSchemaStartStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                start_status_type_1 = GatewayReportSchemaStartStatusType1.from_dict(
-                    data
-                )
+                start_status_type_1 = GatewayReportSchemaStartStatus(data)
 
                 return start_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(GatewayReportSchemaStartStatusType1 | None | Unset, data)
+            return cast(GatewayReportSchemaStartStatus | None | Unset, data)
 
         start_status = _parse_start_status(d.pop("start_status", UNSET))
 
@@ -620,22 +597,20 @@ class GatewayReportSchema:
             d.pop("start_status_message", UNSET)
         )
 
-        def _parse_status(
-            data: object,
-        ) -> GatewayReportSchemaStatusType1 | None | Unset:
+        def _parse_status(data: object) -> GatewayReportSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = GatewayReportSchemaStatusType1.from_dict(data)
+                status_type_1 = GatewayReportSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(GatewayReportSchemaStatusType1 | None | Unset, data)
+            return cast(GatewayReportSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

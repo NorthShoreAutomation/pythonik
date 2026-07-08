@@ -12,12 +12,12 @@ from ..models.trigger_schema_event_type import TriggerSchemaEventType
 from ..models.trigger_schema_operations_type_0_item import (
     TriggerSchemaOperationsType0Item,
 )
+from ..models.trigger_schema_realm import TriggerSchemaRealm
 from ..models.trigger_schema_type import TriggerSchemaType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.condition_schema import ConditionSchema
-    from ..models.trigger_schema_realm_type_1 import TriggerSchemaRealmType1
 
 
 T = TypeVar("T", bound="TriggerSchema")
@@ -35,7 +35,7 @@ class TriggerSchema:
         filters (list[ConditionSchema] | None | Unset):
         object_id (None | Unset | UUID):
         operations (list[TriggerSchemaOperationsType0Item] | None | Unset):
-        realm (None | TriggerSchemaRealmType1 | Unset):
+        realm (None | TriggerSchemaRealm | Unset):
     """
 
     event_type: TriggerSchemaEventType
@@ -46,12 +46,10 @@ class TriggerSchema:
     filters: list[ConditionSchema] | None | Unset = UNSET
     object_id: None | Unset | UUID = UNSET
     operations: list[TriggerSchemaOperationsType0Item] | None | Unset = UNSET
-    realm: None | TriggerSchemaRealmType1 | Unset = UNSET
+    realm: None | TriggerSchemaRealm | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.trigger_schema_realm_type_1 import TriggerSchemaRealmType1
-
         event_type = self.event_type.value
 
         type_ = self.type_.value
@@ -112,11 +110,11 @@ class TriggerSchema:
         else:
             operations = self.operations
 
-        realm: dict[str, Any] | None | Unset
+        realm: None | str | Unset
         if isinstance(self.realm, Unset):
             realm = UNSET
-        elif isinstance(self.realm, TriggerSchemaRealmType1):
-            realm = self.realm.to_dict()
+        elif isinstance(self.realm, TriggerSchemaRealm):
+            realm = self.realm.value
         else:
             realm = self.realm
 
@@ -148,7 +146,6 @@ class TriggerSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.condition_schema import ConditionSchema
-        from ..models.trigger_schema_realm_type_1 import TriggerSchemaRealmType1
 
         d = dict(src_dict)
         event_type = TriggerSchemaEventType(d.pop("event_type"))
@@ -273,20 +270,20 @@ class TriggerSchema:
 
         operations = _parse_operations(d.pop("operations", UNSET))
 
-        def _parse_realm(data: object) -> None | TriggerSchemaRealmType1 | Unset:
+        def _parse_realm(data: object) -> None | TriggerSchemaRealm | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                realm_type_1 = TriggerSchemaRealmType1.from_dict(data)
+                realm_type_1 = TriggerSchemaRealm(data)
 
                 return realm_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | TriggerSchemaRealmType1 | Unset, data)
+            return cast(None | TriggerSchemaRealm | Unset, data)
 
         realm = _parse_realm(d.pop("realm", UNSET))
 

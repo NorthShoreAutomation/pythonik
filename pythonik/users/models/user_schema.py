@@ -8,14 +8,12 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.user_schema_onboarding_goal import UserSchemaOnboardingGoal
+from ..models.user_schema_status import UserSchemaStatus
 from ..models.user_schema_type import UserSchemaType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.user_schema_onboarding_goal_type_1 import (
-        UserSchemaOnboardingGoalType1,
-    )
-    from ..models.user_schema_status_type_1 import UserSchemaStatusType1
     from ..models.user_system_metadata import UserSystemMetadata
 
 
@@ -55,7 +53,7 @@ class UserSchema:
         last_unsuccessful_auth (datetime.datetime | None | Unset):
         last_web_login (datetime.datetime | None | Unset):
         metadata (Any | Unset):
-        onboarding_goal (None | Unset | UserSchemaOnboardingGoalType1):
+        onboarding_goal (None | Unset | UserSchemaOnboardingGoal):
         password (None | str | Unset):
         password_changed (datetime.datetime | None | Unset):
         phone (None | str | Unset):
@@ -64,7 +62,7 @@ class UserSchema:
         photo_small (None | str | Unset):
         photo_storage_id (None | Unset | UUID):
         primary_group (None | Unset | UUID):
-        status (None | Unset | UserSchemaStatusType1):
+        status (None | Unset | UserSchemaStatus):
         system_domain_id (None | Unset | UUID):
         system_domains (list[UUID] | None | Unset):
         system_metadata (None | Unset | UserSystemMetadata):
@@ -100,7 +98,7 @@ class UserSchema:
     last_unsuccessful_auth: datetime.datetime | None | Unset = UNSET
     last_web_login: datetime.datetime | None | Unset = UNSET
     metadata: Any | Unset = UNSET
-    onboarding_goal: None | Unset | UserSchemaOnboardingGoalType1 = UNSET
+    onboarding_goal: None | Unset | UserSchemaOnboardingGoal = UNSET
     password: None | str | Unset = UNSET
     password_changed: datetime.datetime | None | Unset = UNSET
     phone: None | str | Unset = UNSET
@@ -109,7 +107,7 @@ class UserSchema:
     photo_small: None | str | Unset = UNSET
     photo_storage_id: None | Unset | UUID = UNSET
     primary_group: None | Unset | UUID = UNSET
-    status: None | Unset | UserSchemaStatusType1 = UNSET
+    status: None | Unset | UserSchemaStatus = UNSET
     system_domain_id: None | Unset | UUID = UNSET
     system_domains: list[UUID] | None | Unset = UNSET
     system_metadata: None | Unset | UserSystemMetadata = UNSET
@@ -117,10 +115,6 @@ class UserSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.user_schema_onboarding_goal_type_1 import (
-            UserSchemaOnboardingGoalType1,
-        )
-        from ..models.user_schema_status_type_1 import UserSchemaStatusType1
         from ..models.user_system_metadata import UserSystemMetadata
 
         type_ = self.type_.value
@@ -325,11 +319,11 @@ class UserSchema:
 
         metadata = self.metadata
 
-        onboarding_goal: dict[str, Any] | None | Unset
+        onboarding_goal: None | str | Unset
         if isinstance(self.onboarding_goal, Unset):
             onboarding_goal = UNSET
-        elif isinstance(self.onboarding_goal, UserSchemaOnboardingGoalType1):
-            onboarding_goal = self.onboarding_goal.to_dict()
+        elif isinstance(self.onboarding_goal, UserSchemaOnboardingGoal):
+            onboarding_goal = self.onboarding_goal.value
         else:
             onboarding_goal = self.onboarding_goal
 
@@ -387,11 +381,11 @@ class UserSchema:
         else:
             primary_group = self.primary_group
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, UserSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, UserSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -527,10 +521,6 @@ class UserSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.user_schema_onboarding_goal_type_1 import (
-            UserSchemaOnboardingGoalType1,
-        )
-        from ..models.user_schema_status_type_1 import UserSchemaStatusType1
         from ..models.user_system_metadata import UserSystemMetadata
 
         d = dict(src_dict)
@@ -944,20 +934,20 @@ class UserSchema:
 
         def _parse_onboarding_goal(
             data: object,
-        ) -> None | Unset | UserSchemaOnboardingGoalType1:
+        ) -> None | Unset | UserSchemaOnboardingGoal:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                onboarding_goal_type_1 = UserSchemaOnboardingGoalType1.from_dict(data)
+                onboarding_goal_type_1 = UserSchemaOnboardingGoal(data)
 
                 return onboarding_goal_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | Unset | UserSchemaOnboardingGoalType1, data)
+            return cast(None | Unset | UserSchemaOnboardingGoal, data)
 
         onboarding_goal = _parse_onboarding_goal(d.pop("onboarding_goal", UNSET))
 
@@ -1057,20 +1047,20 @@ class UserSchema:
 
         primary_group = _parse_primary_group(d.pop("primary_group", UNSET))
 
-        def _parse_status(data: object) -> None | Unset | UserSchemaStatusType1:
+        def _parse_status(data: object) -> None | Unset | UserSchemaStatus:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = UserSchemaStatusType1.from_dict(data)
+                status_type_1 = UserSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | Unset | UserSchemaStatusType1, data)
+            return cast(None | Unset | UserSchemaStatus, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

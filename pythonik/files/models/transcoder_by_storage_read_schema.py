@@ -7,14 +7,14 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.transcoder_by_storage_read_schema_type import (
+    TranscoderByStorageReadSchemaType,
+)
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.transcoder_by_storage_read_schema_settings_type_0 import (
         TranscoderByStorageReadSchemaSettingsType0,
-    )
-    from ..models.transcoder_by_storage_read_schema_type_type_1 import (
-        TranscoderByStorageReadSchemaTypeType1,
     )
 
 
@@ -29,22 +29,19 @@ class TranscoderByStorageReadSchema:
         name (None | str | Unset):
         settings (None | TranscoderByStorageReadSchemaSettingsType0 | Unset):
         storage_id (None | Unset | UUID):
-        type_ (None | TranscoderByStorageReadSchemaTypeType1 | Unset):
+        type_ (None | TranscoderByStorageReadSchemaType | Unset):
     """
 
     id: None | Unset | UUID = UNSET
     name: None | str | Unset = UNSET
     settings: None | TranscoderByStorageReadSchemaSettingsType0 | Unset = UNSET
     storage_id: None | Unset | UUID = UNSET
-    type_: None | TranscoderByStorageReadSchemaTypeType1 | Unset = UNSET
+    type_: None | TranscoderByStorageReadSchemaType | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.transcoder_by_storage_read_schema_settings_type_0 import (
             TranscoderByStorageReadSchemaSettingsType0,
-        )
-        from ..models.transcoder_by_storage_read_schema_type_type_1 import (
-            TranscoderByStorageReadSchemaTypeType1,
         )
 
         id: None | str | Unset
@@ -77,11 +74,11 @@ class TranscoderByStorageReadSchema:
         else:
             storage_id = self.storage_id
 
-        type_: dict[str, Any] | None | Unset
+        type_: None | str | Unset
         if isinstance(self.type_, Unset):
             type_ = UNSET
-        elif isinstance(self.type_, TranscoderByStorageReadSchemaTypeType1):
-            type_ = self.type_.to_dict()
+        elif isinstance(self.type_, TranscoderByStorageReadSchemaType):
+            type_ = self.type_.value
         else:
             type_ = self.type_
 
@@ -105,9 +102,6 @@ class TranscoderByStorageReadSchema:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.transcoder_by_storage_read_schema_settings_type_0 import (
             TranscoderByStorageReadSchemaSettingsType0,
-        )
-        from ..models.transcoder_by_storage_read_schema_type_type_1 import (
-            TranscoderByStorageReadSchemaTypeType1,
         )
 
         d = dict(src_dict)
@@ -178,20 +172,20 @@ class TranscoderByStorageReadSchema:
 
         def _parse_type_(
             data: object,
-        ) -> None | TranscoderByStorageReadSchemaTypeType1 | Unset:
+        ) -> None | TranscoderByStorageReadSchemaType | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                type_type_1 = TranscoderByStorageReadSchemaTypeType1.from_dict(data)
+                type_type_1 = TranscoderByStorageReadSchemaType(data)
 
                 return type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | TranscoderByStorageReadSchemaTypeType1 | Unset, data)
+            return cast(None | TranscoderByStorageReadSchemaType | Unset, data)
 
         type_ = _parse_type_(d.pop("type", UNSET))
 

@@ -2,20 +2,15 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..models.device_token_schema_platform import DeviceTokenSchemaPlatform
+from ..models.device_token_schema_push_service import DeviceTokenSchemaPushService
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.device_token_schema_push_service_type_1 import (
-        DeviceTokenSchemaPushServiceType1,
-    )
-
 
 T = TypeVar("T", bound="DeviceTokenSchema")
 
@@ -35,7 +30,7 @@ class DeviceTokenSchema:
         is_active (bool | None | Unset):
         last_failed_at (datetime.datetime | None | Unset):
         last_used_at (datetime.datetime | None | Unset):
-        push_service (DeviceTokenSchemaPushServiceType1 | None | Unset):
+        push_service (DeviceTokenSchemaPushService | None | Unset):
         system_domain_id (None | Unset | UUID):
         user_id (None | Unset | UUID):
     """
@@ -51,16 +46,12 @@ class DeviceTokenSchema:
     is_active: bool | None | Unset = UNSET
     last_failed_at: datetime.datetime | None | Unset = UNSET
     last_used_at: datetime.datetime | None | Unset = UNSET
-    push_service: DeviceTokenSchemaPushServiceType1 | None | Unset = UNSET
+    push_service: DeviceTokenSchemaPushService | None | Unset = UNSET
     system_domain_id: None | Unset | UUID = UNSET
     user_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.device_token_schema_push_service_type_1 import (
-            DeviceTokenSchemaPushServiceType1,
-        )
-
         device_token = self.device_token
 
         platform = self.platform.value
@@ -127,11 +118,11 @@ class DeviceTokenSchema:
         else:
             last_used_at = self.last_used_at
 
-        push_service: dict[str, Any] | None | Unset
+        push_service: None | str | Unset
         if isinstance(self.push_service, Unset):
             push_service = UNSET
-        elif isinstance(self.push_service, DeviceTokenSchemaPushServiceType1):
-            push_service = self.push_service.to_dict()
+        elif isinstance(self.push_service, DeviceTokenSchemaPushService):
+            push_service = self.push_service.value
         else:
             push_service = self.push_service
 
@@ -188,10 +179,6 @@ class DeviceTokenSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.device_token_schema_push_service_type_1 import (
-            DeviceTokenSchemaPushServiceType1,
-        )
-
         d = dict(src_dict)
         device_token = d.pop("device_token")
 
@@ -312,20 +299,20 @@ class DeviceTokenSchema:
 
         def _parse_push_service(
             data: object,
-        ) -> DeviceTokenSchemaPushServiceType1 | None | Unset:
+        ) -> DeviceTokenSchemaPushService | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                push_service_type_1 = DeviceTokenSchemaPushServiceType1.from_dict(data)
+                push_service_type_1 = DeviceTokenSchemaPushService(data)
 
                 return push_service_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(DeviceTokenSchemaPushServiceType1 | None | Unset, data)
+            return cast(DeviceTokenSchemaPushService | None | Unset, data)
 
         push_service = _parse_push_service(d.pop("push_service", UNSET))
 

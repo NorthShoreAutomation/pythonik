@@ -8,23 +8,19 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.asset_post_create_analyze_status import AssetPostCreateAnalyzeStatus
+from ..models.asset_post_create_archive_status import AssetPostCreateArchiveStatus
+from ..models.asset_post_create_face_recognition_status import (
+    AssetPostCreateFaceRecognitionStatus,
+)
+from ..models.asset_post_create_publication_status import (
+    AssetPostCreatePublicationStatus,
+)
+from ..models.asset_post_create_status import AssetPostCreateStatus
+from ..models.asset_post_create_type import AssetPostCreateType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.asset_post_create_analyze_status_type_1 import (
-        AssetPostCreateAnalyzeStatusType1,
-    )
-    from ..models.asset_post_create_archive_status_type_1 import (
-        AssetPostCreateArchiveStatusType1,
-    )
-    from ..models.asset_post_create_face_recognition_status_type_1 import (
-        AssetPostCreateFaceRecognitionStatusType1,
-    )
-    from ..models.asset_post_create_publication_status_type_1 import (
-        AssetPostCreatePublicationStatusType1,
-    )
-    from ..models.asset_post_create_status_type_1 import AssetPostCreateStatusType1
-    from ..models.asset_post_create_type_type_1 import AssetPostCreateTypeType1
     from ..models.user import User
 
 
@@ -36,8 +32,8 @@ class AssetPostCreate:
     """
     Attributes:
         title (str):
-        analyze_status (AssetPostCreateAnalyzeStatusType1 | None | Unset):
-        archive_status (AssetPostCreateArchiveStatusType1 | None | Unset):
+        analyze_status (AssetPostCreateAnalyzeStatus | None | Unset):
+        archive_status (AssetPostCreateArchiveStatus | None | Unset):
         category (None | str | Unset):
         clip_aspect_ratio (None | str | Unset):
         clip_duration (float | None | Unset):
@@ -62,7 +58,7 @@ class AssetPostCreate:
         destination_type (None | str | Unset):
         external_id (None | str | Unset):
         external_link (None | str | Unset):
-        face_recognition_status (AssetPostCreateFaceRecognitionStatusType1 | None | Unset):
+        face_recognition_status (AssetPostCreateFaceRecognitionStatus | None | Unset):
         favoured (bool | None | Unset):
         has_unconfirmed_persons (bool | None | Unset):
         id (None | Unset | UUID):
@@ -75,12 +71,12 @@ class AssetPostCreate:
         original_segment_id (None | Unset | UUID):
         original_version_id (None | Unset | UUID):
         person_ids (list[UUID] | None | Unset):
-        publication_status (AssetPostCreatePublicationStatusType1 | None | Unset):
+        publication_status (AssetPostCreatePublicationStatus | None | Unset):
         site_name (None | str | Unset):
-        status (AssetPostCreateStatusType1 | None | Unset):
+        status (AssetPostCreateStatus | None | Unset):
         time_end_milliseconds (int | None | Unset):
         time_start_milliseconds (int | None | Unset):
-        type_ (AssetPostCreateTypeType1 | None | Unset):
+        type_ (AssetPostCreateType | None | Unset):
         updated_by_user (None | Unset | UUID):
         updated_by_user_info (None | Unset | User):
         views (int | None | Unset):  Default: 0.
@@ -88,8 +84,8 @@ class AssetPostCreate:
     """
 
     title: str
-    analyze_status: AssetPostCreateAnalyzeStatusType1 | None | Unset = UNSET
-    archive_status: AssetPostCreateArchiveStatusType1 | None | Unset = UNSET
+    analyze_status: AssetPostCreateAnalyzeStatus | None | Unset = UNSET
+    archive_status: AssetPostCreateArchiveStatus | None | Unset = UNSET
     category: None | str | Unset = UNSET
     clip_aspect_ratio: None | str | Unset = UNSET
     clip_duration: float | None | Unset = UNSET
@@ -114,9 +110,7 @@ class AssetPostCreate:
     destination_type: None | str | Unset = UNSET
     external_id: None | str | Unset = UNSET
     external_link: None | str | Unset = UNSET
-    face_recognition_status: (
-        AssetPostCreateFaceRecognitionStatusType1 | None | Unset
-    ) = UNSET
+    face_recognition_status: AssetPostCreateFaceRecognitionStatus | None | Unset = UNSET
     favoured: bool | None | Unset = UNSET
     has_unconfirmed_persons: bool | None | Unset = UNSET
     id: None | Unset | UUID = UNSET
@@ -129,12 +123,12 @@ class AssetPostCreate:
     original_segment_id: None | Unset | UUID = UNSET
     original_version_id: None | Unset | UUID = UNSET
     person_ids: list[UUID] | None | Unset = UNSET
-    publication_status: AssetPostCreatePublicationStatusType1 | None | Unset = UNSET
+    publication_status: AssetPostCreatePublicationStatus | None | Unset = UNSET
     site_name: None | str | Unset = UNSET
-    status: AssetPostCreateStatusType1 | None | Unset = UNSET
+    status: AssetPostCreateStatus | None | Unset = UNSET
     time_end_milliseconds: int | None | Unset = UNSET
     time_start_milliseconds: int | None | Unset = UNSET
-    type_: AssetPostCreateTypeType1 | None | Unset = UNSET
+    type_: AssetPostCreateType | None | Unset = UNSET
     updated_by_user: None | Unset | UUID = UNSET
     updated_by_user_info: None | Unset | User = UNSET
     views: int | None | Unset = 0
@@ -142,37 +136,23 @@ class AssetPostCreate:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.asset_post_create_analyze_status_type_1 import (
-            AssetPostCreateAnalyzeStatusType1,
-        )
-        from ..models.asset_post_create_archive_status_type_1 import (
-            AssetPostCreateArchiveStatusType1,
-        )
-        from ..models.asset_post_create_face_recognition_status_type_1 import (
-            AssetPostCreateFaceRecognitionStatusType1,
-        )
-        from ..models.asset_post_create_publication_status_type_1 import (
-            AssetPostCreatePublicationStatusType1,
-        )
-        from ..models.asset_post_create_status_type_1 import AssetPostCreateStatusType1
-        from ..models.asset_post_create_type_type_1 import AssetPostCreateTypeType1
         from ..models.user import User
 
         title = self.title
 
-        analyze_status: dict[str, Any] | None | Unset
+        analyze_status: None | str | Unset
         if isinstance(self.analyze_status, Unset):
             analyze_status = UNSET
-        elif isinstance(self.analyze_status, AssetPostCreateAnalyzeStatusType1):
-            analyze_status = self.analyze_status.to_dict()
+        elif isinstance(self.analyze_status, AssetPostCreateAnalyzeStatus):
+            analyze_status = self.analyze_status.value
         else:
             analyze_status = self.analyze_status
 
-        archive_status: dict[str, Any] | None | Unset
+        archive_status: None | str | Unset
         if isinstance(self.archive_status, Unset):
             archive_status = UNSET
-        elif isinstance(self.archive_status, AssetPostCreateArchiveStatusType1):
-            archive_status = self.archive_status.to_dict()
+        elif isinstance(self.archive_status, AssetPostCreateArchiveStatus):
+            archive_status = self.archive_status.value
         else:
             archive_status = self.archive_status
 
@@ -346,13 +326,13 @@ class AssetPostCreate:
         else:
             external_link = self.external_link
 
-        face_recognition_status: dict[str, Any] | None | Unset
+        face_recognition_status: None | str | Unset
         if isinstance(self.face_recognition_status, Unset):
             face_recognition_status = UNSET
         elif isinstance(
-            self.face_recognition_status, AssetPostCreateFaceRecognitionStatusType1
+            self.face_recognition_status, AssetPostCreateFaceRecognitionStatus
         ):
-            face_recognition_status = self.face_recognition_status.to_dict()
+            face_recognition_status = self.face_recognition_status.value
         else:
             face_recognition_status = self.face_recognition_status
 
@@ -454,11 +434,11 @@ class AssetPostCreate:
         else:
             person_ids = self.person_ids
 
-        publication_status: dict[str, Any] | None | Unset
+        publication_status: None | str | Unset
         if isinstance(self.publication_status, Unset):
             publication_status = UNSET
-        elif isinstance(self.publication_status, AssetPostCreatePublicationStatusType1):
-            publication_status = self.publication_status.to_dict()
+        elif isinstance(self.publication_status, AssetPostCreatePublicationStatus):
+            publication_status = self.publication_status.value
         else:
             publication_status = self.publication_status
 
@@ -468,11 +448,11 @@ class AssetPostCreate:
         else:
             site_name = self.site_name
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, AssetPostCreateStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, AssetPostCreateStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -488,11 +468,11 @@ class AssetPostCreate:
         else:
             time_start_milliseconds = self.time_start_milliseconds
 
-        type_: dict[str, Any] | None | Unset
+        type_: None | str | Unset
         if isinstance(self.type_, Unset):
             type_ = UNSET
-        elif isinstance(self.type_, AssetPostCreateTypeType1):
-            type_ = self.type_.to_dict()
+        elif isinstance(self.type_, AssetPostCreateType):
+            type_ = self.type_.value
         else:
             type_ = self.type_
 
@@ -634,20 +614,6 @@ class AssetPostCreate:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.asset_post_create_analyze_status_type_1 import (
-            AssetPostCreateAnalyzeStatusType1,
-        )
-        from ..models.asset_post_create_archive_status_type_1 import (
-            AssetPostCreateArchiveStatusType1,
-        )
-        from ..models.asset_post_create_face_recognition_status_type_1 import (
-            AssetPostCreateFaceRecognitionStatusType1,
-        )
-        from ..models.asset_post_create_publication_status_type_1 import (
-            AssetPostCreatePublicationStatusType1,
-        )
-        from ..models.asset_post_create_status_type_1 import AssetPostCreateStatusType1
-        from ..models.asset_post_create_type_type_1 import AssetPostCreateTypeType1
         from ..models.user import User
 
         d = dict(src_dict)
@@ -655,43 +621,39 @@ class AssetPostCreate:
 
         def _parse_analyze_status(
             data: object,
-        ) -> AssetPostCreateAnalyzeStatusType1 | None | Unset:
+        ) -> AssetPostCreateAnalyzeStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                analyze_status_type_1 = AssetPostCreateAnalyzeStatusType1.from_dict(
-                    data
-                )
+                analyze_status_type_1 = AssetPostCreateAnalyzeStatus(data)
 
                 return analyze_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AssetPostCreateAnalyzeStatusType1 | None | Unset, data)
+            return cast(AssetPostCreateAnalyzeStatus | None | Unset, data)
 
         analyze_status = _parse_analyze_status(d.pop("analyze_status", UNSET))
 
         def _parse_archive_status(
             data: object,
-        ) -> AssetPostCreateArchiveStatusType1 | None | Unset:
+        ) -> AssetPostCreateArchiveStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                archive_status_type_1 = AssetPostCreateArchiveStatusType1.from_dict(
-                    data
-                )
+                archive_status_type_1 = AssetPostCreateArchiveStatus(data)
 
                 return archive_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AssetPostCreateArchiveStatusType1 | None | Unset, data)
+            return cast(AssetPostCreateArchiveStatus | None | Unset, data)
 
         archive_status = _parse_archive_status(d.pop("archive_status", UNSET))
 
@@ -1023,22 +985,22 @@ class AssetPostCreate:
 
         def _parse_face_recognition_status(
             data: object,
-        ) -> AssetPostCreateFaceRecognitionStatusType1 | None | Unset:
+        ) -> AssetPostCreateFaceRecognitionStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                face_recognition_status_type_1 = (
-                    AssetPostCreateFaceRecognitionStatusType1.from_dict(data)
+                face_recognition_status_type_1 = AssetPostCreateFaceRecognitionStatus(
+                    data
                 )
 
                 return face_recognition_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AssetPostCreateFaceRecognitionStatusType1 | None | Unset, data)
+            return cast(AssetPostCreateFaceRecognitionStatus | None | Unset, data)
 
         face_recognition_status = _parse_face_recognition_status(
             d.pop("face_recognition_status", UNSET)
@@ -1238,22 +1200,20 @@ class AssetPostCreate:
 
         def _parse_publication_status(
             data: object,
-        ) -> AssetPostCreatePublicationStatusType1 | None | Unset:
+        ) -> AssetPostCreatePublicationStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                publication_status_type_1 = (
-                    AssetPostCreatePublicationStatusType1.from_dict(data)
-                )
+                publication_status_type_1 = AssetPostCreatePublicationStatus(data)
 
                 return publication_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AssetPostCreatePublicationStatusType1 | None | Unset, data)
+            return cast(AssetPostCreatePublicationStatus | None | Unset, data)
 
         publication_status = _parse_publication_status(
             d.pop("publication_status", UNSET)
@@ -1268,20 +1228,20 @@ class AssetPostCreate:
 
         site_name = _parse_site_name(d.pop("site_name", UNSET))
 
-        def _parse_status(data: object) -> AssetPostCreateStatusType1 | None | Unset:
+        def _parse_status(data: object) -> AssetPostCreateStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = AssetPostCreateStatusType1.from_dict(data)
+                status_type_1 = AssetPostCreateStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AssetPostCreateStatusType1 | None | Unset, data)
+            return cast(AssetPostCreateStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 
@@ -1307,20 +1267,20 @@ class AssetPostCreate:
             d.pop("time_start_milliseconds", UNSET)
         )
 
-        def _parse_type_(data: object) -> AssetPostCreateTypeType1 | None | Unset:
+        def _parse_type_(data: object) -> AssetPostCreateType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                type_type_1 = AssetPostCreateTypeType1.from_dict(data)
+                type_type_1 = AssetPostCreateType(data)
 
                 return type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AssetPostCreateTypeType1 | None | Unset, data)
+            return cast(AssetPostCreateType | None | Unset, data)
 
         type_ = _parse_type_(d.pop("type", UNSET))
 

@@ -2,19 +2,16 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.face_by_asset_and_version_schema_status import (
+    FaceByAssetAndVersionSchemaStatus,
+)
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.face_by_asset_and_version_schema_status_type_1 import (
-        FaceByAssetAndVersionSchemaStatusType1,
-    )
-
 
 T = TypeVar("T", bound="FaceByAssetAndVersionSchema")
 
@@ -34,7 +31,7 @@ class FaceByAssetAndVersionSchema:
         id (None | Unset | UUID):
         image_url (None | str | Unset):
         person_id (None | Unset | UUID):
-        status (FaceByAssetAndVersionSchemaStatusType1 | None | Unset):
+        status (FaceByAssetAndVersionSchemaStatus | None | Unset):
         storage_id (None | Unset | UUID):
         system_domain_id (None | Unset | UUID):
         version_id (None | Unset | UUID):
@@ -51,17 +48,13 @@ class FaceByAssetAndVersionSchema:
     id: None | Unset | UUID = UNSET
     image_url: None | str | Unset = UNSET
     person_id: None | Unset | UUID = UNSET
-    status: FaceByAssetAndVersionSchemaStatusType1 | None | Unset = UNSET
+    status: FaceByAssetAndVersionSchemaStatus | None | Unset = UNSET
     storage_id: None | Unset | UUID = UNSET
     system_domain_id: None | Unset | UUID = UNSET
     version_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.face_by_asset_and_version_schema_status_type_1 import (
-            FaceByAssetAndVersionSchemaStatusType1,
-        )
-
         asset_id: None | str | Unset
         if isinstance(self.asset_id, Unset):
             asset_id = UNSET
@@ -152,11 +145,11 @@ class FaceByAssetAndVersionSchema:
         else:
             person_id = self.person_id
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, FaceByAssetAndVersionSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, FaceByAssetAndVersionSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -222,10 +215,6 @@ class FaceByAssetAndVersionSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.face_by_asset_and_version_schema_status_type_1 import (
-            FaceByAssetAndVersionSchemaStatusType1,
-        )
-
         d = dict(src_dict)
 
         def _parse_asset_id(data: object) -> None | Unset | UUID:
@@ -406,20 +395,20 @@ class FaceByAssetAndVersionSchema:
 
         def _parse_status(
             data: object,
-        ) -> FaceByAssetAndVersionSchemaStatusType1 | None | Unset:
+        ) -> FaceByAssetAndVersionSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = FaceByAssetAndVersionSchemaStatusType1.from_dict(data)
+                status_type_1 = FaceByAssetAndVersionSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(FaceByAssetAndVersionSchemaStatusType1 | None | Unset, data)
+            return cast(FaceByAssetAndVersionSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

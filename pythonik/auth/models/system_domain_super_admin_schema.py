@@ -8,22 +8,22 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.system_domain_super_admin_schema_billing_tier import (
+    SystemDomainSuperAdminSchemaBillingTier,
+)
+from ..models.system_domain_super_admin_schema_industry import (
+    SystemDomainSuperAdminSchemaIndustry,
+)
+from ..models.system_domain_super_admin_schema_status import (
+    SystemDomainSuperAdminSchemaStatus,
+)
+from ..models.system_domain_super_admin_schema_type import (
+    SystemDomainSuperAdminSchemaType,
+)
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.billing_limits_schema import BillingLimitsSchema
-    from ..models.system_domain_super_admin_schema_billing_tier_type_1 import (
-        SystemDomainSuperAdminSchemaBillingTierType1,
-    )
-    from ..models.system_domain_super_admin_schema_industry_type_1 import (
-        SystemDomainSuperAdminSchemaIndustryType1,
-    )
-    from ..models.system_domain_super_admin_schema_status_type_1 import (
-        SystemDomainSuperAdminSchemaStatusType1,
-    )
-    from ..models.system_domain_super_admin_schema_type_type_1 import (
-        SystemDomainSuperAdminSchemaTypeType1,
-    )
 
 
 T = TypeVar("T", bound="SystemDomainSuperAdminSchema")
@@ -36,7 +36,7 @@ class SystemDomainSuperAdminSchema:
         base_url (str):
         name (str):
         billing_limits (BillingLimitsSchema | None | Unset):
-        billing_tier (None | SystemDomainSuperAdminSchemaBillingTierType1 | Unset):
+        billing_tier (None | SystemDomainSuperAdminSchemaBillingTier | Unset):
         contract_end_date (datetime.datetime | None | Unset):
         country (None | str | Unset):
         creating_user_id (None | Unset | UUID):
@@ -55,7 +55,7 @@ class SystemDomainSuperAdminSchema:
         freeze_date (datetime.datetime | None | Unset):
         has_preloaded_assets (bool | None | Unset):
         id (None | Unset | UUID):
-        industry (None | SystemDomainSuperAdminSchemaIndustryType1 | Unset):
+        industry (None | SystemDomainSuperAdminSchemaIndustry | Unset):
         invoice_end_of_month (bool | None | Unset):
         is_plg (bool | None | Unset):
         is_template (bool | None | Unset):
@@ -68,16 +68,16 @@ class SystemDomainSuperAdminSchema:
         price_list (None | str | Unset):
         referral_code (None | str | Unset):
         sales_force_id (None | str | Unset):
-        status (None | SystemDomainSuperAdminSchemaStatusType1 | Unset):
+        status (None | SystemDomainSuperAdminSchemaStatus | Unset):
         stripe_id (None | str | Unset):
-        type_ (None | SystemDomainSuperAdminSchemaTypeType1 | Unset):
+        type_ (None | SystemDomainSuperAdminSchemaType | Unset):
         warning_message (None | str | Unset):
     """
 
     base_url: str
     name: str
     billing_limits: BillingLimitsSchema | None | Unset = UNSET
-    billing_tier: None | SystemDomainSuperAdminSchemaBillingTierType1 | Unset = UNSET
+    billing_tier: None | SystemDomainSuperAdminSchemaBillingTier | Unset = UNSET
     contract_end_date: datetime.datetime | None | Unset = UNSET
     country: None | str | Unset = UNSET
     creating_user_id: None | Unset | UUID = UNSET
@@ -96,7 +96,7 @@ class SystemDomainSuperAdminSchema:
     freeze_date: datetime.datetime | None | Unset = UNSET
     has_preloaded_assets: bool | None | Unset = UNSET
     id: None | Unset | UUID = UNSET
-    industry: None | SystemDomainSuperAdminSchemaIndustryType1 | Unset = UNSET
+    industry: None | SystemDomainSuperAdminSchemaIndustry | Unset = UNSET
     invoice_end_of_month: bool | None | Unset = UNSET
     is_plg: bool | None | Unset = UNSET
     is_template: bool | None | Unset = UNSET
@@ -109,26 +109,14 @@ class SystemDomainSuperAdminSchema:
     price_list: None | str | Unset = UNSET
     referral_code: None | str | Unset = UNSET
     sales_force_id: None | str | Unset = UNSET
-    status: None | SystemDomainSuperAdminSchemaStatusType1 | Unset = UNSET
+    status: None | SystemDomainSuperAdminSchemaStatus | Unset = UNSET
     stripe_id: None | str | Unset = UNSET
-    type_: None | SystemDomainSuperAdminSchemaTypeType1 | Unset = UNSET
+    type_: None | SystemDomainSuperAdminSchemaType | Unset = UNSET
     warning_message: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.billing_limits_schema import BillingLimitsSchema
-        from ..models.system_domain_super_admin_schema_billing_tier_type_1 import (
-            SystemDomainSuperAdminSchemaBillingTierType1,
-        )
-        from ..models.system_domain_super_admin_schema_industry_type_1 import (
-            SystemDomainSuperAdminSchemaIndustryType1,
-        )
-        from ..models.system_domain_super_admin_schema_status_type_1 import (
-            SystemDomainSuperAdminSchemaStatusType1,
-        )
-        from ..models.system_domain_super_admin_schema_type_type_1 import (
-            SystemDomainSuperAdminSchemaTypeType1,
-        )
 
         base_url = self.base_url
 
@@ -142,13 +130,11 @@ class SystemDomainSuperAdminSchema:
         else:
             billing_limits = self.billing_limits
 
-        billing_tier: dict[str, Any] | None | Unset
+        billing_tier: None | str | Unset
         if isinstance(self.billing_tier, Unset):
             billing_tier = UNSET
-        elif isinstance(
-            self.billing_tier, SystemDomainSuperAdminSchemaBillingTierType1
-        ):
-            billing_tier = self.billing_tier.to_dict()
+        elif isinstance(self.billing_tier, SystemDomainSuperAdminSchemaBillingTier):
+            billing_tier = self.billing_tier.value
         else:
             billing_tier = self.billing_tier
 
@@ -277,11 +263,11 @@ class SystemDomainSuperAdminSchema:
         else:
             id = self.id
 
-        industry: dict[str, Any] | None | Unset
+        industry: None | str | Unset
         if isinstance(self.industry, Unset):
             industry = UNSET
-        elif isinstance(self.industry, SystemDomainSuperAdminSchemaIndustryType1):
-            industry = self.industry.to_dict()
+        elif isinstance(self.industry, SystemDomainSuperAdminSchemaIndustry):
+            industry = self.industry.value
         else:
             industry = self.industry
 
@@ -357,11 +343,11 @@ class SystemDomainSuperAdminSchema:
         else:
             sales_force_id = self.sales_force_id
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, SystemDomainSuperAdminSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, SystemDomainSuperAdminSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -371,11 +357,11 @@ class SystemDomainSuperAdminSchema:
         else:
             stripe_id = self.stripe_id
 
-        type_: dict[str, Any] | None | Unset
+        type_: None | str | Unset
         if isinstance(self.type_, Unset):
             type_ = UNSET
-        elif isinstance(self.type_, SystemDomainSuperAdminSchemaTypeType1):
-            type_ = self.type_.to_dict()
+        elif isinstance(self.type_, SystemDomainSuperAdminSchemaType):
+            type_ = self.type_.value
         else:
             type_ = self.type_
 
@@ -473,18 +459,6 @@ class SystemDomainSuperAdminSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.billing_limits_schema import BillingLimitsSchema
-        from ..models.system_domain_super_admin_schema_billing_tier_type_1 import (
-            SystemDomainSuperAdminSchemaBillingTierType1,
-        )
-        from ..models.system_domain_super_admin_schema_industry_type_1 import (
-            SystemDomainSuperAdminSchemaIndustryType1,
-        )
-        from ..models.system_domain_super_admin_schema_status_type_1 import (
-            SystemDomainSuperAdminSchemaStatusType1,
-        )
-        from ..models.system_domain_super_admin_schema_type_type_1 import (
-            SystemDomainSuperAdminSchemaTypeType1,
-        )
 
         d = dict(src_dict)
         base_url = d.pop("base_url")
@@ -510,24 +484,20 @@ class SystemDomainSuperAdminSchema:
 
         def _parse_billing_tier(
             data: object,
-        ) -> None | SystemDomainSuperAdminSchemaBillingTierType1 | Unset:
+        ) -> None | SystemDomainSuperAdminSchemaBillingTier | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                billing_tier_type_1 = (
-                    SystemDomainSuperAdminSchemaBillingTierType1.from_dict(data)
-                )
+                billing_tier_type_1 = SystemDomainSuperAdminSchemaBillingTier(data)
 
                 return billing_tier_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(
-                None | SystemDomainSuperAdminSchemaBillingTierType1 | Unset, data
-            )
+            return cast(None | SystemDomainSuperAdminSchemaBillingTier | Unset, data)
 
         billing_tier = _parse_billing_tier(d.pop("billing_tier", UNSET))
 
@@ -771,22 +741,20 @@ class SystemDomainSuperAdminSchema:
 
         def _parse_industry(
             data: object,
-        ) -> None | SystemDomainSuperAdminSchemaIndustryType1 | Unset:
+        ) -> None | SystemDomainSuperAdminSchemaIndustry | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                industry_type_1 = SystemDomainSuperAdminSchemaIndustryType1.from_dict(
-                    data
-                )
+                industry_type_1 = SystemDomainSuperAdminSchemaIndustry(data)
 
                 return industry_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | SystemDomainSuperAdminSchemaIndustryType1 | Unset, data)
+            return cast(None | SystemDomainSuperAdminSchemaIndustry | Unset, data)
 
         industry = _parse_industry(d.pop("industry", UNSET))
 
@@ -912,20 +880,20 @@ class SystemDomainSuperAdminSchema:
 
         def _parse_status(
             data: object,
-        ) -> None | SystemDomainSuperAdminSchemaStatusType1 | Unset:
+        ) -> None | SystemDomainSuperAdminSchemaStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = SystemDomainSuperAdminSchemaStatusType1.from_dict(data)
+                status_type_1 = SystemDomainSuperAdminSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | SystemDomainSuperAdminSchemaStatusType1 | Unset, data)
+            return cast(None | SystemDomainSuperAdminSchemaStatus | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 
@@ -940,20 +908,20 @@ class SystemDomainSuperAdminSchema:
 
         def _parse_type_(
             data: object,
-        ) -> None | SystemDomainSuperAdminSchemaTypeType1 | Unset:
+        ) -> None | SystemDomainSuperAdminSchemaType | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                type_type_1 = SystemDomainSuperAdminSchemaTypeType1.from_dict(data)
+                type_type_1 = SystemDomainSuperAdminSchemaType(data)
 
                 return type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | SystemDomainSuperAdminSchemaTypeType1 | Unset, data)
+            return cast(None | SystemDomainSuperAdminSchemaType | Unset, data)
 
         type_ = _parse_type_(d.pop("type", UNSET))
 

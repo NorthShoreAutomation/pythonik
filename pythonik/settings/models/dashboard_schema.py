@@ -6,6 +6,7 @@ from typing import TYPE_CHECKING, Any, TypeVar, cast
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.dashboard_schema_view_type import DashboardSchemaViewType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -14,7 +15,6 @@ if TYPE_CHECKING:
     )
     from ..models.dashboard_comments_feed_schema import DashboardCommentsFeedSchema
     from ..models.dashboard_header_schema import DashboardHeaderSchema
-    from ..models.dashboard_schema_view_type_type_1 import DashboardSchemaViewTypeType1
     from ..models.dashboard_widget import DashboardWidget
 
 
@@ -28,14 +28,14 @@ class DashboardSchema:
         collections_tree (DashboardCollectionsTreeSchema | None | Unset):
         comments_feed (DashboardCommentsFeedSchema | None | Unset):
         header (DashboardHeaderSchema | None | Unset):
-        view_type (DashboardSchemaViewTypeType1 | None | Unset):
+        view_type (DashboardSchemaViewType | None | Unset):
         widgets (list[DashboardWidget] | None | Unset):
     """
 
     collections_tree: DashboardCollectionsTreeSchema | None | Unset = UNSET
     comments_feed: DashboardCommentsFeedSchema | None | Unset = UNSET
     header: DashboardHeaderSchema | None | Unset = UNSET
-    view_type: DashboardSchemaViewTypeType1 | None | Unset = UNSET
+    view_type: DashboardSchemaViewType | None | Unset = UNSET
     widgets: list[DashboardWidget] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -45,9 +45,6 @@ class DashboardSchema:
         )
         from ..models.dashboard_comments_feed_schema import DashboardCommentsFeedSchema
         from ..models.dashboard_header_schema import DashboardHeaderSchema
-        from ..models.dashboard_schema_view_type_type_1 import (
-            DashboardSchemaViewTypeType1,
-        )
 
         collections_tree: dict[str, Any] | None | Unset
         if isinstance(self.collections_tree, Unset):
@@ -73,11 +70,11 @@ class DashboardSchema:
         else:
             header = self.header
 
-        view_type: dict[str, Any] | None | Unset
+        view_type: None | str | Unset
         if isinstance(self.view_type, Unset):
             view_type = UNSET
-        elif isinstance(self.view_type, DashboardSchemaViewTypeType1):
-            view_type = self.view_type.to_dict()
+        elif isinstance(self.view_type, DashboardSchemaViewType):
+            view_type = self.view_type.value
         else:
             view_type = self.view_type
 
@@ -116,9 +113,6 @@ class DashboardSchema:
         )
         from ..models.dashboard_comments_feed_schema import DashboardCommentsFeedSchema
         from ..models.dashboard_header_schema import DashboardHeaderSchema
-        from ..models.dashboard_schema_view_type_type_1 import (
-            DashboardSchemaViewTypeType1,
-        )
         from ..models.dashboard_widget import DashboardWidget
 
         d = dict(src_dict)
@@ -178,22 +172,20 @@ class DashboardSchema:
 
         header = _parse_header(d.pop("header", UNSET))
 
-        def _parse_view_type(
-            data: object,
-        ) -> DashboardSchemaViewTypeType1 | None | Unset:
+        def _parse_view_type(data: object) -> DashboardSchemaViewType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                view_type_type_1 = DashboardSchemaViewTypeType1.from_dict(data)
+                view_type_type_1 = DashboardSchemaViewType(data)
 
                 return view_type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(DashboardSchemaViewTypeType1 | None | Unset, data)
+            return cast(DashboardSchemaViewType | None | Unset, data)
 
         view_type = _parse_view_type(d.pop("view_type", UNSET))
 

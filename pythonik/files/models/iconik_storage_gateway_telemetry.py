@@ -2,22 +2,19 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.iconik_storage_gateway_telemetry_start_status import (
+    IconikStorageGatewayTelemetryStartStatus,
+)
+from ..models.iconik_storage_gateway_telemetry_status import (
+    IconikStorageGatewayTelemetryStatus,
+)
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.iconik_storage_gateway_telemetry_start_status_type_1 import (
-        IconikStorageGatewayTelemetryStartStatusType1,
-    )
-    from ..models.iconik_storage_gateway_telemetry_status_type_1 import (
-        IconikStorageGatewayTelemetryStatusType1,
-    )
-
 
 T = TypeVar("T", bound="IconikStorageGatewayTelemetry")
 
@@ -34,9 +31,9 @@ class IconikStorageGatewayTelemetry:
         is_leader (bool | None | Unset):
         log_lines (list[str] | None | Unset):
         start_last_date (datetime.datetime | None | Unset):
-        start_status (IconikStorageGatewayTelemetryStartStatusType1 | None | Unset):
+        start_status (IconikStorageGatewayTelemetryStartStatus | None | Unset):
         start_status_message (None | str | Unset):
-        status (IconikStorageGatewayTelemetryStatusType1 | None | Unset):
+        status (IconikStorageGatewayTelemetryStatus | None | Unset):
         storage_gateway_id (None | Unset | UUID):
         version (None | str | Unset):
     """
@@ -49,21 +46,14 @@ class IconikStorageGatewayTelemetry:
     is_leader: bool | None | Unset = UNSET
     log_lines: list[str] | None | Unset = UNSET
     start_last_date: datetime.datetime | None | Unset = UNSET
-    start_status: IconikStorageGatewayTelemetryStartStatusType1 | None | Unset = UNSET
+    start_status: IconikStorageGatewayTelemetryStartStatus | None | Unset = UNSET
     start_status_message: None | str | Unset = UNSET
-    status: IconikStorageGatewayTelemetryStatusType1 | None | Unset = UNSET
+    status: IconikStorageGatewayTelemetryStatus | None | Unset = UNSET
     storage_gateway_id: None | Unset | UUID = UNSET
     version: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.iconik_storage_gateway_telemetry_start_status_type_1 import (
-            IconikStorageGatewayTelemetryStartStatusType1,
-        )
-        from ..models.iconik_storage_gateway_telemetry_status_type_1 import (
-            IconikStorageGatewayTelemetryStatusType1,
-        )
-
         worker_id = str(self.worker_id)
 
         error_log_lines: list[str] | None | Unset
@@ -116,13 +106,11 @@ class IconikStorageGatewayTelemetry:
         else:
             start_last_date = self.start_last_date
 
-        start_status: dict[str, Any] | None | Unset
+        start_status: None | str | Unset
         if isinstance(self.start_status, Unset):
             start_status = UNSET
-        elif isinstance(
-            self.start_status, IconikStorageGatewayTelemetryStartStatusType1
-        ):
-            start_status = self.start_status.to_dict()
+        elif isinstance(self.start_status, IconikStorageGatewayTelemetryStartStatus):
+            start_status = self.start_status.value
         else:
             start_status = self.start_status
 
@@ -132,11 +120,11 @@ class IconikStorageGatewayTelemetry:
         else:
             start_status_message = self.start_status_message
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, IconikStorageGatewayTelemetryStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, IconikStorageGatewayTelemetryStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -190,13 +178,6 @@ class IconikStorageGatewayTelemetry:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.iconik_storage_gateway_telemetry_start_status_type_1 import (
-            IconikStorageGatewayTelemetryStartStatusType1,
-        )
-        from ..models.iconik_storage_gateway_telemetry_status_type_1 import (
-            IconikStorageGatewayTelemetryStatusType1,
-        )
-
         d = dict(src_dict)
         worker_id = UUID(d.pop("worker_id"))
 
@@ -289,24 +270,20 @@ class IconikStorageGatewayTelemetry:
 
         def _parse_start_status(
             data: object,
-        ) -> IconikStorageGatewayTelemetryStartStatusType1 | None | Unset:
+        ) -> IconikStorageGatewayTelemetryStartStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                start_status_type_1 = (
-                    IconikStorageGatewayTelemetryStartStatusType1.from_dict(data)
-                )
+                start_status_type_1 = IconikStorageGatewayTelemetryStartStatus(data)
 
                 return start_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(
-                IconikStorageGatewayTelemetryStartStatusType1 | None | Unset, data
-            )
+            return cast(IconikStorageGatewayTelemetryStartStatus | None | Unset, data)
 
         start_status = _parse_start_status(d.pop("start_status", UNSET))
 
@@ -323,20 +300,20 @@ class IconikStorageGatewayTelemetry:
 
         def _parse_status(
             data: object,
-        ) -> IconikStorageGatewayTelemetryStatusType1 | None | Unset:
+        ) -> IconikStorageGatewayTelemetryStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = IconikStorageGatewayTelemetryStatusType1.from_dict(data)
+                status_type_1 = IconikStorageGatewayTelemetryStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(IconikStorageGatewayTelemetryStatusType1 | None | Unset, data)
+            return cast(IconikStorageGatewayTelemetryStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

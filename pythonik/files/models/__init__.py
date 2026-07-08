@@ -21,9 +21,7 @@ from .analysis_profile_iconik_face_recognition_settings_schema import (
 from .analysis_profile_rev_ai_settings_schema import AnalysisProfileRevAISettingsSchema
 from .analysis_profile_schema import AnalysisProfileSchema
 from .analysis_profile_schema_media_type import AnalysisProfileSchemaMediaType
-from .analysis_profile_schema_service_type_type_1 import (
-    AnalysisProfileSchemaServiceTypeType1,
-)
+from .analysis_profile_schema_service_type import AnalysisProfileSchemaServiceType
 from .analysis_profile_schema_settings_type_0 import AnalysisProfileSchemaSettingsType0
 from .analysis_profile_service_id_schema import AnalysisProfileServiceIdSchema
 from .analysis_profile_settings_schema import AnalysisProfileSettingsSchema
@@ -50,8 +48,8 @@ from .analysis_transcription_settings_schema_analysis_service_account_settings_t
 from .analysis_transcription_settings_schema_media_type import (
     AnalysisTranscriptionSettingsSchemaMediaType,
 )
-from .analysis_transcription_settings_schema_service_type_type_1 import (
-    AnalysisTranscriptionSettingsSchemaServiceTypeType1,
+from .analysis_transcription_settings_schema_service_type import (
+    AnalysisTranscriptionSettingsSchemaServiceType,
 )
 from .analysis_transcription_settings_schema_settings_type_0 import (
     AnalysisTranscriptionSettingsSchemaSettingsType0,
@@ -65,13 +63,11 @@ from .archive_saved_search_request import ArchiveSavedSearchRequest
 from .archive_saved_search_request_schema import ArchiveSavedSearchRequestSchema
 from .asset_batch_export_item_schema import AssetBatchExportItemSchema
 from .asset_batch_export_schema import AssetBatchExportSchema
-from .asset_batch_export_schema_metadata_format_type_1 import (
-    AssetBatchExportSchemaMetadataFormatType1,
+from .asset_batch_export_schema_metadata_format import (
+    AssetBatchExportSchemaMetadataFormat,
 )
 from .asset_export_schema import AssetExportSchema
-from .asset_export_schema_metadata_format_type_1 import (
-    AssetExportSchemaMetadataFormatType1,
-)
+from .asset_export_schema_metadata_format import AssetExportSchemaMetadataFormat
 from .asset_link_proxy_schema import AssetLinkProxySchema
 from .asset_subclip_keyframes_schema import AssetSubclipKeyframesSchema
 from .asset_version_keyframes_schema import AssetVersionKeyframesSchema
@@ -79,9 +75,7 @@ from .asset_versions_keyframes_schema import AssetVersionsKeyframesSchema
 from .azure_settings_schema import AzureSettingsSchema
 from .b2_settings_schema import B2SettingsSchema
 from .base_export_schema import BaseExportSchema
-from .base_export_schema_metadata_format_type_1 import (
-    BaseExportSchemaMetadataFormatType1,
-)
+from .base_export_schema_metadata_format import BaseExportSchemaMetadataFormat
 from .base_query_params_schema import BaseQueryParamsSchema
 from .bulk_action_schema import BulkActionSchema
 from .bulk_action_schema_object_type import BulkActionSchemaObjectType
@@ -99,8 +93,8 @@ from .bulk_export_saved_search_request_schema import BulkExportSavedSearchReques
 from .bulk_fileset_archive_schema import BulkFilesetArchiveSchema
 from .bulk_fileset_archive_schema_object_type import BulkFilesetArchiveSchemaObjectType
 from .bulk_fileset_export_schema import BulkFilesetExportSchema
-from .bulk_fileset_export_schema_metadata_format_type_1 import (
-    BulkFilesetExportSchemaMetadataFormatType1,
+from .bulk_fileset_export_schema_metadata_format import (
+    BulkFilesetExportSchemaMetadataFormat,
 )
 from .bulk_fileset_export_schema_object_type import BulkFilesetExportSchemaObjectType
 from .bulk_fileset_restore_schema import BulkFilesetRestoreSchema
@@ -113,8 +107,8 @@ from .bulk_restore_saved_search_request_schema import (
 )
 from .bulk_transcode_schema import BulkTranscodeSchema
 from .bulk_transcode_schema_object_type import BulkTranscodeSchemaObjectType
-from .bulk_transcode_schema_preferred_storage_method_type_1 import (
-    BulkTranscodeSchemaPreferredStorageMethodType1,
+from .bulk_transcode_schema_preferred_storage_method import (
+    BulkTranscodeSchemaPreferredStorageMethod,
 )
 from .bulk_transfer_asset_request_schema import BulkTransferAssetRequestSchema
 from .bulk_transfer_asset_to_storage_schema import BulkTransferAssetToStorageSchema
@@ -137,25 +131,23 @@ from .collection_copy_keyframes_response_schema import (
     CollectionCopyKeyframesResponseSchema,
 )
 from .collection_export_schema import CollectionExportSchema
-from .collection_export_schema_metadata_format_type_1 import (
-    CollectionExportSchemaMetadataFormatType1,
+from .collection_export_schema_metadata_format import (
+    CollectionExportSchemaMetadataFormat,
 )
 from .collection_keyframe_create_schema import CollectionKeyframeCreateSchema
-from .collection_keyframe_create_schema_status_type_1 import (
-    CollectionKeyframeCreateSchemaStatusType1,
+from .collection_keyframe_create_schema_status import (
+    CollectionKeyframeCreateSchemaStatus,
 )
 from .collection_keyframe_create_schema_type import CollectionKeyframeCreateSchemaType
 from .collection_keyframe_create_schema_upload_credentials_type_0 import (
     CollectionKeyframeCreateSchemaUploadCredentialsType0,
 )
 from .collection_keyframe_schema import CollectionKeyframeSchema
-from .collection_keyframe_schema_status_type_1 import (
-    CollectionKeyframeSchemaStatusType1,
-)
+from .collection_keyframe_schema_status import CollectionKeyframeSchemaStatus
 from .collection_keyframe_schema_type import CollectionKeyframeSchemaType
 from .collection_keyframe_update_schema import CollectionKeyframeUpdateSchema
-from .collection_keyframe_update_schema_status_type_1 import (
-    CollectionKeyframeUpdateSchemaStatusType1,
+from .collection_keyframe_update_schema_status import (
+    CollectionKeyframeUpdateSchemaStatus,
 )
 from .collection_keyframe_update_schema_type import CollectionKeyframeUpdateSchemaType
 from .collection_keyframes_schema import CollectionKeyframesSchema
@@ -638,9 +630,7 @@ from .edit_proxy_response_schema import EditProxyResponseSchema
 from .edit_proxy_schema import EditProxySchema
 from .edit_proxy_settings_schema import EditProxySettingsSchema
 from .edit_ready_transcoder_schema import EditReadyTranscoderSchema
-from .edit_ready_transcoder_schema_videocodec_type_1 import (
-    EditReadyTranscoderSchemaVideocodecType1,
-)
+from .edit_ready_transcoder_schema_videocodec import EditReadyTranscoderSchemaVideocodec
 from .elemental_media_convert_schema import ElementalMediaConvertSchema
 from .elemental_server_schema import ElementalServerSchema
 from .encoding_com_settings_schema import EncodingComSettingsSchema
@@ -649,11 +639,9 @@ from .export_asset_request_schema import ExportAssetRequestSchema
 from .export_collection_request import ExportCollectionRequest
 from .export_collection_request_schema import ExportCollectionRequestSchema
 from .export_location_schema import ExportLocationSchema
-from .export_location_schema_metadata_format_type_1 import (
-    ExportLocationSchemaMetadataFormatType1,
-)
-from .export_location_schema_transcription_format_type_1 import (
-    ExportLocationSchemaTranscriptionFormatType1,
+from .export_location_schema_metadata_format import ExportLocationSchemaMetadataFormat
+from .export_location_schema_transcription_format import (
+    ExportLocationSchemaTranscriptionFormat,
 )
 from .export_locations_schema import ExportLocationsSchema
 from .export_locations_schema_facets_type_0 import ExportLocationsSchemaFacetsType0
@@ -661,18 +649,14 @@ from .export_saved_search_request import ExportSavedSearchRequest
 from .export_saved_search_request_schema import ExportSavedSearchRequestSchema
 from .external_references import ExternalReferences
 from .f_fmpeg_settings_schema import FFmpegSettingsSchema
-from .f_fmpeg_settings_schema_scaling_method_type_1 import (
-    FFmpegSettingsSchemaScalingMethodType1,
-)
+from .f_fmpeg_settings_schema_scaling_method import FFmpegSettingsSchemaScalingMethod
 from .file_base_schema import FileBaseSchema
-from .file_base_schema_status_type_1 import FileBaseSchemaStatusType1
-from .file_base_schema_template_engine_type_1 import FileBaseSchemaTemplateEngineType1
+from .file_base_schema_status import FileBaseSchemaStatus
+from .file_base_schema_template_engine import FileBaseSchemaTemplateEngine
 from .file_base_schema_type import FileBaseSchemaType
 from .file_create_schema import FileCreateSchema
-from .file_create_schema_status_type_1 import FileCreateSchemaStatusType1
-from .file_create_schema_template_engine_type_1 import (
-    FileCreateSchemaTemplateEngineType1,
-)
+from .file_create_schema_status import FileCreateSchemaStatus
+from .file_create_schema_template_engine import FileCreateSchemaTemplateEngine
 from .file_create_schema_type import FileCreateSchemaType
 from .file_create_schema_upload_credentials_type_0 import (
     FileCreateSchemaUploadCredentialsType0,
@@ -681,38 +665,32 @@ from .file_deletion_from_local_storage_schema import FileDeletionFromLocalStorag
 from .file_deletions_schema import FileDeletionsSchema
 from .file_download_url_schema import FileDownloadURLSchema
 from .file_elastic_schema import FileElasticSchema
-from .file_elastic_schema_status_type_1 import FileElasticSchemaStatusType1
-from .file_elastic_schema_template_engine_type_1 import (
-    FileElasticSchemaTemplateEngineType1,
-)
+from .file_elastic_schema_status import FileElasticSchemaStatus
+from .file_elastic_schema_template_engine import FileElasticSchemaTemplateEngine
 from .file_elastic_schema_type import FileElasticSchemaType
 from .file_existence_check_schema import FileExistenceCheckSchema
-from .file_existence_check_schema_file_type_type_1 import (
-    FileExistenceCheckSchemaFileTypeType1,
-)
+from .file_existence_check_schema_file_type import FileExistenceCheckSchemaFileType
 from .file_schema import FileSchema
-from .file_schema_status_type_1 import FileSchemaStatusType1
-from .file_schema_template_engine_type_1 import FileSchemaTemplateEngineType1
+from .file_schema_status import FileSchemaStatus
+from .file_schema_template_engine import FileSchemaTemplateEngine
 from .file_schema_type import FileSchemaType
 from .file_schema_upload_credentials_type_0 import FileSchemaUploadCredentialsType0
 from .file_set_elastic_schema import FileSetElasticSchema
-from .file_set_elastic_schema_status_type_1 import FileSetElasticSchemaStatusType1
-from .file_set_elastic_schema_type_type_1 import FileSetElasticSchemaTypeType1
+from .file_set_elastic_schema_status import FileSetElasticSchemaStatus
+from .file_set_elastic_schema_type import FileSetElasticSchemaType
 from .file_set_schema import FileSetSchema
-from .file_set_schema_status_type_1 import FileSetSchemaStatusType1
-from .file_set_schema_type_type_1 import FileSetSchemaTypeType1
+from .file_set_schema_status import FileSetSchemaStatus
+from .file_set_schema_type import FileSetSchemaType
 from .file_set_source_schema import FileSetSourceSchema
-from .file_set_source_schema_status_type_1 import FileSetSourceSchemaStatusType1
-from .file_set_source_schema_type_type_1 import FileSetSourceSchemaTypeType1
+from .file_set_source_schema_status import FileSetSourceSchemaStatus
+from .file_set_source_schema_type import FileSetSourceSchemaType
 from .file_set_sources_schema import FileSetSourcesSchema
 from .file_sets_elastic_schema import FileSetsElasticSchema
 from .file_sets_elastic_schema_facets_type_0 import FileSetsElasticSchemaFacetsType0
 from .file_sets_schema import FileSetsSchema
 from .file_settings_schema import FileSettingsSchema
 from .file_share_upload_edit_schema import FileShareUploadEditSchema
-from .file_share_upload_edit_schema_status_type_1 import (
-    FileShareUploadEditSchemaStatusType1,
-)
+from .file_share_upload_edit_schema_status import FileShareUploadEditSchemaStatus
 from .files_elastic_schema import FilesElasticSchema
 from .files_elastic_schema_facets_type_0 import FilesElasticSchemaFacetsType0
 from .files_schema import FilesSchema
@@ -724,27 +702,23 @@ from .flics_transcoder_schema import FlicsTranscoderSchema
 from .format_archive_schema import FormatArchiveSchema
 from .format_delete_archive_schema import FormatDeleteArchiveSchema
 from .format_elastic_schema import FormatElasticSchema
-from .format_elastic_schema_archive_status_type_1 import (
-    FormatElasticSchemaArchiveStatusType1,
-)
+from .format_elastic_schema_archive_status import FormatElasticSchemaArchiveStatus
 from .format_elastic_schema_metadata_type_0_item import (
     FormatElasticSchemaMetadataType0Item,
 )
-from .format_elastic_schema_status_type_1 import FormatElasticSchemaStatusType1
+from .format_elastic_schema_status import FormatElasticSchemaStatus
 from .format_restore_schema import FormatRestoreSchema
 from .format_schema import FormatSchema
-from .format_schema_archive_status_type_1 import FormatSchemaArchiveStatusType1
+from .format_schema_archive_status import FormatSchemaArchiveStatus
 from .format_schema_metadata_type_0_item import FormatSchemaMetadataType0Item
-from .format_schema_status_type_1 import FormatSchemaStatusType1
+from .format_schema_status import FormatSchemaStatus
 from .formats_elastic_schema import FormatsElasticSchema
 from .formats_elastic_schema_facets_type_0 import FormatsElasticSchemaFacetsType0
 from .formats_schema import FormatsSchema
 from .ftp_settings_schema import FtpSettingsSchema
 from .gateway_report_schema import GatewayReportSchema
-from .gateway_report_schema_start_status_type_1 import (
-    GatewayReportSchemaStartStatusType1,
-)
-from .gateway_report_schema_status_type_1 import GatewayReportSchemaStatusType1
+from .gateway_report_schema_start_status import GatewayReportSchemaStartStatus
+from .gateway_report_schema_status import GatewayReportSchemaStatus
 from .gateway_status_schema import GatewayStatusSchema
 from .get_analysis_profiles_by_media_type_default_response_default_type_0 import (
     GetAnalysisProfilesByMediaTypeDefaultResponseDefaultType0,
@@ -1555,12 +1529,12 @@ from .iconik_storage_gateway_base_schema import IconikStorageGatewayBaseSchema
 from .iconik_storage_gateway_cluster_read_schema import (
     IconikStorageGatewayClusterReadSchema,
 )
-from .iconik_storage_gateway_cluster_read_schema_status_type_1 import (
-    IconikStorageGatewayClusterReadSchemaStatusType1,
+from .iconik_storage_gateway_cluster_read_schema_status import (
+    IconikStorageGatewayClusterReadSchemaStatus,
 )
 from .iconik_storage_gateway_cluster_schema import IconikStorageGatewayClusterSchema
-from .iconik_storage_gateway_cluster_schema_status_type_1 import (
-    IconikStorageGatewayClusterSchemaStatusType1,
+from .iconik_storage_gateway_cluster_schema_status import (
+    IconikStorageGatewayClusterSchemaStatus,
 )
 from .iconik_storage_gateway_clusters_schema import IconikStorageGatewayClustersSchema
 from .iconik_storage_gateway_event_schema import IconikStorageGatewayEventSchema
@@ -1582,15 +1556,13 @@ from .iconik_storage_gateway_read_schema import IconikStorageGatewayReadSchema
 from .iconik_storage_gateway_read_schema_roles_type_0_item import (
     IconikStorageGatewayReadSchemaRolesType0Item,
 )
-from .iconik_storage_gateway_read_schema_status_type_1 import (
-    IconikStorageGatewayReadSchemaStatusType1,
+from .iconik_storage_gateway_read_schema_status import (
+    IconikStorageGatewayReadSchemaStatus,
 )
 from .iconik_storage_gateway_read_schema_storages_type_0 import (
     IconikStorageGatewayReadSchemaStoragesType0,
 )
-from .iconik_storage_gateway_read_status_type_1 import (
-    IconikStorageGatewayReadStatusType1,
-)
+from .iconik_storage_gateway_read_status import IconikStorageGatewayReadStatus
 from .iconik_storage_gateway_read_storages_type_0 import (
     IconikStorageGatewayReadStoragesType0,
 )
@@ -1607,18 +1579,16 @@ from .iconik_storage_gateway_storage_map_schema import (
 )
 from .iconik_storage_gateway_telemetry import IconikStorageGatewayTelemetry
 from .iconik_storage_gateway_telemetry_schema import IconikStorageGatewayTelemetrySchema
-from .iconik_storage_gateway_telemetry_schema_start_status_type_1 import (
-    IconikStorageGatewayTelemetrySchemaStartStatusType1,
+from .iconik_storage_gateway_telemetry_schema_start_status import (
+    IconikStorageGatewayTelemetrySchemaStartStatus,
 )
-from .iconik_storage_gateway_telemetry_schema_status_type_1 import (
-    IconikStorageGatewayTelemetrySchemaStatusType1,
+from .iconik_storage_gateway_telemetry_schema_status import (
+    IconikStorageGatewayTelemetrySchemaStatus,
 )
-from .iconik_storage_gateway_telemetry_start_status_type_1 import (
-    IconikStorageGatewayTelemetryStartStatusType1,
+from .iconik_storage_gateway_telemetry_start_status import (
+    IconikStorageGatewayTelemetryStartStatus,
 )
-from .iconik_storage_gateway_telemetry_status_type_1 import (
-    IconikStorageGatewayTelemetryStatusType1,
-)
+from .iconik_storage_gateway_telemetry_status import IconikStorageGatewayTelemetryStatus
 from .iconik_storage_gateways_schema import IconikStorageGatewaysSchema
 from .iconik_storage_gateways_telemetry_schema import (
     IconikStorageGatewaysTelemetrySchema,
@@ -1632,24 +1602,24 @@ from .jobs_state_schema import JobsStateSchema
 from .jobs_state_schema_action import JobsStateSchemaAction
 from .keyframe import Keyframe
 from .keyframe_base_schema import KeyframeBaseSchema
-from .keyframe_base_schema_status_type_1 import KeyframeBaseSchemaStatusType1
+from .keyframe_base_schema_status import KeyframeBaseSchemaStatus
 from .keyframe_base_schema_type import KeyframeBaseSchemaType
 from .keyframe_create_schema import KeyframeCreateSchema
-from .keyframe_create_schema_status_type_1 import KeyframeCreateSchemaStatusType1
+from .keyframe_create_schema_status import KeyframeCreateSchemaStatus
 from .keyframe_create_schema_type import KeyframeCreateSchemaType
 from .keyframe_create_schema_upload_credentials_type_0 import (
     KeyframeCreateSchemaUploadCredentialsType0,
 )
 from .keyframe_schema import KeyframeSchema
-from .keyframe_schema_status_type_1 import KeyframeSchemaStatusType1
+from .keyframe_schema_status import KeyframeSchemaStatus
 from .keyframe_schema_type import KeyframeSchemaType
 from .keyframe_schema_upload_credentials_type_0 import (
     KeyframeSchemaUploadCredentialsType0,
 )
-from .keyframe_status_type_1 import KeyframeStatusType1
+from .keyframe_status import KeyframeStatus
 from .keyframe_type import KeyframeType
 from .keyframe_update_schema import KeyframeUpdateSchema
-from .keyframe_update_schema_status_type_1 import KeyframeUpdateSchemaStatusType1
+from .keyframe_update_schema_status import KeyframeUpdateSchemaStatus
 from .keyframe_update_schema_type import KeyframeUpdateSchemaType
 from .keyframe_upload_credentials_type_0 import KeyframeUploadCredentialsType0
 from .keyframes_schema import KeyframesSchema
@@ -1832,20 +1802,16 @@ from .patch_transcoders_by_transcoder_id_response_default_type_1_errors import (
     PatchTranscodersByTranscoderIdResponseDefaultType1Errors,
 )
 from .playlist_keyframe_create_schema import PlaylistKeyframeCreateSchema
-from .playlist_keyframe_create_schema_status_type_1 import (
-    PlaylistKeyframeCreateSchemaStatusType1,
-)
+from .playlist_keyframe_create_schema_status import PlaylistKeyframeCreateSchemaStatus
 from .playlist_keyframe_create_schema_type import PlaylistKeyframeCreateSchemaType
 from .playlist_keyframe_create_schema_upload_credentials_type_0 import (
     PlaylistKeyframeCreateSchemaUploadCredentialsType0,
 )
 from .playlist_keyframe_schema import PlaylistKeyframeSchema
-from .playlist_keyframe_schema_status_type_1 import PlaylistKeyframeSchemaStatusType1
+from .playlist_keyframe_schema_status import PlaylistKeyframeSchemaStatus
 from .playlist_keyframe_schema_type import PlaylistKeyframeSchemaType
 from .playlist_keyframe_update_schema import PlaylistKeyframeUpdateSchema
-from .playlist_keyframe_update_schema_status_type_1 import (
-    PlaylistKeyframeUpdateSchemaStatusType1,
-)
+from .playlist_keyframe_update_schema_status import PlaylistKeyframeUpdateSchemaStatus
 from .playlist_keyframe_update_schema_type import PlaylistKeyframeUpdateSchemaType
 from .playlist_keyframes_schema import PlaylistKeyframesSchema
 from .portal_settings_schema import PortalSettingsSchema
@@ -2770,27 +2736,27 @@ from .prio_pattern_schema import PrioPatternSchema
 from .proxies_schema import ProxiesSchema
 from .proxy import Proxy
 from .proxy_base_schema import ProxyBaseSchema
-from .proxy_base_schema_status_type_1 import ProxyBaseSchemaStatusType1
+from .proxy_base_schema_status import ProxyBaseSchemaStatus
 from .proxy_container_by_user_schema import ProxyContainerByUserSchema
 from .proxy_container_schema import ProxyContainerSchema
 from .proxy_create_schema import ProxyCreateSchema
-from .proxy_create_schema_status_type_1 import ProxyCreateSchemaStatusType1
+from .proxy_create_schema_status import ProxyCreateSchemaStatus
 from .proxy_create_schema_upload_credentials_type_0 import (
     ProxyCreateSchemaUploadCredentialsType0,
 )
 from .proxy_download_url_schema import ProxyDownloadURLSchema
 from .proxy_file_schema import ProxyFileSchema
-from .proxy_file_schema_status_type_1 import ProxyFileSchemaStatusType1
-from .proxy_file_schema_template_engine_type_1 import ProxyFileSchemaTemplateEngineType1
+from .proxy_file_schema_status import ProxyFileSchemaStatus
+from .proxy_file_schema_template_engine import ProxyFileSchemaTemplateEngine
 from .proxy_file_schema_type import ProxyFileSchemaType
 from .proxy_file_update_schema import ProxyFileUpdateSchema
 from .proxy_file_update_schema_status import ProxyFileUpdateSchemaStatus
 from .proxy_schema import ProxySchema
-from .proxy_schema_status_type_1 import ProxySchemaStatusType1
+from .proxy_schema_status import ProxySchemaStatus
 from .proxy_schema_upload_credentials_type_0 import ProxySchemaUploadCredentialsType0
-from .proxy_status_type_1 import ProxyStatusType1
+from .proxy_status import ProxyStatus
 from .proxy_update_schema import ProxyUpdateSchema
-from .proxy_update_schema_status_type_1 import ProxyUpdateSchemaStatusType1
+from .proxy_update_schema_status import ProxyUpdateSchemaStatus
 from .proxy_upload_credentials_type_0 import ProxyUploadCredentialsType0
 from .put_analysis_profiles_by_profile_id_response_default_type_0 import (
     PutAnalysisProfilesByProfileIdResponseDefaultType0,
@@ -3027,9 +2993,9 @@ from .put_transcoders_by_transcoder_id_response_default_type_1_errors import (
     PutTranscodersByTranscoderIdResponseDefaultType1Errors,
 )
 from .redline_schema import RedlineSchema
-from .redline_schema_format_type_1 import RedlineSchemaFormatType1
-from .redline_schema_prcodec_type_1 import RedlineSchemaPrcodecType1
-from .redline_schema_qt_codec_type_1 import RedlineSchemaQtCodecType1
+from .redline_schema_format import RedlineSchemaFormat
+from .redline_schema_prcodec import RedlineSchemaPrcodec
+from .redline_schema_qt_codec import RedlineSchemaQtCodec
 from .reindex_export_location_schema import ReindexExportLocationSchema
 from .reindex_file_schema import ReindexFileSchema
 from .reindex_file_set_schema import ReindexFileSetSchema
@@ -3051,10 +3017,8 @@ from .restore_saved_search_to_storage_request_schema import (
 )
 from .s3_settings_schema import S3SettingsSchema
 from .sequence_update_schema import SequenceUpdateSchema
-from .sequence_update_schema_status_type_1 import SequenceUpdateSchemaStatusType1
-from .sequence_update_schema_template_engine_type_1 import (
-    SequenceUpdateSchemaTemplateEngineType1,
-)
+from .sequence_update_schema_status import SequenceUpdateSchemaStatus
+from .sequence_update_schema_template_engine import SequenceUpdateSchemaTemplateEngine
 from .sequence_update_schema_type import SequenceUpdateSchemaType
 from .sftp_settings_schema import SftpSettingsSchema
 from .source_context import SourceContext
@@ -3064,17 +3028,15 @@ from .storage_access_schema_settings import StorageAccessSchemaSettings
 from .storage_auto_scan_schema import StorageAutoScanSchema
 from .storage_base_schema import StorageBaseSchema
 from .storage_file_schema import StorageFileSchema
-from .storage_file_schema_status_type_1 import StorageFileSchemaStatusType1
-from .storage_file_schema_template_engine_type_1 import (
-    StorageFileSchemaTemplateEngineType1,
-)
+from .storage_file_schema_status import StorageFileSchemaStatus
+from .storage_file_schema_template_engine import StorageFileSchemaTemplateEngine
 from .storage_file_schema_type import StorageFileSchemaType
 from .storage_file_update_schema import StorageFileUpdateSchema
-from .storage_file_update_schema_status_type_1 import StorageFileUpdateSchemaStatusType1
-from .storage_file_update_schema_template_engine_type_1 import (
-    StorageFileUpdateSchemaTemplateEngineType1,
+from .storage_file_update_schema_status import StorageFileUpdateSchemaStatus
+from .storage_file_update_schema_template_engine import (
+    StorageFileUpdateSchemaTemplateEngine,
 )
-from .storage_file_update_schema_type_type_1 import StorageFileUpdateSchemaTypeType1
+from .storage_file_update_schema_type import StorageFileUpdateSchemaType
 from .storage_files_delete_bulk_schema import StorageFilesDeleteBulkSchema
 from .storage_files_query_params_schema import StorageFilesQueryParamsSchema
 from .storage_gateway_params_schema import StorageGatewayParamsSchema
@@ -3086,20 +3048,18 @@ from .storage_private_data_schema import StoragePrivateDataSchema
 from .storage_private_data_schema_method import StoragePrivateDataSchemaMethod
 from .storage_private_data_schema_purpose import StoragePrivateDataSchemaPurpose
 from .storage_private_data_schema_settings import StoragePrivateDataSchemaSettings
-from .storage_private_data_schema_status_type_1 import (
-    StoragePrivateDataSchemaStatusType1,
-)
+from .storage_private_data_schema_status import StoragePrivateDataSchemaStatus
 from .storage_read_schema import StorageReadSchema
 from .storage_read_schema_method import StorageReadSchemaMethod
 from .storage_read_schema_purpose import StorageReadSchemaPurpose
 from .storage_read_schema_settings import StorageReadSchemaSettings
-from .storage_read_schema_status_type_1 import StorageReadSchemaStatusType1
+from .storage_read_schema_status import StorageReadSchemaStatus
 from .storage_scan_schema import StorageScanSchema
 from .storage_schema import StorageSchema
 from .storage_schema_method import StorageSchemaMethod
 from .storage_schema_purpose import StorageSchemaPurpose
 from .storage_schema_settings import StorageSchemaSettings
-from .storage_schema_status_type_1 import StorageSchemaStatusType1
+from .storage_schema_status import StorageSchemaStatus
 from .storage_validation_schema import StorageValidationSchema
 from .storage_validation_schema_method import StorageValidationSchemaMethod
 from .storage_validation_schema_settings import StorageValidationSchemaSettings
@@ -3113,19 +3073,17 @@ from .subtitles_schema import SubtitlesSchema
 from .swap_storages_schema import SwapStoragesSchema
 from .telestream_cloud_schema import TelestreamCloudSchema
 from .temporary_file_create_schema import TemporaryFileCreateSchema
-from .temporary_file_create_schema_status_type_1 import (
-    TemporaryFileCreateSchemaStatusType1,
-)
-from .temporary_file_create_schema_template_engine_type_1 import (
-    TemporaryFileCreateSchemaTemplateEngineType1,
+from .temporary_file_create_schema_status import TemporaryFileCreateSchemaStatus
+from .temporary_file_create_schema_template_engine import (
+    TemporaryFileCreateSchemaTemplateEngine,
 )
 from .temporary_file_create_schema_type import TemporaryFileCreateSchemaType
 from .temporary_file_create_schema_upload_credentials_type_0 import (
     TemporaryFileCreateSchemaUploadCredentialsType0,
 )
 from .temporary_file_set_schema import TemporaryFileSetSchema
-from .temporary_file_set_schema_status_type_1 import TemporaryFileSetSchemaStatusType1
-from .temporary_file_set_schema_type_type_1 import TemporaryFileSetSchemaTypeType1
+from .temporary_file_set_schema_status import TemporaryFileSetSchemaStatus
+from .temporary_file_set_schema_type import TemporaryFileSetSchemaType
 from .time_base_type import TimeBaseType
 from .time_base_type_schema import TimeBaseTypeSchema
 from .time_code_type import TimeCodeType
@@ -3137,9 +3095,7 @@ from .transcoder_by_storage_read_schema import TranscoderByStorageReadSchema
 from .transcoder_by_storage_read_schema_settings_type_0 import (
     TranscoderByStorageReadSchemaSettingsType0,
 )
-from .transcoder_by_storage_read_schema_type_type_1 import (
-    TranscoderByStorageReadSchemaTypeType1,
-)
+from .transcoder_by_storage_read_schema_type import TranscoderByStorageReadSchemaType
 from .transcoder_create_schema import TranscoderCreateSchema
 from .transcoder_create_schema_settings import TranscoderCreateSchemaSettings
 from .transcoder_create_schema_type import TranscoderCreateSchemaType
@@ -3174,7 +3130,7 @@ from .transfer_asset_to_storage_schema import TransferAssetToStorageSchema
 from .transfer_base_schema import TransferBaseSchema
 from .transfer_cloud_schema import TransferCloudSchema
 from .transfer_cloud_schema_job_steps_type_0 import TransferCloudSchemaJobStepsType0
-from .transfer_cloud_schema_status_type_1 import TransferCloudSchemaStatusType1
+from .transfer_cloud_schema_status import TransferCloudSchemaStatus
 from .transfer_collection_to_storage_request import TransferCollectionToStorageRequest
 from .transfer_collection_to_storage_request_schema import (
     TransferCollectionToStorageRequestSchema,
@@ -3215,12 +3171,10 @@ from .upload_iconik_storage_gateway_logs_schema import (
 )
 from .vantage_settings_schema import VantageSettingsSchema
 from .video_base_schema import VideoBaseSchema
-from .video_base_schema_scaling_method_type_1 import VideoBaseSchemaScalingMethodType1
+from .video_base_schema_scaling_method import VideoBaseSchemaScalingMethod
 from .watch_folder_video_transcoder_schema import WatchFolderVideoTranscoderSchema
 from .wildmoka_settings_schema import WildmokaSettingsSchema
-from .wildmoka_settings_schema_scaling_method_type_1 import (
-    WildmokaSettingsSchemaScalingMethodType1,
-)
+from .wildmoka_settings_schema_scaling_method import WildmokaSettingsSchemaScalingMethod
 from .zencoder_settings_schema import ZencoderSettingsSchema
 
 __all__ = (
@@ -3235,7 +3189,7 @@ __all__ = (
     "AnalysisProfileRevAISettingsSchema",
     "AnalysisProfileSchema",
     "AnalysisProfileSchemaMediaType",
-    "AnalysisProfileSchemaServiceTypeType1",
+    "AnalysisProfileSchemaServiceType",
     "AnalysisProfileSchemaSettingsType0",
     "AnalysisProfileServiceIdSchema",
     "AnalysisProfileSettingsSchema",
@@ -3252,7 +3206,7 @@ __all__ = (
     "AnalysisTranscriptionSettingsSchema",
     "AnalysisTranscriptionSettingsSchemaAnalysisServiceAccountSettingsType0",
     "AnalysisTranscriptionSettingsSchemaMediaType",
-    "AnalysisTranscriptionSettingsSchemaServiceTypeType1",
+    "AnalysisTranscriptionSettingsSchemaServiceType",
     "AnalysisTranscriptionSettingsSchemaSettingsType0",
     "ArchiveAssetFormatSchema",
     "ArchiveAssetRequest",
@@ -3263,9 +3217,9 @@ __all__ = (
     "ArchiveSavedSearchRequestSchema",
     "AssetBatchExportItemSchema",
     "AssetBatchExportSchema",
-    "AssetBatchExportSchemaMetadataFormatType1",
+    "AssetBatchExportSchemaMetadataFormat",
     "AssetExportSchema",
-    "AssetExportSchemaMetadataFormatType1",
+    "AssetExportSchemaMetadataFormat",
     "AssetLinkProxySchema",
     "AssetSubclipKeyframesSchema",
     "AssetVersionKeyframesSchema",
@@ -3273,7 +3227,7 @@ __all__ = (
     "AzureSettingsSchema",
     "B2SettingsSchema",
     "BaseExportSchema",
-    "BaseExportSchemaMetadataFormatType1",
+    "BaseExportSchemaMetadataFormat",
     "BaseQueryParamsSchema",
     "BulkActionSchema",
     "BulkActionSchemaObjectType",
@@ -3289,7 +3243,7 @@ __all__ = (
     "BulkFilesetArchiveSchema",
     "BulkFilesetArchiveSchemaObjectType",
     "BulkFilesetExportSchema",
-    "BulkFilesetExportSchemaMetadataFormatType1",
+    "BulkFilesetExportSchemaMetadataFormat",
     "BulkFilesetExportSchemaObjectType",
     "BulkFilesetRestoreSchema",
     "BulkFilesetRestoreSchemaObjectType",
@@ -3299,7 +3253,7 @@ __all__ = (
     "BulkRestoreSavedSearchRequestSchema",
     "BulkTranscodeSchema",
     "BulkTranscodeSchemaObjectType",
-    "BulkTranscodeSchemaPreferredStorageMethodType1",
+    "BulkTranscodeSchemaPreferredStorageMethod",
     "BulkTransferAssetRequestSchema",
     "BulkTransferAssetToStorageSchema",
     "BulkTransferCollectionRequestSchema",
@@ -3313,17 +3267,17 @@ __all__ = (
     "CollectionCopyKeyframesRequestSchema",
     "CollectionCopyKeyframesResponseSchema",
     "CollectionExportSchema",
-    "CollectionExportSchemaMetadataFormatType1",
+    "CollectionExportSchemaMetadataFormat",
     "CollectionKeyframeCreateSchema",
-    "CollectionKeyframeCreateSchemaStatusType1",
+    "CollectionKeyframeCreateSchemaStatus",
     "CollectionKeyframeCreateSchemaType",
     "CollectionKeyframeCreateSchemaUploadCredentialsType0",
     "CollectionKeyframeSchema",
-    "CollectionKeyframeSchemaStatusType1",
+    "CollectionKeyframeSchemaStatus",
     "CollectionKeyframeSchemaType",
     "CollectionKeyframesSchema",
     "CollectionKeyframeUpdateSchema",
-    "CollectionKeyframeUpdateSchemaStatusType1",
+    "CollectionKeyframeUpdateSchemaStatus",
     "CollectionKeyframeUpdateSchemaType",
     "CompleteExportToLocalStorageSchema",
     "CompleteExportToLocalStorageSchemaJobStepsType0",
@@ -3492,7 +3446,7 @@ __all__ = (
     "EditProxySchema",
     "EditProxySettingsSchema",
     "EditReadyTranscoderSchema",
-    "EditReadyTranscoderSchemaVideocodecType1",
+    "EditReadyTranscoderSchemaVideocodec",
     "ElementalMediaConvertSchema",
     "ElementalServerSchema",
     "EncodingComSettingsSchema",
@@ -3501,78 +3455,78 @@ __all__ = (
     "ExportCollectionRequest",
     "ExportCollectionRequestSchema",
     "ExportLocationSchema",
-    "ExportLocationSchemaMetadataFormatType1",
-    "ExportLocationSchemaTranscriptionFormatType1",
+    "ExportLocationSchemaMetadataFormat",
+    "ExportLocationSchemaTranscriptionFormat",
     "ExportLocationsSchema",
     "ExportLocationsSchemaFacetsType0",
     "ExportSavedSearchRequest",
     "ExportSavedSearchRequestSchema",
     "ExternalReferences",
     "FFmpegSettingsSchema",
-    "FFmpegSettingsSchemaScalingMethodType1",
+    "FFmpegSettingsSchemaScalingMethod",
     "FileBaseSchema",
-    "FileBaseSchemaStatusType1",
-    "FileBaseSchemaTemplateEngineType1",
+    "FileBaseSchemaStatus",
+    "FileBaseSchemaTemplateEngine",
     "FileBaseSchemaType",
     "FileCreateSchema",
-    "FileCreateSchemaStatusType1",
-    "FileCreateSchemaTemplateEngineType1",
+    "FileCreateSchemaStatus",
+    "FileCreateSchemaTemplateEngine",
     "FileCreateSchemaType",
     "FileCreateSchemaUploadCredentialsType0",
     "FileDeletionFromLocalStorageSchema",
     "FileDeletionsSchema",
     "FileDownloadURLSchema",
     "FileElasticSchema",
-    "FileElasticSchemaStatusType1",
-    "FileElasticSchemaTemplateEngineType1",
+    "FileElasticSchemaStatus",
+    "FileElasticSchemaTemplateEngine",
     "FileElasticSchemaType",
     "FileExistenceCheckSchema",
-    "FileExistenceCheckSchemaFileTypeType1",
+    "FileExistenceCheckSchemaFileType",
     "FileSchema",
-    "FileSchemaStatusType1",
-    "FileSchemaTemplateEngineType1",
+    "FileSchemaStatus",
+    "FileSchemaTemplateEngine",
     "FileSchemaType",
     "FileSchemaUploadCredentialsType0",
     "FilesElasticSchema",
     "FilesElasticSchemaFacetsType0",
     "FileSetElasticSchema",
-    "FileSetElasticSchemaStatusType1",
-    "FileSetElasticSchemaTypeType1",
+    "FileSetElasticSchemaStatus",
+    "FileSetElasticSchemaType",
     "FileSetSchema",
-    "FileSetSchemaStatusType1",
-    "FileSetSchemaTypeType1",
+    "FileSetSchemaStatus",
+    "FileSetSchemaType",
     "FileSetsElasticSchema",
     "FileSetsElasticSchemaFacetsType0",
     "FileSetSourceSchema",
-    "FileSetSourceSchemaStatusType1",
-    "FileSetSourceSchemaTypeType1",
+    "FileSetSourceSchemaStatus",
+    "FileSetSourceSchemaType",
     "FileSetSourcesSchema",
     "FileSetsSchema",
     "FileSettingsSchema",
     "FilesetTransferBaseSchema",
     "FilesetTransferBaseSchemaJobStepsType0",
     "FileShareUploadEditSchema",
-    "FileShareUploadEditSchemaStatusType1",
+    "FileShareUploadEditSchemaStatus",
     "FilesSchema",
     "FlicsTranscoderSchema",
     "FormatArchiveSchema",
     "FormatDeleteArchiveSchema",
     "FormatElasticSchema",
-    "FormatElasticSchemaArchiveStatusType1",
+    "FormatElasticSchemaArchiveStatus",
     "FormatElasticSchemaMetadataType0Item",
-    "FormatElasticSchemaStatusType1",
+    "FormatElasticSchemaStatus",
     "FormatRestoreSchema",
     "FormatSchema",
-    "FormatSchemaArchiveStatusType1",
+    "FormatSchemaArchiveStatus",
     "FormatSchemaMetadataType0Item",
-    "FormatSchemaStatusType1",
+    "FormatSchemaStatus",
     "FormatsElasticSchema",
     "FormatsElasticSchemaFacetsType0",
     "FormatsSchema",
     "FtpSettingsSchema",
     "GatewayReportSchema",
-    "GatewayReportSchemaStartStatusType1",
-    "GatewayReportSchemaStatusType1",
+    "GatewayReportSchemaStartStatus",
+    "GatewayReportSchemaStatus",
     "GatewayStatusSchema",
     "GetAnalysisProfilesByMediaTypeDefaultResponseDefaultType0",
     "GetAnalysisProfilesByMediaTypeDefaultResponseDefaultType1",
@@ -3849,9 +3803,9 @@ __all__ = (
     "IconikEdgeTranscoderSchema",
     "IconikStorageGatewayBaseSchema",
     "IconikStorageGatewayClusterReadSchema",
-    "IconikStorageGatewayClusterReadSchemaStatusType1",
+    "IconikStorageGatewayClusterReadSchemaStatus",
     "IconikStorageGatewayClusterSchema",
-    "IconikStorageGatewayClusterSchemaStatusType1",
+    "IconikStorageGatewayClusterSchemaStatus",
     "IconikStorageGatewayClustersSchema",
     "IconikStorageGatewayEventSchema",
     "IconikStorageGatewayEventSchemaDataType0",
@@ -3862,9 +3816,9 @@ __all__ = (
     "IconikStorageGatewayReadRolesType0Item",
     "IconikStorageGatewayReadSchema",
     "IconikStorageGatewayReadSchemaRolesType0Item",
-    "IconikStorageGatewayReadSchemaStatusType1",
+    "IconikStorageGatewayReadSchemaStatus",
     "IconikStorageGatewayReadSchemaStoragesType0",
-    "IconikStorageGatewayReadStatusType1",
+    "IconikStorageGatewayReadStatus",
     "IconikStorageGatewayReadStoragesType0",
     "IconikStorageGatewaySchema",
     "IconikStorageGatewaySchemaRolesType0Item",
@@ -3875,10 +3829,10 @@ __all__ = (
     "IconikStorageGatewayStorageMapSchema",
     "IconikStorageGatewayTelemetry",
     "IconikStorageGatewayTelemetrySchema",
-    "IconikStorageGatewayTelemetrySchemaStartStatusType1",
-    "IconikStorageGatewayTelemetrySchemaStatusType1",
-    "IconikStorageGatewayTelemetryStartStatusType1",
-    "IconikStorageGatewayTelemetryStatusType1",
+    "IconikStorageGatewayTelemetrySchemaStartStatus",
+    "IconikStorageGatewayTelemetrySchemaStatus",
+    "IconikStorageGatewayTelemetryStartStatus",
+    "IconikStorageGatewayTelemetryStatus",
     "ImageMagickSettingsSchema",
     "ISGConfigClusterSettingsSchema",
     "ISGConfigSettingsSchema",
@@ -3888,21 +3842,21 @@ __all__ = (
     "JobsStateSchemaAction",
     "Keyframe",
     "KeyframeBaseSchema",
-    "KeyframeBaseSchemaStatusType1",
+    "KeyframeBaseSchemaStatus",
     "KeyframeBaseSchemaType",
     "KeyframeCreateSchema",
-    "KeyframeCreateSchemaStatusType1",
+    "KeyframeCreateSchemaStatus",
     "KeyframeCreateSchemaType",
     "KeyframeCreateSchemaUploadCredentialsType0",
     "KeyframeSchema",
-    "KeyframeSchemaStatusType1",
+    "KeyframeSchemaStatus",
     "KeyframeSchemaType",
     "KeyframeSchemaUploadCredentialsType0",
     "KeyframesSchema",
-    "KeyframeStatusType1",
+    "KeyframeStatus",
     "KeyframeType",
     "KeyframeUpdateSchema",
-    "KeyframeUpdateSchemaStatusType1",
+    "KeyframeUpdateSchemaStatus",
     "KeyframeUpdateSchemaType",
     "KeyframeUploadCredentialsType0",
     "LibreOfficeSettingsSchema",
@@ -3976,15 +3930,15 @@ __all__ = (
     "PatchTranscodersByTranscoderIdResponseDefaultType1",
     "PatchTranscodersByTranscoderIdResponseDefaultType1Errors",
     "PlaylistKeyframeCreateSchema",
-    "PlaylistKeyframeCreateSchemaStatusType1",
+    "PlaylistKeyframeCreateSchemaStatus",
     "PlaylistKeyframeCreateSchemaType",
     "PlaylistKeyframeCreateSchemaUploadCredentialsType0",
     "PlaylistKeyframeSchema",
-    "PlaylistKeyframeSchemaStatusType1",
+    "PlaylistKeyframeSchemaStatus",
     "PlaylistKeyframeSchemaType",
     "PlaylistKeyframesSchema",
     "PlaylistKeyframeUpdateSchema",
-    "PlaylistKeyframeUpdateSchemaStatusType1",
+    "PlaylistKeyframeUpdateSchemaStatus",
     "PlaylistKeyframeUpdateSchemaType",
     "PortalSettingsSchema",
     "PostAnalysisProfilesByProfileIdDefaultResponseDefaultType0",
@@ -4300,25 +4254,25 @@ __all__ = (
     "ProxiesSchema",
     "Proxy",
     "ProxyBaseSchema",
-    "ProxyBaseSchemaStatusType1",
+    "ProxyBaseSchemaStatus",
     "ProxyContainerByUserSchema",
     "ProxyContainerSchema",
     "ProxyCreateSchema",
-    "ProxyCreateSchemaStatusType1",
+    "ProxyCreateSchemaStatus",
     "ProxyCreateSchemaUploadCredentialsType0",
     "ProxyDownloadURLSchema",
     "ProxyFileSchema",
-    "ProxyFileSchemaStatusType1",
-    "ProxyFileSchemaTemplateEngineType1",
+    "ProxyFileSchemaStatus",
+    "ProxyFileSchemaTemplateEngine",
     "ProxyFileSchemaType",
     "ProxyFileUpdateSchema",
     "ProxyFileUpdateSchemaStatus",
     "ProxySchema",
-    "ProxySchemaStatusType1",
+    "ProxySchemaStatus",
     "ProxySchemaUploadCredentialsType0",
-    "ProxyStatusType1",
+    "ProxyStatus",
     "ProxyUpdateSchema",
-    "ProxyUpdateSchemaStatusType1",
+    "ProxyUpdateSchemaStatus",
     "ProxyUploadCredentialsType0",
     "PutAnalysisProfilesByProfileIdResponseDefaultType0",
     "PutAnalysisProfilesByProfileIdResponseDefaultType1",
@@ -4399,9 +4353,9 @@ __all__ = (
     "PutTranscodersByTranscoderIdResponseDefaultType1",
     "PutTranscodersByTranscoderIdResponseDefaultType1Errors",
     "RedlineSchema",
-    "RedlineSchemaFormatType1",
-    "RedlineSchemaPrcodecType1",
-    "RedlineSchemaQtCodecType1",
+    "RedlineSchemaFormat",
+    "RedlineSchemaPrcodec",
+    "RedlineSchemaQtCodec",
     "ReindexExportLocationSchema",
     "ReindexFileSchema",
     "ReindexFileSetSchema",
@@ -4419,8 +4373,8 @@ __all__ = (
     "RestoreSavedSearchToStorageRequestSchema",
     "S3SettingsSchema",
     "SequenceUpdateSchema",
-    "SequenceUpdateSchemaStatusType1",
-    "SequenceUpdateSchemaTemplateEngineType1",
+    "SequenceUpdateSchemaStatus",
+    "SequenceUpdateSchemaTemplateEngine",
     "SequenceUpdateSchemaType",
     "SftpSettingsSchema",
     "SourceContext",
@@ -4430,15 +4384,15 @@ __all__ = (
     "StorageAutoScanSchema",
     "StorageBaseSchema",
     "StorageFileSchema",
-    "StorageFileSchemaStatusType1",
-    "StorageFileSchemaTemplateEngineType1",
+    "StorageFileSchemaStatus",
+    "StorageFileSchemaTemplateEngine",
     "StorageFileSchemaType",
     "StorageFilesDeleteBulkSchema",
     "StorageFilesQueryParamsSchema",
     "StorageFileUpdateSchema",
-    "StorageFileUpdateSchemaStatusType1",
-    "StorageFileUpdateSchemaTemplateEngineType1",
-    "StorageFileUpdateSchemaTypeType1",
+    "StorageFileUpdateSchemaStatus",
+    "StorageFileUpdateSchemaTemplateEngine",
+    "StorageFileUpdateSchemaType",
     "StorageGatewayParamsSchema",
     "StoragePermissionsSchema",
     "StoragePermissionsSchemaMethod",
@@ -4448,18 +4402,18 @@ __all__ = (
     "StoragePrivateDataSchemaMethod",
     "StoragePrivateDataSchemaPurpose",
     "StoragePrivateDataSchemaSettings",
-    "StoragePrivateDataSchemaStatusType1",
+    "StoragePrivateDataSchemaStatus",
     "StorageReadSchema",
     "StorageReadSchemaMethod",
     "StorageReadSchemaPurpose",
     "StorageReadSchemaSettings",
-    "StorageReadSchemaStatusType1",
+    "StorageReadSchemaStatus",
     "StorageScanSchema",
     "StorageSchema",
     "StorageSchemaMethod",
     "StorageSchemaPurpose",
     "StorageSchemaSettings",
-    "StorageSchemaStatusType1",
+    "StorageSchemaStatus",
     "StoragesQueryParamsSchema",
     "StoragesReadSchema",
     "StoragesReadSchemaFacetsType0",
@@ -4473,13 +4427,13 @@ __all__ = (
     "SwapStoragesSchema",
     "TelestreamCloudSchema",
     "TemporaryFileCreateSchema",
-    "TemporaryFileCreateSchemaStatusType1",
-    "TemporaryFileCreateSchemaTemplateEngineType1",
+    "TemporaryFileCreateSchemaStatus",
+    "TemporaryFileCreateSchemaTemplateEngine",
     "TemporaryFileCreateSchemaType",
     "TemporaryFileCreateSchemaUploadCredentialsType0",
     "TemporaryFileSetSchema",
-    "TemporaryFileSetSchemaStatusType1",
-    "TemporaryFileSetSchemaTypeType1",
+    "TemporaryFileSetSchemaStatus",
+    "TemporaryFileSetSchemaType",
     "TimeBaseType",
     "TimeBaseTypeSchema",
     "TimeCodeType",
@@ -4487,7 +4441,7 @@ __all__ = (
     "TranscoderBaseSchema",
     "TranscoderByStorageReadSchema",
     "TranscoderByStorageReadSchemaSettingsType0",
-    "TranscoderByStorageReadSchemaTypeType1",
+    "TranscoderByStorageReadSchemaType",
     "TranscoderCreateSchema",
     "TranscoderCreateSchemaSettings",
     "TranscoderCreateSchemaType",
@@ -4518,7 +4472,7 @@ __all__ = (
     "TransferBaseSchema",
     "TransferCloudSchema",
     "TransferCloudSchemaJobStepsType0",
-    "TransferCloudSchemaStatusType1",
+    "TransferCloudSchemaStatus",
     "TransferCollectionToStorageRequest",
     "TransferCollectionToStorageRequestSchema",
     "TransferFormatToStorageSchema",
@@ -4541,9 +4495,9 @@ __all__ = (
     "UploadIconikStorageGatewayLogsSchema",
     "VantageSettingsSchema",
     "VideoBaseSchema",
-    "VideoBaseSchemaScalingMethodType1",
+    "VideoBaseSchemaScalingMethod",
     "WatchFolderVideoTranscoderSchema",
     "WildmokaSettingsSchema",
-    "WildmokaSettingsSchemaScalingMethodType1",
+    "WildmokaSettingsSchemaScalingMethod",
     "ZencoderSettingsSchema",
 )

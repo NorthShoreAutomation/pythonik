@@ -1,18 +1,15 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.billing_stats_schema_system_domain_status import (
+    BillingStatsSchemaSystemDomainStatus,
+)
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.billing_stats_schema_system_domain_status_type_1 import (
-        BillingStatsSchemaSystemDomainStatusType1,
-    )
-
 
 T = TypeVar("T", bound="BillingStatsSchema")
 
@@ -27,7 +24,7 @@ class BillingStatsSchema:
         invoice_end_of_month (bool | None | Unset):
         new_billing_enabled (bool | None | Unset):
         stripe_id (bool | None | Unset):
-        system_domain_status (BillingStatsSchemaSystemDomainStatusType1 | None | Unset):
+        system_domain_status (BillingStatsSchemaSystemDomainStatus | None | Unset):
     """
 
     system_domain_type: str
@@ -36,16 +33,10 @@ class BillingStatsSchema:
     invoice_end_of_month: bool | None | Unset = UNSET
     new_billing_enabled: bool | None | Unset = UNSET
     stripe_id: bool | None | Unset = UNSET
-    system_domain_status: BillingStatsSchemaSystemDomainStatusType1 | None | Unset = (
-        UNSET
-    )
+    system_domain_status: BillingStatsSchemaSystemDomainStatus | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.billing_stats_schema_system_domain_status_type_1 import (
-            BillingStatsSchemaSystemDomainStatusType1,
-        )
-
         system_domain_type = self.system_domain_type
 
         system_domain_warning_message = self.system_domain_warning_message
@@ -74,13 +65,13 @@ class BillingStatsSchema:
         else:
             stripe_id = self.stripe_id
 
-        system_domain_status: dict[str, Any] | None | Unset
+        system_domain_status: None | str | Unset
         if isinstance(self.system_domain_status, Unset):
             system_domain_status = UNSET
         elif isinstance(
-            self.system_domain_status, BillingStatsSchemaSystemDomainStatusType1
+            self.system_domain_status, BillingStatsSchemaSystemDomainStatus
         ):
-            system_domain_status = self.system_domain_status.to_dict()
+            system_domain_status = self.system_domain_status.value
         else:
             system_domain_status = self.system_domain_status
 
@@ -107,10 +98,6 @@ class BillingStatsSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.billing_stats_schema_system_domain_status_type_1 import (
-            BillingStatsSchemaSystemDomainStatusType1,
-        )
-
         d = dict(src_dict)
         system_domain_type = d.pop("system_domain_type")
 
@@ -158,22 +145,20 @@ class BillingStatsSchema:
 
         def _parse_system_domain_status(
             data: object,
-        ) -> BillingStatsSchemaSystemDomainStatusType1 | None | Unset:
+        ) -> BillingStatsSchemaSystemDomainStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                system_domain_status_type_1 = (
-                    BillingStatsSchemaSystemDomainStatusType1.from_dict(data)
-                )
+                system_domain_status_type_1 = BillingStatsSchemaSystemDomainStatus(data)
 
                 return system_domain_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(BillingStatsSchemaSystemDomainStatusType1 | None | Unset, data)
+            return cast(BillingStatsSchemaSystemDomainStatus | None | Unset, data)
 
         system_domain_status = _parse_system_domain_status(
             d.pop("system_domain_status", UNSET)

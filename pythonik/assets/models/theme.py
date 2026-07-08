@@ -6,10 +6,10 @@ from typing import TYPE_CHECKING, Any, TypeVar, cast
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.theme_base import ThemeBase
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.theme_base_type_1 import ThemeBaseType1
     from ..models.theme_colors import ThemeColors
     from ..models.theme_typography import ThemeTypography
 
@@ -21,26 +21,25 @@ T = TypeVar("T", bound="Theme")
 class Theme:
     """
     Attributes:
-        base (None | ThemeBaseType1 | Unset):
+        base (None | ThemeBase | Unset):
         colors (None | ThemeColors | Unset):
         typography (None | ThemeTypography | Unset):
     """
 
-    base: None | ThemeBaseType1 | Unset = UNSET
+    base: None | ThemeBase | Unset = UNSET
     colors: None | ThemeColors | Unset = UNSET
     typography: None | ThemeTypography | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.theme_base_type_1 import ThemeBaseType1
         from ..models.theme_colors import ThemeColors
         from ..models.theme_typography import ThemeTypography
 
-        base: dict[str, Any] | None | Unset
+        base: None | str | Unset
         if isinstance(self.base, Unset):
             base = UNSET
-        elif isinstance(self.base, ThemeBaseType1):
-            base = self.base.to_dict()
+        elif isinstance(self.base, ThemeBase):
+            base = self.base.value
         else:
             base = self.base
 
@@ -74,26 +73,25 @@ class Theme:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.theme_base_type_1 import ThemeBaseType1
         from ..models.theme_colors import ThemeColors
         from ..models.theme_typography import ThemeTypography
 
         d = dict(src_dict)
 
-        def _parse_base(data: object) -> None | ThemeBaseType1 | Unset:
+        def _parse_base(data: object) -> None | ThemeBase | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                base_type_1 = ThemeBaseType1.from_dict(data)
+                base_type_1 = ThemeBase(data)
 
                 return base_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | ThemeBaseType1 | Unset, data)
+            return cast(None | ThemeBase | Unset, data)
 
         base = _parse_base(d.pop("base", UNSET))
 

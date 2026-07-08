@@ -9,17 +9,13 @@ from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..models.custom_action_create_schema_context import CustomActionCreateSchemaContext
+from ..models.custom_action_create_schema_status import CustomActionCreateSchemaStatus
+from ..models.custom_action_create_schema_type import CustomActionCreateSchemaType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.custom_action_create_schema_headers_type_0 import (
         CustomActionCreateSchemaHeadersType0,
-    )
-    from ..models.custom_action_create_schema_status_type_1 import (
-        CustomActionCreateSchemaStatusType1,
-    )
-    from ..models.custom_action_create_schema_type_type_1 import (
-        CustomActionCreateSchemaTypeType1,
     )
 
 
@@ -44,10 +40,10 @@ class CustomActionCreateSchema:
         metadata_view (None | Unset | UUID):
         publish_template_id (None | str | Unset):
         read_access_for_everyone (bool | None | Unset):
-        status (CustomActionCreateSchemaStatusType1 | None | Unset):
+        status (CustomActionCreateSchemaStatus | None | Unset):
         system_domain_id (None | Unset | UUID):
         transcoder_id (None | Unset | UUID):
-        type_ (CustomActionCreateSchemaTypeType1 | None | Unset):
+        type_ (CustomActionCreateSchemaType | None | Unset):
     """
 
     context: CustomActionCreateSchemaContext
@@ -64,21 +60,15 @@ class CustomActionCreateSchema:
     metadata_view: None | Unset | UUID = UNSET
     publish_template_id: None | str | Unset = UNSET
     read_access_for_everyone: bool | None | Unset = UNSET
-    status: CustomActionCreateSchemaStatusType1 | None | Unset = UNSET
+    status: CustomActionCreateSchemaStatus | None | Unset = UNSET
     system_domain_id: None | Unset | UUID = UNSET
     transcoder_id: None | Unset | UUID = UNSET
-    type_: CustomActionCreateSchemaTypeType1 | None | Unset = UNSET
+    type_: CustomActionCreateSchemaType | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.custom_action_create_schema_headers_type_0 import (
             CustomActionCreateSchemaHeadersType0,
-        )
-        from ..models.custom_action_create_schema_status_type_1 import (
-            CustomActionCreateSchemaStatusType1,
-        )
-        from ..models.custom_action_create_schema_type_type_1 import (
-            CustomActionCreateSchemaTypeType1,
         )
 
         context = self.context.value
@@ -167,11 +157,11 @@ class CustomActionCreateSchema:
         else:
             read_access_for_everyone = self.read_access_for_everyone
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, CustomActionCreateSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, CustomActionCreateSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -191,11 +181,11 @@ class CustomActionCreateSchema:
         else:
             transcoder_id = self.transcoder_id
 
-        type_: dict[str, Any] | None | Unset
+        type_: None | str | Unset
         if isinstance(self.type_, Unset):
             type_ = UNSET
-        elif isinstance(self.type_, CustomActionCreateSchemaTypeType1):
-            type_ = self.type_.to_dict()
+        elif isinstance(self.type_, CustomActionCreateSchemaType):
+            type_ = self.type_.value
         else:
             type_ = self.type_
 
@@ -245,12 +235,6 @@ class CustomActionCreateSchema:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.custom_action_create_schema_headers_type_0 import (
             CustomActionCreateSchemaHeadersType0,
-        )
-        from ..models.custom_action_create_schema_status_type_1 import (
-            CustomActionCreateSchemaStatusType1,
-        )
-        from ..models.custom_action_create_schema_type_type_1 import (
-            CustomActionCreateSchemaTypeType1,
         )
 
         d = dict(src_dict)
@@ -423,20 +407,20 @@ class CustomActionCreateSchema:
 
         def _parse_status(
             data: object,
-        ) -> CustomActionCreateSchemaStatusType1 | None | Unset:
+        ) -> CustomActionCreateSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = CustomActionCreateSchemaStatusType1.from_dict(data)
+                status_type_1 = CustomActionCreateSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(CustomActionCreateSchemaStatusType1 | None | Unset, data)
+            return cast(CustomActionCreateSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 
@@ -474,22 +458,20 @@ class CustomActionCreateSchema:
 
         transcoder_id = _parse_transcoder_id(d.pop("transcoder_id", UNSET))
 
-        def _parse_type_(
-            data: object,
-        ) -> CustomActionCreateSchemaTypeType1 | None | Unset:
+        def _parse_type_(data: object) -> CustomActionCreateSchemaType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                type_type_1 = CustomActionCreateSchemaTypeType1.from_dict(data)
+                type_type_1 = CustomActionCreateSchemaType(data)
 
                 return type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(CustomActionCreateSchemaTypeType1 | None | Unset, data)
+            return cast(CustomActionCreateSchemaType | None | Unset, data)
 
         type_ = _parse_type_(d.pop("type", UNSET))
 

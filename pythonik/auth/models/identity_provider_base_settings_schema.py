@@ -1,24 +1,21 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.identity_provider_base_settings_schema_cert_fingerprint_algorithm import (
+    IdentityProviderBaseSettingsSchemaCertFingerprintAlgorithm,
+)
+from ..models.identity_provider_base_settings_schema_digest_algorithm import (
+    IdentityProviderBaseSettingsSchemaDigestAlgorithm,
+)
+from ..models.identity_provider_base_settings_schema_signature_algorithm import (
+    IdentityProviderBaseSettingsSchemaSignatureAlgorithm,
+)
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.identity_provider_base_settings_schema_cert_fingerprint_algorithm_type_1 import (
-        IdentityProviderBaseSettingsSchemaCertFingerprintAlgorithmType1,
-    )
-    from ..models.identity_provider_base_settings_schema_digest_algorithm_type_1 import (
-        IdentityProviderBaseSettingsSchemaDigestAlgorithmType1,
-    )
-    from ..models.identity_provider_base_settings_schema_signature_algorithm_type_1 import (
-        IdentityProviderBaseSettingsSchemaSignatureAlgorithmType1,
-    )
-
 
 T = TypeVar("T", bound="IdentityProviderBaseSettingsSchema")
 
@@ -28,63 +25,52 @@ class IdentityProviderBaseSettingsSchema:
     """
     Attributes:
         cert_fingerprint (None | str | Unset):
-        cert_fingerprint_algorithm (IdentityProviderBaseSettingsSchemaCertFingerprintAlgorithmType1 | None | Unset):
-        digest_algorithm (IdentityProviderBaseSettingsSchemaDigestAlgorithmType1 | None | Unset):
+        cert_fingerprint_algorithm (IdentityProviderBaseSettingsSchemaCertFingerprintAlgorithm | None | Unset):
+        digest_algorithm (IdentityProviderBaseSettingsSchemaDigestAlgorithm | None | Unset):
         domain_name (None | str | Unset):
         idp_x509cert (None | str | Unset):
-        signature_algorithm (IdentityProviderBaseSettingsSchemaSignatureAlgorithmType1 | None | Unset):
+        signature_algorithm (IdentityProviderBaseSettingsSchemaSignatureAlgorithm | None | Unset):
     """
 
     cert_fingerprint: None | str | Unset = UNSET
     cert_fingerprint_algorithm: (
-        IdentityProviderBaseSettingsSchemaCertFingerprintAlgorithmType1 | None | Unset
+        IdentityProviderBaseSettingsSchemaCertFingerprintAlgorithm | None | Unset
     ) = UNSET
     digest_algorithm: (
-        IdentityProviderBaseSettingsSchemaDigestAlgorithmType1 | None | Unset
+        IdentityProviderBaseSettingsSchemaDigestAlgorithm | None | Unset
     ) = UNSET
     domain_name: None | str | Unset = UNSET
     idp_x509cert: None | str | Unset = UNSET
     signature_algorithm: (
-        IdentityProviderBaseSettingsSchemaSignatureAlgorithmType1 | None | Unset
+        IdentityProviderBaseSettingsSchemaSignatureAlgorithm | None | Unset
     ) = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.identity_provider_base_settings_schema_cert_fingerprint_algorithm_type_1 import (
-            IdentityProviderBaseSettingsSchemaCertFingerprintAlgorithmType1,
-        )
-        from ..models.identity_provider_base_settings_schema_digest_algorithm_type_1 import (
-            IdentityProviderBaseSettingsSchemaDigestAlgorithmType1,
-        )
-        from ..models.identity_provider_base_settings_schema_signature_algorithm_type_1 import (
-            IdentityProviderBaseSettingsSchemaSignatureAlgorithmType1,
-        )
-
         cert_fingerprint: None | str | Unset
         if isinstance(self.cert_fingerprint, Unset):
             cert_fingerprint = UNSET
         else:
             cert_fingerprint = self.cert_fingerprint
 
-        cert_fingerprint_algorithm: dict[str, Any] | None | Unset
+        cert_fingerprint_algorithm: None | str | Unset
         if isinstance(self.cert_fingerprint_algorithm, Unset):
             cert_fingerprint_algorithm = UNSET
         elif isinstance(
             self.cert_fingerprint_algorithm,
-            IdentityProviderBaseSettingsSchemaCertFingerprintAlgorithmType1,
+            IdentityProviderBaseSettingsSchemaCertFingerprintAlgorithm,
         ):
-            cert_fingerprint_algorithm = self.cert_fingerprint_algorithm.to_dict()
+            cert_fingerprint_algorithm = self.cert_fingerprint_algorithm.value
         else:
             cert_fingerprint_algorithm = self.cert_fingerprint_algorithm
 
-        digest_algorithm: dict[str, Any] | None | Unset
+        digest_algorithm: None | str | Unset
         if isinstance(self.digest_algorithm, Unset):
             digest_algorithm = UNSET
         elif isinstance(
-            self.digest_algorithm,
-            IdentityProviderBaseSettingsSchemaDigestAlgorithmType1,
+            self.digest_algorithm, IdentityProviderBaseSettingsSchemaDigestAlgorithm
         ):
-            digest_algorithm = self.digest_algorithm.to_dict()
+            digest_algorithm = self.digest_algorithm.value
         else:
             digest_algorithm = self.digest_algorithm
 
@@ -100,14 +86,14 @@ class IdentityProviderBaseSettingsSchema:
         else:
             idp_x509cert = self.idp_x509cert
 
-        signature_algorithm: dict[str, Any] | None | Unset
+        signature_algorithm: None | str | Unset
         if isinstance(self.signature_algorithm, Unset):
             signature_algorithm = UNSET
         elif isinstance(
             self.signature_algorithm,
-            IdentityProviderBaseSettingsSchemaSignatureAlgorithmType1,
+            IdentityProviderBaseSettingsSchemaSignatureAlgorithm,
         ):
-            signature_algorithm = self.signature_algorithm.to_dict()
+            signature_algorithm = self.signature_algorithm.value
         else:
             signature_algorithm = self.signature_algorithm
 
@@ -131,16 +117,6 @@ class IdentityProviderBaseSettingsSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.identity_provider_base_settings_schema_cert_fingerprint_algorithm_type_1 import (
-            IdentityProviderBaseSettingsSchemaCertFingerprintAlgorithmType1,
-        )
-        from ..models.identity_provider_base_settings_schema_digest_algorithm_type_1 import (
-            IdentityProviderBaseSettingsSchemaDigestAlgorithmType1,
-        )
-        from ..models.identity_provider_base_settings_schema_signature_algorithm_type_1 import (
-            IdentityProviderBaseSettingsSchemaSignatureAlgorithmType1,
-        )
-
         d = dict(src_dict)
 
         def _parse_cert_fingerprint(data: object) -> None | str | Unset:
@@ -154,27 +130,23 @@ class IdentityProviderBaseSettingsSchema:
 
         def _parse_cert_fingerprint_algorithm(
             data: object,
-        ) -> (
-            IdentityProviderBaseSettingsSchemaCertFingerprintAlgorithmType1
-            | None
-            | Unset
-        ):
+        ) -> IdentityProviderBaseSettingsSchemaCertFingerprintAlgorithm | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                cert_fingerprint_algorithm_type_1 = IdentityProviderBaseSettingsSchemaCertFingerprintAlgorithmType1.from_dict(
-                    data
+                cert_fingerprint_algorithm_type_1 = (
+                    IdentityProviderBaseSettingsSchemaCertFingerprintAlgorithm(data)
                 )
 
                 return cert_fingerprint_algorithm_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(
-                IdentityProviderBaseSettingsSchemaCertFingerprintAlgorithmType1
+                IdentityProviderBaseSettingsSchemaCertFingerprintAlgorithm
                 | None
                 | Unset,
                 data,
@@ -186,26 +158,23 @@ class IdentityProviderBaseSettingsSchema:
 
         def _parse_digest_algorithm(
             data: object,
-        ) -> IdentityProviderBaseSettingsSchemaDigestAlgorithmType1 | None | Unset:
+        ) -> IdentityProviderBaseSettingsSchemaDigestAlgorithm | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
                 digest_algorithm_type_1 = (
-                    IdentityProviderBaseSettingsSchemaDigestAlgorithmType1.from_dict(
-                        data
-                    )
+                    IdentityProviderBaseSettingsSchemaDigestAlgorithm(data)
                 )
 
                 return digest_algorithm_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(
-                IdentityProviderBaseSettingsSchemaDigestAlgorithmType1 | None | Unset,
-                data,
+                IdentityProviderBaseSettingsSchemaDigestAlgorithm | None | Unset, data
             )
 
         digest_algorithm = _parse_digest_algorithm(d.pop("digest_algorithm", UNSET))
@@ -230,27 +199,23 @@ class IdentityProviderBaseSettingsSchema:
 
         def _parse_signature_algorithm(
             data: object,
-        ) -> IdentityProviderBaseSettingsSchemaSignatureAlgorithmType1 | None | Unset:
+        ) -> IdentityProviderBaseSettingsSchemaSignatureAlgorithm | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
                 signature_algorithm_type_1 = (
-                    IdentityProviderBaseSettingsSchemaSignatureAlgorithmType1.from_dict(
-                        data
-                    )
+                    IdentityProviderBaseSettingsSchemaSignatureAlgorithm(data)
                 )
 
                 return signature_algorithm_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(
-                IdentityProviderBaseSettingsSchemaSignatureAlgorithmType1
-                | None
-                | Unset,
+                IdentityProviderBaseSettingsSchemaSignatureAlgorithm | None | Unset,
                 data,
             )
 

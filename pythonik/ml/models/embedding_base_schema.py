@@ -2,16 +2,13 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.embedding_base_schema_type import EmbeddingBaseSchemaType
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.embedding_base_schema_type_type_1 import EmbeddingBaseSchemaTypeType1
-
 
 T = TypeVar("T", bound="EmbeddingBaseSchema")
 
@@ -22,19 +19,15 @@ class EmbeddingBaseSchema:
     Attributes:
         date_created (datetime.datetime | None | Unset):
         embedding_vector (list[float] | None | Unset):
-        type_ (EmbeddingBaseSchemaTypeType1 | None | Unset):
+        type_ (EmbeddingBaseSchemaType | None | Unset):
     """
 
     date_created: datetime.datetime | None | Unset = UNSET
     embedding_vector: list[float] | None | Unset = UNSET
-    type_: EmbeddingBaseSchemaTypeType1 | None | Unset = UNSET
+    type_: EmbeddingBaseSchemaType | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.embedding_base_schema_type_type_1 import (
-            EmbeddingBaseSchemaTypeType1,
-        )
-
         date_created: None | str | Unset
         if isinstance(self.date_created, Unset):
             date_created = UNSET
@@ -52,11 +45,11 @@ class EmbeddingBaseSchema:
         else:
             embedding_vector = self.embedding_vector
 
-        type_: dict[str, Any] | None | Unset
+        type_: None | str | Unset
         if isinstance(self.type_, Unset):
             type_ = UNSET
-        elif isinstance(self.type_, EmbeddingBaseSchemaTypeType1):
-            type_ = self.type_.to_dict()
+        elif isinstance(self.type_, EmbeddingBaseSchemaType):
+            type_ = self.type_.value
         else:
             type_ = self.type_
 
@@ -74,10 +67,6 @@ class EmbeddingBaseSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.embedding_base_schema_type_type_1 import (
-            EmbeddingBaseSchemaTypeType1,
-        )
-
         d = dict(src_dict)
 
         def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
@@ -114,20 +103,20 @@ class EmbeddingBaseSchema:
 
         embedding_vector = _parse_embedding_vector(d.pop("embedding_vector", UNSET))
 
-        def _parse_type_(data: object) -> EmbeddingBaseSchemaTypeType1 | None | Unset:
+        def _parse_type_(data: object) -> EmbeddingBaseSchemaType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                type_type_1 = EmbeddingBaseSchemaTypeType1.from_dict(data)
+                type_type_1 = EmbeddingBaseSchemaType(data)
 
                 return type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(EmbeddingBaseSchemaTypeType1 | None | Unset, data)
+            return cast(EmbeddingBaseSchemaType | None | Unset, data)
 
         type_ = _parse_type_(d.pop("type", UNSET))
 

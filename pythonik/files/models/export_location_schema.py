@@ -1,22 +1,19 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.export_location_schema_metadata_format import (
+    ExportLocationSchemaMetadataFormat,
+)
+from ..models.export_location_schema_transcription_format import (
+    ExportLocationSchemaTranscriptionFormat,
+)
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.export_location_schema_metadata_format_type_1 import (
-        ExportLocationSchemaMetadataFormatType1,
-    )
-    from ..models.export_location_schema_transcription_format_type_1 import (
-        ExportLocationSchemaTranscriptionFormatType1,
-    )
-
 
 T = TypeVar("T", bound="ExportLocationSchema")
 
@@ -37,11 +34,11 @@ class ExportLocationSchema:
         export_transcriptions (bool | None | Unset):
         id (None | Unset | UUID):
         include_original_extension (bool | None | Unset):
-        metadata_format (ExportLocationSchemaMetadataFormatType1 | None | Unset):
+        metadata_format (ExportLocationSchemaMetadataFormat | None | Unset):
         metadata_view (None | Unset | UUID):
         system_domain_id (None | Unset | UUID):
         transcode_profile_ids (list[UUID] | None | Unset):
-        transcription_format (ExportLocationSchemaTranscriptionFormatType1 | None | Unset):
+        transcription_format (ExportLocationSchemaTranscriptionFormat | None | Unset):
     """
 
     name: str
@@ -56,23 +53,14 @@ class ExportLocationSchema:
     export_transcriptions: bool | None | Unset = UNSET
     id: None | Unset | UUID = UNSET
     include_original_extension: bool | None | Unset = UNSET
-    metadata_format: ExportLocationSchemaMetadataFormatType1 | None | Unset = UNSET
+    metadata_format: ExportLocationSchemaMetadataFormat | None | Unset = UNSET
     metadata_view: None | Unset | UUID = UNSET
     system_domain_id: None | Unset | UUID = UNSET
     transcode_profile_ids: list[UUID] | None | Unset = UNSET
-    transcription_format: (
-        ExportLocationSchemaTranscriptionFormatType1 | None | Unset
-    ) = UNSET
+    transcription_format: ExportLocationSchemaTranscriptionFormat | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.export_location_schema_metadata_format_type_1 import (
-            ExportLocationSchemaMetadataFormatType1,
-        )
-        from ..models.export_location_schema_transcription_format_type_1 import (
-            ExportLocationSchemaTranscriptionFormatType1,
-        )
-
         name = self.name
 
         path = self.path
@@ -135,11 +123,11 @@ class ExportLocationSchema:
         else:
             include_original_extension = self.include_original_extension
 
-        metadata_format: dict[str, Any] | None | Unset
+        metadata_format: None | str | Unset
         if isinstance(self.metadata_format, Unset):
             metadata_format = UNSET
-        elif isinstance(self.metadata_format, ExportLocationSchemaMetadataFormatType1):
-            metadata_format = self.metadata_format.to_dict()
+        elif isinstance(self.metadata_format, ExportLocationSchemaMetadataFormat):
+            metadata_format = self.metadata_format.value
         else:
             metadata_format = self.metadata_format
 
@@ -173,13 +161,13 @@ class ExportLocationSchema:
         else:
             transcode_profile_ids = self.transcode_profile_ids
 
-        transcription_format: dict[str, Any] | None | Unset
+        transcription_format: None | str | Unset
         if isinstance(self.transcription_format, Unset):
             transcription_format = UNSET
         elif isinstance(
-            self.transcription_format, ExportLocationSchemaTranscriptionFormatType1
+            self.transcription_format, ExportLocationSchemaTranscriptionFormat
         ):
-            transcription_format = self.transcription_format.to_dict()
+            transcription_format = self.transcription_format.value
         else:
             transcription_format = self.transcription_format
 
@@ -225,13 +213,6 @@ class ExportLocationSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.export_location_schema_metadata_format_type_1 import (
-            ExportLocationSchemaMetadataFormatType1,
-        )
-        from ..models.export_location_schema_transcription_format_type_1 import (
-            ExportLocationSchemaTranscriptionFormatType1,
-        )
-
         d = dict(src_dict)
         name = d.pop("name")
 
@@ -336,22 +317,20 @@ class ExportLocationSchema:
 
         def _parse_metadata_format(
             data: object,
-        ) -> ExportLocationSchemaMetadataFormatType1 | None | Unset:
+        ) -> ExportLocationSchemaMetadataFormat | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                metadata_format_type_1 = (
-                    ExportLocationSchemaMetadataFormatType1.from_dict(data)
-                )
+                metadata_format_type_1 = ExportLocationSchemaMetadataFormat(data)
 
                 return metadata_format_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(ExportLocationSchemaMetadataFormatType1 | None | Unset, data)
+            return cast(ExportLocationSchemaMetadataFormat | None | Unset, data)
 
         metadata_format = _parse_metadata_format(d.pop("metadata_format", UNSET))
 
@@ -421,24 +400,22 @@ class ExportLocationSchema:
 
         def _parse_transcription_format(
             data: object,
-        ) -> ExportLocationSchemaTranscriptionFormatType1 | None | Unset:
+        ) -> ExportLocationSchemaTranscriptionFormat | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                transcription_format_type_1 = (
-                    ExportLocationSchemaTranscriptionFormatType1.from_dict(data)
+                transcription_format_type_1 = ExportLocationSchemaTranscriptionFormat(
+                    data
                 )
 
                 return transcription_format_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(
-                ExportLocationSchemaTranscriptionFormatType1 | None | Unset, data
-            )
+            return cast(ExportLocationSchemaTranscriptionFormat | None | Unset, data)
 
         transcription_format = _parse_transcription_format(
             d.pop("transcription_format", UNSET)

@@ -8,16 +8,12 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.role_group_schema_default_user_type import RoleGroupSchemaDefaultUserType
+from ..models.role_group_schema_group_type import RoleGroupSchemaGroupType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.role_categories_schema import RoleCategoriesSchema
-    from ..models.role_group_schema_default_user_type_type_1 import (
-        RoleGroupSchemaDefaultUserTypeType1,
-    )
-    from ..models.role_group_schema_group_type_type_1 import (
-        RoleGroupSchemaGroupTypeType1,
-    )
 
 
 T = TypeVar("T", bound="RoleGroupSchema")
@@ -31,10 +27,10 @@ class RoleGroupSchema:
         alias (None | str | Unset):
         date_created (datetime.datetime | None | Unset):
         date_modified (datetime.datetime | None | Unset):
-        default_user_type (None | RoleGroupSchemaDefaultUserTypeType1 | Unset):
+        default_user_type (None | RoleGroupSchemaDefaultUserType | Unset):
         description (None | str | Unset):
         external_id (None | str | Unset):
-        group_type (None | RoleGroupSchemaGroupTypeType1 | Unset):
+        group_type (None | RoleGroupSchemaGroupType | Unset):
         id (None | Unset | UUID):
         is_legacy_everyone (bool | None | Unset):
         is_saml_group (bool | None | Unset):
@@ -47,10 +43,10 @@ class RoleGroupSchema:
     alias: None | str | Unset = UNSET
     date_created: datetime.datetime | None | Unset = UNSET
     date_modified: datetime.datetime | None | Unset = UNSET
-    default_user_type: None | RoleGroupSchemaDefaultUserTypeType1 | Unset = UNSET
+    default_user_type: None | RoleGroupSchemaDefaultUserType | Unset = UNSET
     description: None | str | Unset = UNSET
     external_id: None | str | Unset = UNSET
-    group_type: None | RoleGroupSchemaGroupTypeType1 | Unset = UNSET
+    group_type: None | RoleGroupSchemaGroupType | Unset = UNSET
     id: None | Unset | UUID = UNSET
     is_legacy_everyone: bool | None | Unset = UNSET
     is_saml_group: bool | None | Unset = UNSET
@@ -61,12 +57,6 @@ class RoleGroupSchema:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.role_categories_schema import RoleCategoriesSchema
-        from ..models.role_group_schema_default_user_type_type_1 import (
-            RoleGroupSchemaDefaultUserTypeType1,
-        )
-        from ..models.role_group_schema_group_type_type_1 import (
-            RoleGroupSchemaGroupTypeType1,
-        )
 
         name = self.name
 
@@ -92,11 +82,11 @@ class RoleGroupSchema:
         else:
             date_modified = self.date_modified
 
-        default_user_type: dict[str, Any] | None | Unset
+        default_user_type: None | str | Unset
         if isinstance(self.default_user_type, Unset):
             default_user_type = UNSET
-        elif isinstance(self.default_user_type, RoleGroupSchemaDefaultUserTypeType1):
-            default_user_type = self.default_user_type.to_dict()
+        elif isinstance(self.default_user_type, RoleGroupSchemaDefaultUserType):
+            default_user_type = self.default_user_type.value
         else:
             default_user_type = self.default_user_type
 
@@ -112,11 +102,11 @@ class RoleGroupSchema:
         else:
             external_id = self.external_id
 
-        group_type: dict[str, Any] | None | Unset
+        group_type: None | str | Unset
         if isinstance(self.group_type, Unset):
             group_type = UNSET
-        elif isinstance(self.group_type, RoleGroupSchemaGroupTypeType1):
-            group_type = self.group_type.to_dict()
+        elif isinstance(self.group_type, RoleGroupSchemaGroupType):
+            group_type = self.group_type.value
         else:
             group_type = self.group_type
 
@@ -202,12 +192,6 @@ class RoleGroupSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.role_categories_schema import RoleCategoriesSchema
-        from ..models.role_group_schema_default_user_type_type_1 import (
-            RoleGroupSchemaDefaultUserTypeType1,
-        )
-        from ..models.role_group_schema_group_type_type_1 import (
-            RoleGroupSchemaGroupTypeType1,
-        )
 
         d = dict(src_dict)
         name = d.pop("name")
@@ -257,22 +241,20 @@ class RoleGroupSchema:
 
         def _parse_default_user_type(
             data: object,
-        ) -> None | RoleGroupSchemaDefaultUserTypeType1 | Unset:
+        ) -> None | RoleGroupSchemaDefaultUserType | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                default_user_type_type_1 = (
-                    RoleGroupSchemaDefaultUserTypeType1.from_dict(data)
-                )
+                default_user_type_type_1 = RoleGroupSchemaDefaultUserType(data)
 
                 return default_user_type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | RoleGroupSchemaDefaultUserTypeType1 | Unset, data)
+            return cast(None | RoleGroupSchemaDefaultUserType | Unset, data)
 
         default_user_type = _parse_default_user_type(d.pop("default_user_type", UNSET))
 
@@ -294,22 +276,20 @@ class RoleGroupSchema:
 
         external_id = _parse_external_id(d.pop("external_id", UNSET))
 
-        def _parse_group_type(
-            data: object,
-        ) -> None | RoleGroupSchemaGroupTypeType1 | Unset:
+        def _parse_group_type(data: object) -> None | RoleGroupSchemaGroupType | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                group_type_type_1 = RoleGroupSchemaGroupTypeType1.from_dict(data)
+                group_type_type_1 = RoleGroupSchemaGroupType(data)
 
                 return group_type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | RoleGroupSchemaGroupTypeType1 | Unset, data)
+            return cast(None | RoleGroupSchemaGroupType | Unset, data)
 
         group_type = _parse_group_type(d.pop("group_type", UNSET))
 

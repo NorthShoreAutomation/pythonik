@@ -38,7 +38,7 @@ from .job_base_schema_metadata_type_0 import JobBaseSchemaMetadataType0
 from .job_base_schema_status import JobBaseSchemaStatus
 from .job_base_schema_type import JobBaseSchemaType
 from .job_child_progress_schema import JobChildProgressSchema
-from .job_child_progress_schema_status_type_1 import JobChildProgressSchemaStatusType1
+from .job_child_progress_schema_status import JobChildProgressSchemaStatus
 from .job_create_schema import JobCreateSchema
 from .job_create_schema_children_progress_type_0 import (
     JobCreateSchemaChildrenProgressType0,
@@ -92,7 +92,7 @@ from .jobs_bulk_edit_params_schema_type_type_0_item import (
 from .jobs_bulk_edit_schema import JobsBulkEditSchema
 from .jobs_bulk_edit_schema_job_context_type_0 import JobsBulkEditSchemaJobContextType0
 from .jobs_bulk_edit_schema_metadata_type_0 import JobsBulkEditSchemaMetadataType0
-from .jobs_bulk_edit_schema_status_type_1 import JobsBulkEditSchemaStatusType1
+from .jobs_bulk_edit_schema_status import JobsBulkEditSchemaStatus
 from .jobs_bulk_params_schema import JobsBulkParamsSchema
 from .jobs_bulk_params_schema_type_type_0_item import JobsBulkParamsSchemaTypeType0Item
 from .jobs_priority_schema import JobsPrioritySchema
@@ -216,7 +216,7 @@ __all__ = (
     "JobBaseSchemaStatus",
     "JobBaseSchemaType",
     "JobChildProgressSchema",
-    "JobChildProgressSchemaStatusType1",
+    "JobChildProgressSchemaStatus",
     "JobCreateSchema",
     "JobCreateSchemaChildrenProgressType0",
     "JobCreateSchemaJobContextType0",
@@ -240,7 +240,7 @@ __all__ = (
     "JobsBulkEditSchema",
     "JobsBulkEditSchemaJobContextType0",
     "JobsBulkEditSchemaMetadataType0",
-    "JobsBulkEditSchemaStatusType1",
+    "JobsBulkEditSchemaStatus",
     "JobsBulkParamsSchema",
     "JobsBulkParamsSchemaTypeType0Item",
     "JobSchema",

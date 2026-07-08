@@ -91,7 +91,7 @@ def _build_response(
 def sync_detailed(
     app_id: str,
     *,
-    client: AuthenticatedClient,
+    client: AuthenticatedClient | Client,
 ) -> Response[
     Any
     | AppSchema
@@ -129,7 +129,7 @@ def sync_detailed(
 def sync(
     app_id: str,
     *,
-    client: AuthenticatedClient,
+    client: AuthenticatedClient | Client,
 ) -> (
     Any
     | AppSchema
@@ -163,7 +163,7 @@ def sync(
 async def asyncio_detailed(
     app_id: str,
     *,
-    client: AuthenticatedClient,
+    client: AuthenticatedClient | Client,
 ) -> Response[
     Any
     | AppSchema
@@ -199,7 +199,7 @@ async def asyncio_detailed(
 async def asyncio(
     app_id: str,
     *,
-    client: AuthenticatedClient,
+    client: AuthenticatedClient | Client,
 ) -> (
     Any
     | AppSchema

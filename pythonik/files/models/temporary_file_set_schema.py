@@ -2,22 +2,15 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.temporary_file_set_schema_status import TemporaryFileSetSchemaStatus
+from ..models.temporary_file_set_schema_type import TemporaryFileSetSchemaType
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.temporary_file_set_schema_status_type_1 import (
-        TemporaryFileSetSchemaStatusType1,
-    )
-    from ..models.temporary_file_set_schema_type_type_1 import (
-        TemporaryFileSetSchemaTypeType1,
-    )
-
 
 T = TypeVar("T", bound="TemporaryFileSetSchema")
 
@@ -41,9 +34,9 @@ class TemporaryFileSetSchema:
         id (None | Unset | UUID):
         is_archive (bool | None | Unset):
         original_storage_id (None | Unset | UUID):
-        status (None | TemporaryFileSetSchemaStatusType1 | Unset):
+        status (None | TemporaryFileSetSchemaStatus | Unset):
         storage_id (None | Unset | UUID):
-        type_ (None | TemporaryFileSetSchemaTypeType1 | Unset):
+        type_ (None | TemporaryFileSetSchemaType | Unset):
         version_id (None | Unset | UUID):
     """
 
@@ -62,20 +55,13 @@ class TemporaryFileSetSchema:
     id: None | Unset | UUID = UNSET
     is_archive: bool | None | Unset = UNSET
     original_storage_id: None | Unset | UUID = UNSET
-    status: None | TemporaryFileSetSchemaStatusType1 | Unset = UNSET
+    status: None | TemporaryFileSetSchemaStatus | Unset = UNSET
     storage_id: None | Unset | UUID = UNSET
-    type_: None | TemporaryFileSetSchemaTypeType1 | Unset = UNSET
+    type_: None | TemporaryFileSetSchemaType | Unset = UNSET
     version_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.temporary_file_set_schema_status_type_1 import (
-            TemporaryFileSetSchemaStatusType1,
-        )
-        from ..models.temporary_file_set_schema_type_type_1 import (
-            TemporaryFileSetSchemaTypeType1,
-        )
-
         base_dir = self.base_dir
 
         component_ids = []
@@ -165,11 +151,11 @@ class TemporaryFileSetSchema:
         else:
             original_storage_id = self.original_storage_id
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, TemporaryFileSetSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, TemporaryFileSetSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -181,11 +167,11 @@ class TemporaryFileSetSchema:
         else:
             storage_id = self.storage_id
 
-        type_: dict[str, Any] | None | Unset
+        type_: None | str | Unset
         if isinstance(self.type_, Unset):
             type_ = UNSET
-        elif isinstance(self.type_, TemporaryFileSetSchemaTypeType1):
-            type_ = self.type_.to_dict()
+        elif isinstance(self.type_, TemporaryFileSetSchemaType):
+            type_ = self.type_.value
         else:
             type_ = self.type_
 
@@ -241,13 +227,6 @@ class TemporaryFileSetSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.temporary_file_set_schema_status_type_1 import (
-            TemporaryFileSetSchemaStatusType1,
-        )
-        from ..models.temporary_file_set_schema_type_type_1 import (
-            TemporaryFileSetSchemaTypeType1,
-        )
-
         d = dict(src_dict)
         base_dir = d.pop("base_dir")
 
@@ -422,22 +401,20 @@ class TemporaryFileSetSchema:
             d.pop("original_storage_id", UNSET)
         )
 
-        def _parse_status(
-            data: object,
-        ) -> None | TemporaryFileSetSchemaStatusType1 | Unset:
+        def _parse_status(data: object) -> None | TemporaryFileSetSchemaStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = TemporaryFileSetSchemaStatusType1.from_dict(data)
+                status_type_1 = TemporaryFileSetSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | TemporaryFileSetSchemaStatusType1 | Unset, data)
+            return cast(None | TemporaryFileSetSchemaStatus | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 
@@ -458,22 +435,20 @@ class TemporaryFileSetSchema:
 
         storage_id = _parse_storage_id(d.pop("storage_id", UNSET))
 
-        def _parse_type_(
-            data: object,
-        ) -> None | TemporaryFileSetSchemaTypeType1 | Unset:
+        def _parse_type_(data: object) -> None | TemporaryFileSetSchemaType | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                type_type_1 = TemporaryFileSetSchemaTypeType1.from_dict(data)
+                type_type_1 = TemporaryFileSetSchemaType(data)
 
                 return type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | TemporaryFileSetSchemaTypeType1 | Unset, data)
+            return cast(None | TemporaryFileSetSchemaType | Unset, data)
 
         type_ = _parse_type_(d.pop("type", UNSET))
 

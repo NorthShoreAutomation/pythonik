@@ -8,13 +8,11 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.group_schema_default_user_type import GroupSchemaDefaultUserType
+from ..models.group_schema_group_type import GroupSchemaGroupType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.group_schema_default_user_type_type_1 import (
-        GroupSchemaDefaultUserTypeType1,
-    )
-    from ..models.group_schema_group_type_type_1 import GroupSchemaGroupTypeType1
     from ..models.role_categories import RoleCategories
 
 
@@ -29,10 +27,10 @@ class GroupSchema:
         alias (None | str | Unset):
         date_created (datetime.datetime | None | Unset):
         date_modified (datetime.datetime | None | Unset):
-        default_user_type (GroupSchemaDefaultUserTypeType1 | None | Unset):
+        default_user_type (GroupSchemaDefaultUserType | None | Unset):
         description (None | str | Unset):
         external_id (None | str | Unset):
-        group_type (GroupSchemaGroupTypeType1 | None | Unset):
+        group_type (GroupSchemaGroupType | None | Unset):
         id (None | Unset | UUID):
         is_legacy_everyone (bool | None | Unset):
         is_saml_group (bool | None | Unset):
@@ -46,10 +44,10 @@ class GroupSchema:
     alias: None | str | Unset = UNSET
     date_created: datetime.datetime | None | Unset = UNSET
     date_modified: datetime.datetime | None | Unset = UNSET
-    default_user_type: GroupSchemaDefaultUserTypeType1 | None | Unset = UNSET
+    default_user_type: GroupSchemaDefaultUserType | None | Unset = UNSET
     description: None | str | Unset = UNSET
     external_id: None | str | Unset = UNSET
-    group_type: GroupSchemaGroupTypeType1 | None | Unset = UNSET
+    group_type: GroupSchemaGroupType | None | Unset = UNSET
     id: None | Unset | UUID = UNSET
     is_legacy_everyone: bool | None | Unset = UNSET
     is_saml_group: bool | None | Unset = UNSET
@@ -60,10 +58,6 @@ class GroupSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.group_schema_default_user_type_type_1 import (
-            GroupSchemaDefaultUserTypeType1,
-        )
-        from ..models.group_schema_group_type_type_1 import GroupSchemaGroupTypeType1
         from ..models.role_categories import RoleCategories
 
         name = self.name
@@ -90,11 +84,11 @@ class GroupSchema:
         else:
             date_modified = self.date_modified
 
-        default_user_type: dict[str, Any] | None | Unset
+        default_user_type: None | str | Unset
         if isinstance(self.default_user_type, Unset):
             default_user_type = UNSET
-        elif isinstance(self.default_user_type, GroupSchemaDefaultUserTypeType1):
-            default_user_type = self.default_user_type.to_dict()
+        elif isinstance(self.default_user_type, GroupSchemaDefaultUserType):
+            default_user_type = self.default_user_type.value
         else:
             default_user_type = self.default_user_type
 
@@ -110,11 +104,11 @@ class GroupSchema:
         else:
             external_id = self.external_id
 
-        group_type: dict[str, Any] | None | Unset
+        group_type: None | str | Unset
         if isinstance(self.group_type, Unset):
             group_type = UNSET
-        elif isinstance(self.group_type, GroupSchemaGroupTypeType1):
-            group_type = self.group_type.to_dict()
+        elif isinstance(self.group_type, GroupSchemaGroupType):
+            group_type = self.group_type.value
         else:
             group_type = self.group_type
 
@@ -207,10 +201,6 @@ class GroupSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.group_schema_default_user_type_type_1 import (
-            GroupSchemaDefaultUserTypeType1,
-        )
-        from ..models.group_schema_group_type_type_1 import GroupSchemaGroupTypeType1
         from ..models.role_categories import RoleCategories
 
         d = dict(src_dict)
@@ -261,22 +251,20 @@ class GroupSchema:
 
         def _parse_default_user_type(
             data: object,
-        ) -> GroupSchemaDefaultUserTypeType1 | None | Unset:
+        ) -> GroupSchemaDefaultUserType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                default_user_type_type_1 = GroupSchemaDefaultUserTypeType1.from_dict(
-                    data
-                )
+                default_user_type_type_1 = GroupSchemaDefaultUserType(data)
 
                 return default_user_type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(GroupSchemaDefaultUserTypeType1 | None | Unset, data)
+            return cast(GroupSchemaDefaultUserType | None | Unset, data)
 
         default_user_type = _parse_default_user_type(d.pop("default_user_type", UNSET))
 
@@ -298,20 +286,20 @@ class GroupSchema:
 
         external_id = _parse_external_id(d.pop("external_id", UNSET))
 
-        def _parse_group_type(data: object) -> GroupSchemaGroupTypeType1 | None | Unset:
+        def _parse_group_type(data: object) -> GroupSchemaGroupType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                group_type_type_1 = GroupSchemaGroupTypeType1.from_dict(data)
+                group_type_type_1 = GroupSchemaGroupType(data)
 
                 return group_type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(GroupSchemaGroupTypeType1 | None | Unset, data)
+            return cast(GroupSchemaGroupType | None | Unset, data)
 
         group_type = _parse_group_type(d.pop("group_type", UNSET))
 

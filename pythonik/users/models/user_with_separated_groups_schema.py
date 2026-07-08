@@ -8,6 +8,12 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.user_with_separated_groups_schema_onboarding_goal import (
+    UserWithSeparatedGroupsSchemaOnboardingGoal,
+)
+from ..models.user_with_separated_groups_schema_status import (
+    UserWithSeparatedGroupsSchemaStatus,
+)
 from ..models.user_with_separated_groups_schema_type import (
     UserWithSeparatedGroupsSchemaType,
 )
@@ -15,12 +21,6 @@ from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.user_system_metadata_schema import UserSystemMetadataSchema
-    from ..models.user_with_separated_groups_schema_onboarding_goal_type_1 import (
-        UserWithSeparatedGroupsSchemaOnboardingGoalType1,
-    )
-    from ..models.user_with_separated_groups_schema_status_type_1 import (
-        UserWithSeparatedGroupsSchemaStatusType1,
-    )
 
 
 T = TypeVar("T", bound="UserWithSeparatedGroupsSchema")
@@ -59,7 +59,7 @@ class UserWithSeparatedGroupsSchema:
         last_unsuccessful_auth (datetime.datetime | None | Unset):
         last_web_login (datetime.datetime | None | Unset):
         metadata (Any | Unset):
-        onboarding_goal (None | Unset | UserWithSeparatedGroupsSchemaOnboardingGoalType1):
+        onboarding_goal (None | Unset | UserWithSeparatedGroupsSchemaOnboardingGoal):
         password (None | str | Unset):
         password_changed (datetime.datetime | None | Unset):
         phone (None | str | Unset):
@@ -69,7 +69,7 @@ class UserWithSeparatedGroupsSchema:
         photo_storage_id (None | Unset | UUID):
         primary_group (None | Unset | UUID):
         role_groups (list[UUID] | None | Unset):
-        status (None | Unset | UserWithSeparatedGroupsSchemaStatusType1):
+        status (None | Unset | UserWithSeparatedGroupsSchemaStatus):
         system_domain_id (None | Unset | UUID):
         system_domains (list[UUID] | None | Unset):
         system_metadata (None | Unset | UserSystemMetadataSchema):
@@ -106,9 +106,7 @@ class UserWithSeparatedGroupsSchema:
     last_unsuccessful_auth: datetime.datetime | None | Unset = UNSET
     last_web_login: datetime.datetime | None | Unset = UNSET
     metadata: Any | Unset = UNSET
-    onboarding_goal: None | Unset | UserWithSeparatedGroupsSchemaOnboardingGoalType1 = (
-        UNSET
-    )
+    onboarding_goal: None | Unset | UserWithSeparatedGroupsSchemaOnboardingGoal = UNSET
     password: None | str | Unset = UNSET
     password_changed: datetime.datetime | None | Unset = UNSET
     phone: None | str | Unset = UNSET
@@ -118,7 +116,7 @@ class UserWithSeparatedGroupsSchema:
     photo_storage_id: None | Unset | UUID = UNSET
     primary_group: None | Unset | UUID = UNSET
     role_groups: list[UUID] | None | Unset = UNSET
-    status: None | Unset | UserWithSeparatedGroupsSchemaStatusType1 = UNSET
+    status: None | Unset | UserWithSeparatedGroupsSchemaStatus = UNSET
     system_domain_id: None | Unset | UUID = UNSET
     system_domains: list[UUID] | None | Unset = UNSET
     system_metadata: None | Unset | UserSystemMetadataSchema = UNSET
@@ -128,12 +126,6 @@ class UserWithSeparatedGroupsSchema:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.user_system_metadata_schema import UserSystemMetadataSchema
-        from ..models.user_with_separated_groups_schema_onboarding_goal_type_1 import (
-            UserWithSeparatedGroupsSchemaOnboardingGoalType1,
-        )
-        from ..models.user_with_separated_groups_schema_status_type_1 import (
-            UserWithSeparatedGroupsSchemaStatusType1,
-        )
 
         type_ = self.type_.value
 
@@ -337,13 +329,13 @@ class UserWithSeparatedGroupsSchema:
 
         metadata = self.metadata
 
-        onboarding_goal: dict[str, Any] | None | Unset
+        onboarding_goal: None | str | Unset
         if isinstance(self.onboarding_goal, Unset):
             onboarding_goal = UNSET
         elif isinstance(
-            self.onboarding_goal, UserWithSeparatedGroupsSchemaOnboardingGoalType1
+            self.onboarding_goal, UserWithSeparatedGroupsSchemaOnboardingGoal
         ):
-            onboarding_goal = self.onboarding_goal.to_dict()
+            onboarding_goal = self.onboarding_goal.value
         else:
             onboarding_goal = self.onboarding_goal
 
@@ -413,11 +405,11 @@ class UserWithSeparatedGroupsSchema:
         else:
             role_groups = self.role_groups
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, UserWithSeparatedGroupsSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, UserWithSeparatedGroupsSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -570,12 +562,6 @@ class UserWithSeparatedGroupsSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.user_system_metadata_schema import UserSystemMetadataSchema
-        from ..models.user_with_separated_groups_schema_onboarding_goal_type_1 import (
-            UserWithSeparatedGroupsSchemaOnboardingGoalType1,
-        )
-        from ..models.user_with_separated_groups_schema_status_type_1 import (
-            UserWithSeparatedGroupsSchemaStatusType1,
-        )
 
         d = dict(src_dict)
         type_ = UserWithSeparatedGroupsSchemaType(d.pop("type"))
@@ -988,23 +974,23 @@ class UserWithSeparatedGroupsSchema:
 
         def _parse_onboarding_goal(
             data: object,
-        ) -> None | Unset | UserWithSeparatedGroupsSchemaOnboardingGoalType1:
+        ) -> None | Unset | UserWithSeparatedGroupsSchemaOnboardingGoal:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                onboarding_goal_type_1 = (
-                    UserWithSeparatedGroupsSchemaOnboardingGoalType1.from_dict(data)
+                onboarding_goal_type_1 = UserWithSeparatedGroupsSchemaOnboardingGoal(
+                    data
                 )
 
                 return onboarding_goal_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(
-                None | Unset | UserWithSeparatedGroupsSchemaOnboardingGoalType1, data
+                None | Unset | UserWithSeparatedGroupsSchemaOnboardingGoal, data
             )
 
         onboarding_goal = _parse_onboarding_goal(d.pop("onboarding_goal", UNSET))
@@ -1129,20 +1115,20 @@ class UserWithSeparatedGroupsSchema:
 
         def _parse_status(
             data: object,
-        ) -> None | Unset | UserWithSeparatedGroupsSchemaStatusType1:
+        ) -> None | Unset | UserWithSeparatedGroupsSchemaStatus:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = UserWithSeparatedGroupsSchemaStatusType1.from_dict(data)
+                status_type_1 = UserWithSeparatedGroupsSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | Unset | UserWithSeparatedGroupsSchemaStatusType1, data)
+            return cast(None | Unset | UserWithSeparatedGroupsSchemaStatus, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

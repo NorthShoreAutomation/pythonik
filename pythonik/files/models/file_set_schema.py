@@ -2,18 +2,15 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.file_set_schema_status import FileSetSchemaStatus
+from ..models.file_set_schema_type import FileSetSchemaType
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.file_set_schema_status_type_1 import FileSetSchemaStatusType1
-    from ..models.file_set_schema_type_type_1 import FileSetSchemaTypeType1
-
 
 T = TypeVar("T", bound="FileSetSchema")
 
@@ -36,9 +33,9 @@ class FileSetSchema:
         id (None | Unset | UUID):
         is_archive (bool | None | Unset):
         original_storage_id (None | Unset | UUID):
-        status (FileSetSchemaStatusType1 | None | Unset):
+        status (FileSetSchemaStatus | None | Unset):
         storage_id (None | Unset | UUID):
-        type_ (FileSetSchemaTypeType1 | None | Unset):
+        type_ (FileSetSchemaType | None | Unset):
         version_id (None | Unset | UUID):
     """
 
@@ -56,16 +53,13 @@ class FileSetSchema:
     id: None | Unset | UUID = UNSET
     is_archive: bool | None | Unset = UNSET
     original_storage_id: None | Unset | UUID = UNSET
-    status: FileSetSchemaStatusType1 | None | Unset = UNSET
+    status: FileSetSchemaStatus | None | Unset = UNSET
     storage_id: None | Unset | UUID = UNSET
-    type_: FileSetSchemaTypeType1 | None | Unset = UNSET
+    type_: FileSetSchemaType | None | Unset = UNSET
     version_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.file_set_schema_status_type_1 import FileSetSchemaStatusType1
-        from ..models.file_set_schema_type_type_1 import FileSetSchemaTypeType1
-
         base_dir = self.base_dir
 
         component_ids = []
@@ -153,11 +147,11 @@ class FileSetSchema:
         else:
             original_storage_id = self.original_storage_id
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, FileSetSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, FileSetSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -169,11 +163,11 @@ class FileSetSchema:
         else:
             storage_id = self.storage_id
 
-        type_: dict[str, Any] | None | Unset
+        type_: None | str | Unset
         if isinstance(self.type_, Unset):
             type_ = UNSET
-        elif isinstance(self.type_, FileSetSchemaTypeType1):
-            type_ = self.type_.to_dict()
+        elif isinstance(self.type_, FileSetSchemaType):
+            type_ = self.type_.value
         else:
             type_ = self.type_
 
@@ -228,9 +222,6 @@ class FileSetSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.file_set_schema_status_type_1 import FileSetSchemaStatusType1
-        from ..models.file_set_schema_type_type_1 import FileSetSchemaTypeType1
-
         d = dict(src_dict)
         base_dir = d.pop("base_dir")
 
@@ -403,20 +394,20 @@ class FileSetSchema:
             d.pop("original_storage_id", UNSET)
         )
 
-        def _parse_status(data: object) -> FileSetSchemaStatusType1 | None | Unset:
+        def _parse_status(data: object) -> FileSetSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = FileSetSchemaStatusType1.from_dict(data)
+                status_type_1 = FileSetSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(FileSetSchemaStatusType1 | None | Unset, data)
+            return cast(FileSetSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 
@@ -437,20 +428,20 @@ class FileSetSchema:
 
         storage_id = _parse_storage_id(d.pop("storage_id", UNSET))
 
-        def _parse_type_(data: object) -> FileSetSchemaTypeType1 | None | Unset:
+        def _parse_type_(data: object) -> FileSetSchemaType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                type_type_1 = FileSetSchemaTypeType1.from_dict(data)
+                type_type_1 = FileSetSchemaType(data)
 
                 return type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(FileSetSchemaTypeType1 | None | Unset, data)
+            return cast(FileSetSchemaType | None | Unset, data)
 
         type_ = _parse_type_(d.pop("type", UNSET))
 

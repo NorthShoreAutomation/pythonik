@@ -9,15 +9,13 @@ from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..models.edit_segment_for_bulk_segment_type import EditSegmentForBulkSegmentType
+from ..models.edit_segment_for_bulk_status import EditSegmentForBulkStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.drawing import Drawing
     from ..models.edit_segment_for_bulk_metadata_type_0 import (
         EditSegmentForBulkMetadataType0,
-    )
-    from ..models.edit_segment_for_bulk_status_type_1 import (
-        EditSegmentForBulkStatusType1,
     )
     from ..models.face_bounding_box import FaceBoundingBox
     from ..models.transcription_type import TranscriptionType
@@ -53,7 +51,7 @@ class EditSegmentForBulk:
         segment_track (None | str | Unset):
         share_id (None | Unset | UUID): ID of a share if the segment is created from a share
         share_user_email (None | str | Unset):
-        status (EditSegmentForBulkStatusType1 | None | Unset):
+        status (EditSegmentForBulkStatus | None | Unset):
         subclip_id (None | Unset | UUID):
         time_end_milliseconds (int | None | Unset):
         time_start_milliseconds (int | None | Unset):
@@ -90,7 +88,7 @@ class EditSegmentForBulk:
     segment_track: None | str | Unset = UNSET
     share_id: None | Unset | UUID = UNSET
     share_user_email: None | str | Unset = UNSET
-    status: EditSegmentForBulkStatusType1 | None | Unset = UNSET
+    status: EditSegmentForBulkStatus | None | Unset = UNSET
     subclip_id: None | Unset | UUID = UNSET
     time_end_milliseconds: int | None | Unset = UNSET
     time_start_milliseconds: int | None | Unset = UNSET
@@ -109,9 +107,6 @@ class EditSegmentForBulk:
         from ..models.drawing import Drawing
         from ..models.edit_segment_for_bulk_metadata_type_0 import (
             EditSegmentForBulkMetadataType0,
-        )
-        from ..models.edit_segment_for_bulk_status_type_1 import (
-            EditSegmentForBulkStatusType1,
         )
         from ..models.transcription_type import TranscriptionType
         from ..models.user import User
@@ -264,11 +259,11 @@ class EditSegmentForBulk:
         else:
             share_user_email = self.share_user_email
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, EditSegmentForBulkStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, EditSegmentForBulkStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -437,9 +432,6 @@ class EditSegmentForBulk:
         from ..models.drawing import Drawing
         from ..models.edit_segment_for_bulk_metadata_type_0 import (
             EditSegmentForBulkMetadataType0,
-        )
-        from ..models.edit_segment_for_bulk_status_type_1 import (
-            EditSegmentForBulkStatusType1,
         )
         from ..models.face_bounding_box import FaceBoundingBox
         from ..models.transcription_type import TranscriptionType
@@ -724,20 +716,20 @@ class EditSegmentForBulk:
 
         share_user_email = _parse_share_user_email(d.pop("share_user_email", UNSET))
 
-        def _parse_status(data: object) -> EditSegmentForBulkStatusType1 | None | Unset:
+        def _parse_status(data: object) -> EditSegmentForBulkStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = EditSegmentForBulkStatusType1.from_dict(data)
+                status_type_1 = EditSegmentForBulkStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(EditSegmentForBulkStatusType1 | None | Unset, data)
+            return cast(EditSegmentForBulkStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

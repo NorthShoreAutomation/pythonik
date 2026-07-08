@@ -7,20 +7,18 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.collection_base_schema_custom_order_status import (
+    CollectionBaseSchemaCustomOrderStatus,
+)
+from ..models.collection_base_schema_status import CollectionBaseSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.collection_base_schema_custom_order_status_type_1 import (
-        CollectionBaseSchemaCustomOrderStatusType1,
-    )
     from ..models.collection_base_schema_keyframes_type_0_item import (
         CollectionBaseSchemaKeyframesType0Item,
     )
     from ..models.collection_base_schema_metadata_type_0 import (
         CollectionBaseSchemaMetadataType0,
-    )
-    from ..models.collection_base_schema_status_type_1 import (
-        CollectionBaseSchemaStatusType1,
     )
 
 
@@ -35,7 +33,7 @@ class CollectionBaseSchema:
         category (None | str | Unset):
         created_by_user (None | Unset | UUID):
         custom_keyframe (None | Unset | UUID):
-        custom_order_status (CollectionBaseSchemaCustomOrderStatusType1 | None | Unset):
+        custom_order_status (CollectionBaseSchemaCustomOrderStatus | None | Unset):
         custom_poster (None | Unset | UUID):
         deleted_by_user (None | Unset | UUID):
         external_id (None | str | Unset):
@@ -52,7 +50,7 @@ class CollectionBaseSchema:
         permissions (list[str] | None | Unset):
         position (int | None | Unset):
         project_id (None | Unset | UUID):
-        status (CollectionBaseSchemaStatusType1 | None | Unset):
+        status (CollectionBaseSchemaStatus | None | Unset):
         storage_id (None | Unset | UUID):
     """
 
@@ -60,9 +58,7 @@ class CollectionBaseSchema:
     category: None | str | Unset = UNSET
     created_by_user: None | Unset | UUID = UNSET
     custom_keyframe: None | Unset | UUID = UNSET
-    custom_order_status: CollectionBaseSchemaCustomOrderStatusType1 | None | Unset = (
-        UNSET
-    )
+    custom_order_status: CollectionBaseSchemaCustomOrderStatus | None | Unset = UNSET
     custom_poster: None | Unset | UUID = UNSET
     deleted_by_user: None | Unset | UUID = UNSET
     external_id: None | str | Unset = UNSET
@@ -79,19 +75,13 @@ class CollectionBaseSchema:
     permissions: list[str] | None | Unset = UNSET
     position: int | None | Unset = UNSET
     project_id: None | Unset | UUID = UNSET
-    status: CollectionBaseSchemaStatusType1 | None | Unset = UNSET
+    status: CollectionBaseSchemaStatus | None | Unset = UNSET
     storage_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.collection_base_schema_custom_order_status_type_1 import (
-            CollectionBaseSchemaCustomOrderStatusType1,
-        )
         from ..models.collection_base_schema_metadata_type_0 import (
             CollectionBaseSchemaMetadataType0,
-        )
-        from ..models.collection_base_schema_status_type_1 import (
-            CollectionBaseSchemaStatusType1,
         )
 
         title = self.title
@@ -118,13 +108,13 @@ class CollectionBaseSchema:
         else:
             custom_keyframe = self.custom_keyframe
 
-        custom_order_status: dict[str, Any] | None | Unset
+        custom_order_status: None | str | Unset
         if isinstance(self.custom_order_status, Unset):
             custom_order_status = UNSET
         elif isinstance(
-            self.custom_order_status, CollectionBaseSchemaCustomOrderStatusType1
+            self.custom_order_status, CollectionBaseSchemaCustomOrderStatus
         ):
-            custom_order_status = self.custom_order_status.to_dict()
+            custom_order_status = self.custom_order_status.value
         else:
             custom_order_status = self.custom_order_status
 
@@ -265,11 +255,11 @@ class CollectionBaseSchema:
         else:
             project_id = self.project_id
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, CollectionBaseSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, CollectionBaseSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -337,17 +327,11 @@ class CollectionBaseSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.collection_base_schema_custom_order_status_type_1 import (
-            CollectionBaseSchemaCustomOrderStatusType1,
-        )
         from ..models.collection_base_schema_keyframes_type_0_item import (
             CollectionBaseSchemaKeyframesType0Item,
         )
         from ..models.collection_base_schema_metadata_type_0 import (
             CollectionBaseSchemaMetadataType0,
-        )
-        from ..models.collection_base_schema_status_type_1 import (
-            CollectionBaseSchemaStatusType1,
         )
 
         d = dict(src_dict)
@@ -398,22 +382,20 @@ class CollectionBaseSchema:
 
         def _parse_custom_order_status(
             data: object,
-        ) -> CollectionBaseSchemaCustomOrderStatusType1 | None | Unset:
+        ) -> CollectionBaseSchemaCustomOrderStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                custom_order_status_type_1 = (
-                    CollectionBaseSchemaCustomOrderStatusType1.from_dict(data)
-                )
+                custom_order_status_type_1 = CollectionBaseSchemaCustomOrderStatus(data)
 
                 return custom_order_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(CollectionBaseSchemaCustomOrderStatusType1 | None | Unset, data)
+            return cast(CollectionBaseSchemaCustomOrderStatus | None | Unset, data)
 
         custom_order_status = _parse_custom_order_status(
             d.pop("custom_order_status", UNSET)
@@ -685,22 +667,20 @@ class CollectionBaseSchema:
 
         project_id = _parse_project_id(d.pop("project_id", UNSET))
 
-        def _parse_status(
-            data: object,
-        ) -> CollectionBaseSchemaStatusType1 | None | Unset:
+        def _parse_status(data: object) -> CollectionBaseSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = CollectionBaseSchemaStatusType1.from_dict(data)
+                status_type_1 = CollectionBaseSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(CollectionBaseSchemaStatusType1 | None | Unset, data)
+            return cast(CollectionBaseSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

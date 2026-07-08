@@ -2,23 +2,20 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.transcoder_usage_schema_operation_type import (
+    TranscoderUsageSchemaOperationType,
+)
 from ..models.transcoder_usage_schema_status import TranscoderUsageSchemaStatus
 from ..models.transcoder_usage_schema_transcoder_type import (
     TranscoderUsageSchemaTranscoderType,
 )
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.transcoder_usage_schema_operation_type_type_1 import (
-        TranscoderUsageSchemaOperationTypeType1,
-    )
-
 
 T = TypeVar("T", bound="TranscoderUsageSchema")
 
@@ -39,7 +36,7 @@ class TranscoderUsageSchema:
         job_id (None | Unset | UUID):
         object_id (None | Unset | UUID):
         object_type (None | str | Unset):
-        operation_type (None | TranscoderUsageSchemaOperationTypeType1 | Unset):
+        operation_type (None | TranscoderUsageSchemaOperationType | Unset):
         percent_done (int | None | Unset):
         source_bytes (int | None | Unset):
         system_domain_id (None | Unset | UUID):
@@ -58,7 +55,7 @@ class TranscoderUsageSchema:
     job_id: None | Unset | UUID = UNSET
     object_id: None | Unset | UUID = UNSET
     object_type: None | str | Unset = UNSET
-    operation_type: None | TranscoderUsageSchemaOperationTypeType1 | Unset = UNSET
+    operation_type: None | TranscoderUsageSchemaOperationType | Unset = UNSET
     percent_done: int | None | Unset = UNSET
     source_bytes: int | None | Unset = UNSET
     system_domain_id: None | Unset | UUID = UNSET
@@ -66,10 +63,6 @@ class TranscoderUsageSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.transcoder_usage_schema_operation_type_type_1 import (
-            TranscoderUsageSchemaOperationTypeType1,
-        )
-
         status = self.status.value
 
         system_name = self.system_name
@@ -138,11 +131,11 @@ class TranscoderUsageSchema:
         else:
             object_type = self.object_type
 
-        operation_type: dict[str, Any] | None | Unset
+        operation_type: None | str | Unset
         if isinstance(self.operation_type, Unset):
             operation_type = UNSET
-        elif isinstance(self.operation_type, TranscoderUsageSchemaOperationTypeType1):
-            operation_type = self.operation_type.to_dict()
+        elif isinstance(self.operation_type, TranscoderUsageSchemaOperationType):
+            operation_type = self.operation_type.value
         else:
             operation_type = self.operation_type
 
@@ -216,10 +209,6 @@ class TranscoderUsageSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.transcoder_usage_schema_operation_type_type_1 import (
-            TranscoderUsageSchemaOperationTypeType1,
-        )
-
         d = dict(src_dict)
         status = TranscoderUsageSchemaStatus(d.pop("status"))
 
@@ -346,22 +335,20 @@ class TranscoderUsageSchema:
 
         def _parse_operation_type(
             data: object,
-        ) -> None | TranscoderUsageSchemaOperationTypeType1 | Unset:
+        ) -> None | TranscoderUsageSchemaOperationType | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                operation_type_type_1 = (
-                    TranscoderUsageSchemaOperationTypeType1.from_dict(data)
-                )
+                operation_type_type_1 = TranscoderUsageSchemaOperationType(data)
 
                 return operation_type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | TranscoderUsageSchemaOperationTypeType1 | Unset, data)
+            return cast(None | TranscoderUsageSchemaOperationType | Unset, data)
 
         operation_type = _parse_operation_type(d.pop("operation_type", UNSET))
 

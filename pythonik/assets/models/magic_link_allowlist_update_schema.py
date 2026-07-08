@@ -1,18 +1,15 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.magic_link_allowlist_update_schema_entry_type import (
+    MagicLinkAllowlistUpdateSchemaEntryType,
+)
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.magic_link_allowlist_update_schema_entry_type_type_1 import (
-        MagicLinkAllowlistUpdateSchemaEntryTypeType1,
-    )
-
 
 T = TypeVar("T", bound="MagicLinkAllowlistUpdateSchema")
 
@@ -21,24 +18,20 @@ T = TypeVar("T", bound="MagicLinkAllowlistUpdateSchema")
 class MagicLinkAllowlistUpdateSchema:
     """
     Attributes:
-        entry_type (MagicLinkAllowlistUpdateSchemaEntryTypeType1 | None | Unset):
+        entry_type (MagicLinkAllowlistUpdateSchemaEntryType | None | Unset):
         value (None | str | Unset):
     """
 
-    entry_type: MagicLinkAllowlistUpdateSchemaEntryTypeType1 | None | Unset = UNSET
+    entry_type: MagicLinkAllowlistUpdateSchemaEntryType | None | Unset = UNSET
     value: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.magic_link_allowlist_update_schema_entry_type_type_1 import (
-            MagicLinkAllowlistUpdateSchemaEntryTypeType1,
-        )
-
-        entry_type: dict[str, Any] | None | Unset
+        entry_type: None | str | Unset
         if isinstance(self.entry_type, Unset):
             entry_type = UNSET
-        elif isinstance(self.entry_type, MagicLinkAllowlistUpdateSchemaEntryTypeType1):
-            entry_type = self.entry_type.to_dict()
+        elif isinstance(self.entry_type, MagicLinkAllowlistUpdateSchemaEntryType):
+            entry_type = self.entry_type.value
         else:
             entry_type = self.entry_type
 
@@ -60,32 +53,24 @@ class MagicLinkAllowlistUpdateSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.magic_link_allowlist_update_schema_entry_type_type_1 import (
-            MagicLinkAllowlistUpdateSchemaEntryTypeType1,
-        )
-
         d = dict(src_dict)
 
         def _parse_entry_type(
             data: object,
-        ) -> MagicLinkAllowlistUpdateSchemaEntryTypeType1 | None | Unset:
+        ) -> MagicLinkAllowlistUpdateSchemaEntryType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                entry_type_type_1 = (
-                    MagicLinkAllowlistUpdateSchemaEntryTypeType1.from_dict(data)
-                )
+                entry_type_type_1 = MagicLinkAllowlistUpdateSchemaEntryType(data)
 
                 return entry_type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(
-                MagicLinkAllowlistUpdateSchemaEntryTypeType1 | None | Unset, data
-            )
+            return cast(MagicLinkAllowlistUpdateSchemaEntryType | None | Unset, data)
 
         entry_type = _parse_entry_type(d.pop("entry_type", UNSET))
 

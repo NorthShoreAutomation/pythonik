@@ -8,18 +8,16 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.share_elastic_schema_drm import ShareElasticSchemaDrm
+from ..models.share_elastic_schema_population_status import (
+    ShareElasticSchemaPopulationStatus,
+)
+from ..models.share_elastic_schema_watermark import ShareElasticSchemaWatermark
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.share_elastic_schema_approval_type_0 import (
         ShareElasticSchemaApprovalType0,
-    )
-    from ..models.share_elastic_schema_drm_type_1 import ShareElasticSchemaDrmType1
-    from ..models.share_elastic_schema_population_status_type_1 import (
-        ShareElasticSchemaPopulationStatusType1,
-    )
-    from ..models.share_elastic_schema_watermark_type_1 import (
-        ShareElasticSchemaWatermarkType1,
     )
     from ..models.share_users_elastic import ShareUsersElastic
 
@@ -45,7 +43,7 @@ class ShareElasticSchema:
         approval (None | ShareElasticSchemaApprovalType0 | Unset):
         automatic_approval_share (bool | None | Unset):
         date_created (datetime.datetime | None | Unset):
-        drm (None | ShareElasticSchemaDrmType1 | Unset):
+        drm (None | ShareElasticSchemaDrm | Unset):
         expires (datetime.datetime | None | Unset):
         has_password (bool | None | Unset):
         id (None | str | Unset):
@@ -57,7 +55,7 @@ class ShareElasticSchema:
         object_type (None | str | Unset):
         owner_id (None | str | Unset):
         personal_url (None | str | Unset):
-        population_status (None | ShareElasticSchemaPopulationStatusType1 | Unset):
+        population_status (None | ShareElasticSchemaPopulationStatus | Unset):
         project_id (None | Unset | UUID): Project ID if the share is created from a project
         review_experience_public_beta (bool | None | Unset):
         show_existing_comments (bool | None | Unset):
@@ -67,7 +65,7 @@ class ShareElasticSchema:
         upload_storage_id (None | Unset | UUID):
         url (None | str | Unset):
         users (list[ShareUsersElastic] | None | Unset):
-        watermark (None | ShareElasticSchemaWatermarkType1 | Unset):
+        watermark (None | ShareElasticSchemaWatermark | Unset):
     """
 
     allow_approving_comments: bool
@@ -84,7 +82,7 @@ class ShareElasticSchema:
     approval: None | ShareElasticSchemaApprovalType0 | Unset = UNSET
     automatic_approval_share: bool | None | Unset = UNSET
     date_created: datetime.datetime | None | Unset = UNSET
-    drm: None | ShareElasticSchemaDrmType1 | Unset = UNSET
+    drm: None | ShareElasticSchemaDrm | Unset = UNSET
     expires: datetime.datetime | None | Unset = UNSET
     has_password: bool | None | Unset = UNSET
     id: None | str | Unset = UNSET
@@ -96,7 +94,7 @@ class ShareElasticSchema:
     object_type: None | str | Unset = UNSET
     owner_id: None | str | Unset = UNSET
     personal_url: None | str | Unset = UNSET
-    population_status: None | ShareElasticSchemaPopulationStatusType1 | Unset = UNSET
+    population_status: None | ShareElasticSchemaPopulationStatus | Unset = UNSET
     project_id: None | Unset | UUID = UNSET
     review_experience_public_beta: bool | None | Unset = UNSET
     show_existing_comments: bool | None | Unset = UNSET
@@ -106,19 +104,12 @@ class ShareElasticSchema:
     upload_storage_id: None | Unset | UUID = UNSET
     url: None | str | Unset = UNSET
     users: list[ShareUsersElastic] | None | Unset = UNSET
-    watermark: None | ShareElasticSchemaWatermarkType1 | Unset = UNSET
+    watermark: None | ShareElasticSchemaWatermark | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.share_elastic_schema_approval_type_0 import (
             ShareElasticSchemaApprovalType0,
-        )
-        from ..models.share_elastic_schema_drm_type_1 import ShareElasticSchemaDrmType1
-        from ..models.share_elastic_schema_population_status_type_1 import (
-            ShareElasticSchemaPopulationStatusType1,
-        )
-        from ..models.share_elastic_schema_watermark_type_1 import (
-            ShareElasticSchemaWatermarkType1,
         )
 
         allow_approving_comments = self.allow_approving_comments
@@ -193,11 +184,11 @@ class ShareElasticSchema:
         else:
             date_created = self.date_created
 
-        drm: dict[str, Any] | None | Unset
+        drm: None | str | Unset
         if isinstance(self.drm, Unset):
             drm = UNSET
-        elif isinstance(self.drm, ShareElasticSchemaDrmType1):
-            drm = self.drm.to_dict()
+        elif isinstance(self.drm, ShareElasticSchemaDrm):
+            drm = self.drm.value
         else:
             drm = self.drm
 
@@ -272,13 +263,11 @@ class ShareElasticSchema:
         else:
             personal_url = self.personal_url
 
-        population_status: dict[str, Any] | None | Unset
+        population_status: None | str | Unset
         if isinstance(self.population_status, Unset):
             population_status = UNSET
-        elif isinstance(
-            self.population_status, ShareElasticSchemaPopulationStatusType1
-        ):
-            population_status = self.population_status.to_dict()
+        elif isinstance(self.population_status, ShareElasticSchemaPopulationStatus):
+            population_status = self.population_status.value
         else:
             population_status = self.population_status
 
@@ -346,11 +335,11 @@ class ShareElasticSchema:
         else:
             users = self.users
 
-        watermark: dict[str, Any] | None | Unset
+        watermark: None | str | Unset
         if isinstance(self.watermark, Unset):
             watermark = UNSET
-        elif isinstance(self.watermark, ShareElasticSchemaWatermarkType1):
-            watermark = self.watermark.to_dict()
+        elif isinstance(self.watermark, ShareElasticSchemaWatermark):
+            watermark = self.watermark.value
         else:
             watermark = self.watermark
 
@@ -439,13 +428,6 @@ class ShareElasticSchema:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.share_elastic_schema_approval_type_0 import (
             ShareElasticSchemaApprovalType0,
-        )
-        from ..models.share_elastic_schema_drm_type_1 import ShareElasticSchemaDrmType1
-        from ..models.share_elastic_schema_population_status_type_1 import (
-            ShareElasticSchemaPopulationStatusType1,
-        )
-        from ..models.share_elastic_schema_watermark_type_1 import (
-            ShareElasticSchemaWatermarkType1,
         )
         from ..models.share_users_elastic import ShareUsersElastic
 
@@ -578,20 +560,20 @@ class ShareElasticSchema:
 
         date_created = _parse_date_created(d.pop("date_created", UNSET))
 
-        def _parse_drm(data: object) -> None | ShareElasticSchemaDrmType1 | Unset:
+        def _parse_drm(data: object) -> None | ShareElasticSchemaDrm | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                drm_type_1 = ShareElasticSchemaDrmType1.from_dict(data)
+                drm_type_1 = ShareElasticSchemaDrm(data)
 
                 return drm_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | ShareElasticSchemaDrmType1 | Unset, data)
+            return cast(None | ShareElasticSchemaDrm | Unset, data)
 
         drm = _parse_drm(d.pop("drm", UNSET))
 
@@ -712,22 +694,20 @@ class ShareElasticSchema:
 
         def _parse_population_status(
             data: object,
-        ) -> None | ShareElasticSchemaPopulationStatusType1 | Unset:
+        ) -> None | ShareElasticSchemaPopulationStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                population_status_type_1 = (
-                    ShareElasticSchemaPopulationStatusType1.from_dict(data)
-                )
+                population_status_type_1 = ShareElasticSchemaPopulationStatus(data)
 
                 return population_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | ShareElasticSchemaPopulationStatusType1 | Unset, data)
+            return cast(None | ShareElasticSchemaPopulationStatus | Unset, data)
 
         population_status = _parse_population_status(d.pop("population_status", UNSET))
 
@@ -849,20 +829,20 @@ class ShareElasticSchema:
 
         def _parse_watermark(
             data: object,
-        ) -> None | ShareElasticSchemaWatermarkType1 | Unset:
+        ) -> None | ShareElasticSchemaWatermark | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                watermark_type_1 = ShareElasticSchemaWatermarkType1.from_dict(data)
+                watermark_type_1 = ShareElasticSchemaWatermark(data)
 
                 return watermark_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | ShareElasticSchemaWatermarkType1 | Unset, data)
+            return cast(None | ShareElasticSchemaWatermark | Unset, data)
 
         watermark = _parse_watermark(d.pop("watermark", UNSET))
 

@@ -1,19 +1,14 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.create_bulk_ac_ls_schema_mode import CreateBulkACLsSchemaMode
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.create_bulk_ac_ls_schema_mode_type_1 import (
-        CreateBulkACLsSchemaModeType1,
-    )
-
 
 T = TypeVar("T", bound="CreateBulkACLsSchema")
 
@@ -26,7 +21,7 @@ class CreateBulkACLsSchema:
         include_collections (bool):
         permissions (list[str]):
         group_ids (list[UUID] | None | Unset):
-        mode (CreateBulkACLsSchemaModeType1 | None | Unset):
+        mode (CreateBulkACLsSchemaMode | None | Unset):
         object_ids (list[UUID] | None | Unset): The number of object_ids in the list is limited to a minimum of 0 and a
             maximum of 500
         object_type (None | str | Unset):
@@ -37,17 +32,13 @@ class CreateBulkACLsSchema:
     include_collections: bool
     permissions: list[str]
     group_ids: list[UUID] | None | Unset = UNSET
-    mode: CreateBulkACLsSchemaModeType1 | None | Unset = UNSET
+    mode: CreateBulkACLsSchemaMode | None | Unset = UNSET
     object_ids: list[UUID] | None | Unset = UNSET
     object_type: None | str | Unset = UNSET
     user_ids: list[UUID] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.create_bulk_ac_ls_schema_mode_type_1 import (
-            CreateBulkACLsSchemaModeType1,
-        )
-
         include_assets = self.include_assets
 
         include_collections = self.include_collections
@@ -66,11 +57,11 @@ class CreateBulkACLsSchema:
         else:
             group_ids = self.group_ids
 
-        mode: dict[str, Any] | None | Unset
+        mode: None | str | Unset
         if isinstance(self.mode, Unset):
             mode = UNSET
-        elif isinstance(self.mode, CreateBulkACLsSchemaModeType1):
-            mode = self.mode.to_dict()
+        elif isinstance(self.mode, CreateBulkACLsSchemaMode):
+            mode = self.mode.value
         else:
             mode = self.mode
 
@@ -128,10 +119,6 @@ class CreateBulkACLsSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.create_bulk_ac_ls_schema_mode_type_1 import (
-            CreateBulkACLsSchemaModeType1,
-        )
-
         d = dict(src_dict)
         include_assets = d.pop("include_assets")
 
@@ -161,20 +148,20 @@ class CreateBulkACLsSchema:
 
         group_ids = _parse_group_ids(d.pop("group_ids", UNSET))
 
-        def _parse_mode(data: object) -> CreateBulkACLsSchemaModeType1 | None | Unset:
+        def _parse_mode(data: object) -> CreateBulkACLsSchemaMode | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                mode_type_1 = CreateBulkACLsSchemaModeType1.from_dict(data)
+                mode_type_1 = CreateBulkACLsSchemaMode(data)
 
                 return mode_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(CreateBulkACLsSchemaModeType1 | None | Unset, data)
+            return cast(CreateBulkACLsSchemaMode | None | Unset, data)
 
         mode = _parse_mode(d.pop("mode", UNSET))
 

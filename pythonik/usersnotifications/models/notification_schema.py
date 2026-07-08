@@ -8,13 +8,13 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.notification_schema_status import NotificationSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.notification_schema_context_type_0 import (
         NotificationSchemaContextType0,
     )
-    from ..models.notification_schema_status_type_1 import NotificationSchemaStatusType1
 
 
 T = TypeVar("T", bound="NotificationSchema")
@@ -38,7 +38,7 @@ class NotificationSchema:
         id (None | Unset | UUID):
         share_id (None | Unset | UUID):
         share_user_id (None | Unset | UUID):
-        status (None | NotificationSchemaStatusType1 | Unset):
+        status (None | NotificationSchemaStatus | Unset):
         sub_object_id (None | Unset | UUID):
         sub_object_type (None | str | Unset):
         system_domain_id (None | Unset | UUID):
@@ -59,7 +59,7 @@ class NotificationSchema:
     id: None | Unset | UUID = UNSET
     share_id: None | Unset | UUID = UNSET
     share_user_id: None | Unset | UUID = UNSET
-    status: None | NotificationSchemaStatusType1 | Unset = UNSET
+    status: None | NotificationSchemaStatus | Unset = UNSET
     sub_object_id: None | Unset | UUID = UNSET
     sub_object_type: None | str | Unset = UNSET
     system_domain_id: None | Unset | UUID = UNSET
@@ -69,9 +69,6 @@ class NotificationSchema:
     def to_dict(self) -> dict[str, Any]:
         from ..models.notification_schema_context_type_0 import (
             NotificationSchemaContextType0,
-        )
-        from ..models.notification_schema_status_type_1 import (
-            NotificationSchemaStatusType1,
         )
 
         event_type = self.event_type
@@ -148,11 +145,11 @@ class NotificationSchema:
         else:
             share_user_id = self.share_user_id
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, NotificationSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, NotificationSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -230,9 +227,6 @@ class NotificationSchema:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.notification_schema_context_type_0 import (
             NotificationSchemaContextType0,
-        )
-        from ..models.notification_schema_status_type_1 import (
-            NotificationSchemaStatusType1,
         )
 
         d = dict(src_dict)
@@ -376,20 +370,20 @@ class NotificationSchema:
 
         share_user_id = _parse_share_user_id(d.pop("share_user_id", UNSET))
 
-        def _parse_status(data: object) -> None | NotificationSchemaStatusType1 | Unset:
+        def _parse_status(data: object) -> None | NotificationSchemaStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = NotificationSchemaStatusType1.from_dict(data)
+                status_type_1 = NotificationSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | NotificationSchemaStatusType1 | Unset, data)
+            return cast(None | NotificationSchemaStatus | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

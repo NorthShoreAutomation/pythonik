@@ -8,19 +8,17 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.asset_elastic_schema_analyze_status import AssetElasticSchemaAnalyzeStatus
+from ..models.asset_elastic_schema_archive_status import AssetElasticSchemaArchiveStatus
+from ..models.asset_elastic_schema_face_recognition_status import (
+    AssetElasticSchemaFaceRecognitionStatus,
+)
+from ..models.asset_elastic_schema_status import AssetElasticSchemaStatus
+from ..models.asset_elastic_schema_type import AssetElasticSchemaType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.approval_schema import ApprovalSchema
-    from ..models.asset_elastic_schema_analyze_status_type_1 import (
-        AssetElasticSchemaAnalyzeStatusType1,
-    )
-    from ..models.asset_elastic_schema_archive_status_type_1 import (
-        AssetElasticSchemaArchiveStatusType1,
-    )
-    from ..models.asset_elastic_schema_face_recognition_status_type_1 import (
-        AssetElasticSchemaFaceRecognitionStatusType1,
-    )
     from ..models.asset_elastic_schema_files_type_0_item import (
         AssetElasticSchemaFilesType0Item,
     )
@@ -36,10 +34,6 @@ if TYPE_CHECKING:
     from ..models.asset_elastic_schema_proxies_type_0_item import (
         AssetElasticSchemaProxiesType0Item,
     )
-    from ..models.asset_elastic_schema_status_type_1 import (
-        AssetElasticSchemaStatusType1,
-    )
-    from ..models.asset_elastic_schema_type_type_1 import AssetElasticSchemaTypeType1
     from ..models.asset_version import AssetVersion
     from ..models.relation_elastic import RelationElastic
     from ..models.user import User
@@ -53,10 +47,10 @@ class AssetElasticSchema:
     """
     Attributes:
         title (str):
-        analyze_status (AssetElasticSchemaAnalyzeStatusType1 | None | Unset):
+        analyze_status (AssetElasticSchemaAnalyzeStatus | None | Unset):
         ancestor_collections (list[str] | None | Unset): Unordered list of all ancestor collection ids
         approval (ApprovalSchema | None | Unset):
-        archive_status (AssetElasticSchemaArchiveStatusType1 | None | Unset):
+        archive_status (AssetElasticSchemaArchiveStatus | None | Unset):
         category (None | str | Unset):
         comments_count (int | None | Unset):
         created_by_user (None | Unset | UUID):
@@ -73,7 +67,7 @@ class AssetElasticSchema:
         duration_milliseconds (int | None | Unset):
         external_id (None | str | Unset):
         external_link (None | str | Unset):
-        face_recognition_status (AssetElasticSchemaFaceRecognitionStatusType1 | None | Unset):
+        face_recognition_status (AssetElasticSchemaFaceRecognitionStatus | None | Unset):
         favoured (bool | None | Unset):
         files (list[AssetElasticSchemaFilesType0Item] | None | Unset):
         formats (list[AssetElasticSchemaFormatsType0Item] | None | Unset):
@@ -96,10 +90,10 @@ class AssetElasticSchema:
         proxies (list[AssetElasticSchemaProxiesType0Item] | None | Unset):
         relations (list[RelationElastic] | None | Unset):
         site_name (None | str | Unset):
-        status (AssetElasticSchemaStatusType1 | None | Unset):
+        status (AssetElasticSchemaStatus | None | Unset):
         time_end_milliseconds (int | None | Unset):
         time_start_milliseconds (int | None | Unset):
-        type_ (AssetElasticSchemaTypeType1 | None | Unset):
+        type_ (AssetElasticSchemaType | None | Unset):
         updated_by_user (None | Unset | UUID):
         updated_by_user_info (None | Unset | User):
         versions (list[AssetVersion] | None | Unset):
@@ -108,10 +102,10 @@ class AssetElasticSchema:
     """
 
     title: str
-    analyze_status: AssetElasticSchemaAnalyzeStatusType1 | None | Unset = UNSET
+    analyze_status: AssetElasticSchemaAnalyzeStatus | None | Unset = UNSET
     ancestor_collections: list[str] | None | Unset = UNSET
     approval: ApprovalSchema | None | Unset = UNSET
-    archive_status: AssetElasticSchemaArchiveStatusType1 | None | Unset = UNSET
+    archive_status: AssetElasticSchemaArchiveStatus | None | Unset = UNSET
     category: None | str | Unset = UNSET
     comments_count: int | None | Unset = UNSET
     created_by_user: None | Unset | UUID = UNSET
@@ -128,9 +122,9 @@ class AssetElasticSchema:
     duration_milliseconds: int | None | Unset = UNSET
     external_id: None | str | Unset = UNSET
     external_link: None | str | Unset = UNSET
-    face_recognition_status: (
-        AssetElasticSchemaFaceRecognitionStatusType1 | None | Unset
-    ) = UNSET
+    face_recognition_status: AssetElasticSchemaFaceRecognitionStatus | None | Unset = (
+        UNSET
+    )
     favoured: bool | None | Unset = UNSET
     files: list[AssetElasticSchemaFilesType0Item] | None | Unset = UNSET
     formats: list[AssetElasticSchemaFormatsType0Item] | None | Unset = UNSET
@@ -153,10 +147,10 @@ class AssetElasticSchema:
     proxies: list[AssetElasticSchemaProxiesType0Item] | None | Unset = UNSET
     relations: list[RelationElastic] | None | Unset = UNSET
     site_name: None | str | Unset = UNSET
-    status: AssetElasticSchemaStatusType1 | None | Unset = UNSET
+    status: AssetElasticSchemaStatus | None | Unset = UNSET
     time_end_milliseconds: int | None | Unset = UNSET
     time_start_milliseconds: int | None | Unset = UNSET
-    type_: AssetElasticSchemaTypeType1 | None | Unset = UNSET
+    type_: AssetElasticSchemaType | None | Unset = UNSET
     updated_by_user: None | Unset | UUID = UNSET
     updated_by_user_info: None | Unset | User = UNSET
     versions: list[AssetVersion] | None | Unset = UNSET
@@ -166,33 +160,18 @@ class AssetElasticSchema:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.approval_schema import ApprovalSchema
-        from ..models.asset_elastic_schema_analyze_status_type_1 import (
-            AssetElasticSchemaAnalyzeStatusType1,
-        )
-        from ..models.asset_elastic_schema_archive_status_type_1 import (
-            AssetElasticSchemaArchiveStatusType1,
-        )
-        from ..models.asset_elastic_schema_face_recognition_status_type_1 import (
-            AssetElasticSchemaFaceRecognitionStatusType1,
-        )
         from ..models.asset_elastic_schema_metadata_type_0 import (
             AssetElasticSchemaMetadataType0,
-        )
-        from ..models.asset_elastic_schema_status_type_1 import (
-            AssetElasticSchemaStatusType1,
-        )
-        from ..models.asset_elastic_schema_type_type_1 import (
-            AssetElasticSchemaTypeType1,
         )
         from ..models.user import User
 
         title = self.title
 
-        analyze_status: dict[str, Any] | None | Unset
+        analyze_status: None | str | Unset
         if isinstance(self.analyze_status, Unset):
             analyze_status = UNSET
-        elif isinstance(self.analyze_status, AssetElasticSchemaAnalyzeStatusType1):
-            analyze_status = self.analyze_status.to_dict()
+        elif isinstance(self.analyze_status, AssetElasticSchemaAnalyzeStatus):
+            analyze_status = self.analyze_status.value
         else:
             analyze_status = self.analyze_status
 
@@ -213,11 +192,11 @@ class AssetElasticSchema:
         else:
             approval = self.approval
 
-        archive_status: dict[str, Any] | None | Unset
+        archive_status: None | str | Unset
         if isinstance(self.archive_status, Unset):
             archive_status = UNSET
-        elif isinstance(self.archive_status, AssetElasticSchemaArchiveStatusType1):
-            archive_status = self.archive_status.to_dict()
+        elif isinstance(self.archive_status, AssetElasticSchemaArchiveStatus):
+            archive_status = self.archive_status.value
         else:
             archive_status = self.archive_status
 
@@ -339,13 +318,13 @@ class AssetElasticSchema:
         else:
             external_link = self.external_link
 
-        face_recognition_status: dict[str, Any] | None | Unset
+        face_recognition_status: None | str | Unset
         if isinstance(self.face_recognition_status, Unset):
             face_recognition_status = UNSET
         elif isinstance(
-            self.face_recognition_status, AssetElasticSchemaFaceRecognitionStatusType1
+            self.face_recognition_status, AssetElasticSchemaFaceRecognitionStatus
         ):
-            face_recognition_status = self.face_recognition_status.to_dict()
+            face_recognition_status = self.face_recognition_status.value
         else:
             face_recognition_status = self.face_recognition_status
 
@@ -542,11 +521,11 @@ class AssetElasticSchema:
         else:
             site_name = self.site_name
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, AssetElasticSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, AssetElasticSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -562,11 +541,11 @@ class AssetElasticSchema:
         else:
             time_start_milliseconds = self.time_start_milliseconds
 
-        type_: dict[str, Any] | None | Unset
+        type_: None | str | Unset
         if isinstance(self.type_, Unset):
             type_ = UNSET
-        elif isinstance(self.type_, AssetElasticSchemaTypeType1):
-            type_ = self.type_.to_dict()
+        elif isinstance(self.type_, AssetElasticSchemaType):
+            type_ = self.type_.value
         else:
             type_ = self.type_
 
@@ -727,15 +706,6 @@ class AssetElasticSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.approval_schema import ApprovalSchema
-        from ..models.asset_elastic_schema_analyze_status_type_1 import (
-            AssetElasticSchemaAnalyzeStatusType1,
-        )
-        from ..models.asset_elastic_schema_archive_status_type_1 import (
-            AssetElasticSchemaArchiveStatusType1,
-        )
-        from ..models.asset_elastic_schema_face_recognition_status_type_1 import (
-            AssetElasticSchemaFaceRecognitionStatusType1,
-        )
         from ..models.asset_elastic_schema_files_type_0_item import (
             AssetElasticSchemaFilesType0Item,
         )
@@ -751,12 +721,6 @@ class AssetElasticSchema:
         from ..models.asset_elastic_schema_proxies_type_0_item import (
             AssetElasticSchemaProxiesType0Item,
         )
-        from ..models.asset_elastic_schema_status_type_1 import (
-            AssetElasticSchemaStatusType1,
-        )
-        from ..models.asset_elastic_schema_type_type_1 import (
-            AssetElasticSchemaTypeType1,
-        )
         from ..models.asset_version import AssetVersion
         from ..models.relation_elastic import RelationElastic
         from ..models.user import User
@@ -766,22 +730,20 @@ class AssetElasticSchema:
 
         def _parse_analyze_status(
             data: object,
-        ) -> AssetElasticSchemaAnalyzeStatusType1 | None | Unset:
+        ) -> AssetElasticSchemaAnalyzeStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                analyze_status_type_1 = AssetElasticSchemaAnalyzeStatusType1.from_dict(
-                    data
-                )
+                analyze_status_type_1 = AssetElasticSchemaAnalyzeStatus(data)
 
                 return analyze_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AssetElasticSchemaAnalyzeStatusType1 | None | Unset, data)
+            return cast(AssetElasticSchemaAnalyzeStatus | None | Unset, data)
 
         analyze_status = _parse_analyze_status(d.pop("analyze_status", UNSET))
 
@@ -823,22 +785,20 @@ class AssetElasticSchema:
 
         def _parse_archive_status(
             data: object,
-        ) -> AssetElasticSchemaArchiveStatusType1 | None | Unset:
+        ) -> AssetElasticSchemaArchiveStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                archive_status_type_1 = AssetElasticSchemaArchiveStatusType1.from_dict(
-                    data
-                )
+                archive_status_type_1 = AssetElasticSchemaArchiveStatus(data)
 
                 return archive_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AssetElasticSchemaArchiveStatusType1 | None | Unset, data)
+            return cast(AssetElasticSchemaArchiveStatus | None | Unset, data)
 
         archive_status = _parse_archive_status(d.pop("archive_status", UNSET))
 
@@ -1082,24 +1042,22 @@ class AssetElasticSchema:
 
         def _parse_face_recognition_status(
             data: object,
-        ) -> AssetElasticSchemaFaceRecognitionStatusType1 | None | Unset:
+        ) -> AssetElasticSchemaFaceRecognitionStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
                 face_recognition_status_type_1 = (
-                    AssetElasticSchemaFaceRecognitionStatusType1.from_dict(data)
+                    AssetElasticSchemaFaceRecognitionStatus(data)
                 )
 
                 return face_recognition_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(
-                AssetElasticSchemaFaceRecognitionStatusType1 | None | Unset, data
-            )
+            return cast(AssetElasticSchemaFaceRecognitionStatus | None | Unset, data)
 
         face_recognition_status = _parse_face_recognition_status(
             d.pop("face_recognition_status", UNSET)
@@ -1490,20 +1448,20 @@ class AssetElasticSchema:
 
         site_name = _parse_site_name(d.pop("site_name", UNSET))
 
-        def _parse_status(data: object) -> AssetElasticSchemaStatusType1 | None | Unset:
+        def _parse_status(data: object) -> AssetElasticSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = AssetElasticSchemaStatusType1.from_dict(data)
+                status_type_1 = AssetElasticSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AssetElasticSchemaStatusType1 | None | Unset, data)
+            return cast(AssetElasticSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 
@@ -1529,20 +1487,20 @@ class AssetElasticSchema:
             d.pop("time_start_milliseconds", UNSET)
         )
 
-        def _parse_type_(data: object) -> AssetElasticSchemaTypeType1 | None | Unset:
+        def _parse_type_(data: object) -> AssetElasticSchemaType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                type_type_1 = AssetElasticSchemaTypeType1.from_dict(data)
+                type_type_1 = AssetElasticSchemaType(data)
 
                 return type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AssetElasticSchemaTypeType1 | None | Unset, data)
+            return cast(AssetElasticSchemaType | None | Unset, data)
 
         type_ = _parse_type_(d.pop("type", UNSET))
 

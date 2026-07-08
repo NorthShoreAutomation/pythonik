@@ -2,17 +2,14 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.billing_schema_currency import BillingSchemaCurrency
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.billing_schema_currency_type_1 import BillingSchemaCurrencyType1
-
 
 T = TypeVar("T", bound="BillingSchema")
 
@@ -27,7 +24,7 @@ class BillingSchema:
         balance (float | None | Unset):
         consumption_subtype (None | str | Unset):
         consumption_type (None | str | Unset):
-        currency (BillingSchemaCurrencyType1 | None | Unset):
+        currency (BillingSchemaCurrency | None | Unset):
         date (datetime.datetime | None | Unset):
         expiration_date (datetime.datetime | None | Unset):
         id (None | Unset | UUID):
@@ -40,7 +37,7 @@ class BillingSchema:
     balance: float | None | Unset = UNSET
     consumption_subtype: None | str | Unset = UNSET
     consumption_type: None | str | Unset = UNSET
-    currency: BillingSchemaCurrencyType1 | None | Unset = UNSET
+    currency: BillingSchemaCurrency | None | Unset = UNSET
     date: datetime.datetime | None | Unset = UNSET
     expiration_date: datetime.datetime | None | Unset = UNSET
     id: None | Unset | UUID = UNSET
@@ -48,8 +45,6 @@ class BillingSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.billing_schema_currency_type_1 import BillingSchemaCurrencyType1
-
         label = self.label
 
         system_domain_id = str(self.system_domain_id)
@@ -74,11 +69,11 @@ class BillingSchema:
         else:
             consumption_type = self.consumption_type
 
-        currency: dict[str, Any] | None | Unset
+        currency: None | str | Unset
         if isinstance(self.currency, Unset):
             currency = UNSET
-        elif isinstance(self.currency, BillingSchemaCurrencyType1):
-            currency = self.currency.to_dict()
+        elif isinstance(self.currency, BillingSchemaCurrency):
+            currency = self.currency.value
         else:
             currency = self.currency
 
@@ -142,8 +137,6 @@ class BillingSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.billing_schema_currency_type_1 import BillingSchemaCurrencyType1
-
         d = dict(src_dict)
         label = d.pop("label")
 
@@ -180,20 +173,20 @@ class BillingSchema:
 
         consumption_type = _parse_consumption_type(d.pop("consumption_type", UNSET))
 
-        def _parse_currency(data: object) -> BillingSchemaCurrencyType1 | None | Unset:
+        def _parse_currency(data: object) -> BillingSchemaCurrency | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                currency_type_1 = BillingSchemaCurrencyType1.from_dict(data)
+                currency_type_1 = BillingSchemaCurrency(data)
 
                 return currency_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(BillingSchemaCurrencyType1 | None | Unset, data)
+            return cast(BillingSchemaCurrency | None | Unset, data)
 
         currency = _parse_currency(d.pop("currency", UNSET))
 

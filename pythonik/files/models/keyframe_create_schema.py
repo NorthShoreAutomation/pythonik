@@ -8,13 +8,11 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.keyframe_create_schema_status import KeyframeCreateSchemaStatus
 from ..models.keyframe_create_schema_type import KeyframeCreateSchemaType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.keyframe_create_schema_status_type_1 import (
-        KeyframeCreateSchemaStatusType1,
-    )
     from ..models.keyframe_create_schema_upload_credentials_type_0 import (
         KeyframeCreateSchemaUploadCredentialsType0,
     )
@@ -44,7 +42,7 @@ class KeyframeCreateSchema:
         resolution (None | ResolutionType | Unset):
         rotation (int | None | Unset):
         size (int | None | Unset):
-        status (KeyframeCreateSchemaStatusType1 | None | Unset):
+        status (KeyframeCreateSchemaStatus | None | Unset):
         storage_id (None | Unset | UUID):
         storage_method (None | str | Unset):
         time_code (None | TimeCodeType | Unset):
@@ -70,7 +68,7 @@ class KeyframeCreateSchema:
     resolution: None | ResolutionType | Unset = UNSET
     rotation: int | None | Unset = UNSET
     size: int | None | Unset = UNSET
-    status: KeyframeCreateSchemaStatusType1 | None | Unset = UNSET
+    status: KeyframeCreateSchemaStatus | None | Unset = UNSET
     storage_id: None | Unset | UUID = UNSET
     storage_method: None | str | Unset = UNSET
     time_code: None | TimeCodeType | Unset = UNSET
@@ -84,9 +82,6 @@ class KeyframeCreateSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.keyframe_create_schema_status_type_1 import (
-            KeyframeCreateSchemaStatusType1,
-        )
         from ..models.keyframe_create_schema_upload_credentials_type_0 import (
             KeyframeCreateSchemaUploadCredentialsType0,
         )
@@ -191,11 +186,11 @@ class KeyframeCreateSchema:
         else:
             size = self.size
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, KeyframeCreateSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, KeyframeCreateSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -315,9 +310,6 @@ class KeyframeCreateSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.keyframe_create_schema_status_type_1 import (
-            KeyframeCreateSchemaStatusType1,
-        )
         from ..models.keyframe_create_schema_upload_credentials_type_0 import (
             KeyframeCreateSchemaUploadCredentialsType0,
         )
@@ -503,22 +495,20 @@ class KeyframeCreateSchema:
 
         size = _parse_size(d.pop("size", UNSET))
 
-        def _parse_status(
-            data: object,
-        ) -> KeyframeCreateSchemaStatusType1 | None | Unset:
+        def _parse_status(data: object) -> KeyframeCreateSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = KeyframeCreateSchemaStatusType1.from_dict(data)
+                status_type_1 = KeyframeCreateSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(KeyframeCreateSchemaStatusType1 | None | Unset, data)
+            return cast(KeyframeCreateSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

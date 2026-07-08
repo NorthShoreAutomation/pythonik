@@ -2,19 +2,16 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.system_domain_from_referral_code_schema_billing_tier import (
+    SystemDomainFromReferralCodeSchemaBillingTier,
+)
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.system_domain_from_referral_code_schema_billing_tier_type_1 import (
-        SystemDomainFromReferralCodeSchemaBillingTierType1,
-    )
-
 
 T = TypeVar("T", bound="SystemDomainFromReferralCodeSchema")
 
@@ -29,7 +26,7 @@ class SystemDomainFromReferralCodeSchema:
         admin_first_name (None | str | Unset):
         admin_last_name (None | str | Unset):
         admin_password (None | str | Unset):
-        billing_tier (None | SystemDomainFromReferralCodeSchemaBillingTierType1 | Unset):
+        billing_tier (None | SystemDomainFromReferralCodeSchemaBillingTier | Unset):
         date_created (datetime.datetime | None | Unset):
         date_modified (datetime.datetime | None | Unset):
         description (None | str | Unset):
@@ -42,9 +39,7 @@ class SystemDomainFromReferralCodeSchema:
     admin_first_name: None | str | Unset = UNSET
     admin_last_name: None | str | Unset = UNSET
     admin_password: None | str | Unset = UNSET
-    billing_tier: None | SystemDomainFromReferralCodeSchemaBillingTierType1 | Unset = (
-        UNSET
-    )
+    billing_tier: None | SystemDomainFromReferralCodeSchemaBillingTier | Unset = UNSET
     date_created: datetime.datetime | None | Unset = UNSET
     date_modified: datetime.datetime | None | Unset = UNSET
     description: None | str | Unset = UNSET
@@ -52,10 +47,6 @@ class SystemDomainFromReferralCodeSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.system_domain_from_referral_code_schema_billing_tier_type_1 import (
-            SystemDomainFromReferralCodeSchemaBillingTierType1,
-        )
-
         country_code = self.country_code
 
         name = self.name
@@ -84,13 +75,13 @@ class SystemDomainFromReferralCodeSchema:
         else:
             admin_password = self.admin_password
 
-        billing_tier: dict[str, Any] | None | Unset
+        billing_tier: None | str | Unset
         if isinstance(self.billing_tier, Unset):
             billing_tier = UNSET
         elif isinstance(
-            self.billing_tier, SystemDomainFromReferralCodeSchemaBillingTierType1
+            self.billing_tier, SystemDomainFromReferralCodeSchemaBillingTier
         ):
-            billing_tier = self.billing_tier.to_dict()
+            billing_tier = self.billing_tier.value
         else:
             billing_tier = self.billing_tier
 
@@ -155,10 +146,6 @@ class SystemDomainFromReferralCodeSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.system_domain_from_referral_code_schema_billing_tier_type_1 import (
-            SystemDomainFromReferralCodeSchemaBillingTierType1,
-        )
-
         d = dict(src_dict)
         country_code = d.pop("country_code")
 
@@ -202,23 +189,23 @@ class SystemDomainFromReferralCodeSchema:
 
         def _parse_billing_tier(
             data: object,
-        ) -> None | SystemDomainFromReferralCodeSchemaBillingTierType1 | Unset:
+        ) -> None | SystemDomainFromReferralCodeSchemaBillingTier | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                billing_tier_type_1 = (
-                    SystemDomainFromReferralCodeSchemaBillingTierType1.from_dict(data)
+                billing_tier_type_1 = SystemDomainFromReferralCodeSchemaBillingTier(
+                    data
                 )
 
                 return billing_tier_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(
-                None | SystemDomainFromReferralCodeSchemaBillingTierType1 | Unset, data
+                None | SystemDomainFromReferralCodeSchemaBillingTier | Unset, data
             )
 
         billing_tier = _parse_billing_tier(d.pop("billing_tier", UNSET))

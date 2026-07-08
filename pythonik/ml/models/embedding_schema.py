@@ -2,18 +2,15 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.embedding_schema_status import EmbeddingSchemaStatus
+from ..models.embedding_schema_type import EmbeddingSchemaType
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.embedding_schema_status_type_1 import EmbeddingSchemaStatusType1
-    from ..models.embedding_schema_type_type_1 import EmbeddingSchemaTypeType1
-
 
 T = TypeVar("T", bound="EmbeddingSchema")
 
@@ -27,9 +24,9 @@ class EmbeddingSchema:
         embedding_vector (list[float] | None | Unset):
         id (None | Unset | UUID):
         person_id (None | Unset | UUID):
-        status (EmbeddingSchemaStatusType1 | None | Unset):
+        status (EmbeddingSchemaStatus | None | Unset):
         system_domain_id (None | Unset | UUID):
-        type_ (EmbeddingSchemaTypeType1 | None | Unset):
+        type_ (EmbeddingSchemaType | None | Unset):
     """
 
     date_created: datetime.datetime | None | Unset = UNSET
@@ -37,15 +34,12 @@ class EmbeddingSchema:
     embedding_vector: list[float] | None | Unset = UNSET
     id: None | Unset | UUID = UNSET
     person_id: None | Unset | UUID = UNSET
-    status: EmbeddingSchemaStatusType1 | None | Unset = UNSET
+    status: EmbeddingSchemaStatus | None | Unset = UNSET
     system_domain_id: None | Unset | UUID = UNSET
-    type_: EmbeddingSchemaTypeType1 | None | Unset = UNSET
+    type_: EmbeddingSchemaType | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.embedding_schema_status_type_1 import EmbeddingSchemaStatusType1
-        from ..models.embedding_schema_type_type_1 import EmbeddingSchemaTypeType1
-
         date_created: None | str | Unset
         if isinstance(self.date_created, Unset):
             date_created = UNSET
@@ -87,11 +81,11 @@ class EmbeddingSchema:
         else:
             person_id = self.person_id
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, EmbeddingSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, EmbeddingSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -103,11 +97,11 @@ class EmbeddingSchema:
         else:
             system_domain_id = self.system_domain_id
 
-        type_: dict[str, Any] | None | Unset
+        type_: None | str | Unset
         if isinstance(self.type_, Unset):
             type_ = UNSET
-        elif isinstance(self.type_, EmbeddingSchemaTypeType1):
-            type_ = self.type_.to_dict()
+        elif isinstance(self.type_, EmbeddingSchemaType):
+            type_ = self.type_.value
         else:
             type_ = self.type_
 
@@ -135,9 +129,6 @@ class EmbeddingSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.embedding_schema_status_type_1 import EmbeddingSchemaStatusType1
-        from ..models.embedding_schema_type_type_1 import EmbeddingSchemaTypeType1
-
         d = dict(src_dict)
 
         def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
@@ -225,20 +216,20 @@ class EmbeddingSchema:
 
         person_id = _parse_person_id(d.pop("person_id", UNSET))
 
-        def _parse_status(data: object) -> EmbeddingSchemaStatusType1 | None | Unset:
+        def _parse_status(data: object) -> EmbeddingSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = EmbeddingSchemaStatusType1.from_dict(data)
+                status_type_1 = EmbeddingSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(EmbeddingSchemaStatusType1 | None | Unset, data)
+            return cast(EmbeddingSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 
@@ -259,20 +250,20 @@ class EmbeddingSchema:
 
         system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
 
-        def _parse_type_(data: object) -> EmbeddingSchemaTypeType1 | None | Unset:
+        def _parse_type_(data: object) -> EmbeddingSchemaType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                type_type_1 = EmbeddingSchemaTypeType1.from_dict(data)
+                type_type_1 = EmbeddingSchemaType(data)
 
                 return type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(EmbeddingSchemaTypeType1 | None | Unset, data)
+            return cast(EmbeddingSchemaType | None | Unset, data)
 
         type_ = _parse_type_(d.pop("type", UNSET))
 

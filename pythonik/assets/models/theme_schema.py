@@ -6,11 +6,11 @@ from typing import TYPE_CHECKING, Any, TypeVar, cast
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.theme_schema_base import ThemeSchemaBase
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.theme_colors_schema import ThemeColorsSchema
-    from ..models.theme_schema_base_type_1 import ThemeSchemaBaseType1
     from ..models.theme_typography import ThemeTypography
 
 
@@ -21,26 +21,25 @@ T = TypeVar("T", bound="ThemeSchema")
 class ThemeSchema:
     """
     Attributes:
-        base (None | ThemeSchemaBaseType1 | Unset):
+        base (None | ThemeSchemaBase | Unset):
         colors (None | ThemeColorsSchema | Unset):
         typography (None | ThemeTypography | Unset):
     """
 
-    base: None | ThemeSchemaBaseType1 | Unset = UNSET
+    base: None | ThemeSchemaBase | Unset = UNSET
     colors: None | ThemeColorsSchema | Unset = UNSET
     typography: None | ThemeTypography | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.theme_colors_schema import ThemeColorsSchema
-        from ..models.theme_schema_base_type_1 import ThemeSchemaBaseType1
         from ..models.theme_typography import ThemeTypography
 
-        base: dict[str, Any] | None | Unset
+        base: None | str | Unset
         if isinstance(self.base, Unset):
             base = UNSET
-        elif isinstance(self.base, ThemeSchemaBaseType1):
-            base = self.base.to_dict()
+        elif isinstance(self.base, ThemeSchemaBase):
+            base = self.base.value
         else:
             base = self.base
 
@@ -75,25 +74,24 @@ class ThemeSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.theme_colors_schema import ThemeColorsSchema
-        from ..models.theme_schema_base_type_1 import ThemeSchemaBaseType1
         from ..models.theme_typography import ThemeTypography
 
         d = dict(src_dict)
 
-        def _parse_base(data: object) -> None | ThemeSchemaBaseType1 | Unset:
+        def _parse_base(data: object) -> None | ThemeSchemaBase | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                base_type_1 = ThemeSchemaBaseType1.from_dict(data)
+                base_type_1 = ThemeSchemaBase(data)
 
                 return base_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | ThemeSchemaBaseType1 | Unset, data)
+            return cast(None | ThemeSchemaBase | Unset, data)
 
         base = _parse_base(d.pop("base", UNSET))
 

@@ -225,8 +225,8 @@ from .get_views_response_default_type_1 import GetViewsResponseDefaultType1
 from .get_views_response_default_type_1_errors import GetViewsResponseDefaultType1Errors
 from .list_objects_schema import ListObjectsSchema
 from .multi_select_filter_group_schema import MultiSelectFilterGroupSchema
-from .multi_select_filter_group_schema_modifier_type_1 import (
-    MultiSelectFilterGroupSchemaModifierType1,
+from .multi_select_filter_group_schema_modifier import (
+    MultiSelectFilterGroupSchemaModifier,
 )
 from .nltf_context_schema import NltfContextSchema
 from .nltf_displayed_filters import NltfDisplayedFilters
@@ -623,7 +623,7 @@ __all__ = (
     "GetViewsResponseDefaultType1Errors",
     "ListObjectsSchema",
     "MultiSelectFilterGroupSchema",
-    "MultiSelectFilterGroupSchemaModifierType1",
+    "MultiSelectFilterGroupSchemaModifier",
     "NltfContextSchema",
     "NltfDisplayedFilters",
     "NltfDisplayedFiltersFacetsType0",

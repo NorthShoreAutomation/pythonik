@@ -6,6 +6,7 @@ from typing import TYPE_CHECKING, Any, TypeVar, cast
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.jobs_bulk_edit_schema_status import JobsBulkEditSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -14,9 +15,6 @@ if TYPE_CHECKING:
     )
     from ..models.jobs_bulk_edit_schema_metadata_type_0 import (
         JobsBulkEditSchemaMetadataType0,
-    )
-    from ..models.jobs_bulk_edit_schema_status_type_1 import (
-        JobsBulkEditSchemaStatusType1,
     )
 
 
@@ -31,14 +29,14 @@ class JobsBulkEditSchema:
         job_context (JobsBulkEditSchemaJobContextType0 | None | Unset):
         message (None | str | Unset):
         metadata (JobsBulkEditSchemaMetadataType0 | None | Unset):
-        status (JobsBulkEditSchemaStatusType1 | None | Unset):
+        status (JobsBulkEditSchemaStatus | None | Unset):
     """
 
     error_message: None | str | Unset = UNSET
     job_context: JobsBulkEditSchemaJobContextType0 | None | Unset = UNSET
     message: None | str | Unset = UNSET
     metadata: JobsBulkEditSchemaMetadataType0 | None | Unset = UNSET
-    status: JobsBulkEditSchemaStatusType1 | None | Unset = UNSET
+    status: JobsBulkEditSchemaStatus | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -47,9 +45,6 @@ class JobsBulkEditSchema:
         )
         from ..models.jobs_bulk_edit_schema_metadata_type_0 import (
             JobsBulkEditSchemaMetadataType0,
-        )
-        from ..models.jobs_bulk_edit_schema_status_type_1 import (
-            JobsBulkEditSchemaStatusType1,
         )
 
         error_message: None | str | Unset
@@ -80,11 +75,11 @@ class JobsBulkEditSchema:
         else:
             metadata = self.metadata
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, JobsBulkEditSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, JobsBulkEditSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -111,9 +106,6 @@ class JobsBulkEditSchema:
         )
         from ..models.jobs_bulk_edit_schema_metadata_type_0 import (
             JobsBulkEditSchemaMetadataType0,
-        )
-        from ..models.jobs_bulk_edit_schema_status_type_1 import (
-            JobsBulkEditSchemaStatusType1,
         )
 
         d = dict(src_dict)
@@ -174,20 +166,20 @@ class JobsBulkEditSchema:
 
         metadata = _parse_metadata(d.pop("metadata", UNSET))
 
-        def _parse_status(data: object) -> JobsBulkEditSchemaStatusType1 | None | Unset:
+        def _parse_status(data: object) -> JobsBulkEditSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = JobsBulkEditSchemaStatusType1.from_dict(data)
+                status_type_1 = JobsBulkEditSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(JobsBulkEditSchemaStatusType1 | None | Unset, data)
+            return cast(JobsBulkEditSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

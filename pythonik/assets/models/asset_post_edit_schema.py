@@ -8,25 +8,23 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.asset_post_edit_schema_analyze_status import (
+    AssetPostEditSchemaAnalyzeStatus,
+)
+from ..models.asset_post_edit_schema_archive_status import (
+    AssetPostEditSchemaArchiveStatus,
+)
+from ..models.asset_post_edit_schema_face_recognition_status import (
+    AssetPostEditSchemaFaceRecognitionStatus,
+)
+from ..models.asset_post_edit_schema_publication_status import (
+    AssetPostEditSchemaPublicationStatus,
+)
+from ..models.asset_post_edit_schema_status import AssetPostEditSchemaStatus
+from ..models.asset_post_edit_schema_type import AssetPostEditSchemaType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.asset_post_edit_schema_analyze_status_type_1 import (
-        AssetPostEditSchemaAnalyzeStatusType1,
-    )
-    from ..models.asset_post_edit_schema_archive_status_type_1 import (
-        AssetPostEditSchemaArchiveStatusType1,
-    )
-    from ..models.asset_post_edit_schema_face_recognition_status_type_1 import (
-        AssetPostEditSchemaFaceRecognitionStatusType1,
-    )
-    from ..models.asset_post_edit_schema_publication_status_type_1 import (
-        AssetPostEditSchemaPublicationStatusType1,
-    )
-    from ..models.asset_post_edit_schema_status_type_1 import (
-        AssetPostEditSchemaStatusType1,
-    )
-    from ..models.asset_post_edit_schema_type_type_1 import AssetPostEditSchemaTypeType1
     from ..models.user import User
 
 
@@ -38,8 +36,8 @@ class AssetPostEditSchema:
     """
     Attributes:
         id (UUID):
-        analyze_status (AssetPostEditSchemaAnalyzeStatusType1 | None | Unset):
-        archive_status (AssetPostEditSchemaArchiveStatusType1 | None | Unset):
+        analyze_status (AssetPostEditSchemaAnalyzeStatus | None | Unset):
+        archive_status (AssetPostEditSchemaArchiveStatus | None | Unset):
         category (None | str | Unset):
         clip_aspect_ratio (None | str | Unset):
         clip_duration (float | None | Unset):
@@ -63,7 +61,7 @@ class AssetPostEditSchema:
         destination_type (None | str | Unset):
         external_id (None | str | Unset):
         external_link (None | str | Unset):
-        face_recognition_status (AssetPostEditSchemaFaceRecognitionStatusType1 | None | Unset):
+        face_recognition_status (AssetPostEditSchemaFaceRecognitionStatus | None | Unset):
         favoured (bool | None | Unset):
         has_unconfirmed_persons (bool | None | Unset):
         is_blocked (bool | None | Unset):
@@ -75,13 +73,13 @@ class AssetPostEditSchema:
         original_segment_id (None | Unset | UUID):
         original_version_id (None | Unset | UUID):
         person_ids (list[UUID] | None | Unset):
-        publication_status (AssetPostEditSchemaPublicationStatusType1 | None | Unset):
+        publication_status (AssetPostEditSchemaPublicationStatus | None | Unset):
         site_name (None | str | Unset):
-        status (AssetPostEditSchemaStatusType1 | None | Unset):
+        status (AssetPostEditSchemaStatus | None | Unset):
         time_end_milliseconds (int | None | Unset):
         time_start_milliseconds (int | None | Unset):
         title (None | str | Unset):
-        type_ (AssetPostEditSchemaTypeType1 | None | Unset):
+        type_ (AssetPostEditSchemaType | None | Unset):
         updated_by_user (None | Unset | UUID):
         updated_by_user_info (None | Unset | User):
         views (int | None | Unset):  Default: 0.
@@ -89,8 +87,8 @@ class AssetPostEditSchema:
     """
 
     id: UUID
-    analyze_status: AssetPostEditSchemaAnalyzeStatusType1 | None | Unset = UNSET
-    archive_status: AssetPostEditSchemaArchiveStatusType1 | None | Unset = UNSET
+    analyze_status: AssetPostEditSchemaAnalyzeStatus | None | Unset = UNSET
+    archive_status: AssetPostEditSchemaArchiveStatus | None | Unset = UNSET
     category: None | str | Unset = UNSET
     clip_aspect_ratio: None | str | Unset = UNSET
     clip_duration: float | None | Unset = UNSET
@@ -114,9 +112,9 @@ class AssetPostEditSchema:
     destination_type: None | str | Unset = UNSET
     external_id: None | str | Unset = UNSET
     external_link: None | str | Unset = UNSET
-    face_recognition_status: (
-        AssetPostEditSchemaFaceRecognitionStatusType1 | None | Unset
-    ) = UNSET
+    face_recognition_status: AssetPostEditSchemaFaceRecognitionStatus | None | Unset = (
+        UNSET
+    )
     favoured: bool | None | Unset = UNSET
     has_unconfirmed_persons: bool | None | Unset = UNSET
     is_blocked: bool | None | Unset = UNSET
@@ -128,13 +126,13 @@ class AssetPostEditSchema:
     original_segment_id: None | Unset | UUID = UNSET
     original_version_id: None | Unset | UUID = UNSET
     person_ids: list[UUID] | None | Unset = UNSET
-    publication_status: AssetPostEditSchemaPublicationStatusType1 | None | Unset = UNSET
+    publication_status: AssetPostEditSchemaPublicationStatus | None | Unset = UNSET
     site_name: None | str | Unset = UNSET
-    status: AssetPostEditSchemaStatusType1 | None | Unset = UNSET
+    status: AssetPostEditSchemaStatus | None | Unset = UNSET
     time_end_milliseconds: int | None | Unset = UNSET
     time_start_milliseconds: int | None | Unset = UNSET
     title: None | str | Unset = UNSET
-    type_: AssetPostEditSchemaTypeType1 | None | Unset = UNSET
+    type_: AssetPostEditSchemaType | None | Unset = UNSET
     updated_by_user: None | Unset | UUID = UNSET
     updated_by_user_info: None | Unset | User = UNSET
     views: int | None | Unset = 0
@@ -142,41 +140,23 @@ class AssetPostEditSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.asset_post_edit_schema_analyze_status_type_1 import (
-            AssetPostEditSchemaAnalyzeStatusType1,
-        )
-        from ..models.asset_post_edit_schema_archive_status_type_1 import (
-            AssetPostEditSchemaArchiveStatusType1,
-        )
-        from ..models.asset_post_edit_schema_face_recognition_status_type_1 import (
-            AssetPostEditSchemaFaceRecognitionStatusType1,
-        )
-        from ..models.asset_post_edit_schema_publication_status_type_1 import (
-            AssetPostEditSchemaPublicationStatusType1,
-        )
-        from ..models.asset_post_edit_schema_status_type_1 import (
-            AssetPostEditSchemaStatusType1,
-        )
-        from ..models.asset_post_edit_schema_type_type_1 import (
-            AssetPostEditSchemaTypeType1,
-        )
         from ..models.user import User
 
         id = str(self.id)
 
-        analyze_status: dict[str, Any] | None | Unset
+        analyze_status: None | str | Unset
         if isinstance(self.analyze_status, Unset):
             analyze_status = UNSET
-        elif isinstance(self.analyze_status, AssetPostEditSchemaAnalyzeStatusType1):
-            analyze_status = self.analyze_status.to_dict()
+        elif isinstance(self.analyze_status, AssetPostEditSchemaAnalyzeStatus):
+            analyze_status = self.analyze_status.value
         else:
             analyze_status = self.analyze_status
 
-        archive_status: dict[str, Any] | None | Unset
+        archive_status: None | str | Unset
         if isinstance(self.archive_status, Unset):
             archive_status = UNSET
-        elif isinstance(self.archive_status, AssetPostEditSchemaArchiveStatusType1):
-            archive_status = self.archive_status.to_dict()
+        elif isinstance(self.archive_status, AssetPostEditSchemaArchiveStatus):
+            archive_status = self.archive_status.value
         else:
             archive_status = self.archive_status
 
@@ -342,13 +322,13 @@ class AssetPostEditSchema:
         else:
             external_link = self.external_link
 
-        face_recognition_status: dict[str, Any] | None | Unset
+        face_recognition_status: None | str | Unset
         if isinstance(self.face_recognition_status, Unset):
             face_recognition_status = UNSET
         elif isinstance(
-            self.face_recognition_status, AssetPostEditSchemaFaceRecognitionStatusType1
+            self.face_recognition_status, AssetPostEditSchemaFaceRecognitionStatus
         ):
-            face_recognition_status = self.face_recognition_status.to_dict()
+            face_recognition_status = self.face_recognition_status.value
         else:
             face_recognition_status = self.face_recognition_status
 
@@ -442,13 +422,11 @@ class AssetPostEditSchema:
         else:
             person_ids = self.person_ids
 
-        publication_status: dict[str, Any] | None | Unset
+        publication_status: None | str | Unset
         if isinstance(self.publication_status, Unset):
             publication_status = UNSET
-        elif isinstance(
-            self.publication_status, AssetPostEditSchemaPublicationStatusType1
-        ):
-            publication_status = self.publication_status.to_dict()
+        elif isinstance(self.publication_status, AssetPostEditSchemaPublicationStatus):
+            publication_status = self.publication_status.value
         else:
             publication_status = self.publication_status
 
@@ -458,11 +436,11 @@ class AssetPostEditSchema:
         else:
             site_name = self.site_name
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, AssetPostEditSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, AssetPostEditSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -484,11 +462,11 @@ class AssetPostEditSchema:
         else:
             title = self.title
 
-        type_: dict[str, Any] | None | Unset
+        type_: None | str | Unset
         if isinstance(self.type_, Unset):
             type_ = UNSET
-        elif isinstance(self.type_, AssetPostEditSchemaTypeType1):
-            type_ = self.type_.to_dict()
+        elif isinstance(self.type_, AssetPostEditSchemaType):
+            type_ = self.type_.value
         else:
             type_ = self.type_
 
@@ -628,24 +606,6 @@ class AssetPostEditSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.asset_post_edit_schema_analyze_status_type_1 import (
-            AssetPostEditSchemaAnalyzeStatusType1,
-        )
-        from ..models.asset_post_edit_schema_archive_status_type_1 import (
-            AssetPostEditSchemaArchiveStatusType1,
-        )
-        from ..models.asset_post_edit_schema_face_recognition_status_type_1 import (
-            AssetPostEditSchemaFaceRecognitionStatusType1,
-        )
-        from ..models.asset_post_edit_schema_publication_status_type_1 import (
-            AssetPostEditSchemaPublicationStatusType1,
-        )
-        from ..models.asset_post_edit_schema_status_type_1 import (
-            AssetPostEditSchemaStatusType1,
-        )
-        from ..models.asset_post_edit_schema_type_type_1 import (
-            AssetPostEditSchemaTypeType1,
-        )
         from ..models.user import User
 
         d = dict(src_dict)
@@ -653,43 +613,39 @@ class AssetPostEditSchema:
 
         def _parse_analyze_status(
             data: object,
-        ) -> AssetPostEditSchemaAnalyzeStatusType1 | None | Unset:
+        ) -> AssetPostEditSchemaAnalyzeStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                analyze_status_type_1 = AssetPostEditSchemaAnalyzeStatusType1.from_dict(
-                    data
-                )
+                analyze_status_type_1 = AssetPostEditSchemaAnalyzeStatus(data)
 
                 return analyze_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AssetPostEditSchemaAnalyzeStatusType1 | None | Unset, data)
+            return cast(AssetPostEditSchemaAnalyzeStatus | None | Unset, data)
 
         analyze_status = _parse_analyze_status(d.pop("analyze_status", UNSET))
 
         def _parse_archive_status(
             data: object,
-        ) -> AssetPostEditSchemaArchiveStatusType1 | None | Unset:
+        ) -> AssetPostEditSchemaArchiveStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                archive_status_type_1 = AssetPostEditSchemaArchiveStatusType1.from_dict(
-                    data
-                )
+                archive_status_type_1 = AssetPostEditSchemaArchiveStatus(data)
 
                 return archive_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AssetPostEditSchemaArchiveStatusType1 | None | Unset, data)
+            return cast(AssetPostEditSchemaArchiveStatus | None | Unset, data)
 
         archive_status = _parse_archive_status(d.pop("archive_status", UNSET))
 
@@ -1004,24 +960,22 @@ class AssetPostEditSchema:
 
         def _parse_face_recognition_status(
             data: object,
-        ) -> AssetPostEditSchemaFaceRecognitionStatusType1 | None | Unset:
+        ) -> AssetPostEditSchemaFaceRecognitionStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
                 face_recognition_status_type_1 = (
-                    AssetPostEditSchemaFaceRecognitionStatusType1.from_dict(data)
+                    AssetPostEditSchemaFaceRecognitionStatus(data)
                 )
 
                 return face_recognition_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(
-                AssetPostEditSchemaFaceRecognitionStatusType1 | None | Unset, data
-            )
+            return cast(AssetPostEditSchemaFaceRecognitionStatus | None | Unset, data)
 
         face_recognition_status = _parse_face_recognition_status(
             d.pop("face_recognition_status", UNSET)
@@ -1204,22 +1158,20 @@ class AssetPostEditSchema:
 
         def _parse_publication_status(
             data: object,
-        ) -> AssetPostEditSchemaPublicationStatusType1 | None | Unset:
+        ) -> AssetPostEditSchemaPublicationStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                publication_status_type_1 = (
-                    AssetPostEditSchemaPublicationStatusType1.from_dict(data)
-                )
+                publication_status_type_1 = AssetPostEditSchemaPublicationStatus(data)
 
                 return publication_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AssetPostEditSchemaPublicationStatusType1 | None | Unset, data)
+            return cast(AssetPostEditSchemaPublicationStatus | None | Unset, data)
 
         publication_status = _parse_publication_status(
             d.pop("publication_status", UNSET)
@@ -1234,22 +1186,20 @@ class AssetPostEditSchema:
 
         site_name = _parse_site_name(d.pop("site_name", UNSET))
 
-        def _parse_status(
-            data: object,
-        ) -> AssetPostEditSchemaStatusType1 | None | Unset:
+        def _parse_status(data: object) -> AssetPostEditSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = AssetPostEditSchemaStatusType1.from_dict(data)
+                status_type_1 = AssetPostEditSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AssetPostEditSchemaStatusType1 | None | Unset, data)
+            return cast(AssetPostEditSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 
@@ -1284,20 +1234,20 @@ class AssetPostEditSchema:
 
         title = _parse_title(d.pop("title", UNSET))
 
-        def _parse_type_(data: object) -> AssetPostEditSchemaTypeType1 | None | Unset:
+        def _parse_type_(data: object) -> AssetPostEditSchemaType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                type_type_1 = AssetPostEditSchemaTypeType1.from_dict(data)
+                type_type_1 = AssetPostEditSchemaType(data)
 
                 return type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AssetPostEditSchemaTypeType1 | None | Unset, data)
+            return cast(AssetPostEditSchemaType | None | Unset, data)
 
         type_ = _parse_type_(d.pop("type", UNSET))
 

@@ -8,14 +8,12 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.user_elastic_schema_onboarding_goal import UserElasticSchemaOnboardingGoal
+from ..models.user_elastic_schema_status import UserElasticSchemaStatus
 from ..models.user_elastic_schema_type import UserElasticSchemaType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.user_elastic_schema_onboarding_goal_type_1 import (
-        UserElasticSchemaOnboardingGoalType1,
-    )
-    from ..models.user_elastic_schema_status_type_1 import UserElasticSchemaStatusType1
     from ..models.user_system_metadata import UserSystemMetadata
 
 
@@ -52,7 +50,7 @@ class UserElasticSchema:
         last_unsuccessful_auth (None | str | Unset):
         last_web_login (None | str | Unset):
         metadata (Any | Unset):
-        onboarding_goal (None | Unset | UserElasticSchemaOnboardingGoalType1):
+        onboarding_goal (None | Unset | UserElasticSchemaOnboardingGoal):
         password (None | str | Unset):
         password_changed (datetime.datetime | None | Unset):
         phone (None | str | Unset):
@@ -60,7 +58,7 @@ class UserElasticSchema:
         photo_big (None | str | Unset):
         photo_small (None | str | Unset):
         primary_group (None | Unset | UUID):
-        status (None | Unset | UserElasticSchemaStatusType1):
+        status (None | Unset | UserElasticSchemaStatus):
         system_domain_id (None | Unset | UUID):
         system_domains (list[UUID] | None | Unset):
         system_metadata (None | Unset | UserSystemMetadata):
@@ -93,7 +91,7 @@ class UserElasticSchema:
     last_unsuccessful_auth: None | str | Unset = UNSET
     last_web_login: None | str | Unset = UNSET
     metadata: Any | Unset = UNSET
-    onboarding_goal: None | Unset | UserElasticSchemaOnboardingGoalType1 = UNSET
+    onboarding_goal: None | Unset | UserElasticSchemaOnboardingGoal = UNSET
     password: None | str | Unset = UNSET
     password_changed: datetime.datetime | None | Unset = UNSET
     phone: None | str | Unset = UNSET
@@ -101,7 +99,7 @@ class UserElasticSchema:
     photo_big: None | str | Unset = UNSET
     photo_small: None | str | Unset = UNSET
     primary_group: None | Unset | UUID = UNSET
-    status: None | Unset | UserElasticSchemaStatusType1 = UNSET
+    status: None | Unset | UserElasticSchemaStatus = UNSET
     system_domain_id: None | Unset | UUID = UNSET
     system_domains: list[UUID] | None | Unset = UNSET
     system_metadata: None | Unset | UserSystemMetadata = UNSET
@@ -109,12 +107,6 @@ class UserElasticSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.user_elastic_schema_onboarding_goal_type_1 import (
-            UserElasticSchemaOnboardingGoalType1,
-        )
-        from ..models.user_elastic_schema_status_type_1 import (
-            UserElasticSchemaStatusType1,
-        )
         from ..models.user_system_metadata import UserSystemMetadata
 
         type_ = self.type_.value
@@ -287,11 +279,11 @@ class UserElasticSchema:
 
         metadata = self.metadata
 
-        onboarding_goal: dict[str, Any] | None | Unset
+        onboarding_goal: None | str | Unset
         if isinstance(self.onboarding_goal, Unset):
             onboarding_goal = UNSET
-        elif isinstance(self.onboarding_goal, UserElasticSchemaOnboardingGoalType1):
-            onboarding_goal = self.onboarding_goal.to_dict()
+        elif isinstance(self.onboarding_goal, UserElasticSchemaOnboardingGoal):
+            onboarding_goal = self.onboarding_goal.value
         else:
             onboarding_goal = self.onboarding_goal
 
@@ -341,11 +333,11 @@ class UserElasticSchema:
         else:
             primary_group = self.primary_group
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, UserElasticSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, UserElasticSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -471,12 +463,6 @@ class UserElasticSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.user_elastic_schema_onboarding_goal_type_1 import (
-            UserElasticSchemaOnboardingGoalType1,
-        )
-        from ..models.user_elastic_schema_status_type_1 import (
-            UserElasticSchemaStatusType1,
-        )
         from ..models.user_system_metadata import UserSystemMetadata
 
         d = dict(src_dict)
@@ -805,22 +791,20 @@ class UserElasticSchema:
 
         def _parse_onboarding_goal(
             data: object,
-        ) -> None | Unset | UserElasticSchemaOnboardingGoalType1:
+        ) -> None | Unset | UserElasticSchemaOnboardingGoal:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                onboarding_goal_type_1 = UserElasticSchemaOnboardingGoalType1.from_dict(
-                    data
-                )
+                onboarding_goal_type_1 = UserElasticSchemaOnboardingGoal(data)
 
                 return onboarding_goal_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | Unset | UserElasticSchemaOnboardingGoalType1, data)
+            return cast(None | Unset | UserElasticSchemaOnboardingGoal, data)
 
         onboarding_goal = _parse_onboarding_goal(d.pop("onboarding_goal", UNSET))
 
@@ -903,20 +887,20 @@ class UserElasticSchema:
 
         primary_group = _parse_primary_group(d.pop("primary_group", UNSET))
 
-        def _parse_status(data: object) -> None | Unset | UserElasticSchemaStatusType1:
+        def _parse_status(data: object) -> None | Unset | UserElasticSchemaStatus:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = UserElasticSchemaStatusType1.from_dict(data)
+                status_type_1 = UserElasticSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | Unset | UserElasticSchemaStatusType1, data)
+            return cast(None | Unset | UserElasticSchemaStatus, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

@@ -2,13 +2,13 @@
 
 from .abort_storage_transcode_jobs_schema import AbortStorageTranscodeJobsSchema
 from .analyze_schema import AnalyzeSchema
-from .analyze_schema_force_type_type_1 import AnalyzeSchemaForceTypeType1
+from .analyze_schema_force_type import AnalyzeSchemaForceType
 from .asset_link_data import AssetLinkData
 from .asset_link_url_schema import AssetLinkURLSchema
 from .bulk_action_schema import BulkActionSchema
 from .bulk_action_schema_object_type import BulkActionSchemaObjectType
 from .bulk_analyze_schema import BulkAnalyzeSchema
-from .bulk_analyze_schema_force_type_type_1 import BulkAnalyzeSchemaForceTypeType1
+from .bulk_analyze_schema_force_type import BulkAnalyzeSchemaForceType
 from .bulk_analyze_schema_object_type import BulkAnalyzeSchemaObjectType
 from .bulk_metadata_filling_schema import BulkMetadataFillingSchema
 from .bulk_metadata_filling_schema_object_type import (
@@ -214,8 +214,8 @@ from .metadata_filling_proposal_by_asset_query_params_schema import (
     MetadataFillingProposalByAssetQueryParamsSchema,
 )
 from .metadata_filling_proposal_schema import MetadataFillingProposalSchema
-from .metadata_filling_proposal_schema_review_status_type_1 import (
-    MetadataFillingProposalSchemaReviewStatusType1,
+from .metadata_filling_proposal_schema_review_status import (
+    MetadataFillingProposalSchemaReviewStatus,
 )
 from .metadata_filling_response_schema import MetadataFillingResponseSchema
 from .metadata_filling_response_schema_metadata_values_type_0 import (
@@ -445,13 +445,13 @@ from .wildmoka_protect_transcode_create_file_callback_payload import (
 __all__ = (
     "AbortStorageTranscodeJobsSchema",
     "AnalyzeSchema",
-    "AnalyzeSchemaForceTypeType1",
+    "AnalyzeSchemaForceType",
     "AssetLinkData",
     "AssetLinkURLSchema",
     "BulkActionSchema",
     "BulkActionSchemaObjectType",
     "BulkAnalyzeSchema",
-    "BulkAnalyzeSchemaForceTypeType1",
+    "BulkAnalyzeSchemaForceType",
     "BulkAnalyzeSchemaObjectType",
     "BulkMetadataFillingSchema",
     "BulkMetadataFillingSchemaObjectType",
@@ -543,7 +543,7 @@ __all__ = (
     "LocalTranscodeJobSchemaAnalysisDataType0",
     "MetadataFillingProposalByAssetQueryParamsSchema",
     "MetadataFillingProposalSchema",
-    "MetadataFillingProposalSchemaReviewStatusType1",
+    "MetadataFillingProposalSchemaReviewStatus",
     "MetadataFillingResponseSchema",
     "MetadataFillingResponseSchemaMetadataValuesType0",
     "MetadataFillingSchema",

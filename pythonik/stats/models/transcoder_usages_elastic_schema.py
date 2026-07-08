@@ -1,22 +1,19 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.transcoder_usages_elastic_schema_operation_type import (
+    TranscoderUsagesElasticSchemaOperationType,
+)
 from ..models.transcoder_usages_elastic_schema_transcoder_type import (
     TranscoderUsagesElasticSchemaTranscoderType,
 )
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.transcoder_usages_elastic_schema_operation_type_type_1 import (
-        TranscoderUsagesElasticSchemaOperationTypeType1,
-    )
-
 
 T = TypeVar("T", bound="TranscoderUsagesElasticSchema")
 
@@ -32,7 +29,7 @@ class TranscoderUsagesElasticSchema:
         duration_seconds (int | None | Unset):
         id (None | Unset | UUID):
         is_user_transcoder (bool | None | Unset):
-        operation_type (None | TranscoderUsagesElasticSchemaOperationTypeType1 | Unset):
+        operation_type (None | TranscoderUsagesElasticSchemaOperationType | Unset):
         source_bytes (int | None | Unset):
         system_domain_id (None | Unset | UUID):
     """
@@ -44,18 +41,12 @@ class TranscoderUsagesElasticSchema:
     duration_seconds: int | None | Unset = UNSET
     id: None | Unset | UUID = UNSET
     is_user_transcoder: bool | None | Unset = UNSET
-    operation_type: None | TranscoderUsagesElasticSchemaOperationTypeType1 | Unset = (
-        UNSET
-    )
+    operation_type: None | TranscoderUsagesElasticSchemaOperationType | Unset = UNSET
     source_bytes: int | None | Unset = UNSET
     system_domain_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.transcoder_usages_elastic_schema_operation_type_type_1 import (
-            TranscoderUsagesElasticSchemaOperationTypeType1,
-        )
-
         transcoder_type = self.transcoder_type.value
 
         count: int | None | Unset
@@ -96,13 +87,13 @@ class TranscoderUsagesElasticSchema:
         else:
             is_user_transcoder = self.is_user_transcoder
 
-        operation_type: dict[str, Any] | None | Unset
+        operation_type: None | str | Unset
         if isinstance(self.operation_type, Unset):
             operation_type = UNSET
         elif isinstance(
-            self.operation_type, TranscoderUsagesElasticSchemaOperationTypeType1
+            self.operation_type, TranscoderUsagesElasticSchemaOperationType
         ):
-            operation_type = self.operation_type.to_dict()
+            operation_type = self.operation_type.value
         else:
             operation_type = self.operation_type
 
@@ -150,10 +141,6 @@ class TranscoderUsagesElasticSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.transcoder_usages_elastic_schema_operation_type_type_1 import (
-            TranscoderUsagesElasticSchemaOperationTypeType1,
-        )
-
         d = dict(src_dict)
         transcoder_type = TranscoderUsagesElasticSchemaTranscoderType(
             d.pop("transcoder_type")
@@ -225,24 +212,20 @@ class TranscoderUsagesElasticSchema:
 
         def _parse_operation_type(
             data: object,
-        ) -> None | TranscoderUsagesElasticSchemaOperationTypeType1 | Unset:
+        ) -> None | TranscoderUsagesElasticSchemaOperationType | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                operation_type_type_1 = (
-                    TranscoderUsagesElasticSchemaOperationTypeType1.from_dict(data)
-                )
+                operation_type_type_1 = TranscoderUsagesElasticSchemaOperationType(data)
 
                 return operation_type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(
-                None | TranscoderUsagesElasticSchemaOperationTypeType1 | Unset, data
-            )
+            return cast(None | TranscoderUsagesElasticSchemaOperationType | Unset, data)
 
         operation_type = _parse_operation_type(d.pop("operation_type", UNSET))
 

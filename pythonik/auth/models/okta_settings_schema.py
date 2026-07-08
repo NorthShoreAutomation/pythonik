@@ -1,24 +1,21 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.okta_settings_schema_cert_fingerprint_algorithm import (
+    OktaSettingsSchemaCertFingerprintAlgorithm,
+)
+from ..models.okta_settings_schema_digest_algorithm import (
+    OktaSettingsSchemaDigestAlgorithm,
+)
+from ..models.okta_settings_schema_signature_algorithm import (
+    OktaSettingsSchemaSignatureAlgorithm,
+)
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.okta_settings_schema_cert_fingerprint_algorithm_type_1 import (
-        OktaSettingsSchemaCertFingerprintAlgorithmType1,
-    )
-    from ..models.okta_settings_schema_digest_algorithm_type_1 import (
-        OktaSettingsSchemaDigestAlgorithmType1,
-    )
-    from ..models.okta_settings_schema_signature_algorithm_type_1 import (
-        OktaSettingsSchemaSignatureAlgorithmType1,
-    )
-
 
 T = TypeVar("T", bound="OktaSettingsSchema")
 
@@ -29,43 +26,31 @@ class OktaSettingsSchema:
     Attributes:
         okta_name (str):
         cert_fingerprint (None | str | Unset):
-        cert_fingerprint_algorithm (None | OktaSettingsSchemaCertFingerprintAlgorithmType1 | Unset):
-        digest_algorithm (None | OktaSettingsSchemaDigestAlgorithmType1 | Unset):
+        cert_fingerprint_algorithm (None | OktaSettingsSchemaCertFingerprintAlgorithm | Unset):
+        digest_algorithm (None | OktaSettingsSchemaDigestAlgorithm | Unset):
         domain_name (None | str | Unset):
         idp_x509cert (None | str | Unset):
         okta_app_id (None | str | Unset):
         okta_preview (bool | None | Unset):
         okta_sso (None | str | Unset):
-        signature_algorithm (None | OktaSettingsSchemaSignatureAlgorithmType1 | Unset):
+        signature_algorithm (None | OktaSettingsSchemaSignatureAlgorithm | Unset):
     """
 
     okta_name: str
     cert_fingerprint: None | str | Unset = UNSET
     cert_fingerprint_algorithm: (
-        None | OktaSettingsSchemaCertFingerprintAlgorithmType1 | Unset
+        None | OktaSettingsSchemaCertFingerprintAlgorithm | Unset
     ) = UNSET
-    digest_algorithm: None | OktaSettingsSchemaDigestAlgorithmType1 | Unset = UNSET
+    digest_algorithm: None | OktaSettingsSchemaDigestAlgorithm | Unset = UNSET
     domain_name: None | str | Unset = UNSET
     idp_x509cert: None | str | Unset = UNSET
     okta_app_id: None | str | Unset = UNSET
     okta_preview: bool | None | Unset = UNSET
     okta_sso: None | str | Unset = UNSET
-    signature_algorithm: None | OktaSettingsSchemaSignatureAlgorithmType1 | Unset = (
-        UNSET
-    )
+    signature_algorithm: None | OktaSettingsSchemaSignatureAlgorithm | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.okta_settings_schema_cert_fingerprint_algorithm_type_1 import (
-            OktaSettingsSchemaCertFingerprintAlgorithmType1,
-        )
-        from ..models.okta_settings_schema_digest_algorithm_type_1 import (
-            OktaSettingsSchemaDigestAlgorithmType1,
-        )
-        from ..models.okta_settings_schema_signature_algorithm_type_1 import (
-            OktaSettingsSchemaSignatureAlgorithmType1,
-        )
-
         okta_name = self.okta_name
 
         cert_fingerprint: None | str | Unset
@@ -74,22 +59,21 @@ class OktaSettingsSchema:
         else:
             cert_fingerprint = self.cert_fingerprint
 
-        cert_fingerprint_algorithm: dict[str, Any] | None | Unset
+        cert_fingerprint_algorithm: None | str | Unset
         if isinstance(self.cert_fingerprint_algorithm, Unset):
             cert_fingerprint_algorithm = UNSET
         elif isinstance(
-            self.cert_fingerprint_algorithm,
-            OktaSettingsSchemaCertFingerprintAlgorithmType1,
+            self.cert_fingerprint_algorithm, OktaSettingsSchemaCertFingerprintAlgorithm
         ):
-            cert_fingerprint_algorithm = self.cert_fingerprint_algorithm.to_dict()
+            cert_fingerprint_algorithm = self.cert_fingerprint_algorithm.value
         else:
             cert_fingerprint_algorithm = self.cert_fingerprint_algorithm
 
-        digest_algorithm: dict[str, Any] | None | Unset
+        digest_algorithm: None | str | Unset
         if isinstance(self.digest_algorithm, Unset):
             digest_algorithm = UNSET
-        elif isinstance(self.digest_algorithm, OktaSettingsSchemaDigestAlgorithmType1):
-            digest_algorithm = self.digest_algorithm.to_dict()
+        elif isinstance(self.digest_algorithm, OktaSettingsSchemaDigestAlgorithm):
+            digest_algorithm = self.digest_algorithm.value
         else:
             digest_algorithm = self.digest_algorithm
 
@@ -123,13 +107,11 @@ class OktaSettingsSchema:
         else:
             okta_sso = self.okta_sso
 
-        signature_algorithm: dict[str, Any] | None | Unset
+        signature_algorithm: None | str | Unset
         if isinstance(self.signature_algorithm, Unset):
             signature_algorithm = UNSET
-        elif isinstance(
-            self.signature_algorithm, OktaSettingsSchemaSignatureAlgorithmType1
-        ):
-            signature_algorithm = self.signature_algorithm.to_dict()
+        elif isinstance(self.signature_algorithm, OktaSettingsSchemaSignatureAlgorithm):
+            signature_algorithm = self.signature_algorithm.value
         else:
             signature_algorithm = self.signature_algorithm
 
@@ -163,16 +145,6 @@ class OktaSettingsSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.okta_settings_schema_cert_fingerprint_algorithm_type_1 import (
-            OktaSettingsSchemaCertFingerprintAlgorithmType1,
-        )
-        from ..models.okta_settings_schema_digest_algorithm_type_1 import (
-            OktaSettingsSchemaDigestAlgorithmType1,
-        )
-        from ..models.okta_settings_schema_signature_algorithm_type_1 import (
-            OktaSettingsSchemaSignatureAlgorithmType1,
-        )
-
         d = dict(src_dict)
         okta_name = d.pop("okta_name")
 
@@ -187,24 +159,22 @@ class OktaSettingsSchema:
 
         def _parse_cert_fingerprint_algorithm(
             data: object,
-        ) -> None | OktaSettingsSchemaCertFingerprintAlgorithmType1 | Unset:
+        ) -> None | OktaSettingsSchemaCertFingerprintAlgorithm | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
                 cert_fingerprint_algorithm_type_1 = (
-                    OktaSettingsSchemaCertFingerprintAlgorithmType1.from_dict(data)
+                    OktaSettingsSchemaCertFingerprintAlgorithm(data)
                 )
 
                 return cert_fingerprint_algorithm_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(
-                None | OktaSettingsSchemaCertFingerprintAlgorithmType1 | Unset, data
-            )
+            return cast(None | OktaSettingsSchemaCertFingerprintAlgorithm | Unset, data)
 
         cert_fingerprint_algorithm = _parse_cert_fingerprint_algorithm(
             d.pop("cert_fingerprint_algorithm", UNSET)
@@ -212,22 +182,20 @@ class OktaSettingsSchema:
 
         def _parse_digest_algorithm(
             data: object,
-        ) -> None | OktaSettingsSchemaDigestAlgorithmType1 | Unset:
+        ) -> None | OktaSettingsSchemaDigestAlgorithm | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                digest_algorithm_type_1 = (
-                    OktaSettingsSchemaDigestAlgorithmType1.from_dict(data)
-                )
+                digest_algorithm_type_1 = OktaSettingsSchemaDigestAlgorithm(data)
 
                 return digest_algorithm_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | OktaSettingsSchemaDigestAlgorithmType1 | Unset, data)
+            return cast(None | OktaSettingsSchemaDigestAlgorithm | Unset, data)
 
         digest_algorithm = _parse_digest_algorithm(d.pop("digest_algorithm", UNSET))
 
@@ -278,22 +246,20 @@ class OktaSettingsSchema:
 
         def _parse_signature_algorithm(
             data: object,
-        ) -> None | OktaSettingsSchemaSignatureAlgorithmType1 | Unset:
+        ) -> None | OktaSettingsSchemaSignatureAlgorithm | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                signature_algorithm_type_1 = (
-                    OktaSettingsSchemaSignatureAlgorithmType1.from_dict(data)
-                )
+                signature_algorithm_type_1 = OktaSettingsSchemaSignatureAlgorithm(data)
 
                 return signature_algorithm_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | OktaSettingsSchemaSignatureAlgorithmType1 | Unset, data)
+            return cast(None | OktaSettingsSchemaSignatureAlgorithm | Unset, data)
 
         signature_algorithm = _parse_signature_algorithm(
             d.pop("signature_algorithm", UNSET)

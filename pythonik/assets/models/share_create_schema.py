@@ -2,20 +2,15 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.share_create_schema_drm import ShareCreateSchemaDrm
+from ..models.share_create_schema_watermark import ShareCreateSchemaWatermark
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.share_create_schema_drm_type_1 import ShareCreateSchemaDrmType1
-    from ..models.share_create_schema_watermark_type_1 import (
-        ShareCreateSchemaWatermarkType1,
-    )
-
 
 T = TypeVar("T", bound="ShareCreateSchema")
 
@@ -37,7 +32,7 @@ class ShareCreateSchema:
         allow_view_transcriptions (bool | None | Unset):
         allow_view_versions (bool | None | Unset):
         automatic_approval_share (bool | None | Unset):  Default: False.
-        drm (None | ShareCreateSchemaDrmType1 | Unset):
+        drm (None | ShareCreateSchemaDrm | Unset):
         expires (datetime.datetime | None | Unset):
         id (None | str | Unset):
         is_approval (bool | None | Unset):
@@ -54,7 +49,7 @@ class ShareCreateSchema:
         system_domain_id (None | str | Unset):
         title (None | str | Unset):
         upload_storage_id (None | Unset | UUID):
-        watermark (None | ShareCreateSchemaWatermarkType1 | Unset):
+        watermark (None | ShareCreateSchemaWatermark | Unset):
     """
 
     allow_approving_comments: bool
@@ -70,7 +65,7 @@ class ShareCreateSchema:
     allow_view_transcriptions: bool | None | Unset = UNSET
     allow_view_versions: bool | None | Unset = UNSET
     automatic_approval_share: bool | None | Unset = False
-    drm: None | ShareCreateSchemaDrmType1 | Unset = UNSET
+    drm: None | ShareCreateSchemaDrm | Unset = UNSET
     expires: datetime.datetime | None | Unset = UNSET
     id: None | str | Unset = UNSET
     is_approval: bool | None | Unset = UNSET
@@ -87,15 +82,10 @@ class ShareCreateSchema:
     system_domain_id: None | str | Unset = UNSET
     title: None | str | Unset = UNSET
     upload_storage_id: None | Unset | UUID = UNSET
-    watermark: None | ShareCreateSchemaWatermarkType1 | Unset = UNSET
+    watermark: None | ShareCreateSchemaWatermark | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.share_create_schema_drm_type_1 import ShareCreateSchemaDrmType1
-        from ..models.share_create_schema_watermark_type_1 import (
-            ShareCreateSchemaWatermarkType1,
-        )
-
         allow_approving_comments = self.allow_approving_comments
 
         allow_comments = self.allow_comments
@@ -154,11 +144,11 @@ class ShareCreateSchema:
         else:
             automatic_approval_share = self.automatic_approval_share
 
-        drm: dict[str, Any] | None | Unset
+        drm: None | str | Unset
         if isinstance(self.drm, Unset):
             drm = UNSET
-        elif isinstance(self.drm, ShareCreateSchemaDrmType1):
-            drm = self.drm.to_dict()
+        elif isinstance(self.drm, ShareCreateSchemaDrm):
+            drm = self.drm.value
         else:
             drm = self.drm
 
@@ -267,11 +257,11 @@ class ShareCreateSchema:
         else:
             upload_storage_id = self.upload_storage_id
 
-        watermark: dict[str, Any] | None | Unset
+        watermark: None | str | Unset
         if isinstance(self.watermark, Unset):
             watermark = UNSET
-        elif isinstance(self.watermark, ShareCreateSchemaWatermarkType1):
-            watermark = self.watermark.to_dict()
+        elif isinstance(self.watermark, ShareCreateSchemaWatermark):
+            watermark = self.watermark.value
         else:
             watermark = self.watermark
 
@@ -345,11 +335,6 @@ class ShareCreateSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.share_create_schema_drm_type_1 import ShareCreateSchemaDrmType1
-        from ..models.share_create_schema_watermark_type_1 import (
-            ShareCreateSchemaWatermarkType1,
-        )
-
         d = dict(src_dict)
         allow_approving_comments = d.pop("allow_approving_comments")
 
@@ -445,20 +430,20 @@ class ShareCreateSchema:
             d.pop("automatic_approval_share", UNSET)
         )
 
-        def _parse_drm(data: object) -> None | ShareCreateSchemaDrmType1 | Unset:
+        def _parse_drm(data: object) -> None | ShareCreateSchemaDrm | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                drm_type_1 = ShareCreateSchemaDrmType1.from_dict(data)
+                drm_type_1 = ShareCreateSchemaDrm(data)
 
                 return drm_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | ShareCreateSchemaDrmType1 | Unset, data)
+            return cast(None | ShareCreateSchemaDrm | Unset, data)
 
         drm = _parse_drm(d.pop("drm", UNSET))
 
@@ -642,22 +627,20 @@ class ShareCreateSchema:
 
         upload_storage_id = _parse_upload_storage_id(d.pop("upload_storage_id", UNSET))
 
-        def _parse_watermark(
-            data: object,
-        ) -> None | ShareCreateSchemaWatermarkType1 | Unset:
+        def _parse_watermark(data: object) -> None | ShareCreateSchemaWatermark | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                watermark_type_1 = ShareCreateSchemaWatermarkType1.from_dict(data)
+                watermark_type_1 = ShareCreateSchemaWatermark(data)
 
                 return watermark_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | ShareCreateSchemaWatermarkType1 | Unset, data)
+            return cast(None | ShareCreateSchemaWatermark | Unset, data)
 
         watermark = _parse_watermark(d.pop("watermark", UNSET))
 

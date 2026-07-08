@@ -8,18 +8,14 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.user_saml_create_schema_onboarding_goal import (
+    UserSamlCreateSchemaOnboardingGoal,
+)
+from ..models.user_saml_create_schema_status import UserSamlCreateSchemaStatus
+from ..models.user_saml_create_schema_type import UserSamlCreateSchemaType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.user_saml_create_schema_onboarding_goal_type_1 import (
-        UserSamlCreateSchemaOnboardingGoalType1,
-    )
-    from ..models.user_saml_create_schema_status_type_1 import (
-        UserSamlCreateSchemaStatusType1,
-    )
-    from ..models.user_saml_create_schema_type_type_1 import (
-        UserSamlCreateSchemaTypeType1,
-    )
     from ..models.user_system_metadata import UserSystemMetadata
 
 
@@ -55,7 +51,7 @@ class UserSamlCreateSchema:
         last_unsuccessful_auth (datetime.datetime | None | Unset):
         last_web_login (datetime.datetime | None | Unset):
         metadata (Any | Unset):
-        onboarding_goal (None | Unset | UserSamlCreateSchemaOnboardingGoalType1):
+        onboarding_goal (None | Unset | UserSamlCreateSchemaOnboardingGoal):
         password (None | str | Unset):
         password_changed (datetime.datetime | None | Unset):
         phone (None | str | Unset):
@@ -63,12 +59,12 @@ class UserSamlCreateSchema:
         photo_big (None | str | Unset):
         photo_small (None | str | Unset):
         primary_group (None | Unset | UUID):
-        status (None | Unset | UserSamlCreateSchemaStatusType1):
+        status (None | Unset | UserSamlCreateSchemaStatus):
         system_domain_id (None | Unset | UUID):
         system_domains (list[UUID] | None | Unset):
         system_metadata (None | Unset | UserSystemMetadata):
         system_name (None | str | Unset):
-        type_ (None | Unset | UserSamlCreateSchemaTypeType1):
+        type_ (None | Unset | UserSamlCreateSchemaType):
     """
 
     email: str
@@ -96,7 +92,7 @@ class UserSamlCreateSchema:
     last_unsuccessful_auth: datetime.datetime | None | Unset = UNSET
     last_web_login: datetime.datetime | None | Unset = UNSET
     metadata: Any | Unset = UNSET
-    onboarding_goal: None | Unset | UserSamlCreateSchemaOnboardingGoalType1 = UNSET
+    onboarding_goal: None | Unset | UserSamlCreateSchemaOnboardingGoal = UNSET
     password: None | str | Unset = UNSET
     password_changed: datetime.datetime | None | Unset = UNSET
     phone: None | str | Unset = UNSET
@@ -104,24 +100,15 @@ class UserSamlCreateSchema:
     photo_big: None | str | Unset = UNSET
     photo_small: None | str | Unset = UNSET
     primary_group: None | Unset | UUID = UNSET
-    status: None | Unset | UserSamlCreateSchemaStatusType1 = UNSET
+    status: None | Unset | UserSamlCreateSchemaStatus = UNSET
     system_domain_id: None | Unset | UUID = UNSET
     system_domains: list[UUID] | None | Unset = UNSET
     system_metadata: None | Unset | UserSystemMetadata = UNSET
     system_name: None | str | Unset = UNSET
-    type_: None | Unset | UserSamlCreateSchemaTypeType1 = UNSET
+    type_: None | Unset | UserSamlCreateSchemaType = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.user_saml_create_schema_onboarding_goal_type_1 import (
-            UserSamlCreateSchemaOnboardingGoalType1,
-        )
-        from ..models.user_saml_create_schema_status_type_1 import (
-            UserSamlCreateSchemaStatusType1,
-        )
-        from ..models.user_saml_create_schema_type_type_1 import (
-            UserSamlCreateSchemaTypeType1,
-        )
         from ..models.user_system_metadata import UserSystemMetadata
 
         email = self.email
@@ -301,11 +288,11 @@ class UserSamlCreateSchema:
 
         metadata = self.metadata
 
-        onboarding_goal: dict[str, Any] | None | Unset
+        onboarding_goal: None | str | Unset
         if isinstance(self.onboarding_goal, Unset):
             onboarding_goal = UNSET
-        elif isinstance(self.onboarding_goal, UserSamlCreateSchemaOnboardingGoalType1):
-            onboarding_goal = self.onboarding_goal.to_dict()
+        elif isinstance(self.onboarding_goal, UserSamlCreateSchemaOnboardingGoal):
+            onboarding_goal = self.onboarding_goal.value
         else:
             onboarding_goal = self.onboarding_goal
 
@@ -355,11 +342,11 @@ class UserSamlCreateSchema:
         else:
             primary_group = self.primary_group
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, UserSamlCreateSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, UserSamlCreateSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -397,11 +384,11 @@ class UserSamlCreateSchema:
         else:
             system_name = self.system_name
 
-        type_: dict[str, Any] | None | Unset
+        type_: None | str | Unset
         if isinstance(self.type_, Unset):
             type_ = UNSET
-        elif isinstance(self.type_, UserSamlCreateSchemaTypeType1):
-            type_ = self.type_.to_dict()
+        elif isinstance(self.type_, UserSamlCreateSchemaType):
+            type_ = self.type_.value
         else:
             type_ = self.type_
 
@@ -493,15 +480,6 @@ class UserSamlCreateSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.user_saml_create_schema_onboarding_goal_type_1 import (
-            UserSamlCreateSchemaOnboardingGoalType1,
-        )
-        from ..models.user_saml_create_schema_status_type_1 import (
-            UserSamlCreateSchemaStatusType1,
-        )
-        from ..models.user_saml_create_schema_type_type_1 import (
-            UserSamlCreateSchemaTypeType1,
-        )
         from ..models.user_system_metadata import UserSystemMetadata
 
         d = dict(src_dict)
@@ -873,22 +851,20 @@ class UserSamlCreateSchema:
 
         def _parse_onboarding_goal(
             data: object,
-        ) -> None | Unset | UserSamlCreateSchemaOnboardingGoalType1:
+        ) -> None | Unset | UserSamlCreateSchemaOnboardingGoal:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                onboarding_goal_type_1 = (
-                    UserSamlCreateSchemaOnboardingGoalType1.from_dict(data)
-                )
+                onboarding_goal_type_1 = UserSamlCreateSchemaOnboardingGoal(data)
 
                 return onboarding_goal_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | Unset | UserSamlCreateSchemaOnboardingGoalType1, data)
+            return cast(None | Unset | UserSamlCreateSchemaOnboardingGoal, data)
 
         onboarding_goal = _parse_onboarding_goal(d.pop("onboarding_goal", UNSET))
 
@@ -971,22 +947,20 @@ class UserSamlCreateSchema:
 
         primary_group = _parse_primary_group(d.pop("primary_group", UNSET))
 
-        def _parse_status(
-            data: object,
-        ) -> None | Unset | UserSamlCreateSchemaStatusType1:
+        def _parse_status(data: object) -> None | Unset | UserSamlCreateSchemaStatus:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = UserSamlCreateSchemaStatusType1.from_dict(data)
+                status_type_1 = UserSamlCreateSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | Unset | UserSamlCreateSchemaStatusType1, data)
+            return cast(None | Unset | UserSamlCreateSchemaStatus, data)
 
         status = _parse_status(d.pop("status", UNSET))
 
@@ -1055,20 +1029,20 @@ class UserSamlCreateSchema:
 
         system_name = _parse_system_name(d.pop("system_name", UNSET))
 
-        def _parse_type_(data: object) -> None | Unset | UserSamlCreateSchemaTypeType1:
+        def _parse_type_(data: object) -> None | Unset | UserSamlCreateSchemaType:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                type_type_1 = UserSamlCreateSchemaTypeType1.from_dict(data)
+                type_type_1 = UserSamlCreateSchemaType(data)
 
                 return type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | Unset | UserSamlCreateSchemaTypeType1, data)
+            return cast(None | Unset | UserSamlCreateSchemaType, data)
 
         type_ = _parse_type_(d.pop("type", UNSET))
 

@@ -7,8 +7,12 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.system_setting_public_schema_drm import SystemSettingPublicSchemaDrm
 from ..models.system_setting_public_schema_mfa_methods_type_0_item import (
     SystemSettingPublicSchemaMfaMethodsType0Item,
+)
+from ..models.system_setting_public_schema_watermark import (
+    SystemSettingPublicSchemaWatermark,
 )
 from ..types import UNSET, Unset
 
@@ -19,12 +23,6 @@ if TYPE_CHECKING:
     from ..models.jobs_dashboard_schema import JobsDashboardSchema
     from ..models.password_checks_type_schema import PasswordChecksTypeSchema
     from ..models.search_display_field_schema import SearchDisplayFieldSchema
-    from ..models.system_setting_public_schema_drm_type_1 import (
-        SystemSettingPublicSchemaDrmType1,
-    )
-    from ..models.system_setting_public_schema_watermark_type_1 import (
-        SystemSettingPublicSchemaWatermarkType1,
-    )
     from ..models.watermark_options_type import WatermarkOptionsType
 
 
@@ -59,7 +57,7 @@ class SystemSettingPublicSchema:
             Unit: hours
         disable_billing_page (bool | None | Unset):
         domain_has_preloaded_assets (bool | None | Unset):
-        drm (None | SystemSettingPublicSchemaDrmType1 | Unset):
+        drm (None | SystemSettingPublicSchemaDrm | Unset):
         drm_enforce (bool | None | Unset): Whether to require hardware DRM for playback when DRM is enabled Default:
             True.
         enable_ai_metadata_filling (bool | None | Unset):
@@ -113,7 +111,7 @@ class SystemSettingPublicSchema:
         texts_metadata_field (None | str | Unset):
         update_saml_primary_group_on_login (bool | None | Unset):
         use_asset_name_on_download (bool | None | Unset):
-        watermark (None | SystemSettingPublicSchemaWatermarkType1 | Unset):
+        watermark (None | SystemSettingPublicSchemaWatermark | Unset):
         watermark_options (None | Unset | WatermarkOptionsType):
     """
 
@@ -139,7 +137,7 @@ class SystemSettingPublicSchema:
     delete_grace_period: int | None | Unset = UNSET
     disable_billing_page: bool | None | Unset = UNSET
     domain_has_preloaded_assets: bool | None | Unset = UNSET
-    drm: None | SystemSettingPublicSchemaDrmType1 | Unset = UNSET
+    drm: None | SystemSettingPublicSchemaDrm | Unset = UNSET
     drm_enforce: bool | None | Unset = True
     enable_ai_metadata_filling: bool | None | Unset = UNSET
     enable_face_recognition: bool | None | Unset = UNSET
@@ -192,7 +190,7 @@ class SystemSettingPublicSchema:
     texts_metadata_field: None | str | Unset = UNSET
     update_saml_primary_group_on_login: bool | None | Unset = UNSET
     use_asset_name_on_download: bool | None | Unset = UNSET
-    watermark: None | SystemSettingPublicSchemaWatermarkType1 | Unset = UNSET
+    watermark: None | SystemSettingPublicSchemaWatermark | Unset = UNSET
     watermark_options: None | Unset | WatermarkOptionsType = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -202,12 +200,6 @@ class SystemSettingPublicSchema:
         )
         from ..models.jobs_dashboard_schema import JobsDashboardSchema
         from ..models.password_checks_type_schema import PasswordChecksTypeSchema
-        from ..models.system_setting_public_schema_drm_type_1 import (
-            SystemSettingPublicSchemaDrmType1,
-        )
-        from ..models.system_setting_public_schema_watermark_type_1 import (
-            SystemSettingPublicSchemaWatermarkType1,
-        )
         from ..models.watermark_options_type import WatermarkOptionsType
 
         acl_template_id: None | str | Unset
@@ -362,11 +354,11 @@ class SystemSettingPublicSchema:
         else:
             domain_has_preloaded_assets = self.domain_has_preloaded_assets
 
-        drm: dict[str, Any] | None | Unset
+        drm: None | str | Unset
         if isinstance(self.drm, Unset):
             drm = UNSET
-        elif isinstance(self.drm, SystemSettingPublicSchemaDrmType1):
-            drm = self.drm.to_dict()
+        elif isinstance(self.drm, SystemSettingPublicSchemaDrm):
+            drm = self.drm.value
         else:
             drm = self.drm
 
@@ -727,11 +719,11 @@ class SystemSettingPublicSchema:
         else:
             use_asset_name_on_download = self.use_asset_name_on_download
 
-        watermark: dict[str, Any] | None | Unset
+        watermark: None | str | Unset
         if isinstance(self.watermark, Unset):
             watermark = UNSET
-        elif isinstance(self.watermark, SystemSettingPublicSchemaWatermarkType1):
-            watermark = self.watermark.to_dict()
+        elif isinstance(self.watermark, SystemSettingPublicSchemaWatermark):
+            watermark = self.watermark.value
         else:
             watermark = self.watermark
 
@@ -929,12 +921,6 @@ class SystemSettingPublicSchema:
         from ..models.jobs_dashboard_schema import JobsDashboardSchema
         from ..models.password_checks_type_schema import PasswordChecksTypeSchema
         from ..models.search_display_field_schema import SearchDisplayFieldSchema
-        from ..models.system_setting_public_schema_drm_type_1 import (
-            SystemSettingPublicSchemaDrmType1,
-        )
-        from ..models.system_setting_public_schema_watermark_type_1 import (
-            SystemSettingPublicSchemaWatermarkType1,
-        )
         from ..models.watermark_options_type import WatermarkOptionsType
 
         d = dict(src_dict)
@@ -1228,22 +1214,20 @@ class SystemSettingPublicSchema:
             d.pop("domain_has_preloaded_assets", UNSET)
         )
 
-        def _parse_drm(
-            data: object,
-        ) -> None | SystemSettingPublicSchemaDrmType1 | Unset:
+        def _parse_drm(data: object) -> None | SystemSettingPublicSchemaDrm | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                drm_type_1 = SystemSettingPublicSchemaDrmType1.from_dict(data)
+                drm_type_1 = SystemSettingPublicSchemaDrm(data)
 
                 return drm_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | SystemSettingPublicSchemaDrmType1 | Unset, data)
+            return cast(None | SystemSettingPublicSchemaDrm | Unset, data)
 
         drm = _parse_drm(d.pop("drm", UNSET))
 
@@ -1920,22 +1904,20 @@ class SystemSettingPublicSchema:
 
         def _parse_watermark(
             data: object,
-        ) -> None | SystemSettingPublicSchemaWatermarkType1 | Unset:
+        ) -> None | SystemSettingPublicSchemaWatermark | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                watermark_type_1 = SystemSettingPublicSchemaWatermarkType1.from_dict(
-                    data
-                )
+                watermark_type_1 = SystemSettingPublicSchemaWatermark(data)
 
                 return watermark_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | SystemSettingPublicSchemaWatermarkType1 | Unset, data)
+            return cast(None | SystemSettingPublicSchemaWatermark | Unset, data)
 
         watermark = _parse_watermark(d.pop("watermark", UNSET))
 

@@ -1,18 +1,15 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.redline_schema_format import RedlineSchemaFormat
+from ..models.redline_schema_prcodec import RedlineSchemaPrcodec
+from ..models.redline_schema_qt_codec import RedlineSchemaQtCodec
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.redline_schema_format_type_1 import RedlineSchemaFormatType1
-    from ..models.redline_schema_prcodec_type_1 import RedlineSchemaPrcodecType1
-    from ..models.redline_schema_qt_codec_type_1 import RedlineSchemaQtCodecType1
-
 
 T = TypeVar("T", bound="RedlineSchema")
 
@@ -26,14 +23,14 @@ class RedlineSchema:
         edit_proxy_upload_storage_id (None | str | Unset):
         edit_proxy_upload_storage_path (None | str | Unset):
         exclude_patterns (list[str] | None | Unset):
-        format_ (None | RedlineSchemaFormatType1 | Unset):
+        format_ (None | RedlineSchemaFormat | Unset):
         include_patterns (list[str] | None | Unset):
         keep_redline_proxy (bool | None | Unset):
         local (bool | None | Unset):
         opencl_device_indexes (list[str] | None | Unset):
-        prcodec (None | RedlineSchemaPrcodecType1 | Unset):
+        prcodec (None | RedlineSchemaPrcodec | Unset):
         priority (int | None | Unset):
-        qt_codec (None | RedlineSchemaQtCodecType1 | Unset):
+        qt_codec (None | RedlineSchemaQtCodec | Unset):
         render_resolution (int | None | Unset):
         use_metadata_cube_file_in_proxy (bool | None | Unset):
         use_rmd (int | None | Unset):
@@ -44,24 +41,20 @@ class RedlineSchema:
     edit_proxy_upload_storage_id: None | str | Unset = UNSET
     edit_proxy_upload_storage_path: None | str | Unset = UNSET
     exclude_patterns: list[str] | None | Unset = UNSET
-    format_: None | RedlineSchemaFormatType1 | Unset = UNSET
+    format_: None | RedlineSchemaFormat | Unset = UNSET
     include_patterns: list[str] | None | Unset = UNSET
     keep_redline_proxy: bool | None | Unset = UNSET
     local: bool | None | Unset = UNSET
     opencl_device_indexes: list[str] | None | Unset = UNSET
-    prcodec: None | RedlineSchemaPrcodecType1 | Unset = UNSET
+    prcodec: None | RedlineSchemaPrcodec | Unset = UNSET
     priority: int | None | Unset = UNSET
-    qt_codec: None | RedlineSchemaQtCodecType1 | Unset = UNSET
+    qt_codec: None | RedlineSchemaQtCodec | Unset = UNSET
     render_resolution: int | None | Unset = UNSET
     use_metadata_cube_file_in_proxy: bool | None | Unset = UNSET
     use_rmd: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.redline_schema_format_type_1 import RedlineSchemaFormatType1
-        from ..models.redline_schema_prcodec_type_1 import RedlineSchemaPrcodecType1
-        from ..models.redline_schema_qt_codec_type_1 import RedlineSchemaQtCodecType1
-
         default_lut3d_file: None | str | Unset
         if isinstance(self.default_lut3d_file, Unset):
             default_lut3d_file = UNSET
@@ -95,11 +88,11 @@ class RedlineSchema:
         else:
             exclude_patterns = self.exclude_patterns
 
-        format_: dict[str, Any] | None | Unset
+        format_: None | str | Unset
         if isinstance(self.format_, Unset):
             format_ = UNSET
-        elif isinstance(self.format_, RedlineSchemaFormatType1):
-            format_ = self.format_.to_dict()
+        elif isinstance(self.format_, RedlineSchemaFormat):
+            format_ = self.format_.value
         else:
             format_ = self.format_
 
@@ -133,11 +126,11 @@ class RedlineSchema:
         else:
             opencl_device_indexes = self.opencl_device_indexes
 
-        prcodec: dict[str, Any] | None | Unset
+        prcodec: None | str | Unset
         if isinstance(self.prcodec, Unset):
             prcodec = UNSET
-        elif isinstance(self.prcodec, RedlineSchemaPrcodecType1):
-            prcodec = self.prcodec.to_dict()
+        elif isinstance(self.prcodec, RedlineSchemaPrcodec):
+            prcodec = self.prcodec.value
         else:
             prcodec = self.prcodec
 
@@ -147,11 +140,11 @@ class RedlineSchema:
         else:
             priority = self.priority
 
-        qt_codec: dict[str, Any] | None | Unset
+        qt_codec: None | str | Unset
         if isinstance(self.qt_codec, Unset):
             qt_codec = UNSET
-        elif isinstance(self.qt_codec, RedlineSchemaQtCodecType1):
-            qt_codec = self.qt_codec.to_dict()
+        elif isinstance(self.qt_codec, RedlineSchemaQtCodec):
+            qt_codec = self.qt_codec.value
         else:
             qt_codec = self.qt_codec
 
@@ -217,10 +210,6 @@ class RedlineSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.redline_schema_format_type_1 import RedlineSchemaFormatType1
-        from ..models.redline_schema_prcodec_type_1 import RedlineSchemaPrcodecType1
-        from ..models.redline_schema_qt_codec_type_1 import RedlineSchemaQtCodecType1
-
         d = dict(src_dict)
 
         def _parse_default_lut3d_file(data: object) -> None | str | Unset:
@@ -284,20 +273,20 @@ class RedlineSchema:
 
         exclude_patterns = _parse_exclude_patterns(d.pop("exclude_patterns", UNSET))
 
-        def _parse_format_(data: object) -> None | RedlineSchemaFormatType1 | Unset:
+        def _parse_format_(data: object) -> None | RedlineSchemaFormat | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                format_type_1 = RedlineSchemaFormatType1.from_dict(data)
+                format_type_1 = RedlineSchemaFormat(data)
 
                 return format_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | RedlineSchemaFormatType1 | Unset, data)
+            return cast(None | RedlineSchemaFormat | Unset, data)
 
         format_ = _parse_format_(d.pop("format", UNSET))
 
@@ -357,20 +346,20 @@ class RedlineSchema:
             d.pop("opencl_device_indexes", UNSET)
         )
 
-        def _parse_prcodec(data: object) -> None | RedlineSchemaPrcodecType1 | Unset:
+        def _parse_prcodec(data: object) -> None | RedlineSchemaPrcodec | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                prcodec_type_1 = RedlineSchemaPrcodecType1.from_dict(data)
+                prcodec_type_1 = RedlineSchemaPrcodec(data)
 
                 return prcodec_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | RedlineSchemaPrcodecType1 | Unset, data)
+            return cast(None | RedlineSchemaPrcodec | Unset, data)
 
         prcodec = _parse_prcodec(d.pop("prcodec", UNSET))
 
@@ -383,20 +372,20 @@ class RedlineSchema:
 
         priority = _parse_priority(d.pop("priority", UNSET))
 
-        def _parse_qt_codec(data: object) -> None | RedlineSchemaQtCodecType1 | Unset:
+        def _parse_qt_codec(data: object) -> None | RedlineSchemaQtCodec | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                qt_codec_type_1 = RedlineSchemaQtCodecType1.from_dict(data)
+                qt_codec_type_1 = RedlineSchemaQtCodec(data)
 
                 return qt_codec_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | RedlineSchemaQtCodecType1 | Unset, data)
+            return cast(None | RedlineSchemaQtCodec | Unset, data)
 
         qt_codec = _parse_qt_codec(d.pop("qt_codec", UNSET))
 

@@ -2,19 +2,14 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.face_by_person_schema_status import FaceByPersonSchemaStatus
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.face_by_person_schema_status_type_1 import (
-        FaceByPersonSchemaStatusType1,
-    )
-
 
 T = TypeVar("T", bound="FaceByPersonSchema")
 
@@ -33,7 +28,7 @@ class FaceByPersonSchema:
         id (None | Unset | UUID):
         image_url (None | str | Unset):
         person_id (None | Unset | UUID):
-        status (FaceByPersonSchemaStatusType1 | None | Unset):
+        status (FaceByPersonSchemaStatus | None | Unset):
         storage_id (None | Unset | UUID):
         system_domain_id (None | Unset | UUID):
     """
@@ -48,16 +43,12 @@ class FaceByPersonSchema:
     id: None | Unset | UUID = UNSET
     image_url: None | str | Unset = UNSET
     person_id: None | Unset | UUID = UNSET
-    status: FaceByPersonSchemaStatusType1 | None | Unset = UNSET
+    status: FaceByPersonSchemaStatus | None | Unset = UNSET
     storage_id: None | Unset | UUID = UNSET
     system_domain_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.face_by_person_schema_status_type_1 import (
-            FaceByPersonSchemaStatusType1,
-        )
-
         augmented_embedding_ids: list[str] | None | Unset
         if isinstance(self.augmented_embedding_ids, Unset):
             augmented_embedding_ids = UNSET
@@ -140,11 +131,11 @@ class FaceByPersonSchema:
         else:
             person_id = self.person_id
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, FaceByPersonSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, FaceByPersonSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -198,10 +189,6 @@ class FaceByPersonSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.face_by_person_schema_status_type_1 import (
-            FaceByPersonSchemaStatusType1,
-        )
-
         d = dict(src_dict)
 
         def _parse_augmented_embedding_ids(data: object) -> list[UUID] | None | Unset:
@@ -363,20 +350,20 @@ class FaceByPersonSchema:
 
         person_id = _parse_person_id(d.pop("person_id", UNSET))
 
-        def _parse_status(data: object) -> FaceByPersonSchemaStatusType1 | None | Unset:
+        def _parse_status(data: object) -> FaceByPersonSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = FaceByPersonSchemaStatusType1.from_dict(data)
+                status_type_1 = FaceByPersonSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(FaceByPersonSchemaStatusType1 | None | Unset, data)
+            return cast(FaceByPersonSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

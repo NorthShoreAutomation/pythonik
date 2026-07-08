@@ -8,19 +8,20 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.asset_post_elastic_analyze_status import AssetPostElasticAnalyzeStatus
+from ..models.asset_post_elastic_archive_status import AssetPostElasticArchiveStatus
+from ..models.asset_post_elastic_face_recognition_status import (
+    AssetPostElasticFaceRecognitionStatus,
+)
+from ..models.asset_post_elastic_publication_status import (
+    AssetPostElasticPublicationStatus,
+)
+from ..models.asset_post_elastic_status import AssetPostElasticStatus
+from ..models.asset_post_elastic_type import AssetPostElasticType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.approval_schema import ApprovalSchema
-    from ..models.asset_post_elastic_analyze_status_type_1 import (
-        AssetPostElasticAnalyzeStatusType1,
-    )
-    from ..models.asset_post_elastic_archive_status_type_1 import (
-        AssetPostElasticArchiveStatusType1,
-    )
-    from ..models.asset_post_elastic_face_recognition_status_type_1 import (
-        AssetPostElasticFaceRecognitionStatusType1,
-    )
     from ..models.asset_post_elastic_files_type_0_item import (
         AssetPostElasticFilesType0Item,
     )
@@ -36,11 +37,6 @@ if TYPE_CHECKING:
     from ..models.asset_post_elastic_proxies_type_0_item import (
         AssetPostElasticProxiesType0Item,
     )
-    from ..models.asset_post_elastic_publication_status_type_1 import (
-        AssetPostElasticPublicationStatusType1,
-    )
-    from ..models.asset_post_elastic_status_type_1 import AssetPostElasticStatusType1
-    from ..models.asset_post_elastic_type_type_1 import AssetPostElasticTypeType1
     from ..models.asset_version import AssetVersion
     from ..models.relation_elastic import RelationElastic
     from ..models.user import User
@@ -54,10 +50,10 @@ class AssetPostElastic:
     """
     Attributes:
         title (str):
-        analyze_status (AssetPostElasticAnalyzeStatusType1 | None | Unset):
+        analyze_status (AssetPostElasticAnalyzeStatus | None | Unset):
         ancestor_collections (list[str] | None | Unset): Unordered list of all ancestor collection ids
         approval (ApprovalSchema | None | Unset):
-        archive_status (AssetPostElasticArchiveStatusType1 | None | Unset):
+        archive_status (AssetPostElasticArchiveStatus | None | Unset):
         category (None | str | Unset):
         clip_aspect_ratio (None | str | Unset):
         clip_duration (float | None | Unset):
@@ -83,7 +79,7 @@ class AssetPostElastic:
         duration_milliseconds (int | None | Unset):
         external_id (None | str | Unset):
         external_link (None | str | Unset):
-        face_recognition_status (AssetPostElasticFaceRecognitionStatusType1 | None | Unset):
+        face_recognition_status (AssetPostElasticFaceRecognitionStatus | None | Unset):
         favoured (bool | None | Unset):
         files (list[AssetPostElasticFilesType0Item] | None | Unset):
         formats (list[AssetPostElasticFormatsType0Item] | None | Unset):
@@ -105,13 +101,13 @@ class AssetPostElastic:
         person_ids (list[UUID] | None | Unset):
         position (int | None | Unset):
         proxies (list[AssetPostElasticProxiesType0Item] | None | Unset):
-        publication_status (AssetPostElasticPublicationStatusType1 | None | Unset):
+        publication_status (AssetPostElasticPublicationStatus | None | Unset):
         relations (list[RelationElastic] | None | Unset):
         site_name (None | str | Unset):
-        status (AssetPostElasticStatusType1 | None | Unset):
+        status (AssetPostElasticStatus | None | Unset):
         time_end_milliseconds (int | None | Unset):
         time_start_milliseconds (int | None | Unset):
-        type_ (AssetPostElasticTypeType1 | None | Unset):
+        type_ (AssetPostElasticType | None | Unset):
         updated_by_user (None | Unset | UUID):
         updated_by_user_info (None | Unset | User):
         versions (list[AssetVersion] | None | Unset):
@@ -121,10 +117,10 @@ class AssetPostElastic:
     """
 
     title: str
-    analyze_status: AssetPostElasticAnalyzeStatusType1 | None | Unset = UNSET
+    analyze_status: AssetPostElasticAnalyzeStatus | None | Unset = UNSET
     ancestor_collections: list[str] | None | Unset = UNSET
     approval: ApprovalSchema | None | Unset = UNSET
-    archive_status: AssetPostElasticArchiveStatusType1 | None | Unset = UNSET
+    archive_status: AssetPostElasticArchiveStatus | None | Unset = UNSET
     category: None | str | Unset = UNSET
     clip_aspect_ratio: None | str | Unset = UNSET
     clip_duration: float | None | Unset = UNSET
@@ -150,9 +146,9 @@ class AssetPostElastic:
     duration_milliseconds: int | None | Unset = UNSET
     external_id: None | str | Unset = UNSET
     external_link: None | str | Unset = UNSET
-    face_recognition_status: (
-        AssetPostElasticFaceRecognitionStatusType1 | None | Unset
-    ) = UNSET
+    face_recognition_status: AssetPostElasticFaceRecognitionStatus | None | Unset = (
+        UNSET
+    )
     favoured: bool | None | Unset = UNSET
     files: list[AssetPostElasticFilesType0Item] | None | Unset = UNSET
     formats: list[AssetPostElasticFormatsType0Item] | None | Unset = UNSET
@@ -174,13 +170,13 @@ class AssetPostElastic:
     person_ids: list[UUID] | None | Unset = UNSET
     position: int | None | Unset = UNSET
     proxies: list[AssetPostElasticProxiesType0Item] | None | Unset = UNSET
-    publication_status: AssetPostElasticPublicationStatusType1 | None | Unset = UNSET
+    publication_status: AssetPostElasticPublicationStatus | None | Unset = UNSET
     relations: list[RelationElastic] | None | Unset = UNSET
     site_name: None | str | Unset = UNSET
-    status: AssetPostElasticStatusType1 | None | Unset = UNSET
+    status: AssetPostElasticStatus | None | Unset = UNSET
     time_end_milliseconds: int | None | Unset = UNSET
     time_start_milliseconds: int | None | Unset = UNSET
-    type_: AssetPostElasticTypeType1 | None | Unset = UNSET
+    type_: AssetPostElasticType | None | Unset = UNSET
     updated_by_user: None | Unset | UUID = UNSET
     updated_by_user_info: None | Unset | User = UNSET
     versions: list[AssetVersion] | None | Unset = UNSET
@@ -191,34 +187,18 @@ class AssetPostElastic:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.approval_schema import ApprovalSchema
-        from ..models.asset_post_elastic_analyze_status_type_1 import (
-            AssetPostElasticAnalyzeStatusType1,
-        )
-        from ..models.asset_post_elastic_archive_status_type_1 import (
-            AssetPostElasticArchiveStatusType1,
-        )
-        from ..models.asset_post_elastic_face_recognition_status_type_1 import (
-            AssetPostElasticFaceRecognitionStatusType1,
-        )
         from ..models.asset_post_elastic_metadata_type_0 import (
             AssetPostElasticMetadataType0,
         )
-        from ..models.asset_post_elastic_publication_status_type_1 import (
-            AssetPostElasticPublicationStatusType1,
-        )
-        from ..models.asset_post_elastic_status_type_1 import (
-            AssetPostElasticStatusType1,
-        )
-        from ..models.asset_post_elastic_type_type_1 import AssetPostElasticTypeType1
         from ..models.user import User
 
         title = self.title
 
-        analyze_status: dict[str, Any] | None | Unset
+        analyze_status: None | str | Unset
         if isinstance(self.analyze_status, Unset):
             analyze_status = UNSET
-        elif isinstance(self.analyze_status, AssetPostElasticAnalyzeStatusType1):
-            analyze_status = self.analyze_status.to_dict()
+        elif isinstance(self.analyze_status, AssetPostElasticAnalyzeStatus):
+            analyze_status = self.analyze_status.value
         else:
             analyze_status = self.analyze_status
 
@@ -239,11 +219,11 @@ class AssetPostElastic:
         else:
             approval = self.approval
 
-        archive_status: dict[str, Any] | None | Unset
+        archive_status: None | str | Unset
         if isinstance(self.archive_status, Unset):
             archive_status = UNSET
-        elif isinstance(self.archive_status, AssetPostElasticArchiveStatusType1):
-            archive_status = self.archive_status.to_dict()
+        elif isinstance(self.archive_status, AssetPostElasticArchiveStatus):
+            archive_status = self.archive_status.value
         else:
             archive_status = self.archive_status
 
@@ -421,13 +401,13 @@ class AssetPostElastic:
         else:
             external_link = self.external_link
 
-        face_recognition_status: dict[str, Any] | None | Unset
+        face_recognition_status: None | str | Unset
         if isinstance(self.face_recognition_status, Unset):
             face_recognition_status = UNSET
         elif isinstance(
-            self.face_recognition_status, AssetPostElasticFaceRecognitionStatusType1
+            self.face_recognition_status, AssetPostElasticFaceRecognitionStatus
         ):
-            face_recognition_status = self.face_recognition_status.to_dict()
+            face_recognition_status = self.face_recognition_status.value
         else:
             face_recognition_status = self.face_recognition_status
 
@@ -612,13 +592,11 @@ class AssetPostElastic:
         else:
             proxies = self.proxies
 
-        publication_status: dict[str, Any] | None | Unset
+        publication_status: None | str | Unset
         if isinstance(self.publication_status, Unset):
             publication_status = UNSET
-        elif isinstance(
-            self.publication_status, AssetPostElasticPublicationStatusType1
-        ):
-            publication_status = self.publication_status.to_dict()
+        elif isinstance(self.publication_status, AssetPostElasticPublicationStatus):
+            publication_status = self.publication_status.value
         else:
             publication_status = self.publication_status
 
@@ -640,11 +618,11 @@ class AssetPostElastic:
         else:
             site_name = self.site_name
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, AssetPostElasticStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, AssetPostElasticStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -660,11 +638,11 @@ class AssetPostElastic:
         else:
             time_start_milliseconds = self.time_start_milliseconds
 
-        type_: dict[str, Any] | None | Unset
+        type_: None | str | Unset
         if isinstance(self.type_, Unset):
             type_ = UNSET
-        elif isinstance(self.type_, AssetPostElasticTypeType1):
-            type_ = self.type_.to_dict()
+        elif isinstance(self.type_, AssetPostElasticType):
+            type_ = self.type_.value
         else:
             type_ = self.type_
 
@@ -855,15 +833,6 @@ class AssetPostElastic:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.approval_schema import ApprovalSchema
-        from ..models.asset_post_elastic_analyze_status_type_1 import (
-            AssetPostElasticAnalyzeStatusType1,
-        )
-        from ..models.asset_post_elastic_archive_status_type_1 import (
-            AssetPostElasticArchiveStatusType1,
-        )
-        from ..models.asset_post_elastic_face_recognition_status_type_1 import (
-            AssetPostElasticFaceRecognitionStatusType1,
-        )
         from ..models.asset_post_elastic_files_type_0_item import (
             AssetPostElasticFilesType0Item,
         )
@@ -879,13 +848,6 @@ class AssetPostElastic:
         from ..models.asset_post_elastic_proxies_type_0_item import (
             AssetPostElasticProxiesType0Item,
         )
-        from ..models.asset_post_elastic_publication_status_type_1 import (
-            AssetPostElasticPublicationStatusType1,
-        )
-        from ..models.asset_post_elastic_status_type_1 import (
-            AssetPostElasticStatusType1,
-        )
-        from ..models.asset_post_elastic_type_type_1 import AssetPostElasticTypeType1
         from ..models.asset_version import AssetVersion
         from ..models.relation_elastic import RelationElastic
         from ..models.user import User
@@ -895,22 +857,20 @@ class AssetPostElastic:
 
         def _parse_analyze_status(
             data: object,
-        ) -> AssetPostElasticAnalyzeStatusType1 | None | Unset:
+        ) -> AssetPostElasticAnalyzeStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                analyze_status_type_1 = AssetPostElasticAnalyzeStatusType1.from_dict(
-                    data
-                )
+                analyze_status_type_1 = AssetPostElasticAnalyzeStatus(data)
 
                 return analyze_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AssetPostElasticAnalyzeStatusType1 | None | Unset, data)
+            return cast(AssetPostElasticAnalyzeStatus | None | Unset, data)
 
         analyze_status = _parse_analyze_status(d.pop("analyze_status", UNSET))
 
@@ -952,22 +912,20 @@ class AssetPostElastic:
 
         def _parse_archive_status(
             data: object,
-        ) -> AssetPostElasticArchiveStatusType1 | None | Unset:
+        ) -> AssetPostElasticArchiveStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                archive_status_type_1 = AssetPostElasticArchiveStatusType1.from_dict(
-                    data
-                )
+                archive_status_type_1 = AssetPostElasticArchiveStatus(data)
 
                 return archive_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AssetPostElasticArchiveStatusType1 | None | Unset, data)
+            return cast(AssetPostElasticArchiveStatus | None | Unset, data)
 
         archive_status = _parse_archive_status(d.pop("archive_status", UNSET))
 
@@ -1302,22 +1260,22 @@ class AssetPostElastic:
 
         def _parse_face_recognition_status(
             data: object,
-        ) -> AssetPostElasticFaceRecognitionStatusType1 | None | Unset:
+        ) -> AssetPostElasticFaceRecognitionStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                face_recognition_status_type_1 = (
-                    AssetPostElasticFaceRecognitionStatusType1.from_dict(data)
+                face_recognition_status_type_1 = AssetPostElasticFaceRecognitionStatus(
+                    data
                 )
 
                 return face_recognition_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AssetPostElasticFaceRecognitionStatusType1 | None | Unset, data)
+            return cast(AssetPostElasticFaceRecognitionStatus | None | Unset, data)
 
         face_recognition_status = _parse_face_recognition_status(
             d.pop("face_recognition_status", UNSET)
@@ -1686,22 +1644,20 @@ class AssetPostElastic:
 
         def _parse_publication_status(
             data: object,
-        ) -> AssetPostElasticPublicationStatusType1 | None | Unset:
+        ) -> AssetPostElasticPublicationStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                publication_status_type_1 = (
-                    AssetPostElasticPublicationStatusType1.from_dict(data)
-                )
+                publication_status_type_1 = AssetPostElasticPublicationStatus(data)
 
                 return publication_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AssetPostElasticPublicationStatusType1 | None | Unset, data)
+            return cast(AssetPostElasticPublicationStatus | None | Unset, data)
 
         publication_status = _parse_publication_status(
             d.pop("publication_status", UNSET)
@@ -1740,20 +1696,20 @@ class AssetPostElastic:
 
         site_name = _parse_site_name(d.pop("site_name", UNSET))
 
-        def _parse_status(data: object) -> AssetPostElasticStatusType1 | None | Unset:
+        def _parse_status(data: object) -> AssetPostElasticStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = AssetPostElasticStatusType1.from_dict(data)
+                status_type_1 = AssetPostElasticStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AssetPostElasticStatusType1 | None | Unset, data)
+            return cast(AssetPostElasticStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 
@@ -1779,20 +1735,20 @@ class AssetPostElastic:
             d.pop("time_start_milliseconds", UNSET)
         )
 
-        def _parse_type_(data: object) -> AssetPostElasticTypeType1 | None | Unset:
+        def _parse_type_(data: object) -> AssetPostElasticType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                type_type_1 = AssetPostElasticTypeType1.from_dict(data)
+                type_type_1 = AssetPostElasticType(data)
 
                 return type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AssetPostElasticTypeType1 | None | Unset, data)
+            return cast(AssetPostElasticType | None | Unset, data)
 
         type_ = _parse_type_(d.pop("type", UNSET))
 

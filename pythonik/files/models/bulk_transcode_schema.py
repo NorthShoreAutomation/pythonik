@@ -1,20 +1,17 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..models.bulk_transcode_schema_object_type import BulkTranscodeSchemaObjectType
+from ..models.bulk_transcode_schema_preferred_storage_method import (
+    BulkTranscodeSchemaPreferredStorageMethod,
+)
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.bulk_transcode_schema_preferred_storage_method_type_1 import (
-        BulkTranscodeSchemaPreferredStorageMethodType1,
-    )
-
 
 T = TypeVar("T", bound="BulkTranscodeSchema")
 
@@ -28,7 +25,7 @@ class BulkTranscodeSchema:
         format_name (None | str | Unset):  Default: 'ORIGINAL'.
         prefer_any_cloud (bool | None | Unset):
         preferred_storage_id (None | Unset | UUID):
-        preferred_storage_method (BulkTranscodeSchemaPreferredStorageMethodType1 | None | Unset):
+        preferred_storage_method (BulkTranscodeSchemaPreferredStorageMethod | None | Unset):
         priority (int | None | Unset):
     """
 
@@ -38,16 +35,12 @@ class BulkTranscodeSchema:
     prefer_any_cloud: bool | None | Unset = UNSET
     preferred_storage_id: None | Unset | UUID = UNSET
     preferred_storage_method: (
-        BulkTranscodeSchemaPreferredStorageMethodType1 | None | Unset
+        BulkTranscodeSchemaPreferredStorageMethod | None | Unset
     ) = UNSET
     priority: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.bulk_transcode_schema_preferred_storage_method_type_1 import (
-            BulkTranscodeSchemaPreferredStorageMethodType1,
-        )
-
         object_ids = []
         for object_ids_item_data in self.object_ids:
             object_ids_item = str(object_ids_item_data)
@@ -75,14 +68,13 @@ class BulkTranscodeSchema:
         else:
             preferred_storage_id = self.preferred_storage_id
 
-        preferred_storage_method: dict[str, Any] | None | Unset
+        preferred_storage_method: None | str | Unset
         if isinstance(self.preferred_storage_method, Unset):
             preferred_storage_method = UNSET
         elif isinstance(
-            self.preferred_storage_method,
-            BulkTranscodeSchemaPreferredStorageMethodType1,
+            self.preferred_storage_method, BulkTranscodeSchemaPreferredStorageMethod
         ):
-            preferred_storage_method = self.preferred_storage_method.to_dict()
+            preferred_storage_method = self.preferred_storage_method.value
         else:
             preferred_storage_method = self.preferred_storage_method
 
@@ -115,10 +107,6 @@ class BulkTranscodeSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.bulk_transcode_schema_preferred_storage_method_type_1 import (
-            BulkTranscodeSchemaPreferredStorageMethodType1,
-        )
-
         d = dict(src_dict)
         object_ids = []
         _object_ids = d.pop("object_ids")
@@ -168,24 +156,22 @@ class BulkTranscodeSchema:
 
         def _parse_preferred_storage_method(
             data: object,
-        ) -> BulkTranscodeSchemaPreferredStorageMethodType1 | None | Unset:
+        ) -> BulkTranscodeSchemaPreferredStorageMethod | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
                 preferred_storage_method_type_1 = (
-                    BulkTranscodeSchemaPreferredStorageMethodType1.from_dict(data)
+                    BulkTranscodeSchemaPreferredStorageMethod(data)
                 )
 
                 return preferred_storage_method_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(
-                BulkTranscodeSchemaPreferredStorageMethodType1 | None | Unset, data
-            )
+            return cast(BulkTranscodeSchemaPreferredStorageMethod | None | Unset, data)
 
         preferred_storage_method = _parse_preferred_storage_method(
             d.pop("preferred_storage_method", UNSET)

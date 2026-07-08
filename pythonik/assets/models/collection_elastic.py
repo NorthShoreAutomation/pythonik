@@ -8,19 +8,19 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.collection_elastic_custom_order_status import (
+    CollectionElasticCustomOrderStatus,
+)
+from ..models.collection_elastic_status import CollectionElasticStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.collection_elastic_custom_order_status_type_1 import (
-        CollectionElasticCustomOrderStatusType1,
-    )
     from ..models.collection_elastic_keyframes_type_0_item import (
         CollectionElasticKeyframesType0Item,
     )
     from ..models.collection_elastic_metadata_type_0 import (
         CollectionElasticMetadataType0,
     )
-    from ..models.collection_elastic_status_type_1 import CollectionElasticStatusType1
 
 
 T = TypeVar("T", bound="CollectionElastic")
@@ -34,7 +34,7 @@ class CollectionElastic:
         category (None | str | Unset):
         created_by_user (None | Unset | UUID):
         custom_keyframe (None | Unset | UUID):
-        custom_order_status (CollectionElasticCustomOrderStatusType1 | None | Unset):
+        custom_order_status (CollectionElasticCustomOrderStatus | None | Unset):
         custom_poster (None | Unset | UUID):
         date_created (datetime.datetime | None | Unset):
         date_deleted (datetime.datetime | None | Unset):
@@ -55,7 +55,7 @@ class CollectionElastic:
         permissions (list[str] | None | Unset):
         position (int | None | Unset):
         project_id (None | Unset | UUID):
-        status (CollectionElasticStatusType1 | None | Unset):
+        status (CollectionElasticStatus | None | Unset):
         storage_id (None | Unset | UUID):
     """
 
@@ -63,7 +63,7 @@ class CollectionElastic:
     category: None | str | Unset = UNSET
     created_by_user: None | Unset | UUID = UNSET
     custom_keyframe: None | Unset | UUID = UNSET
-    custom_order_status: CollectionElasticCustomOrderStatusType1 | None | Unset = UNSET
+    custom_order_status: CollectionElasticCustomOrderStatus | None | Unset = UNSET
     custom_poster: None | Unset | UUID = UNSET
     date_created: datetime.datetime | None | Unset = UNSET
     date_deleted: datetime.datetime | None | Unset = UNSET
@@ -84,19 +84,13 @@ class CollectionElastic:
     permissions: list[str] | None | Unset = UNSET
     position: int | None | Unset = UNSET
     project_id: None | Unset | UUID = UNSET
-    status: CollectionElasticStatusType1 | None | Unset = UNSET
+    status: CollectionElasticStatus | None | Unset = UNSET
     storage_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.collection_elastic_custom_order_status_type_1 import (
-            CollectionElasticCustomOrderStatusType1,
-        )
         from ..models.collection_elastic_metadata_type_0 import (
             CollectionElasticMetadataType0,
-        )
-        from ..models.collection_elastic_status_type_1 import (
-            CollectionElasticStatusType1,
         )
 
         title = self.title
@@ -123,13 +117,11 @@ class CollectionElastic:
         else:
             custom_keyframe = self.custom_keyframe
 
-        custom_order_status: dict[str, Any] | None | Unset
+        custom_order_status: None | str | Unset
         if isinstance(self.custom_order_status, Unset):
             custom_order_status = UNSET
-        elif isinstance(
-            self.custom_order_status, CollectionElasticCustomOrderStatusType1
-        ):
-            custom_order_status = self.custom_order_status.to_dict()
+        elif isinstance(self.custom_order_status, CollectionElasticCustomOrderStatus):
+            custom_order_status = self.custom_order_status.value
         else:
             custom_order_status = self.custom_order_status
 
@@ -302,11 +294,11 @@ class CollectionElastic:
         else:
             project_id = self.project_id
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, CollectionElasticStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, CollectionElasticStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -382,17 +374,11 @@ class CollectionElastic:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.collection_elastic_custom_order_status_type_1 import (
-            CollectionElasticCustomOrderStatusType1,
-        )
         from ..models.collection_elastic_keyframes_type_0_item import (
             CollectionElasticKeyframesType0Item,
         )
         from ..models.collection_elastic_metadata_type_0 import (
             CollectionElasticMetadataType0,
-        )
-        from ..models.collection_elastic_status_type_1 import (
-            CollectionElasticStatusType1,
         )
 
         d = dict(src_dict)
@@ -443,22 +429,20 @@ class CollectionElastic:
 
         def _parse_custom_order_status(
             data: object,
-        ) -> CollectionElasticCustomOrderStatusType1 | None | Unset:
+        ) -> CollectionElasticCustomOrderStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                custom_order_status_type_1 = (
-                    CollectionElasticCustomOrderStatusType1.from_dict(data)
-                )
+                custom_order_status_type_1 = CollectionElasticCustomOrderStatus(data)
 
                 return custom_order_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(CollectionElasticCustomOrderStatusType1 | None | Unset, data)
+            return cast(CollectionElasticCustomOrderStatus | None | Unset, data)
 
         custom_order_status = _parse_custom_order_status(
             d.pop("custom_order_status", UNSET)
@@ -796,20 +780,20 @@ class CollectionElastic:
 
         project_id = _parse_project_id(d.pop("project_id", UNSET))
 
-        def _parse_status(data: object) -> CollectionElasticStatusType1 | None | Unset:
+        def _parse_status(data: object) -> CollectionElasticStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = CollectionElasticStatusType1.from_dict(data)
+                status_type_1 = CollectionElasticStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(CollectionElasticStatusType1 | None | Unset, data)
+            return cast(CollectionElasticStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

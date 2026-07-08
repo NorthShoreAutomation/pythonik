@@ -2,17 +2,14 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.face_base_schema_status import FaceBaseSchemaStatus
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.face_base_schema_status_type_1 import FaceBaseSchemaStatusType1
-
 
 T = TypeVar("T", bound="FaceBaseSchema")
 
@@ -29,7 +26,7 @@ class FaceBaseSchema:
         embedding_id (None | Unset | UUID):
         filename (None | str | Unset):
         image_url (None | str | Unset):
-        status (FaceBaseSchemaStatusType1 | None | Unset):
+        status (FaceBaseSchemaStatus | None | Unset):
         storage_id (None | Unset | UUID):
     """
 
@@ -41,13 +38,11 @@ class FaceBaseSchema:
     embedding_id: None | Unset | UUID = UNSET
     filename: None | str | Unset = UNSET
     image_url: None | str | Unset = UNSET
-    status: FaceBaseSchemaStatusType1 | None | Unset = UNSET
+    status: FaceBaseSchemaStatus | None | Unset = UNSET
     storage_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.face_base_schema_status_type_1 import FaceBaseSchemaStatusType1
-
         augmented_embedding_ids: list[str] | None | Unset
         if isinstance(self.augmented_embedding_ids, Unset):
             augmented_embedding_ids = UNSET
@@ -114,11 +109,11 @@ class FaceBaseSchema:
         else:
             image_url = self.image_url
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, FaceBaseSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, FaceBaseSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -158,8 +153,6 @@ class FaceBaseSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.face_base_schema_status_type_1 import FaceBaseSchemaStatusType1
-
         d = dict(src_dict)
 
         def _parse_augmented_embedding_ids(data: object) -> list[UUID] | None | Unset:
@@ -287,20 +280,20 @@ class FaceBaseSchema:
 
         image_url = _parse_image_url(d.pop("image_url", UNSET))
 
-        def _parse_status(data: object) -> FaceBaseSchemaStatusType1 | None | Unset:
+        def _parse_status(data: object) -> FaceBaseSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = FaceBaseSchemaStatusType1.from_dict(data)
+                status_type_1 = FaceBaseSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(FaceBaseSchemaStatusType1 | None | Unset, data)
+            return cast(FaceBaseSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

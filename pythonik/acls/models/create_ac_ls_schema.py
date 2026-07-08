@@ -1,17 +1,14 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.create_ac_ls_schema_mode import CreateACLsSchemaMode
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.create_ac_ls_schema_mode_type_1 import CreateACLsSchemaModeType1
-
 
 T = TypeVar("T", bound="CreateACLsSchema")
 
@@ -23,7 +20,7 @@ class CreateACLsSchema:
         object_keys (list[str]): The number of object_keys in the list is limited to a minimum of 0 and a maximum of 500
         permissions (list[str]):
         group_ids (list[UUID] | None | Unset):
-        mode (CreateACLsSchemaModeType1 | None | Unset):
+        mode (CreateACLsSchemaMode | None | Unset):
         object_type (None | str | Unset):
         user_ids (list[UUID] | None | Unset):
     """
@@ -31,14 +28,12 @@ class CreateACLsSchema:
     object_keys: list[str]
     permissions: list[str]
     group_ids: list[UUID] | None | Unset = UNSET
-    mode: CreateACLsSchemaModeType1 | None | Unset = UNSET
+    mode: CreateACLsSchemaMode | None | Unset = UNSET
     object_type: None | str | Unset = UNSET
     user_ids: list[UUID] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.create_ac_ls_schema_mode_type_1 import CreateACLsSchemaModeType1
-
         object_keys = self.object_keys
 
         permissions = self.permissions
@@ -55,11 +50,11 @@ class CreateACLsSchema:
         else:
             group_ids = self.group_ids
 
-        mode: dict[str, Any] | None | Unset
+        mode: None | str | Unset
         if isinstance(self.mode, Unset):
             mode = UNSET
-        elif isinstance(self.mode, CreateACLsSchemaModeType1):
-            mode = self.mode.to_dict()
+        elif isinstance(self.mode, CreateACLsSchemaMode):
+            mode = self.mode.value
         else:
             mode = self.mode
 
@@ -102,8 +97,6 @@ class CreateACLsSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.create_ac_ls_schema_mode_type_1 import CreateACLsSchemaModeType1
-
         d = dict(src_dict)
         object_keys = cast(list[str], d.pop("object_keys"))
 
@@ -131,20 +124,20 @@ class CreateACLsSchema:
 
         group_ids = _parse_group_ids(d.pop("group_ids", UNSET))
 
-        def _parse_mode(data: object) -> CreateACLsSchemaModeType1 | None | Unset:
+        def _parse_mode(data: object) -> CreateACLsSchemaMode | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                mode_type_1 = CreateACLsSchemaModeType1.from_dict(data)
+                mode_type_1 = CreateACLsSchemaMode(data)
 
                 return mode_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(CreateACLsSchemaModeType1 | None | Unset, data)
+            return cast(CreateACLsSchemaMode | None | Unset, data)
 
         mode = _parse_mode(d.pop("mode", UNSET))
 

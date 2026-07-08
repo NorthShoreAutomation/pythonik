@@ -8,15 +8,13 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.automation_internal_schema_status import AutomationInternalSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.add_to_collection_action_schema import AddToCollectionActionSchema
     from ..models.analyze_action_schema import AnalyzeActionSchema
     from ..models.archive_action_schema import ArchiveActionSchema
-    from ..models.automation_internal_schema_status_type_1 import (
-        AutomationInternalSchemaStatusType1,
-    )
     from ..models.condition import Condition
     from ..models.create_publication_job_action import CreatePublicationJobAction
     from ..models.create_share_action import CreateShareAction
@@ -59,7 +57,7 @@ class AutomationInternalSchema:
         description (None | str | Unset):
         id (None | Unset | UUID):
         modified_by (None | Unset | UUID):
-        status (AutomationInternalSchemaStatusType1 | None | Unset):
+        status (AutomationInternalSchemaStatus | None | Unset):
         system_domain_id (None | Unset | UUID):
     """
 
@@ -94,7 +92,7 @@ class AutomationInternalSchema:
     description: None | str | Unset = UNSET
     id: None | Unset | UUID = UNSET
     modified_by: None | Unset | UUID = UNSET
-    status: AutomationInternalSchemaStatusType1 | None | Unset = UNSET
+    status: AutomationInternalSchemaStatus | None | Unset = UNSET
     system_domain_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -102,9 +100,6 @@ class AutomationInternalSchema:
         from ..models.add_to_collection_action_schema import AddToCollectionActionSchema
         from ..models.analyze_action_schema import AnalyzeActionSchema
         from ..models.archive_action_schema import ArchiveActionSchema
-        from ..models.automation_internal_schema_status_type_1 import (
-            AutomationInternalSchemaStatusType1,
-        )
         from ..models.create_publication_job_action import CreatePublicationJobAction
         from ..models.create_share_action import CreateShareAction
         from ..models.delete_action import DeleteAction
@@ -235,11 +230,11 @@ class AutomationInternalSchema:
         else:
             modified_by = self.modified_by
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, AutomationInternalSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, AutomationInternalSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -286,9 +281,6 @@ class AutomationInternalSchema:
         from ..models.add_to_collection_action_schema import AddToCollectionActionSchema
         from ..models.analyze_action_schema import AnalyzeActionSchema
         from ..models.archive_action_schema import ArchiveActionSchema
-        from ..models.automation_internal_schema_status_type_1 import (
-            AutomationInternalSchemaStatusType1,
-        )
         from ..models.condition import Condition
         from ..models.create_publication_job_action import CreatePublicationJobAction
         from ..models.create_share_action import CreateShareAction
@@ -631,20 +623,20 @@ class AutomationInternalSchema:
 
         def _parse_status(
             data: object,
-        ) -> AutomationInternalSchemaStatusType1 | None | Unset:
+        ) -> AutomationInternalSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = AutomationInternalSchemaStatusType1.from_dict(data)
+                status_type_1 = AutomationInternalSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AutomationInternalSchemaStatusType1 | None | Unset, data)
+            return cast(AutomationInternalSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

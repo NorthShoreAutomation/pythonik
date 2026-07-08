@@ -8,14 +8,12 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.approval_schema_status import ApprovalSchemaStatus
+from ..models.approval_schema_user_status import ApprovalSchemaUserStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.approval_by_schema import ApprovalBySchema
-    from ..models.approval_schema_status_type_1 import ApprovalSchemaStatusType1
-    from ..models.approval_schema_user_status_type_1 import (
-        ApprovalSchemaUserStatusType1,
-    )
     from ..models.user import User
 
 
@@ -36,8 +34,8 @@ class ApprovalSchema:
         request_date (datetime.datetime | None | Unset):
         requested_by (None | Unset | UUID):
         share_id (None | Unset | UUID):
-        status (ApprovalSchemaStatusType1 | None | Unset):
-        user_status (ApprovalSchemaUserStatusType1 | None | Unset):
+        status (ApprovalSchemaStatus | None | Unset):
+        user_status (ApprovalSchemaUserStatus | None | Unset):
         users (list[UUID] | None | Unset):
         users_info (list[User] | None | Unset):
         version_id (None | Unset | UUID):
@@ -53,19 +51,14 @@ class ApprovalSchema:
     request_date: datetime.datetime | None | Unset = UNSET
     requested_by: None | Unset | UUID = UNSET
     share_id: None | Unset | UUID = UNSET
-    status: ApprovalSchemaStatusType1 | None | Unset = UNSET
-    user_status: ApprovalSchemaUserStatusType1 | None | Unset = UNSET
+    status: ApprovalSchemaStatus | None | Unset = UNSET
+    user_status: ApprovalSchemaUserStatus | None | Unset = UNSET
     users: list[UUID] | None | Unset = UNSET
     users_info: list[User] | None | Unset = UNSET
     version_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.approval_schema_status_type_1 import ApprovalSchemaStatusType1
-        from ..models.approval_schema_user_status_type_1 import (
-            ApprovalSchemaUserStatusType1,
-        )
-
         approvals_by: list[dict[str, Any]] | None | Unset
         if isinstance(self.approvals_by, Unset):
             approvals_by = UNSET
@@ -151,19 +144,19 @@ class ApprovalSchema:
         else:
             share_id = self.share_id
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, ApprovalSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, ApprovalSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
-        user_status: dict[str, Any] | None | Unset
+        user_status: None | str | Unset
         if isinstance(self.user_status, Unset):
             user_status = UNSET
-        elif isinstance(self.user_status, ApprovalSchemaUserStatusType1):
-            user_status = self.user_status.to_dict()
+        elif isinstance(self.user_status, ApprovalSchemaUserStatus):
+            user_status = self.user_status.value
         else:
             user_status = self.user_status
 
@@ -238,10 +231,6 @@ class ApprovalSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.approval_by_schema import ApprovalBySchema
-        from ..models.approval_schema_status_type_1 import ApprovalSchemaStatusType1
-        from ..models.approval_schema_user_status_type_1 import (
-            ApprovalSchemaUserStatusType1,
-        )
         from ..models.user import User
 
         d = dict(src_dict)
@@ -412,39 +401,37 @@ class ApprovalSchema:
 
         share_id = _parse_share_id(d.pop("share_id", UNSET))
 
-        def _parse_status(data: object) -> ApprovalSchemaStatusType1 | None | Unset:
+        def _parse_status(data: object) -> ApprovalSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = ApprovalSchemaStatusType1.from_dict(data)
+                status_type_1 = ApprovalSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(ApprovalSchemaStatusType1 | None | Unset, data)
+            return cast(ApprovalSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 
-        def _parse_user_status(
-            data: object,
-        ) -> ApprovalSchemaUserStatusType1 | None | Unset:
+        def _parse_user_status(data: object) -> ApprovalSchemaUserStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                user_status_type_1 = ApprovalSchemaUserStatusType1.from_dict(data)
+                user_status_type_1 = ApprovalSchemaUserStatus(data)
 
                 return user_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(ApprovalSchemaUserStatusType1 | None | Unset, data)
+            return cast(ApprovalSchemaUserStatus | None | Unset, data)
 
         user_status = _parse_user_status(d.pop("user_status", UNSET))
 

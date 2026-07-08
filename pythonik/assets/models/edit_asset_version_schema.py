@@ -8,24 +8,22 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.edit_asset_version_schema_analyze_status import (
+    EditAssetVersionSchemaAnalyzeStatus,
+)
+from ..models.edit_asset_version_schema_archive_status import (
+    EditAssetVersionSchemaArchiveStatus,
+)
+from ..models.edit_asset_version_schema_face_recognition_status import (
+    EditAssetVersionSchemaFaceRecognitionStatus,
+)
+from ..models.edit_asset_version_schema_status import EditAssetVersionSchemaStatus
+from ..models.edit_asset_version_schema_transcribe_status import (
+    EditAssetVersionSchemaTranscribeStatus,
+)
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.edit_asset_version_schema_analyze_status_type_1 import (
-        EditAssetVersionSchemaAnalyzeStatusType1,
-    )
-    from ..models.edit_asset_version_schema_archive_status_type_1 import (
-        EditAssetVersionSchemaArchiveStatusType1,
-    )
-    from ..models.edit_asset_version_schema_face_recognition_status_type_1 import (
-        EditAssetVersionSchemaFaceRecognitionStatusType1,
-    )
-    from ..models.edit_asset_version_schema_status_type_1 import (
-        EditAssetVersionSchemaStatusType1,
-    )
-    from ..models.edit_asset_version_schema_transcribe_status_type_1 import (
-        EditAssetVersionSchemaTranscribeStatusType1,
-    )
     from ..models.user import User
 
 
@@ -37,74 +35,57 @@ class EditAssetVersionSchema:
     """
     Attributes:
         id (UUID):
-        analyze_status (EditAssetVersionSchemaAnalyzeStatusType1 | None | Unset):
-        archive_status (EditAssetVersionSchemaArchiveStatusType1 | None | Unset):
+        analyze_status (EditAssetVersionSchemaAnalyzeStatus | None | Unset):
+        archive_status (EditAssetVersionSchemaArchiveStatus | None | Unset):
         created_by_user (None | Unset | UUID):
         created_by_user_info (None | Unset | User):
         date_created (datetime.datetime | None | Unset):
-        face_recognition_status (EditAssetVersionSchemaFaceRecognitionStatusType1 | None | Unset):
+        face_recognition_status (EditAssetVersionSchemaFaceRecognitionStatus | None | Unset):
         has_unconfirmed_persons (bool | None | Unset):
         is_online (bool | None | Unset):
         person_ids (list[UUID] | None | Unset):
-        status (EditAssetVersionSchemaStatusType1 | None | Unset):
-        transcribe_status (EditAssetVersionSchemaTranscribeStatusType1 | None | Unset):
+        status (EditAssetVersionSchemaStatus | None | Unset):
+        transcribe_status (EditAssetVersionSchemaTranscribeStatus | None | Unset):
         transcribed_languages (list[str] | None | Unset):
         version_number (int | None | Unset):
     """
 
     id: UUID
-    analyze_status: EditAssetVersionSchemaAnalyzeStatusType1 | None | Unset = UNSET
-    archive_status: EditAssetVersionSchemaArchiveStatusType1 | None | Unset = UNSET
+    analyze_status: EditAssetVersionSchemaAnalyzeStatus | None | Unset = UNSET
+    archive_status: EditAssetVersionSchemaArchiveStatus | None | Unset = UNSET
     created_by_user: None | Unset | UUID = UNSET
     created_by_user_info: None | Unset | User = UNSET
     date_created: datetime.datetime | None | Unset = UNSET
     face_recognition_status: (
-        EditAssetVersionSchemaFaceRecognitionStatusType1 | None | Unset
+        EditAssetVersionSchemaFaceRecognitionStatus | None | Unset
     ) = UNSET
     has_unconfirmed_persons: bool | None | Unset = UNSET
     is_online: bool | None | Unset = UNSET
     person_ids: list[UUID] | None | Unset = UNSET
-    status: EditAssetVersionSchemaStatusType1 | None | Unset = UNSET
-    transcribe_status: EditAssetVersionSchemaTranscribeStatusType1 | None | Unset = (
-        UNSET
-    )
+    status: EditAssetVersionSchemaStatus | None | Unset = UNSET
+    transcribe_status: EditAssetVersionSchemaTranscribeStatus | None | Unset = UNSET
     transcribed_languages: list[str] | None | Unset = UNSET
     version_number: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.edit_asset_version_schema_analyze_status_type_1 import (
-            EditAssetVersionSchemaAnalyzeStatusType1,
-        )
-        from ..models.edit_asset_version_schema_archive_status_type_1 import (
-            EditAssetVersionSchemaArchiveStatusType1,
-        )
-        from ..models.edit_asset_version_schema_face_recognition_status_type_1 import (
-            EditAssetVersionSchemaFaceRecognitionStatusType1,
-        )
-        from ..models.edit_asset_version_schema_status_type_1 import (
-            EditAssetVersionSchemaStatusType1,
-        )
-        from ..models.edit_asset_version_schema_transcribe_status_type_1 import (
-            EditAssetVersionSchemaTranscribeStatusType1,
-        )
         from ..models.user import User
 
         id = str(self.id)
 
-        analyze_status: dict[str, Any] | None | Unset
+        analyze_status: None | str | Unset
         if isinstance(self.analyze_status, Unset):
             analyze_status = UNSET
-        elif isinstance(self.analyze_status, EditAssetVersionSchemaAnalyzeStatusType1):
-            analyze_status = self.analyze_status.to_dict()
+        elif isinstance(self.analyze_status, EditAssetVersionSchemaAnalyzeStatus):
+            analyze_status = self.analyze_status.value
         else:
             analyze_status = self.analyze_status
 
-        archive_status: dict[str, Any] | None | Unset
+        archive_status: None | str | Unset
         if isinstance(self.archive_status, Unset):
             archive_status = UNSET
-        elif isinstance(self.archive_status, EditAssetVersionSchemaArchiveStatusType1):
-            archive_status = self.archive_status.to_dict()
+        elif isinstance(self.archive_status, EditAssetVersionSchemaArchiveStatus):
+            archive_status = self.archive_status.value
         else:
             archive_status = self.archive_status
 
@@ -132,14 +113,13 @@ class EditAssetVersionSchema:
         else:
             date_created = self.date_created
 
-        face_recognition_status: dict[str, Any] | None | Unset
+        face_recognition_status: None | str | Unset
         if isinstance(self.face_recognition_status, Unset):
             face_recognition_status = UNSET
         elif isinstance(
-            self.face_recognition_status,
-            EditAssetVersionSchemaFaceRecognitionStatusType1,
+            self.face_recognition_status, EditAssetVersionSchemaFaceRecognitionStatus
         ):
-            face_recognition_status = self.face_recognition_status.to_dict()
+            face_recognition_status = self.face_recognition_status.value
         else:
             face_recognition_status = self.face_recognition_status
 
@@ -167,21 +147,19 @@ class EditAssetVersionSchema:
         else:
             person_ids = self.person_ids
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, EditAssetVersionSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, EditAssetVersionSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
-        transcribe_status: dict[str, Any] | None | Unset
+        transcribe_status: None | str | Unset
         if isinstance(self.transcribe_status, Unset):
             transcribe_status = UNSET
-        elif isinstance(
-            self.transcribe_status, EditAssetVersionSchemaTranscribeStatusType1
-        ):
-            transcribe_status = self.transcribe_status.to_dict()
+        elif isinstance(self.transcribe_status, EditAssetVersionSchemaTranscribeStatus):
+            transcribe_status = self.transcribe_status.value
         else:
             transcribe_status = self.transcribe_status
 
@@ -238,21 +216,6 @@ class EditAssetVersionSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.edit_asset_version_schema_analyze_status_type_1 import (
-            EditAssetVersionSchemaAnalyzeStatusType1,
-        )
-        from ..models.edit_asset_version_schema_archive_status_type_1 import (
-            EditAssetVersionSchemaArchiveStatusType1,
-        )
-        from ..models.edit_asset_version_schema_face_recognition_status_type_1 import (
-            EditAssetVersionSchemaFaceRecognitionStatusType1,
-        )
-        from ..models.edit_asset_version_schema_status_type_1 import (
-            EditAssetVersionSchemaStatusType1,
-        )
-        from ..models.edit_asset_version_schema_transcribe_status_type_1 import (
-            EditAssetVersionSchemaTranscribeStatusType1,
-        )
         from ..models.user import User
 
         d = dict(src_dict)
@@ -260,43 +223,39 @@ class EditAssetVersionSchema:
 
         def _parse_analyze_status(
             data: object,
-        ) -> EditAssetVersionSchemaAnalyzeStatusType1 | None | Unset:
+        ) -> EditAssetVersionSchemaAnalyzeStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                analyze_status_type_1 = (
-                    EditAssetVersionSchemaAnalyzeStatusType1.from_dict(data)
-                )
+                analyze_status_type_1 = EditAssetVersionSchemaAnalyzeStatus(data)
 
                 return analyze_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(EditAssetVersionSchemaAnalyzeStatusType1 | None | Unset, data)
+            return cast(EditAssetVersionSchemaAnalyzeStatus | None | Unset, data)
 
         analyze_status = _parse_analyze_status(d.pop("analyze_status", UNSET))
 
         def _parse_archive_status(
             data: object,
-        ) -> EditAssetVersionSchemaArchiveStatusType1 | None | Unset:
+        ) -> EditAssetVersionSchemaArchiveStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                archive_status_type_1 = (
-                    EditAssetVersionSchemaArchiveStatusType1.from_dict(data)
-                )
+                archive_status_type_1 = EditAssetVersionSchemaArchiveStatus(data)
 
                 return archive_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(EditAssetVersionSchemaArchiveStatusType1 | None | Unset, data)
+            return cast(EditAssetVersionSchemaArchiveStatus | None | Unset, data)
 
         archive_status = _parse_archive_status(d.pop("archive_status", UNSET))
 
@@ -355,23 +314,23 @@ class EditAssetVersionSchema:
 
         def _parse_face_recognition_status(
             data: object,
-        ) -> EditAssetVersionSchemaFaceRecognitionStatusType1 | None | Unset:
+        ) -> EditAssetVersionSchemaFaceRecognitionStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
                 face_recognition_status_type_1 = (
-                    EditAssetVersionSchemaFaceRecognitionStatusType1.from_dict(data)
+                    EditAssetVersionSchemaFaceRecognitionStatus(data)
                 )
 
                 return face_recognition_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(
-                EditAssetVersionSchemaFaceRecognitionStatusType1 | None | Unset, data
+                EditAssetVersionSchemaFaceRecognitionStatus | None | Unset, data
             )
 
         face_recognition_status = _parse_face_recognition_status(
@@ -420,45 +379,39 @@ class EditAssetVersionSchema:
 
         person_ids = _parse_person_ids(d.pop("person_ids", UNSET))
 
-        def _parse_status(
-            data: object,
-        ) -> EditAssetVersionSchemaStatusType1 | None | Unset:
+        def _parse_status(data: object) -> EditAssetVersionSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = EditAssetVersionSchemaStatusType1.from_dict(data)
+                status_type_1 = EditAssetVersionSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(EditAssetVersionSchemaStatusType1 | None | Unset, data)
+            return cast(EditAssetVersionSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 
         def _parse_transcribe_status(
             data: object,
-        ) -> EditAssetVersionSchemaTranscribeStatusType1 | None | Unset:
+        ) -> EditAssetVersionSchemaTranscribeStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                transcribe_status_type_1 = (
-                    EditAssetVersionSchemaTranscribeStatusType1.from_dict(data)
-                )
+                transcribe_status_type_1 = EditAssetVersionSchemaTranscribeStatus(data)
 
                 return transcribe_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(
-                EditAssetVersionSchemaTranscribeStatusType1 | None | Unset, data
-            )
+            return cast(EditAssetVersionSchemaTranscribeStatus | None | Unset, data)
 
         transcribe_status = _parse_transcribe_status(d.pop("transcribe_status", UNSET))
 

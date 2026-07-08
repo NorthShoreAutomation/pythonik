@@ -2,22 +2,15 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.file_set_elastic_schema_status import FileSetElasticSchemaStatus
+from ..models.file_set_elastic_schema_type import FileSetElasticSchemaType
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.file_set_elastic_schema_status_type_1 import (
-        FileSetElasticSchemaStatusType1,
-    )
-    from ..models.file_set_elastic_schema_type_type_1 import (
-        FileSetElasticSchemaTypeType1,
-    )
-
 
 T = TypeVar("T", bound="FileSetElasticSchema")
 
@@ -40,9 +33,9 @@ class FileSetElasticSchema:
         id (None | Unset | UUID):
         is_archive (bool | None | Unset):
         original_storage_id (None | Unset | UUID):
-        status (FileSetElasticSchemaStatusType1 | None | Unset):
+        status (FileSetElasticSchemaStatus | None | Unset):
         storage_id (None | Unset | UUID):
-        type_ (FileSetElasticSchemaTypeType1 | None | Unset):
+        type_ (FileSetElasticSchemaType | None | Unset):
         version_id (None | Unset | UUID):
     """
 
@@ -60,20 +53,13 @@ class FileSetElasticSchema:
     id: None | Unset | UUID = UNSET
     is_archive: bool | None | Unset = UNSET
     original_storage_id: None | Unset | UUID = UNSET
-    status: FileSetElasticSchemaStatusType1 | None | Unset = UNSET
+    status: FileSetElasticSchemaStatus | None | Unset = UNSET
     storage_id: None | Unset | UUID = UNSET
-    type_: FileSetElasticSchemaTypeType1 | None | Unset = UNSET
+    type_: FileSetElasticSchemaType | None | Unset = UNSET
     version_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.file_set_elastic_schema_status_type_1 import (
-            FileSetElasticSchemaStatusType1,
-        )
-        from ..models.file_set_elastic_schema_type_type_1 import (
-            FileSetElasticSchemaTypeType1,
-        )
-
         base_dir = self.base_dir
 
         component_ids = []
@@ -161,11 +147,11 @@ class FileSetElasticSchema:
         else:
             original_storage_id = self.original_storage_id
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, FileSetElasticSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, FileSetElasticSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -177,11 +163,11 @@ class FileSetElasticSchema:
         else:
             storage_id = self.storage_id
 
-        type_: dict[str, Any] | None | Unset
+        type_: None | str | Unset
         if isinstance(self.type_, Unset):
             type_ = UNSET
-        elif isinstance(self.type_, FileSetElasticSchemaTypeType1):
-            type_ = self.type_.to_dict()
+        elif isinstance(self.type_, FileSetElasticSchemaType):
+            type_ = self.type_.value
         else:
             type_ = self.type_
 
@@ -236,13 +222,6 @@ class FileSetElasticSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.file_set_elastic_schema_status_type_1 import (
-            FileSetElasticSchemaStatusType1,
-        )
-        from ..models.file_set_elastic_schema_type_type_1 import (
-            FileSetElasticSchemaTypeType1,
-        )
-
         d = dict(src_dict)
         base_dir = d.pop("base_dir")
 
@@ -415,22 +394,20 @@ class FileSetElasticSchema:
             d.pop("original_storage_id", UNSET)
         )
 
-        def _parse_status(
-            data: object,
-        ) -> FileSetElasticSchemaStatusType1 | None | Unset:
+        def _parse_status(data: object) -> FileSetElasticSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = FileSetElasticSchemaStatusType1.from_dict(data)
+                status_type_1 = FileSetElasticSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(FileSetElasticSchemaStatusType1 | None | Unset, data)
+            return cast(FileSetElasticSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 
@@ -451,20 +428,20 @@ class FileSetElasticSchema:
 
         storage_id = _parse_storage_id(d.pop("storage_id", UNSET))
 
-        def _parse_type_(data: object) -> FileSetElasticSchemaTypeType1 | None | Unset:
+        def _parse_type_(data: object) -> FileSetElasticSchemaType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                type_type_1 = FileSetElasticSchemaTypeType1.from_dict(data)
+                type_type_1 = FileSetElasticSchemaType(data)
 
                 return type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(FileSetElasticSchemaTypeType1 | None | Unset, data)
+            return cast(FileSetElasticSchemaType | None | Unset, data)
 
         type_ = _parse_type_(d.pop("type", UNSET))
 

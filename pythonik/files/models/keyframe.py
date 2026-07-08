@@ -8,11 +8,11 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.keyframe_status import KeyframeStatus
 from ..models.keyframe_type import KeyframeType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.keyframe_status_type_1 import KeyframeStatusType1
     from ..models.keyframe_upload_credentials_type_0 import (
         KeyframeUploadCredentialsType0,
     )
@@ -41,7 +41,7 @@ class Keyframe:
         resolution (None | ResolutionType | Unset):
         rotation (int | None | Unset):
         size (int | None | Unset):
-        status (KeyframeStatusType1 | None | Unset):
+        status (KeyframeStatus | None | Unset):
         storage_id (None | Unset | UUID):
         storage_method (None | str | Unset):
         time_code (None | TimeCodeType | Unset):
@@ -66,7 +66,7 @@ class Keyframe:
     resolution: None | ResolutionType | Unset = UNSET
     rotation: int | None | Unset = UNSET
     size: int | None | Unset = UNSET
-    status: KeyframeStatusType1 | None | Unset = UNSET
+    status: KeyframeStatus | None | Unset = UNSET
     storage_id: None | Unset | UUID = UNSET
     storage_method: None | str | Unset = UNSET
     time_code: None | TimeCodeType | Unset = UNSET
@@ -78,7 +78,6 @@ class Keyframe:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.keyframe_status_type_1 import KeyframeStatusType1
         from ..models.keyframe_upload_credentials_type_0 import (
             KeyframeUploadCredentialsType0,
         )
@@ -177,11 +176,11 @@ class Keyframe:
         else:
             size = self.size
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, KeyframeStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, KeyframeStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -297,7 +296,6 @@ class Keyframe:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.keyframe_status_type_1 import KeyframeStatusType1
         from ..models.keyframe_upload_credentials_type_0 import (
             KeyframeUploadCredentialsType0,
         )
@@ -474,20 +472,20 @@ class Keyframe:
 
         size = _parse_size(d.pop("size", UNSET))
 
-        def _parse_status(data: object) -> KeyframeStatusType1 | None | Unset:
+        def _parse_status(data: object) -> KeyframeStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = KeyframeStatusType1.from_dict(data)
+                status_type_1 = KeyframeStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(KeyframeStatusType1 | None | Unset, data)
+            return cast(KeyframeStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

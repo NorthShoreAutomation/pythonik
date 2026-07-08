@@ -113,7 +113,7 @@ def _build_response(
 def sync_detailed(
     export_location_id: str,
     *,
-    client: AuthenticatedClient,
+    client: AuthenticatedClient | Client,
     body: AssetBatchExportSchema,
     allow_host_transfer: bool | Unset = UNSET,
 ) -> Response[
@@ -156,7 +156,7 @@ def sync_detailed(
 def sync(
     export_location_id: str,
     *,
-    client: AuthenticatedClient,
+    client: AuthenticatedClient | Client,
     body: AssetBatchExportSchema,
     allow_host_transfer: bool | Unset = UNSET,
 ) -> (
@@ -195,7 +195,7 @@ def sync(
 async def asyncio_detailed(
     export_location_id: str,
     *,
-    client: AuthenticatedClient,
+    client: AuthenticatedClient | Client,
     body: AssetBatchExportSchema,
     allow_host_transfer: bool | Unset = UNSET,
 ) -> Response[
@@ -236,7 +236,7 @@ async def asyncio_detailed(
 async def asyncio(
     export_location_id: str,
     *,
-    client: AuthenticatedClient,
+    client: AuthenticatedClient | Client,
     body: AssetBatchExportSchema,
     allow_host_transfer: bool | Unset = UNSET,
 ) -> (

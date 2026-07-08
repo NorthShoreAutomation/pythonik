@@ -8,14 +8,14 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.token_multiplatform_login_schema_system_domain_status import (
+    TokenMultiplatformLoginSchemaSystemDomainStatus,
+)
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.multi_platform_domain_user_system_schema import (
         MultiPlatformDomainUserSystemSchema,
-    )
-    from ..models.token_multiplatform_login_schema_system_domain_status_type_1 import (
-        TokenMultiplatformLoginSchemaSystemDomainStatusType1,
     )
 
 
@@ -39,7 +39,7 @@ class TokenMultiplatformLoginSchema:
         is_super_admin_light (bool | None | Unset):
         system_domain_id (None | Unset | UUID):
         system_domain_is_plg (bool | None | Unset):
-        system_domain_status (None | TokenMultiplatformLoginSchemaSystemDomainStatusType1 | Unset):
+        system_domain_status (None | TokenMultiplatformLoginSchemaSystemDomainStatus | Unset):
         system_domain_type (None | str | Unset):
         system_domain_warning_message (None | str | Unset):
         system_domains (list[UUID] | None | Unset):
@@ -63,7 +63,7 @@ class TokenMultiplatformLoginSchema:
     system_domain_id: None | Unset | UUID = UNSET
     system_domain_is_plg: bool | None | Unset = UNSET
     system_domain_status: (
-        None | TokenMultiplatformLoginSchemaSystemDomainStatusType1 | Unset
+        None | TokenMultiplatformLoginSchemaSystemDomainStatus | Unset
     ) = UNSET
     system_domain_type: None | str | Unset = UNSET
     system_domain_warning_message: None | str | Unset = UNSET
@@ -73,10 +73,6 @@ class TokenMultiplatformLoginSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.token_multiplatform_login_schema_system_domain_status_type_1 import (
-            TokenMultiplatformLoginSchemaSystemDomainStatusType1,
-        )
-
         app_id: None | str | Unset
         if isinstance(self.app_id, Unset):
             app_id = UNSET
@@ -175,14 +171,13 @@ class TokenMultiplatformLoginSchema:
         else:
             system_domain_is_plg = self.system_domain_is_plg
 
-        system_domain_status: dict[str, Any] | None | Unset
+        system_domain_status: None | str | Unset
         if isinstance(self.system_domain_status, Unset):
             system_domain_status = UNSET
         elif isinstance(
-            self.system_domain_status,
-            TokenMultiplatformLoginSchemaSystemDomainStatusType1,
+            self.system_domain_status, TokenMultiplatformLoginSchemaSystemDomainStatus
         ):
-            system_domain_status = self.system_domain_status.to_dict()
+            system_domain_status = self.system_domain_status.value
         else:
             system_domain_status = self.system_domain_status
 
@@ -272,9 +267,6 @@ class TokenMultiplatformLoginSchema:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.multi_platform_domain_user_system_schema import (
             MultiPlatformDomainUserSystemSchema,
-        )
-        from ..models.token_multiplatform_login_schema_system_domain_status_type_1 import (
-            TokenMultiplatformLoginSchemaSystemDomainStatusType1,
         )
 
         d = dict(src_dict)
@@ -475,24 +467,23 @@ class TokenMultiplatformLoginSchema:
 
         def _parse_system_domain_status(
             data: object,
-        ) -> None | TokenMultiplatformLoginSchemaSystemDomainStatusType1 | Unset:
+        ) -> None | TokenMultiplatformLoginSchemaSystemDomainStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
                 system_domain_status_type_1 = (
-                    TokenMultiplatformLoginSchemaSystemDomainStatusType1.from_dict(data)
+                    TokenMultiplatformLoginSchemaSystemDomainStatus(data)
                 )
 
                 return system_domain_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(
-                None | TokenMultiplatformLoginSchemaSystemDomainStatusType1 | Unset,
-                data,
+                None | TokenMultiplatformLoginSchemaSystemDomainStatus | Unset, data
             )
 
         system_domain_status = _parse_system_domain_status(

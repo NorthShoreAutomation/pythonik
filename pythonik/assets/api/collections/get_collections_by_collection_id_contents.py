@@ -5,7 +5,7 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.assets_schema import AssetsSchema
+from ...models.collection_contents_schema import CollectionContentsSchema
 from ...models.get_collections_by_collection_id_contents_response_default_type_0 import (
     GetCollectionsByCollectionIdContentsResponseDefaultType0,
 )
@@ -63,12 +63,12 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     Any
-    | AssetsSchema
+    | CollectionContentsSchema
     | GetCollectionsByCollectionIdContentsResponseDefaultType0
     | GetCollectionsByCollectionIdContentsResponseDefaultType1
 ):
     if response.status_code == 200:
-        response_200 = AssetsSchema.from_dict(response.json())
+        response_200 = CollectionContentsSchema.from_dict(response.json())
 
         return response_200
 
@@ -117,7 +117,7 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     Any
-    | AssetsSchema
+    | CollectionContentsSchema
     | GetCollectionsByCollectionIdContentsResponseDefaultType0
     | GetCollectionsByCollectionIdContentsResponseDefaultType1
 ]:
@@ -143,7 +143,7 @@ def sync_detailed(
     include_keyframes: bool | Unset = True,
 ) -> Response[
     Any
-    | AssetsSchema
+    | CollectionContentsSchema
     | GetCollectionsByCollectionIdContentsResponseDefaultType0
     | GetCollectionsByCollectionIdContentsResponseDefaultType1
 ]:
@@ -169,7 +169,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AssetsSchema | GetCollectionsByCollectionIdContentsResponseDefaultType0 | GetCollectionsByCollectionIdContentsResponseDefaultType1]
+        Response[Any | CollectionContentsSchema | GetCollectionsByCollectionIdContentsResponseDefaultType0 | GetCollectionsByCollectionIdContentsResponseDefaultType1]
     """
 
     kwargs = _get_kwargs(
@@ -205,7 +205,7 @@ def sync(
     include_keyframes: bool | Unset = True,
 ) -> (
     Any
-    | AssetsSchema
+    | CollectionContentsSchema
     | GetCollectionsByCollectionIdContentsResponseDefaultType0
     | GetCollectionsByCollectionIdContentsResponseDefaultType1
     | None
@@ -232,7 +232,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AssetsSchema | GetCollectionsByCollectionIdContentsResponseDefaultType0 | GetCollectionsByCollectionIdContentsResponseDefaultType1
+        Any | CollectionContentsSchema | GetCollectionsByCollectionIdContentsResponseDefaultType0 | GetCollectionsByCollectionIdContentsResponseDefaultType1
     """
 
     return sync_detailed(
@@ -263,7 +263,7 @@ async def asyncio_detailed(
     include_keyframes: bool | Unset = True,
 ) -> Response[
     Any
-    | AssetsSchema
+    | CollectionContentsSchema
     | GetCollectionsByCollectionIdContentsResponseDefaultType0
     | GetCollectionsByCollectionIdContentsResponseDefaultType1
 ]:
@@ -289,7 +289,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | AssetsSchema | GetCollectionsByCollectionIdContentsResponseDefaultType0 | GetCollectionsByCollectionIdContentsResponseDefaultType1]
+        Response[Any | CollectionContentsSchema | GetCollectionsByCollectionIdContentsResponseDefaultType0 | GetCollectionsByCollectionIdContentsResponseDefaultType1]
     """
 
     kwargs = _get_kwargs(
@@ -323,7 +323,7 @@ async def asyncio(
     include_keyframes: bool | Unset = True,
 ) -> (
     Any
-    | AssetsSchema
+    | CollectionContentsSchema
     | GetCollectionsByCollectionIdContentsResponseDefaultType0
     | GetCollectionsByCollectionIdContentsResponseDefaultType1
     | None
@@ -350,7 +350,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | AssetsSchema | GetCollectionsByCollectionIdContentsResponseDefaultType0 | GetCollectionsByCollectionIdContentsResponseDefaultType1
+        Any | CollectionContentsSchema | GetCollectionsByCollectionIdContentsResponseDefaultType0 | GetCollectionsByCollectionIdContentsResponseDefaultType1
     """
 
     return (

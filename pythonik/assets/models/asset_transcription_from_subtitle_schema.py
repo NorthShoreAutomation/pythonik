@@ -1,19 +1,16 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.asset_transcription_from_subtitle_schema_format import (
+    AssetTranscriptionFromSubtitleSchemaFormat,
+)
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.asset_transcription_from_subtitle_schema_format_type_1 import (
-        AssetTranscriptionFromSubtitleSchemaFormatType1,
-    )
-
 
 T = TypeVar("T", bound="AssetTranscriptionFromSubtitleSchema")
 
@@ -24,7 +21,7 @@ class AssetTranscriptionFromSubtitleSchema:
     Attributes:
         content (None | str | Unset):
         delete_old_transcriptions (bool | None | Unset):
-        format_ (AssetTranscriptionFromSubtitleSchemaFormatType1 | None | Unset):
+        format_ (AssetTranscriptionFromSubtitleSchemaFormat | None | Unset):
         language (None | str | Unset):
         source_subtitle_id (None | Unset | UUID): Set to source subtitle_id or do not set and use the content fields
             instead
@@ -32,16 +29,12 @@ class AssetTranscriptionFromSubtitleSchema:
 
     content: None | str | Unset = UNSET
     delete_old_transcriptions: bool | None | Unset = UNSET
-    format_: AssetTranscriptionFromSubtitleSchemaFormatType1 | None | Unset = UNSET
+    format_: AssetTranscriptionFromSubtitleSchemaFormat | None | Unset = UNSET
     language: None | str | Unset = UNSET
     source_subtitle_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.asset_transcription_from_subtitle_schema_format_type_1 import (
-            AssetTranscriptionFromSubtitleSchemaFormatType1,
-        )
-
         content: None | str | Unset
         if isinstance(self.content, Unset):
             content = UNSET
@@ -54,11 +47,11 @@ class AssetTranscriptionFromSubtitleSchema:
         else:
             delete_old_transcriptions = self.delete_old_transcriptions
 
-        format_: dict[str, Any] | None | Unset
+        format_: None | str | Unset
         if isinstance(self.format_, Unset):
             format_ = UNSET
-        elif isinstance(self.format_, AssetTranscriptionFromSubtitleSchemaFormatType1):
-            format_ = self.format_.to_dict()
+        elif isinstance(self.format_, AssetTranscriptionFromSubtitleSchemaFormat):
+            format_ = self.format_.value
         else:
             format_ = self.format_
 
@@ -94,10 +87,6 @@ class AssetTranscriptionFromSubtitleSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.asset_transcription_from_subtitle_schema_format_type_1 import (
-            AssetTranscriptionFromSubtitleSchemaFormatType1,
-        )
-
         d = dict(src_dict)
 
         def _parse_content(data: object) -> None | str | Unset:
@@ -122,24 +111,20 @@ class AssetTranscriptionFromSubtitleSchema:
 
         def _parse_format_(
             data: object,
-        ) -> AssetTranscriptionFromSubtitleSchemaFormatType1 | None | Unset:
+        ) -> AssetTranscriptionFromSubtitleSchemaFormat | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                format_type_1 = (
-                    AssetTranscriptionFromSubtitleSchemaFormatType1.from_dict(data)
-                )
+                format_type_1 = AssetTranscriptionFromSubtitleSchemaFormat(data)
 
                 return format_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(
-                AssetTranscriptionFromSubtitleSchemaFormatType1 | None | Unset, data
-            )
+            return cast(AssetTranscriptionFromSubtitleSchemaFormat | None | Unset, data)
 
         format_ = _parse_format_(d.pop("format", UNSET))
 

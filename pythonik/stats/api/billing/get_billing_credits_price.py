@@ -42,10 +42,10 @@ def _parse_response(
     | GetBillingCreditsPriceResponseDefaultType0
     | GetBillingCreditsPriceResponseDefaultType1
 ):
-    if response.status_code == 201:
-        response_201 = CreditsSchema.from_dict(response.json())
+    if response.status_code == 200:
+        response_200 = CreditsSchema.from_dict(response.json())
 
-        return response_201
+        return response_200
 
     if response.status_code == 400:
         response_400 = cast(Any, None)

@@ -2,19 +2,14 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.embedding_by_person_schema_type import EmbeddingByPersonSchemaType
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.embedding_by_person_schema_type_type_1 import (
-        EmbeddingByPersonSchemaTypeType1,
-    )
-
 
 T = TypeVar("T", bound="EmbeddingByPersonSchema")
 
@@ -28,7 +23,7 @@ class EmbeddingByPersonSchema:
         id (None | Unset | UUID):
         person_id (None | Unset | UUID):
         system_domain_id (None | Unset | UUID):
-        type_ (EmbeddingByPersonSchemaTypeType1 | None | Unset):
+        type_ (EmbeddingByPersonSchemaType | None | Unset):
     """
 
     date_created: datetime.datetime | None | Unset = UNSET
@@ -36,14 +31,10 @@ class EmbeddingByPersonSchema:
     id: None | Unset | UUID = UNSET
     person_id: None | Unset | UUID = UNSET
     system_domain_id: None | Unset | UUID = UNSET
-    type_: EmbeddingByPersonSchemaTypeType1 | None | Unset = UNSET
+    type_: EmbeddingByPersonSchemaType | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.embedding_by_person_schema_type_type_1 import (
-            EmbeddingByPersonSchemaTypeType1,
-        )
-
         date_created: None | str | Unset
         if isinstance(self.date_created, Unset):
             date_created = UNSET
@@ -85,11 +76,11 @@ class EmbeddingByPersonSchema:
         else:
             system_domain_id = self.system_domain_id
 
-        type_: dict[str, Any] | None | Unset
+        type_: None | str | Unset
         if isinstance(self.type_, Unset):
             type_ = UNSET
-        elif isinstance(self.type_, EmbeddingByPersonSchemaTypeType1):
-            type_ = self.type_.to_dict()
+        elif isinstance(self.type_, EmbeddingByPersonSchemaType):
+            type_ = self.type_.value
         else:
             type_ = self.type_
 
@@ -113,10 +104,6 @@ class EmbeddingByPersonSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.embedding_by_person_schema_type_type_1 import (
-            EmbeddingByPersonSchemaTypeType1,
-        )
-
         d = dict(src_dict)
 
         def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
@@ -204,22 +191,20 @@ class EmbeddingByPersonSchema:
 
         system_domain_id = _parse_system_domain_id(d.pop("system_domain_id", UNSET))
 
-        def _parse_type_(
-            data: object,
-        ) -> EmbeddingByPersonSchemaTypeType1 | None | Unset:
+        def _parse_type_(data: object) -> EmbeddingByPersonSchemaType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                type_type_1 = EmbeddingByPersonSchemaTypeType1.from_dict(data)
+                type_type_1 = EmbeddingByPersonSchemaType(data)
 
                 return type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(EmbeddingByPersonSchemaTypeType1 | None | Unset, data)
+            return cast(EmbeddingByPersonSchemaType | None | Unset, data)
 
         type_ = _parse_type_(d.pop("type", UNSET))
 

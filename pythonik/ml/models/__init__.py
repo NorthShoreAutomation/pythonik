@@ -68,31 +68,29 @@ from .delete_person_by_version import DeletePersonByVersion
 from .delete_person_by_version_schema import DeletePersonByVersionSchema
 from .delete_person_schema import DeletePersonSchema
 from .embedding_base_schema import EmbeddingBaseSchema
-from .embedding_base_schema_type_type_1 import EmbeddingBaseSchemaTypeType1
+from .embedding_base_schema_type import EmbeddingBaseSchemaType
 from .embedding_by_face_schema import EmbeddingByFaceSchema
-from .embedding_by_face_schema_type_type_1 import EmbeddingByFaceSchemaTypeType1
+from .embedding_by_face_schema_type import EmbeddingByFaceSchemaType
 from .embedding_by_person_schema import EmbeddingByPersonSchema
-from .embedding_by_person_schema_type_type_1 import EmbeddingByPersonSchemaTypeType1
+from .embedding_by_person_schema_type import EmbeddingByPersonSchemaType
 from .embedding_by_status_schema import EmbeddingByStatusSchema
-from .embedding_by_status_schema_status_type_1 import EmbeddingByStatusSchemaStatusType1
-from .embedding_by_status_schema_type_type_1 import EmbeddingByStatusSchemaTypeType1
+from .embedding_by_status_schema_status import EmbeddingByStatusSchemaStatus
+from .embedding_by_status_schema_type import EmbeddingByStatusSchemaType
 from .embedding_schema import EmbeddingSchema
-from .embedding_schema_status_type_1 import EmbeddingSchemaStatusType1
-from .embedding_schema_type_type_1 import EmbeddingSchemaTypeType1
+from .embedding_schema_status import EmbeddingSchemaStatus
+from .embedding_schema_type import EmbeddingSchemaType
 from .face import Face
 from .face_base_schema import FaceBaseSchema
-from .face_base_schema_status_type_1 import FaceBaseSchemaStatusType1
+from .face_base_schema_status import FaceBaseSchemaStatus
 from .face_by_asset_and_version_schema import FaceByAssetAndVersionSchema
-from .face_by_asset_and_version_schema_status_type_1 import (
-    FaceByAssetAndVersionSchemaStatusType1,
-)
+from .face_by_asset_and_version_schema_status import FaceByAssetAndVersionSchemaStatus
 from .face_by_person_schema import FaceByPersonSchema
-from .face_by_person_schema_status_type_1 import FaceByPersonSchemaStatusType1
+from .face_by_person_schema_status import FaceByPersonSchemaStatus
 from .face_landmark_schema import FaceLandmarkSchema
 from .face_list_schema import FaceListSchema
 from .face_schema import FaceSchema
-from .face_schema_status_type_1 import FaceSchemaStatusType1
-from .face_status_type_1 import FaceStatusType1
+from .face_schema_status import FaceSchemaStatus
+from .face_status import FaceStatus
 from .get_face_recognition_assets_by_asset_id_versions_by_version_id_persons_response_default_type_0 import (
     GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType0,
 )
@@ -359,29 +357,29 @@ __all__ = (
     "DeletePersonByVersionSchema",
     "DeletePersonSchema",
     "EmbeddingBaseSchema",
-    "EmbeddingBaseSchemaTypeType1",
+    "EmbeddingBaseSchemaType",
     "EmbeddingByFaceSchema",
-    "EmbeddingByFaceSchemaTypeType1",
+    "EmbeddingByFaceSchemaType",
     "EmbeddingByPersonSchema",
-    "EmbeddingByPersonSchemaTypeType1",
+    "EmbeddingByPersonSchemaType",
     "EmbeddingByStatusSchema",
-    "EmbeddingByStatusSchemaStatusType1",
-    "EmbeddingByStatusSchemaTypeType1",
+    "EmbeddingByStatusSchemaStatus",
+    "EmbeddingByStatusSchemaType",
     "EmbeddingSchema",
-    "EmbeddingSchemaStatusType1",
-    "EmbeddingSchemaTypeType1",
+    "EmbeddingSchemaStatus",
+    "EmbeddingSchemaType",
     "Face",
     "FaceBaseSchema",
-    "FaceBaseSchemaStatusType1",
+    "FaceBaseSchemaStatus",
     "FaceByAssetAndVersionSchema",
-    "FaceByAssetAndVersionSchemaStatusType1",
+    "FaceByAssetAndVersionSchemaStatus",
     "FaceByPersonSchema",
-    "FaceByPersonSchemaStatusType1",
+    "FaceByPersonSchemaStatus",
     "FaceLandmarkSchema",
     "FaceListSchema",
     "FaceSchema",
-    "FaceSchemaStatusType1",
-    "FaceStatusType1",
+    "FaceSchemaStatus",
+    "FaceStatus",
     "GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType0",
     "GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType1",
     "GetFaceRecognitionAssetsByAssetIdVersionsByVersionIdPersonsResponseDefaultType1Errors",

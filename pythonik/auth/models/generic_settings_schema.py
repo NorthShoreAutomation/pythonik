@@ -1,24 +1,21 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.generic_settings_schema_cert_fingerprint_algorithm import (
+    GenericSettingsSchemaCertFingerprintAlgorithm,
+)
+from ..models.generic_settings_schema_digest_algorithm import (
+    GenericSettingsSchemaDigestAlgorithm,
+)
+from ..models.generic_settings_schema_signature_algorithm import (
+    GenericSettingsSchemaSignatureAlgorithm,
+)
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.generic_settings_schema_cert_fingerprint_algorithm_type_1 import (
-        GenericSettingsSchemaCertFingerprintAlgorithmType1,
-    )
-    from ..models.generic_settings_schema_digest_algorithm_type_1 import (
-        GenericSettingsSchemaDigestAlgorithmType1,
-    )
-    from ..models.generic_settings_schema_signature_algorithm_type_1 import (
-        GenericSettingsSchemaSignatureAlgorithmType1,
-    )
-
 
 T = TypeVar("T", bound="GenericSettingsSchema")
 
@@ -31,13 +28,13 @@ class GenericSettingsSchema:
         idp_sso_post_url (str):
         name (str):
         cert_fingerprint (None | str | Unset):
-        cert_fingerprint_algorithm (GenericSettingsSchemaCertFingerprintAlgorithmType1 | None | Unset):
-        digest_algorithm (GenericSettingsSchemaDigestAlgorithmType1 | None | Unset):
+        cert_fingerprint_algorithm (GenericSettingsSchemaCertFingerprintAlgorithm | None | Unset):
+        digest_algorithm (GenericSettingsSchemaDigestAlgorithm | None | Unset):
         domain_name (None | str | Unset):
         idp_sls_redirect_url (None | str | Unset):
         idp_x509cert (None | str | Unset):
         name_id_encrypted (bool | None | Unset):
-        signature_algorithm (GenericSettingsSchemaSignatureAlgorithmType1 | None | Unset):
+        signature_algorithm (GenericSettingsSchemaSignatureAlgorithm | None | Unset):
         want_assertions_signed (bool | None | Unset):
         want_messages_signed (bool | None | Unset):
     """
@@ -47,31 +44,19 @@ class GenericSettingsSchema:
     name: str
     cert_fingerprint: None | str | Unset = UNSET
     cert_fingerprint_algorithm: (
-        GenericSettingsSchemaCertFingerprintAlgorithmType1 | None | Unset
+        GenericSettingsSchemaCertFingerprintAlgorithm | None | Unset
     ) = UNSET
-    digest_algorithm: GenericSettingsSchemaDigestAlgorithmType1 | None | Unset = UNSET
+    digest_algorithm: GenericSettingsSchemaDigestAlgorithm | None | Unset = UNSET
     domain_name: None | str | Unset = UNSET
     idp_sls_redirect_url: None | str | Unset = UNSET
     idp_x509cert: None | str | Unset = UNSET
     name_id_encrypted: bool | None | Unset = UNSET
-    signature_algorithm: GenericSettingsSchemaSignatureAlgorithmType1 | None | Unset = (
-        UNSET
-    )
+    signature_algorithm: GenericSettingsSchemaSignatureAlgorithm | None | Unset = UNSET
     want_assertions_signed: bool | None | Unset = UNSET
     want_messages_signed: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.generic_settings_schema_cert_fingerprint_algorithm_type_1 import (
-            GenericSettingsSchemaCertFingerprintAlgorithmType1,
-        )
-        from ..models.generic_settings_schema_digest_algorithm_type_1 import (
-            GenericSettingsSchemaDigestAlgorithmType1,
-        )
-        from ..models.generic_settings_schema_signature_algorithm_type_1 import (
-            GenericSettingsSchemaSignatureAlgorithmType1,
-        )
-
         idp_entity_id = self.idp_entity_id
 
         idp_sso_post_url = self.idp_sso_post_url
@@ -84,24 +69,22 @@ class GenericSettingsSchema:
         else:
             cert_fingerprint = self.cert_fingerprint
 
-        cert_fingerprint_algorithm: dict[str, Any] | None | Unset
+        cert_fingerprint_algorithm: None | str | Unset
         if isinstance(self.cert_fingerprint_algorithm, Unset):
             cert_fingerprint_algorithm = UNSET
         elif isinstance(
             self.cert_fingerprint_algorithm,
-            GenericSettingsSchemaCertFingerprintAlgorithmType1,
+            GenericSettingsSchemaCertFingerprintAlgorithm,
         ):
-            cert_fingerprint_algorithm = self.cert_fingerprint_algorithm.to_dict()
+            cert_fingerprint_algorithm = self.cert_fingerprint_algorithm.value
         else:
             cert_fingerprint_algorithm = self.cert_fingerprint_algorithm
 
-        digest_algorithm: dict[str, Any] | None | Unset
+        digest_algorithm: None | str | Unset
         if isinstance(self.digest_algorithm, Unset):
             digest_algorithm = UNSET
-        elif isinstance(
-            self.digest_algorithm, GenericSettingsSchemaDigestAlgorithmType1
-        ):
-            digest_algorithm = self.digest_algorithm.to_dict()
+        elif isinstance(self.digest_algorithm, GenericSettingsSchemaDigestAlgorithm):
+            digest_algorithm = self.digest_algorithm.value
         else:
             digest_algorithm = self.digest_algorithm
 
@@ -129,13 +112,13 @@ class GenericSettingsSchema:
         else:
             name_id_encrypted = self.name_id_encrypted
 
-        signature_algorithm: dict[str, Any] | None | Unset
+        signature_algorithm: None | str | Unset
         if isinstance(self.signature_algorithm, Unset):
             signature_algorithm = UNSET
         elif isinstance(
-            self.signature_algorithm, GenericSettingsSchemaSignatureAlgorithmType1
+            self.signature_algorithm, GenericSettingsSchemaSignatureAlgorithm
         ):
-            signature_algorithm = self.signature_algorithm.to_dict()
+            signature_algorithm = self.signature_algorithm.value
         else:
             signature_algorithm = self.signature_algorithm
 
@@ -185,16 +168,6 @@ class GenericSettingsSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.generic_settings_schema_cert_fingerprint_algorithm_type_1 import (
-            GenericSettingsSchemaCertFingerprintAlgorithmType1,
-        )
-        from ..models.generic_settings_schema_digest_algorithm_type_1 import (
-            GenericSettingsSchemaDigestAlgorithmType1,
-        )
-        from ..models.generic_settings_schema_signature_algorithm_type_1 import (
-            GenericSettingsSchemaSignatureAlgorithmType1,
-        )
-
         d = dict(src_dict)
         idp_entity_id = d.pop("idp_entity_id")
 
@@ -213,23 +186,23 @@ class GenericSettingsSchema:
 
         def _parse_cert_fingerprint_algorithm(
             data: object,
-        ) -> GenericSettingsSchemaCertFingerprintAlgorithmType1 | None | Unset:
+        ) -> GenericSettingsSchemaCertFingerprintAlgorithm | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
                 cert_fingerprint_algorithm_type_1 = (
-                    GenericSettingsSchemaCertFingerprintAlgorithmType1.from_dict(data)
+                    GenericSettingsSchemaCertFingerprintAlgorithm(data)
                 )
 
                 return cert_fingerprint_algorithm_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(
-                GenericSettingsSchemaCertFingerprintAlgorithmType1 | None | Unset, data
+                GenericSettingsSchemaCertFingerprintAlgorithm | None | Unset, data
             )
 
         cert_fingerprint_algorithm = _parse_cert_fingerprint_algorithm(
@@ -238,22 +211,20 @@ class GenericSettingsSchema:
 
         def _parse_digest_algorithm(
             data: object,
-        ) -> GenericSettingsSchemaDigestAlgorithmType1 | None | Unset:
+        ) -> GenericSettingsSchemaDigestAlgorithm | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                digest_algorithm_type_1 = (
-                    GenericSettingsSchemaDigestAlgorithmType1.from_dict(data)
-                )
+                digest_algorithm_type_1 = GenericSettingsSchemaDigestAlgorithm(data)
 
                 return digest_algorithm_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(GenericSettingsSchemaDigestAlgorithmType1 | None | Unset, data)
+            return cast(GenericSettingsSchemaDigestAlgorithm | None | Unset, data)
 
         digest_algorithm = _parse_digest_algorithm(d.pop("digest_algorithm", UNSET))
 
@@ -297,24 +268,22 @@ class GenericSettingsSchema:
 
         def _parse_signature_algorithm(
             data: object,
-        ) -> GenericSettingsSchemaSignatureAlgorithmType1 | None | Unset:
+        ) -> GenericSettingsSchemaSignatureAlgorithm | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                signature_algorithm_type_1 = (
-                    GenericSettingsSchemaSignatureAlgorithmType1.from_dict(data)
+                signature_algorithm_type_1 = GenericSettingsSchemaSignatureAlgorithm(
+                    data
                 )
 
                 return signature_algorithm_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(
-                GenericSettingsSchemaSignatureAlgorithmType1 | None | Unset, data
-            )
+            return cast(GenericSettingsSchemaSignatureAlgorithm | None | Unset, data)
 
         signature_algorithm = _parse_signature_algorithm(
             d.pop("signature_algorithm", UNSET)

@@ -1,18 +1,15 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.user_by_email_and_login_type_schema_login_type import (
+    UserByEmailAndLoginTypeSchemaLoginType,
+)
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.user_by_email_and_login_type_schema_login_type_type_1 import (
-        UserByEmailAndLoginTypeSchemaLoginTypeType1,
-    )
-
 
 T = TypeVar("T", bound="UserByEmailAndLoginTypeSchema")
 
@@ -22,25 +19,21 @@ class UserByEmailAndLoginTypeSchema:
     """
     Attributes:
         email (str):
-        login_type (None | Unset | UserByEmailAndLoginTypeSchemaLoginTypeType1):
+        login_type (None | Unset | UserByEmailAndLoginTypeSchemaLoginType):
     """
 
     email: str
-    login_type: None | Unset | UserByEmailAndLoginTypeSchemaLoginTypeType1 = UNSET
+    login_type: None | Unset | UserByEmailAndLoginTypeSchemaLoginType = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.user_by_email_and_login_type_schema_login_type_type_1 import (
-            UserByEmailAndLoginTypeSchemaLoginTypeType1,
-        )
-
         email = self.email
 
-        login_type: dict[str, Any] | None | Unset
+        login_type: None | str | Unset
         if isinstance(self.login_type, Unset):
             login_type = UNSET
-        elif isinstance(self.login_type, UserByEmailAndLoginTypeSchemaLoginTypeType1):
-            login_type = self.login_type.to_dict()
+        elif isinstance(self.login_type, UserByEmailAndLoginTypeSchemaLoginType):
+            login_type = self.login_type.value
         else:
             login_type = self.login_type
 
@@ -58,33 +51,25 @@ class UserByEmailAndLoginTypeSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.user_by_email_and_login_type_schema_login_type_type_1 import (
-            UserByEmailAndLoginTypeSchemaLoginTypeType1,
-        )
-
         d = dict(src_dict)
         email = d.pop("email")
 
         def _parse_login_type(
             data: object,
-        ) -> None | Unset | UserByEmailAndLoginTypeSchemaLoginTypeType1:
+        ) -> None | Unset | UserByEmailAndLoginTypeSchemaLoginType:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                login_type_type_1 = (
-                    UserByEmailAndLoginTypeSchemaLoginTypeType1.from_dict(data)
-                )
+                login_type_type_1 = UserByEmailAndLoginTypeSchemaLoginType(data)
 
                 return login_type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(
-                None | Unset | UserByEmailAndLoginTypeSchemaLoginTypeType1, data
-            )
+            return cast(None | Unset | UserByEmailAndLoginTypeSchemaLoginType, data)
 
         login_type = _parse_login_type(d.pop("login_type", UNSET))
 

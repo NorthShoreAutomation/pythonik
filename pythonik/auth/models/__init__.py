@@ -1,24 +1,20 @@
 """Contains all the data models used in inputs/outputs"""
 
 from .app_create_schema import AppCreateSchema
-from .app_create_schema_oauth_client_type_type_1 import (
-    AppCreateSchemaOauthClientTypeType1,
-)
-from .app_create_schema_type_type_1 import AppCreateSchemaTypeType1
+from .app_create_schema_oauth_client_type import AppCreateSchemaOauthClientType
+from .app_create_schema_type import AppCreateSchemaType
 from .app_schema import AppSchema
-from .app_schema_oauth_client_type_type_1 import AppSchemaOauthClientTypeType1
-from .app_schema_type_type_1 import AppSchemaTypeType1
+from .app_schema_oauth_client_type import AppSchemaOauthClientType
+from .app_schema_type import AppSchemaType
 from .approved_app_instance_schema import ApprovedAppInstanceSchema
 from .apps_schema import AppsSchema
 from .auth_0_settings_schema import Auth0SettingsSchema
-from .auth_0_settings_schema_cert_fingerprint_algorithm_type_1 import (
-    Auth0SettingsSchemaCertFingerprintAlgorithmType1,
+from .auth_0_settings_schema_cert_fingerprint_algorithm import (
+    Auth0SettingsSchemaCertFingerprintAlgorithm,
 )
-from .auth_0_settings_schema_digest_algorithm_type_1 import (
-    Auth0SettingsSchemaDigestAlgorithmType1,
-)
-from .auth_0_settings_schema_signature_algorithm_type_1 import (
-    Auth0SettingsSchemaSignatureAlgorithmType1,
+from .auth_0_settings_schema_digest_algorithm import Auth0SettingsSchemaDigestAlgorithm
+from .auth_0_settings_schema_signature_algorithm import (
+    Auth0SettingsSchemaSignatureAlgorithm,
 )
 from .auto_login_schema import AutoLoginSchema
 from .base_query_params_schema import BaseQueryParamsSchema
@@ -125,14 +121,14 @@ from .external_auth_request_schema import ExternalAuthRequestSchema
 from .external_auth_schema import ExternalAuthSchema
 from .forgot_password_schema import ForgotPasswordSchema
 from .generic_settings_schema import GenericSettingsSchema
-from .generic_settings_schema_cert_fingerprint_algorithm_type_1 import (
-    GenericSettingsSchemaCertFingerprintAlgorithmType1,
+from .generic_settings_schema_cert_fingerprint_algorithm import (
+    GenericSettingsSchemaCertFingerprintAlgorithm,
 )
-from .generic_settings_schema_digest_algorithm_type_1 import (
-    GenericSettingsSchemaDigestAlgorithmType1,
+from .generic_settings_schema_digest_algorithm import (
+    GenericSettingsSchemaDigestAlgorithm,
 )
-from .generic_settings_schema_signature_algorithm_type_1 import (
-    GenericSettingsSchemaSignatureAlgorithmType1,
+from .generic_settings_schema_signature_algorithm import (
+    GenericSettingsSchemaSignatureAlgorithm,
 )
 from .get_apps_by_app_id_response_default_type_0 import (
     GetAppsByAppIdResponseDefaultType0,
@@ -377,14 +373,14 @@ from .identity_provider_base_schema_saml_settings_type_0 import (
     IdentityProviderBaseSchemaSamlSettingsType0,
 )
 from .identity_provider_base_settings_schema import IdentityProviderBaseSettingsSchema
-from .identity_provider_base_settings_schema_cert_fingerprint_algorithm_type_1 import (
-    IdentityProviderBaseSettingsSchemaCertFingerprintAlgorithmType1,
+from .identity_provider_base_settings_schema_cert_fingerprint_algorithm import (
+    IdentityProviderBaseSettingsSchemaCertFingerprintAlgorithm,
 )
-from .identity_provider_base_settings_schema_digest_algorithm_type_1 import (
-    IdentityProviderBaseSettingsSchemaDigestAlgorithmType1,
+from .identity_provider_base_settings_schema_digest_algorithm import (
+    IdentityProviderBaseSettingsSchemaDigestAlgorithm,
 )
-from .identity_provider_base_settings_schema_signature_algorithm_type_1 import (
-    IdentityProviderBaseSettingsSchemaSignatureAlgorithmType1,
+from .identity_provider_base_settings_schema_signature_algorithm import (
+    IdentityProviderBaseSettingsSchemaSignatureAlgorithm,
 )
 from .identity_provider_schema import IdentityProviderSchema
 from .identity_provider_schema_saml_settings_type_0 import (
@@ -397,8 +393,8 @@ from .internal_authenticate_user_schema import InternalAuthenticateUserSchema
 from .internal_authenticate_user_schema_user import InternalAuthenticateUserSchemaUser
 from .internal_temp_token_schema import InternalTempTokenSchema
 from .invitation_response_schema import InvitationResponseSchema
-from .invitation_response_schema_domain_status_type_1 import (
-    InvitationResponseSchemaDomainStatusType1,
+from .invitation_response_schema_domain_status import (
+    InvitationResponseSchemaDomainStatus,
 )
 from .list_objects_schema import ListObjectsSchema
 from .marketplace_google_link_schema import MarketplaceGoogleLinkSchema
@@ -441,24 +437,22 @@ from .o_auth_2_authorize_client_schema import OAuth2AuthorizeClientSchema
 from .o_auth_2_authorize_describe_schema import OAuth2AuthorizeDescribeSchema
 from .o_auth_2_authorize_response_schema import OAuth2AuthorizeResponseSchema
 from .okta_settings_schema import OktaSettingsSchema
-from .okta_settings_schema_cert_fingerprint_algorithm_type_1 import (
-    OktaSettingsSchemaCertFingerprintAlgorithmType1,
+from .okta_settings_schema_cert_fingerprint_algorithm import (
+    OktaSettingsSchemaCertFingerprintAlgorithm,
 )
-from .okta_settings_schema_digest_algorithm_type_1 import (
-    OktaSettingsSchemaDigestAlgorithmType1,
-)
-from .okta_settings_schema_signature_algorithm_type_1 import (
-    OktaSettingsSchemaSignatureAlgorithmType1,
+from .okta_settings_schema_digest_algorithm import OktaSettingsSchemaDigestAlgorithm
+from .okta_settings_schema_signature_algorithm import (
+    OktaSettingsSchemaSignatureAlgorithm,
 )
 from .onelogin_settings_schema import OneloginSettingsSchema
-from .onelogin_settings_schema_cert_fingerprint_algorithm_type_1 import (
-    OneloginSettingsSchemaCertFingerprintAlgorithmType1,
+from .onelogin_settings_schema_cert_fingerprint_algorithm import (
+    OneloginSettingsSchemaCertFingerprintAlgorithm,
 )
-from .onelogin_settings_schema_digest_algorithm_type_1 import (
-    OneloginSettingsSchemaDigestAlgorithmType1,
+from .onelogin_settings_schema_digest_algorithm import (
+    OneloginSettingsSchemaDigestAlgorithm,
 )
-from .onelogin_settings_schema_signature_algorithm_type_1 import (
-    OneloginSettingsSchemaSignatureAlgorithmType1,
+from .onelogin_settings_schema_signature_algorithm import (
+    OneloginSettingsSchemaSignatureAlgorithm,
 )
 from .password_checks_schema import PasswordChecksSchema
 from .patch_apps_by_app_id_response_default_type_0 import (
@@ -836,7 +830,7 @@ from .redirect_info_type_headers_type_0 import RedirectInfoTypeHeadersType0
 from .redirect_info_type_schema import RedirectInfoTypeSchema
 from .redirect_info_type_schema_headers_type_0 import RedirectInfoTypeSchemaHeadersType0
 from .referral_code_schema import ReferralCodeSchema
-from .referral_code_schema_billing_tier_type_1 import ReferralCodeSchemaBillingTierType1
+from .referral_code_schema_billing_tier import ReferralCodeSchemaBillingTier
 from .referral_codes_schema import ReferralCodesSchema
 from .registration_schema import RegistrationSchema
 from .reindex_system_domain_schema import ReindexSystemDomainSchema
@@ -845,57 +839,45 @@ from .saml_login_schema import SAMLLoginSchema
 from .simple_login_schema import SimpleLoginSchema
 from .system_domain_base_schema import SystemDomainBaseSchema
 from .system_domain_basic_admin_schema import SystemDomainBasicAdminSchema
-from .system_domain_basic_admin_schema_billing_tier_type_1 import (
-    SystemDomainBasicAdminSchemaBillingTierType1,
+from .system_domain_basic_admin_schema_billing_tier import (
+    SystemDomainBasicAdminSchemaBillingTier,
 )
-from .system_domain_basic_admin_schema_type_type_1 import (
-    SystemDomainBasicAdminSchemaTypeType1,
-)
+from .system_domain_basic_admin_schema_type import SystemDomainBasicAdminSchemaType
 from .system_domain_basic_schema import SystemDomainBasicSchema
-from .system_domain_basic_schema_billing_tier_type_1 import (
-    SystemDomainBasicSchemaBillingTierType1,
-)
-from .system_domain_basic_schema_type_type_1 import SystemDomainBasicSchemaTypeType1
+from .system_domain_basic_schema_billing_tier import SystemDomainBasicSchemaBillingTier
+from .system_domain_basic_schema_type import SystemDomainBasicSchemaType
 from .system_domain_feature_schema_base import SystemDomainFeatureSchemaBase
 from .system_domain_feature_schema_base_parameters_type_0 import (
     SystemDomainFeatureSchemaBaseParametersType0,
 )
 from .system_domain_from_referral_code_schema import SystemDomainFromReferralCodeSchema
-from .system_domain_from_referral_code_schema_billing_tier_type_1 import (
-    SystemDomainFromReferralCodeSchemaBillingTierType1,
+from .system_domain_from_referral_code_schema_billing_tier import (
+    SystemDomainFromReferralCodeSchemaBillingTier,
 )
 from .system_domain_from_template_schema import SystemDomainFromTemplateSchema
-from .system_domain_from_template_schema_billing_tier_type_1 import (
-    SystemDomainFromTemplateSchemaBillingTierType1,
+from .system_domain_from_template_schema_billing_tier import (
+    SystemDomainFromTemplateSchemaBillingTier,
 )
-from .system_domain_from_template_schema_status_type_1 import (
-    SystemDomainFromTemplateSchemaStatusType1,
+from .system_domain_from_template_schema_status import (
+    SystemDomainFromTemplateSchemaStatus,
 )
-from .system_domain_from_template_schema_type_type_1 import (
-    SystemDomainFromTemplateSchemaTypeType1,
-)
+from .system_domain_from_template_schema_type import SystemDomainFromTemplateSchemaType
 from .system_domain_profile_schema import SystemDomainProfileSchema
-from .system_domain_profile_schema_industry_type_1 import (
-    SystemDomainProfileSchemaIndustryType1,
-)
+from .system_domain_profile_schema_industry import SystemDomainProfileSchemaIndustry
 from .system_domain_schema import SystemDomainSchema
-from .system_domain_schema_billing_tier_type_1 import SystemDomainSchemaBillingTierType1
-from .system_domain_schema_industry_type_1 import SystemDomainSchemaIndustryType1
-from .system_domain_schema_status_type_1 import SystemDomainSchemaStatusType1
-from .system_domain_schema_type_type_1 import SystemDomainSchemaTypeType1
+from .system_domain_schema_billing_tier import SystemDomainSchemaBillingTier
+from .system_domain_schema_industry import SystemDomainSchemaIndustry
+from .system_domain_schema_status import SystemDomainSchemaStatus
+from .system_domain_schema_type import SystemDomainSchemaType
 from .system_domain_super_admin_schema import SystemDomainSuperAdminSchema
-from .system_domain_super_admin_schema_billing_tier_type_1 import (
-    SystemDomainSuperAdminSchemaBillingTierType1,
+from .system_domain_super_admin_schema_billing_tier import (
+    SystemDomainSuperAdminSchemaBillingTier,
 )
-from .system_domain_super_admin_schema_industry_type_1 import (
-    SystemDomainSuperAdminSchemaIndustryType1,
+from .system_domain_super_admin_schema_industry import (
+    SystemDomainSuperAdminSchemaIndustry,
 )
-from .system_domain_super_admin_schema_status_type_1 import (
-    SystemDomainSuperAdminSchemaStatusType1,
-)
-from .system_domain_super_admin_schema_type_type_1 import (
-    SystemDomainSuperAdminSchemaTypeType1,
-)
+from .system_domain_super_admin_schema_status import SystemDomainSuperAdminSchemaStatus
+from .system_domain_super_admin_schema_type import SystemDomainSuperAdminSchemaType
 from .system_domain_wildmoka_config_schema import SystemDomainWildmokaConfigSchema
 from .system_domain_with_billing_limits_schema import (
     SystemDomainWithBillingLimitsSchema,
@@ -905,19 +887,17 @@ from .system_domains_schema import SystemDomainsSchema
 from .system_domains_schema_facets_type_0 import SystemDomainsSchemaFacetsType0
 from .temporary_password_token_schema import TemporaryPasswordTokenSchema
 from .token_base_schema import TokenBaseSchema
-from .token_base_schema_system_domain_status_type_1 import (
-    TokenBaseSchemaSystemDomainStatusType1,
-)
+from .token_base_schema_system_domain_status import TokenBaseSchemaSystemDomainStatus
 from .token_multiplatform_login_schema import TokenMultiplatformLoginSchema
-from .token_multiplatform_login_schema_system_domain_status_type_1 import (
-    TokenMultiplatformLoginSchemaSystemDomainStatusType1,
+from .token_multiplatform_login_schema_system_domain_status import (
+    TokenMultiplatformLoginSchemaSystemDomainStatus,
 )
 from .token_output_schema import TokenOutputSchema
-from .token_output_schema_system_domain_status_type_1 import (
-    TokenOutputSchemaSystemDomainStatusType1,
+from .token_output_schema_system_domain_status import (
+    TokenOutputSchemaSystemDomainStatus,
 )
 from .token_schema import TokenSchema
-from .token_schema_system_domain_status_type_1 import TokenSchemaSystemDomainStatusType1
+from .token_schema_system_domain_status import TokenSchemaSystemDomainStatus
 from .tokens_schema import TokensSchema
 from .user_system_domain_invite_schema import UserSystemDomainInviteSchema
 from .verification_response_schema import VerificationResponseSchema
@@ -926,17 +906,17 @@ from .webflow_content_schema import WebflowContentSchema
 
 __all__ = (
     "AppCreateSchema",
-    "AppCreateSchemaOauthClientTypeType1",
-    "AppCreateSchemaTypeType1",
+    "AppCreateSchemaOauthClientType",
+    "AppCreateSchemaType",
     "ApprovedAppInstanceSchema",
     "AppSchema",
-    "AppSchemaOauthClientTypeType1",
-    "AppSchemaTypeType1",
+    "AppSchemaOauthClientType",
+    "AppSchemaType",
     "AppsSchema",
     "Auth0SettingsSchema",
-    "Auth0SettingsSchemaCertFingerprintAlgorithmType1",
-    "Auth0SettingsSchemaDigestAlgorithmType1",
-    "Auth0SettingsSchemaSignatureAlgorithmType1",
+    "Auth0SettingsSchemaCertFingerprintAlgorithm",
+    "Auth0SettingsSchemaDigestAlgorithm",
+    "Auth0SettingsSchemaSignatureAlgorithm",
     "AutoLoginSchema",
     "BaseQueryParamsSchema",
     "BillingLimitsSchema",
@@ -982,9 +962,9 @@ __all__ = (
     "ExternalAuthSchema",
     "ForgotPasswordSchema",
     "GenericSettingsSchema",
-    "GenericSettingsSchemaCertFingerprintAlgorithmType1",
-    "GenericSettingsSchemaDigestAlgorithmType1",
-    "GenericSettingsSchemaSignatureAlgorithmType1",
+    "GenericSettingsSchemaCertFingerprintAlgorithm",
+    "GenericSettingsSchemaDigestAlgorithm",
+    "GenericSettingsSchemaSignatureAlgorithm",
     "GetAppsByAppIdResponseDefaultType0",
     "GetAppsByAppIdResponseDefaultType1",
     "GetAppsByAppIdResponseDefaultType1Errors",
@@ -1072,9 +1052,9 @@ __all__ = (
     "IdentityProviderBaseSchema",
     "IdentityProviderBaseSchemaSamlSettingsType0",
     "IdentityProviderBaseSettingsSchema",
-    "IdentityProviderBaseSettingsSchemaCertFingerprintAlgorithmType1",
-    "IdentityProviderBaseSettingsSchemaDigestAlgorithmType1",
-    "IdentityProviderBaseSettingsSchemaSignatureAlgorithmType1",
+    "IdentityProviderBaseSettingsSchemaCertFingerprintAlgorithm",
+    "IdentityProviderBaseSettingsSchemaDigestAlgorithm",
+    "IdentityProviderBaseSettingsSchemaSignatureAlgorithm",
     "IdentityProviderSchema",
     "IdentityProviderSchemaSamlSettingsType0",
     "IdentityProviderSchemaSettings",
@@ -1084,7 +1064,7 @@ __all__ = (
     "InternalAuthenticateUserSchemaUser",
     "InternalTempTokenSchema",
     "InvitationResponseSchema",
-    "InvitationResponseSchemaDomainStatusType1",
+    "InvitationResponseSchemaDomainStatus",
     "ListObjectsSchema",
     "MarketplaceGoogleLinkSchema",
     "MarketplaceGoogleSignupSchema",
@@ -1106,13 +1086,13 @@ __all__ = (
     "OAuth2AuthorizeDescribeSchema",
     "OAuth2AuthorizeResponseSchema",
     "OktaSettingsSchema",
-    "OktaSettingsSchemaCertFingerprintAlgorithmType1",
-    "OktaSettingsSchemaDigestAlgorithmType1",
-    "OktaSettingsSchemaSignatureAlgorithmType1",
+    "OktaSettingsSchemaCertFingerprintAlgorithm",
+    "OktaSettingsSchemaDigestAlgorithm",
+    "OktaSettingsSchemaSignatureAlgorithm",
     "OneloginSettingsSchema",
-    "OneloginSettingsSchemaCertFingerprintAlgorithmType1",
-    "OneloginSettingsSchemaDigestAlgorithmType1",
-    "OneloginSettingsSchemaSignatureAlgorithmType1",
+    "OneloginSettingsSchemaCertFingerprintAlgorithm",
+    "OneloginSettingsSchemaDigestAlgorithm",
+    "OneloginSettingsSchemaSignatureAlgorithm",
     "PasswordChecksSchema",
     "PatchAppsByAppIdResponseDefaultType0",
     "PatchAppsByAppIdResponseDefaultType1",
@@ -1255,7 +1235,7 @@ __all__ = (
     "RedirectInfoTypeSchema",
     "RedirectInfoTypeSchemaHeadersType0",
     "ReferralCodeSchema",
-    "ReferralCodeSchemaBillingTierType1",
+    "ReferralCodeSchemaBillingTier",
     "ReferralCodesSchema",
     "RegistrationSchema",
     "ReindexSystemDomainSchema",
@@ -1264,45 +1244,45 @@ __all__ = (
     "SimpleLoginSchema",
     "SystemDomainBaseSchema",
     "SystemDomainBasicAdminSchema",
-    "SystemDomainBasicAdminSchemaBillingTierType1",
-    "SystemDomainBasicAdminSchemaTypeType1",
+    "SystemDomainBasicAdminSchemaBillingTier",
+    "SystemDomainBasicAdminSchemaType",
     "SystemDomainBasicSchema",
-    "SystemDomainBasicSchemaBillingTierType1",
-    "SystemDomainBasicSchemaTypeType1",
+    "SystemDomainBasicSchemaBillingTier",
+    "SystemDomainBasicSchemaType",
     "SystemDomainFeatureSchemaBase",
     "SystemDomainFeatureSchemaBaseParametersType0",
     "SystemDomainFromReferralCodeSchema",
-    "SystemDomainFromReferralCodeSchemaBillingTierType1",
+    "SystemDomainFromReferralCodeSchemaBillingTier",
     "SystemDomainFromTemplateSchema",
-    "SystemDomainFromTemplateSchemaBillingTierType1",
-    "SystemDomainFromTemplateSchemaStatusType1",
-    "SystemDomainFromTemplateSchemaTypeType1",
+    "SystemDomainFromTemplateSchemaBillingTier",
+    "SystemDomainFromTemplateSchemaStatus",
+    "SystemDomainFromTemplateSchemaType",
     "SystemDomainProfileSchema",
-    "SystemDomainProfileSchemaIndustryType1",
+    "SystemDomainProfileSchemaIndustry",
     "SystemDomainSchema",
-    "SystemDomainSchemaBillingTierType1",
-    "SystemDomainSchemaIndustryType1",
-    "SystemDomainSchemaStatusType1",
-    "SystemDomainSchemaTypeType1",
+    "SystemDomainSchemaBillingTier",
+    "SystemDomainSchemaIndustry",
+    "SystemDomainSchemaStatus",
+    "SystemDomainSchemaType",
     "SystemDomainsQueryParamsSchema",
     "SystemDomainsSchema",
     "SystemDomainsSchemaFacetsType0",
     "SystemDomainSuperAdminSchema",
-    "SystemDomainSuperAdminSchemaBillingTierType1",
-    "SystemDomainSuperAdminSchemaIndustryType1",
-    "SystemDomainSuperAdminSchemaStatusType1",
-    "SystemDomainSuperAdminSchemaTypeType1",
+    "SystemDomainSuperAdminSchemaBillingTier",
+    "SystemDomainSuperAdminSchemaIndustry",
+    "SystemDomainSuperAdminSchemaStatus",
+    "SystemDomainSuperAdminSchemaType",
     "SystemDomainWildmokaConfigSchema",
     "SystemDomainWithBillingLimitsSchema",
     "TemporaryPasswordTokenSchema",
     "TokenBaseSchema",
-    "TokenBaseSchemaSystemDomainStatusType1",
+    "TokenBaseSchemaSystemDomainStatus",
     "TokenMultiplatformLoginSchema",
-    "TokenMultiplatformLoginSchemaSystemDomainStatusType1",
+    "TokenMultiplatformLoginSchemaSystemDomainStatus",
     "TokenOutputSchema",
-    "TokenOutputSchemaSystemDomainStatusType1",
+    "TokenOutputSchemaSystemDomainStatus",
     "TokenSchema",
-    "TokenSchemaSystemDomainStatusType1",
+    "TokenSchemaSystemDomainStatus",
     "TokensSchema",
     "UserSystemDomainInviteSchema",
     "VerificationResponseSchema",

@@ -2,17 +2,14 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.approval_by_schema_status import ApprovalBySchemaStatus
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.approval_by_schema_status_type_1 import ApprovalBySchemaStatusType1
-
 
 T = TypeVar("T", bound="ApprovalBySchema")
 
@@ -25,7 +22,7 @@ class ApprovalBySchema:
         external (None | str | Unset):
         object_id (None | Unset | UUID):
         object_type (None | str | Unset):
-        status (ApprovalBySchemaStatusType1 | None | Unset):
+        status (ApprovalBySchemaStatus | None | Unset):
         user (None | Unset | UUID):
         version_id (None | Unset | UUID):
     """
@@ -34,16 +31,12 @@ class ApprovalBySchema:
     external: None | str | Unset = UNSET
     object_id: None | Unset | UUID = UNSET
     object_type: None | str | Unset = UNSET
-    status: ApprovalBySchemaStatusType1 | None | Unset = UNSET
+    status: ApprovalBySchemaStatus | None | Unset = UNSET
     user: None | Unset | UUID = UNSET
     version_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.approval_by_schema_status_type_1 import (
-            ApprovalBySchemaStatusType1,
-        )
-
         change_date: None | str | Unset
         if isinstance(self.change_date, Unset):
             change_date = UNSET
@@ -72,11 +65,11 @@ class ApprovalBySchema:
         else:
             object_type = self.object_type
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, ApprovalBySchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, ApprovalBySchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -118,10 +111,6 @@ class ApprovalBySchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.approval_by_schema_status_type_1 import (
-            ApprovalBySchemaStatusType1,
-        )
-
         d = dict(src_dict)
 
         def _parse_change_date(data: object) -> datetime.datetime | None | Unset:
@@ -176,20 +165,20 @@ class ApprovalBySchema:
 
         object_type = _parse_object_type(d.pop("object_type", UNSET))
 
-        def _parse_status(data: object) -> ApprovalBySchemaStatusType1 | None | Unset:
+        def _parse_status(data: object) -> ApprovalBySchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = ApprovalBySchemaStatusType1.from_dict(data)
+                status_type_1 = ApprovalBySchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(ApprovalBySchemaStatusType1 | None | Unset, data)
+            return cast(ApprovalBySchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

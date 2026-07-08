@@ -7,13 +7,13 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.invitation_response_schema_domain_status import (
+    InvitationResponseSchemaDomainStatus,
+)
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.auto_login_schema import AutoLoginSchema
-    from ..models.invitation_response_schema_domain_status_type_1 import (
-        InvitationResponseSchemaDomainStatusType1,
-    )
 
 
 T = TypeVar("T", bound="InvitationResponseSchema")
@@ -24,22 +24,19 @@ class InvitationResponseSchema:
     """
     Attributes:
         auto_login (bool | None | Unset):
-        domain_status (InvitationResponseSchemaDomainStatusType1 | None | Unset):
+        domain_status (InvitationResponseSchemaDomainStatus | None | Unset):
         login_data (AutoLoginSchema | None | Unset):
         user_id (None | Unset | UUID):
     """
 
     auto_login: bool | None | Unset = UNSET
-    domain_status: InvitationResponseSchemaDomainStatusType1 | None | Unset = UNSET
+    domain_status: InvitationResponseSchemaDomainStatus | None | Unset = UNSET
     login_data: AutoLoginSchema | None | Unset = UNSET
     user_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.auto_login_schema import AutoLoginSchema
-        from ..models.invitation_response_schema_domain_status_type_1 import (
-            InvitationResponseSchemaDomainStatusType1,
-        )
 
         auto_login: bool | None | Unset
         if isinstance(self.auto_login, Unset):
@@ -47,11 +44,11 @@ class InvitationResponseSchema:
         else:
             auto_login = self.auto_login
 
-        domain_status: dict[str, Any] | None | Unset
+        domain_status: None | str | Unset
         if isinstance(self.domain_status, Unset):
             domain_status = UNSET
-        elif isinstance(self.domain_status, InvitationResponseSchemaDomainStatusType1):
-            domain_status = self.domain_status.to_dict()
+        elif isinstance(self.domain_status, InvitationResponseSchemaDomainStatus):
+            domain_status = self.domain_status.value
         else:
             domain_status = self.domain_status
 
@@ -88,9 +85,6 @@ class InvitationResponseSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.auto_login_schema import AutoLoginSchema
-        from ..models.invitation_response_schema_domain_status_type_1 import (
-            InvitationResponseSchemaDomainStatusType1,
-        )
 
         d = dict(src_dict)
 
@@ -105,22 +99,20 @@ class InvitationResponseSchema:
 
         def _parse_domain_status(
             data: object,
-        ) -> InvitationResponseSchemaDomainStatusType1 | None | Unset:
+        ) -> InvitationResponseSchemaDomainStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                domain_status_type_1 = (
-                    InvitationResponseSchemaDomainStatusType1.from_dict(data)
-                )
+                domain_status_type_1 = InvitationResponseSchemaDomainStatus(data)
 
                 return domain_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(InvitationResponseSchemaDomainStatusType1 | None | Unset, data)
+            return cast(InvitationResponseSchemaDomainStatus | None | Unset, data)
 
         domain_status = _parse_domain_status(d.pop("domain_status", UNSET))
 

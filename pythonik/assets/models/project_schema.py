@@ -2,17 +2,14 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.project_schema_status import ProjectSchemaStatus
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.project_schema_status_type_1 import ProjectSchemaStatusType1
-
 
 T = TypeVar("T", bound="ProjectSchema")
 
@@ -27,7 +24,7 @@ class ProjectSchema:
         date_created (datetime.datetime | None | Unset):
         date_modified (datetime.datetime | None | Unset):
         id (None | Unset | UUID):
-        status (None | ProjectSchemaStatusType1 | Unset):
+        status (None | ProjectSchemaStatus | Unset):
         storage_id (None | Unset | UUID):
         system_domain_id (None | Unset | UUID):
     """
@@ -38,14 +35,12 @@ class ProjectSchema:
     date_created: datetime.datetime | None | Unset = UNSET
     date_modified: datetime.datetime | None | Unset = UNSET
     id: None | Unset | UUID = UNSET
-    status: None | ProjectSchemaStatusType1 | Unset = UNSET
+    status: None | ProjectSchemaStatus | Unset = UNSET
     storage_id: None | Unset | UUID = UNSET
     system_domain_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.project_schema_status_type_1 import ProjectSchemaStatusType1
-
         collection_id = str(self.collection_id)
 
         name = self.name
@@ -82,11 +77,11 @@ class ProjectSchema:
         else:
             id = self.id
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, ProjectSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, ProjectSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -133,8 +128,6 @@ class ProjectSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.project_schema_status_type_1 import ProjectSchemaStatusType1
-
         d = dict(src_dict)
         collection_id = UUID(d.pop("collection_id"))
 
@@ -208,20 +201,20 @@ class ProjectSchema:
 
         id = _parse_id(d.pop("id", UNSET))
 
-        def _parse_status(data: object) -> None | ProjectSchemaStatusType1 | Unset:
+        def _parse_status(data: object) -> None | ProjectSchemaStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = ProjectSchemaStatusType1.from_dict(data)
+                status_type_1 = ProjectSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | ProjectSchemaStatusType1 | Unset, data)
+            return cast(None | ProjectSchemaStatus | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

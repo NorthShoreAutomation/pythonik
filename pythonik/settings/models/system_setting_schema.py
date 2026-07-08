@@ -7,9 +7,11 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.system_setting_schema_drm import SystemSettingSchemaDrm
 from ..models.system_setting_schema_mfa_methods_type_0_item import (
     SystemSettingSchemaMfaMethodsType0Item,
 )
+from ..models.system_setting_schema_watermark import SystemSettingSchemaWatermark
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -19,10 +21,6 @@ if TYPE_CHECKING:
     from ..models.jobs_dashboard_schema import JobsDashboardSchema
     from ..models.password_checks_type_schema import PasswordChecksTypeSchema
     from ..models.search_display_field_schema import SearchDisplayFieldSchema
-    from ..models.system_setting_schema_drm_type_1 import SystemSettingSchemaDrmType1
-    from ..models.system_setting_schema_watermark_type_1 import (
-        SystemSettingSchemaWatermarkType1,
-    )
     from ..models.watermark_options_type import WatermarkOptionsType
 
 
@@ -53,7 +51,7 @@ class SystemSettingSchema:
         default_user_token_ttl (int | None | Unset): Default time to live for user tokens in seconds.
         delete_grace_period (int | None | Unset): Grace period that indicate how long objects will live in recycle bin.
             Unit: hours
-        drm (None | SystemSettingSchemaDrmType1 | Unset):
+        drm (None | SystemSettingSchemaDrm | Unset):
         drm_enforce (bool | None | Unset): Whether to require hardware DRM for playback when DRM is enabled Default:
             True.
         enable_ai_metadata_filling (bool | None | Unset):
@@ -104,7 +102,7 @@ class SystemSettingSchema:
         texts_metadata_field (None | str | Unset):
         update_saml_primary_group_on_login (bool | None | Unset):
         use_asset_name_on_download (bool | None | Unset):
-        watermark (None | SystemSettingSchemaWatermarkType1 | Unset):
+        watermark (None | SystemSettingSchemaWatermark | Unset):
         watermark_options (None | Unset | WatermarkOptionsType):
     """
 
@@ -126,7 +124,7 @@ class SystemSettingSchema:
     default_upload_storage_id: None | Unset | UUID = UNSET
     default_user_token_ttl: int | None | Unset = UNSET
     delete_grace_period: int | None | Unset = UNSET
-    drm: None | SystemSettingSchemaDrmType1 | Unset = UNSET
+    drm: None | SystemSettingSchemaDrm | Unset = UNSET
     drm_enforce: bool | None | Unset = True
     enable_ai_metadata_filling: bool | None | Unset = UNSET
     enable_face_recognition: bool | None | Unset = UNSET
@@ -174,7 +172,7 @@ class SystemSettingSchema:
     texts_metadata_field: None | str | Unset = UNSET
     update_saml_primary_group_on_login: bool | None | Unset = UNSET
     use_asset_name_on_download: bool | None | Unset = UNSET
-    watermark: None | SystemSettingSchemaWatermarkType1 | Unset = UNSET
+    watermark: None | SystemSettingSchemaWatermark | Unset = UNSET
     watermark_options: None | Unset | WatermarkOptionsType = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -184,12 +182,6 @@ class SystemSettingSchema:
         )
         from ..models.jobs_dashboard_schema import JobsDashboardSchema
         from ..models.password_checks_type_schema import PasswordChecksTypeSchema
-        from ..models.system_setting_schema_drm_type_1 import (
-            SystemSettingSchemaDrmType1,
-        )
-        from ..models.system_setting_schema_watermark_type_1 import (
-            SystemSettingSchemaWatermarkType1,
-        )
         from ..models.watermark_options_type import WatermarkOptionsType
 
         acl_template_id: None | str | Unset
@@ -320,11 +312,11 @@ class SystemSettingSchema:
         else:
             delete_grace_period = self.delete_grace_period
 
-        drm: dict[str, Any] | None | Unset
+        drm: None | str | Unset
         if isinstance(self.drm, Unset):
             drm = UNSET
-        elif isinstance(self.drm, SystemSettingSchemaDrmType1):
-            drm = self.drm.to_dict()
+        elif isinstance(self.drm, SystemSettingSchemaDrm):
+            drm = self.drm.value
         else:
             drm = self.drm
 
@@ -662,11 +654,11 @@ class SystemSettingSchema:
         else:
             use_asset_name_on_download = self.use_asset_name_on_download
 
-        watermark: dict[str, Any] | None | Unset
+        watermark: None | str | Unset
         if isinstance(self.watermark, Unset):
             watermark = UNSET
-        elif isinstance(self.watermark, SystemSettingSchemaWatermarkType1):
-            watermark = self.watermark.to_dict()
+        elif isinstance(self.watermark, SystemSettingSchemaWatermark):
+            watermark = self.watermark.value
         else:
             watermark = self.watermark
 
@@ -850,12 +842,6 @@ class SystemSettingSchema:
         from ..models.jobs_dashboard_schema import JobsDashboardSchema
         from ..models.password_checks_type_schema import PasswordChecksTypeSchema
         from ..models.search_display_field_schema import SearchDisplayFieldSchema
-        from ..models.system_setting_schema_drm_type_1 import (
-            SystemSettingSchemaDrmType1,
-        )
-        from ..models.system_setting_schema_watermark_type_1 import (
-            SystemSettingSchemaWatermarkType1,
-        )
         from ..models.watermark_options_type import WatermarkOptionsType
 
         d = dict(src_dict)
@@ -1109,20 +1095,20 @@ class SystemSettingSchema:
             d.pop("delete_grace_period", UNSET)
         )
 
-        def _parse_drm(data: object) -> None | SystemSettingSchemaDrmType1 | Unset:
+        def _parse_drm(data: object) -> None | SystemSettingSchemaDrm | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                drm_type_1 = SystemSettingSchemaDrmType1.from_dict(data)
+                drm_type_1 = SystemSettingSchemaDrm(data)
 
                 return drm_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | SystemSettingSchemaDrmType1 | Unset, data)
+            return cast(None | SystemSettingSchemaDrm | Unset, data)
 
         drm = _parse_drm(d.pop("drm", UNSET))
 
@@ -1754,20 +1740,20 @@ class SystemSettingSchema:
 
         def _parse_watermark(
             data: object,
-        ) -> None | SystemSettingSchemaWatermarkType1 | Unset:
+        ) -> None | SystemSettingSchemaWatermark | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                watermark_type_1 = SystemSettingSchemaWatermarkType1.from_dict(data)
+                watermark_type_1 = SystemSettingSchemaWatermark(data)
 
                 return watermark_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | SystemSettingSchemaWatermarkType1 | Unset, data)
+            return cast(None | SystemSettingSchemaWatermark | Unset, data)
 
         watermark = _parse_watermark(d.pop("watermark", UNSET))
 

@@ -2,25 +2,18 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.storage_file_update_schema_status import StorageFileUpdateSchemaStatus
+from ..models.storage_file_update_schema_template_engine import (
+    StorageFileUpdateSchemaTemplateEngine,
+)
+from ..models.storage_file_update_schema_type import StorageFileUpdateSchemaType
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.storage_file_update_schema_status_type_1 import (
-        StorageFileUpdateSchemaStatusType1,
-    )
-    from ..models.storage_file_update_schema_template_engine_type_1 import (
-        StorageFileUpdateSchemaTemplateEngineType1,
-    )
-    from ..models.storage_file_update_schema_type_type_1 import (
-        StorageFileUpdateSchemaTypeType1,
-    )
-
 
 T = TypeVar("T", bound="StorageFileUpdateSchema")
 
@@ -43,11 +36,11 @@ class StorageFileUpdateSchema:
         original_name (None | str | Unset):
         parent_id (None | Unset | UUID):
         size (int | None | Unset):
-        status (None | StorageFileUpdateSchemaStatusType1 | Unset):
+        status (None | StorageFileUpdateSchemaStatus | Unset):
         storage_id (None | Unset | UUID):
         template (None | str | Unset):
-        template_engine (None | StorageFileUpdateSchemaTemplateEngineType1 | Unset):
-        type_ (None | StorageFileUpdateSchemaTypeType1 | Unset):
+        template_engine (None | StorageFileUpdateSchemaTemplateEngine | Unset):
+        type_ (None | StorageFileUpdateSchemaType | Unset):
         user_id (None | Unset | UUID):
         version_id (None | Unset | UUID):
     """
@@ -66,26 +59,16 @@ class StorageFileUpdateSchema:
     original_name: None | str | Unset = UNSET
     parent_id: None | Unset | UUID = UNSET
     size: int | None | Unset = UNSET
-    status: None | StorageFileUpdateSchemaStatusType1 | Unset = UNSET
+    status: None | StorageFileUpdateSchemaStatus | Unset = UNSET
     storage_id: None | Unset | UUID = UNSET
     template: None | str | Unset = UNSET
-    template_engine: None | StorageFileUpdateSchemaTemplateEngineType1 | Unset = UNSET
-    type_: None | StorageFileUpdateSchemaTypeType1 | Unset = UNSET
+    template_engine: None | StorageFileUpdateSchemaTemplateEngine | Unset = UNSET
+    type_: None | StorageFileUpdateSchemaType | Unset = UNSET
     user_id: None | Unset | UUID = UNSET
     version_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.storage_file_update_schema_status_type_1 import (
-            StorageFileUpdateSchemaStatusType1,
-        )
-        from ..models.storage_file_update_schema_template_engine_type_1 import (
-            StorageFileUpdateSchemaTemplateEngineType1,
-        )
-        from ..models.storage_file_update_schema_type_type_1 import (
-            StorageFileUpdateSchemaTypeType1,
-        )
-
         directory_path = self.directory_path
 
         name = self.name
@@ -180,11 +163,11 @@ class StorageFileUpdateSchema:
         else:
             size = self.size
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, StorageFileUpdateSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, StorageFileUpdateSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -202,21 +185,19 @@ class StorageFileUpdateSchema:
         else:
             template = self.template
 
-        template_engine: dict[str, Any] | None | Unset
+        template_engine: None | str | Unset
         if isinstance(self.template_engine, Unset):
             template_engine = UNSET
-        elif isinstance(
-            self.template_engine, StorageFileUpdateSchemaTemplateEngineType1
-        ):
-            template_engine = self.template_engine.to_dict()
+        elif isinstance(self.template_engine, StorageFileUpdateSchemaTemplateEngine):
+            template_engine = self.template_engine.value
         else:
             template_engine = self.template_engine
 
-        type_: dict[str, Any] | None | Unset
+        type_: None | str | Unset
         if isinstance(self.type_, Unset):
             type_ = UNSET
-        elif isinstance(self.type_, StorageFileUpdateSchemaTypeType1):
-            type_ = self.type_.to_dict()
+        elif isinstance(self.type_, StorageFileUpdateSchemaType):
+            type_ = self.type_.value
         else:
             type_ = self.type_
 
@@ -287,16 +268,6 @@ class StorageFileUpdateSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.storage_file_update_schema_status_type_1 import (
-            StorageFileUpdateSchemaStatusType1,
-        )
-        from ..models.storage_file_update_schema_template_engine_type_1 import (
-            StorageFileUpdateSchemaTemplateEngineType1,
-        )
-        from ..models.storage_file_update_schema_type_type_1 import (
-            StorageFileUpdateSchemaTypeType1,
-        )
-
         d = dict(src_dict)
         directory_path = d.pop("directory_path")
 
@@ -484,22 +455,20 @@ class StorageFileUpdateSchema:
 
         size = _parse_size(d.pop("size", UNSET))
 
-        def _parse_status(
-            data: object,
-        ) -> None | StorageFileUpdateSchemaStatusType1 | Unset:
+        def _parse_status(data: object) -> None | StorageFileUpdateSchemaStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = StorageFileUpdateSchemaStatusType1.from_dict(data)
+                status_type_1 = StorageFileUpdateSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | StorageFileUpdateSchemaStatusType1 | Unset, data)
+            return cast(None | StorageFileUpdateSchemaStatus | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 
@@ -531,41 +500,37 @@ class StorageFileUpdateSchema:
 
         def _parse_template_engine(
             data: object,
-        ) -> None | StorageFileUpdateSchemaTemplateEngineType1 | Unset:
+        ) -> None | StorageFileUpdateSchemaTemplateEngine | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                template_engine_type_1 = (
-                    StorageFileUpdateSchemaTemplateEngineType1.from_dict(data)
-                )
+                template_engine_type_1 = StorageFileUpdateSchemaTemplateEngine(data)
 
                 return template_engine_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | StorageFileUpdateSchemaTemplateEngineType1 | Unset, data)
+            return cast(None | StorageFileUpdateSchemaTemplateEngine | Unset, data)
 
         template_engine = _parse_template_engine(d.pop("template_engine", UNSET))
 
-        def _parse_type_(
-            data: object,
-        ) -> None | StorageFileUpdateSchemaTypeType1 | Unset:
+        def _parse_type_(data: object) -> None | StorageFileUpdateSchemaType | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                type_type_1 = StorageFileUpdateSchemaTypeType1.from_dict(data)
+                type_type_1 = StorageFileUpdateSchemaType(data)
 
                 return type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | StorageFileUpdateSchemaTypeType1 | Unset, data)
+            return cast(None | StorageFileUpdateSchemaType | Unset, data)
 
         type_ = _parse_type_(d.pop("type", UNSET))
 

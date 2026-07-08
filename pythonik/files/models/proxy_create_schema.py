@@ -8,10 +8,10 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.proxy_create_schema_status import ProxyCreateSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.proxy_create_schema_status_type_1 import ProxyCreateSchemaStatusType1
     from ..models.proxy_create_schema_upload_credentials_type_0 import (
         ProxyCreateSchemaUploadCredentialsType0,
     )
@@ -47,7 +47,7 @@ class ProxyCreateSchema:
         rotation (int | None | Unset):
         size (int | None | Unset):
         start_time_code (None | str | Unset):
-        status (None | ProxyCreateSchemaStatusType1 | Unset):
+        status (None | ProxyCreateSchemaStatus | Unset):
         storage_id (None | Unset | UUID):
         storage_method (None | str | Unset):
         upload_credentials (None | ProxyCreateSchemaUploadCredentialsType0 | Unset):
@@ -79,7 +79,7 @@ class ProxyCreateSchema:
     rotation: int | None | Unset = UNSET
     size: int | None | Unset = UNSET
     start_time_code: None | str | Unset = UNSET
-    status: None | ProxyCreateSchemaStatusType1 | Unset = UNSET
+    status: None | ProxyCreateSchemaStatus | Unset = UNSET
     storage_id: None | Unset | UUID = UNSET
     storage_method: None | str | Unset = UNSET
     upload_credentials: None | ProxyCreateSchemaUploadCredentialsType0 | Unset = UNSET
@@ -90,9 +90,6 @@ class ProxyCreateSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.proxy_create_schema_status_type_1 import (
-            ProxyCreateSchemaStatusType1,
-        )
         from ..models.proxy_create_schema_upload_credentials_type_0 import (
             ProxyCreateSchemaUploadCredentialsType0,
         )
@@ -242,11 +239,11 @@ class ProxyCreateSchema:
         else:
             start_time_code = self.start_time_code
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, ProxyCreateSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, ProxyCreateSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -368,9 +365,6 @@ class ProxyCreateSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.proxy_create_schema_status_type_1 import (
-            ProxyCreateSchemaStatusType1,
-        )
         from ..models.proxy_create_schema_upload_credentials_type_0 import (
             ProxyCreateSchemaUploadCredentialsType0,
         )
@@ -628,20 +622,20 @@ class ProxyCreateSchema:
 
         start_time_code = _parse_start_time_code(d.pop("start_time_code", UNSET))
 
-        def _parse_status(data: object) -> None | ProxyCreateSchemaStatusType1 | Unset:
+        def _parse_status(data: object) -> None | ProxyCreateSchemaStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = ProxyCreateSchemaStatusType1.from_dict(data)
+                status_type_1 = ProxyCreateSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | ProxyCreateSchemaStatusType1 | Unset, data)
+            return cast(None | ProxyCreateSchemaStatus | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

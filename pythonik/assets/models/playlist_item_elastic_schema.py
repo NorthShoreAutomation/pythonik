@@ -8,20 +8,22 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.playlist_item_elastic_schema_analyze_status import (
+    PlaylistItemElasticSchemaAnalyzeStatus,
+)
+from ..models.playlist_item_elastic_schema_archive_status import (
+    PlaylistItemElasticSchemaArchiveStatus,
+)
+from ..models.playlist_item_elastic_schema_face_recognition_status import (
+    PlaylistItemElasticSchemaFaceRecognitionStatus,
+)
+from ..models.playlist_item_elastic_schema_status import PlaylistItemElasticSchemaStatus
+from ..models.playlist_item_elastic_schema_type import PlaylistItemElasticSchemaType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.approval_schema import ApprovalSchema
     from ..models.asset_version_schema import AssetVersionSchema
-    from ..models.playlist_item_elastic_schema_analyze_status_type_1 import (
-        PlaylistItemElasticSchemaAnalyzeStatusType1,
-    )
-    from ..models.playlist_item_elastic_schema_archive_status_type_1 import (
-        PlaylistItemElasticSchemaArchiveStatusType1,
-    )
-    from ..models.playlist_item_elastic_schema_face_recognition_status_type_1 import (
-        PlaylistItemElasticSchemaFaceRecognitionStatusType1,
-    )
     from ..models.playlist_item_elastic_schema_files_type_0_item import (
         PlaylistItemElasticSchemaFilesType0Item,
     )
@@ -37,12 +39,6 @@ if TYPE_CHECKING:
     from ..models.playlist_item_elastic_schema_proxies_type_0_item import (
         PlaylistItemElasticSchemaProxiesType0Item,
     )
-    from ..models.playlist_item_elastic_schema_status_type_1 import (
-        PlaylistItemElasticSchemaStatusType1,
-    )
-    from ..models.playlist_item_elastic_schema_type_type_1 import (
-        PlaylistItemElasticSchemaTypeType1,
-    )
     from ..models.relation_elastic import RelationElastic
     from ..models.user import User
 
@@ -55,10 +51,10 @@ class PlaylistItemElasticSchema:
     """
     Attributes:
         title (str):
-        analyze_status (None | PlaylistItemElasticSchemaAnalyzeStatusType1 | Unset):
+        analyze_status (None | PlaylistItemElasticSchemaAnalyzeStatus | Unset):
         ancestor_collections (list[str] | None | Unset): Unordered list of all ancestor collection ids
         approval (ApprovalSchema | None | Unset):
-        archive_status (None | PlaylistItemElasticSchemaArchiveStatusType1 | Unset):
+        archive_status (None | PlaylistItemElasticSchemaArchiveStatus | Unset):
         category (None | str | Unset):
         comments_count (int | None | Unset):
         created_by_user (None | Unset | UUID):
@@ -75,7 +71,7 @@ class PlaylistItemElasticSchema:
         duration_milliseconds (int | None | Unset):
         external_id (None | str | Unset):
         external_link (None | str | Unset):
-        face_recognition_status (None | PlaylistItemElasticSchemaFaceRecognitionStatusType1 | Unset):
+        face_recognition_status (None | PlaylistItemElasticSchemaFaceRecognitionStatus | Unset):
         favoured (bool | None | Unset):
         files (list[PlaylistItemElasticSchemaFilesType0Item] | None | Unset):
         formats (list[PlaylistItemElasticSchemaFormatsType0Item] | None | Unset):
@@ -98,10 +94,10 @@ class PlaylistItemElasticSchema:
         proxies (list[PlaylistItemElasticSchemaProxiesType0Item] | None | Unset):
         relations (list[RelationElastic] | None | Unset):
         site_name (None | str | Unset):
-        status (None | PlaylistItemElasticSchemaStatusType1 | Unset):
+        status (None | PlaylistItemElasticSchemaStatus | Unset):
         time_end_milliseconds (int | None | Unset):
         time_start_milliseconds (int | None | Unset):
-        type_ (None | PlaylistItemElasticSchemaTypeType1 | Unset):
+        type_ (None | PlaylistItemElasticSchemaType | Unset):
         updated_by_user (None | Unset | UUID):
         updated_by_user_info (None | Unset | User):
         versions (list[AssetVersionSchema] | None | Unset):
@@ -110,10 +106,10 @@ class PlaylistItemElasticSchema:
     """
 
     title: str
-    analyze_status: None | PlaylistItemElasticSchemaAnalyzeStatusType1 | Unset = UNSET
+    analyze_status: None | PlaylistItemElasticSchemaAnalyzeStatus | Unset = UNSET
     ancestor_collections: list[str] | None | Unset = UNSET
     approval: ApprovalSchema | None | Unset = UNSET
-    archive_status: None | PlaylistItemElasticSchemaArchiveStatusType1 | Unset = UNSET
+    archive_status: None | PlaylistItemElasticSchemaArchiveStatus | Unset = UNSET
     category: None | str | Unset = UNSET
     comments_count: int | None | Unset = UNSET
     created_by_user: None | Unset | UUID = UNSET
@@ -131,7 +127,7 @@ class PlaylistItemElasticSchema:
     external_id: None | str | Unset = UNSET
     external_link: None | str | Unset = UNSET
     face_recognition_status: (
-        None | PlaylistItemElasticSchemaFaceRecognitionStatusType1 | Unset
+        None | PlaylistItemElasticSchemaFaceRecognitionStatus | Unset
     ) = UNSET
     favoured: bool | None | Unset = UNSET
     files: list[PlaylistItemElasticSchemaFilesType0Item] | None | Unset = UNSET
@@ -155,10 +151,10 @@ class PlaylistItemElasticSchema:
     proxies: list[PlaylistItemElasticSchemaProxiesType0Item] | None | Unset = UNSET
     relations: list[RelationElastic] | None | Unset = UNSET
     site_name: None | str | Unset = UNSET
-    status: None | PlaylistItemElasticSchemaStatusType1 | Unset = UNSET
+    status: None | PlaylistItemElasticSchemaStatus | Unset = UNSET
     time_end_milliseconds: int | None | Unset = UNSET
     time_start_milliseconds: int | None | Unset = UNSET
-    type_: None | PlaylistItemElasticSchemaTypeType1 | Unset = UNSET
+    type_: None | PlaylistItemElasticSchemaType | Unset = UNSET
     updated_by_user: None | Unset | UUID = UNSET
     updated_by_user_info: None | Unset | User = UNSET
     versions: list[AssetVersionSchema] | None | Unset = UNSET
@@ -168,35 +164,18 @@ class PlaylistItemElasticSchema:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.approval_schema import ApprovalSchema
-        from ..models.playlist_item_elastic_schema_analyze_status_type_1 import (
-            PlaylistItemElasticSchemaAnalyzeStatusType1,
-        )
-        from ..models.playlist_item_elastic_schema_archive_status_type_1 import (
-            PlaylistItemElasticSchemaArchiveStatusType1,
-        )
-        from ..models.playlist_item_elastic_schema_face_recognition_status_type_1 import (
-            PlaylistItemElasticSchemaFaceRecognitionStatusType1,
-        )
         from ..models.playlist_item_elastic_schema_metadata_type_0 import (
             PlaylistItemElasticSchemaMetadataType0,
-        )
-        from ..models.playlist_item_elastic_schema_status_type_1 import (
-            PlaylistItemElasticSchemaStatusType1,
-        )
-        from ..models.playlist_item_elastic_schema_type_type_1 import (
-            PlaylistItemElasticSchemaTypeType1,
         )
         from ..models.user import User
 
         title = self.title
 
-        analyze_status: dict[str, Any] | None | Unset
+        analyze_status: None | str | Unset
         if isinstance(self.analyze_status, Unset):
             analyze_status = UNSET
-        elif isinstance(
-            self.analyze_status, PlaylistItemElasticSchemaAnalyzeStatusType1
-        ):
-            analyze_status = self.analyze_status.to_dict()
+        elif isinstance(self.analyze_status, PlaylistItemElasticSchemaAnalyzeStatus):
+            analyze_status = self.analyze_status.value
         else:
             analyze_status = self.analyze_status
 
@@ -217,13 +196,11 @@ class PlaylistItemElasticSchema:
         else:
             approval = self.approval
 
-        archive_status: dict[str, Any] | None | Unset
+        archive_status: None | str | Unset
         if isinstance(self.archive_status, Unset):
             archive_status = UNSET
-        elif isinstance(
-            self.archive_status, PlaylistItemElasticSchemaArchiveStatusType1
-        ):
-            archive_status = self.archive_status.to_dict()
+        elif isinstance(self.archive_status, PlaylistItemElasticSchemaArchiveStatus):
+            archive_status = self.archive_status.value
         else:
             archive_status = self.archive_status
 
@@ -345,14 +322,13 @@ class PlaylistItemElasticSchema:
         else:
             external_link = self.external_link
 
-        face_recognition_status: dict[str, Any] | None | Unset
+        face_recognition_status: None | str | Unset
         if isinstance(self.face_recognition_status, Unset):
             face_recognition_status = UNSET
         elif isinstance(
-            self.face_recognition_status,
-            PlaylistItemElasticSchemaFaceRecognitionStatusType1,
+            self.face_recognition_status, PlaylistItemElasticSchemaFaceRecognitionStatus
         ):
-            face_recognition_status = self.face_recognition_status.to_dict()
+            face_recognition_status = self.face_recognition_status.value
         else:
             face_recognition_status = self.face_recognition_status
 
@@ -549,11 +525,11 @@ class PlaylistItemElasticSchema:
         else:
             site_name = self.site_name
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, PlaylistItemElasticSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, PlaylistItemElasticSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -569,11 +545,11 @@ class PlaylistItemElasticSchema:
         else:
             time_start_milliseconds = self.time_start_milliseconds
 
-        type_: dict[str, Any] | None | Unset
+        type_: None | str | Unset
         if isinstance(self.type_, Unset):
             type_ = UNSET
-        elif isinstance(self.type_, PlaylistItemElasticSchemaTypeType1):
-            type_ = self.type_.to_dict()
+        elif isinstance(self.type_, PlaylistItemElasticSchemaType):
+            type_ = self.type_.value
         else:
             type_ = self.type_
 
@@ -735,15 +711,6 @@ class PlaylistItemElasticSchema:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.approval_schema import ApprovalSchema
         from ..models.asset_version_schema import AssetVersionSchema
-        from ..models.playlist_item_elastic_schema_analyze_status_type_1 import (
-            PlaylistItemElasticSchemaAnalyzeStatusType1,
-        )
-        from ..models.playlist_item_elastic_schema_archive_status_type_1 import (
-            PlaylistItemElasticSchemaArchiveStatusType1,
-        )
-        from ..models.playlist_item_elastic_schema_face_recognition_status_type_1 import (
-            PlaylistItemElasticSchemaFaceRecognitionStatusType1,
-        )
         from ..models.playlist_item_elastic_schema_files_type_0_item import (
             PlaylistItemElasticSchemaFilesType0Item,
         )
@@ -759,12 +726,6 @@ class PlaylistItemElasticSchema:
         from ..models.playlist_item_elastic_schema_proxies_type_0_item import (
             PlaylistItemElasticSchemaProxiesType0Item,
         )
-        from ..models.playlist_item_elastic_schema_status_type_1 import (
-            PlaylistItemElasticSchemaStatusType1,
-        )
-        from ..models.playlist_item_elastic_schema_type_type_1 import (
-            PlaylistItemElasticSchemaTypeType1,
-        )
         from ..models.relation_elastic import RelationElastic
         from ..models.user import User
 
@@ -773,24 +734,20 @@ class PlaylistItemElasticSchema:
 
         def _parse_analyze_status(
             data: object,
-        ) -> None | PlaylistItemElasticSchemaAnalyzeStatusType1 | Unset:
+        ) -> None | PlaylistItemElasticSchemaAnalyzeStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                analyze_status_type_1 = (
-                    PlaylistItemElasticSchemaAnalyzeStatusType1.from_dict(data)
-                )
+                analyze_status_type_1 = PlaylistItemElasticSchemaAnalyzeStatus(data)
 
                 return analyze_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(
-                None | PlaylistItemElasticSchemaAnalyzeStatusType1 | Unset, data
-            )
+            return cast(None | PlaylistItemElasticSchemaAnalyzeStatus | Unset, data)
 
         analyze_status = _parse_analyze_status(d.pop("analyze_status", UNSET))
 
@@ -832,24 +789,20 @@ class PlaylistItemElasticSchema:
 
         def _parse_archive_status(
             data: object,
-        ) -> None | PlaylistItemElasticSchemaArchiveStatusType1 | Unset:
+        ) -> None | PlaylistItemElasticSchemaArchiveStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                archive_status_type_1 = (
-                    PlaylistItemElasticSchemaArchiveStatusType1.from_dict(data)
-                )
+                archive_status_type_1 = PlaylistItemElasticSchemaArchiveStatus(data)
 
                 return archive_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(
-                None | PlaylistItemElasticSchemaArchiveStatusType1 | Unset, data
-            )
+            return cast(None | PlaylistItemElasticSchemaArchiveStatus | Unset, data)
 
         archive_status = _parse_archive_status(d.pop("archive_status", UNSET))
 
@@ -1093,23 +1046,23 @@ class PlaylistItemElasticSchema:
 
         def _parse_face_recognition_status(
             data: object,
-        ) -> None | PlaylistItemElasticSchemaFaceRecognitionStatusType1 | Unset:
+        ) -> None | PlaylistItemElasticSchemaFaceRecognitionStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
                 face_recognition_status_type_1 = (
-                    PlaylistItemElasticSchemaFaceRecognitionStatusType1.from_dict(data)
+                    PlaylistItemElasticSchemaFaceRecognitionStatus(data)
                 )
 
                 return face_recognition_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(
-                None | PlaylistItemElasticSchemaFaceRecognitionStatusType1 | Unset, data
+                None | PlaylistItemElasticSchemaFaceRecognitionStatus | Unset, data
             )
 
         face_recognition_status = _parse_face_recognition_status(
@@ -1517,20 +1470,20 @@ class PlaylistItemElasticSchema:
 
         def _parse_status(
             data: object,
-        ) -> None | PlaylistItemElasticSchemaStatusType1 | Unset:
+        ) -> None | PlaylistItemElasticSchemaStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = PlaylistItemElasticSchemaStatusType1.from_dict(data)
+                status_type_1 = PlaylistItemElasticSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | PlaylistItemElasticSchemaStatusType1 | Unset, data)
+            return cast(None | PlaylistItemElasticSchemaStatus | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 
@@ -1556,22 +1509,20 @@ class PlaylistItemElasticSchema:
             d.pop("time_start_milliseconds", UNSET)
         )
 
-        def _parse_type_(
-            data: object,
-        ) -> None | PlaylistItemElasticSchemaTypeType1 | Unset:
+        def _parse_type_(data: object) -> None | PlaylistItemElasticSchemaType | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                type_type_1 = PlaylistItemElasticSchemaTypeType1.from_dict(data)
+                type_type_1 = PlaylistItemElasticSchemaType(data)
 
                 return type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | PlaylistItemElasticSchemaTypeType1 | Unset, data)
+            return cast(None | PlaylistItemElasticSchemaType | Unset, data)
 
         type_ = _parse_type_(d.pop("type", UNSET))
 

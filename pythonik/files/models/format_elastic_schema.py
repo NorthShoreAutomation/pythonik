@@ -8,19 +8,17 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.format_elastic_schema_archive_status import (
+    FormatElasticSchemaArchiveStatus,
+)
+from ..models.format_elastic_schema_status import FormatElasticSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.component_schema import ComponentSchema
     from ..models.external_references import ExternalReferences
-    from ..models.format_elastic_schema_archive_status_type_1 import (
-        FormatElasticSchemaArchiveStatusType1,
-    )
     from ..models.format_elastic_schema_metadata_type_0_item import (
         FormatElasticSchemaMetadataType0Item,
-    )
-    from ..models.format_elastic_schema_status_type_1 import (
-        FormatElasticSchemaStatusType1,
     )
 
 
@@ -32,7 +30,7 @@ class FormatElasticSchema:
     """
     Attributes:
         name (str):
-        archive_status (FormatElasticSchemaArchiveStatusType1 | None | Unset):
+        archive_status (FormatElasticSchemaArchiveStatus | None | Unset):
         asset_id (None | Unset | UUID):
         components (list[ComponentSchema] | None | Unset):
         date_created (datetime.datetime | None | Unset):
@@ -44,7 +42,7 @@ class FormatElasticSchema:
         is_online (bool | None | Unset):
         metadata (list[FormatElasticSchemaMetadataType0Item] | None | Unset): Sequence cannot have more than 10000.
             Excess values will be stripped
-        status (FormatElasticSchemaStatusType1 | None | Unset):
+        status (FormatElasticSchemaStatus | None | Unset):
         storage_methods (list[str] | None | Unset):
         user_id (None | Unset | UUID):
         version_id (None | Unset | UUID):
@@ -52,7 +50,7 @@ class FormatElasticSchema:
     """
 
     name: str
-    archive_status: FormatElasticSchemaArchiveStatusType1 | None | Unset = UNSET
+    archive_status: FormatElasticSchemaArchiveStatus | None | Unset = UNSET
     asset_id: None | Unset | UUID = UNSET
     components: list[ComponentSchema] | None | Unset = UNSET
     date_created: datetime.datetime | None | Unset = UNSET
@@ -63,7 +61,7 @@ class FormatElasticSchema:
     id: None | Unset | UUID = UNSET
     is_online: bool | None | Unset = UNSET
     metadata: list[FormatElasticSchemaMetadataType0Item] | None | Unset = UNSET
-    status: FormatElasticSchemaStatusType1 | None | Unset = UNSET
+    status: FormatElasticSchemaStatus | None | Unset = UNSET
     storage_methods: list[str] | None | Unset = UNSET
     user_id: None | Unset | UUID = UNSET
     version_id: None | Unset | UUID = UNSET
@@ -71,20 +69,13 @@ class FormatElasticSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.format_elastic_schema_archive_status_type_1 import (
-            FormatElasticSchemaArchiveStatusType1,
-        )
-        from ..models.format_elastic_schema_status_type_1 import (
-            FormatElasticSchemaStatusType1,
-        )
-
         name = self.name
 
-        archive_status: dict[str, Any] | None | Unset
+        archive_status: None | str | Unset
         if isinstance(self.archive_status, Unset):
             archive_status = UNSET
-        elif isinstance(self.archive_status, FormatElasticSchemaArchiveStatusType1):
-            archive_status = self.archive_status.to_dict()
+        elif isinstance(self.archive_status, FormatElasticSchemaArchiveStatus):
+            archive_status = self.archive_status.value
         else:
             archive_status = self.archive_status
 
@@ -180,11 +171,11 @@ class FormatElasticSchema:
         else:
             metadata = self.metadata
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, FormatElasticSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, FormatElasticSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -268,14 +259,8 @@ class FormatElasticSchema:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.component_schema import ComponentSchema
         from ..models.external_references import ExternalReferences
-        from ..models.format_elastic_schema_archive_status_type_1 import (
-            FormatElasticSchemaArchiveStatusType1,
-        )
         from ..models.format_elastic_schema_metadata_type_0_item import (
             FormatElasticSchemaMetadataType0Item,
-        )
-        from ..models.format_elastic_schema_status_type_1 import (
-            FormatElasticSchemaStatusType1,
         )
 
         d = dict(src_dict)
@@ -283,22 +268,20 @@ class FormatElasticSchema:
 
         def _parse_archive_status(
             data: object,
-        ) -> FormatElasticSchemaArchiveStatusType1 | None | Unset:
+        ) -> FormatElasticSchemaArchiveStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                archive_status_type_1 = FormatElasticSchemaArchiveStatusType1.from_dict(
-                    data
-                )
+                archive_status_type_1 = FormatElasticSchemaArchiveStatus(data)
 
                 return archive_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(FormatElasticSchemaArchiveStatusType1 | None | Unset, data)
+            return cast(FormatElasticSchemaArchiveStatus | None | Unset, data)
 
         archive_status = _parse_archive_status(d.pop("archive_status", UNSET))
 
@@ -493,22 +476,20 @@ class FormatElasticSchema:
 
         metadata = _parse_metadata(d.pop("metadata", UNSET))
 
-        def _parse_status(
-            data: object,
-        ) -> FormatElasticSchemaStatusType1 | None | Unset:
+        def _parse_status(data: object) -> FormatElasticSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = FormatElasticSchemaStatusType1.from_dict(data)
+                status_type_1 = FormatElasticSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(FormatElasticSchemaStatusType1 | None | Unset, data)
+            return cast(FormatElasticSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

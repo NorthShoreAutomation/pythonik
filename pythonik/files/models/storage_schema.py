@@ -10,11 +10,11 @@ from attrs import field as _attrs_field
 
 from ..models.storage_schema_method import StorageSchemaMethod
 from ..models.storage_schema_purpose import StorageSchemaPurpose
+from ..models.storage_schema_status import StorageSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.storage_schema_settings import StorageSchemaSettings
-    from ..models.storage_schema_status_type_1 import StorageSchemaStatusType1
 
 
 T = TypeVar("T", bound="StorageSchema")
@@ -33,7 +33,7 @@ class StorageSchema:
         id (None | Unset | UUID):
         last_scanned (datetime.datetime | None | Unset):
         scanner_status (None | str | Unset):
-        status (None | StorageSchemaStatusType1 | Unset):
+        status (None | StorageSchemaStatus | Unset):
         status_message (None | str | Unset):
         version (None | str | Unset):
     """
@@ -47,14 +47,12 @@ class StorageSchema:
     id: None | Unset | UUID = UNSET
     last_scanned: datetime.datetime | None | Unset = UNSET
     scanner_status: None | str | Unset = UNSET
-    status: None | StorageSchemaStatusType1 | Unset = UNSET
+    status: None | StorageSchemaStatus | Unset = UNSET
     status_message: None | str | Unset = UNSET
     version: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.storage_schema_status_type_1 import StorageSchemaStatusType1
-
         method = self.method.value
 
         name = self.name
@@ -97,11 +95,11 @@ class StorageSchema:
         else:
             scanner_status = self.scanner_status
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, StorageSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, StorageSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -149,7 +147,6 @@ class StorageSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.storage_schema_settings import StorageSchemaSettings
-        from ..models.storage_schema_status_type_1 import StorageSchemaStatusType1
 
         d = dict(src_dict)
         method = StorageSchemaMethod(d.pop("method"))
@@ -221,20 +218,20 @@ class StorageSchema:
 
         scanner_status = _parse_scanner_status(d.pop("scanner_status", UNSET))
 
-        def _parse_status(data: object) -> None | StorageSchemaStatusType1 | Unset:
+        def _parse_status(data: object) -> None | StorageSchemaStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = StorageSchemaStatusType1.from_dict(data)
+                status_type_1 = StorageSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | StorageSchemaStatusType1 | Unset, data)
+            return cast(None | StorageSchemaStatus | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

@@ -8,12 +8,12 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.iconik_storage_gateway_cluster_read_schema_status import (
+    IconikStorageGatewayClusterReadSchemaStatus,
+)
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.iconik_storage_gateway_cluster_read_schema_status_type_1 import (
-        IconikStorageGatewayClusterReadSchemaStatusType1,
-    )
     from ..models.iconik_storage_gateway_read import IconikStorageGatewayRead
     from ..models.isg_config_cluster_settings_schema import (
         ISGConfigClusterSettingsSchema,
@@ -39,7 +39,7 @@ class IconikStorageGatewayClusterReadSchema:
         leader_id (None | Unset | UUID): Last reported leader ID.
         nodes (list[IconikStorageGatewayRead] | None | Unset):
         settings (ISGConfigClusterSettingsSchema | None | Unset): Application configuration settings as key-value pairs
-        status (IconikStorageGatewayClusterReadSchemaStatusType1 | None | Unset):
+        status (IconikStorageGatewayClusterReadSchemaStatus | None | Unset):
         total_files_number (int | None | Unset): Total number of files
         transcode_queue_total (int | None | Unset): Total number of scheduled transcode jobs
         uploads_queue_total (int | None | Unset): Total number of scheduled auto-uploads
@@ -59,7 +59,7 @@ class IconikStorageGatewayClusterReadSchema:
     leader_id: None | Unset | UUID = UNSET
     nodes: list[IconikStorageGatewayRead] | None | Unset = UNSET
     settings: ISGConfigClusterSettingsSchema | None | Unset = UNSET
-    status: IconikStorageGatewayClusterReadSchemaStatusType1 | None | Unset = UNSET
+    status: IconikStorageGatewayClusterReadSchemaStatus | None | Unset = UNSET
     total_files_number: int | None | Unset = UNSET
     transcode_queue_total: int | None | Unset = UNSET
     uploads_queue_total: int | None | Unset = UNSET
@@ -67,9 +67,6 @@ class IconikStorageGatewayClusterReadSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.iconik_storage_gateway_cluster_read_schema_status_type_1 import (
-            IconikStorageGatewayClusterReadSchemaStatusType1,
-        )
         from ..models.isg_config_cluster_settings_schema import (
             ISGConfigClusterSettingsSchema,
         )
@@ -151,11 +148,11 @@ class IconikStorageGatewayClusterReadSchema:
         else:
             settings = self.settings
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, IconikStorageGatewayClusterReadSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, IconikStorageGatewayClusterReadSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -224,9 +221,6 @@ class IconikStorageGatewayClusterReadSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.iconik_storage_gateway_cluster_read_schema_status_type_1 import (
-            IconikStorageGatewayClusterReadSchemaStatusType1,
-        )
         from ..models.iconik_storage_gateway_read import IconikStorageGatewayRead
         from ..models.isg_config_cluster_settings_schema import (
             ISGConfigClusterSettingsSchema,
@@ -385,23 +379,21 @@ class IconikStorageGatewayClusterReadSchema:
 
         def _parse_status(
             data: object,
-        ) -> IconikStorageGatewayClusterReadSchemaStatusType1 | None | Unset:
+        ) -> IconikStorageGatewayClusterReadSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = (
-                    IconikStorageGatewayClusterReadSchemaStatusType1.from_dict(data)
-                )
+                status_type_1 = IconikStorageGatewayClusterReadSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(
-                IconikStorageGatewayClusterReadSchemaStatusType1 | None | Unset, data
+                IconikStorageGatewayClusterReadSchemaStatus | None | Unset, data
             )
 
         status = _parse_status(d.pop("status", UNSET))

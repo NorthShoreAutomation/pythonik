@@ -10,12 +10,12 @@ from attrs import field as _attrs_field
 
 from ..models.trigger_event_type import TriggerEventType
 from ..models.trigger_operations_type_0_item import TriggerOperationsType0Item
+from ..models.trigger_realm import TriggerRealm
 from ..models.trigger_type import TriggerType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.condition import Condition
-    from ..models.trigger_realm_type_1 import TriggerRealmType1
 
 
 T = TypeVar("T", bound="Trigger")
@@ -33,7 +33,7 @@ class Trigger:
         filters (list[Condition] | None | Unset):
         object_id (None | Unset | UUID):
         operations (list[TriggerOperationsType0Item] | None | Unset):
-        realm (None | TriggerRealmType1 | Unset):
+        realm (None | TriggerRealm | Unset):
     """
 
     event_type: TriggerEventType
@@ -44,12 +44,10 @@ class Trigger:
     filters: list[Condition] | None | Unset = UNSET
     object_id: None | Unset | UUID = UNSET
     operations: list[TriggerOperationsType0Item] | None | Unset = UNSET
-    realm: None | TriggerRealmType1 | Unset = UNSET
+    realm: None | TriggerRealm | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.trigger_realm_type_1 import TriggerRealmType1
-
         event_type = self.event_type.value
 
         type_ = self.type_.value
@@ -110,11 +108,11 @@ class Trigger:
         else:
             operations = self.operations
 
-        realm: dict[str, Any] | None | Unset
+        realm: None | str | Unset
         if isinstance(self.realm, Unset):
             realm = UNSET
-        elif isinstance(self.realm, TriggerRealmType1):
-            realm = self.realm.to_dict()
+        elif isinstance(self.realm, TriggerRealm):
+            realm = self.realm.value
         else:
             realm = self.realm
 
@@ -146,7 +144,6 @@ class Trigger:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.condition import Condition
-        from ..models.trigger_realm_type_1 import TriggerRealmType1
 
         d = dict(src_dict)
         event_type = TriggerEventType(d.pop("event_type"))
@@ -269,20 +266,20 @@ class Trigger:
 
         operations = _parse_operations(d.pop("operations", UNSET))
 
-        def _parse_realm(data: object) -> None | TriggerRealmType1 | Unset:
+        def _parse_realm(data: object) -> None | TriggerRealm | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                realm_type_1 = TriggerRealmType1.from_dict(data)
+                realm_type_1 = TriggerRealm(data)
 
                 return realm_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | TriggerRealmType1 | Unset, data)
+            return cast(None | TriggerRealm | Unset, data)
 
         realm = _parse_realm(d.pop("realm", UNSET))
 

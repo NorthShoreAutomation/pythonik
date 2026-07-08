@@ -8,6 +8,7 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.automation_schema_status import AutomationSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -21,7 +22,6 @@ if TYPE_CHECKING:
     from ..models.asset_transferred_to_storage_trigger_schema import (
         AssetTransferredToStorageTriggerSchema,
     )
-    from ..models.automation_schema_status_type_1 import AutomationSchemaStatusType1
     from ..models.condition import Condition
     from ..models.create_publication_job_action import CreatePublicationJobAction
     from ..models.create_share_action import CreateShareAction
@@ -78,7 +78,7 @@ class AutomationSchema:
         description (None | str | Unset):
         id (None | Unset | UUID):
         modified_by (None | Unset | UUID):
-        status (AutomationSchemaStatusType1 | None | Unset):
+        status (AutomationSchemaStatus | None | Unset):
         system_domain_id (None | Unset | UUID):
     """
 
@@ -127,7 +127,7 @@ class AutomationSchema:
     description: None | str | Unset = UNSET
     id: None | Unset | UUID = UNSET
     modified_by: None | Unset | UUID = UNSET
-    status: AutomationSchemaStatusType1 | None | Unset = UNSET
+    status: AutomationSchemaStatus | None | Unset = UNSET
     system_domain_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -142,7 +142,6 @@ class AutomationSchema:
         from ..models.asset_transferred_to_storage_trigger_schema import (
             AssetTransferredToStorageTriggerSchema,
         )
-        from ..models.automation_schema_status_type_1 import AutomationSchemaStatusType1
         from ..models.create_publication_job_action import CreatePublicationJobAction
         from ..models.create_share_action import CreateShareAction
         from ..models.created_at_transition_trigger import CreatedAtTransitionTrigger
@@ -309,11 +308,11 @@ class AutomationSchema:
         else:
             modified_by = self.modified_by
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, AutomationSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, AutomationSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -367,7 +366,6 @@ class AutomationSchema:
         from ..models.asset_transferred_to_storage_trigger_schema import (
             AssetTransferredToStorageTriggerSchema,
         )
-        from ..models.automation_schema_status_type_1 import AutomationSchemaStatusType1
         from ..models.condition import Condition
         from ..models.create_publication_job_action import CreatePublicationJobAction
         from ..models.create_share_action import CreateShareAction
@@ -845,20 +843,20 @@ class AutomationSchema:
 
         modified_by = _parse_modified_by(d.pop("modified_by", UNSET))
 
-        def _parse_status(data: object) -> AutomationSchemaStatusType1 | None | Unset:
+        def _parse_status(data: object) -> AutomationSchemaStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = AutomationSchemaStatusType1.from_dict(data)
+                status_type_1 = AutomationSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(AutomationSchemaStatusType1 | None | Unset, data)
+            return cast(AutomationSchemaStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

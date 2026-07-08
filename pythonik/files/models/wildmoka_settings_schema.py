@@ -1,19 +1,16 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.wildmoka_settings_schema_scaling_method import (
+    WildmokaSettingsSchemaScalingMethod,
+)
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.wildmoka_settings_schema_scaling_method_type_1 import (
-        WildmokaSettingsSchemaScalingMethodType1,
-    )
-
 
 T = TypeVar("T", bound="WildmokaSettingsSchema")
 
@@ -37,7 +34,7 @@ class WildmokaSettingsSchema:
         local (bool | None | Unset):
         merge_multichannel_audio_tracks (bool | None | Unset):
         priority (int | None | Unset):
-        scaling_method (None | Unset | WildmokaSettingsSchemaScalingMethodType1):
+        scaling_method (None | Unset | WildmokaSettingsSchemaScalingMethod):
         width (int | None | Unset):
         wm_endpoint_url (None | str | Unset): Wildmoka API endpoint URL
         wm_issuer (None | str | Unset): JWT issuer to use for authentication
@@ -61,7 +58,7 @@ class WildmokaSettingsSchema:
     local: bool | None | Unset = UNSET
     merge_multichannel_audio_tracks: bool | None | Unset = UNSET
     priority: int | None | Unset = UNSET
-    scaling_method: None | Unset | WildmokaSettingsSchemaScalingMethodType1 = UNSET
+    scaling_method: None | Unset | WildmokaSettingsSchemaScalingMethod = UNSET
     width: int | None | Unset = UNSET
     wm_endpoint_url: None | str | Unset = UNSET
     wm_issuer: None | str | Unset = UNSET
@@ -71,10 +68,6 @@ class WildmokaSettingsSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.wildmoka_settings_schema_scaling_method_type_1 import (
-            WildmokaSettingsSchemaScalingMethodType1,
-        )
-
         audio_bitrate: int | None | Unset
         if isinstance(self.audio_bitrate, Unset):
             audio_bitrate = UNSET
@@ -171,11 +164,11 @@ class WildmokaSettingsSchema:
         else:
             priority = self.priority
 
-        scaling_method: dict[str, Any] | None | Unset
+        scaling_method: None | str | Unset
         if isinstance(self.scaling_method, Unset):
             scaling_method = UNSET
-        elif isinstance(self.scaling_method, WildmokaSettingsSchemaScalingMethodType1):
-            scaling_method = self.scaling_method.to_dict()
+        elif isinstance(self.scaling_method, WildmokaSettingsSchemaScalingMethod):
+            scaling_method = self.scaling_method.value
         else:
             scaling_method = self.scaling_method
 
@@ -274,10 +267,6 @@ class WildmokaSettingsSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.wildmoka_settings_schema_scaling_method_type_1 import (
-            WildmokaSettingsSchemaScalingMethodType1,
-        )
-
         d = dict(src_dict)
 
         def _parse_audio_bitrate(data: object) -> int | None | Unset:
@@ -437,22 +426,20 @@ class WildmokaSettingsSchema:
 
         def _parse_scaling_method(
             data: object,
-        ) -> None | Unset | WildmokaSettingsSchemaScalingMethodType1:
+        ) -> None | Unset | WildmokaSettingsSchemaScalingMethod:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                scaling_method_type_1 = (
-                    WildmokaSettingsSchemaScalingMethodType1.from_dict(data)
-                )
+                scaling_method_type_1 = WildmokaSettingsSchemaScalingMethod(data)
 
                 return scaling_method_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | Unset | WildmokaSettingsSchemaScalingMethodType1, data)
+            return cast(None | Unset | WildmokaSettingsSchemaScalingMethod, data)
 
         scaling_method = _parse_scaling_method(d.pop("scaling_method", UNSET))
 

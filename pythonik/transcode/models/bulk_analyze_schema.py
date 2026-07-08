@@ -1,20 +1,15 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.bulk_analyze_schema_force_type import BulkAnalyzeSchemaForceType
 from ..models.bulk_analyze_schema_object_type import BulkAnalyzeSchemaObjectType
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.bulk_analyze_schema_force_type_type_1 import (
-        BulkAnalyzeSchemaForceTypeType1,
-    )
-
 
 T = TypeVar("T", bound="BulkAnalyzeSchema")
 
@@ -26,22 +21,18 @@ class BulkAnalyzeSchema:
         object_ids (list[UUID]):
         object_type (BulkAnalyzeSchemaObjectType):
         force (bool | None | Unset):  Default: False.
-        force_type (BulkAnalyzeSchemaForceTypeType1 | None | Unset):
+        force_type (BulkAnalyzeSchemaForceType | None | Unset):
         profile_id (None | Unset | UUID):
     """
 
     object_ids: list[UUID]
     object_type: BulkAnalyzeSchemaObjectType
     force: bool | None | Unset = False
-    force_type: BulkAnalyzeSchemaForceTypeType1 | None | Unset = UNSET
+    force_type: BulkAnalyzeSchemaForceType | None | Unset = UNSET
     profile_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.bulk_analyze_schema_force_type_type_1 import (
-            BulkAnalyzeSchemaForceTypeType1,
-        )
-
         object_ids = []
         for object_ids_item_data in self.object_ids:
             object_ids_item = str(object_ids_item_data)
@@ -55,11 +46,11 @@ class BulkAnalyzeSchema:
         else:
             force = self.force
 
-        force_type: dict[str, Any] | None | Unset
+        force_type: None | str | Unset
         if isinstance(self.force_type, Unset):
             force_type = UNSET
-        elif isinstance(self.force_type, BulkAnalyzeSchemaForceTypeType1):
-            force_type = self.force_type.to_dict()
+        elif isinstance(self.force_type, BulkAnalyzeSchemaForceType):
+            force_type = self.force_type.value
         else:
             force_type = self.force_type
 
@@ -90,10 +81,6 @@ class BulkAnalyzeSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.bulk_analyze_schema_force_type_type_1 import (
-            BulkAnalyzeSchemaForceTypeType1,
-        )
-
         d = dict(src_dict)
         object_ids = []
         _object_ids = d.pop("object_ids")
@@ -115,20 +102,20 @@ class BulkAnalyzeSchema:
 
         def _parse_force_type(
             data: object,
-        ) -> BulkAnalyzeSchemaForceTypeType1 | None | Unset:
+        ) -> BulkAnalyzeSchemaForceType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                force_type_type_1 = BulkAnalyzeSchemaForceTypeType1.from_dict(data)
+                force_type_type_1 = BulkAnalyzeSchemaForceType(data)
 
                 return force_type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(BulkAnalyzeSchemaForceTypeType1 | None | Unset, data)
+            return cast(BulkAnalyzeSchemaForceType | None | Unset, data)
 
         force_type = _parse_force_type(d.pop("force_type", UNSET))
 

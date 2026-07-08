@@ -1,25 +1,22 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.watermark_options_type_schema_show_for_groups import (
+    WatermarkOptionsTypeSchemaShowForGroups,
+)
+from ..models.watermark_options_type_schema_show_in_context import (
+    WatermarkOptionsTypeSchemaShowInContext,
+)
+from ..models.watermark_options_type_schema_text_appearance import (
+    WatermarkOptionsTypeSchemaTextAppearance,
+)
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.watermark_options_type_schema_show_for_groups_type_1 import (
-        WatermarkOptionsTypeSchemaShowForGroupsType1,
-    )
-    from ..models.watermark_options_type_schema_show_in_context_type_1 import (
-        WatermarkOptionsTypeSchemaShowInContextType1,
-    )
-    from ..models.watermark_options_type_schema_text_appearance_type_1 import (
-        WatermarkOptionsTypeSchemaTextAppearanceType1,
-    )
-
 
 T = TypeVar("T", bound="WatermarkOptionsTypeSchema")
 
@@ -35,10 +32,10 @@ class WatermarkOptionsTypeSchema:
         include_email (bool | None | Unset):
         include_ip_address (bool | None | Unset):
         shadow_opacity (float | None | Unset):
-        show_for_groups (None | Unset | WatermarkOptionsTypeSchemaShowForGroupsType1):
-        show_in_context (None | Unset | WatermarkOptionsTypeSchemaShowInContextType1):
+        show_for_groups (None | Unset | WatermarkOptionsTypeSchemaShowForGroups):
+        show_in_context (None | Unset | WatermarkOptionsTypeSchemaShowInContext):
         show_watermark (bool | None | Unset):
-        text_appearance (None | Unset | WatermarkOptionsTypeSchemaTextAppearanceType1):
+        text_appearance (None | Unset | WatermarkOptionsTypeSchemaTextAppearance):
         text_opacity (float | None | Unset):
     """
 
@@ -49,26 +46,14 @@ class WatermarkOptionsTypeSchema:
     include_email: bool | None | Unset = UNSET
     include_ip_address: bool | None | Unset = UNSET
     shadow_opacity: float | None | Unset = UNSET
-    show_for_groups: None | Unset | WatermarkOptionsTypeSchemaShowForGroupsType1 = UNSET
-    show_in_context: None | Unset | WatermarkOptionsTypeSchemaShowInContextType1 = UNSET
+    show_for_groups: None | Unset | WatermarkOptionsTypeSchemaShowForGroups = UNSET
+    show_in_context: None | Unset | WatermarkOptionsTypeSchemaShowInContext = UNSET
     show_watermark: bool | None | Unset = UNSET
-    text_appearance: None | Unset | WatermarkOptionsTypeSchemaTextAppearanceType1 = (
-        UNSET
-    )
+    text_appearance: None | Unset | WatermarkOptionsTypeSchemaTextAppearance = UNSET
     text_opacity: float | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.watermark_options_type_schema_show_for_groups_type_1 import (
-            WatermarkOptionsTypeSchemaShowForGroupsType1,
-        )
-        from ..models.watermark_options_type_schema_show_in_context_type_1 import (
-            WatermarkOptionsTypeSchemaShowInContextType1,
-        )
-        from ..models.watermark_options_type_schema_text_appearance_type_1 import (
-            WatermarkOptionsTypeSchemaTextAppearanceType1,
-        )
-
         custom_text: None | str | Unset
         if isinstance(self.custom_text, Unset):
             custom_text = UNSET
@@ -117,23 +102,19 @@ class WatermarkOptionsTypeSchema:
         else:
             shadow_opacity = self.shadow_opacity
 
-        show_for_groups: dict[str, Any] | None | Unset
+        show_for_groups: None | str | Unset
         if isinstance(self.show_for_groups, Unset):
             show_for_groups = UNSET
-        elif isinstance(
-            self.show_for_groups, WatermarkOptionsTypeSchemaShowForGroupsType1
-        ):
-            show_for_groups = self.show_for_groups.to_dict()
+        elif isinstance(self.show_for_groups, WatermarkOptionsTypeSchemaShowForGroups):
+            show_for_groups = self.show_for_groups.value
         else:
             show_for_groups = self.show_for_groups
 
-        show_in_context: dict[str, Any] | None | Unset
+        show_in_context: None | str | Unset
         if isinstance(self.show_in_context, Unset):
             show_in_context = UNSET
-        elif isinstance(
-            self.show_in_context, WatermarkOptionsTypeSchemaShowInContextType1
-        ):
-            show_in_context = self.show_in_context.to_dict()
+        elif isinstance(self.show_in_context, WatermarkOptionsTypeSchemaShowInContext):
+            show_in_context = self.show_in_context.value
         else:
             show_in_context = self.show_in_context
 
@@ -143,13 +124,11 @@ class WatermarkOptionsTypeSchema:
         else:
             show_watermark = self.show_watermark
 
-        text_appearance: dict[str, Any] | None | Unset
+        text_appearance: None | str | Unset
         if isinstance(self.text_appearance, Unset):
             text_appearance = UNSET
-        elif isinstance(
-            self.text_appearance, WatermarkOptionsTypeSchemaTextAppearanceType1
-        ):
-            text_appearance = self.text_appearance.to_dict()
+        elif isinstance(self.text_appearance, WatermarkOptionsTypeSchemaTextAppearance):
+            text_appearance = self.text_appearance.value
         else:
             text_appearance = self.text_appearance
 
@@ -191,16 +170,6 @@ class WatermarkOptionsTypeSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.watermark_options_type_schema_show_for_groups_type_1 import (
-            WatermarkOptionsTypeSchemaShowForGroupsType1,
-        )
-        from ..models.watermark_options_type_schema_show_in_context_type_1 import (
-            WatermarkOptionsTypeSchemaShowInContextType1,
-        )
-        from ..models.watermark_options_type_schema_text_appearance_type_1 import (
-            WatermarkOptionsTypeSchemaTextAppearanceType1,
-        )
-
         d = dict(src_dict)
 
         def _parse_custom_text(data: object) -> None | str | Unset:
@@ -285,47 +254,39 @@ class WatermarkOptionsTypeSchema:
 
         def _parse_show_for_groups(
             data: object,
-        ) -> None | Unset | WatermarkOptionsTypeSchemaShowForGroupsType1:
+        ) -> None | Unset | WatermarkOptionsTypeSchemaShowForGroups:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                show_for_groups_type_1 = (
-                    WatermarkOptionsTypeSchemaShowForGroupsType1.from_dict(data)
-                )
+                show_for_groups_type_1 = WatermarkOptionsTypeSchemaShowForGroups(data)
 
                 return show_for_groups_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(
-                None | Unset | WatermarkOptionsTypeSchemaShowForGroupsType1, data
-            )
+            return cast(None | Unset | WatermarkOptionsTypeSchemaShowForGroups, data)
 
         show_for_groups = _parse_show_for_groups(d.pop("show_for_groups", UNSET))
 
         def _parse_show_in_context(
             data: object,
-        ) -> None | Unset | WatermarkOptionsTypeSchemaShowInContextType1:
+        ) -> None | Unset | WatermarkOptionsTypeSchemaShowInContext:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                show_in_context_type_1 = (
-                    WatermarkOptionsTypeSchemaShowInContextType1.from_dict(data)
-                )
+                show_in_context_type_1 = WatermarkOptionsTypeSchemaShowInContext(data)
 
                 return show_in_context_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(
-                None | Unset | WatermarkOptionsTypeSchemaShowInContextType1, data
-            )
+            return cast(None | Unset | WatermarkOptionsTypeSchemaShowInContext, data)
 
         show_in_context = _parse_show_in_context(d.pop("show_in_context", UNSET))
 
@@ -340,24 +301,20 @@ class WatermarkOptionsTypeSchema:
 
         def _parse_text_appearance(
             data: object,
-        ) -> None | Unset | WatermarkOptionsTypeSchemaTextAppearanceType1:
+        ) -> None | Unset | WatermarkOptionsTypeSchemaTextAppearance:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                text_appearance_type_1 = (
-                    WatermarkOptionsTypeSchemaTextAppearanceType1.from_dict(data)
-                )
+                text_appearance_type_1 = WatermarkOptionsTypeSchemaTextAppearance(data)
 
                 return text_appearance_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(
-                None | Unset | WatermarkOptionsTypeSchemaTextAppearanceType1, data
-            )
+            return cast(None | Unset | WatermarkOptionsTypeSchemaTextAppearance, data)
 
         text_appearance = _parse_text_appearance(d.pop("text_appearance", UNSET))
 

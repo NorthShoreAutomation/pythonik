@@ -6,14 +6,14 @@ from typing import TYPE_CHECKING, Any, TypeVar, cast
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.metadata_field_value_update_schema_mode import (
+    MetadataFieldValueUpdateSchemaMode,
+)
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.metadata_field_value_update_schema_field_values_type_0_item import (
         MetadataFieldValueUpdateSchemaFieldValuesType0Item,
-    )
-    from ..models.metadata_field_value_update_schema_mode_type_1 import (
-        MetadataFieldValueUpdateSchemaModeType1,
     )
 
 
@@ -25,20 +25,16 @@ class MetadataFieldValueUpdateSchema:
     """
     Attributes:
         field_values (list[MetadataFieldValueUpdateSchemaFieldValuesType0Item] | None | Unset):
-        mode (MetadataFieldValueUpdateSchemaModeType1 | None | Unset):
+        mode (MetadataFieldValueUpdateSchemaMode | None | Unset):
     """
 
     field_values: (
         list[MetadataFieldValueUpdateSchemaFieldValuesType0Item] | None | Unset
     ) = UNSET
-    mode: MetadataFieldValueUpdateSchemaModeType1 | None | Unset = UNSET
+    mode: MetadataFieldValueUpdateSchemaMode | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.metadata_field_value_update_schema_mode_type_1 import (
-            MetadataFieldValueUpdateSchemaModeType1,
-        )
-
         field_values: list[dict[str, Any]] | None | Unset
         if isinstance(self.field_values, Unset):
             field_values = UNSET
@@ -51,11 +47,11 @@ class MetadataFieldValueUpdateSchema:
         else:
             field_values = self.field_values
 
-        mode: dict[str, Any] | None | Unset
+        mode: None | str | Unset
         if isinstance(self.mode, Unset):
             mode = UNSET
-        elif isinstance(self.mode, MetadataFieldValueUpdateSchemaModeType1):
-            mode = self.mode.to_dict()
+        elif isinstance(self.mode, MetadataFieldValueUpdateSchemaMode):
+            mode = self.mode.value
         else:
             mode = self.mode
 
@@ -73,9 +69,6 @@ class MetadataFieldValueUpdateSchema:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.metadata_field_value_update_schema_field_values_type_0_item import (
             MetadataFieldValueUpdateSchemaFieldValuesType0Item,
-        )
-        from ..models.metadata_field_value_update_schema_mode_type_1 import (
-            MetadataFieldValueUpdateSchemaModeType1,
         )
 
         d = dict(src_dict)
@@ -113,20 +106,20 @@ class MetadataFieldValueUpdateSchema:
 
         def _parse_mode(
             data: object,
-        ) -> MetadataFieldValueUpdateSchemaModeType1 | None | Unset:
+        ) -> MetadataFieldValueUpdateSchemaMode | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                mode_type_1 = MetadataFieldValueUpdateSchemaModeType1.from_dict(data)
+                mode_type_1 = MetadataFieldValueUpdateSchemaMode(data)
 
                 return mode_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(MetadataFieldValueUpdateSchemaModeType1 | None | Unset, data)
+            return cast(MetadataFieldValueUpdateSchemaMode | None | Unset, data)
 
         mode = _parse_mode(d.pop("mode", UNSET))
 

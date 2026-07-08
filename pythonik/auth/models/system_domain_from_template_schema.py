@@ -2,25 +2,22 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.system_domain_from_template_schema_billing_tier import (
+    SystemDomainFromTemplateSchemaBillingTier,
+)
+from ..models.system_domain_from_template_schema_status import (
+    SystemDomainFromTemplateSchemaStatus,
+)
+from ..models.system_domain_from_template_schema_type import (
+    SystemDomainFromTemplateSchemaType,
+)
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.system_domain_from_template_schema_billing_tier_type_1 import (
-        SystemDomainFromTemplateSchemaBillingTierType1,
-    )
-    from ..models.system_domain_from_template_schema_status_type_1 import (
-        SystemDomainFromTemplateSchemaStatusType1,
-    )
-    from ..models.system_domain_from_template_schema_type_type_1 import (
-        SystemDomainFromTemplateSchemaTypeType1,
-    )
-
 
 T = TypeVar("T", bound="SystemDomainFromTemplateSchema")
 
@@ -36,14 +33,14 @@ class SystemDomainFromTemplateSchema:
         admin_last_name (None | str | Unset):
         admin_password (None | str | Unset):
         base_url (None | str | Unset):
-        billing_tier (None | SystemDomainFromTemplateSchemaBillingTierType1 | Unset):
+        billing_tier (None | SystemDomainFromTemplateSchemaBillingTier | Unset):
         custom_terms (bool | None | Unset):
         date_created (datetime.datetime | None | Unset):
         date_modified (datetime.datetime | None | Unset):
         description (None | str | Unset):
         id (None | Unset | UUID):
-        status (None | SystemDomainFromTemplateSchemaStatusType1 | Unset):
-        type_ (None | SystemDomainFromTemplateSchemaTypeType1 | Unset):
+        status (None | SystemDomainFromTemplateSchemaStatus | Unset):
+        type_ (None | SystemDomainFromTemplateSchemaType | Unset):
     """
 
     name: str
@@ -53,27 +50,17 @@ class SystemDomainFromTemplateSchema:
     admin_last_name: None | str | Unset = UNSET
     admin_password: None | str | Unset = UNSET
     base_url: None | str | Unset = UNSET
-    billing_tier: None | SystemDomainFromTemplateSchemaBillingTierType1 | Unset = UNSET
+    billing_tier: None | SystemDomainFromTemplateSchemaBillingTier | Unset = UNSET
     custom_terms: bool | None | Unset = UNSET
     date_created: datetime.datetime | None | Unset = UNSET
     date_modified: datetime.datetime | None | Unset = UNSET
     description: None | str | Unset = UNSET
     id: None | Unset | UUID = UNSET
-    status: None | SystemDomainFromTemplateSchemaStatusType1 | Unset = UNSET
-    type_: None | SystemDomainFromTemplateSchemaTypeType1 | Unset = UNSET
+    status: None | SystemDomainFromTemplateSchemaStatus | Unset = UNSET
+    type_: None | SystemDomainFromTemplateSchemaType | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.system_domain_from_template_schema_billing_tier_type_1 import (
-            SystemDomainFromTemplateSchemaBillingTierType1,
-        )
-        from ..models.system_domain_from_template_schema_status_type_1 import (
-            SystemDomainFromTemplateSchemaStatusType1,
-        )
-        from ..models.system_domain_from_template_schema_type_type_1 import (
-            SystemDomainFromTemplateSchemaTypeType1,
-        )
-
         name = self.name
 
         admin_email: None | str | Unset
@@ -114,13 +101,11 @@ class SystemDomainFromTemplateSchema:
         else:
             base_url = self.base_url
 
-        billing_tier: dict[str, Any] | None | Unset
+        billing_tier: None | str | Unset
         if isinstance(self.billing_tier, Unset):
             billing_tier = UNSET
-        elif isinstance(
-            self.billing_tier, SystemDomainFromTemplateSchemaBillingTierType1
-        ):
-            billing_tier = self.billing_tier.to_dict()
+        elif isinstance(self.billing_tier, SystemDomainFromTemplateSchemaBillingTier):
+            billing_tier = self.billing_tier.value
         else:
             billing_tier = self.billing_tier
 
@@ -160,19 +145,19 @@ class SystemDomainFromTemplateSchema:
         else:
             id = self.id
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, SystemDomainFromTemplateSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, SystemDomainFromTemplateSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
-        type_: dict[str, Any] | None | Unset
+        type_: None | str | Unset
         if isinstance(self.type_, Unset):
             type_ = UNSET
-        elif isinstance(self.type_, SystemDomainFromTemplateSchemaTypeType1):
-            type_ = self.type_.to_dict()
+        elif isinstance(self.type_, SystemDomainFromTemplateSchemaType):
+            type_ = self.type_.value
         else:
             type_ = self.type_
 
@@ -216,16 +201,6 @@ class SystemDomainFromTemplateSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.system_domain_from_template_schema_billing_tier_type_1 import (
-            SystemDomainFromTemplateSchemaBillingTierType1,
-        )
-        from ..models.system_domain_from_template_schema_status_type_1 import (
-            SystemDomainFromTemplateSchemaStatusType1,
-        )
-        from ..models.system_domain_from_template_schema_type_type_1 import (
-            SystemDomainFromTemplateSchemaTypeType1,
-        )
-
         d = dict(src_dict)
         name = d.pop("name")
 
@@ -293,24 +268,20 @@ class SystemDomainFromTemplateSchema:
 
         def _parse_billing_tier(
             data: object,
-        ) -> None | SystemDomainFromTemplateSchemaBillingTierType1 | Unset:
+        ) -> None | SystemDomainFromTemplateSchemaBillingTier | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                billing_tier_type_1 = (
-                    SystemDomainFromTemplateSchemaBillingTierType1.from_dict(data)
-                )
+                billing_tier_type_1 = SystemDomainFromTemplateSchemaBillingTier(data)
 
                 return billing_tier_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(
-                None | SystemDomainFromTemplateSchemaBillingTierType1 | Unset, data
-            )
+            return cast(None | SystemDomainFromTemplateSchemaBillingTier | Unset, data)
 
         billing_tier = _parse_billing_tier(d.pop("billing_tier", UNSET))
 
@@ -385,41 +356,39 @@ class SystemDomainFromTemplateSchema:
 
         def _parse_status(
             data: object,
-        ) -> None | SystemDomainFromTemplateSchemaStatusType1 | Unset:
+        ) -> None | SystemDomainFromTemplateSchemaStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = SystemDomainFromTemplateSchemaStatusType1.from_dict(
-                    data
-                )
+                status_type_1 = SystemDomainFromTemplateSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | SystemDomainFromTemplateSchemaStatusType1 | Unset, data)
+            return cast(None | SystemDomainFromTemplateSchemaStatus | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 
         def _parse_type_(
             data: object,
-        ) -> None | SystemDomainFromTemplateSchemaTypeType1 | Unset:
+        ) -> None | SystemDomainFromTemplateSchemaType | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                type_type_1 = SystemDomainFromTemplateSchemaTypeType1.from_dict(data)
+                type_type_1 = SystemDomainFromTemplateSchemaType(data)
 
                 return type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | SystemDomainFromTemplateSchemaTypeType1 | Unset, data)
+            return cast(None | SystemDomainFromTemplateSchemaType | Unset, data)
 
         type_ = _parse_type_(d.pop("type", UNSET))
 

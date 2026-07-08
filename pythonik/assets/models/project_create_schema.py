@@ -2,19 +2,14 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.project_create_schema_status import ProjectCreateSchemaStatus
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.project_create_schema_status_type_1 import (
-        ProjectCreateSchemaStatusType1,
-    )
-
 
 T = TypeVar("T", bound="ProjectCreateSchema")
 
@@ -30,7 +25,7 @@ class ProjectCreateSchema:
         date_created (datetime.datetime | None | Unset):
         date_modified (datetime.datetime | None | Unset):
         id (None | Unset | UUID):
-        status (None | ProjectCreateSchemaStatusType1 | Unset):
+        status (None | ProjectCreateSchemaStatus | Unset):
         storage_id (None | Unset | UUID):
         system_domain_id (None | Unset | UUID):
     """
@@ -42,16 +37,12 @@ class ProjectCreateSchema:
     date_created: datetime.datetime | None | Unset = UNSET
     date_modified: datetime.datetime | None | Unset = UNSET
     id: None | Unset | UUID = UNSET
-    status: None | ProjectCreateSchemaStatusType1 | Unset = UNSET
+    status: None | ProjectCreateSchemaStatus | Unset = UNSET
     storage_id: None | Unset | UUID = UNSET
     system_domain_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.project_create_schema_status_type_1 import (
-            ProjectCreateSchemaStatusType1,
-        )
-
         name = self.name
 
         collection_id: None | str | Unset
@@ -102,11 +93,11 @@ class ProjectCreateSchema:
         else:
             id = self.id
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, ProjectCreateSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, ProjectCreateSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -156,10 +147,6 @@ class ProjectCreateSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.project_create_schema_status_type_1 import (
-            ProjectCreateSchemaStatusType1,
-        )
-
         d = dict(src_dict)
         name = d.pop("name")
 
@@ -267,22 +254,20 @@ class ProjectCreateSchema:
 
         id = _parse_id(d.pop("id", UNSET))
 
-        def _parse_status(
-            data: object,
-        ) -> None | ProjectCreateSchemaStatusType1 | Unset:
+        def _parse_status(data: object) -> None | ProjectCreateSchemaStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = ProjectCreateSchemaStatusType1.from_dict(data)
+                status_type_1 = ProjectCreateSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | ProjectCreateSchemaStatusType1 | Unset, data)
+            return cast(None | ProjectCreateSchemaStatus | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

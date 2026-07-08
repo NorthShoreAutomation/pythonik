@@ -9,6 +9,7 @@ from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..models.edit_asset_segment_segment_type import EditAssetSegmentSegmentType
+from ..models.edit_asset_segment_status import EditAssetSegmentStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -16,7 +17,6 @@ if TYPE_CHECKING:
     from ..models.edit_asset_segment_metadata_type_0 import (
         EditAssetSegmentMetadataType0,
     )
-    from ..models.edit_asset_segment_status_type_1 import EditAssetSegmentStatusType1
     from ..models.face_bounding_box import FaceBoundingBox
     from ..models.transcription_type import TranscriptionType
     from ..models.user import User
@@ -51,7 +51,7 @@ class EditAssetSegment:
         segment_track (None | str | Unset):
         share_id (None | Unset | UUID): ID of a share if the segment is created from a share
         share_user_email (None | str | Unset):
-        status (EditAssetSegmentStatusType1 | None | Unset):
+        status (EditAssetSegmentStatus | None | Unset):
         subclip_id (None | Unset | UUID):
         time_end_milliseconds (int | None | Unset):
         time_start_milliseconds (int | None | Unset):
@@ -88,7 +88,7 @@ class EditAssetSegment:
     segment_track: None | str | Unset = UNSET
     share_id: None | Unset | UUID = UNSET
     share_user_email: None | str | Unset = UNSET
-    status: EditAssetSegmentStatusType1 | None | Unset = UNSET
+    status: EditAssetSegmentStatus | None | Unset = UNSET
     subclip_id: None | Unset | UUID = UNSET
     time_end_milliseconds: int | None | Unset = UNSET
     time_start_milliseconds: int | None | Unset = UNSET
@@ -107,9 +107,6 @@ class EditAssetSegment:
         from ..models.drawing import Drawing
         from ..models.edit_asset_segment_metadata_type_0 import (
             EditAssetSegmentMetadataType0,
-        )
-        from ..models.edit_asset_segment_status_type_1 import (
-            EditAssetSegmentStatusType1,
         )
         from ..models.transcription_type import TranscriptionType
         from ..models.user import User
@@ -268,11 +265,11 @@ class EditAssetSegment:
         else:
             share_user_email = self.share_user_email
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, EditAssetSegmentStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, EditAssetSegmentStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -442,9 +439,6 @@ class EditAssetSegment:
         from ..models.drawing import Drawing
         from ..models.edit_asset_segment_metadata_type_0 import (
             EditAssetSegmentMetadataType0,
-        )
-        from ..models.edit_asset_segment_status_type_1 import (
-            EditAssetSegmentStatusType1,
         )
         from ..models.face_bounding_box import FaceBoundingBox
         from ..models.transcription_type import TranscriptionType
@@ -744,20 +738,20 @@ class EditAssetSegment:
 
         share_user_email = _parse_share_user_email(d.pop("share_user_email", UNSET))
 
-        def _parse_status(data: object) -> EditAssetSegmentStatusType1 | None | Unset:
+        def _parse_status(data: object) -> EditAssetSegmentStatus | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = EditAssetSegmentStatusType1.from_dict(data)
+                status_type_1 = EditAssetSegmentStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(EditAssetSegmentStatusType1 | None | Unset, data)
+            return cast(EditAssetSegmentStatus | None | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

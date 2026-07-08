@@ -8,11 +8,11 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.playlist_status import PlaylistStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.playlist_keyframes_type_0_item import PlaylistKeyframesType0Item
-    from ..models.playlist_status_type_1 import PlaylistStatusType1
 
 
 T = TypeVar("T", bound="Playlist")
@@ -33,7 +33,7 @@ class Playlist:
         keyframe_asset_ids (list[UUID] | None | Unset):
         keyframes (list[PlaylistKeyframesType0Item] | None | Unset):
         project_id (None | Unset | UUID):
-        status (None | PlaylistStatusType1 | Unset):
+        status (None | PlaylistStatus | Unset):
         system_domain_id (None | Unset | UUID):
     """
 
@@ -48,13 +48,11 @@ class Playlist:
     keyframe_asset_ids: list[UUID] | None | Unset = UNSET
     keyframes: list[PlaylistKeyframesType0Item] | None | Unset = UNSET
     project_id: None | Unset | UUID = UNSET
-    status: None | PlaylistStatusType1 | Unset = UNSET
+    status: None | PlaylistStatus | Unset = UNSET
     system_domain_id: None | Unset | UUID = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.playlist_status_type_1 import PlaylistStatusType1
-
         name = self.name
 
         created_by_user: None | str | Unset
@@ -145,11 +143,11 @@ class Playlist:
         else:
             project_id = self.project_id
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, PlaylistStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, PlaylistStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -198,7 +196,6 @@ class Playlist:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.playlist_keyframes_type_0_item import PlaylistKeyframesType0Item
-        from ..models.playlist_status_type_1 import PlaylistStatusType1
 
         d = dict(src_dict)
         name = d.pop("name")
@@ -383,20 +380,20 @@ class Playlist:
 
         project_id = _parse_project_id(d.pop("project_id", UNSET))
 
-        def _parse_status(data: object) -> None | PlaylistStatusType1 | Unset:
+        def _parse_status(data: object) -> None | PlaylistStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = PlaylistStatusType1.from_dict(data)
+                status_type_1 = PlaylistStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | PlaylistStatusType1 | Unset, data)
+            return cast(None | PlaylistStatus | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

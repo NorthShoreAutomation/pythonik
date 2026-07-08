@@ -194,7 +194,7 @@ from .metadata_field_value_schema import MetadataFieldValueSchema
 from .metadata_field_value_schema_field_values_type_0_item import (
     MetadataFieldValueSchemaFieldValuesType0Item,
 )
-from .metadata_field_value_schema_mode_type_1 import MetadataFieldValueSchemaModeType1
+from .metadata_field_value_schema_mode import MetadataFieldValueSchemaMode
 from .metadata_fields_schema import MetadataFieldsSchema
 from .metadata_values_batch_schema import MetadataValuesBatchSchema
 from .metadata_values_batch_schema_metadata_values import (
@@ -453,7 +453,7 @@ __all__ = (
     "MetadataFieldsSchema",
     "MetadataFieldValueSchema",
     "MetadataFieldValueSchemaFieldValuesType0Item",
-    "MetadataFieldValueSchemaModeType1",
+    "MetadataFieldValueSchemaMode",
     "MetadataValuesBatchSchema",
     "MetadataValuesBatchSchemaMetadataValues",
     "MetadataValuesObjectId",

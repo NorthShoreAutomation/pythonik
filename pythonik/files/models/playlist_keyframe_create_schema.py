@@ -8,15 +8,15 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.playlist_keyframe_create_schema_status import (
+    PlaylistKeyframeCreateSchemaStatus,
+)
 from ..models.playlist_keyframe_create_schema_type import (
     PlaylistKeyframeCreateSchemaType,
 )
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.playlist_keyframe_create_schema_status_type_1 import (
-        PlaylistKeyframeCreateSchemaStatusType1,
-    )
     from ..models.playlist_keyframe_create_schema_upload_credentials_type_0 import (
         PlaylistKeyframeCreateSchemaUploadCredentialsType0,
     )
@@ -45,7 +45,7 @@ class PlaylistKeyframeCreateSchema:
         resolution (None | ResolutionType | Unset):
         rotation (int | None | Unset):
         size (int | None | Unset):
-        status (None | PlaylistKeyframeCreateSchemaStatusType1 | Unset):
+        status (None | PlaylistKeyframeCreateSchemaStatus | Unset):
         storage_id (None | Unset | UUID):
         time_code (None | TimeCodeType | Unset):
         upload_credentials (None | PlaylistKeyframeCreateSchemaUploadCredentialsType0 | Unset):
@@ -68,7 +68,7 @@ class PlaylistKeyframeCreateSchema:
     resolution: None | ResolutionType | Unset = UNSET
     rotation: int | None | Unset = UNSET
     size: int | None | Unset = UNSET
-    status: None | PlaylistKeyframeCreateSchemaStatusType1 | Unset = UNSET
+    status: None | PlaylistKeyframeCreateSchemaStatus | Unset = UNSET
     storage_id: None | Unset | UUID = UNSET
     time_code: None | TimeCodeType | Unset = UNSET
     upload_credentials: (
@@ -80,9 +80,6 @@ class PlaylistKeyframeCreateSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.playlist_keyframe_create_schema_status_type_1 import (
-            PlaylistKeyframeCreateSchemaStatusType1,
-        )
         from ..models.playlist_keyframe_create_schema_upload_credentials_type_0 import (
             PlaylistKeyframeCreateSchemaUploadCredentialsType0,
         )
@@ -179,11 +176,11 @@ class PlaylistKeyframeCreateSchema:
         else:
             size = self.size
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, PlaylistKeyframeCreateSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, PlaylistKeyframeCreateSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -283,9 +280,6 @@ class PlaylistKeyframeCreateSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.playlist_keyframe_create_schema_status_type_1 import (
-            PlaylistKeyframeCreateSchemaStatusType1,
-        )
         from ..models.playlist_keyframe_create_schema_upload_credentials_type_0 import (
             PlaylistKeyframeCreateSchemaUploadCredentialsType0,
         )
@@ -456,20 +450,20 @@ class PlaylistKeyframeCreateSchema:
 
         def _parse_status(
             data: object,
-        ) -> None | PlaylistKeyframeCreateSchemaStatusType1 | Unset:
+        ) -> None | PlaylistKeyframeCreateSchemaStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = PlaylistKeyframeCreateSchemaStatusType1.from_dict(data)
+                status_type_1 = PlaylistKeyframeCreateSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | PlaylistKeyframeCreateSchemaStatusType1 | Unset, data)
+            return cast(None | PlaylistKeyframeCreateSchemaStatus | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

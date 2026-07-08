@@ -9,13 +9,13 @@ from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..models.segment_schema_segment_type import SegmentSchemaSegmentType
+from ..models.segment_schema_status import SegmentSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.drawing_schema import DrawingSchema
     from ..models.face_bounding_box_schema import FaceBoundingBoxSchema
     from ..models.segment_schema_metadata_type_0 import SegmentSchemaMetadataType0
-    from ..models.segment_schema_status_type_1 import SegmentSchemaStatusType1
     from ..models.transcription_type import TranscriptionType
     from ..models.user import User
 
@@ -50,7 +50,7 @@ class SegmentSchema:
         segment_track (None | str | Unset):
         share_id (None | Unset | UUID): ID of a share if the segment is created from a share
         share_user_email (None | str | Unset):
-        status (None | SegmentSchemaStatusType1 | Unset):
+        status (None | SegmentSchemaStatus | Unset):
         subclip_id (None | Unset | UUID):
         time_end_milliseconds (int | None | Unset):
         time_start_milliseconds (int | None | Unset):
@@ -88,7 +88,7 @@ class SegmentSchema:
     segment_track: None | str | Unset = UNSET
     share_id: None | Unset | UUID = UNSET
     share_user_email: None | str | Unset = UNSET
-    status: None | SegmentSchemaStatusType1 | Unset = UNSET
+    status: None | SegmentSchemaStatus | Unset = UNSET
     subclip_id: None | Unset | UUID = UNSET
     time_end_milliseconds: int | None | Unset = UNSET
     time_start_milliseconds: int | None | Unset = UNSET
@@ -106,7 +106,6 @@ class SegmentSchema:
     def to_dict(self) -> dict[str, Any]:
         from ..models.drawing_schema import DrawingSchema
         from ..models.segment_schema_metadata_type_0 import SegmentSchemaMetadataType0
-        from ..models.segment_schema_status_type_1 import SegmentSchemaStatusType1
         from ..models.transcription_type import TranscriptionType
         from ..models.user import User
 
@@ -276,11 +275,11 @@ class SegmentSchema:
         else:
             share_user_email = self.share_user_email
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, SegmentSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, SegmentSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -453,7 +452,6 @@ class SegmentSchema:
         from ..models.drawing_schema import DrawingSchema
         from ..models.face_bounding_box_schema import FaceBoundingBoxSchema
         from ..models.segment_schema_metadata_type_0 import SegmentSchemaMetadataType0
-        from ..models.segment_schema_status_type_1 import SegmentSchemaStatusType1
         from ..models.transcription_type import TranscriptionType
         from ..models.user import User
 
@@ -773,20 +771,20 @@ class SegmentSchema:
 
         share_user_email = _parse_share_user_email(d.pop("share_user_email", UNSET))
 
-        def _parse_status(data: object) -> None | SegmentSchemaStatusType1 | Unset:
+        def _parse_status(data: object) -> None | SegmentSchemaStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = SegmentSchemaStatusType1.from_dict(data)
+                status_type_1 = SegmentSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | SegmentSchemaStatusType1 | Unset, data)
+            return cast(None | SegmentSchemaStatus | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

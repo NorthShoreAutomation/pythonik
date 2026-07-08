@@ -9,6 +9,7 @@ from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..models.segment_base_schema_segment_type import SegmentBaseSchemaSegmentType
+from ..models.segment_base_schema_status import SegmentBaseSchemaStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -17,7 +18,6 @@ if TYPE_CHECKING:
     from ..models.segment_base_schema_metadata_type_0 import (
         SegmentBaseSchemaMetadataType0,
     )
-    from ..models.segment_base_schema_status_type_1 import SegmentBaseSchemaStatusType1
     from ..models.transcription_type import TranscriptionType
     from ..models.user import User
 
@@ -51,7 +51,7 @@ class SegmentBaseSchema:
         segment_track (None | str | Unset):
         share_id (None | Unset | UUID): ID of a share if the segment is created from a share
         share_user_email (None | str | Unset):
-        status (None | SegmentBaseSchemaStatusType1 | Unset):
+        status (None | SegmentBaseSchemaStatus | Unset):
         subclip_id (None | Unset | UUID):
         time_end_milliseconds (int | None | Unset):
         time_start_milliseconds (int | None | Unset):
@@ -88,7 +88,7 @@ class SegmentBaseSchema:
     segment_track: None | str | Unset = UNSET
     share_id: None | Unset | UUID = UNSET
     share_user_email: None | str | Unset = UNSET
-    status: None | SegmentBaseSchemaStatusType1 | Unset = UNSET
+    status: None | SegmentBaseSchemaStatus | Unset = UNSET
     subclip_id: None | Unset | UUID = UNSET
     time_end_milliseconds: int | None | Unset = UNSET
     time_start_milliseconds: int | None | Unset = UNSET
@@ -107,9 +107,6 @@ class SegmentBaseSchema:
         from ..models.drawing_schema import DrawingSchema
         from ..models.segment_base_schema_metadata_type_0 import (
             SegmentBaseSchemaMetadataType0,
-        )
-        from ..models.segment_base_schema_status_type_1 import (
-            SegmentBaseSchemaStatusType1,
         )
         from ..models.transcription_type import TranscriptionType
         from ..models.user import User
@@ -274,11 +271,11 @@ class SegmentBaseSchema:
         else:
             share_user_email = self.share_user_email
 
-        status: dict[str, Any] | None | Unset
+        status: None | str | Unset
         if isinstance(self.status, Unset):
             status = UNSET
-        elif isinstance(self.status, SegmentBaseSchemaStatusType1):
-            status = self.status.to_dict()
+        elif isinstance(self.status, SegmentBaseSchemaStatus):
+            status = self.status.value
         else:
             status = self.status
 
@@ -450,9 +447,6 @@ class SegmentBaseSchema:
         from ..models.face_bounding_box_schema import FaceBoundingBoxSchema
         from ..models.segment_base_schema_metadata_type_0 import (
             SegmentBaseSchemaMetadataType0,
-        )
-        from ..models.segment_base_schema_status_type_1 import (
-            SegmentBaseSchemaStatusType1,
         )
         from ..models.transcription_type import TranscriptionType
         from ..models.user import User
@@ -766,20 +760,20 @@ class SegmentBaseSchema:
 
         share_user_email = _parse_share_user_email(d.pop("share_user_email", UNSET))
 
-        def _parse_status(data: object) -> None | SegmentBaseSchemaStatusType1 | Unset:
+        def _parse_status(data: object) -> None | SegmentBaseSchemaStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                status_type_1 = SegmentBaseSchemaStatusType1.from_dict(data)
+                status_type_1 = SegmentBaseSchemaStatus(data)
 
                 return status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | SegmentBaseSchemaStatusType1 | Unset, data)
+            return cast(None | SegmentBaseSchemaStatus | Unset, data)
 
         status = _parse_status(d.pop("status", UNSET))
 

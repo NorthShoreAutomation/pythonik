@@ -48,10 +48,10 @@ def _parse_response(
     | GetStoragesByStorageIdGatewayEventsResponseDefaultType1
     | IconikStorageGatewayEventsSchema
 ):
-    if response.status_code == 201:
-        response_201 = IconikStorageGatewayEventsSchema.from_dict(response.json())
+    if response.status_code == 200:
+        response_200 = IconikStorageGatewayEventsSchema.from_dict(response.json())
 
-        return response_201
+        return response_200
 
     if response.status_code == 400:
         response_400 = cast(Any, None)

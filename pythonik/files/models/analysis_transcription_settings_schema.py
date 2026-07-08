@@ -10,14 +10,14 @@ from attrs import field as _attrs_field
 from ..models.analysis_transcription_settings_schema_media_type import (
     AnalysisTranscriptionSettingsSchemaMediaType,
 )
+from ..models.analysis_transcription_settings_schema_service_type import (
+    AnalysisTranscriptionSettingsSchemaServiceType,
+)
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.analysis_transcription_settings_schema_analysis_service_account_settings_type_0 import (
         AnalysisTranscriptionSettingsSchemaAnalysisServiceAccountSettingsType0,
-    )
-    from ..models.analysis_transcription_settings_schema_service_type_type_1 import (
-        AnalysisTranscriptionSettingsSchemaServiceTypeType1,
     )
     from ..models.analysis_transcription_settings_schema_settings_type_0 import (
         AnalysisTranscriptionSettingsSchemaSettingsType0,
@@ -39,7 +39,7 @@ class AnalysisTranscriptionSettingsSchema:
         enabled (bool | None | Unset):
         id (None | Unset | UUID):
         is_default (bool | None | Unset):
-        service_type (AnalysisTranscriptionSettingsSchemaServiceTypeType1 | None | Unset):
+        service_type (AnalysisTranscriptionSettingsSchemaServiceType | None | Unset):
         settings (AnalysisTranscriptionSettingsSchemaSettingsType0 | None | Unset):
     """
 
@@ -54,18 +54,13 @@ class AnalysisTranscriptionSettingsSchema:
     enabled: bool | None | Unset = UNSET
     id: None | Unset | UUID = UNSET
     is_default: bool | None | Unset = UNSET
-    service_type: AnalysisTranscriptionSettingsSchemaServiceTypeType1 | None | Unset = (
-        UNSET
-    )
+    service_type: AnalysisTranscriptionSettingsSchemaServiceType | None | Unset = UNSET
     settings: AnalysisTranscriptionSettingsSchemaSettingsType0 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.analysis_transcription_settings_schema_analysis_service_account_settings_type_0 import (
             AnalysisTranscriptionSettingsSchemaAnalysisServiceAccountSettingsType0,
-        )
-        from ..models.analysis_transcription_settings_schema_service_type_type_1 import (
-            AnalysisTranscriptionSettingsSchemaServiceTypeType1,
         )
         from ..models.analysis_transcription_settings_schema_settings_type_0 import (
             AnalysisTranscriptionSettingsSchemaSettingsType0,
@@ -110,13 +105,13 @@ class AnalysisTranscriptionSettingsSchema:
         else:
             is_default = self.is_default
 
-        service_type: dict[str, Any] | None | Unset
+        service_type: None | str | Unset
         if isinstance(self.service_type, Unset):
             service_type = UNSET
         elif isinstance(
-            self.service_type, AnalysisTranscriptionSettingsSchemaServiceTypeType1
+            self.service_type, AnalysisTranscriptionSettingsSchemaServiceType
         ):
-            service_type = self.service_type.to_dict()
+            service_type = self.service_type.value
         else:
             service_type = self.service_type
 
@@ -160,9 +155,6 @@ class AnalysisTranscriptionSettingsSchema:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.analysis_transcription_settings_schema_analysis_service_account_settings_type_0 import (
             AnalysisTranscriptionSettingsSchemaAnalysisServiceAccountSettingsType0,
-        )
-        from ..models.analysis_transcription_settings_schema_service_type_type_1 import (
-            AnalysisTranscriptionSettingsSchemaServiceTypeType1,
         )
         from ..models.analysis_transcription_settings_schema_settings_type_0 import (
             AnalysisTranscriptionSettingsSchemaSettingsType0,
@@ -244,23 +236,23 @@ class AnalysisTranscriptionSettingsSchema:
 
         def _parse_service_type(
             data: object,
-        ) -> AnalysisTranscriptionSettingsSchemaServiceTypeType1 | None | Unset:
+        ) -> AnalysisTranscriptionSettingsSchemaServiceType | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                service_type_type_1 = (
-                    AnalysisTranscriptionSettingsSchemaServiceTypeType1.from_dict(data)
+                service_type_type_1 = AnalysisTranscriptionSettingsSchemaServiceType(
+                    data
                 )
 
                 return service_type_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(
-                AnalysisTranscriptionSettingsSchemaServiceTypeType1 | None | Unset, data
+                AnalysisTranscriptionSettingsSchemaServiceType | None | Unset, data
             )
 
         service_type = _parse_service_type(d.pop("service_type", UNSET))

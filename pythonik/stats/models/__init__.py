@@ -1,10 +1,8 @@
 """Contains all the data models used in inputs/outputs"""
 
 from .asset_usage_schema import AssetUsageSchema
-from .asset_usage_schema_asset_type_type_1 import AssetUsageSchemaAssetTypeType1
-from .asset_usage_schema_operation_source_type_1 import (
-    AssetUsageSchemaOperationSourceType1,
-)
+from .asset_usage_schema_asset_type import AssetUsageSchemaAssetType
+from .asset_usage_schema_operation_source import AssetUsageSchemaOperationSource
 from .asset_usage_schema_operation_type import AssetUsageSchemaOperationType
 from .asset_usages_elastic_schema import AssetUsagesElasticSchema
 from .asset_usages_schema import AssetUsagesSchema
@@ -24,16 +22,16 @@ from .billing_expiration_update_schema import BillingExpirationUpdateSchema
 from .billing_receipt_schema import BillingReceiptSchema
 from .billing_recipients_schema import BillingRecipientsSchema
 from .billing_schema import BillingSchema
-from .billing_schema_currency_type_1 import BillingSchemaCurrencyType1
+from .billing_schema_currency import BillingSchemaCurrency
 from .billing_settings_schema import BillingSettingsSchema
 from .billing_stats_schema import BillingStatsSchema
-from .billing_stats_schema_system_domain_status_type_1 import (
-    BillingStatsSchemaSystemDomainStatusType1,
+from .billing_stats_schema_system_domain_status import (
+    BillingStatsSchemaSystemDomainStatus,
 )
 from .billings_schema import BillingsSchema
 from .collection_usage_schema import CollectionUsageSchema
-from .collection_usage_schema_operation_source_type_1 import (
-    CollectionUsageSchemaOperationSourceType1,
+from .collection_usage_schema_operation_source import (
+    CollectionUsageSchemaOperationSource,
 )
 from .collection_usage_schema_operation_type import CollectionUsageSchemaOperationType
 from .collection_usages_elastic_schema import CollectionUsagesElasticSchema
@@ -468,14 +466,12 @@ from .storage_usage_schema_storage_type import StorageUsageSchemaStorageType
 from .storage_usages_elastic_schema import StorageUsagesElasticSchema
 from .storage_usages_schema import StorageUsagesSchema
 from .transcoder_usage_schema import TranscoderUsageSchema
-from .transcoder_usage_schema_operation_type_type_1 import (
-    TranscoderUsageSchemaOperationTypeType1,
-)
+from .transcoder_usage_schema_operation_type import TranscoderUsageSchemaOperationType
 from .transcoder_usage_schema_status import TranscoderUsageSchemaStatus
 from .transcoder_usage_schema_transcoder_type import TranscoderUsageSchemaTranscoderType
 from .transcoder_usages_elastic_schema import TranscoderUsagesElasticSchema
-from .transcoder_usages_elastic_schema_operation_type_type_1 import (
-    TranscoderUsagesElasticSchemaOperationTypeType1,
+from .transcoder_usages_elastic_schema_operation_type import (
+    TranscoderUsagesElasticSchemaOperationType,
 )
 from .transcoder_usages_elastic_schema_transcoder_type import (
     TranscoderUsagesElasticSchemaTranscoderType,
@@ -494,8 +490,8 @@ from .user_usages_schema import UserUsagesSchema
 
 __all__ = (
     "AssetUsageSchema",
-    "AssetUsageSchemaAssetTypeType1",
-    "AssetUsageSchemaOperationSourceType1",
+    "AssetUsageSchemaAssetType",
+    "AssetUsageSchemaOperationSource",
     "AssetUsageSchemaOperationType",
     "AssetUsagesElasticSchema",
     "AssetUsagesSchema",
@@ -513,13 +509,13 @@ __all__ = (
     "BillingReceiptSchema",
     "BillingRecipientsSchema",
     "BillingSchema",
-    "BillingSchemaCurrencyType1",
+    "BillingSchemaCurrency",
     "BillingSettingsSchema",
     "BillingsSchema",
     "BillingStatsSchema",
-    "BillingStatsSchemaSystemDomainStatusType1",
+    "BillingStatsSchemaSystemDomainStatus",
     "CollectionUsageSchema",
-    "CollectionUsageSchemaOperationSourceType1",
+    "CollectionUsageSchemaOperationSource",
     "CollectionUsageSchemaOperationType",
     "CollectionUsagesElasticSchema",
     "CollectionUsagesSchema",
@@ -691,11 +687,11 @@ __all__ = (
     "StorageUsagesElasticSchema",
     "StorageUsagesSchema",
     "TranscoderUsageSchema",
-    "TranscoderUsageSchemaOperationTypeType1",
+    "TranscoderUsageSchemaOperationType",
     "TranscoderUsageSchemaStatus",
     "TranscoderUsageSchemaTranscoderType",
     "TranscoderUsagesElasticSchema",
-    "TranscoderUsagesElasticSchemaOperationTypeType1",
+    "TranscoderUsagesElasticSchemaOperationType",
     "TranscoderUsagesElasticSchemaTranscoderType",
     "TranscoderUsagesSchema",
     "TransferStatsSchema",

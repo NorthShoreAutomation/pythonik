@@ -8,13 +8,11 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.token_schema_system_domain_status import TokenSchemaSystemDomainStatus
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.multi_domain_user_system_schema import MultiDomainUserSystemSchema
-    from ..models.token_schema_system_domain_status_type_1 import (
-        TokenSchemaSystemDomainStatusType1,
-    )
 
 
 T = TypeVar("T", bound="TokenSchema")
@@ -38,7 +36,7 @@ class TokenSchema:
         is_super_admin_light (bool | None | Unset):
         system_domain_id (None | Unset | UUID):
         system_domain_is_plg (bool | None | Unset):
-        system_domain_status (None | TokenSchemaSystemDomainStatusType1 | Unset):
+        system_domain_status (None | TokenSchemaSystemDomainStatus | Unset):
         system_domain_type (None | str | Unset):
         system_domain_warning_message (None | str | Unset):
         system_domains (list[UUID] | None | Unset):
@@ -59,7 +57,7 @@ class TokenSchema:
     is_super_admin_light: bool | None | Unset = UNSET
     system_domain_id: None | Unset | UUID = UNSET
     system_domain_is_plg: bool | None | Unset = UNSET
-    system_domain_status: None | TokenSchemaSystemDomainStatusType1 | Unset = UNSET
+    system_domain_status: None | TokenSchemaSystemDomainStatus | Unset = UNSET
     system_domain_type: None | str | Unset = UNSET
     system_domain_warning_message: None | str | Unset = UNSET
     system_domains: list[UUID] | None | Unset = UNSET
@@ -67,10 +65,6 @@ class TokenSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.token_schema_system_domain_status_type_1 import (
-            TokenSchemaSystemDomainStatusType1,
-        )
-
         token = self.token
 
         app_id: None | str | Unset
@@ -171,11 +165,11 @@ class TokenSchema:
         else:
             system_domain_is_plg = self.system_domain_is_plg
 
-        system_domain_status: dict[str, Any] | None | Unset
+        system_domain_status: None | str | Unset
         if isinstance(self.system_domain_status, Unset):
             system_domain_status = UNSET
-        elif isinstance(self.system_domain_status, TokenSchemaSystemDomainStatusType1):
-            system_domain_status = self.system_domain_status.to_dict()
+        elif isinstance(self.system_domain_status, TokenSchemaSystemDomainStatus):
+            system_domain_status = self.system_domain_status.value
         else:
             system_domain_status = self.system_domain_status
 
@@ -260,9 +254,6 @@ class TokenSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.multi_domain_user_system_schema import MultiDomainUserSystemSchema
-        from ..models.token_schema_system_domain_status_type_1 import (
-            TokenSchemaSystemDomainStatusType1,
-        )
 
         d = dict(src_dict)
         token = d.pop("token")
@@ -463,22 +454,20 @@ class TokenSchema:
 
         def _parse_system_domain_status(
             data: object,
-        ) -> None | TokenSchemaSystemDomainStatusType1 | Unset:
+        ) -> None | TokenSchemaSystemDomainStatus | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                system_domain_status_type_1 = (
-                    TokenSchemaSystemDomainStatusType1.from_dict(data)
-                )
+                system_domain_status_type_1 = TokenSchemaSystemDomainStatus(data)
 
                 return system_domain_status_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | TokenSchemaSystemDomainStatusType1 | Unset, data)
+            return cast(None | TokenSchemaSystemDomainStatus | Unset, data)
 
         system_domain_status = _parse_system_domain_status(
             d.pop("system_domain_status", UNSET)

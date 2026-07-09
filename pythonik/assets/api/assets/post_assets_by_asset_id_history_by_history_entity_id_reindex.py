@@ -5,6 +5,9 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
+from ...models.post_assets_by_asset_id_history_by_history_entity_id_reindex_body import (
+    PostAssetsByAssetIdHistoryByHistoryEntityIdReindexBody,
+)
 from ...models.post_assets_by_asset_id_history_by_history_entity_id_reindex_response_default import (
     PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefault,
 )
@@ -14,7 +17,10 @@ from ...types import Response
 def _get_kwargs(
     asset_id: str,
     history_entity_id: str,
+    *,
+    body: PostAssetsByAssetIdHistoryByHistoryEntityIdReindexBody,
 ) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
 
     _kwargs: dict[str, Any] = {
         "method": "post",
@@ -24,6 +30,11 @@ def _get_kwargs(
         ),
     }
 
+    _kwargs["json"] = body.to_dict()
+
+    headers["Content-Type"] = "application/json"
+
+    _kwargs["headers"] = headers
     return _kwargs
 
 
@@ -67,6 +78,7 @@ def sync_detailed(
     history_entity_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: PostAssetsByAssetIdHistoryByHistoryEntityIdReindexBody,
 ) -> Response[Any | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefault]:
     """Reindex asset history entity
 
@@ -77,6 +89,7 @@ def sync_detailed(
     Args:
         asset_id (str):
         history_entity_id (str):
+        body (PostAssetsByAssetIdHistoryByHistoryEntityIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -89,6 +102,7 @@ def sync_detailed(
     kwargs = _get_kwargs(
         asset_id=asset_id,
         history_entity_id=history_entity_id,
+        body=body,
     )
 
     response = client.get_httpx_client().request(
@@ -103,6 +117,7 @@ def sync(
     history_entity_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: PostAssetsByAssetIdHistoryByHistoryEntityIdReindexBody,
 ) -> Any | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefault | None:
     """Reindex asset history entity
 
@@ -113,6 +128,7 @@ def sync(
     Args:
         asset_id (str):
         history_entity_id (str):
+        body (PostAssetsByAssetIdHistoryByHistoryEntityIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -126,6 +142,7 @@ def sync(
         asset_id=asset_id,
         history_entity_id=history_entity_id,
         client=client,
+        body=body,
     ).parsed
 
 
@@ -134,6 +151,7 @@ async def asyncio_detailed(
     history_entity_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: PostAssetsByAssetIdHistoryByHistoryEntityIdReindexBody,
 ) -> Response[Any | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefault]:
     """Reindex asset history entity
 
@@ -144,6 +162,7 @@ async def asyncio_detailed(
     Args:
         asset_id (str):
         history_entity_id (str):
+        body (PostAssetsByAssetIdHistoryByHistoryEntityIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -156,6 +175,7 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         asset_id=asset_id,
         history_entity_id=history_entity_id,
+        body=body,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -168,6 +188,7 @@ async def asyncio(
     history_entity_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: PostAssetsByAssetIdHistoryByHistoryEntityIdReindexBody,
 ) -> Any | PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefault | None:
     """Reindex asset history entity
 
@@ -178,6 +199,7 @@ async def asyncio(
     Args:
         asset_id (str):
         history_entity_id (str):
+        body (PostAssetsByAssetIdHistoryByHistoryEntityIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -192,5 +214,6 @@ async def asyncio(
             asset_id=asset_id,
             history_entity_id=history_entity_id,
             client=client,
+            body=body,
         )
     ).parsed

@@ -929,6 +929,9 @@ from .post_assets_by_asset_id_files_by_file_id_multipart_response_default import
 from .post_assets_by_asset_id_files_by_file_id_multipart_url_s3_part_response_default import (
     PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefault,
 )
+from .post_assets_by_asset_id_files_by_file_id_reindex_body import (
+    PostAssetsByAssetIdFilesByFileIdReindexBody,
+)
 from .post_assets_by_asset_id_files_by_file_id_reindex_response_default import (
     PostAssetsByAssetIdFilesByFileIdReindexResponseDefault,
 )
@@ -1049,6 +1052,9 @@ from .post_drm_assets_by_asset_id_versions_by_version_id_proxies_by_proxy_id_aut
 from .post_export_locations_by_export_location_id_bulk_export_response_default import (
     PostExportLocationsByExportLocationIdBulkExportResponseDefault,
 )
+from .post_export_locations_by_export_location_id_reindex_body import (
+    PostExportLocationsByExportLocationIdReindexBody,
+)
 from .post_export_locations_by_export_location_id_reindex_response_default import (
     PostExportLocationsByExportLocationIdReindexResponseDefault,
 )
@@ -1109,8 +1115,14 @@ from .post_storages_by_storage_id_bulk_response_default import (
 from .post_storages_by_storage_id_default_response_default import (
     PostStoragesByStorageIdDefaultResponseDefault,
 )
+from .post_storages_by_storage_id_files_by_file_id_reindex_body import (
+    PostStoragesByStorageIdFilesByFileIdReindexBody,
+)
 from .post_storages_by_storage_id_files_by_file_id_reindex_response_default import (
     PostStoragesByStorageIdFilesByFileIdReindexResponseDefault,
+)
+from .post_storages_by_storage_id_files_reindex_body import (
+    PostStoragesByStorageIdFilesReindexBody,
 )
 from .post_storages_by_storage_id_files_reindex_response_default import (
     PostStoragesByStorageIdFilesReindexResponseDefault,
@@ -1130,15 +1142,18 @@ from .post_storages_by_storage_id_logs_response_200 import (
 from .post_storages_by_storage_id_logs_response_default import (
     PostStoragesByStorageIdLogsResponseDefault,
 )
+from .post_storages_by_storage_id_reindex_body import PostStoragesByStorageIdReindexBody
 from .post_storages_by_storage_id_reindex_response_default import (
     PostStoragesByStorageIdReindexResponseDefault,
 )
 from .post_storages_by_storage_id_scan_response_default import (
     PostStoragesByStorageIdScanResponseDefault,
 )
+from .post_storages_files_reindex_body import PostStoragesFilesReindexBody
 from .post_storages_files_reindex_response_default import (
     PostStoragesFilesReindexResponseDefault,
 )
+from .post_storages_reindex_body import PostStoragesReindexBody
 from .post_storages_reindex_response_default import PostStoragesReindexResponseDefault
 from .post_storages_response_default import PostStoragesResponseDefault
 from .post_storages_swap_response_default import PostStoragesSwapResponseDefault
@@ -1159,6 +1174,9 @@ from .post_transcoders_by_transcoder_id_logs_response_200 import (
 )
 from .post_transcoders_by_transcoder_id_logs_response_default import (
     PostTranscodersByTranscoderIdLogsResponseDefault,
+)
+from .post_transcoders_by_transcoder_id_reindex_body import (
+    PostTranscodersByTranscoderIdReindexBody,
 )
 from .post_transcoders_by_transcoder_id_reindex_response_default import (
     PostTranscodersByTranscoderIdReindexResponseDefault,
@@ -1927,6 +1945,7 @@ __all__ = (
     "PostAssetsByAssetIdFilesByFileIdMultipartGcsComposeUrlResponseDefault",
     "PostAssetsByAssetIdFilesByFileIdMultipartResponseDefault",
     "PostAssetsByAssetIdFilesByFileIdMultipartUrlS3PartResponseDefault",
+    "PostAssetsByAssetIdFilesByFileIdReindexBody",
     "PostAssetsByAssetIdFilesByFileIdReindexResponseDefault",
     "PostAssetsByAssetIdFilesByFileIdSubtitlesResponseDefault",
     "PostAssetsByAssetIdFileSetsBulkResponseDefault",
@@ -1969,6 +1988,7 @@ __all__ = (
     "PostDrmAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdAuthResponse200",
     "PostDrmAssetsByAssetIdVersionsByVersionIdProxiesByProxyIdAuthResponseDefault",
     "PostExportLocationsByExportLocationIdBulkExportResponseDefault",
+    "PostExportLocationsByExportLocationIdReindexBody",
     "PostExportLocationsByExportLocationIdReindexResponseDefault",
     "PostExportLocationsResponseDefault",
     "PostExportsTemporaryFileSetsByFileSetIdStoragesByStorageIdResponseDefault",
@@ -1991,16 +2011,21 @@ __all__ = (
     "PostStoragesByStorageIdAutoScanResponseDefault",
     "PostStoragesByStorageIdBulkResponseDefault",
     "PostStoragesByStorageIdDefaultResponseDefault",
+    "PostStoragesByStorageIdFilesByFileIdReindexBody",
     "PostStoragesByStorageIdFilesByFileIdReindexResponseDefault",
+    "PostStoragesByStorageIdFilesReindexBody",
     "PostStoragesByStorageIdFilesReindexResponseDefault",
     "PostStoragesByStorageIdFilesResponseDefault",
     "PostStoragesByStorageIdGatewayEventsPurgeResponseDefault",
     "PostStoragesByStorageIdGatewayEventsResponseDefault",
     "PostStoragesByStorageIdLogsResponse200",
     "PostStoragesByStorageIdLogsResponseDefault",
+    "PostStoragesByStorageIdReindexBody",
     "PostStoragesByStorageIdReindexResponseDefault",
     "PostStoragesByStorageIdScanResponseDefault",
+    "PostStoragesFilesReindexBody",
     "PostStoragesFilesReindexResponseDefault",
+    "PostStoragesReindexBody",
     "PostStoragesReindexResponseDefault",
     "PostStoragesResponseDefault",
     "PostStoragesSwapResponseDefault",
@@ -2010,6 +2035,7 @@ __all__ = (
     "PostStoragesVerificationsPermissionsResponseDefault",
     "PostTranscodersByTranscoderIdLogsResponse200",
     "PostTranscodersByTranscoderIdLogsResponseDefault",
+    "PostTranscodersByTranscoderIdReindexBody",
     "PostTranscodersByTranscoderIdReindexResponseDefault",
     "PostTranscodersResponseDefault",
     "PostTransfersByTransferIdUrlsResponseDefault",

@@ -5,6 +5,9 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
+from ...models.post_storages_by_storage_id_files_by_file_id_reindex_body import (
+    PostStoragesByStorageIdFilesByFileIdReindexBody,
+)
 from ...models.post_storages_by_storage_id_files_by_file_id_reindex_response_default import (
     PostStoragesByStorageIdFilesByFileIdReindexResponseDefault,
 )
@@ -14,7 +17,10 @@ from ...types import Response
 def _get_kwargs(
     storage_id: str,
     file_id: str,
+    *,
+    body: PostStoragesByStorageIdFilesByFileIdReindexBody,
 ) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
 
     _kwargs: dict[str, Any] = {
         "method": "post",
@@ -24,6 +30,11 @@ def _get_kwargs(
         ),
     }
 
+    _kwargs["json"] = body.to_dict()
+
+    headers["Content-Type"] = "application/json"
+
+    _kwargs["headers"] = headers
     return _kwargs
 
 
@@ -63,6 +74,7 @@ def sync_detailed(
     file_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: PostStoragesByStorageIdFilesByFileIdReindexBody,
 ) -> Response[Any | PostStoragesByStorageIdFilesByFileIdReindexResponseDefault]:
     """Trigger reindexing for a file on a storage
 
@@ -73,6 +85,7 @@ def sync_detailed(
     Args:
         storage_id (str):
         file_id (str):
+        body (PostStoragesByStorageIdFilesByFileIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -85,6 +98,7 @@ def sync_detailed(
     kwargs = _get_kwargs(
         storage_id=storage_id,
         file_id=file_id,
+        body=body,
     )
 
     response = client.get_httpx_client().request(
@@ -99,6 +113,7 @@ def sync(
     file_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: PostStoragesByStorageIdFilesByFileIdReindexBody,
 ) -> Any | PostStoragesByStorageIdFilesByFileIdReindexResponseDefault | None:
     """Trigger reindexing for a file on a storage
 
@@ -109,6 +124,7 @@ def sync(
     Args:
         storage_id (str):
         file_id (str):
+        body (PostStoragesByStorageIdFilesByFileIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -122,6 +138,7 @@ def sync(
         storage_id=storage_id,
         file_id=file_id,
         client=client,
+        body=body,
     ).parsed
 
 
@@ -130,6 +147,7 @@ async def asyncio_detailed(
     file_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: PostStoragesByStorageIdFilesByFileIdReindexBody,
 ) -> Response[Any | PostStoragesByStorageIdFilesByFileIdReindexResponseDefault]:
     """Trigger reindexing for a file on a storage
 
@@ -140,6 +158,7 @@ async def asyncio_detailed(
     Args:
         storage_id (str):
         file_id (str):
+        body (PostStoragesByStorageIdFilesByFileIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -152,6 +171,7 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         storage_id=storage_id,
         file_id=file_id,
+        body=body,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -164,6 +184,7 @@ async def asyncio(
     file_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: PostStoragesByStorageIdFilesByFileIdReindexBody,
 ) -> Any | PostStoragesByStorageIdFilesByFileIdReindexResponseDefault | None:
     """Trigger reindexing for a file on a storage
 
@@ -174,6 +195,7 @@ async def asyncio(
     Args:
         storage_id (str):
         file_id (str):
+        body (PostStoragesByStorageIdFilesByFileIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -188,5 +210,6 @@ async def asyncio(
             storage_id=storage_id,
             file_id=file_id,
             client=client,
+            body=body,
         )
     ).parsed

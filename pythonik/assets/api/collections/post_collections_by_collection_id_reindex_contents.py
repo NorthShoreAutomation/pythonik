@@ -5,6 +5,9 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
+from ...models.post_collections_by_collection_id_reindex_contents_body import (
+    PostCollectionsByCollectionIdReindexContentsBody,
+)
 from ...models.post_collections_by_collection_id_reindex_contents_response_default import (
     PostCollectionsByCollectionIdReindexContentsResponseDefault,
 )
@@ -13,7 +16,10 @@ from ...types import Response
 
 def _get_kwargs(
     collection_id: str,
+    *,
+    body: PostCollectionsByCollectionIdReindexContentsBody,
 ) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
 
     _kwargs: dict[str, Any] = {
         "method": "post",
@@ -22,6 +28,11 @@ def _get_kwargs(
         ),
     }
 
+    _kwargs["json"] = body.to_dict()
+
+    headers["Content-Type"] = "application/json"
+
+    _kwargs["headers"] = headers
     return _kwargs
 
 
@@ -64,6 +75,7 @@ def sync_detailed(
     collection_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: PostCollectionsByCollectionIdReindexContentsBody,
 ) -> Response[Any | PostCollectionsByCollectionIdReindexContentsResponseDefault]:
     """Reindex collection and its content
 
@@ -73,6 +85,7 @@ def sync_detailed(
 
     Args:
         collection_id (str):
+        body (PostCollectionsByCollectionIdReindexContentsBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -84,6 +97,7 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         collection_id=collection_id,
+        body=body,
     )
 
     response = client.get_httpx_client().request(
@@ -97,6 +111,7 @@ def sync(
     collection_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: PostCollectionsByCollectionIdReindexContentsBody,
 ) -> Any | PostCollectionsByCollectionIdReindexContentsResponseDefault | None:
     """Reindex collection and its content
 
@@ -106,6 +121,7 @@ def sync(
 
     Args:
         collection_id (str):
+        body (PostCollectionsByCollectionIdReindexContentsBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -118,6 +134,7 @@ def sync(
     return sync_detailed(
         collection_id=collection_id,
         client=client,
+        body=body,
     ).parsed
 
 
@@ -125,6 +142,7 @@ async def asyncio_detailed(
     collection_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: PostCollectionsByCollectionIdReindexContentsBody,
 ) -> Response[Any | PostCollectionsByCollectionIdReindexContentsResponseDefault]:
     """Reindex collection and its content
 
@@ -134,6 +152,7 @@ async def asyncio_detailed(
 
     Args:
         collection_id (str):
+        body (PostCollectionsByCollectionIdReindexContentsBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -145,6 +164,7 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         collection_id=collection_id,
+        body=body,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -156,6 +176,7 @@ async def asyncio(
     collection_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: PostCollectionsByCollectionIdReindexContentsBody,
 ) -> Any | PostCollectionsByCollectionIdReindexContentsResponseDefault | None:
     """Reindex collection and its content
 
@@ -165,6 +186,7 @@ async def asyncio(
 
     Args:
         collection_id (str):
+        body (PostCollectionsByCollectionIdReindexContentsBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -178,5 +200,6 @@ async def asyncio(
         await asyncio_detailed(
             collection_id=collection_id,
             client=client,
+            body=body,
         )
     ).parsed

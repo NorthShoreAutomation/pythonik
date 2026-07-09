@@ -5,6 +5,9 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
+from ...models.post_storages_by_storage_id_reindex_body import (
+    PostStoragesByStorageIdReindexBody,
+)
 from ...models.post_storages_by_storage_id_reindex_response_default import (
     PostStoragesByStorageIdReindexResponseDefault,
 )
@@ -13,7 +16,10 @@ from ...types import Response
 
 def _get_kwargs(
     storage_id: str,
+    *,
+    body: PostStoragesByStorageIdReindexBody,
 ) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
 
     _kwargs: dict[str, Any] = {
         "method": "post",
@@ -22,6 +28,11 @@ def _get_kwargs(
         ),
     }
 
+    _kwargs["json"] = body.to_dict()
+
+    headers["Content-Type"] = "application/json"
+
+    _kwargs["headers"] = headers
     return _kwargs
 
 
@@ -58,6 +69,7 @@ def sync_detailed(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: PostStoragesByStorageIdReindexBody,
 ) -> Response[Any | PostStoragesByStorageIdReindexResponseDefault]:
     """Trigger reindexing of a storage
 
@@ -67,6 +79,7 @@ def sync_detailed(
 
     Args:
         storage_id (str):
+        body (PostStoragesByStorageIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -78,6 +91,7 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         storage_id=storage_id,
+        body=body,
     )
 
     response = client.get_httpx_client().request(
@@ -91,6 +105,7 @@ def sync(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: PostStoragesByStorageIdReindexBody,
 ) -> Any | PostStoragesByStorageIdReindexResponseDefault | None:
     """Trigger reindexing of a storage
 
@@ -100,6 +115,7 @@ def sync(
 
     Args:
         storage_id (str):
+        body (PostStoragesByStorageIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -112,6 +128,7 @@ def sync(
     return sync_detailed(
         storage_id=storage_id,
         client=client,
+        body=body,
     ).parsed
 
 
@@ -119,6 +136,7 @@ async def asyncio_detailed(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: PostStoragesByStorageIdReindexBody,
 ) -> Response[Any | PostStoragesByStorageIdReindexResponseDefault]:
     """Trigger reindexing of a storage
 
@@ -128,6 +146,7 @@ async def asyncio_detailed(
 
     Args:
         storage_id (str):
+        body (PostStoragesByStorageIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -139,6 +158,7 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         storage_id=storage_id,
+        body=body,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -150,6 +170,7 @@ async def asyncio(
     storage_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: PostStoragesByStorageIdReindexBody,
 ) -> Any | PostStoragesByStorageIdReindexResponseDefault | None:
     """Trigger reindexing of a storage
 
@@ -159,6 +180,7 @@ async def asyncio(
 
     Args:
         storage_id (str):
+        body (PostStoragesByStorageIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -172,5 +194,6 @@ async def asyncio(
         await asyncio_detailed(
             storage_id=storage_id,
             client=client,
+            body=body,
         )
     ).parsed

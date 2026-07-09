@@ -5,16 +5,24 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
+from ...models.post_groups_by_group_id_reindex_body import (
+    PostGroupsByGroupIdReindexBody,
+)
+from ...models.post_groups_by_group_id_reindex_response_201 import (
+    PostGroupsByGroupIdReindexResponse201,
+)
 from ...models.post_groups_by_group_id_reindex_response_default import (
     PostGroupsByGroupIdReindexResponseDefault,
 )
-from ...models.user_schema import UserSchema
 from ...types import Response
 
 
 def _get_kwargs(
     group_id: str,
+    *,
+    body: PostGroupsByGroupIdReindexBody,
 ) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
 
     _kwargs: dict[str, Any] = {
         "method": "post",
@@ -23,16 +31,25 @@ def _get_kwargs(
         ),
     }
 
+    _kwargs["json"] = body.to_dict()
+
+    headers["Content-Type"] = "application/json"
+
+    _kwargs["headers"] = headers
     return _kwargs
 
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Any | PostGroupsByGroupIdReindexResponseDefault | UserSchema:
-    if response.status_code == 200:
-        response_200 = UserSchema.from_dict(response.json())
+) -> (
+    Any
+    | PostGroupsByGroupIdReindexResponse201
+    | PostGroupsByGroupIdReindexResponseDefault
+):
+    if response.status_code == 201:
+        response_201 = PostGroupsByGroupIdReindexResponse201.from_dict(response.json())
 
-        return response_200
+        return response_201
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -55,7 +72,11 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[Any | PostGroupsByGroupIdReindexResponseDefault | UserSchema]:
+) -> Response[
+    Any
+    | PostGroupsByGroupIdReindexResponse201
+    | PostGroupsByGroupIdReindexResponseDefault
+]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -68,7 +89,12 @@ def sync_detailed(
     group_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[Any | PostGroupsByGroupIdReindexResponseDefault | UserSchema]:
+    body: PostGroupsByGroupIdReindexBody,
+) -> Response[
+    Any
+    | PostGroupsByGroupIdReindexResponse201
+    | PostGroupsByGroupIdReindexResponseDefault
+]:
     """Reindex a particular group by id
 
 
@@ -77,17 +103,19 @@ def sync_detailed(
 
     Args:
         group_id (str):
+        body (PostGroupsByGroupIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostGroupsByGroupIdReindexResponseDefault | UserSchema]
+        Response[Any | PostGroupsByGroupIdReindexResponse201 | PostGroupsByGroupIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
         group_id=group_id,
+        body=body,
     )
 
     response = client.get_httpx_client().request(
@@ -101,7 +129,13 @@ def sync(
     group_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Any | PostGroupsByGroupIdReindexResponseDefault | UserSchema | None:
+    body: PostGroupsByGroupIdReindexBody,
+) -> (
+    Any
+    | PostGroupsByGroupIdReindexResponse201
+    | PostGroupsByGroupIdReindexResponseDefault
+    | None
+):
     """Reindex a particular group by id
 
 
@@ -110,18 +144,20 @@ def sync(
 
     Args:
         group_id (str):
+        body (PostGroupsByGroupIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostGroupsByGroupIdReindexResponseDefault | UserSchema
+        Any | PostGroupsByGroupIdReindexResponse201 | PostGroupsByGroupIdReindexResponseDefault
     """
 
     return sync_detailed(
         group_id=group_id,
         client=client,
+        body=body,
     ).parsed
 
 
@@ -129,7 +165,12 @@ async def asyncio_detailed(
     group_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[Any | PostGroupsByGroupIdReindexResponseDefault | UserSchema]:
+    body: PostGroupsByGroupIdReindexBody,
+) -> Response[
+    Any
+    | PostGroupsByGroupIdReindexResponse201
+    | PostGroupsByGroupIdReindexResponseDefault
+]:
     """Reindex a particular group by id
 
 
@@ -138,17 +179,19 @@ async def asyncio_detailed(
 
     Args:
         group_id (str):
+        body (PostGroupsByGroupIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostGroupsByGroupIdReindexResponseDefault | UserSchema]
+        Response[Any | PostGroupsByGroupIdReindexResponse201 | PostGroupsByGroupIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
         group_id=group_id,
+        body=body,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -160,7 +203,13 @@ async def asyncio(
     group_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Any | PostGroupsByGroupIdReindexResponseDefault | UserSchema | None:
+    body: PostGroupsByGroupIdReindexBody,
+) -> (
+    Any
+    | PostGroupsByGroupIdReindexResponse201
+    | PostGroupsByGroupIdReindexResponseDefault
+    | None
+):
     """Reindex a particular group by id
 
 
@@ -169,18 +218,20 @@ async def asyncio(
 
     Args:
         group_id (str):
+        body (PostGroupsByGroupIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostGroupsByGroupIdReindexResponseDefault | UserSchema
+        Any | PostGroupsByGroupIdReindexResponse201 | PostGroupsByGroupIdReindexResponseDefault
     """
 
     return (
         await asyncio_detailed(
             group_id=group_id,
             client=client,
+            body=body,
         )
     ).parsed

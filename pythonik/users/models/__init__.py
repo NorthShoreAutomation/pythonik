@@ -144,6 +144,10 @@ from .post_groups_by_group_id_logo_response_200 import (
 from .post_groups_by_group_id_logo_response_default import (
     PostGroupsByGroupIdLogoResponseDefault,
 )
+from .post_groups_by_group_id_reindex_body import PostGroupsByGroupIdReindexBody
+from .post_groups_by_group_id_reindex_response_201 import (
+    PostGroupsByGroupIdReindexResponse201,
+)
 from .post_groups_by_group_id_reindex_response_default import (
     PostGroupsByGroupIdReindexResponseDefault,
 )
@@ -169,6 +173,10 @@ from .post_users_by_user_id_photo_body import PostUsersByUserIdPhotoBody
 from .post_users_by_user_id_photo_response_201 import PostUsersByUserIdPhotoResponse201
 from .post_users_by_user_id_photo_response_default import (
     PostUsersByUserIdPhotoResponseDefault,
+)
+from .post_users_by_user_id_reindex_body import PostUsersByUserIdReindexBody
+from .post_users_by_user_id_reindex_response_201 import (
+    PostUsersByUserIdReindexResponse201,
 )
 from .post_users_by_user_id_reindex_response_default import (
     PostUsersByUserIdReindexResponseDefault,
@@ -386,6 +394,8 @@ __all__ = (
     "PostGroupsByGroupIdLogoBody",
     "PostGroupsByGroupIdLogoResponse200",
     "PostGroupsByGroupIdLogoResponseDefault",
+    "PostGroupsByGroupIdReindexBody",
+    "PostGroupsByGroupIdReindexResponse201",
     "PostGroupsByGroupIdReindexResponseDefault",
     "PostGroupsByGroupIdUsersByUserIdResponseDefault",
     "PostGroupsMappingsResponseDefault",
@@ -400,6 +410,8 @@ __all__ = (
     "PostUsersByUserIdPhotoBody",
     "PostUsersByUserIdPhotoResponse201",
     "PostUsersByUserIdPhotoResponseDefault",
+    "PostUsersByUserIdReindexBody",
+    "PostUsersByUserIdReindexResponse201",
     "PostUsersByUserIdReindexResponseDefault",
     "PostUsersCurrentOtpConfigureResponseDefault",
     "PostUsersCurrentPhotoBody",

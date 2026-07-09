@@ -5,16 +5,22 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
+from ...models.post_users_by_user_id_reindex_body import PostUsersByUserIdReindexBody
+from ...models.post_users_by_user_id_reindex_response_201 import (
+    PostUsersByUserIdReindexResponse201,
+)
 from ...models.post_users_by_user_id_reindex_response_default import (
     PostUsersByUserIdReindexResponseDefault,
 )
-from ...models.user_schema import UserSchema
 from ...types import Response
 
 
 def _get_kwargs(
     user_id: str,
+    *,
+    body: PostUsersByUserIdReindexBody,
 ) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
 
     _kwargs: dict[str, Any] = {
         "method": "post",
@@ -23,16 +29,23 @@ def _get_kwargs(
         ),
     }
 
+    _kwargs["json"] = body.to_dict()
+
+    headers["Content-Type"] = "application/json"
+
+    _kwargs["headers"] = headers
     return _kwargs
 
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Any | PostUsersByUserIdReindexResponseDefault | UserSchema:
-    if response.status_code == 200:
-        response_200 = UserSchema.from_dict(response.json())
+) -> (
+    Any | PostUsersByUserIdReindexResponse201 | PostUsersByUserIdReindexResponseDefault
+):
+    if response.status_code == 201:
+        response_201 = PostUsersByUserIdReindexResponse201.from_dict(response.json())
 
-        return response_200
+        return response_201
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -55,7 +68,9 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[Any | PostUsersByUserIdReindexResponseDefault | UserSchema]:
+) -> Response[
+    Any | PostUsersByUserIdReindexResponse201 | PostUsersByUserIdReindexResponseDefault
+]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -68,7 +83,10 @@ def sync_detailed(
     user_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[Any | PostUsersByUserIdReindexResponseDefault | UserSchema]:
+    body: PostUsersByUserIdReindexBody,
+) -> Response[
+    Any | PostUsersByUserIdReindexResponse201 | PostUsersByUserIdReindexResponseDefault
+]:
     """Reindex a particular user by id
 
 
@@ -77,17 +95,19 @@ def sync_detailed(
 
     Args:
         user_id (str):
+        body (PostUsersByUserIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostUsersByUserIdReindexResponseDefault | UserSchema]
+        Response[Any | PostUsersByUserIdReindexResponse201 | PostUsersByUserIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
         user_id=user_id,
+        body=body,
     )
 
     response = client.get_httpx_client().request(
@@ -101,7 +121,13 @@ def sync(
     user_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Any | PostUsersByUserIdReindexResponseDefault | UserSchema | None:
+    body: PostUsersByUserIdReindexBody,
+) -> (
+    Any
+    | PostUsersByUserIdReindexResponse201
+    | PostUsersByUserIdReindexResponseDefault
+    | None
+):
     """Reindex a particular user by id
 
 
@@ -110,18 +136,20 @@ def sync(
 
     Args:
         user_id (str):
+        body (PostUsersByUserIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostUsersByUserIdReindexResponseDefault | UserSchema
+        Any | PostUsersByUserIdReindexResponse201 | PostUsersByUserIdReindexResponseDefault
     """
 
     return sync_detailed(
         user_id=user_id,
         client=client,
+        body=body,
     ).parsed
 
 
@@ -129,7 +157,10 @@ async def asyncio_detailed(
     user_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[Any | PostUsersByUserIdReindexResponseDefault | UserSchema]:
+    body: PostUsersByUserIdReindexBody,
+) -> Response[
+    Any | PostUsersByUserIdReindexResponse201 | PostUsersByUserIdReindexResponseDefault
+]:
     """Reindex a particular user by id
 
 
@@ -138,17 +169,19 @@ async def asyncio_detailed(
 
     Args:
         user_id (str):
+        body (PostUsersByUserIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostUsersByUserIdReindexResponseDefault | UserSchema]
+        Response[Any | PostUsersByUserIdReindexResponse201 | PostUsersByUserIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
         user_id=user_id,
+        body=body,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -160,7 +193,13 @@ async def asyncio(
     user_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Any | PostUsersByUserIdReindexResponseDefault | UserSchema | None:
+    body: PostUsersByUserIdReindexBody,
+) -> (
+    Any
+    | PostUsersByUserIdReindexResponse201
+    | PostUsersByUserIdReindexResponseDefault
+    | None
+):
     """Reindex a particular user by id
 
 
@@ -169,18 +208,20 @@ async def asyncio(
 
     Args:
         user_id (str):
+        body (PostUsersByUserIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostUsersByUserIdReindexResponseDefault | UserSchema
+        Any | PostUsersByUserIdReindexResponse201 | PostUsersByUserIdReindexResponseDefault
     """
 
     return (
         await asyncio_detailed(
             user_id=user_id,
             client=client,
+            body=body,
         )
     ).parsed

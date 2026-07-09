@@ -5,7 +5,6 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
-from ...models.custom_action_schema import CustomActionSchema
 from ...models.delete_custom_actions_by_context_by_action_id_response_default import (
     DeleteCustomActionsByContextByActionIdResponseDefault,
 )
@@ -30,10 +29,9 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Any | CustomActionSchema | DeleteCustomActionsByContextByActionIdResponseDefault:
+) -> Any | DeleteCustomActionsByContextByActionIdResponseDefault:
     if response.status_code == 204:
-        response_204 = CustomActionSchema.from_dict(response.json())
-
+        response_204 = cast(Any, None)
         return response_204
 
     if response.status_code == 400:
@@ -53,9 +51,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[
-    Any | CustomActionSchema | DeleteCustomActionsByContextByActionIdResponseDefault
-]:
+) -> Response[Any | DeleteCustomActionsByContextByActionIdResponseDefault]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -69,9 +65,7 @@ def sync_detailed(
     action_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any | CustomActionSchema | DeleteCustomActionsByContextByActionIdResponseDefault
-]:
+) -> Response[Any | DeleteCustomActionsByContextByActionIdResponseDefault]:
     """Deletes an custom action
 
     Args:
@@ -83,7 +77,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CustomActionSchema | DeleteCustomActionsByContextByActionIdResponseDefault]
+        Response[Any | DeleteCustomActionsByContextByActionIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -103,12 +97,7 @@ def sync(
     action_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | CustomActionSchema
-    | DeleteCustomActionsByContextByActionIdResponseDefault
-    | None
-):
+) -> Any | DeleteCustomActionsByContextByActionIdResponseDefault | None:
     """Deletes an custom action
 
     Args:
@@ -120,7 +109,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CustomActionSchema | DeleteCustomActionsByContextByActionIdResponseDefault
+        Any | DeleteCustomActionsByContextByActionIdResponseDefault
     """
 
     return sync_detailed(
@@ -135,9 +124,7 @@ async def asyncio_detailed(
     action_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[
-    Any | CustomActionSchema | DeleteCustomActionsByContextByActionIdResponseDefault
-]:
+) -> Response[Any | DeleteCustomActionsByContextByActionIdResponseDefault]:
     """Deletes an custom action
 
     Args:
@@ -149,7 +136,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | CustomActionSchema | DeleteCustomActionsByContextByActionIdResponseDefault]
+        Response[Any | DeleteCustomActionsByContextByActionIdResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -167,12 +154,7 @@ async def asyncio(
     action_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> (
-    Any
-    | CustomActionSchema
-    | DeleteCustomActionsByContextByActionIdResponseDefault
-    | None
-):
+) -> Any | DeleteCustomActionsByContextByActionIdResponseDefault | None:
     """Deletes an custom action
 
     Args:
@@ -184,7 +166,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | CustomActionSchema | DeleteCustomActionsByContextByActionIdResponseDefault
+        Any | DeleteCustomActionsByContextByActionIdResponseDefault
     """
 
     return (

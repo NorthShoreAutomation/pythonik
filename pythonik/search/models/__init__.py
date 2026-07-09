@@ -175,6 +175,9 @@ from .post_search_saved_group_by_group_id_search_by_search_id_response_default i
 from .post_search_saved_group_response_default import (
     PostSearchSavedGroupResponseDefault,
 )
+from .post_search_saved_groups_by_group_id_reindex_body import (
+    PostSearchSavedGroupsByGroupIdReindexBody,
+)
 from .post_search_saved_groups_by_group_id_reindex_response_201 import (
     PostSearchSavedGroupsByGroupIdReindexResponse201,
 )
@@ -373,6 +376,7 @@ __all__ = (
     "PostSearchSavedBySearchIdReindexResponseDefault",
     "PostSearchSavedGroupByGroupIdSearchBySearchIdResponseDefault",
     "PostSearchSavedGroupResponseDefault",
+    "PostSearchSavedGroupsByGroupIdReindexBody",
     "PostSearchSavedGroupsByGroupIdReindexResponse201",
     "PostSearchSavedGroupsByGroupIdReindexResponseDefault",
     "PostSearchSavedResponseDefault",

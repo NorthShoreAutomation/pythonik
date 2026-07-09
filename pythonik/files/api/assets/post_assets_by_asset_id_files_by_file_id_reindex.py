@@ -5,6 +5,9 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
+from ...models.post_assets_by_asset_id_files_by_file_id_reindex_body import (
+    PostAssetsByAssetIdFilesByFileIdReindexBody,
+)
 from ...models.post_assets_by_asset_id_files_by_file_id_reindex_response_default import (
     PostAssetsByAssetIdFilesByFileIdReindexResponseDefault,
 )
@@ -14,7 +17,10 @@ from ...types import Response
 def _get_kwargs(
     asset_id: str,
     file_id: str,
+    *,
+    body: PostAssetsByAssetIdFilesByFileIdReindexBody,
 ) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
 
     _kwargs: dict[str, Any] = {
         "method": "post",
@@ -24,6 +30,11 @@ def _get_kwargs(
         ),
     }
 
+    _kwargs["json"] = body.to_dict()
+
+    headers["Content-Type"] = "application/json"
+
+    _kwargs["headers"] = headers
     return _kwargs
 
 
@@ -61,6 +72,7 @@ def sync_detailed(
     file_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: PostAssetsByAssetIdFilesByFileIdReindexBody,
 ) -> Response[Any | PostAssetsByAssetIdFilesByFileIdReindexResponseDefault]:
     """Trigger reindexing of a file
 
@@ -71,6 +83,7 @@ def sync_detailed(
     Args:
         asset_id (str):
         file_id (str):
+        body (PostAssetsByAssetIdFilesByFileIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -83,6 +96,7 @@ def sync_detailed(
     kwargs = _get_kwargs(
         asset_id=asset_id,
         file_id=file_id,
+        body=body,
     )
 
     response = client.get_httpx_client().request(
@@ -97,6 +111,7 @@ def sync(
     file_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: PostAssetsByAssetIdFilesByFileIdReindexBody,
 ) -> Any | PostAssetsByAssetIdFilesByFileIdReindexResponseDefault | None:
     """Trigger reindexing of a file
 
@@ -107,6 +122,7 @@ def sync(
     Args:
         asset_id (str):
         file_id (str):
+        body (PostAssetsByAssetIdFilesByFileIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -120,6 +136,7 @@ def sync(
         asset_id=asset_id,
         file_id=file_id,
         client=client,
+        body=body,
     ).parsed
 
 
@@ -128,6 +145,7 @@ async def asyncio_detailed(
     file_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: PostAssetsByAssetIdFilesByFileIdReindexBody,
 ) -> Response[Any | PostAssetsByAssetIdFilesByFileIdReindexResponseDefault]:
     """Trigger reindexing of a file
 
@@ -138,6 +156,7 @@ async def asyncio_detailed(
     Args:
         asset_id (str):
         file_id (str):
+        body (PostAssetsByAssetIdFilesByFileIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -150,6 +169,7 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         asset_id=asset_id,
         file_id=file_id,
+        body=body,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -162,6 +182,7 @@ async def asyncio(
     file_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: PostAssetsByAssetIdFilesByFileIdReindexBody,
 ) -> Any | PostAssetsByAssetIdFilesByFileIdReindexResponseDefault | None:
     """Trigger reindexing of a file
 
@@ -172,6 +193,7 @@ async def asyncio(
     Args:
         asset_id (str):
         file_id (str):
+        body (PostAssetsByAssetIdFilesByFileIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -186,5 +208,6 @@ async def asyncio(
             asset_id=asset_id,
             file_id=file_id,
             client=client,
+            body=body,
         )
     ).parsed

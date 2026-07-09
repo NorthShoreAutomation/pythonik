@@ -5,6 +5,9 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
+from ...models.post_export_locations_by_export_location_id_reindex_body import (
+    PostExportLocationsByExportLocationIdReindexBody,
+)
 from ...models.post_export_locations_by_export_location_id_reindex_response_default import (
     PostExportLocationsByExportLocationIdReindexResponseDefault,
 )
@@ -13,7 +16,10 @@ from ...types import Response
 
 def _get_kwargs(
     export_location_id: str,
+    *,
+    body: PostExportLocationsByExportLocationIdReindexBody,
 ) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
 
     _kwargs: dict[str, Any] = {
         "method": "post",
@@ -22,6 +28,11 @@ def _get_kwargs(
         ),
     }
 
+    _kwargs["json"] = body.to_dict()
+
+    headers["Content-Type"] = "application/json"
+
+    _kwargs["headers"] = headers
     return _kwargs
 
 
@@ -60,6 +71,7 @@ def sync_detailed(
     export_location_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: PostExportLocationsByExportLocationIdReindexBody,
 ) -> Response[Any | PostExportLocationsByExportLocationIdReindexResponseDefault]:
     """Trigger reindexing of a export location
 
@@ -69,6 +81,7 @@ def sync_detailed(
 
     Args:
         export_location_id (str):
+        body (PostExportLocationsByExportLocationIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -80,6 +93,7 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         export_location_id=export_location_id,
+        body=body,
     )
 
     response = client.get_httpx_client().request(
@@ -93,6 +107,7 @@ def sync(
     export_location_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: PostExportLocationsByExportLocationIdReindexBody,
 ) -> Any | PostExportLocationsByExportLocationIdReindexResponseDefault | None:
     """Trigger reindexing of a export location
 
@@ -102,6 +117,7 @@ def sync(
 
     Args:
         export_location_id (str):
+        body (PostExportLocationsByExportLocationIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -114,6 +130,7 @@ def sync(
     return sync_detailed(
         export_location_id=export_location_id,
         client=client,
+        body=body,
     ).parsed
 
 
@@ -121,6 +138,7 @@ async def asyncio_detailed(
     export_location_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: PostExportLocationsByExportLocationIdReindexBody,
 ) -> Response[Any | PostExportLocationsByExportLocationIdReindexResponseDefault]:
     """Trigger reindexing of a export location
 
@@ -130,6 +148,7 @@ async def asyncio_detailed(
 
     Args:
         export_location_id (str):
+        body (PostExportLocationsByExportLocationIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -141,6 +160,7 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         export_location_id=export_location_id,
+        body=body,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -152,6 +172,7 @@ async def asyncio(
     export_location_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: PostExportLocationsByExportLocationIdReindexBody,
 ) -> Any | PostExportLocationsByExportLocationIdReindexResponseDefault | None:
     """Trigger reindexing of a export location
 
@@ -161,6 +182,7 @@ async def asyncio(
 
     Args:
         export_location_id (str):
+        body (PostExportLocationsByExportLocationIdReindexBody):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -174,5 +196,6 @@ async def asyncio(
         await asyncio_detailed(
             export_location_id=export_location_id,
             client=client,
+            body=body,
         )
     ).parsed

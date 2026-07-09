@@ -872,6 +872,9 @@ from .post_approvals_bulk_remove_response_default import (
     PostApprovalsBulkRemoveResponseDefault,
 )
 from .post_approvals_bulk_response_default import PostApprovalsBulkResponseDefault
+from .post_assets_by_asset_id_history_by_history_entity_id_reindex_body import (
+    PostAssetsByAssetIdHistoryByHistoryEntityIdReindexBody,
+)
 from .post_assets_by_asset_id_history_by_history_entity_id_reindex_response_default import (
     PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefault,
 )
@@ -954,6 +957,9 @@ from .post_collections_by_collection_id_contents_response_default import (
 )
 from .post_collections_by_collection_id_keyframes_response_default import (
     PostCollectionsByCollectionIdKeyframesResponseDefault,
+)
+from .post_collections_by_collection_id_reindex_contents_body import (
+    PostCollectionsByCollectionIdReindexContentsBody,
 )
 from .post_collections_by_collection_id_reindex_contents_response_default import (
     PostCollectionsByCollectionIdReindexContentsResponseDefault,
@@ -1781,6 +1787,7 @@ __all__ = (
     "PortfoliosSchema",
     "PostApprovalsBulkRemoveResponseDefault",
     "PostApprovalsBulkResponseDefault",
+    "PostAssetsByAssetIdHistoryByHistoryEntityIdReindexBody",
     "PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefault",
     "PostAssetsByAssetIdHistoryResponseDefault",
     "PostAssetsByAssetIdReindexResponseDefault",
@@ -1810,6 +1817,7 @@ __all__ = (
     "PostCollectionsByCollectionIdContentsOrderingCustomResponseDefault",
     "PostCollectionsByCollectionIdContentsResponseDefault",
     "PostCollectionsByCollectionIdKeyframesResponseDefault",
+    "PostCollectionsByCollectionIdReindexContentsBody",
     "PostCollectionsByCollectionIdReindexContentsResponseDefault",
     "PostCollectionsByCollectionIdReindexResponseDefault",
     "PostCollectionsByCollectionIdSubcollectionsResponseDefault",

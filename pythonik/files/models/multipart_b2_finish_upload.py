@@ -1,0 +1,69 @@
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
+
+from attrs import define as _attrs_define
+from attrs import field as _attrs_field
+
+T = TypeVar("T", bound="MultipartB2FinishUpload")
+
+
+@_attrs_define
+class MultipartB2FinishUpload:
+    """
+    Attributes:
+        sha1_list (list[str]):
+        upload_file_id (str):
+    """
+
+    sha1_list: list[str]
+    upload_file_id: str
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+    def to_dict(self) -> dict[str, Any]:
+        sha1_list = self.sha1_list
+
+        upload_file_id = self.upload_file_id
+
+        field_dict: dict[str, Any] = {}
+        field_dict.update(self.additional_properties)
+        field_dict.update(
+            {
+                "sha1_list": sha1_list,
+                "upload_file_id": upload_file_id,
+            }
+        )
+
+        return field_dict
+
+    @classmethod
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
+        sha1_list = cast(list[str], d.pop("sha1_list"))
+
+        upload_file_id = d.pop("upload_file_id")
+
+        multipart_b2_finish_upload = cls(
+            sha1_list=sha1_list,
+            upload_file_id=upload_file_id,
+        )
+
+        multipart_b2_finish_upload.additional_properties = d
+        return multipart_b2_finish_upload
+
+    @property
+    def additional_keys(self) -> list[str]:
+        return list(self.additional_properties.keys())
+
+    def __getitem__(self, key: str) -> Any:
+        return self.additional_properties[key]
+
+    def __setitem__(self, key: str, value: Any) -> None:
+        self.additional_properties[key] = value
+
+    def __delitem__(self, key: str) -> None:
+        del self.additional_properties[key]
+
+    def __contains__(self, key: str) -> bool:
+        return key in self.additional_properties

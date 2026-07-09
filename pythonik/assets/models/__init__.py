@@ -1,0 +1,2037 @@
+"""Contains all the data models used in inputs/outputs"""
+
+from .approval_by_schema import ApprovalBySchema
+from .approval_by_schema_status import ApprovalBySchemaStatus
+from .approval_job_schema import ApprovalJobSchema
+from .approval_schema import ApprovalSchema
+from .approval_schema_status import ApprovalSchemaStatus
+from .approval_schema_user_status import ApprovalSchemaUserStatus
+from .approvals_by_schema import ApprovalsBySchema
+from .asset_base_schema import AssetBaseSchema
+from .asset_base_schema_analyze_status import AssetBaseSchemaAnalyzeStatus
+from .asset_base_schema_archive_status import AssetBaseSchemaArchiveStatus
+from .asset_base_schema_face_recognition_status import (
+    AssetBaseSchemaFaceRecognitionStatus,
+)
+from .asset_base_schema_status import AssetBaseSchemaStatus
+from .asset_base_schema_type import AssetBaseSchemaType
+from .asset_create_schema import AssetCreateSchema
+from .asset_create_schema_analyze_status import AssetCreateSchemaAnalyzeStatus
+from .asset_create_schema_archive_status import AssetCreateSchemaArchiveStatus
+from .asset_create_schema_face_recognition_status import (
+    AssetCreateSchemaFaceRecognitionStatus,
+)
+from .asset_create_schema_status import AssetCreateSchemaStatus
+from .asset_create_schema_type import AssetCreateSchemaType
+from .asset_edit_schema import AssetEditSchema
+from .asset_edit_schema_analyze_status import AssetEditSchemaAnalyzeStatus
+from .asset_edit_schema_archive_status import AssetEditSchemaArchiveStatus
+from .asset_edit_schema_face_recognition_status import (
+    AssetEditSchemaFaceRecognitionStatus,
+)
+from .asset_edit_schema_status import AssetEditSchemaStatus
+from .asset_edit_schema_type import AssetEditSchemaType
+from .asset_elastic_schema import AssetElasticSchema
+from .asset_elastic_schema_analyze_status import AssetElasticSchemaAnalyzeStatus
+from .asset_elastic_schema_archive_status import AssetElasticSchemaArchiveStatus
+from .asset_elastic_schema_face_recognition_status import (
+    AssetElasticSchemaFaceRecognitionStatus,
+)
+from .asset_elastic_schema_files_type_0_item import AssetElasticSchemaFilesType0Item
+from .asset_elastic_schema_formats_type_0_item import AssetElasticSchemaFormatsType0Item
+from .asset_elastic_schema_keyframes_type_0_item import (
+    AssetElasticSchemaKeyframesType0Item,
+)
+from .asset_elastic_schema_metadata_type_0 import AssetElasticSchemaMetadataType0
+from .asset_elastic_schema_proxies_type_0_item import AssetElasticSchemaProxiesType0Item
+from .asset_elastic_schema_status import AssetElasticSchemaStatus
+from .asset_elastic_schema_type import AssetElasticSchemaType
+from .asset_history_base_schema import AssetHistoryBaseSchema
+from .asset_history_base_schema_operation_type import (
+    AssetHistoryBaseSchemaOperationType,
+)
+from .asset_history_bulk_schema import AssetHistoryBulkSchema
+from .asset_history_bulk_schema_assets_jobs_map_type_0 import (
+    AssetHistoryBulkSchemaAssetsJobsMapType0,
+)
+from .asset_history_bulk_schema_operation_type import (
+    AssetHistoryBulkSchemaOperationType,
+)
+from .asset_history_elastic_schema import AssetHistoryElasticSchema
+from .asset_history_elastic_schema_operation_type import (
+    AssetHistoryElasticSchemaOperationType,
+)
+from .asset_history_entities_schema import AssetHistoryEntitiesSchema
+from .asset_history_schema import AssetHistorySchema
+from .asset_history_schema_operation_type import AssetHistorySchemaOperationType
+from .asset_person_change_schema import AssetPersonChangeSchema
+from .asset_post_create import AssetPostCreate
+from .asset_post_create_analyze_status import AssetPostCreateAnalyzeStatus
+from .asset_post_create_archive_status import AssetPostCreateArchiveStatus
+from .asset_post_create_face_recognition_status import (
+    AssetPostCreateFaceRecognitionStatus,
+)
+from .asset_post_create_publication_status import AssetPostCreatePublicationStatus
+from .asset_post_create_schema import AssetPostCreateSchema
+from .asset_post_create_schema_analyze_status import AssetPostCreateSchemaAnalyzeStatus
+from .asset_post_create_schema_archive_status import AssetPostCreateSchemaArchiveStatus
+from .asset_post_create_schema_face_recognition_status import (
+    AssetPostCreateSchemaFaceRecognitionStatus,
+)
+from .asset_post_create_schema_publication_status import (
+    AssetPostCreateSchemaPublicationStatus,
+)
+from .asset_post_create_schema_status import AssetPostCreateSchemaStatus
+from .asset_post_create_schema_type import AssetPostCreateSchemaType
+from .asset_post_create_status import AssetPostCreateStatus
+from .asset_post_create_type import AssetPostCreateType
+from .asset_post_edit import AssetPostEdit
+from .asset_post_edit_analyze_status import AssetPostEditAnalyzeStatus
+from .asset_post_edit_archive_status import AssetPostEditArchiveStatus
+from .asset_post_edit_face_recognition_status import AssetPostEditFaceRecognitionStatus
+from .asset_post_edit_publication_status import AssetPostEditPublicationStatus
+from .asset_post_edit_schema import AssetPostEditSchema
+from .asset_post_edit_schema_analyze_status import AssetPostEditSchemaAnalyzeStatus
+from .asset_post_edit_schema_archive_status import AssetPostEditSchemaArchiveStatus
+from .asset_post_edit_schema_face_recognition_status import (
+    AssetPostEditSchemaFaceRecognitionStatus,
+)
+from .asset_post_edit_schema_publication_status import (
+    AssetPostEditSchemaPublicationStatus,
+)
+from .asset_post_edit_schema_status import AssetPostEditSchemaStatus
+from .asset_post_edit_schema_type import AssetPostEditSchemaType
+from .asset_post_edit_status import AssetPostEditStatus
+from .asset_post_edit_type import AssetPostEditType
+from .asset_post_elastic import AssetPostElastic
+from .asset_post_elastic_analyze_status import AssetPostElasticAnalyzeStatus
+from .asset_post_elastic_archive_status import AssetPostElasticArchiveStatus
+from .asset_post_elastic_face_recognition_status import (
+    AssetPostElasticFaceRecognitionStatus,
+)
+from .asset_post_elastic_files_type_0_item import AssetPostElasticFilesType0Item
+from .asset_post_elastic_formats_type_0_item import AssetPostElasticFormatsType0Item
+from .asset_post_elastic_keyframes_type_0_item import AssetPostElasticKeyframesType0Item
+from .asset_post_elastic_metadata_type_0 import AssetPostElasticMetadataType0
+from .asset_post_elastic_proxies_type_0_item import AssetPostElasticProxiesType0Item
+from .asset_post_elastic_publication_status import AssetPostElasticPublicationStatus
+from .asset_post_elastic_schema import AssetPostElasticSchema
+from .asset_post_elastic_schema_analyze_status import (
+    AssetPostElasticSchemaAnalyzeStatus,
+)
+from .asset_post_elastic_schema_archive_status import (
+    AssetPostElasticSchemaArchiveStatus,
+)
+from .asset_post_elastic_schema_face_recognition_status import (
+    AssetPostElasticSchemaFaceRecognitionStatus,
+)
+from .asset_post_elastic_schema_files_type_0_item import (
+    AssetPostElasticSchemaFilesType0Item,
+)
+from .asset_post_elastic_schema_formats_type_0_item import (
+    AssetPostElasticSchemaFormatsType0Item,
+)
+from .asset_post_elastic_schema_keyframes_type_0_item import (
+    AssetPostElasticSchemaKeyframesType0Item,
+)
+from .asset_post_elastic_schema_metadata_type_0 import (
+    AssetPostElasticSchemaMetadataType0,
+)
+from .asset_post_elastic_schema_proxies_type_0_item import (
+    AssetPostElasticSchemaProxiesType0Item,
+)
+from .asset_post_elastic_schema_publication_status import (
+    AssetPostElasticSchemaPublicationStatus,
+)
+from .asset_post_elastic_schema_status import AssetPostElasticSchemaStatus
+from .asset_post_elastic_schema_type import AssetPostElasticSchemaType
+from .asset_post_elastic_status import AssetPostElasticStatus
+from .asset_post_elastic_type import AssetPostElasticType
+from .asset_post_schema import AssetPostSchema
+from .asset_post_schema_analyze_status import AssetPostSchemaAnalyzeStatus
+from .asset_post_schema_archive_status import AssetPostSchemaArchiveStatus
+from .asset_post_schema_face_recognition_status import (
+    AssetPostSchemaFaceRecognitionStatus,
+)
+from .asset_post_schema_publication_status import AssetPostSchemaPublicationStatus
+from .asset_post_schema_status import AssetPostSchemaStatus
+from .asset_post_schema_type import AssetPostSchemaType
+from .asset_schema import AssetSchema
+from .asset_schema_analyze_status import AssetSchemaAnalyzeStatus
+from .asset_schema_archive_status import AssetSchemaArchiveStatus
+from .asset_schema_face_recognition_status import AssetSchemaFaceRecognitionStatus
+from .asset_schema_status import AssetSchemaStatus
+from .asset_schema_type import AssetSchemaType
+from .asset_transcription_from_subtitle_schema import (
+    AssetTranscriptionFromSubtitleSchema,
+)
+from .asset_transcription_from_subtitle_schema_format import (
+    AssetTranscriptionFromSubtitleSchemaFormat,
+)
+from .asset_transcription_properties_schema import AssetTranscriptionPropertiesSchema
+from .asset_transcription_properties_schema_speaker_labels_type_0 import (
+    AssetTranscriptionPropertiesSchemaSpeakerLabelsType0,
+)
+from .asset_transcriptions_properties_schema import AssetTranscriptionsPropertiesSchema
+from .asset_version import AssetVersion
+from .asset_version_analyze_status import AssetVersionAnalyzeStatus
+from .asset_version_archive_status import AssetVersionArchiveStatus
+from .asset_version_face_recognition_status import AssetVersionFaceRecognitionStatus
+from .asset_version_lookup_schema import AssetVersionLookupSchema
+from .asset_version_schema import AssetVersionSchema
+from .asset_version_schema_analyze_status import AssetVersionSchemaAnalyzeStatus
+from .asset_version_schema_archive_status import AssetVersionSchemaArchiveStatus
+from .asset_version_schema_face_recognition_status import (
+    AssetVersionSchemaFaceRecognitionStatus,
+)
+from .asset_version_schema_status import AssetVersionSchemaStatus
+from .asset_version_schema_transcribe_status import AssetVersionSchemaTranscribeStatus
+from .asset_version_status import AssetVersionStatus
+from .asset_version_transcribe_status import AssetVersionTranscribeStatus
+from .asset_versions_schema import AssetVersionsSchema
+from .assets_history_query_params_schema import AssetsHistoryQueryParamsSchema
+from .assets_query_params_schema import AssetsQueryParamsSchema
+from .assets_query_params_schema_types_type_0_item import (
+    AssetsQueryParamsSchemaTypesType0Item,
+)
+from .assets_schema import AssetsSchema
+from .base_query_params_schema import BaseQueryParamsSchema
+from .bulk_action_schema import BulkActionSchema
+from .bulk_action_schema_object_type import BulkActionSchemaObjectType
+from .bulk_add_to_favorites_schema import BulkAddToFavoritesSchema
+from .bulk_add_to_favorites_schema_object_type import BulkAddToFavoritesSchemaObjectType
+from .bulk_asset_edit_schema import BulkAssetEditSchema
+from .bulk_asset_person_change_schema import BulkAssetPersonChangeSchema
+from .bulk_asset_version_edit_schema import BulkAssetVersionEditSchema
+from .bulk_collection_ac_ls_update_schema import BulkCollectionACLsUpdateSchema
+from .bulk_collection_ac_ls_update_schema_callback_data_request_type_0 import (
+    BulkCollectionACLsUpdateSchemaCallbackDataRequestType0,
+)
+from .bulk_collection_ac_ls_update_schema_callback_data_type_0 import (
+    BulkCollectionACLsUpdateSchemaCallbackDataType0,
+)
+from .bulk_collection_action_schema import BulkCollectionActionSchema
+from .bulk_collection_action_schema_callback_data_request_type_0 import (
+    BulkCollectionActionSchemaCallbackDataRequestType0,
+)
+from .bulk_collection_action_schema_callback_data_type_0 import (
+    BulkCollectionActionSchemaCallbackDataType0,
+)
+from .bulk_collection_analyze_schema import BulkCollectionAnalyzeSchema
+from .bulk_collection_analyze_schema_callback_data_request_type_0 import (
+    BulkCollectionAnalyzeSchemaCallbackDataRequestType0,
+)
+from .bulk_collection_analyze_schema_callback_data_type_0 import (
+    BulkCollectionAnalyzeSchemaCallbackDataType0,
+)
+from .bulk_collection_delete_schema import BulkCollectionDeleteSchema
+from .bulk_collection_face_extraction_schema import BulkCollectionFaceExtractionSchema
+from .bulk_collection_face_extraction_schema_callback_data_request_type_0 import (
+    BulkCollectionFaceExtractionSchemaCallbackDataRequestType0,
+)
+from .bulk_collection_face_extraction_schema_callback_data_type_0 import (
+    BulkCollectionFaceExtractionSchemaCallbackDataType0,
+)
+from .bulk_collection_metadata_filling_schema import BulkCollectionMetadataFillingSchema
+from .bulk_collection_metadata_filling_schema_callback_data_request_type_0 import (
+    BulkCollectionMetadataFillingSchemaCallbackDataRequestType0,
+)
+from .bulk_collection_metadata_filling_schema_callback_data_type_0 import (
+    BulkCollectionMetadataFillingSchemaCallbackDataType0,
+)
+from .bulk_collection_metadata_update_schema import BulkCollectionMetadataUpdateSchema
+from .bulk_collection_metadata_update_schema_callback_data_request_type_0 import (
+    BulkCollectionMetadataUpdateSchemaCallbackDataRequestType0,
+)
+from .bulk_collection_metadata_update_schema_callback_data_type_0 import (
+    BulkCollectionMetadataUpdateSchemaCallbackDataType0,
+)
+from .bulk_collection_transcode_schema import BulkCollectionTranscodeSchema
+from .bulk_collection_transcode_schema_callback_data_request_type_0 import (
+    BulkCollectionTranscodeSchemaCallbackDataRequestType0,
+)
+from .bulk_collection_transcode_schema_callback_data_type_0 import (
+    BulkCollectionTranscodeSchemaCallbackDataType0,
+)
+from .bulk_collection_transcribe_schema import BulkCollectionTranscribeSchema
+from .bulk_collection_transcribe_schema_callback_data_request_type_0 import (
+    BulkCollectionTranscribeSchemaCallbackDataRequestType0,
+)
+from .bulk_collection_transcribe_schema_callback_data_type_0 import (
+    BulkCollectionTranscribeSchemaCallbackDataType0,
+)
+from .bulk_collection_transfer_schema import BulkCollectionTransferSchema
+from .bulk_collection_transfer_schema_callback_data_request_type_0 import (
+    BulkCollectionTransferSchemaCallbackDataRequestType0,
+)
+from .bulk_collection_transfer_schema_callback_data_type_0 import (
+    BulkCollectionTransferSchemaCallbackDataType0,
+)
+from .bulk_create_segments_schema import BulkCreateSegmentsSchema
+from .bulk_delete_from_favorites_schema import BulkDeleteFromFavoritesSchema
+from .bulk_delete_from_favorites_schema_object_type import (
+    BulkDeleteFromFavoritesSchemaObjectType,
+)
+from .bulk_delete_schema import BulkDeleteSchema
+from .bulk_delete_schema_object_type import BulkDeleteSchemaObjectType
+from .bulk_edit_asset_segments_schema import BulkEditAssetSegmentsSchema
+from .bulk_edit_segments_schema import BulkEditSegmentsSchema
+from .bulk_remove_approval_schema import BulkRemoveApprovalSchema
+from .bulk_remove_approval_schema_object_type import BulkRemoveApprovalSchemaObjectType
+from .bulk_set_approval_schema import BulkSetApprovalSchema
+from .bulk_set_approval_schema_object_type import BulkSetApprovalSchemaObjectType
+from .bulk_set_approval_schema_status import BulkSetApprovalSchemaStatus
+from .bulk_share_create_schema import BulkShareCreateSchema
+from .bulk_share_create_schema_drm import BulkShareCreateSchemaDrm
+from .bulk_share_create_schema_object_type import BulkShareCreateSchemaObjectType
+from .bulk_share_create_schema_watermark import BulkShareCreateSchemaWatermark
+from .bulk_share_delete_schema import BulkShareDeleteSchema
+from .collection_base_schema import CollectionBaseSchema
+from .collection_base_schema_custom_order_status import (
+    CollectionBaseSchemaCustomOrderStatus,
+)
+from .collection_base_schema_keyframes_type_0_item import (
+    CollectionBaseSchemaKeyframesType0Item,
+)
+from .collection_base_schema_metadata_type_0 import CollectionBaseSchemaMetadataType0
+from .collection_base_schema_status import CollectionBaseSchemaStatus
+from .collection_content_info_schema import CollectionContentInfoSchema
+from .collection_content_ordering_schema import CollectionContentOrderingSchema
+from .collection_content_query_params_schema import CollectionContentQueryParamsSchema
+from .collection_content_query_params_schema_types_type_0_item import (
+    CollectionContentQueryParamsSchemaTypesType0Item,
+)
+from .collection_content_schema import CollectionContentSchema
+from .collection_contents_schema import CollectionContentsSchema
+from .collection_elastic import CollectionElastic
+from .collection_elastic_custom_order_status import CollectionElasticCustomOrderStatus
+from .collection_elastic_keyframes_type_0_item import (
+    CollectionElasticKeyframesType0Item,
+)
+from .collection_elastic_metadata_type_0 import CollectionElasticMetadataType0
+from .collection_elastic_schema import CollectionElasticSchema
+from .collection_elastic_schema_custom_order_status import (
+    CollectionElasticSchemaCustomOrderStatus,
+)
+from .collection_elastic_schema_keyframes_type_0_item import (
+    CollectionElasticSchemaKeyframesType0Item,
+)
+from .collection_elastic_schema_metadata_type_0 import (
+    CollectionElasticSchemaMetadataType0,
+)
+from .collection_elastic_schema_status import CollectionElasticSchemaStatus
+from .collection_elastic_status import CollectionElasticStatus
+from .collection_input_schema import CollectionInputSchema
+from .collection_input_schema_status import CollectionInputSchemaStatus
+from .collection_schema import CollectionSchema
+from .collection_schema_custom_order_status import CollectionSchemaCustomOrderStatus
+from .collection_schema_keyframes_type_0_item import CollectionSchemaKeyframesType0Item
+from .collection_schema_metadata_type_0 import CollectionSchemaMetadataType0
+from .collection_schema_status import CollectionSchemaStatus
+from .collection_size_schema import CollectionSizeSchema
+from .collections_query_params_schema import CollectionsQueryParamsSchema
+from .collections_schema import CollectionsSchema
+from .create_asset_version_from_asset_schema import CreateAssetVersionFromAssetSchema
+from .create_asset_version_from_asset_schema_include_segment_types_type_0_item import (
+    CreateAssetVersionFromAssetSchemaIncludeSegmentTypesType0Item,
+)
+from .create_asset_version_from_version_schema import (
+    CreateAssetVersionFromVersionSchema,
+)
+from .create_asset_version_from_version_schema_include_segment_types_type_0_item import (
+    CreateAssetVersionFromVersionSchemaIncludeSegmentTypesType0Item,
+)
+from .create_asset_version_schema import CreateAssetVersionSchema
+from .create_asset_version_schema_include_segment_types_type_0_item import (
+    CreateAssetVersionSchemaIncludeSegmentTypesType0Item,
+)
+from .create_collection_content_ordering_schema import (
+    CreateCollectionContentOrderingSchema,
+)
+from .create_collection_from_saved_search_response_schema import (
+    CreateCollectionFromSavedSearchResponseSchema,
+)
+from .create_collection_from_saved_search_schema import (
+    CreateCollectionFromSavedSearchSchema,
+)
+from .create_publication_job_schema import CreatePublicationJobSchema
+from .create_publication_job_schema_metadata_overrides_type_0 import (
+    CreatePublicationJobSchemaMetadataOverridesType0,
+)
+from .create_publication_job_thumbnail_keyframe import (
+    CreatePublicationJobThumbnailKeyframe,
+)
+from .create_publication_job_thumbnail_keyframe_schema import (
+    CreatePublicationJobThumbnailKeyframeSchema,
+)
+from .create_publication_job_thumbnail_keyframe_schema_type import (
+    CreatePublicationJobThumbnailKeyframeSchemaType,
+)
+from .create_publication_job_thumbnail_keyframe_type import (
+    CreatePublicationJobThumbnailKeyframeType,
+)
+from .create_publication_template import CreatePublicationTemplate
+from .create_publication_template_apply_type_1 import (
+    CreatePublicationTemplateApplyType1,
+)
+from .create_publication_template_data_type_0 import CreatePublicationTemplateDataType0
+from .create_publication_template_schema import CreatePublicationTemplateSchema
+from .create_publication_template_schema_apply_type_1 import (
+    CreatePublicationTemplateSchemaApplyType1,
+)
+from .create_publication_template_schema_data_type_0 import (
+    CreatePublicationTemplateSchemaDataType0,
+)
+from .custom_action_callback_reply_schema import CustomActionCallbackReplySchema
+from .custom_action_callback_schema import CustomActionCallbackSchema
+from .custom_action_callback_schema_metadata_values_type_0 import (
+    CustomActionCallbackSchemaMetadataValuesType0,
+)
+from .custom_action_create_schema import CustomActionCreateSchema
+from .custom_action_create_schema_context import CustomActionCreateSchemaContext
+from .custom_action_create_schema_headers_type_0 import (
+    CustomActionCreateSchemaHeadersType0,
+)
+from .custom_action_create_schema_status import CustomActionCreateSchemaStatus
+from .custom_action_create_schema_type import CustomActionCreateSchemaType
+from .custom_action_schema import CustomActionSchema
+from .custom_action_schema_context import CustomActionSchemaContext
+from .custom_action_schema_headers_type_0 import CustomActionSchemaHeadersType0
+from .custom_action_schema_status import CustomActionSchemaStatus
+from .custom_action_schema_type import CustomActionSchemaType
+from .custom_actions_schema import CustomActionsSchema
+from .delete_assets_by_asset_id_history_by_history_entity_id_response_default import (
+    DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefault,
+)
+from .delete_assets_by_asset_id_purge_response_default import (
+    DeleteAssetsByAssetIdPurgeResponseDefault,
+)
+from .delete_assets_by_asset_id_relations_by_relation_type_by_related_to_asset_id_response_default import (
+    DeleteAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefault,
+)
+from .delete_assets_by_asset_id_response_default import (
+    DeleteAssetsByAssetIdResponseDefault,
+)
+from .delete_assets_by_asset_id_segments_bulk_response_default import (
+    DeleteAssetsByAssetIdSegmentsBulkResponseDefault,
+)
+from .delete_assets_by_asset_id_segments_by_segment_id_response_default import (
+    DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefault,
+)
+from .delete_assets_by_asset_id_uploads_response_default import (
+    DeleteAssetsByAssetIdUploadsResponseDefault,
+)
+from .delete_assets_by_asset_id_versions_by_version_id_response_default import (
+    DeleteAssetsByAssetIdVersionsByVersionIdResponseDefault,
+)
+from .delete_assets_by_asset_id_versions_by_version_id_transcriptions_by_transcription_id_properties_response_default import (
+    DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefault,
+)
+from .delete_assets_by_asset_id_versions_old_response_default import (
+    DeleteAssetsByAssetIdVersionsOldResponseDefault,
+)
+from .delete_assets_relation_types_by_relation_type_response_default import (
+    DeleteAssetsRelationTypesByRelationTypeResponseDefault,
+)
+from .delete_by_object_type_by_object_id_approvals_external_by_email_response_default import (
+    DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefault,
+)
+from .delete_by_object_type_by_object_id_approvals_request_response_default import (
+    DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefault,
+)
+from .delete_by_object_type_by_object_id_approvals_response_default import (
+    DeleteByObjectTypeByObjectIdApprovalsResponseDefault,
+)
+from .delete_by_object_type_by_object_id_approvals_user_by_user_id_response_default import (
+    DeleteByObjectTypeByObjectIdApprovalsUserByUserIdResponseDefault,
+)
+from .delete_by_object_type_by_object_id_shares_by_share_id_response_default import (
+    DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefault,
+)
+from .delete_by_object_type_by_object_id_shares_by_share_id_users_by_share_user_id_response_default import (
+    DeleteByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefault,
+)
+from .delete_collections_by_collection_id_contents_by_object_type_by_object_id_response_default import (
+    DeleteCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefault,
+)
+from .delete_collections_by_collection_id_contents_ordering_custom_response_default import (
+    DeleteCollectionsByCollectionIdContentsOrderingCustomResponseDefault,
+)
+from .delete_collections_by_collection_id_purge_response_default import (
+    DeleteCollectionsByCollectionIdPurgeResponseDefault,
+)
+from .delete_collections_by_collection_id_response_default import (
+    DeleteCollectionsByCollectionIdResponseDefault,
+)
+from .delete_custom_actions_by_context_by_action_id_response_default import (
+    DeleteCustomActionsByContextByActionIdResponseDefault,
+)
+from .delete_delete_queue_assets_response_default import (
+    DeleteDeleteQueueAssetsResponseDefault,
+)
+from .delete_delete_queue_collections_response_default import (
+    DeleteDeleteQueueCollectionsResponseDefault,
+)
+from .delete_favorites_all_response_default import DeleteFavoritesAllResponseDefault
+from .delete_favorites_response_default import DeleteFavoritesResponseDefault
+from .delete_favourites_all_response_default import DeleteFavouritesAllResponseDefault
+from .delete_playlists_by_playlist_id_items_by_item_id_response_default import (
+    DeletePlaylistsByPlaylistIdItemsByItemIdResponseDefault,
+)
+from .delete_playlists_by_playlist_id_response_default import (
+    DeletePlaylistsByPlaylistIdResponseDefault,
+)
+from .delete_portfolios_by_portfolio_id_response_default import (
+    DeletePortfoliosByPortfolioIdResponseDefault,
+)
+from .delete_projects_by_project_id_members_by_member_id_response_default import (
+    DeleteProjectsByProjectIdMembersByMemberIdResponseDefault,
+)
+from .delete_projects_by_project_id_response_default import (
+    DeleteProjectsByProjectIdResponseDefault,
+)
+from .delete_queue_assets_query_params_schema import DeleteQueueAssetsQueryParamsSchema
+from .delete_queue_collections_query_params_schema import (
+    DeleteQueueCollectionsQueryParamsSchema,
+)
+from .delete_queue_schema import DeleteQueueSchema
+from .delete_segments_schema import DeleteSegmentsSchema
+from .delete_segments_schema_segment_type import DeleteSegmentsSchemaSegmentType
+from .delete_sequences_by_sequence_id_items_by_item_id_response_default import (
+    DeleteSequencesBySequenceIdItemsByItemIdResponseDefault,
+)
+from .delete_sequences_by_sequence_id_response_default import (
+    DeleteSequencesBySequenceIdResponseDefault,
+)
+from .delete_shares_allowlist_entries_by_entry_id_response_default import (
+    DeleteSharesAllowlistEntriesByEntryIdResponseDefault,
+)
+from .delete_shares_bulk_all_response_default import DeleteSharesBulkAllResponseDefault
+from .delete_shares_bulk_response_default import DeleteSharesBulkResponseDefault
+from .delete_sync_sessions_by_sync_session_id_response_default import (
+    DeleteSyncSessionsBySyncSessionIdResponseDefault,
+)
+from .drawing import Drawing
+from .drawing_point import DrawingPoint
+from .drawing_point_schema import DrawingPointSchema
+from .drawing_primitive import DrawingPrimitive
+from .drawing_primitive_schema import DrawingPrimitiveSchema
+from .drawing_primitive_schema_type import DrawingPrimitiveSchemaType
+from .drawing_primitive_type import DrawingPrimitiveType
+from .drawing_schema import DrawingSchema
+from .edit_asset_segment import EditAssetSegment
+from .edit_asset_segment_metadata_type_0 import EditAssetSegmentMetadataType0
+from .edit_asset_segment_schema import EditAssetSegmentSchema
+from .edit_asset_segment_schema_metadata_type_0 import (
+    EditAssetSegmentSchemaMetadataType0,
+)
+from .edit_asset_segment_schema_segment_type import EditAssetSegmentSchemaSegmentType
+from .edit_asset_segment_schema_status import EditAssetSegmentSchemaStatus
+from .edit_asset_segment_segment_type import EditAssetSegmentSegmentType
+from .edit_asset_segment_status import EditAssetSegmentStatus
+from .edit_asset_version import EditAssetVersion
+from .edit_asset_version_analyze_status import EditAssetVersionAnalyzeStatus
+from .edit_asset_version_archive_status import EditAssetVersionArchiveStatus
+from .edit_asset_version_face_recognition_status import (
+    EditAssetVersionFaceRecognitionStatus,
+)
+from .edit_asset_version_schema import EditAssetVersionSchema
+from .edit_asset_version_schema_analyze_status import (
+    EditAssetVersionSchemaAnalyzeStatus,
+)
+from .edit_asset_version_schema_archive_status import (
+    EditAssetVersionSchemaArchiveStatus,
+)
+from .edit_asset_version_schema_face_recognition_status import (
+    EditAssetVersionSchemaFaceRecognitionStatus,
+)
+from .edit_asset_version_schema_status import EditAssetVersionSchemaStatus
+from .edit_asset_version_schema_transcribe_status import (
+    EditAssetVersionSchemaTranscribeStatus,
+)
+from .edit_asset_version_status import EditAssetVersionStatus
+from .edit_asset_version_transcribe_status import EditAssetVersionTranscribeStatus
+from .edit_person_asset_version_schema import EditPersonAssetVersionSchema
+from .edit_person_status_schema import EditPersonStatusSchema
+from .edit_segment_for_bulk import EditSegmentForBulk
+from .edit_segment_for_bulk_metadata_type_0 import EditSegmentForBulkMetadataType0
+from .edit_segment_for_bulk_schema import EditSegmentForBulkSchema
+from .edit_segment_for_bulk_schema_metadata_type_0 import (
+    EditSegmentForBulkSchemaMetadataType0,
+)
+from .edit_segment_for_bulk_schema_segment_type import (
+    EditSegmentForBulkSchemaSegmentType,
+)
+from .edit_segment_for_bulk_schema_status import EditSegmentForBulkSchemaStatus
+from .edit_segment_for_bulk_segment_type import EditSegmentForBulkSegmentType
+from .edit_segment_for_bulk_status import EditSegmentForBulkStatus
+from .edit_segment_schema import EditSegmentSchema
+from .edit_segment_schema_metadata_type_0 import EditSegmentSchemaMetadataType0
+from .edit_segment_schema_segment_type import EditSegmentSchemaSegmentType
+from .edit_segment_schema_status import EditSegmentSchemaStatus
+from .face_bounding_box import FaceBoundingBox
+from .face_bounding_box_schema import FaceBoundingBoxSchema
+from .face_landmark import FaceLandmark
+from .face_landmark_schema import FaceLandmarkSchema
+from .favorites_schema import FavoritesSchema
+from .get_assets_by_asset_id_history_by_history_entity_id_response_default import (
+    GetAssetsByAssetIdHistoryByHistoryEntityIdResponseDefault,
+)
+from .get_assets_by_asset_id_history_response_default import (
+    GetAssetsByAssetIdHistoryResponseDefault,
+)
+from .get_assets_by_asset_id_relations_by_relation_type_response_default import (
+    GetAssetsByAssetIdRelationsByRelationTypeResponseDefault,
+)
+from .get_assets_by_asset_id_relations_response_default import (
+    GetAssetsByAssetIdRelationsResponseDefault,
+)
+from .get_assets_by_asset_id_response_default import GetAssetsByAssetIdResponseDefault
+from .get_assets_by_asset_id_segments_by_segment_id_response_default import (
+    GetAssetsByAssetIdSegmentsBySegmentIdResponseDefault,
+)
+from .get_assets_by_asset_id_segments_csv_response_default import (
+    GetAssetsByAssetIdSegmentsCsvResponseDefault,
+)
+from .get_assets_by_asset_id_segments_response_default import (
+    GetAssetsByAssetIdSegmentsResponseDefault,
+)
+from .get_assets_by_asset_id_segments_srt_response_default import (
+    GetAssetsByAssetIdSegmentsSrtResponseDefault,
+)
+from .get_assets_by_asset_id_segments_text_response_default import (
+    GetAssetsByAssetIdSegmentsTextResponseDefault,
+)
+from .get_assets_by_asset_id_segments_vtt_response_default import (
+    GetAssetsByAssetIdSegmentsVttResponseDefault,
+)
+from .get_assets_by_asset_id_shares_all_response_default import (
+    GetAssetsByAssetIdSharesAllResponseDefault,
+)
+from .get_assets_by_asset_id_versions_by_version_id_transcriptions_by_transcription_id_properties_response_default import (
+    GetAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefault,
+)
+from .get_assets_by_asset_id_versions_by_version_id_transcriptions_properties_response_default import (
+    GetAssetsByAssetIdVersionsByVersionIdTranscriptionsPropertiesResponseDefault,
+)
+from .get_assets_latest_version_schema import GetAssetsLatestVersionSchema
+from .get_assets_latest_version_schema_object_type import (
+    GetAssetsLatestVersionSchemaObjectType,
+)
+from .get_assets_recent_response_default import GetAssetsRecentResponseDefault
+from .get_assets_relation_types_by_relation_type_response_default import (
+    GetAssetsRelationTypesByRelationTypeResponseDefault,
+)
+from .get_assets_relation_types_response_default import (
+    GetAssetsRelationTypesResponseDefault,
+)
+from .get_assets_response_default import GetAssetsResponseDefault
+from .get_assets_versions_metadata_schema import GetAssetsVersionsMetadataSchema
+from .get_by_object_type_by_object_id_approvals_request_response_default import (
+    GetByObjectTypeByObjectIdApprovalsRequestResponseDefault,
+)
+from .get_by_object_type_by_object_id_approvals_response_default import (
+    GetByObjectTypeByObjectIdApprovalsResponseDefault,
+)
+from .get_by_object_type_by_object_id_shares_by_share_id_response_default import (
+    GetByObjectTypeByObjectIdSharesByShareIdResponseDefault,
+)
+from .get_by_object_type_by_object_id_shares_by_share_id_users_by_share_user_id_response_default import (
+    GetByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefault,
+)
+from .get_by_object_type_by_object_id_shares_by_share_id_users_response_default import (
+    GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefault,
+)
+from .get_by_object_type_by_object_id_shares_response_default import (
+    GetByObjectTypeByObjectIdSharesResponseDefault,
+)
+from .get_by_object_type_by_object_id_versions_by_version_id_approvals_request_response_default import (
+    GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefault,
+)
+from .get_by_object_type_by_object_id_versions_by_version_id_approvals_response_default import (
+    GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsResponseDefault,
+)
+from .get_collections_by_collection_id_ancestors_response_default import (
+    GetCollectionsByCollectionIdAncestorsResponseDefault,
+)
+from .get_collections_by_collection_id_content_info_response_default import (
+    GetCollectionsByCollectionIdContentInfoResponseDefault,
+)
+from .get_collections_by_collection_id_contents_response_default import (
+    GetCollectionsByCollectionIdContentsResponseDefault,
+)
+from .get_collections_by_collection_id_full_path_response_default import (
+    GetCollectionsByCollectionIdFullPathResponseDefault,
+)
+from .get_collections_by_collection_id_response_default import (
+    GetCollectionsByCollectionIdResponseDefault,
+)
+from .get_collections_by_collection_id_shares_all_response_default import (
+    GetCollectionsByCollectionIdSharesAllResponseDefault,
+)
+from .get_collections_by_collection_id_size_response_default import (
+    GetCollectionsByCollectionIdSizeResponseDefault,
+)
+from .get_collections_recent_response_default import GetCollectionsRecentResponseDefault
+from .get_collections_response_default import GetCollectionsResponseDefault
+from .get_custom_actions_by_context_by_action_id_response_default import (
+    GetCustomActionsByContextByActionIdResponseDefault,
+)
+from .get_custom_actions_by_context_response_default import (
+    GetCustomActionsByContextResponseDefault,
+)
+from .get_custom_actions_response_default import GetCustomActionsResponseDefault
+from .get_delete_queue_assets_response_default import (
+    GetDeleteQueueAssetsResponseDefault,
+)
+from .get_delete_queue_collections_response_default import (
+    GetDeleteQueueCollectionsResponseDefault,
+)
+from .get_favorites_response_default import GetFavoritesResponseDefault
+from .get_persons_by_person_id_response_default import (
+    GetPersonsByPersonIdResponseDefault,
+)
+from .get_playlists_by_playlist_id_items_response_default import (
+    GetPlaylistsByPlaylistIdItemsResponseDefault,
+)
+from .get_playlists_by_playlist_id_response_default import (
+    GetPlaylistsByPlaylistIdResponseDefault,
+)
+from .get_playlists_response_default import GetPlaylistsResponseDefault
+from .get_portfolios_by_portfolio_id_response_default import (
+    GetPortfoliosByPortfolioIdResponseDefault,
+)
+from .get_portfolios_response_default import GetPortfoliosResponseDefault
+from .get_projects_by_project_id_members_by_member_id_response_default import (
+    GetProjectsByProjectIdMembersByMemberIdResponseDefault,
+)
+from .get_projects_by_project_id_members_response_default import (
+    GetProjectsByProjectIdMembersResponseDefault,
+)
+from .get_projects_by_project_id_response_default import (
+    GetProjectsByProjectIdResponseDefault,
+)
+from .get_projects_response_default import GetProjectsResponseDefault
+from .get_publications_templates_response_default import (
+    GetPublicationsTemplatesResponseDefault,
+)
+from .get_publications_token_response_default import GetPublicationsTokenResponseDefault
+from .get_sequences_by_sequence_id_items_response_default import (
+    GetSequencesBySequenceIdItemsResponseDefault,
+)
+from .get_sequences_by_sequence_id_response_default import (
+    GetSequencesBySequenceIdResponseDefault,
+)
+from .get_sequences_response_default import GetSequencesResponseDefault
+from .get_share_schema import GetShareSchema
+from .get_share_schema_drm import GetShareSchemaDrm
+from .get_share_schema_population_status import GetShareSchemaPopulationStatus
+from .get_share_schema_watermark import GetShareSchemaWatermark
+from .get_shares_all_response_default import GetSharesAllResponseDefault
+from .get_shares_allowlist_entries_by_entry_id_response_default import (
+    GetSharesAllowlistEntriesByEntryIdResponseDefault,
+)
+from .get_shares_allowlist_entries_response_default import (
+    GetSharesAllowlistEntriesResponseDefault,
+)
+from .get_shares_auth_token_response_default import GetSharesAuthTokenResponseDefault
+from .get_shares_response_default import GetSharesResponseDefault
+from .get_sync_sessions_by_sync_session_id_response_default import (
+    GetSyncSessionsBySyncSessionIdResponseDefault,
+)
+from .list_objects_schema import ListObjectsSchema
+from .magic_link_allowlist_create_schema import MagicLinkAllowlistCreateSchema
+from .magic_link_allowlist_create_schema_entry_type import (
+    MagicLinkAllowlistCreateSchemaEntryType,
+)
+from .magic_link_allowlist_entry_schema import MagicLinkAllowlistEntrySchema
+from .magic_link_allowlist_entry_schema_entry_type import (
+    MagicLinkAllowlistEntrySchemaEntryType,
+)
+from .magic_link_allowlist_list_schema import MagicLinkAllowlistListSchema
+from .magic_link_allowlist_update_schema import MagicLinkAllowlistUpdateSchema
+from .magic_link_allowlist_update_schema_entry_type import (
+    MagicLinkAllowlistUpdateSchemaEntryType,
+)
+from .magic_link_check_setting_schema import MagicLinkCheckSettingSchema
+from .magic_link_request_schema import MagicLinkRequestSchema
+from .magic_link_validate_schema import MagicLinkValidateSchema
+from .metadata_field_value_schema import MetadataFieldValueSchema
+from .metadata_field_value_schema_field_values_type_0_item import (
+    MetadataFieldValueSchemaFieldValuesType0Item,
+)
+from .patch_assets_by_asset_id_response_default import (
+    PatchAssetsByAssetIdResponseDefault,
+)
+from .patch_assets_by_asset_id_segments_by_segment_id_response_default import (
+    PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefault,
+)
+from .patch_assets_by_asset_id_versions_by_version_id_response_default import (
+    PatchAssetsByAssetIdVersionsByVersionIdResponseDefault,
+)
+from .patch_assets_by_asset_id_versions_by_version_id_transcriptions_by_transcription_id_properties_response_default import (
+    PatchAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefault,
+)
+from .patch_assets_relation_types_by_relation_type_response_default import (
+    PatchAssetsRelationTypesByRelationTypeResponseDefault,
+)
+from .patch_assets_response_default import PatchAssetsResponseDefault
+from .patch_by_object_type_by_object_id_approvals_request_response_default import (
+    PatchByObjectTypeByObjectIdApprovalsRequestResponseDefault,
+)
+from .patch_by_object_type_by_object_id_shares_by_share_id_users_by_share_user_id_response_default import (
+    PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefault,
+)
+from .patch_collections_by_collection_id_response_default import (
+    PatchCollectionsByCollectionIdResponseDefault,
+)
+from .patch_custom_actions_by_context_by_action_id_response_default import (
+    PatchCustomActionsByContextByActionIdResponseDefault,
+)
+from .patch_playlists_by_playlist_id_items_by_item_id_response_default import (
+    PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefault,
+)
+from .patch_playlists_by_playlist_id_response_default import (
+    PatchPlaylistsByPlaylistIdResponseDefault,
+)
+from .patch_portfolios_by_portfolio_id_response_default import (
+    PatchPortfoliosByPortfolioIdResponseDefault,
+)
+from .patch_projects_by_project_id_response_default import (
+    PatchProjectsByProjectIdResponseDefault,
+)
+from .patch_sequences_by_sequence_id_response_default import (
+    PatchSequencesBySequenceIdResponseDefault,
+)
+from .patch_sync_sessions_by_sync_session_id_response_default import (
+    PatchSyncSessionsBySyncSessionIdResponseDefault,
+)
+from .playlist import Playlist
+from .playlist_base_schema import PlaylistBaseSchema
+from .playlist_base_schema_keyframes_type_0_item import (
+    PlaylistBaseSchemaKeyframesType0Item,
+)
+from .playlist_base_schema_status import PlaylistBaseSchemaStatus
+from .playlist_create_schema import PlaylistCreateSchema
+from .playlist_create_schema_keyframes_type_0_item import (
+    PlaylistCreateSchemaKeyframesType0Item,
+)
+from .playlist_create_schema_status import PlaylistCreateSchemaStatus
+from .playlist_item import PlaylistItem
+from .playlist_item_elastic_schema import PlaylistItemElasticSchema
+from .playlist_item_elastic_schema_analyze_status import (
+    PlaylistItemElasticSchemaAnalyzeStatus,
+)
+from .playlist_item_elastic_schema_archive_status import (
+    PlaylistItemElasticSchemaArchiveStatus,
+)
+from .playlist_item_elastic_schema_face_recognition_status import (
+    PlaylistItemElasticSchemaFaceRecognitionStatus,
+)
+from .playlist_item_elastic_schema_files_type_0_item import (
+    PlaylistItemElasticSchemaFilesType0Item,
+)
+from .playlist_item_elastic_schema_formats_type_0_item import (
+    PlaylistItemElasticSchemaFormatsType0Item,
+)
+from .playlist_item_elastic_schema_keyframes_type_0_item import (
+    PlaylistItemElasticSchemaKeyframesType0Item,
+)
+from .playlist_item_elastic_schema_metadata_type_0 import (
+    PlaylistItemElasticSchemaMetadataType0,
+)
+from .playlist_item_elastic_schema_proxies_type_0_item import (
+    PlaylistItemElasticSchemaProxiesType0Item,
+)
+from .playlist_item_elastic_schema_status import PlaylistItemElasticSchemaStatus
+from .playlist_item_elastic_schema_type import PlaylistItemElasticSchemaType
+from .playlist_item_object_type import PlaylistItemObjectType
+from .playlist_item_schema import PlaylistItemSchema
+from .playlist_item_schema_object_type import PlaylistItemSchemaObjectType
+from .playlist_item_update_position_schema import PlaylistItemUpdatePositionSchema
+from .playlist_items_query_params_schema import PlaylistItemsQueryParamsSchema
+from .playlist_items_schema import PlaylistItemsSchema
+from .playlist_keyframes_type_0_item import PlaylistKeyframesType0Item
+from .playlist_schema import PlaylistSchema
+from .playlist_schema_keyframes_type_0_item import PlaylistSchemaKeyframesType0Item
+from .playlist_schema_status import PlaylistSchemaStatus
+from .playlist_status import PlaylistStatus
+from .playlists_query_params_schema import PlaylistsQueryParamsSchema
+from .playlists_schema import PlaylistsSchema
+from .portfolio_base_schema import PortfolioBaseSchema
+from .portfolio_base_schema_status import PortfolioBaseSchemaStatus
+from .portfolio_config import PortfolioConfig
+from .portfolio_config_schema import PortfolioConfigSchema
+from .portfolio_create_schema import PortfolioCreateSchema
+from .portfolio_create_schema_status import PortfolioCreateSchemaStatus
+from .portfolio_schema import PortfolioSchema
+from .portfolio_schema_status import PortfolioSchemaStatus
+from .portfolios_query_params_schema import PortfoliosQueryParamsSchema
+from .portfolios_schema import PortfoliosSchema
+from .post_approvals_bulk_remove_response_default import (
+    PostApprovalsBulkRemoveResponseDefault,
+)
+from .post_approvals_bulk_response_default import PostApprovalsBulkResponseDefault
+from .post_assets_by_asset_id_history_by_history_entity_id_reindex_body import (
+    PostAssetsByAssetIdHistoryByHistoryEntityIdReindexBody,
+)
+from .post_assets_by_asset_id_history_by_history_entity_id_reindex_response_default import (
+    PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefault,
+)
+from .post_assets_by_asset_id_history_response_default import (
+    PostAssetsByAssetIdHistoryResponseDefault,
+)
+from .post_assets_by_asset_id_reindex_response_default import (
+    PostAssetsByAssetIdReindexResponseDefault,
+)
+from .post_assets_by_asset_id_relations_by_relation_type_by_related_to_asset_id_response_default import (
+    PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefault,
+)
+from .post_assets_by_asset_id_relations_by_relation_type_by_related_to_asset_id_reverse_response_default import (
+    PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdReverseResponseDefault,
+)
+from .post_assets_by_asset_id_relations_response_default import (
+    PostAssetsByAssetIdRelationsResponseDefault,
+)
+from .post_assets_by_asset_id_segments_bulk_response_default import (
+    PostAssetsByAssetIdSegmentsBulkResponseDefault,
+)
+from .post_assets_by_asset_id_segments_by_segment_id_reindex_response_default import (
+    PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefault,
+)
+from .post_assets_by_asset_id_segments_reindex_response_default import (
+    PostAssetsByAssetIdSegmentsReindexResponseDefault,
+)
+from .post_assets_by_asset_id_segments_response_default import (
+    PostAssetsByAssetIdSegmentsResponseDefault,
+)
+from .post_assets_by_asset_id_versions_by_version_id_transcriptions_properties_response_default import (
+    PostAssetsByAssetIdVersionsByVersionIdTranscriptionsPropertiesResponseDefault,
+)
+from .post_assets_by_asset_id_versions_by_version_id_transcriptions_subtitles_response_default import (
+    PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefault,
+)
+from .post_assets_by_asset_id_versions_from_assets_by_source_asset_id_response_default import (
+    PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefault,
+)
+from .post_assets_by_asset_id_versions_from_versions_by_source_version_id_response_default import (
+    PostAssetsByAssetIdVersionsFromVersionsBySourceVersionIdResponseDefault,
+)
+from .post_assets_by_asset_id_versions_response_default import (
+    PostAssetsByAssetIdVersionsResponseDefault,
+)
+from .post_assets_by_asset_id_views_response_default import (
+    PostAssetsByAssetIdViewsResponseDefault,
+)
+from .post_assets_reindex_response_default import PostAssetsReindexResponseDefault
+from .post_assets_relation_types_response_default import (
+    PostAssetsRelationTypesResponseDefault,
+)
+from .post_assets_response_default import PostAssetsResponseDefault
+from .post_assets_segments_reindex_response_default import (
+    PostAssetsSegmentsReindexResponseDefault,
+)
+from .post_by_object_type_by_object_id_approvals_request_response_default import (
+    PostByObjectTypeByObjectIdApprovalsRequestResponseDefault,
+)
+from .post_by_object_type_by_object_id_shares_by_share_id_reindex_response_default import (
+    PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefault,
+)
+from .post_by_object_type_by_object_id_shares_by_share_id_users_response_default import (
+    PostByObjectTypeByObjectIdSharesByShareIdUsersResponseDefault,
+)
+from .post_by_object_type_by_object_id_shares_response_default import (
+    PostByObjectTypeByObjectIdSharesResponseDefault,
+)
+from .post_by_object_type_by_object_id_shares_url_response_default import (
+    PostByObjectTypeByObjectIdSharesUrlResponseDefault,
+)
+from .post_collections_by_collection_id_contents_by_object_type_by_object_id_reindex_response_default import (
+    PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefault,
+)
+from .post_collections_by_collection_id_contents_ordering_custom_response_default import (
+    PostCollectionsByCollectionIdContentsOrderingCustomResponseDefault,
+)
+from .post_collections_by_collection_id_contents_response_default import (
+    PostCollectionsByCollectionIdContentsResponseDefault,
+)
+from .post_collections_by_collection_id_keyframes_response_default import (
+    PostCollectionsByCollectionIdKeyframesResponseDefault,
+)
+from .post_collections_by_collection_id_reindex_contents_body import (
+    PostCollectionsByCollectionIdReindexContentsBody,
+)
+from .post_collections_by_collection_id_reindex_contents_response_default import (
+    PostCollectionsByCollectionIdReindexContentsResponseDefault,
+)
+from .post_collections_by_collection_id_reindex_response_default import (
+    PostCollectionsByCollectionIdReindexResponseDefault,
+)
+from .post_collections_by_collection_id_subcollections_response_default import (
+    PostCollectionsByCollectionIdSubcollectionsResponseDefault,
+)
+from .post_collections_by_collection_id_views_response_default import (
+    PostCollectionsByCollectionIdViewsResponseDefault,
+)
+from .post_collections_reindex_response_default import (
+    PostCollectionsReindexResponseDefault,
+)
+from .post_collections_response_default import PostCollectionsResponseDefault
+from .post_custom_actions_by_context_by_action_id_callback_response_default import (
+    PostCustomActionsByContextByActionIdCallbackResponseDefault,
+)
+from .post_custom_actions_by_context_response_default import (
+    PostCustomActionsByContextResponseDefault,
+)
+from .post_custom_actions_shared_by_context_by_action_id_callback_response_default import (
+    PostCustomActionsSharedByContextByActionIdCallbackResponseDefault,
+)
+from .post_delete_queue_assets_purge_all_response_default import (
+    PostDeleteQueueAssetsPurgeAllResponseDefault,
+)
+from .post_delete_queue_assets_purge_response_default import (
+    PostDeleteQueueAssetsPurgeResponseDefault,
+)
+from .post_delete_queue_assets_response_default import (
+    PostDeleteQueueAssetsResponseDefault,
+)
+from .post_delete_queue_assets_restore_all_response_default import (
+    PostDeleteQueueAssetsRestoreAllResponseDefault,
+)
+from .post_delete_queue_bulk_response_default import PostDeleteQueueBulkResponseDefault
+from .post_delete_queue_collections_purge_all_response_default import (
+    PostDeleteQueueCollectionsPurgeAllResponseDefault,
+)
+from .post_delete_queue_collections_purge_response_default import (
+    PostDeleteQueueCollectionsPurgeResponseDefault,
+)
+from .post_delete_queue_collections_response_default import (
+    PostDeleteQueueCollectionsResponseDefault,
+)
+from .post_delete_queue_collections_restore_all_response_default import (
+    PostDeleteQueueCollectionsRestoreAllResponseDefault,
+)
+from .post_delete_queue_purge_all_response_default import (
+    PostDeleteQueuePurgeAllResponseDefault,
+)
+from .post_favorites_response_default import PostFavoritesResponseDefault
+from .post_playlists_by_playlist_id_items_response_default import (
+    PostPlaylistsByPlaylistIdItemsResponseDefault,
+)
+from .post_playlists_by_playlist_id_keyframes_response_default import (
+    PostPlaylistsByPlaylistIdKeyframesResponseDefault,
+)
+from .post_playlists_by_playlist_id_reindex_response_default import (
+    PostPlaylistsByPlaylistIdReindexResponseDefault,
+)
+from .post_playlists_response_default import PostPlaylistsResponseDefault
+from .post_portfolios_by_portfolio_id_reindex_response_default import (
+    PostPortfoliosByPortfolioIdReindexResponseDefault,
+)
+from .post_portfolios_response_default import PostPortfoliosResponseDefault
+from .post_projects_by_project_id_members_response_default import (
+    PostProjectsByProjectIdMembersResponseDefault,
+)
+from .post_projects_by_project_id_reindex_response_default import (
+    PostProjectsByProjectIdReindexResponseDefault,
+)
+from .post_projects_response_default import PostProjectsResponseDefault
+from .post_publications_jobs_response_default import PostPublicationsJobsResponseDefault
+from .post_reindex_bulk_response_default import PostReindexBulkResponseDefault
+from .post_segments_reindex_response_default import PostSegmentsReindexResponseDefault
+from .post_sequences_by_sequence_id_items_response_default import (
+    PostSequencesBySequenceIdItemsResponseDefault,
+)
+from .post_sequences_by_sequence_id_reindex_response_default import (
+    PostSequencesBySequenceIdReindexResponseDefault,
+)
+from .post_sequences_response_default import PostSequencesResponseDefault
+from .post_share_by_object_type_response_default import (
+    PostShareByObjectTypeResponseDefault,
+)
+from .post_shares_allowlist_entries_response_default import (
+    PostSharesAllowlistEntriesResponseDefault,
+)
+from .post_shares_auth_login_response_default import PostSharesAuthLoginResponseDefault
+from .post_shares_by_share_id_magic_link_request_response_200 import (
+    PostSharesByShareIdMagicLinkRequestResponse200,
+)
+from .post_shares_by_share_id_magic_link_request_response_default import (
+    PostSharesByShareIdMagicLinkRequestResponseDefault,
+)
+from .post_shares_by_share_id_magic_link_validate_response_default import (
+    PostSharesByShareIdMagicLinkValidateResponseDefault,
+)
+from .post_shares_magic_link_enabled_response_200 import (
+    PostSharesMagicLinkEnabledResponse200,
+)
+from .post_shares_magic_link_enabled_response_default import (
+    PostSharesMagicLinkEnabledResponseDefault,
+)
+from .post_sync_sessions_response_default import PostSyncSessionsResponseDefault
+from .process_bulk_persons_schema import ProcessBulkPersonsSchema
+from .project_base_schema import ProjectBaseSchema
+from .project_base_schema_status import ProjectBaseSchemaStatus
+from .project_create_schema import ProjectCreateSchema
+from .project_create_schema_status import ProjectCreateSchemaStatus
+from .project_member_base_schema import ProjectMemberBaseSchema
+from .project_member_create_schema import ProjectMemberCreateSchema
+from .project_member_schema import ProjectMemberSchema
+from .project_members_query_params_schema import ProjectMembersQueryParamsSchema
+from .project_members_schema import ProjectMembersSchema
+from .project_schema import ProjectSchema
+from .project_schema_status import ProjectSchemaStatus
+from .projects_query_params_schema import ProjectsQueryParamsSchema
+from .projects_schema import ProjectsSchema
+from .publication_job_thumbnail_schema_base import PublicationJobThumbnailSchemaBase
+from .publication_template_schema import PublicationTemplateSchema
+from .publication_templates_schema import PublicationTemplatesSchema
+from .publication_token_schema import PublicationTokenSchema
+from .put_assets_by_asset_id_response_default import PutAssetsByAssetIdResponseDefault
+from .put_assets_by_asset_id_restore_response_default import (
+    PutAssetsByAssetIdRestoreResponseDefault,
+)
+from .put_assets_by_asset_id_search_document_response_default import (
+    PutAssetsByAssetIdSearchDocumentResponseDefault,
+)
+from .put_assets_by_asset_id_segments_bulk_response_default import (
+    PutAssetsByAssetIdSegmentsBulkResponseDefault,
+)
+from .put_assets_by_asset_id_segments_by_segment_id_response_default import (
+    PutAssetsByAssetIdSegmentsBySegmentIdResponseDefault,
+)
+from .put_assets_by_asset_id_versions_by_version_id_promote_response_default import (
+    PutAssetsByAssetIdVersionsByVersionIdPromoteResponseDefault,
+)
+from .put_assets_by_asset_id_versions_by_version_id_response_default import (
+    PutAssetsByAssetIdVersionsByVersionIdResponseDefault,
+)
+from .put_assets_by_asset_id_versions_by_version_id_transcriptions_by_transcription_id_properties_response_default import (
+    PutAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefault,
+)
+from .put_assets_relation_types_by_relation_type_response_default import (
+    PutAssetsRelationTypesByRelationTypeResponseDefault,
+)
+from .put_assets_response_default import PutAssetsResponseDefault
+from .put_by_object_type_by_object_id_approvals_request_response_default import (
+    PutByObjectTypeByObjectIdApprovalsRequestResponseDefault,
+)
+from .put_by_object_type_by_object_id_approvals_response_default import (
+    PutByObjectTypeByObjectIdApprovalsResponseDefault,
+)
+from .put_by_object_type_by_object_id_shares_by_share_id_response_default import (
+    PutByObjectTypeByObjectIdSharesByShareIdResponseDefault,
+)
+from .put_by_object_type_by_object_id_shares_by_share_id_users_by_share_user_id_response_default import (
+    PutByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefault,
+)
+from .put_collections_by_collection_id_contents_by_object_type_by_object_id_response_default import (
+    PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefault,
+)
+from .put_collections_by_collection_id_response_default import (
+    PutCollectionsByCollectionIdResponseDefault,
+)
+from .put_collections_by_collection_id_restore_response_202 import (
+    PutCollectionsByCollectionIdRestoreResponse202,
+)
+from .put_collections_by_collection_id_restore_response_default import (
+    PutCollectionsByCollectionIdRestoreResponseDefault,
+)
+from .put_collections_by_collection_id_search_document_response_default import (
+    PutCollectionsByCollectionIdSearchDocumentResponseDefault,
+)
+from .put_custom_actions_by_context_by_action_id_response_default import (
+    PutCustomActionsByContextByActionIdResponseDefault,
+)
+from .put_playlists_by_playlist_id_items_by_item_id_position_response_default import (
+    PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefault,
+)
+from .put_playlists_by_playlist_id_items_by_item_id_response_default import (
+    PutPlaylistsByPlaylistIdItemsByItemIdResponseDefault,
+)
+from .put_playlists_by_playlist_id_response_default import (
+    PutPlaylistsByPlaylistIdResponseDefault,
+)
+from .put_portfolios_by_portfolio_id_response_default import (
+    PutPortfoliosByPortfolioIdResponseDefault,
+)
+from .put_projects_by_project_id_response_default import (
+    PutProjectsByProjectIdResponseDefault,
+)
+from .put_sequences_by_sequence_id_items_by_item_id_position_response_default import (
+    PutSequencesBySequenceIdItemsByItemIdPositionResponseDefault,
+)
+from .put_sequences_by_sequence_id_response_default import (
+    PutSequencesBySequenceIdResponseDefault,
+)
+from .put_shares_allowlist_entries_by_entry_id_response_default import (
+    PutSharesAllowlistEntriesByEntryIdResponseDefault,
+)
+from .put_shares_auth_token_response_default import PutSharesAuthTokenResponseDefault
+from .put_sync_sessions_by_sync_session_id_response_default import (
+    PutSyncSessionsBySyncSessionIdResponseDefault,
+)
+from .recent_asset_elastic_schema import RecentAssetElasticSchema
+from .recent_assets_query_params_schema import RecentAssetsQueryParamsSchema
+from .recent_assets_schema import RecentAssetsSchema
+from .recent_collection_elastic_schema import RecentCollectionElasticSchema
+from .recent_collections_query_params_schema import RecentCollectionsQueryParamsSchema
+from .recent_collections_schema import RecentCollectionsSchema
+from .reindex_all_assets_schema import ReindexAllAssetsSchema
+from .reindex_all_collections_schema import ReindexAllCollectionsSchema
+from .reindex_all_segments_schema import ReindexAllSegmentsSchema
+from .reindex_asset_history_schema import ReindexAssetHistorySchema
+from .reindex_asset_schema import ReindexAssetSchema
+from .reindex_bulk_action_schema import ReindexBulkActionSchema
+from .reindex_bulk_action_schema_object_type import ReindexBulkActionSchemaObjectType
+from .reindex_collection_content_schema import ReindexCollectionContentSchema
+from .reindex_collection_schema import ReindexCollectionSchema
+from .reindex_inherited_collections_acl_schema import (
+    ReindexInheritedCollectionsACLSchema,
+)
+from .reindex_playlist_schema import ReindexPlaylistSchema
+from .reindex_portfolio_schema import ReindexPortfolioSchema
+from .reindex_project_schema import ReindexProjectSchema
+from .reindex_segment_schema import ReindexSegmentSchema
+from .reindex_segments_schema import ReindexSegmentsSchema
+from .reindex_sequence_schema import ReindexSequenceSchema
+from .reindex_share_schema import ReindexShareSchema
+from .reindex_view_date_schema import ReindexViewDateSchema
+from .relation_elastic import RelationElastic
+from .relation_elastic_schema import RelationElasticSchema
+from .relation_schema import RelationSchema
+from .relation_type_schema import RelationTypeSchema
+from .relation_types_schema import RelationTypesSchema
+from .relations_query_params_schema import RelationsQueryParamsSchema
+from .relations_schema import RelationsSchema
+from .schedule_person_action_schema import SchedulePersonActionSchema
+from .schedule_sync_person_to_versions_schema import ScheduleSyncPersonToVersionsSchema
+from .segment import Segment
+from .segment_base_schema import SegmentBaseSchema
+from .segment_base_schema_metadata_type_0 import SegmentBaseSchemaMetadataType0
+from .segment_base_schema_segment_type import SegmentBaseSchemaSegmentType
+from .segment_base_schema_status import SegmentBaseSchemaStatus
+from .segment_elastic_schema import SegmentElasticSchema
+from .segment_elastic_schema_metadata_type_0 import SegmentElasticSchemaMetadataType0
+from .segment_elastic_schema_segment_type import SegmentElasticSchemaSegmentType
+from .segment_elastic_schema_status import SegmentElasticSchemaStatus
+from .segment_metadata_type_0 import SegmentMetadataType0
+from .segment_query_params_schema import SegmentQueryParamsSchema
+from .segment_schema import SegmentSchema
+from .segment_schema_metadata_type_0 import SegmentSchemaMetadataType0
+from .segment_schema_segment_type import SegmentSchemaSegmentType
+from .segment_schema_status import SegmentSchemaStatus
+from .segment_segment_type import SegmentSegmentType
+from .segment_status import SegmentStatus
+from .segments_schema import SegmentsSchema
+from .segments_schema_facets_type_0 import SegmentsSchemaFacetsType0
+from .sequence_base_schema import SequenceBaseSchema
+from .sequence_create_schema import SequenceCreateSchema
+from .sequence_item_schema import SequenceItemSchema
+from .sequence_item_schema_object_type import SequenceItemSchemaObjectType
+from .sequence_item_update_position_schema import SequenceItemUpdatePositionSchema
+from .sequence_items_query_params_schema import SequenceItemsQueryParamsSchema
+from .sequence_items_schema import SequenceItemsSchema
+from .sequence_schema import SequenceSchema
+from .sequences_query_params_schema import SequencesQueryParamsSchema
+from .sequences_schema import SequencesSchema
+from .share_base_schema import ShareBaseSchema
+from .share_base_schema_drm import ShareBaseSchemaDrm
+from .share_base_schema_population_status import ShareBaseSchemaPopulationStatus
+from .share_base_schema_watermark import ShareBaseSchemaWatermark
+from .share_create_schema import ShareCreateSchema
+from .share_create_schema_drm import ShareCreateSchemaDrm
+from .share_create_schema_watermark import ShareCreateSchemaWatermark
+from .share_elastic_schema import ShareElasticSchema
+from .share_elastic_schema_approval_type_0 import ShareElasticSchemaApprovalType0
+from .share_elastic_schema_drm import ShareElasticSchemaDrm
+from .share_elastic_schema_population_status import ShareElasticSchemaPopulationStatus
+from .share_elastic_schema_watermark import ShareElasticSchemaWatermark
+from .share_login_schema import ShareLoginSchema
+from .share_options_base_schema import ShareOptionsBaseSchema
+from .share_options_base_schema_drm import ShareOptionsBaseSchemaDrm
+from .share_options_base_schema_watermark import ShareOptionsBaseSchemaWatermark
+from .share_roles import ShareRoles
+from .share_schema import ShareSchema
+from .share_schema_drm import ShareSchemaDrm
+from .share_schema_population_status import ShareSchemaPopulationStatus
+from .share_schema_watermark import ShareSchemaWatermark
+from .share_token_schema import ShareTokenSchema
+from .share_token_schema_drm import ShareTokenSchemaDrm
+from .share_token_schema_watermark import ShareTokenSchemaWatermark
+from .share_url_create_schema import ShareURLCreateSchema
+from .share_url_create_schema_drm import ShareURLCreateSchemaDrm
+from .share_url_create_schema_watermark import ShareURLCreateSchemaWatermark
+from .share_url_schema import ShareURLSchema
+from .share_url_schema_drm import ShareURLSchemaDrm
+from .share_url_schema_population_status import ShareURLSchemaPopulationStatus
+from .share_url_schema_watermark import ShareURLSchemaWatermark
+from .share_user import ShareUser
+from .share_user_schema import ShareUserSchema
+from .share_users_elastic import ShareUsersElastic
+from .share_users_elastic_schema import ShareUsersElasticSchema
+from .share_users_schema import ShareUsersSchema
+from .shares_elastic_schema import SharesElasticSchema
+from .shares_elastic_schema_facets_type_0 import SharesElasticSchemaFacetsType0
+from .shares_schema import SharesSchema
+from .storage_content_info import StorageContentInfo
+from .storage_content_info_schema import StorageContentInfoSchema
+from .sync_session_create_schema import SyncSessionCreateSchema
+from .sync_session_schema import SyncSessionSchema
+from .synchronize_collection_keyframes_schema import (
+    SynchronizeCollectionKeyframesSchema,
+)
+from .theme import Theme
+from .theme_base import ThemeBase
+from .theme_colors import ThemeColors
+from .theme_colors_schema import ThemeColorsSchema
+from .theme_schema import ThemeSchema
+from .theme_schema_base import ThemeSchemaBase
+from .theme_typography import ThemeTypography
+from .theme_typography_schema import ThemeTypographySchema
+from .transcription_element_type import TranscriptionElementType
+from .transcription_element_type_schema import TranscriptionElementTypeSchema
+from .transcription_type import TranscriptionType
+from .transcription_type_schema import TranscriptionTypeSchema
+from .upload_storage import UploadStorage
+from .upload_storage_method import UploadStorageMethod
+from .upload_storage_schema import UploadStorageSchema
+from .upload_storage_schema_method import UploadStorageSchemaMethod
+from .user import User
+from .user_schema import UserSchema
+
+__all__ = (
+    "ApprovalBySchema",
+    "ApprovalBySchemaStatus",
+    "ApprovalJobSchema",
+    "ApprovalsBySchema",
+    "ApprovalSchema",
+    "ApprovalSchemaStatus",
+    "ApprovalSchemaUserStatus",
+    "AssetBaseSchema",
+    "AssetBaseSchemaAnalyzeStatus",
+    "AssetBaseSchemaArchiveStatus",
+    "AssetBaseSchemaFaceRecognitionStatus",
+    "AssetBaseSchemaStatus",
+    "AssetBaseSchemaType",
+    "AssetCreateSchema",
+    "AssetCreateSchemaAnalyzeStatus",
+    "AssetCreateSchemaArchiveStatus",
+    "AssetCreateSchemaFaceRecognitionStatus",
+    "AssetCreateSchemaStatus",
+    "AssetCreateSchemaType",
+    "AssetEditSchema",
+    "AssetEditSchemaAnalyzeStatus",
+    "AssetEditSchemaArchiveStatus",
+    "AssetEditSchemaFaceRecognitionStatus",
+    "AssetEditSchemaStatus",
+    "AssetEditSchemaType",
+    "AssetElasticSchema",
+    "AssetElasticSchemaAnalyzeStatus",
+    "AssetElasticSchemaArchiveStatus",
+    "AssetElasticSchemaFaceRecognitionStatus",
+    "AssetElasticSchemaFilesType0Item",
+    "AssetElasticSchemaFormatsType0Item",
+    "AssetElasticSchemaKeyframesType0Item",
+    "AssetElasticSchemaMetadataType0",
+    "AssetElasticSchemaProxiesType0Item",
+    "AssetElasticSchemaStatus",
+    "AssetElasticSchemaType",
+    "AssetHistoryBaseSchema",
+    "AssetHistoryBaseSchemaOperationType",
+    "AssetHistoryBulkSchema",
+    "AssetHistoryBulkSchemaAssetsJobsMapType0",
+    "AssetHistoryBulkSchemaOperationType",
+    "AssetHistoryElasticSchema",
+    "AssetHistoryElasticSchemaOperationType",
+    "AssetHistoryEntitiesSchema",
+    "AssetHistorySchema",
+    "AssetHistorySchemaOperationType",
+    "AssetPersonChangeSchema",
+    "AssetPostCreate",
+    "AssetPostCreateAnalyzeStatus",
+    "AssetPostCreateArchiveStatus",
+    "AssetPostCreateFaceRecognitionStatus",
+    "AssetPostCreatePublicationStatus",
+    "AssetPostCreateSchema",
+    "AssetPostCreateSchemaAnalyzeStatus",
+    "AssetPostCreateSchemaArchiveStatus",
+    "AssetPostCreateSchemaFaceRecognitionStatus",
+    "AssetPostCreateSchemaPublicationStatus",
+    "AssetPostCreateSchemaStatus",
+    "AssetPostCreateSchemaType",
+    "AssetPostCreateStatus",
+    "AssetPostCreateType",
+    "AssetPostEdit",
+    "AssetPostEditAnalyzeStatus",
+    "AssetPostEditArchiveStatus",
+    "AssetPostEditFaceRecognitionStatus",
+    "AssetPostEditPublicationStatus",
+    "AssetPostEditSchema",
+    "AssetPostEditSchemaAnalyzeStatus",
+    "AssetPostEditSchemaArchiveStatus",
+    "AssetPostEditSchemaFaceRecognitionStatus",
+    "AssetPostEditSchemaPublicationStatus",
+    "AssetPostEditSchemaStatus",
+    "AssetPostEditSchemaType",
+    "AssetPostEditStatus",
+    "AssetPostEditType",
+    "AssetPostElastic",
+    "AssetPostElasticAnalyzeStatus",
+    "AssetPostElasticArchiveStatus",
+    "AssetPostElasticFaceRecognitionStatus",
+    "AssetPostElasticFilesType0Item",
+    "AssetPostElasticFormatsType0Item",
+    "AssetPostElasticKeyframesType0Item",
+    "AssetPostElasticMetadataType0",
+    "AssetPostElasticProxiesType0Item",
+    "AssetPostElasticPublicationStatus",
+    "AssetPostElasticSchema",
+    "AssetPostElasticSchemaAnalyzeStatus",
+    "AssetPostElasticSchemaArchiveStatus",
+    "AssetPostElasticSchemaFaceRecognitionStatus",
+    "AssetPostElasticSchemaFilesType0Item",
+    "AssetPostElasticSchemaFormatsType0Item",
+    "AssetPostElasticSchemaKeyframesType0Item",
+    "AssetPostElasticSchemaMetadataType0",
+    "AssetPostElasticSchemaProxiesType0Item",
+    "AssetPostElasticSchemaPublicationStatus",
+    "AssetPostElasticSchemaStatus",
+    "AssetPostElasticSchemaType",
+    "AssetPostElasticStatus",
+    "AssetPostElasticType",
+    "AssetPostSchema",
+    "AssetPostSchemaAnalyzeStatus",
+    "AssetPostSchemaArchiveStatus",
+    "AssetPostSchemaFaceRecognitionStatus",
+    "AssetPostSchemaPublicationStatus",
+    "AssetPostSchemaStatus",
+    "AssetPostSchemaType",
+    "AssetSchema",
+    "AssetSchemaAnalyzeStatus",
+    "AssetSchemaArchiveStatus",
+    "AssetSchemaFaceRecognitionStatus",
+    "AssetSchemaStatus",
+    "AssetSchemaType",
+    "AssetsHistoryQueryParamsSchema",
+    "AssetsQueryParamsSchema",
+    "AssetsQueryParamsSchemaTypesType0Item",
+    "AssetsSchema",
+    "AssetTranscriptionFromSubtitleSchema",
+    "AssetTranscriptionFromSubtitleSchemaFormat",
+    "AssetTranscriptionPropertiesSchema",
+    "AssetTranscriptionPropertiesSchemaSpeakerLabelsType0",
+    "AssetTranscriptionsPropertiesSchema",
+    "AssetVersion",
+    "AssetVersionAnalyzeStatus",
+    "AssetVersionArchiveStatus",
+    "AssetVersionFaceRecognitionStatus",
+    "AssetVersionLookupSchema",
+    "AssetVersionSchema",
+    "AssetVersionSchemaAnalyzeStatus",
+    "AssetVersionSchemaArchiveStatus",
+    "AssetVersionSchemaFaceRecognitionStatus",
+    "AssetVersionSchemaStatus",
+    "AssetVersionSchemaTranscribeStatus",
+    "AssetVersionsSchema",
+    "AssetVersionStatus",
+    "AssetVersionTranscribeStatus",
+    "BaseQueryParamsSchema",
+    "BulkActionSchema",
+    "BulkActionSchemaObjectType",
+    "BulkAddToFavoritesSchema",
+    "BulkAddToFavoritesSchemaObjectType",
+    "BulkAssetEditSchema",
+    "BulkAssetPersonChangeSchema",
+    "BulkAssetVersionEditSchema",
+    "BulkCollectionACLsUpdateSchema",
+    "BulkCollectionACLsUpdateSchemaCallbackDataRequestType0",
+    "BulkCollectionACLsUpdateSchemaCallbackDataType0",
+    "BulkCollectionActionSchema",
+    "BulkCollectionActionSchemaCallbackDataRequestType0",
+    "BulkCollectionActionSchemaCallbackDataType0",
+    "BulkCollectionAnalyzeSchema",
+    "BulkCollectionAnalyzeSchemaCallbackDataRequestType0",
+    "BulkCollectionAnalyzeSchemaCallbackDataType0",
+    "BulkCollectionDeleteSchema",
+    "BulkCollectionFaceExtractionSchema",
+    "BulkCollectionFaceExtractionSchemaCallbackDataRequestType0",
+    "BulkCollectionFaceExtractionSchemaCallbackDataType0",
+    "BulkCollectionMetadataFillingSchema",
+    "BulkCollectionMetadataFillingSchemaCallbackDataRequestType0",
+    "BulkCollectionMetadataFillingSchemaCallbackDataType0",
+    "BulkCollectionMetadataUpdateSchema",
+    "BulkCollectionMetadataUpdateSchemaCallbackDataRequestType0",
+    "BulkCollectionMetadataUpdateSchemaCallbackDataType0",
+    "BulkCollectionTranscodeSchema",
+    "BulkCollectionTranscodeSchemaCallbackDataRequestType0",
+    "BulkCollectionTranscodeSchemaCallbackDataType0",
+    "BulkCollectionTranscribeSchema",
+    "BulkCollectionTranscribeSchemaCallbackDataRequestType0",
+    "BulkCollectionTranscribeSchemaCallbackDataType0",
+    "BulkCollectionTransferSchema",
+    "BulkCollectionTransferSchemaCallbackDataRequestType0",
+    "BulkCollectionTransferSchemaCallbackDataType0",
+    "BulkCreateSegmentsSchema",
+    "BulkDeleteFromFavoritesSchema",
+    "BulkDeleteFromFavoritesSchemaObjectType",
+    "BulkDeleteSchema",
+    "BulkDeleteSchemaObjectType",
+    "BulkEditAssetSegmentsSchema",
+    "BulkEditSegmentsSchema",
+    "BulkRemoveApprovalSchema",
+    "BulkRemoveApprovalSchemaObjectType",
+    "BulkSetApprovalSchema",
+    "BulkSetApprovalSchemaObjectType",
+    "BulkSetApprovalSchemaStatus",
+    "BulkShareCreateSchema",
+    "BulkShareCreateSchemaDrm",
+    "BulkShareCreateSchemaObjectType",
+    "BulkShareCreateSchemaWatermark",
+    "BulkShareDeleteSchema",
+    "CollectionBaseSchema",
+    "CollectionBaseSchemaCustomOrderStatus",
+    "CollectionBaseSchemaKeyframesType0Item",
+    "CollectionBaseSchemaMetadataType0",
+    "CollectionBaseSchemaStatus",
+    "CollectionContentInfoSchema",
+    "CollectionContentOrderingSchema",
+    "CollectionContentQueryParamsSchema",
+    "CollectionContentQueryParamsSchemaTypesType0Item",
+    "CollectionContentSchema",
+    "CollectionContentsSchema",
+    "CollectionElastic",
+    "CollectionElasticCustomOrderStatus",
+    "CollectionElasticKeyframesType0Item",
+    "CollectionElasticMetadataType0",
+    "CollectionElasticSchema",
+    "CollectionElasticSchemaCustomOrderStatus",
+    "CollectionElasticSchemaKeyframesType0Item",
+    "CollectionElasticSchemaMetadataType0",
+    "CollectionElasticSchemaStatus",
+    "CollectionElasticStatus",
+    "CollectionInputSchema",
+    "CollectionInputSchemaStatus",
+    "CollectionSchema",
+    "CollectionSchemaCustomOrderStatus",
+    "CollectionSchemaKeyframesType0Item",
+    "CollectionSchemaMetadataType0",
+    "CollectionSchemaStatus",
+    "CollectionSizeSchema",
+    "CollectionsQueryParamsSchema",
+    "CollectionsSchema",
+    "CreateAssetVersionFromAssetSchema",
+    "CreateAssetVersionFromAssetSchemaIncludeSegmentTypesType0Item",
+    "CreateAssetVersionFromVersionSchema",
+    "CreateAssetVersionFromVersionSchemaIncludeSegmentTypesType0Item",
+    "CreateAssetVersionSchema",
+    "CreateAssetVersionSchemaIncludeSegmentTypesType0Item",
+    "CreateCollectionContentOrderingSchema",
+    "CreateCollectionFromSavedSearchResponseSchema",
+    "CreateCollectionFromSavedSearchSchema",
+    "CreatePublicationJobSchema",
+    "CreatePublicationJobSchemaMetadataOverridesType0",
+    "CreatePublicationJobThumbnailKeyframe",
+    "CreatePublicationJobThumbnailKeyframeSchema",
+    "CreatePublicationJobThumbnailKeyframeSchemaType",
+    "CreatePublicationJobThumbnailKeyframeType",
+    "CreatePublicationTemplate",
+    "CreatePublicationTemplateApplyType1",
+    "CreatePublicationTemplateDataType0",
+    "CreatePublicationTemplateSchema",
+    "CreatePublicationTemplateSchemaApplyType1",
+    "CreatePublicationTemplateSchemaDataType0",
+    "CustomActionCallbackReplySchema",
+    "CustomActionCallbackSchema",
+    "CustomActionCallbackSchemaMetadataValuesType0",
+    "CustomActionCreateSchema",
+    "CustomActionCreateSchemaContext",
+    "CustomActionCreateSchemaHeadersType0",
+    "CustomActionCreateSchemaStatus",
+    "CustomActionCreateSchemaType",
+    "CustomActionSchema",
+    "CustomActionSchemaContext",
+    "CustomActionSchemaHeadersType0",
+    "CustomActionSchemaStatus",
+    "CustomActionSchemaType",
+    "CustomActionsSchema",
+    "DeleteAssetsByAssetIdHistoryByHistoryEntityIdResponseDefault",
+    "DeleteAssetsByAssetIdPurgeResponseDefault",
+    "DeleteAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefault",
+    "DeleteAssetsByAssetIdResponseDefault",
+    "DeleteAssetsByAssetIdSegmentsBulkResponseDefault",
+    "DeleteAssetsByAssetIdSegmentsBySegmentIdResponseDefault",
+    "DeleteAssetsByAssetIdUploadsResponseDefault",
+    "DeleteAssetsByAssetIdVersionsByVersionIdResponseDefault",
+    "DeleteAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefault",
+    "DeleteAssetsByAssetIdVersionsOldResponseDefault",
+    "DeleteAssetsRelationTypesByRelationTypeResponseDefault",
+    "DeleteByObjectTypeByObjectIdApprovalsExternalByEmailResponseDefault",
+    "DeleteByObjectTypeByObjectIdApprovalsRequestResponseDefault",
+    "DeleteByObjectTypeByObjectIdApprovalsResponseDefault",
+    "DeleteByObjectTypeByObjectIdApprovalsUserByUserIdResponseDefault",
+    "DeleteByObjectTypeByObjectIdSharesByShareIdResponseDefault",
+    "DeleteByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefault",
+    "DeleteCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefault",
+    "DeleteCollectionsByCollectionIdContentsOrderingCustomResponseDefault",
+    "DeleteCollectionsByCollectionIdPurgeResponseDefault",
+    "DeleteCollectionsByCollectionIdResponseDefault",
+    "DeleteCustomActionsByContextByActionIdResponseDefault",
+    "DeleteDeleteQueueAssetsResponseDefault",
+    "DeleteDeleteQueueCollectionsResponseDefault",
+    "DeleteFavoritesAllResponseDefault",
+    "DeleteFavoritesResponseDefault",
+    "DeleteFavouritesAllResponseDefault",
+    "DeletePlaylistsByPlaylistIdItemsByItemIdResponseDefault",
+    "DeletePlaylistsByPlaylistIdResponseDefault",
+    "DeletePortfoliosByPortfolioIdResponseDefault",
+    "DeleteProjectsByProjectIdMembersByMemberIdResponseDefault",
+    "DeleteProjectsByProjectIdResponseDefault",
+    "DeleteQueueAssetsQueryParamsSchema",
+    "DeleteQueueCollectionsQueryParamsSchema",
+    "DeleteQueueSchema",
+    "DeleteSegmentsSchema",
+    "DeleteSegmentsSchemaSegmentType",
+    "DeleteSequencesBySequenceIdItemsByItemIdResponseDefault",
+    "DeleteSequencesBySequenceIdResponseDefault",
+    "DeleteSharesAllowlistEntriesByEntryIdResponseDefault",
+    "DeleteSharesBulkAllResponseDefault",
+    "DeleteSharesBulkResponseDefault",
+    "DeleteSyncSessionsBySyncSessionIdResponseDefault",
+    "Drawing",
+    "DrawingPoint",
+    "DrawingPointSchema",
+    "DrawingPrimitive",
+    "DrawingPrimitiveSchema",
+    "DrawingPrimitiveSchemaType",
+    "DrawingPrimitiveType",
+    "DrawingSchema",
+    "EditAssetSegment",
+    "EditAssetSegmentMetadataType0",
+    "EditAssetSegmentSchema",
+    "EditAssetSegmentSchemaMetadataType0",
+    "EditAssetSegmentSchemaSegmentType",
+    "EditAssetSegmentSchemaStatus",
+    "EditAssetSegmentSegmentType",
+    "EditAssetSegmentStatus",
+    "EditAssetVersion",
+    "EditAssetVersionAnalyzeStatus",
+    "EditAssetVersionArchiveStatus",
+    "EditAssetVersionFaceRecognitionStatus",
+    "EditAssetVersionSchema",
+    "EditAssetVersionSchemaAnalyzeStatus",
+    "EditAssetVersionSchemaArchiveStatus",
+    "EditAssetVersionSchemaFaceRecognitionStatus",
+    "EditAssetVersionSchemaStatus",
+    "EditAssetVersionSchemaTranscribeStatus",
+    "EditAssetVersionStatus",
+    "EditAssetVersionTranscribeStatus",
+    "EditPersonAssetVersionSchema",
+    "EditPersonStatusSchema",
+    "EditSegmentForBulk",
+    "EditSegmentForBulkMetadataType0",
+    "EditSegmentForBulkSchema",
+    "EditSegmentForBulkSchemaMetadataType0",
+    "EditSegmentForBulkSchemaSegmentType",
+    "EditSegmentForBulkSchemaStatus",
+    "EditSegmentForBulkSegmentType",
+    "EditSegmentForBulkStatus",
+    "EditSegmentSchema",
+    "EditSegmentSchemaMetadataType0",
+    "EditSegmentSchemaSegmentType",
+    "EditSegmentSchemaStatus",
+    "FaceBoundingBox",
+    "FaceBoundingBoxSchema",
+    "FaceLandmark",
+    "FaceLandmarkSchema",
+    "FavoritesSchema",
+    "GetAssetsByAssetIdHistoryByHistoryEntityIdResponseDefault",
+    "GetAssetsByAssetIdHistoryResponseDefault",
+    "GetAssetsByAssetIdRelationsByRelationTypeResponseDefault",
+    "GetAssetsByAssetIdRelationsResponseDefault",
+    "GetAssetsByAssetIdResponseDefault",
+    "GetAssetsByAssetIdSegmentsBySegmentIdResponseDefault",
+    "GetAssetsByAssetIdSegmentsCsvResponseDefault",
+    "GetAssetsByAssetIdSegmentsResponseDefault",
+    "GetAssetsByAssetIdSegmentsSrtResponseDefault",
+    "GetAssetsByAssetIdSegmentsTextResponseDefault",
+    "GetAssetsByAssetIdSegmentsVttResponseDefault",
+    "GetAssetsByAssetIdSharesAllResponseDefault",
+    "GetAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefault",
+    "GetAssetsByAssetIdVersionsByVersionIdTranscriptionsPropertiesResponseDefault",
+    "GetAssetsLatestVersionSchema",
+    "GetAssetsLatestVersionSchemaObjectType",
+    "GetAssetsRecentResponseDefault",
+    "GetAssetsRelationTypesByRelationTypeResponseDefault",
+    "GetAssetsRelationTypesResponseDefault",
+    "GetAssetsResponseDefault",
+    "GetAssetsVersionsMetadataSchema",
+    "GetByObjectTypeByObjectIdApprovalsRequestResponseDefault",
+    "GetByObjectTypeByObjectIdApprovalsResponseDefault",
+    "GetByObjectTypeByObjectIdSharesByShareIdResponseDefault",
+    "GetByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefault",
+    "GetByObjectTypeByObjectIdSharesByShareIdUsersResponseDefault",
+    "GetByObjectTypeByObjectIdSharesResponseDefault",
+    "GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsRequestResponseDefault",
+    "GetByObjectTypeByObjectIdVersionsByVersionIdApprovalsResponseDefault",
+    "GetCollectionsByCollectionIdAncestorsResponseDefault",
+    "GetCollectionsByCollectionIdContentInfoResponseDefault",
+    "GetCollectionsByCollectionIdContentsResponseDefault",
+    "GetCollectionsByCollectionIdFullPathResponseDefault",
+    "GetCollectionsByCollectionIdResponseDefault",
+    "GetCollectionsByCollectionIdSharesAllResponseDefault",
+    "GetCollectionsByCollectionIdSizeResponseDefault",
+    "GetCollectionsRecentResponseDefault",
+    "GetCollectionsResponseDefault",
+    "GetCustomActionsByContextByActionIdResponseDefault",
+    "GetCustomActionsByContextResponseDefault",
+    "GetCustomActionsResponseDefault",
+    "GetDeleteQueueAssetsResponseDefault",
+    "GetDeleteQueueCollectionsResponseDefault",
+    "GetFavoritesResponseDefault",
+    "GetPersonsByPersonIdResponseDefault",
+    "GetPlaylistsByPlaylistIdItemsResponseDefault",
+    "GetPlaylistsByPlaylistIdResponseDefault",
+    "GetPlaylistsResponseDefault",
+    "GetPortfoliosByPortfolioIdResponseDefault",
+    "GetPortfoliosResponseDefault",
+    "GetProjectsByProjectIdMembersByMemberIdResponseDefault",
+    "GetProjectsByProjectIdMembersResponseDefault",
+    "GetProjectsByProjectIdResponseDefault",
+    "GetProjectsResponseDefault",
+    "GetPublicationsTemplatesResponseDefault",
+    "GetPublicationsTokenResponseDefault",
+    "GetSequencesBySequenceIdItemsResponseDefault",
+    "GetSequencesBySequenceIdResponseDefault",
+    "GetSequencesResponseDefault",
+    "GetSharesAllowlistEntriesByEntryIdResponseDefault",
+    "GetSharesAllowlistEntriesResponseDefault",
+    "GetSharesAllResponseDefault",
+    "GetSharesAuthTokenResponseDefault",
+    "GetShareSchema",
+    "GetShareSchemaDrm",
+    "GetShareSchemaPopulationStatus",
+    "GetShareSchemaWatermark",
+    "GetSharesResponseDefault",
+    "GetSyncSessionsBySyncSessionIdResponseDefault",
+    "ListObjectsSchema",
+    "MagicLinkAllowlistCreateSchema",
+    "MagicLinkAllowlistCreateSchemaEntryType",
+    "MagicLinkAllowlistEntrySchema",
+    "MagicLinkAllowlistEntrySchemaEntryType",
+    "MagicLinkAllowlistListSchema",
+    "MagicLinkAllowlistUpdateSchema",
+    "MagicLinkAllowlistUpdateSchemaEntryType",
+    "MagicLinkCheckSettingSchema",
+    "MagicLinkRequestSchema",
+    "MagicLinkValidateSchema",
+    "MetadataFieldValueSchema",
+    "MetadataFieldValueSchemaFieldValuesType0Item",
+    "PatchAssetsByAssetIdResponseDefault",
+    "PatchAssetsByAssetIdSegmentsBySegmentIdResponseDefault",
+    "PatchAssetsByAssetIdVersionsByVersionIdResponseDefault",
+    "PatchAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefault",
+    "PatchAssetsRelationTypesByRelationTypeResponseDefault",
+    "PatchAssetsResponseDefault",
+    "PatchByObjectTypeByObjectIdApprovalsRequestResponseDefault",
+    "PatchByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefault",
+    "PatchCollectionsByCollectionIdResponseDefault",
+    "PatchCustomActionsByContextByActionIdResponseDefault",
+    "PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefault",
+    "PatchPlaylistsByPlaylistIdResponseDefault",
+    "PatchPortfoliosByPortfolioIdResponseDefault",
+    "PatchProjectsByProjectIdResponseDefault",
+    "PatchSequencesBySequenceIdResponseDefault",
+    "PatchSyncSessionsBySyncSessionIdResponseDefault",
+    "Playlist",
+    "PlaylistBaseSchema",
+    "PlaylistBaseSchemaKeyframesType0Item",
+    "PlaylistBaseSchemaStatus",
+    "PlaylistCreateSchema",
+    "PlaylistCreateSchemaKeyframesType0Item",
+    "PlaylistCreateSchemaStatus",
+    "PlaylistItem",
+    "PlaylistItemElasticSchema",
+    "PlaylistItemElasticSchemaAnalyzeStatus",
+    "PlaylistItemElasticSchemaArchiveStatus",
+    "PlaylistItemElasticSchemaFaceRecognitionStatus",
+    "PlaylistItemElasticSchemaFilesType0Item",
+    "PlaylistItemElasticSchemaFormatsType0Item",
+    "PlaylistItemElasticSchemaKeyframesType0Item",
+    "PlaylistItemElasticSchemaMetadataType0",
+    "PlaylistItemElasticSchemaProxiesType0Item",
+    "PlaylistItemElasticSchemaStatus",
+    "PlaylistItemElasticSchemaType",
+    "PlaylistItemObjectType",
+    "PlaylistItemSchema",
+    "PlaylistItemSchemaObjectType",
+    "PlaylistItemsQueryParamsSchema",
+    "PlaylistItemsSchema",
+    "PlaylistItemUpdatePositionSchema",
+    "PlaylistKeyframesType0Item",
+    "PlaylistSchema",
+    "PlaylistSchemaKeyframesType0Item",
+    "PlaylistSchemaStatus",
+    "PlaylistsQueryParamsSchema",
+    "PlaylistsSchema",
+    "PlaylistStatus",
+    "PortfolioBaseSchema",
+    "PortfolioBaseSchemaStatus",
+    "PortfolioConfig",
+    "PortfolioConfigSchema",
+    "PortfolioCreateSchema",
+    "PortfolioCreateSchemaStatus",
+    "PortfolioSchema",
+    "PortfolioSchemaStatus",
+    "PortfoliosQueryParamsSchema",
+    "PortfoliosSchema",
+    "PostApprovalsBulkRemoveResponseDefault",
+    "PostApprovalsBulkResponseDefault",
+    "PostAssetsByAssetIdHistoryByHistoryEntityIdReindexBody",
+    "PostAssetsByAssetIdHistoryByHistoryEntityIdReindexResponseDefault",
+    "PostAssetsByAssetIdHistoryResponseDefault",
+    "PostAssetsByAssetIdReindexResponseDefault",
+    "PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdResponseDefault",
+    "PostAssetsByAssetIdRelationsByRelationTypeByRelatedToAssetIdReverseResponseDefault",
+    "PostAssetsByAssetIdRelationsResponseDefault",
+    "PostAssetsByAssetIdSegmentsBulkResponseDefault",
+    "PostAssetsByAssetIdSegmentsBySegmentIdReindexResponseDefault",
+    "PostAssetsByAssetIdSegmentsReindexResponseDefault",
+    "PostAssetsByAssetIdSegmentsResponseDefault",
+    "PostAssetsByAssetIdVersionsByVersionIdTranscriptionsPropertiesResponseDefault",
+    "PostAssetsByAssetIdVersionsByVersionIdTranscriptionsSubtitlesResponseDefault",
+    "PostAssetsByAssetIdVersionsFromAssetsBySourceAssetIdResponseDefault",
+    "PostAssetsByAssetIdVersionsFromVersionsBySourceVersionIdResponseDefault",
+    "PostAssetsByAssetIdVersionsResponseDefault",
+    "PostAssetsByAssetIdViewsResponseDefault",
+    "PostAssetsReindexResponseDefault",
+    "PostAssetsRelationTypesResponseDefault",
+    "PostAssetsResponseDefault",
+    "PostAssetsSegmentsReindexResponseDefault",
+    "PostByObjectTypeByObjectIdApprovalsRequestResponseDefault",
+    "PostByObjectTypeByObjectIdSharesByShareIdReindexResponseDefault",
+    "PostByObjectTypeByObjectIdSharesByShareIdUsersResponseDefault",
+    "PostByObjectTypeByObjectIdSharesResponseDefault",
+    "PostByObjectTypeByObjectIdSharesUrlResponseDefault",
+    "PostCollectionsByCollectionIdContentsByObjectTypeByObjectIdReindexResponseDefault",
+    "PostCollectionsByCollectionIdContentsOrderingCustomResponseDefault",
+    "PostCollectionsByCollectionIdContentsResponseDefault",
+    "PostCollectionsByCollectionIdKeyframesResponseDefault",
+    "PostCollectionsByCollectionIdReindexContentsBody",
+    "PostCollectionsByCollectionIdReindexContentsResponseDefault",
+    "PostCollectionsByCollectionIdReindexResponseDefault",
+    "PostCollectionsByCollectionIdSubcollectionsResponseDefault",
+    "PostCollectionsByCollectionIdViewsResponseDefault",
+    "PostCollectionsReindexResponseDefault",
+    "PostCollectionsResponseDefault",
+    "PostCustomActionsByContextByActionIdCallbackResponseDefault",
+    "PostCustomActionsByContextResponseDefault",
+    "PostCustomActionsSharedByContextByActionIdCallbackResponseDefault",
+    "PostDeleteQueueAssetsPurgeAllResponseDefault",
+    "PostDeleteQueueAssetsPurgeResponseDefault",
+    "PostDeleteQueueAssetsResponseDefault",
+    "PostDeleteQueueAssetsRestoreAllResponseDefault",
+    "PostDeleteQueueBulkResponseDefault",
+    "PostDeleteQueueCollectionsPurgeAllResponseDefault",
+    "PostDeleteQueueCollectionsPurgeResponseDefault",
+    "PostDeleteQueueCollectionsResponseDefault",
+    "PostDeleteQueueCollectionsRestoreAllResponseDefault",
+    "PostDeleteQueuePurgeAllResponseDefault",
+    "PostFavoritesResponseDefault",
+    "PostPlaylistsByPlaylistIdItemsResponseDefault",
+    "PostPlaylistsByPlaylistIdKeyframesResponseDefault",
+    "PostPlaylistsByPlaylistIdReindexResponseDefault",
+    "PostPlaylistsResponseDefault",
+    "PostPortfoliosByPortfolioIdReindexResponseDefault",
+    "PostPortfoliosResponseDefault",
+    "PostProjectsByProjectIdMembersResponseDefault",
+    "PostProjectsByProjectIdReindexResponseDefault",
+    "PostProjectsResponseDefault",
+    "PostPublicationsJobsResponseDefault",
+    "PostReindexBulkResponseDefault",
+    "PostSegmentsReindexResponseDefault",
+    "PostSequencesBySequenceIdItemsResponseDefault",
+    "PostSequencesBySequenceIdReindexResponseDefault",
+    "PostSequencesResponseDefault",
+    "PostShareByObjectTypeResponseDefault",
+    "PostSharesAllowlistEntriesResponseDefault",
+    "PostSharesAuthLoginResponseDefault",
+    "PostSharesByShareIdMagicLinkRequestResponse200",
+    "PostSharesByShareIdMagicLinkRequestResponseDefault",
+    "PostSharesByShareIdMagicLinkValidateResponseDefault",
+    "PostSharesMagicLinkEnabledResponse200",
+    "PostSharesMagicLinkEnabledResponseDefault",
+    "PostSyncSessionsResponseDefault",
+    "ProcessBulkPersonsSchema",
+    "ProjectBaseSchema",
+    "ProjectBaseSchemaStatus",
+    "ProjectCreateSchema",
+    "ProjectCreateSchemaStatus",
+    "ProjectMemberBaseSchema",
+    "ProjectMemberCreateSchema",
+    "ProjectMemberSchema",
+    "ProjectMembersQueryParamsSchema",
+    "ProjectMembersSchema",
+    "ProjectSchema",
+    "ProjectSchemaStatus",
+    "ProjectsQueryParamsSchema",
+    "ProjectsSchema",
+    "PublicationJobThumbnailSchemaBase",
+    "PublicationTemplateSchema",
+    "PublicationTemplatesSchema",
+    "PublicationTokenSchema",
+    "PutAssetsByAssetIdResponseDefault",
+    "PutAssetsByAssetIdRestoreResponseDefault",
+    "PutAssetsByAssetIdSearchDocumentResponseDefault",
+    "PutAssetsByAssetIdSegmentsBulkResponseDefault",
+    "PutAssetsByAssetIdSegmentsBySegmentIdResponseDefault",
+    "PutAssetsByAssetIdVersionsByVersionIdPromoteResponseDefault",
+    "PutAssetsByAssetIdVersionsByVersionIdResponseDefault",
+    "PutAssetsByAssetIdVersionsByVersionIdTranscriptionsByTranscriptionIdPropertiesResponseDefault",
+    "PutAssetsRelationTypesByRelationTypeResponseDefault",
+    "PutAssetsResponseDefault",
+    "PutByObjectTypeByObjectIdApprovalsRequestResponseDefault",
+    "PutByObjectTypeByObjectIdApprovalsResponseDefault",
+    "PutByObjectTypeByObjectIdSharesByShareIdResponseDefault",
+    "PutByObjectTypeByObjectIdSharesByShareIdUsersByShareUserIdResponseDefault",
+    "PutCollectionsByCollectionIdContentsByObjectTypeByObjectIdResponseDefault",
+    "PutCollectionsByCollectionIdResponseDefault",
+    "PutCollectionsByCollectionIdRestoreResponse202",
+    "PutCollectionsByCollectionIdRestoreResponseDefault",
+    "PutCollectionsByCollectionIdSearchDocumentResponseDefault",
+    "PutCustomActionsByContextByActionIdResponseDefault",
+    "PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefault",
+    "PutPlaylistsByPlaylistIdItemsByItemIdResponseDefault",
+    "PutPlaylistsByPlaylistIdResponseDefault",
+    "PutPortfoliosByPortfolioIdResponseDefault",
+    "PutProjectsByProjectIdResponseDefault",
+    "PutSequencesBySequenceIdItemsByItemIdPositionResponseDefault",
+    "PutSequencesBySequenceIdResponseDefault",
+    "PutSharesAllowlistEntriesByEntryIdResponseDefault",
+    "PutSharesAuthTokenResponseDefault",
+    "PutSyncSessionsBySyncSessionIdResponseDefault",
+    "RecentAssetElasticSchema",
+    "RecentAssetsQueryParamsSchema",
+    "RecentAssetsSchema",
+    "RecentCollectionElasticSchema",
+    "RecentCollectionsQueryParamsSchema",
+    "RecentCollectionsSchema",
+    "ReindexAllAssetsSchema",
+    "ReindexAllCollectionsSchema",
+    "ReindexAllSegmentsSchema",
+    "ReindexAssetHistorySchema",
+    "ReindexAssetSchema",
+    "ReindexBulkActionSchema",
+    "ReindexBulkActionSchemaObjectType",
+    "ReindexCollectionContentSchema",
+    "ReindexCollectionSchema",
+    "ReindexInheritedCollectionsACLSchema",
+    "ReindexPlaylistSchema",
+    "ReindexPortfolioSchema",
+    "ReindexProjectSchema",
+    "ReindexSegmentSchema",
+    "ReindexSegmentsSchema",
+    "ReindexSequenceSchema",
+    "ReindexShareSchema",
+    "ReindexViewDateSchema",
+    "RelationElastic",
+    "RelationElasticSchema",
+    "RelationSchema",
+    "RelationsQueryParamsSchema",
+    "RelationsSchema",
+    "RelationTypeSchema",
+    "RelationTypesSchema",
+    "SchedulePersonActionSchema",
+    "ScheduleSyncPersonToVersionsSchema",
+    "Segment",
+    "SegmentBaseSchema",
+    "SegmentBaseSchemaMetadataType0",
+    "SegmentBaseSchemaSegmentType",
+    "SegmentBaseSchemaStatus",
+    "SegmentElasticSchema",
+    "SegmentElasticSchemaMetadataType0",
+    "SegmentElasticSchemaSegmentType",
+    "SegmentElasticSchemaStatus",
+    "SegmentMetadataType0",
+    "SegmentQueryParamsSchema",
+    "SegmentSchema",
+    "SegmentSchemaMetadataType0",
+    "SegmentSchemaSegmentType",
+    "SegmentSchemaStatus",
+    "SegmentSegmentType",
+    "SegmentsSchema",
+    "SegmentsSchemaFacetsType0",
+    "SegmentStatus",
+    "SequenceBaseSchema",
+    "SequenceCreateSchema",
+    "SequenceItemSchema",
+    "SequenceItemSchemaObjectType",
+    "SequenceItemsQueryParamsSchema",
+    "SequenceItemsSchema",
+    "SequenceItemUpdatePositionSchema",
+    "SequenceSchema",
+    "SequencesQueryParamsSchema",
+    "SequencesSchema",
+    "ShareBaseSchema",
+    "ShareBaseSchemaDrm",
+    "ShareBaseSchemaPopulationStatus",
+    "ShareBaseSchemaWatermark",
+    "ShareCreateSchema",
+    "ShareCreateSchemaDrm",
+    "ShareCreateSchemaWatermark",
+    "ShareElasticSchema",
+    "ShareElasticSchemaApprovalType0",
+    "ShareElasticSchemaDrm",
+    "ShareElasticSchemaPopulationStatus",
+    "ShareElasticSchemaWatermark",
+    "ShareLoginSchema",
+    "ShareOptionsBaseSchema",
+    "ShareOptionsBaseSchemaDrm",
+    "ShareOptionsBaseSchemaWatermark",
+    "ShareRoles",
+    "ShareSchema",
+    "ShareSchemaDrm",
+    "ShareSchemaPopulationStatus",
+    "ShareSchemaWatermark",
+    "SharesElasticSchema",
+    "SharesElasticSchemaFacetsType0",
+    "SharesSchema",
+    "ShareTokenSchema",
+    "ShareTokenSchemaDrm",
+    "ShareTokenSchemaWatermark",
+    "ShareURLCreateSchema",
+    "ShareURLCreateSchemaDrm",
+    "ShareURLCreateSchemaWatermark",
+    "ShareURLSchema",
+    "ShareURLSchemaDrm",
+    "ShareURLSchemaPopulationStatus",
+    "ShareURLSchemaWatermark",
+    "ShareUser",
+    "ShareUserSchema",
+    "ShareUsersElastic",
+    "ShareUsersElasticSchema",
+    "ShareUsersSchema",
+    "StorageContentInfo",
+    "StorageContentInfoSchema",
+    "SynchronizeCollectionKeyframesSchema",
+    "SyncSessionCreateSchema",
+    "SyncSessionSchema",
+    "Theme",
+    "ThemeBase",
+    "ThemeColors",
+    "ThemeColorsSchema",
+    "ThemeSchema",
+    "ThemeSchemaBase",
+    "ThemeTypography",
+    "ThemeTypographySchema",
+    "TranscriptionElementType",
+    "TranscriptionElementTypeSchema",
+    "TranscriptionType",
+    "TranscriptionTypeSchema",
+    "UploadStorage",
+    "UploadStorageMethod",
+    "UploadStorageSchema",
+    "UploadStorageSchemaMethod",
+    "User",
+    "UserSchema",
+)

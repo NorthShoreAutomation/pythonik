@@ -1,0 +1,203 @@
+from http import HTTPStatus
+from typing import Any, cast
+from urllib.parse import quote
+
+import httpx
+
+from ...client import AuthenticatedClient, Client
+from ...models.delete_jobs_by_job_id_response_default import (
+    DeleteJobsByJobIdResponseDefault,
+)
+from ...types import UNSET, Response, Unset
+
+
+def _get_kwargs(
+    job_id: str,
+    *,
+    recursive: bool | Unset = UNSET,
+) -> dict[str, Any]:
+
+    params: dict[str, Any] = {}
+
+    params["recursive"] = recursive
+
+    params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
+
+    _kwargs: dict[str, Any] = {
+        "method": "delete",
+        "url": "/v1/jobs/{job_id}/".format(
+            job_id=quote(str(job_id), safe=""),
+        ),
+        "params": params,
+    }
+
+    return _kwargs
+
+
+def _parse_response(
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Any | DeleteJobsByJobIdResponseDefault:
+    if response.status_code == 204:
+        response_204 = cast(Any, None)
+        return response_204
+
+    if response.status_code == 400:
+        response_400 = cast(Any, None)
+        return response_400
+
+    if response.status_code == 401:
+        response_401 = cast(Any, None)
+        return response_401
+
+    if response.status_code == 404:
+        response_404 = cast(Any, None)
+        return response_404
+
+    response_default = DeleteJobsByJobIdResponseDefault.from_dict(response.json())
+
+    return response_default
+
+
+def _build_response(
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[Any | DeleteJobsByJobIdResponseDefault]:
+    return Response(
+        status_code=HTTPStatus(response.status_code),
+        content=response.content,
+        headers=response.headers,
+        parsed=_parse_response(client=client, response=response),
+    )
+
+
+def sync_detailed(
+    job_id: str,
+    *,
+    client: AuthenticatedClient | Client,
+    recursive: bool | Unset = UNSET,
+) -> Response[Any | DeleteJobsByJobIdResponseDefault]:
+    """Delete a particular job by id
+
+
+    Required roles:
+     - can_delete_jobs
+
+    Args:
+        job_id (str):
+        recursive (bool | Unset):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Response[Any | DeleteJobsByJobIdResponseDefault]
+    """
+
+    kwargs = _get_kwargs(
+        job_id=job_id,
+        recursive=recursive,
+    )
+
+    response = client.get_httpx_client().request(
+        **kwargs,
+    )
+
+    return _build_response(client=client, response=response)
+
+
+def sync(
+    job_id: str,
+    *,
+    client: AuthenticatedClient | Client,
+    recursive: bool | Unset = UNSET,
+) -> Any | DeleteJobsByJobIdResponseDefault | None:
+    """Delete a particular job by id
+
+
+    Required roles:
+     - can_delete_jobs
+
+    Args:
+        job_id (str):
+        recursive (bool | Unset):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Any | DeleteJobsByJobIdResponseDefault
+    """
+
+    return sync_detailed(
+        job_id=job_id,
+        client=client,
+        recursive=recursive,
+    ).parsed
+
+
+async def asyncio_detailed(
+    job_id: str,
+    *,
+    client: AuthenticatedClient | Client,
+    recursive: bool | Unset = UNSET,
+) -> Response[Any | DeleteJobsByJobIdResponseDefault]:
+    """Delete a particular job by id
+
+
+    Required roles:
+     - can_delete_jobs
+
+    Args:
+        job_id (str):
+        recursive (bool | Unset):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Response[Any | DeleteJobsByJobIdResponseDefault]
+    """
+
+    kwargs = _get_kwargs(
+        job_id=job_id,
+        recursive=recursive,
+    )
+
+    response = await client.get_async_httpx_client().request(**kwargs)
+
+    return _build_response(client=client, response=response)
+
+
+async def asyncio(
+    job_id: str,
+    *,
+    client: AuthenticatedClient | Client,
+    recursive: bool | Unset = UNSET,
+) -> Any | DeleteJobsByJobIdResponseDefault | None:
+    """Delete a particular job by id
+
+
+    Required roles:
+     - can_delete_jobs
+
+    Args:
+        job_id (str):
+        recursive (bool | Unset):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Any | DeleteJobsByJobIdResponseDefault
+    """
+
+    return (
+        await asyncio_detailed(
+            job_id=job_id,
+            client=client,
+            recursive=recursive,
+        )
+    ).parsed

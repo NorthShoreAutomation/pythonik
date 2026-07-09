@@ -1,4 +1,5 @@
-from loguru import logger
+import logging
+
 from pythonik.models.base import Response
 from pythonik.models.metadata.views import (
     ViewMetadata,
@@ -22,6 +23,7 @@ from pythonik.models.metadata.fields import (
 from pythonik.specs.base import Spec
 from typing import Literal, Union, Dict, Any, List, Optional
 
+logger = logging.getLogger(__name__)
 
 # Asset metadata paths
 ASSET_METADATA_FROM_VIEW_PATH = "assets/{}/views/{}"

@@ -163,6 +163,9 @@ from .post_search_response_default import PostSearchResponseDefault
 from .post_search_saved_by_search_id_convert_to_collection_response_default import (
     PostSearchSavedBySearchIdConvertToCollectionResponseDefault,
 )
+from .post_search_saved_by_search_id_reindex_response_201 import (
+    PostSearchSavedBySearchIdReindexResponse201,
+)
 from .post_search_saved_by_search_id_reindex_response_default import (
     PostSearchSavedBySearchIdReindexResponseDefault,
 )
@@ -171,6 +174,9 @@ from .post_search_saved_group_by_group_id_search_by_search_id_response_default i
 )
 from .post_search_saved_group_response_default import (
     PostSearchSavedGroupResponseDefault,
+)
+from .post_search_saved_groups_by_group_id_reindex_response_201 import (
+    PostSearchSavedGroupsByGroupIdReindexResponse201,
 )
 from .post_search_saved_groups_by_group_id_reindex_response_default import (
     PostSearchSavedGroupsByGroupIdReindexResponseDefault,
@@ -363,9 +369,11 @@ __all__ = (
     "PostNltfParseResponseDefault",
     "PostSearchResponseDefault",
     "PostSearchSavedBySearchIdConvertToCollectionResponseDefault",
+    "PostSearchSavedBySearchIdReindexResponse201",
     "PostSearchSavedBySearchIdReindexResponseDefault",
     "PostSearchSavedGroupByGroupIdSearchBySearchIdResponseDefault",
     "PostSearchSavedGroupResponseDefault",
+    "PostSearchSavedGroupsByGroupIdReindexResponse201",
     "PostSearchSavedGroupsByGroupIdReindexResponseDefault",
     "PostSearchSavedResponseDefault",
     "PostSearchSuggestResponseDefault",

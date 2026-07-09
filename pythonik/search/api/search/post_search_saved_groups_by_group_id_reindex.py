@@ -5,6 +5,9 @@ from urllib.parse import quote
 import httpx
 
 from ...client import AuthenticatedClient, Client
+from ...models.post_search_saved_groups_by_group_id_reindex_response_201 import (
+    PostSearchSavedGroupsByGroupIdReindexResponse201,
+)
 from ...models.post_search_saved_groups_by_group_id_reindex_response_default import (
     PostSearchSavedGroupsByGroupIdReindexResponseDefault,
 )
@@ -27,10 +30,17 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Any | PostSearchSavedGroupsByGroupIdReindexResponseDefault:
-    if response.status_code == 200:
-        response_200 = cast(Any, None)
-        return response_200
+) -> (
+    Any
+    | PostSearchSavedGroupsByGroupIdReindexResponse201
+    | PostSearchSavedGroupsByGroupIdReindexResponseDefault
+):
+    if response.status_code == 201:
+        response_201 = PostSearchSavedGroupsByGroupIdReindexResponse201.from_dict(
+            response.json()
+        )
+
+        return response_201
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -53,7 +63,11 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[Any | PostSearchSavedGroupsByGroupIdReindexResponseDefault]:
+) -> Response[
+    Any
+    | PostSearchSavedGroupsByGroupIdReindexResponse201
+    | PostSearchSavedGroupsByGroupIdReindexResponseDefault
+]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -66,7 +80,11 @@ def sync_detailed(
     group_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[Any | PostSearchSavedGroupsByGroupIdReindexResponseDefault]:
+) -> Response[
+    Any
+    | PostSearchSavedGroupsByGroupIdReindexResponse201
+    | PostSearchSavedGroupsByGroupIdReindexResponseDefault
+]:
     """Reindex a particular saved search group by id
 
 
@@ -81,7 +99,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSearchSavedGroupsByGroupIdReindexResponseDefault]
+        Response[Any | PostSearchSavedGroupsByGroupIdReindexResponse201 | PostSearchSavedGroupsByGroupIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -99,7 +117,12 @@ def sync(
     group_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Any | PostSearchSavedGroupsByGroupIdReindexResponseDefault | None:
+) -> (
+    Any
+    | PostSearchSavedGroupsByGroupIdReindexResponse201
+    | PostSearchSavedGroupsByGroupIdReindexResponseDefault
+    | None
+):
     """Reindex a particular saved search group by id
 
 
@@ -114,7 +137,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSearchSavedGroupsByGroupIdReindexResponseDefault
+        Any | PostSearchSavedGroupsByGroupIdReindexResponse201 | PostSearchSavedGroupsByGroupIdReindexResponseDefault
     """
 
     return sync_detailed(
@@ -127,7 +150,11 @@ async def asyncio_detailed(
     group_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[Any | PostSearchSavedGroupsByGroupIdReindexResponseDefault]:
+) -> Response[
+    Any
+    | PostSearchSavedGroupsByGroupIdReindexResponse201
+    | PostSearchSavedGroupsByGroupIdReindexResponseDefault
+]:
     """Reindex a particular saved search group by id
 
 
@@ -142,7 +169,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | PostSearchSavedGroupsByGroupIdReindexResponseDefault]
+        Response[Any | PostSearchSavedGroupsByGroupIdReindexResponse201 | PostSearchSavedGroupsByGroupIdReindexResponseDefault]
     """
 
     kwargs = _get_kwargs(
@@ -158,7 +185,12 @@ async def asyncio(
     group_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Any | PostSearchSavedGroupsByGroupIdReindexResponseDefault | None:
+) -> (
+    Any
+    | PostSearchSavedGroupsByGroupIdReindexResponse201
+    | PostSearchSavedGroupsByGroupIdReindexResponseDefault
+    | None
+):
     """Reindex a particular saved search group by id
 
 
@@ -173,7 +205,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | PostSearchSavedGroupsByGroupIdReindexResponseDefault
+        Any | PostSearchSavedGroupsByGroupIdReindexResponse201 | PostSearchSavedGroupsByGroupIdReindexResponseDefault
     """
 
     return (

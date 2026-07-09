@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import datetime
 from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
@@ -25,9 +24,9 @@ class TokenSchema:
         token (str):
         app_id (None | Unset | UUID):
         auth_system_domains (list[MultiDomainUserSystemSchema] | None | Unset):
-        date_created (datetime.datetime | None | Unset):
-        date_modified (datetime.datetime | None | Unset):
-        expires (datetime.datetime | None | Unset):
+        date_created (None | str | Unset):
+        date_modified (None | str | Unset):
+        expires (None | str | Unset):
         id (None | Unset | UUID):
         is_admin (bool | None | Unset):
         is_mfa_authenticated (bool | None | Unset):
@@ -46,9 +45,9 @@ class TokenSchema:
     token: str
     app_id: None | Unset | UUID = UNSET
     auth_system_domains: list[MultiDomainUserSystemSchema] | None | Unset = UNSET
-    date_created: datetime.datetime | None | Unset = UNSET
-    date_modified: datetime.datetime | None | Unset = UNSET
-    expires: datetime.datetime | None | Unset = UNSET
+    date_created: None | str | Unset = UNSET
+    date_modified: None | str | Unset = UNSET
+    expires: None | str | Unset = UNSET
     id: None | Unset | UUID = UNSET
     is_admin: bool | None | Unset = UNSET
     is_mfa_authenticated: bool | None | Unset = UNSET
@@ -92,24 +91,18 @@ class TokenSchema:
         date_created: None | str | Unset
         if isinstance(self.date_created, Unset):
             date_created = UNSET
-        elif isinstance(self.date_created, datetime.datetime):
-            date_created = self.date_created.isoformat()
         else:
             date_created = self.date_created
 
         date_modified: None | str | Unset
         if isinstance(self.date_modified, Unset):
             date_modified = UNSET
-        elif isinstance(self.date_modified, datetime.datetime):
-            date_modified = self.date_modified.isoformat()
         else:
             date_modified = self.date_modified
 
         expires: None | str | Unset
         if isinstance(self.expires, Unset):
             expires = UNSET
-        elif isinstance(self.expires, datetime.datetime):
-            expires = self.expires.isoformat()
         else:
             expires = self.expires
 
@@ -305,54 +298,30 @@ class TokenSchema:
             d.pop("auth_system_domains", UNSET)
         )
 
-        def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
+        def _parse_date_created(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            try:
-                if not isinstance(data, str):
-                    raise TypeError()
-                date_created_type_0 = datetime.datetime.fromisoformat(data)
-
-                return date_created_type_0
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            return cast(datetime.datetime | None | Unset, data)
+            return cast(None | str | Unset, data)
 
         date_created = _parse_date_created(d.pop("date_created", UNSET))
 
-        def _parse_date_modified(data: object) -> datetime.datetime | None | Unset:
+        def _parse_date_modified(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            try:
-                if not isinstance(data, str):
-                    raise TypeError()
-                date_modified_type_0 = datetime.datetime.fromisoformat(data)
-
-                return date_modified_type_0
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            return cast(datetime.datetime | None | Unset, data)
+            return cast(None | str | Unset, data)
 
         date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
 
-        def _parse_expires(data: object) -> datetime.datetime | None | Unset:
+        def _parse_expires(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            try:
-                if not isinstance(data, str):
-                    raise TypeError()
-                expires_type_0 = datetime.datetime.fromisoformat(data)
-
-                return expires_type_0
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            return cast(datetime.datetime | None | Unset, data)
+            return cast(None | str | Unset, data)
 
         expires = _parse_expires(d.pop("expires", UNSET))
 

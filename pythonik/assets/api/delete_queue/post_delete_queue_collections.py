@@ -33,9 +33,9 @@ def _get_kwargs(
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Any | PostDeleteQueueCollectionsResponseDefault:
-    if response.status_code == 201:
-        response_201 = cast(Any, None)
-        return response_201
+    if response.status_code == 204:
+        response_204 = cast(Any, None)
+        return response_204
 
     if response.status_code == 400:
         response_400 = cast(Any, None)

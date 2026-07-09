@@ -33,6 +33,10 @@ def _get_kwargs(
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Any | DeleteSharesBulkResponseDefault:
+    if response.status_code == 202:
+        response_202 = cast(Any, None)
+        return response_202
+
     if response.status_code == 204:
         response_204 = cast(Any, None)
         return response_204

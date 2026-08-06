@@ -11,9 +11,12 @@ on:
         required: false
         type: boolean
         default: false
+
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # create the GitHub release
     steps:
       - uses: actions/checkout@v4
         with:
@@ -21,61 +24,27 @@ jobs:
 
       - name: Get version from tag
         id: get_version
-        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> "$GITHUB_OUTPUT"
 
       - name: Extract release name from changelog
         id: get_release_name
+        # docs/CHANGELOG.md is the 1.x changelog and may have no entry for
+        # this tag; fall back to a plain name rather than failing the job.
         run: |
-          VERSION=${{ steps.get_version.outputs.VERSION }}
-          echo "Looking for version: ${VERSION}"
-
-          # First find the line containing our version (using awk for more precise matching)
-          VERSION_LINE=$(awk -v ver="$VERSION" '/version.*{ver}/ { print; exit }' docs/CHANGELOG.md)
-          if [ -z "$VERSION_LINE" ]; then
-            echo "Could not find version line for ${VERSION}"
-            VERSION_LINE=$(head -n 5 docs/CHANGELOG.md | grep "version")
-            echo "Using first version line instead: ${VERSION_LINE}"
+          VERSION="${{ steps.get_version.outputs.VERSION }}"
+          RELEASE_NAME=""
+          if [ -f docs/CHANGELOG.md ]; then
+            VERSION_LINE=$(grep -m1 -F "${VERSION#v}" docs/CHANGELOG.md || true)
+            RELEASE_NAME=$(echo "$VERSION_LINE" | grep -o '"[^"]*"' | head -n1 | tr -d '"' || true)
           fi
-          echo "Found version line: ${VERSION_LINE}"
-
-          # Then extract the text between quotes
-          RELEASE_NAME=$(echo "$VERSION_LINE" | grep -o '"[^"]*"' | tr -d '"')
           if [ -z "$RELEASE_NAME" ]; then
-            echo "Could not extract release name, using default"
             RELEASE_NAME="Release"
           fi
-          echo "Extracted release name: ${RELEASE_NAME}"
-
-          # Set the output (using the new GITHUB_OUTPUT syntax)
-          {
-            echo "RELEASE_NAME<<EOF"
-            echo "${RELEASE_NAME}"
-            echo "EOF"
-          } >> "$GITHUB_OUTPUT"
-
-      - name: Generate Release Notes
-        id: release_notes
-        run: |
-          PREVIOUS_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
-          if [ -z "$PREVIOUS_TAG" ]; then
-            CHANGES=$(git log --pretty=format:"- %s" ${{ steps.get_version.outputs.VERSION }})
-          else
-            CHANGES=$(git log --pretty=format:"- %s" ${PREVIOUS_TAG}..${{ steps.get_version.outputs.VERSION }})
-          fi
-          {
-            echo "CHANGES<<EOF"
-            echo "$CHANGES"
-            echo "EOF"
-          } >> "$GITHUB_OUTPUT"
-
-      - name: Debug Outputs
-        run: |
-          echo "Version: ${{ steps.get_version.outputs.VERSION }}"
-          echo "Release Name: ${{ steps.get_release_name.outputs.RELEASE_NAME }}"
-          echo "Changes: ${{ steps.release_notes.outputs.CHANGES }}"
+          echo "Release name: ${RELEASE_NAME}"
+          echo "RELEASE_NAME=${RELEASE_NAME}" >> "$GITHUB_OUTPUT"
 
       - name: Create Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           name: "${{ steps.get_version.outputs.VERSION }} - ${{ steps.get_release_name.outputs.RELEASE_NAME }}"
           draft: false
@@ -88,6 +57,9 @@ jobs:
   publish:
     needs: release
     uses: ./.github/workflows/publish.yml
+    permissions:
+      contents: read
+      id-token: write # publish.yml needs this for PyPI trusted publishing
     with:
-      publish_test: ${{ inputs.publish_test == 'true' }}
+      publish_test: ${{ inputs.publish_test == true }}
     secrets: inherit

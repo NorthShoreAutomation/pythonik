@@ -1,0 +1,102 @@
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
+from uuid import UUID
+
+from attrs import define as _attrs_define
+from attrs import field as _attrs_field
+
+from ..models.bulk_delete_schema_object_type import BulkDeleteSchemaObjectType
+from ..types import UNSET, Unset
+
+T = TypeVar("T", bound="BulkDeleteSchema")
+
+
+@_attrs_define
+class BulkDeleteSchema:
+    """
+    Attributes:
+        object_ids (list[UUID]):
+        object_type (BulkDeleteSchemaObjectType):
+        content_only (bool | None | Unset): If set to `False`, will also delete entities of type `object_type` specified
+            in `object_ids`. Default: True.
+    """
+
+    object_ids: list[UUID]
+    object_type: BulkDeleteSchemaObjectType
+    content_only: bool | None | Unset = True
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+    def to_dict(self) -> dict[str, Any]:
+        object_ids = []
+        for object_ids_item_data in self.object_ids:
+            object_ids_item = str(object_ids_item_data)
+            object_ids.append(object_ids_item)
+
+        object_type = self.object_type.value
+
+        content_only: bool | None | Unset
+        if isinstance(self.content_only, Unset):
+            content_only = UNSET
+        else:
+            content_only = self.content_only
+
+        field_dict: dict[str, Any] = {}
+        field_dict.update(self.additional_properties)
+        field_dict.update(
+            {
+                "object_ids": object_ids,
+                "object_type": object_type,
+            }
+        )
+        if content_only is not UNSET:
+            field_dict["content_only"] = content_only
+
+        return field_dict
+
+    @classmethod
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
+        object_ids = []
+        _object_ids = d.pop("object_ids")
+        for object_ids_item_data in _object_ids:
+            object_ids_item = UUID(object_ids_item_data)
+
+            object_ids.append(object_ids_item)
+
+        object_type = BulkDeleteSchemaObjectType(d.pop("object_type"))
+
+        def _parse_content_only(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        content_only = _parse_content_only(d.pop("content_only", UNSET))
+
+        bulk_delete_schema = cls(
+            object_ids=object_ids,
+            object_type=object_type,
+            content_only=content_only,
+        )
+
+        bulk_delete_schema.additional_properties = d
+        return bulk_delete_schema
+
+    @property
+    def additional_keys(self) -> list[str]:
+        return list(self.additional_properties.keys())
+
+    def __getitem__(self, key: str) -> Any:
+        return self.additional_properties[key]
+
+    def __setitem__(self, key: str, value: Any) -> None:
+        self.additional_properties[key] = value
+
+    def __delitem__(self, key: str) -> None:
+        del self.additional_properties[key]
+
+    def __contains__(self, key: str) -> bool:
+        return key in self.additional_properties

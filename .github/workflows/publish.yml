@@ -1,3 +1,12 @@
+# Publishing uses PyPI Trusted Publishing (OIDC) -- no token secrets.
+# One-time setup by a project owner:
+#   https://pypi.org/manage/project/pythonik/settings/publishing/
+#     Owner: NorthShoreAutomation, Repository: pythonik,
+#     Workflow: publish.yml, Environment: pypi
+#   https://test.pypi.org/manage/account/publishing/ (or the project's
+#   publishing settings if pythonik already exists on TestPyPI):
+#     Owner: NorthShoreAutomation, Repository: pythonik,
+#     Workflow: publish.yml, Environment: testpypi
 name: Publish to PyPI
 
 on:
@@ -18,103 +27,85 @@ on:
         type: boolean
         default: false
 
+permissions:
+  contents: read
+
 jobs:
   publish:
     runs-on: ubuntu-latest
     if: inputs.publish_test != true
+    environment: pypi
+    permissions:
+      id-token: write # required for PyPI trusted publishing
     steps:
       - uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.9"
+          python-version: "3.12"
 
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
+      - name: Install build
+        run: python -m pip install build
 
-      - name: Configure Poetry
+      - name: Verify tag matches package version
         run: |
-          poetry config pypi-token.pypi ${{ secrets.PYPI_TOKEN }}
+          if [[ "$GITHUB_REF" != refs/tags/* ]]; then
+            echo "::error::Publishing to PyPI requires a tag ref, got $GITHUB_REF"
+            exit 1
+          fi
+          python <<'EOF'
+          import os, sys, tomllib
+          tag = os.environ["GITHUB_REF_NAME"].removeprefix("v")
+          with open("pyproject.toml", "rb") as f:
+              version = tomllib.load(f)["project"]["version"]
+          if tag != version:
+              sys.exit(f"Tag {tag!r} does not match pyproject.toml version {version!r}. "
+                       "The generator repo owns the version; re-tag to match.")
+          print(f"Tag matches pyproject.toml version {version}")
+          EOF
 
-      - name: Configure SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
+      - name: Build
+        run: python -m build
 
-      - name: Update versions
-        run: |
-          # Configure git to use SSH
-          git config --local core.sshCommand "ssh -i ~/.ssh/deploy_key"
-          git remote set-url origin git@github.com:${GITHUB_REPOSITORY}.git
-
-          # Get version from git tag
-          VERSION=$(git describe --tags --abbrev=0)
-          VERSION=${VERSION#v}  # Remove 'v' prefix if present
-
-          # Update pyproject.toml
-          poetry version $VERSION
-
-          # Update __init__.py
-          echo "__version__ = \"$VERSION\"" > pythonik/__init__.py
-
-          # Fetch and checkout main branch
-          git fetch origin main
-          git checkout main
-
-          # Commit and push the changes
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add pyproject.toml pythonik/__init__.py
-          git commit -m "chore: update version to $VERSION [skip ci]"
-          git push origin main
-
-      - name: Build and publish
-        run: |
-          poetry build
-          poetry publish
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
 
   publish-test:
     runs-on: ubuntu-latest
     if: inputs.publish_test == true && github.event_name == 'workflow_dispatch' # Only run for manual triggers with publish_test true
+    environment: testpypi
+    permissions:
+      id-token: write # required for PyPI trusted publishing
     steps:
       - uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.9"
+          python-version: "3.12"
 
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
+      - name: Install build
+        run: python -m pip install build
 
-      - name: Configure Poetry
+      - name: Verify tag matches package version
+        if: startsWith(github.ref, 'refs/tags/')
         run: |
-          poetry config repositories.testpypi https://test.pypi.org/legacy/
-          poetry config pypi-token.testpypi ${{ secrets.TEST_PYPI_TOKEN }}
+          python <<'EOF'
+          import os, sys, tomllib
+          tag = os.environ["GITHUB_REF_NAME"].removeprefix("v")
+          with open("pyproject.toml", "rb") as f:
+              version = tomllib.load(f)["project"]["version"]
+          if tag != version:
+              sys.exit(f"Tag {tag!r} does not match pyproject.toml version {version!r}. "
+                       "The generator repo owns the version; re-tag to match.")
+          print(f"Tag matches pyproject.toml version {version}")
+          EOF
 
-      - name: Configure SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
+      - name: Build
+        run: python -m build
 
-      - name: Update versions
-        run: |
-          # Configure git to use SSH
-          git config --local core.sshCommand "ssh -i ~/.ssh/deploy_key"
-          git remote set-url origin git@github.com:${GITHUB_REPOSITORY}.git
-
-          # Get version from git tag
-          VERSION=$(git describe --tags --abbrev=0)
-          VERSION=${VERSION#v}
-          poetry version $VERSION
-          echo "__version__ = \"$VERSION\"" > pythonik/__init__.py
-
-      - name: Build and publish to TestPyPI
-        run: |
-          poetry build
-          poetry publish -r testpypi
+      - name: Publish to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/

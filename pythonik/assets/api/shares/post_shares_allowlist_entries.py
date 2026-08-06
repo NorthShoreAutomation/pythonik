@@ -1,0 +1,191 @@
+from http import HTTPStatus
+from typing import Any, cast
+
+import httpx
+
+from ...client import AuthenticatedClient, Client
+from ...models.magic_link_allowlist_create_schema import MagicLinkAllowlistCreateSchema
+from ...models.magic_link_allowlist_entry_schema import MagicLinkAllowlistEntrySchema
+from ...models.post_shares_allowlist_entries_response_default import (
+    PostSharesAllowlistEntriesResponseDefault,
+)
+from ...types import Response
+
+
+def _get_kwargs(
+    *,
+    body: MagicLinkAllowlistCreateSchema,
+) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
+
+    _kwargs: dict[str, Any] = {
+        "method": "post",
+        "url": "/v1/shares/allowlist/entries/",
+    }
+
+    _kwargs["json"] = body.to_dict()
+
+    headers["Content-Type"] = "application/json"
+
+    _kwargs["headers"] = headers
+    return _kwargs
+
+
+def _parse_response(
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Any | MagicLinkAllowlistEntrySchema | PostSharesAllowlistEntriesResponseDefault:
+    if response.status_code == 201:
+        response_201 = MagicLinkAllowlistEntrySchema.from_dict(response.json())
+
+        return response_201
+
+    if response.status_code == 400:
+        response_400 = cast(Any, None)
+        return response_400
+
+    if response.status_code == 403:
+        response_403 = cast(Any, None)
+        return response_403
+
+    if response.status_code == 409:
+        response_409 = cast(Any, None)
+        return response_409
+
+    response_default = PostSharesAllowlistEntriesResponseDefault.from_dict(
+        response.json()
+    )
+
+    return response_default
+
+
+def _build_response(
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[
+    Any | MagicLinkAllowlistEntrySchema | PostSharesAllowlistEntriesResponseDefault
+]:
+    return Response(
+        status_code=HTTPStatus(response.status_code),
+        content=response.content,
+        headers=response.headers,
+        parsed=_parse_response(client=client, response=response),
+    )
+
+
+def sync_detailed(
+    *,
+    client: AuthenticatedClient | Client,
+    body: MagicLinkAllowlistCreateSchema,
+) -> Response[
+    Any | MagicLinkAllowlistEntrySchema | PostSharesAllowlistEntriesResponseDefault
+]:
+    """Create a new magic link allowlist entry.
+
+    Args:
+        body (MagicLinkAllowlistCreateSchema):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Response[Any | MagicLinkAllowlistEntrySchema | PostSharesAllowlistEntriesResponseDefault]
+    """
+
+    kwargs = _get_kwargs(
+        body=body,
+    )
+
+    response = client.get_httpx_client().request(
+        **kwargs,
+    )
+
+    return _build_response(client=client, response=response)
+
+
+def sync(
+    *,
+    client: AuthenticatedClient | Client,
+    body: MagicLinkAllowlistCreateSchema,
+) -> (
+    Any
+    | MagicLinkAllowlistEntrySchema
+    | PostSharesAllowlistEntriesResponseDefault
+    | None
+):
+    """Create a new magic link allowlist entry.
+
+    Args:
+        body (MagicLinkAllowlistCreateSchema):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Any | MagicLinkAllowlistEntrySchema | PostSharesAllowlistEntriesResponseDefault
+    """
+
+    return sync_detailed(
+        client=client,
+        body=body,
+    ).parsed
+
+
+async def asyncio_detailed(
+    *,
+    client: AuthenticatedClient | Client,
+    body: MagicLinkAllowlistCreateSchema,
+) -> Response[
+    Any | MagicLinkAllowlistEntrySchema | PostSharesAllowlistEntriesResponseDefault
+]:
+    """Create a new magic link allowlist entry.
+
+    Args:
+        body (MagicLinkAllowlistCreateSchema):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Response[Any | MagicLinkAllowlistEntrySchema | PostSharesAllowlistEntriesResponseDefault]
+    """
+
+    kwargs = _get_kwargs(
+        body=body,
+    )
+
+    response = await client.get_async_httpx_client().request(**kwargs)
+
+    return _build_response(client=client, response=response)
+
+
+async def asyncio(
+    *,
+    client: AuthenticatedClient | Client,
+    body: MagicLinkAllowlistCreateSchema,
+) -> (
+    Any
+    | MagicLinkAllowlistEntrySchema
+    | PostSharesAllowlistEntriesResponseDefault
+    | None
+):
+    """Create a new magic link allowlist entry.
+
+    Args:
+        body (MagicLinkAllowlistCreateSchema):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Any | MagicLinkAllowlistEntrySchema | PostSharesAllowlistEntriesResponseDefault
+    """
+
+    return (
+        await asyncio_detailed(
+            client=client,
+            body=body,
+        )
+    ).parsed

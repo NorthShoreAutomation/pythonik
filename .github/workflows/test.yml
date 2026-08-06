@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.12"]
+        python-version: ["3.10", "3.12"]
 
     steps:
       - uses: actions/checkout@v4
@@ -21,11 +21,14 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
+      - name: Install package
+        run: pip install .
 
-      - name: Install dependencies
-        run: poetry install
-
-      - name: Run tests
-        run: poetry run pytest
+      # ponytail: import smoke only — the full 1.x compat + generated test
+      # suites live in the iconik-sdk-generator repo and run there.
+      - name: Import smoke test (generated + 1.x compat surfaces)
+        working-directory: ${{ runner.temp }}
+        run: |
+          python -c "from pythonik.client import PythonikClient"
+          python -c "from pythonik.assets import Client"
+          python -c "import pythonik; print(pythonik.__version__)"

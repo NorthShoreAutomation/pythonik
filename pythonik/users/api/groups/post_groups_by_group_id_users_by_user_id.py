@@ -1,0 +1,196 @@
+from http import HTTPStatus
+from typing import Any, cast
+from urllib.parse import quote
+
+import httpx
+
+from ...client import AuthenticatedClient, Client
+from ...models.post_groups_by_group_id_users_by_user_id_response_default import (
+    PostGroupsByGroupIdUsersByUserIdResponseDefault,
+)
+from ...models.user_schema import UserSchema
+from ...types import Response
+
+
+def _get_kwargs(
+    group_id: str,
+    user_id: str,
+) -> dict[str, Any]:
+
+    _kwargs: dict[str, Any] = {
+        "method": "post",
+        "url": "/v1/groups/{group_id}/users/{user_id}/".format(
+            group_id=quote(str(group_id), safe=""),
+            user_id=quote(str(user_id), safe=""),
+        ),
+    }
+
+    return _kwargs
+
+
+def _parse_response(
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Any | PostGroupsByGroupIdUsersByUserIdResponseDefault | UserSchema:
+    if response.status_code == 201:
+        response_201 = UserSchema.from_dict(response.json())
+
+        return response_201
+
+    if response.status_code == 401:
+        response_401 = cast(Any, None)
+        return response_401
+
+    if response.status_code == 404:
+        response_404 = cast(Any, None)
+        return response_404
+
+    response_default = PostGroupsByGroupIdUsersByUserIdResponseDefault.from_dict(
+        response.json()
+    )
+
+    return response_default
+
+
+def _build_response(
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[Any | PostGroupsByGroupIdUsersByUserIdResponseDefault | UserSchema]:
+    return Response(
+        status_code=HTTPStatus(response.status_code),
+        content=response.content,
+        headers=response.headers,
+        parsed=_parse_response(client=client, response=response),
+    )
+
+
+def sync_detailed(
+    group_id: str,
+    user_id: str,
+    *,
+    client: AuthenticatedClient | Client,
+) -> Response[Any | PostGroupsByGroupIdUsersByUserIdResponseDefault | UserSchema]:
+    """Add user into a group
+
+
+    Required roles:
+     - can_write_groups
+
+    Args:
+        group_id (str):
+        user_id (str):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Response[Any | PostGroupsByGroupIdUsersByUserIdResponseDefault | UserSchema]
+    """
+
+    kwargs = _get_kwargs(
+        group_id=group_id,
+        user_id=user_id,
+    )
+
+    response = client.get_httpx_client().request(
+        **kwargs,
+    )
+
+    return _build_response(client=client, response=response)
+
+
+def sync(
+    group_id: str,
+    user_id: str,
+    *,
+    client: AuthenticatedClient | Client,
+) -> Any | PostGroupsByGroupIdUsersByUserIdResponseDefault | UserSchema | None:
+    """Add user into a group
+
+
+    Required roles:
+     - can_write_groups
+
+    Args:
+        group_id (str):
+        user_id (str):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Any | PostGroupsByGroupIdUsersByUserIdResponseDefault | UserSchema
+    """
+
+    return sync_detailed(
+        group_id=group_id,
+        user_id=user_id,
+        client=client,
+    ).parsed
+
+
+async def asyncio_detailed(
+    group_id: str,
+    user_id: str,
+    *,
+    client: AuthenticatedClient | Client,
+) -> Response[Any | PostGroupsByGroupIdUsersByUserIdResponseDefault | UserSchema]:
+    """Add user into a group
+
+
+    Required roles:
+     - can_write_groups
+
+    Args:
+        group_id (str):
+        user_id (str):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Response[Any | PostGroupsByGroupIdUsersByUserIdResponseDefault | UserSchema]
+    """
+
+    kwargs = _get_kwargs(
+        group_id=group_id,
+        user_id=user_id,
+    )
+
+    response = await client.get_async_httpx_client().request(**kwargs)
+
+    return _build_response(client=client, response=response)
+
+
+async def asyncio(
+    group_id: str,
+    user_id: str,
+    *,
+    client: AuthenticatedClient | Client,
+) -> Any | PostGroupsByGroupIdUsersByUserIdResponseDefault | UserSchema | None:
+    """Add user into a group
+
+
+    Required roles:
+     - can_write_groups
+
+    Args:
+        group_id (str):
+        user_id (str):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Any | PostGroupsByGroupIdUsersByUserIdResponseDefault | UserSchema
+    """
+
+    return (
+        await asyncio_detailed(
+            group_id=group_id,
+            user_id=user_id,
+            client=client,
+        )
+    ).parsed

@@ -1,5 +1,5 @@
 [project]
-name = "pythonik"
+name = "nsa-pythonik"
 version = "2.0.0"
 description = "Complete generated Python SDK for the iconik media management API (15 services)"
 readme = "README.md"

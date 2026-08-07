@@ -42,6 +42,30 @@ API function paths mirror the REST API: `GET /v1/assets/{asset_id}/versions/` on
 
 All subpackages share one client implementation (`pythonik._base`) — a `Client` built for one service works for another by swapping `base_url`, and cross-service `isinstance` checks on errors/types behave as expected.
 
+## Friendly client
+
+`pythonik.friendly.Iconik` gives every operation a human name — the same 962 names the iconik CLI uses — with one client for all 15 services:
+
+```python
+from pythonik.friendly import Iconik
+
+ik = Iconik(app_id, auth_token)
+ik.put_asset_metadata(asset_id, view_id, body=values)   # PUT /v1/assets/{id}/views/{view_id}/
+files = ik.get_asset_files(asset_id).parsed
+```
+
+Path parameters are positional, `body` and any query/header parameters are keyword-only, and every method returns the generated `Response` (`.status_code`, `.parsed`). Endpoint modules are imported on first call, so importing `Iconik` stays fast.
+
+Requests time out after 60s by default; override with `Iconik(app_id, auth_token, timeout=httpx.Timeout(300.0))` (or `timeout=None` to wait forever). Self-hosted iconik? Pass `base_url`:
+
+```python
+ik = Iconik(app_id, auth_token, base_url="https://iconik.example.com/API")
+```
+
+The 33 operations iconik's specs mark unauthenticated — the login and SAML flows — send **no** auth headers, matching the spec; the one operation that declares only `App-ID` sends only that. `close()` (or using `Iconik` as a context manager) closes every client it built; calling a method afterwards raises `RuntimeError`.
+
+One known gap: `post_auth_saml_idp` is unusable. Its spec declares two request content types (JSON and XML) and the generator collapses them into a union that can't be satisfied — it needs a spec fix, not an SDK workaround.
+
 ## Upgrading from 1.x
 
 Nothing to change: 2.0 vendors the 1.x implementation, so existing code keeps working —

@@ -1,6 +1,8 @@
 [project]
+# PyPI project is nsa-pythonik (where 1.x lives; trusted publisher is bound to
+# it) — the import package stays `pythonik`.
 name = "nsa-pythonik"
-version = "2.0.0"
+version = "2.1.0"
 description = "Complete generated Python SDK for the iconik media management API (15 services)"
 readme = "README.md"
 requires-python = ">=3.10"

@@ -6,11 +6,11 @@ from typing import Any, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-T = TypeVar("T", bound="PatchPortfoliosByPortfolioIdResponseDefault")
+T = TypeVar("T", bound="NltfDisplayedFiltersFilters")
 
 
 @_attrs_define
-class PatchPortfoliosByPortfolioIdResponseDefault:
+class NltfDisplayedFiltersFilters:
     """ """
 
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -25,10 +25,10 @@ class PatchPortfoliosByPortfolioIdResponseDefault:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        patch_portfolios_by_portfolio_id_response_default = cls()
+        nltf_displayed_filters_filters = cls()
 
-        patch_portfolios_by_portfolio_id_response_default.additional_properties = d
-        return patch_portfolios_by_portfolio_id_response_default
+        nltf_displayed_filters_filters.additional_properties = d
+        return nltf_displayed_filters_filters
 
     @property
     def additional_keys(self) -> list[str]:

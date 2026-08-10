@@ -804,16 +804,6 @@ class Iconik:
             client=self._client("assets"), playlist_id=playlist_id, item_id=item_id
         )
 
-    def delete_portfolio(self, portfolio_id: str):
-        "Delete a particular portfolio by id (DELETE /v1/portfolios/{portfolio_id}/)"
-        from .assets.api.portfolios import (
-            delete_portfolios_by_portfolio_id as _endpoint,
-        )
-
-        return _endpoint.sync_detailed(
-            client=self._client("assets"), portfolio_id=portfolio_id
-        )
-
     def delete_project(self, project_id: str):
         "Delete a particular project by id (DELETE /v1/projects/{project_id}/)"
         from .assets.api.projects import delete_projects_by_project_id as _endpoint
@@ -1626,39 +1616,6 @@ class Iconik:
             page=page,
         )
 
-    def get_portfolios(
-        self,
-        *,
-        per_page=UNSET,
-        page=UNSET,
-        scroll=UNSET,
-        scroll_id=UNSET,
-        sort=UNSET,
-        status=UNSET,
-        ids=UNSET,
-    ):
-        "Get list of portfolios (GET /v1/portfolios/)"
-        from .assets.api.portfolios import get_portfolios as _endpoint
-
-        return _endpoint.sync_detailed(
-            client=self._client("assets"),
-            per_page=per_page,
-            page=page,
-            scroll=scroll,
-            scroll_id=scroll_id,
-            sort=sort,
-            status=status,
-            ids=ids,
-        )
-
-    def get_portfolio(self, portfolio_id: str):
-        "Returns a particular portfolio by id (GET /v1/portfolios/{portfolio_id}/)"
-        from .assets.api.portfolios import get_portfolios_by_portfolio_id as _endpoint
-
-        return _endpoint.sync_detailed(
-            client=self._client("assets"), portfolio_id=portfolio_id
-        )
-
     def get_projects(
         self,
         *,
@@ -2037,14 +1994,6 @@ class Iconik:
             playlist_id=playlist_id,
             item_id=item_id,
             body=body,
-        )
-
-    def patch_portfolio(self, portfolio_id: str, *, body):
-        "Update a portfolio (PATCH /v1/portfolios/{portfolio_id}/)"
-        from .assets.api.portfolios import patch_portfolios_by_portfolio_id as _endpoint
-
-        return _endpoint.sync_detailed(
-            client=self._client("assets"), portfolio_id=portfolio_id, body=body
         )
 
     def patch_project(self, project_id: str, *, body):
@@ -2659,22 +2608,6 @@ class Iconik:
             client=self._client("assets"), playlist_id=playlist_id, body=body
         )
 
-    def post_portfolios(self, *, body):
-        "Create a new portfolio (POST /v1/portfolios/)"
-        from .assets.api.portfolios import post_portfolios as _endpoint
-
-        return _endpoint.sync_detailed(client=self._client("assets"), body=body)
-
-    def post_portfolio_reindex(self, portfolio_id: str, *, body):
-        "Reindex the portfolio (POST /v1/portfolios/{portfolio_id}/reindex/)"
-        from .assets.api.portfolios import (
-            post_portfolios_by_portfolio_id_reindex as _endpoint,
-        )
-
-        return _endpoint.sync_detailed(
-            client=self._client("assets"), portfolio_id=portfolio_id, body=body
-        )
-
     def post_projects(self, *, body):
         "Create a new project (POST /v1/projects/)"
         from .assets.api.projects import post_projects as _endpoint
@@ -3071,14 +3004,6 @@ class Iconik:
             playlist_id=playlist_id,
             item_id=item_id,
             body=body,
-        )
-
-    def put_portfolio(self, portfolio_id: str, *, body):
-        "Update a portfolio (PUT /v1/portfolios/{portfolio_id}/)"
-        from .assets.api.portfolios import put_portfolios_by_portfolio_id as _endpoint
-
-        return _endpoint.sync_detailed(
-            client=self._client("assets"), portfolio_id=portfolio_id, body=body
         )
 
     def put_project(self, project_id: str, *, body):
@@ -8766,7 +8691,7 @@ class Iconik:
             put_face_recognition_change_person_jobs_state as _endpoint,
         )
 
-        return _endpoint.sync_detailed(client=self._client("ml", ()), body=body)
+        return _endpoint.sync_detailed(client=self._client("ml"), body=body)
 
     def put_face_recognition_jobs_priority(self, *, body):
         "Bulk-change priority of FR jobs (PUT /v1/face_recognition/jobs/priority/)"
@@ -8774,7 +8699,7 @@ class Iconik:
             put_face_recognition_jobs_priority as _endpoint,
         )
 
-        return _endpoint.sync_detailed(client=self._client("ml", ()), body=body)
+        return _endpoint.sync_detailed(client=self._client("ml"), body=body)
 
     def put_face_recognition_jobs_state(self, *, body):
         "Bulk-abort / restart FR extraction jobs (PUT /v1/face_recognition/jobs/state/)"
@@ -8782,7 +8707,7 @@ class Iconik:
             put_face_recognition_jobs_state as _endpoint,
         )
 
-        return _endpoint.sync_detailed(client=self._client("ml", ()), body=body)
+        return _endpoint.sync_detailed(client=self._client("ml"), body=body)
 
     def put_face_recognition_person(self, person_id: str, *, body):
         "Update an existing person (PUT /v1/face_recognition/persons/{person_id}/)"
@@ -8919,6 +8844,12 @@ class Iconik:
         return _endpoint.sync_detailed(
             client=self._client("search"), entity_id=entity_id
         )
+
+    def get_ping_v2(self):
+        "Routing health check (GET /v2/ping/)"
+        from .search.api.ping import get_ping as _endpoint
+
+        return _endpoint.sync_detailed(client=self._client("search"))
 
     def get_search_history(self):
         "Returns the current search history (GET /v1/search/history/)"
@@ -9109,6 +9040,12 @@ class Iconik:
 
         return _endpoint.sync_detailed(client=self._client("search"), body=body)
 
+    def post_nltf_parse_v2(self, *, body):
+        "NLTF Parse (POST /v2/nltf_parse/)"
+        from .search.api.nltf_parse import post_nltf_parse_1 as _endpoint
+
+        return _endpoint.sync_detailed(client=self._client("search"), body=body)
+
     def post_search(
         self,
         *,
@@ -9138,6 +9075,39 @@ class Iconik:
             generate_signed_proxy_url=generate_signed_proxy_url,
             save_search_history=save_search_history,
             types=types,
+        )
+
+    def post_search_v2(
+        self,
+        *,
+        body,
+        per_page=UNSET,
+        page=UNSET,
+        scroll=UNSET,
+        scroll_id=UNSET,
+        generate_signed_url=UNSET,
+        generate_signed_download_url=UNSET,
+        generate_signed_proxy_url=UNSET,
+        save_search_history=UNSET,
+        types=UNSET,
+        include_users=UNSET,
+    ):
+        "Search (POST /v2/search/)"
+        from .search.api.search import post_search_1 as _endpoint
+
+        return _endpoint.sync_detailed(
+            client=self._client("search"),
+            body=body,
+            per_page=per_page,
+            page=page,
+            scroll=scroll,
+            scroll_id=scroll_id,
+            generate_signed_url=generate_signed_url,
+            generate_signed_download_url=generate_signed_download_url,
+            generate_signed_proxy_url=generate_signed_proxy_url,
+            save_search_history=save_search_history,
+            types=types,
+            include_users=include_users,
         )
 
     def post_search_saved(self, *, body):
@@ -9197,6 +9167,12 @@ class Iconik:
     def post_search_suggest(self, *, body):
         "Returns search suggestions for a particular query. (POST /v1/search/suggest/)"
         from .search.api.search import post_search_suggest as _endpoint
+
+        return _endpoint.sync_detailed(client=self._client("search"), body=body)
+
+    def post_search_suggest_v2(self, *, body):
+        "Search suggestions (POST /v2/search/suggest/)"
+        from .search.api.search import post_search_suggest_1 as _endpoint
 
         return _endpoint.sync_detailed(client=self._client("search"), body=body)
 

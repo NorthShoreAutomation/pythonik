@@ -6,11 +6,11 @@ from typing import Any, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-T = TypeVar("T", bound="GetPortfoliosResponseDefault")
+T = TypeVar("T", bound="GetPingResponsePingV2PingGet")
 
 
 @_attrs_define
-class GetPortfoliosResponseDefault:
+class GetPingResponsePingV2PingGet:
     """ """
 
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -25,10 +25,10 @@ class GetPortfoliosResponseDefault:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        get_portfolios_response_default = cls()
+        get_ping_response_ping_v2_ping_get = cls()
 
-        get_portfolios_response_default.additional_properties = d
-        return get_portfolios_response_default
+        get_ping_response_ping_v2_ping_get.additional_properties = d
+        return get_ping_response_ping_v2_ping_get
 
     @property
     def additional_keys(self) -> list[str]:

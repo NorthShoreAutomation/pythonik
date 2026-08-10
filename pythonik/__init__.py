@@ -3,4 +3,4 @@
 One subpackage per iconik service; see the package README for usage.
 """
 
-__version__ = "2.1.0"
+__version__ = "2.2.0"

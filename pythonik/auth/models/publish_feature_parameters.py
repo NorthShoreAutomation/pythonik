@@ -15,7 +15,7 @@ T = TypeVar("T", bound="PublishFeatureParameters")
 class PublishFeatureParameters:
     """
     Attributes:
-        region (PublishFeatureParametersRegion):
+        region (PublishFeatureParametersRegion): Wildmoka region, must be explicitly set to US or EU
         salesforce_id (str):
     """
 

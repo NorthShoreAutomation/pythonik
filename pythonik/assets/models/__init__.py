@@ -481,9 +481,6 @@ from .delete_playlists_by_playlist_id_items_by_item_id_response_default import (
 from .delete_playlists_by_playlist_id_response_default import (
     DeletePlaylistsByPlaylistIdResponseDefault,
 )
-from .delete_portfolios_by_portfolio_id_response_default import (
-    DeletePortfoliosByPortfolioIdResponseDefault,
-)
 from .delete_projects_by_project_id_members_by_member_id_response_default import (
     DeleteProjectsByProjectIdMembersByMemberIdResponseDefault,
 )
@@ -698,10 +695,6 @@ from .get_playlists_by_playlist_id_response_default import (
     GetPlaylistsByPlaylistIdResponseDefault,
 )
 from .get_playlists_response_default import GetPlaylistsResponseDefault
-from .get_portfolios_by_portfolio_id_response_default import (
-    GetPortfoliosByPortfolioIdResponseDefault,
-)
-from .get_portfolios_response_default import GetPortfoliosResponseDefault
 from .get_projects_by_project_id_members_by_member_id_response_default import (
     GetProjectsByProjectIdMembersByMemberIdResponseDefault,
 )
@@ -794,9 +787,6 @@ from .patch_playlists_by_playlist_id_items_by_item_id_response_default import (
 from .patch_playlists_by_playlist_id_response_default import (
     PatchPlaylistsByPlaylistIdResponseDefault,
 )
-from .patch_portfolios_by_portfolio_id_response_default import (
-    PatchPortfoliosByPortfolioIdResponseDefault,
-)
 from .patch_projects_by_project_id_response_default import (
     PatchProjectsByProjectIdResponseDefault,
 )
@@ -858,16 +848,6 @@ from .playlist_schema_status import PlaylistSchemaStatus
 from .playlist_status import PlaylistStatus
 from .playlists_query_params_schema import PlaylistsQueryParamsSchema
 from .playlists_schema import PlaylistsSchema
-from .portfolio_base_schema import PortfolioBaseSchema
-from .portfolio_base_schema_status import PortfolioBaseSchemaStatus
-from .portfolio_config import PortfolioConfig
-from .portfolio_config_schema import PortfolioConfigSchema
-from .portfolio_create_schema import PortfolioCreateSchema
-from .portfolio_create_schema_status import PortfolioCreateSchemaStatus
-from .portfolio_schema import PortfolioSchema
-from .portfolio_schema_status import PortfolioSchemaStatus
-from .portfolios_query_params_schema import PortfoliosQueryParamsSchema
-from .portfolios_schema import PortfoliosSchema
 from .post_approvals_bulk_remove_response_default import (
     PostApprovalsBulkRemoveResponseDefault,
 )
@@ -1025,10 +1005,6 @@ from .post_playlists_by_playlist_id_reindex_response_default import (
     PostPlaylistsByPlaylistIdReindexResponseDefault,
 )
 from .post_playlists_response_default import PostPlaylistsResponseDefault
-from .post_portfolios_by_portfolio_id_reindex_response_default import (
-    PostPortfoliosByPortfolioIdReindexResponseDefault,
-)
-from .post_portfolios_response_default import PostPortfoliosResponseDefault
 from .post_projects_by_project_id_members_response_default import (
     PostProjectsByProjectIdMembersResponseDefault,
 )
@@ -1152,9 +1128,6 @@ from .put_playlists_by_playlist_id_items_by_item_id_response_default import (
 from .put_playlists_by_playlist_id_response_default import (
     PutPlaylistsByPlaylistIdResponseDefault,
 )
-from .put_portfolios_by_portfolio_id_response_default import (
-    PutPortfoliosByPortfolioIdResponseDefault,
-)
 from .put_projects_by_project_id_response_default import (
     PutProjectsByProjectIdResponseDefault,
 )
@@ -1190,7 +1163,6 @@ from .reindex_inherited_collections_acl_schema import (
     ReindexInheritedCollectionsACLSchema,
 )
 from .reindex_playlist_schema import ReindexPlaylistSchema
-from .reindex_portfolio_schema import ReindexPortfolioSchema
 from .reindex_project_schema import ReindexProjectSchema
 from .reindex_segment_schema import ReindexSegmentSchema
 from .reindex_segments_schema import ReindexSegmentsSchema
@@ -1281,14 +1253,6 @@ from .sync_session_schema import SyncSessionSchema
 from .synchronize_collection_keyframes_schema import (
     SynchronizeCollectionKeyframesSchema,
 )
-from .theme import Theme
-from .theme_base import ThemeBase
-from .theme_colors import ThemeColors
-from .theme_colors_schema import ThemeColorsSchema
-from .theme_schema import ThemeSchema
-from .theme_schema_base import ThemeSchemaBase
-from .theme_typography import ThemeTypography
-from .theme_typography_schema import ThemeTypographySchema
 from .transcription_element_type import TranscriptionElementType
 from .transcription_element_type_schema import TranscriptionElementTypeSchema
 from .transcription_type import TranscriptionType
@@ -1584,7 +1548,6 @@ __all__ = (
     "DeleteFavouritesAllResponseDefault",
     "DeletePlaylistsByPlaylistIdItemsByItemIdResponseDefault",
     "DeletePlaylistsByPlaylistIdResponseDefault",
-    "DeletePortfoliosByPortfolioIdResponseDefault",
     "DeleteProjectsByProjectIdMembersByMemberIdResponseDefault",
     "DeleteProjectsByProjectIdResponseDefault",
     "DeleteQueueAssetsQueryParamsSchema",
@@ -1693,8 +1656,6 @@ __all__ = (
     "GetPlaylistsByPlaylistIdItemsResponseDefault",
     "GetPlaylistsByPlaylistIdResponseDefault",
     "GetPlaylistsResponseDefault",
-    "GetPortfoliosByPortfolioIdResponseDefault",
-    "GetPortfoliosResponseDefault",
     "GetProjectsByProjectIdMembersByMemberIdResponseDefault",
     "GetProjectsByProjectIdMembersResponseDefault",
     "GetProjectsByProjectIdResponseDefault",
@@ -1739,7 +1700,6 @@ __all__ = (
     "PatchCustomActionsByContextByActionIdResponseDefault",
     "PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefault",
     "PatchPlaylistsByPlaylistIdResponseDefault",
-    "PatchPortfoliosByPortfolioIdResponseDefault",
     "PatchProjectsByProjectIdResponseDefault",
     "PatchSequencesBySequenceIdResponseDefault",
     "PatchSyncSessionsBySyncSessionIdResponseDefault",
@@ -1775,16 +1735,6 @@ __all__ = (
     "PlaylistsQueryParamsSchema",
     "PlaylistsSchema",
     "PlaylistStatus",
-    "PortfolioBaseSchema",
-    "PortfolioBaseSchemaStatus",
-    "PortfolioConfig",
-    "PortfolioConfigSchema",
-    "PortfolioCreateSchema",
-    "PortfolioCreateSchemaStatus",
-    "PortfolioSchema",
-    "PortfolioSchemaStatus",
-    "PortfoliosQueryParamsSchema",
-    "PortfoliosSchema",
     "PostApprovalsBulkRemoveResponseDefault",
     "PostApprovalsBulkResponseDefault",
     "PostAssetsByAssetIdHistoryByHistoryEntityIdReindexBody",
@@ -1842,8 +1792,6 @@ __all__ = (
     "PostPlaylistsByPlaylistIdKeyframesResponseDefault",
     "PostPlaylistsByPlaylistIdReindexResponseDefault",
     "PostPlaylistsResponseDefault",
-    "PostPortfoliosByPortfolioIdReindexResponseDefault",
-    "PostPortfoliosResponseDefault",
     "PostProjectsByProjectIdMembersResponseDefault",
     "PostProjectsByProjectIdReindexResponseDefault",
     "PostProjectsResponseDefault",
@@ -1903,7 +1851,6 @@ __all__ = (
     "PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefault",
     "PutPlaylistsByPlaylistIdItemsByItemIdResponseDefault",
     "PutPlaylistsByPlaylistIdResponseDefault",
-    "PutPortfoliosByPortfolioIdResponseDefault",
     "PutProjectsByProjectIdResponseDefault",
     "PutSequencesBySequenceIdItemsByItemIdPositionResponseDefault",
     "PutSequencesBySequenceIdResponseDefault",
@@ -1927,7 +1874,6 @@ __all__ = (
     "ReindexCollectionSchema",
     "ReindexInheritedCollectionsACLSchema",
     "ReindexPlaylistSchema",
-    "ReindexPortfolioSchema",
     "ReindexProjectSchema",
     "ReindexSegmentSchema",
     "ReindexSegmentsSchema",
@@ -2016,14 +1962,6 @@ __all__ = (
     "SynchronizeCollectionKeyframesSchema",
     "SyncSessionCreateSchema",
     "SyncSessionSchema",
-    "Theme",
-    "ThemeBase",
-    "ThemeColors",
-    "ThemeColorsSchema",
-    "ThemeSchema",
-    "ThemeSchemaBase",
-    "ThemeTypography",
-    "ThemeTypographySchema",
     "TranscriptionElementType",
     "TranscriptionElementTypeSchema",
     "TranscriptionType",

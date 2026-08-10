@@ -9,12 +9,8 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.nltf_displayed_filters_facets_type_0 import (
-        NltfDisplayedFiltersFacetsType0,
-    )
-    from ..models.nltf_displayed_filters_filters_type_0 import (
-        NltfDisplayedFiltersFiltersType0,
-    )
+    from ..models.nltf_displayed_filters_facets import NltfDisplayedFiltersFacets
+    from ..models.nltf_displayed_filters_filters import NltfDisplayedFiltersFilters
 
 
 T = TypeVar("T", bound="NltfDisplayedFilters")
@@ -24,26 +20,22 @@ T = TypeVar("T", bound="NltfDisplayedFilters")
 class NltfDisplayedFilters:
     """
     Attributes:
-        facets (NltfDisplayedFiltersFacetsType0 | None | Unset):
-        filters (NltfDisplayedFiltersFiltersType0 | None | Unset):
+        facets (NltfDisplayedFiltersFacets | None | Unset):
+        filters (NltfDisplayedFiltersFilters | None | Unset):
     """
 
-    facets: NltfDisplayedFiltersFacetsType0 | None | Unset = UNSET
-    filters: NltfDisplayedFiltersFiltersType0 | None | Unset = UNSET
+    facets: NltfDisplayedFiltersFacets | None | Unset = UNSET
+    filters: NltfDisplayedFiltersFilters | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.nltf_displayed_filters_facets_type_0 import (
-            NltfDisplayedFiltersFacetsType0,
-        )
-        from ..models.nltf_displayed_filters_filters_type_0 import (
-            NltfDisplayedFiltersFiltersType0,
-        )
+        from ..models.nltf_displayed_filters_facets import NltfDisplayedFiltersFacets
+        from ..models.nltf_displayed_filters_filters import NltfDisplayedFiltersFilters
 
         facets: dict[str, Any] | None | Unset
         if isinstance(self.facets, Unset):
             facets = UNSET
-        elif isinstance(self.facets, NltfDisplayedFiltersFacetsType0):
+        elif isinstance(self.facets, NltfDisplayedFiltersFacets):
             facets = self.facets.to_dict()
         else:
             facets = self.facets
@@ -51,7 +43,7 @@ class NltfDisplayedFilters:
         filters: dict[str, Any] | None | Unset
         if isinstance(self.filters, Unset):
             filters = UNSET
-        elif isinstance(self.filters, NltfDisplayedFiltersFiltersType0):
+        elif isinstance(self.filters, NltfDisplayedFiltersFilters):
             filters = self.filters.to_dict()
         else:
             filters = self.filters
@@ -68,18 +60,12 @@ class NltfDisplayedFilters:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.nltf_displayed_filters_facets_type_0 import (
-            NltfDisplayedFiltersFacetsType0,
-        )
-        from ..models.nltf_displayed_filters_filters_type_0 import (
-            NltfDisplayedFiltersFiltersType0,
-        )
+        from ..models.nltf_displayed_filters_facets import NltfDisplayedFiltersFacets
+        from ..models.nltf_displayed_filters_filters import NltfDisplayedFiltersFilters
 
         d = dict(src_dict)
 
-        def _parse_facets(
-            data: object,
-        ) -> NltfDisplayedFiltersFacetsType0 | None | Unset:
+        def _parse_facets(data: object) -> NltfDisplayedFiltersFacets | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -87,18 +73,16 @@ class NltfDisplayedFilters:
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                facets_type_0 = NltfDisplayedFiltersFacetsType0.from_dict(data)
+                facets_type_0 = NltfDisplayedFiltersFacets.from_dict(data)
 
                 return facets_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(NltfDisplayedFiltersFacetsType0 | None | Unset, data)
+            return cast(NltfDisplayedFiltersFacets | None | Unset, data)
 
         facets = _parse_facets(d.pop("facets", UNSET))
 
-        def _parse_filters(
-            data: object,
-        ) -> NltfDisplayedFiltersFiltersType0 | None | Unset:
+        def _parse_filters(data: object) -> NltfDisplayedFiltersFilters | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -106,12 +90,12 @@ class NltfDisplayedFilters:
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                filters_type_0 = NltfDisplayedFiltersFiltersType0.from_dict(data)
+                filters_type_0 = NltfDisplayedFiltersFilters.from_dict(data)
 
                 return filters_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(NltfDisplayedFiltersFiltersType0 | None | Unset, data)
+            return cast(NltfDisplayedFiltersFilters | None | Unset, data)
 
         filters = _parse_filters(d.pop("filters", UNSET))
 

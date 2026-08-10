@@ -1,59 +1,55 @@
 from http import HTTPStatus
-from typing import Any, cast
-from urllib.parse import quote
+from typing import Any
 
 import httpx
 
+from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.delete_portfolios_by_portfolio_id_response_default import (
-    DeletePortfoliosByPortfolioIdResponseDefault,
-)
+from ...models.http_validation_error import HTTPValidationError
+from ...models.nltf_parse_request import NltfParseRequest
 from ...types import Response
 
 
 def _get_kwargs(
-    portfolio_id: str,
+    *,
+    body: NltfParseRequest,
 ) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
 
     _kwargs: dict[str, Any] = {
-        "method": "delete",
-        "url": "/v1/portfolios/{portfolio_id}/".format(
-            portfolio_id=quote(str(portfolio_id), safe=""),
-        ),
+        "method": "post",
+        "url": "/v2/nltf_parse/",
     }
 
+    _kwargs["json"] = body.to_dict()
+
+    headers["Content-Type"] = "application/json"
+
+    _kwargs["headers"] = headers
     return _kwargs
 
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Any | DeletePortfoliosByPortfolioIdResponseDefault:
-    if response.status_code == 204:
-        response_204 = cast(Any, None)
-        return response_204
+) -> Any | HTTPValidationError | None:
+    if response.status_code == 200:
+        response_200 = response.json()
+        return response_200
 
-    if response.status_code == 400:
-        response_400 = cast(Any, None)
-        return response_400
+    if response.status_code == 422:
+        response_422 = HTTPValidationError.from_dict(response.json())
 
-    if response.status_code == 401:
-        response_401 = cast(Any, None)
-        return response_401
+        return response_422
 
-    if response.status_code == 404:
-        response_404 = cast(Any, None)
-        return response_404
-
-    response_default = DeletePortfoliosByPortfolioIdResponseDefault.from_dict(
-        response.json()
-    )
-
-    return response_default
+    if client.raise_on_unexpected_status:
+        raise errors.UnexpectedStatus(response.status_code, response.content)
+    else:
+        return None
 
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[Any | DeletePortfoliosByPortfolioIdResponseDefault]:
+) -> Response[Any | HTTPValidationError]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -63,29 +59,28 @@ def _build_response(
 
 
 def sync_detailed(
-    portfolio_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[Any | DeletePortfoliosByPortfolioIdResponseDefault]:
-    """Delete a particular portfolio by id
+    body: NltfParseRequest,
+) -> Response[Any | HTTPValidationError]:
+    """NLTF Parse
 
-
-    Required roles:
-     - can_delete_portfolios
+     Required roles:
+    - can_search
 
     Args:
-        portfolio_id (str):
+        body (NltfParseRequest):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeletePortfoliosByPortfolioIdResponseDefault]
+        Response[Any | HTTPValidationError]
     """
 
     kwargs = _get_kwargs(
-        portfolio_id=portfolio_id,
+        body=body,
     )
 
     response = client.get_httpx_client().request(
@@ -96,57 +91,55 @@ def sync_detailed(
 
 
 def sync(
-    portfolio_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Any | DeletePortfoliosByPortfolioIdResponseDefault | None:
-    """Delete a particular portfolio by id
+    body: NltfParseRequest,
+) -> Any | HTTPValidationError | None:
+    """NLTF Parse
 
-
-    Required roles:
-     - can_delete_portfolios
+     Required roles:
+    - can_search
 
     Args:
-        portfolio_id (str):
+        body (NltfParseRequest):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeletePortfoliosByPortfolioIdResponseDefault
+        Any | HTTPValidationError
     """
 
     return sync_detailed(
-        portfolio_id=portfolio_id,
         client=client,
+        body=body,
     ).parsed
 
 
 async def asyncio_detailed(
-    portfolio_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[Any | DeletePortfoliosByPortfolioIdResponseDefault]:
-    """Delete a particular portfolio by id
+    body: NltfParseRequest,
+) -> Response[Any | HTTPValidationError]:
+    """NLTF Parse
 
-
-    Required roles:
-     - can_delete_portfolios
+     Required roles:
+    - can_search
 
     Args:
-        portfolio_id (str):
+        body (NltfParseRequest):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | DeletePortfoliosByPortfolioIdResponseDefault]
+        Response[Any | HTTPValidationError]
     """
 
     kwargs = _get_kwargs(
-        portfolio_id=portfolio_id,
+        body=body,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -155,30 +148,29 @@ async def asyncio_detailed(
 
 
 async def asyncio(
-    portfolio_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Any | DeletePortfoliosByPortfolioIdResponseDefault | None:
-    """Delete a particular portfolio by id
+    body: NltfParseRequest,
+) -> Any | HTTPValidationError | None:
+    """NLTF Parse
 
-
-    Required roles:
-     - can_delete_portfolios
+     Required roles:
+    - can_search
 
     Args:
-        portfolio_id (str):
+        body (NltfParseRequest):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | DeletePortfoliosByPortfolioIdResponseDefault
+        Any | HTTPValidationError
     """
 
     return (
         await asyncio_detailed(
-            portfolio_id=portfolio_id,
             client=client,
+            body=body,
         )
     ).parsed

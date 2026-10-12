@@ -105,6 +105,7 @@ class AssetPostElasticSchema:
         person_ids (list[UUID] | None | Unset):
         position (int | None | Unset):
         proxies (list[AssetPostElasticSchemaProxiesType0Item] | None | Unset):
+        publication_id (int | None | Unset):
         publication_status (AssetPostElasticSchemaPublicationStatus | None | Unset):
         relations (list[RelationElastic] | None | Unset):
         site_name (None | str | Unset):
@@ -174,6 +175,7 @@ class AssetPostElasticSchema:
     person_ids: list[UUID] | None | Unset = UNSET
     position: int | None | Unset = UNSET
     proxies: list[AssetPostElasticSchemaProxiesType0Item] | None | Unset = UNSET
+    publication_id: int | None | Unset = UNSET
     publication_status: AssetPostElasticSchemaPublicationStatus | None | Unset = UNSET
     relations: list[RelationElastic] | None | Unset = UNSET
     site_name: None | str | Unset = UNSET
@@ -596,6 +598,12 @@ class AssetPostElasticSchema:
         else:
             proxies = self.proxies
 
+        publication_id: int | None | Unset
+        if isinstance(self.publication_id, Unset):
+            publication_id = UNSET
+        else:
+            publication_id = self.publication_id
+
         publication_status: None | str | Unset
         if isinstance(self.publication_status, Unset):
             publication_status = UNSET
@@ -807,6 +815,8 @@ class AssetPostElasticSchema:
             field_dict["position"] = position
         if proxies is not UNSET:
             field_dict["proxies"] = proxies
+        if publication_id is not UNSET:
+            field_dict["publication_id"] = publication_id
         if publication_status is not UNSET:
             field_dict["publication_status"] = publication_status
         if relations is not UNSET:
@@ -1660,6 +1670,15 @@ class AssetPostElasticSchema:
 
         proxies = _parse_proxies(d.pop("proxies", UNSET))
 
+        def _parse_publication_id(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        publication_id = _parse_publication_id(d.pop("publication_id", UNSET))
+
         def _parse_publication_status(
             data: object,
         ) -> AssetPostElasticSchemaPublicationStatus | None | Unset:
@@ -1912,6 +1931,7 @@ class AssetPostElasticSchema:
             person_ids=person_ids,
             position=position,
             proxies=proxies,
+            publication_id=publication_id,
             publication_status=publication_status,
             relations=relations,
             site_name=site_name,

@@ -165,6 +165,12 @@ from .post_metadata_filling_proposals_by_job_id_discard_response_default import 
 from .post_metadata_filling_proposals_by_job_id_regenerate_response_default import (
     PostMetadataFillingProposalsByJobIdRegenerateResponseDefault,
 )
+from .post_metadata_filling_proposals_by_parent_job_id_bulk_accept_response_default import (
+    PostMetadataFillingProposalsByParentJobIdBulkAcceptResponseDefault,
+)
+from .post_metadata_filling_proposals_by_parent_job_id_bulk_discard_response_default import (
+    PostMetadataFillingProposalsByParentJobIdBulkDiscardResponseDefault,
+)
 from .post_transcode_by_transcode_job_id_position_by_position_response_default import (
     PostTranscodeByTranscodeJobIdPositionByPositionResponseDefault,
 )
@@ -300,6 +306,8 @@ __all__ = (
     "PostMetadataFillingProposalsByJobIdAcceptResponseDefault",
     "PostMetadataFillingProposalsByJobIdDiscardResponseDefault",
     "PostMetadataFillingProposalsByJobIdRegenerateResponseDefault",
+    "PostMetadataFillingProposalsByParentJobIdBulkAcceptResponseDefault",
+    "PostMetadataFillingProposalsByParentJobIdBulkDiscardResponseDefault",
     "PostTranscodeByTranscodeJobIdPositionByPositionResponseDefault",
     "PostTranscodeResponseDefault",
     "PostTranscribeAssetsByAssetIdProfilesDefaultResponseDefault",

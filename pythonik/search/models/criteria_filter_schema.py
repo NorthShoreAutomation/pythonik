@@ -21,11 +21,13 @@ class CriteriaFilterSchema:
     Attributes:
         operator (str):
         filters (list[CriteriaFilterSchema] | None | Unset):
+        path (None | str | Unset): Nested field path. Required for the `NESTED` operator.
         terms (list[CriteriaTerm] | None | Unset):
     """
 
     operator: str
     filters: list[CriteriaFilterSchema] | None | Unset = UNSET
+    path: None | str | Unset = UNSET
     terms: list[CriteriaTerm] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -43,6 +45,12 @@ class CriteriaFilterSchema:
 
         else:
             filters = self.filters
+
+        path: None | str | Unset
+        if isinstance(self.path, Unset):
+            path = UNSET
+        else:
+            path = self.path
 
         terms: list[dict[str, Any]] | None | Unset
         if isinstance(self.terms, Unset):
@@ -65,6 +73,8 @@ class CriteriaFilterSchema:
         )
         if filters is not UNSET:
             field_dict["filters"] = filters
+        if path is not UNSET:
+            field_dict["path"] = path
         if terms is not UNSET:
             field_dict["terms"] = terms
 
@@ -101,6 +111,15 @@ class CriteriaFilterSchema:
 
         filters = _parse_filters(d.pop("filters", UNSET))
 
+        def _parse_path(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        path = _parse_path(d.pop("path", UNSET))
+
         def _parse_terms(data: object) -> list[CriteriaTerm] | None | Unset:
             if data is None:
                 return data
@@ -126,6 +145,7 @@ class CriteriaFilterSchema:
         criteria_filter_schema = cls(
             operator=operator,
             filters=filters,
+            path=path,
             terms=terms,
         )
 

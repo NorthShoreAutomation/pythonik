@@ -13,6 +13,7 @@ from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.add_to_collection_action_schema import AddToCollectionActionSchema
+    from ..models.ai_metadata_filling_action_schema import AIMetadataFillingActionSchema
     from ..models.analyze_action_schema import AnalyzeActionSchema
     from ..models.archive_action_schema import ArchiveActionSchema
     from ..models.condition import Condition
@@ -43,11 +44,11 @@ T = TypeVar("T", bound="AutomationInternalSchema")
 class AutomationInternalSchema:
     """
     Attributes:
-        actions (list[AddToCollectionActionSchema | AnalyzeActionSchema | ArchiveActionSchema |
-            CreatePublicationJobAction | CreateShareAction | DeleteAction | DeleteFileSetAction | ExportAction |
-            ExtractFacesAction | MetadataUpdateAction | RemoveAssetRestrictionAction | RequestOriginalAction |
-            RequestReviewAction | RestoreAction | RestrictAssetAction | TranscodeAction | TranscribeAction | TransferAction
-            | TriggerCustomAction | UpdateACLAction]):
+        actions (list[AddToCollectionActionSchema | AIMetadataFillingActionSchema | AnalyzeActionSchema |
+            ArchiveActionSchema | CreatePublicationJobAction | CreateShareAction | DeleteAction | DeleteFileSetAction |
+            ExportAction | ExtractFacesAction | MetadataUpdateAction | RemoveAssetRestrictionAction | RequestOriginalAction
+            | RequestReviewAction | RestoreAction | RestrictAssetAction | TranscodeAction | TranscribeAction |
+            TransferAction | TriggerCustomAction | UpdateACLAction]):
         name (str):
         triggers (list[Trigger]):
         conditions (list[Condition] | None | Unset):
@@ -63,6 +64,7 @@ class AutomationInternalSchema:
 
     actions: list[
         AddToCollectionActionSchema
+        | AIMetadataFillingActionSchema
         | AnalyzeActionSchema
         | ArchiveActionSchema
         | CreatePublicationJobAction
@@ -98,6 +100,9 @@ class AutomationInternalSchema:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.add_to_collection_action_schema import AddToCollectionActionSchema
+        from ..models.ai_metadata_filling_action_schema import (
+            AIMetadataFillingActionSchema,
+        )
         from ..models.analyze_action_schema import AnalyzeActionSchema
         from ..models.archive_action_schema import ArchiveActionSchema
         from ..models.create_publication_job_action import CreatePublicationJobAction
@@ -137,6 +142,8 @@ class AutomationInternalSchema:
             elif isinstance(actions_item_data, UpdateACLAction):
                 actions_item = actions_item_data.to_dict()
             elif isinstance(actions_item_data, MetadataUpdateAction):
+                actions_item = actions_item_data.to_dict()
+            elif isinstance(actions_item_data, AIMetadataFillingActionSchema):
                 actions_item = actions_item_data.to_dict()
             elif isinstance(actions_item_data, TranscodeAction):
                 actions_item = actions_item_data.to_dict()
@@ -279,6 +286,9 @@ class AutomationInternalSchema:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.add_to_collection_action_schema import AddToCollectionActionSchema
+        from ..models.ai_metadata_filling_action_schema import (
+            AIMetadataFillingActionSchema,
+        )
         from ..models.analyze_action_schema import AnalyzeActionSchema
         from ..models.archive_action_schema import ArchiveActionSchema
         from ..models.condition import Condition
@@ -312,6 +322,7 @@ class AutomationInternalSchema:
                 data: object,
             ) -> (
                 AddToCollectionActionSchema
+                | AIMetadataFillingActionSchema
                 | AnalyzeActionSchema
                 | ArchiveActionSchema
                 | CreatePublicationJobAction
@@ -399,7 +410,7 @@ class AutomationInternalSchema:
                 try:
                     if not isinstance(data, dict):
                         raise TypeError()
-                    actions_item_type_8 = TranscodeAction.from_dict(data)
+                    actions_item_type_8 = AIMetadataFillingActionSchema.from_dict(data)
 
                     return actions_item_type_8
                 except (TypeError, ValueError, AttributeError, KeyError):
@@ -407,7 +418,7 @@ class AutomationInternalSchema:
                 try:
                     if not isinstance(data, dict):
                         raise TypeError()
-                    actions_item_type_9 = TransferAction.from_dict(data)
+                    actions_item_type_9 = TranscodeAction.from_dict(data)
 
                     return actions_item_type_9
                 except (TypeError, ValueError, AttributeError, KeyError):
@@ -415,7 +426,7 @@ class AutomationInternalSchema:
                 try:
                     if not isinstance(data, dict):
                         raise TypeError()
-                    actions_item_type_10 = RequestOriginalAction.from_dict(data)
+                    actions_item_type_10 = TransferAction.from_dict(data)
 
                     return actions_item_type_10
                 except (TypeError, ValueError, AttributeError, KeyError):
@@ -423,7 +434,7 @@ class AutomationInternalSchema:
                 try:
                     if not isinstance(data, dict):
                         raise TypeError()
-                    actions_item_type_11 = AddToCollectionActionSchema.from_dict(data)
+                    actions_item_type_11 = RequestOriginalAction.from_dict(data)
 
                     return actions_item_type_11
                 except (TypeError, ValueError, AttributeError, KeyError):
@@ -431,7 +442,7 @@ class AutomationInternalSchema:
                 try:
                     if not isinstance(data, dict):
                         raise TypeError()
-                    actions_item_type_12 = TranscribeAction.from_dict(data)
+                    actions_item_type_12 = AddToCollectionActionSchema.from_dict(data)
 
                     return actions_item_type_12
                 except (TypeError, ValueError, AttributeError, KeyError):
@@ -439,7 +450,7 @@ class AutomationInternalSchema:
                 try:
                     if not isinstance(data, dict):
                         raise TypeError()
-                    actions_item_type_13 = CreateShareAction.from_dict(data)
+                    actions_item_type_13 = TranscribeAction.from_dict(data)
 
                     return actions_item_type_13
                 except (TypeError, ValueError, AttributeError, KeyError):
@@ -447,7 +458,7 @@ class AutomationInternalSchema:
                 try:
                     if not isinstance(data, dict):
                         raise TypeError()
-                    actions_item_type_14 = DeleteAction.from_dict(data)
+                    actions_item_type_14 = CreateShareAction.from_dict(data)
 
                     return actions_item_type_14
                 except (TypeError, ValueError, AttributeError, KeyError):
@@ -455,7 +466,7 @@ class AutomationInternalSchema:
                 try:
                     if not isinstance(data, dict):
                         raise TypeError()
-                    actions_item_type_15 = DeleteFileSetAction.from_dict(data)
+                    actions_item_type_15 = DeleteAction.from_dict(data)
 
                     return actions_item_type_15
                 except (TypeError, ValueError, AttributeError, KeyError):
@@ -463,7 +474,7 @@ class AutomationInternalSchema:
                 try:
                     if not isinstance(data, dict):
                         raise TypeError()
-                    actions_item_type_16 = RestrictAssetAction.from_dict(data)
+                    actions_item_type_16 = DeleteFileSetAction.from_dict(data)
 
                     return actions_item_type_16
                 except (TypeError, ValueError, AttributeError, KeyError):
@@ -471,7 +482,7 @@ class AutomationInternalSchema:
                 try:
                     if not isinstance(data, dict):
                         raise TypeError()
-                    actions_item_type_17 = RemoveAssetRestrictionAction.from_dict(data)
+                    actions_item_type_17 = RestrictAssetAction.from_dict(data)
 
                     return actions_item_type_17
                 except (TypeError, ValueError, AttributeError, KeyError):
@@ -479,16 +490,24 @@ class AutomationInternalSchema:
                 try:
                     if not isinstance(data, dict):
                         raise TypeError()
-                    actions_item_type_18 = RequestReviewAction.from_dict(data)
+                    actions_item_type_18 = RemoveAssetRestrictionAction.from_dict(data)
 
                     return actions_item_type_18
                 except (TypeError, ValueError, AttributeError, KeyError):
                     pass
+                try:
+                    if not isinstance(data, dict):
+                        raise TypeError()
+                    actions_item_type_19 = RequestReviewAction.from_dict(data)
+
+                    return actions_item_type_19
+                except (TypeError, ValueError, AttributeError, KeyError):
+                    pass
                 if not isinstance(data, dict):
                     raise TypeError()
-                actions_item_type_19 = TriggerCustomAction.from_dict(data)
+                actions_item_type_20 = TriggerCustomAction.from_dict(data)
 
-                return actions_item_type_19
+                return actions_item_type_20
 
             actions_item = _parse_actions_item(actions_item_data)
 

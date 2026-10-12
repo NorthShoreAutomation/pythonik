@@ -22,11 +22,13 @@ T = TypeVar("T", bound="CurrentUsageSchema")
 class CurrentUsageSchema:
     """
     Attributes:
+        assets_ai_metadata_filled (int | None | Unset):
         automation_runs (int | None | Unset):
         edge_transcoders (int | None | Unset):
         external_storage (int | None | Unset):
         images_analyzed (int | None | Unset):
         images_face_recognition (int | None | Unset):
+        portals (int | None | Unset):
         shield_enabled (bool | None | Unset):
         storage (CurrentUsageSchemaStorageType0 | None | Unset):
         storage_gateway_clusters (int | None | Unset):
@@ -37,11 +39,13 @@ class CurrentUsageSchema:
         video_face_recognition_hours (float | None | Unset):
     """
 
+    assets_ai_metadata_filled: int | None | Unset = UNSET
     automation_runs: int | None | Unset = UNSET
     edge_transcoders: int | None | Unset = UNSET
     external_storage: int | None | Unset = UNSET
     images_analyzed: int | None | Unset = UNSET
     images_face_recognition: int | None | Unset = UNSET
+    portals: int | None | Unset = UNSET
     shield_enabled: bool | None | Unset = UNSET
     storage: CurrentUsageSchemaStorageType0 | None | Unset = UNSET
     storage_gateway_clusters: int | None | Unset = UNSET
@@ -59,6 +63,12 @@ class CurrentUsageSchema:
         from ..models.current_usage_schema_users_type_0 import (
             CurrentUsageSchemaUsersType0,
         )
+
+        assets_ai_metadata_filled: int | None | Unset
+        if isinstance(self.assets_ai_metadata_filled, Unset):
+            assets_ai_metadata_filled = UNSET
+        else:
+            assets_ai_metadata_filled = self.assets_ai_metadata_filled
 
         automation_runs: int | None | Unset
         if isinstance(self.automation_runs, Unset):
@@ -89,6 +99,12 @@ class CurrentUsageSchema:
             images_face_recognition = UNSET
         else:
             images_face_recognition = self.images_face_recognition
+
+        portals: int | None | Unset
+        if isinstance(self.portals, Unset):
+            portals = UNSET
+        else:
+            portals = self.portals
 
         shield_enabled: bool | None | Unset
         if isinstance(self.shield_enabled, Unset):
@@ -145,6 +161,8 @@ class CurrentUsageSchema:
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
+        if assets_ai_metadata_filled is not UNSET:
+            field_dict["assets_ai_metadata_filled"] = assets_ai_metadata_filled
         if automation_runs is not UNSET:
             field_dict["automation_runs"] = automation_runs
         if edge_transcoders is not UNSET:
@@ -155,6 +173,8 @@ class CurrentUsageSchema:
             field_dict["images_analyzed"] = images_analyzed
         if images_face_recognition is not UNSET:
             field_dict["images_face_recognition"] = images_face_recognition
+        if portals is not UNSET:
+            field_dict["portals"] = portals
         if shield_enabled is not UNSET:
             field_dict["shield_enabled"] = shield_enabled
         if storage is not UNSET:
@@ -184,6 +204,17 @@ class CurrentUsageSchema:
         )
 
         d = dict(src_dict)
+
+        def _parse_assets_ai_metadata_filled(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        assets_ai_metadata_filled = _parse_assets_ai_metadata_filled(
+            d.pop("assets_ai_metadata_filled", UNSET)
+        )
 
         def _parse_automation_runs(data: object) -> int | None | Unset:
             if data is None:
@@ -231,6 +262,15 @@ class CurrentUsageSchema:
         images_face_recognition = _parse_images_face_recognition(
             d.pop("images_face_recognition", UNSET)
         )
+
+        def _parse_portals(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        portals = _parse_portals(d.pop("portals", UNSET))
 
         def _parse_shield_enabled(data: object) -> bool | None | Unset:
             if data is None:
@@ -333,11 +373,13 @@ class CurrentUsageSchema:
         )
 
         current_usage_schema = cls(
+            assets_ai_metadata_filled=assets_ai_metadata_filled,
             automation_runs=automation_runs,
             edge_transcoders=edge_transcoders,
             external_storage=external_storage,
             images_analyzed=images_analyzed,
             images_face_recognition=images_face_recognition,
+            portals=portals,
             shield_enabled=shield_enabled,
             storage=storage,
             storage_gateway_clusters=storage_gateway_clusters,

@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-10-12 "Spec Drift: Typed Search, 53 New Operations" - version 2.3.0
+
+### Added
+- 53 new operations from iconik's live specs (portals, publications, metadata-filling bulk proposals, search backends, natural search, and more): **1002 operations, 1011 friendly `Iconik` methods** (was 950/959).
+- Typed models for the new search `anyOf` shapes (natural search results, NLTF filters).
+- `Iconik.post_oauth_token` accepts optional `expires_in` and `authorization` (HTTP Basic client credentials).
+
+### Breaking
+- `delete_user_attributes` (settings) is gone — iconik removed the endpoint upstream.
+- Search model renames: `NltfDisplayedFiltersFacets` / `NltfDisplayedFiltersFilters` are now `NltfDisplayedFiltersFacetsType0` / `NltfDisplayedFiltersFiltersType0`; `GetPingResponsePingV2PingGet` is now `PingResponse`. Code that imports these classes by name must be updated.
+
 ## 2025-06-26 "Asset Segments API Expansion" - version 1.15.0
 
 ### Added

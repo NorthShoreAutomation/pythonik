@@ -354,6 +354,10 @@ from .create_collection_from_saved_search_response_schema import (
 from .create_collection_from_saved_search_schema import (
     CreateCollectionFromSavedSearchSchema,
 )
+from .create_collection_from_search_response_schema import (
+    CreateCollectionFromSearchResponseSchema,
+)
+from .create_collection_from_search_schema import CreateCollectionFromSearchSchema
 from .create_publication_job_schema import CreatePublicationJobSchema
 from .create_publication_job_schema_metadata_overrides_type_0 import (
     CreatePublicationJobSchemaMetadataOverridesType0,
@@ -481,6 +485,12 @@ from .delete_playlists_by_playlist_id_items_by_item_id_response_default import (
 from .delete_playlists_by_playlist_id_response_default import (
     DeletePlaylistsByPlaylistIdResponseDefault,
 )
+from .delete_portals_by_portal_id_logo_response_default import (
+    DeletePortalsByPortalIdLogoResponseDefault,
+)
+from .delete_portals_by_portal_id_response_default import (
+    DeletePortalsByPortalIdResponseDefault,
+)
 from .delete_projects_by_project_id_members_by_member_id_response_default import (
     DeleteProjectsByProjectIdMembersByMemberIdResponseDefault,
 )
@@ -508,6 +518,8 @@ from .delete_shares_bulk_response_default import DeleteSharesBulkResponseDefault
 from .delete_sync_sessions_by_sync_session_id_response_default import (
     DeleteSyncSessionsBySyncSessionIdResponseDefault,
 )
+from .destination_item_schema import DestinationItemSchema
+from .destination_items_schema import DestinationItemsSchema
 from .drawing import Drawing
 from .drawing_point import DrawingPoint
 from .drawing_point_schema import DrawingPointSchema
@@ -695,6 +707,10 @@ from .get_playlists_by_playlist_id_response_default import (
     GetPlaylistsByPlaylistIdResponseDefault,
 )
 from .get_playlists_response_default import GetPlaylistsResponseDefault
+from .get_portals_by_portal_id_response_default import (
+    GetPortalsByPortalIdResponseDefault,
+)
+from .get_portals_response_default import GetPortalsResponseDefault
 from .get_projects_by_project_id_members_by_member_id_response_default import (
     GetProjectsByProjectIdMembersByMemberIdResponseDefault,
 )
@@ -705,6 +721,15 @@ from .get_projects_by_project_id_response_default import (
     GetProjectsByProjectIdResponseDefault,
 )
 from .get_projects_response_default import GetProjectsResponseDefault
+from .get_publications_destinations_accounts_response_default import (
+    GetPublicationsDestinationsAccountsResponseDefault,
+)
+from .get_publications_destinations_platforms_response_default import (
+    GetPublicationsDestinationsPlatformsResponseDefault,
+)
+from .get_publications_drafts_by_asset_id_response_default import (
+    GetPublicationsDraftsByAssetIdResponseDefault,
+)
 from .get_publications_templates_response_default import (
     GetPublicationsTemplatesResponseDefault,
 )
@@ -787,6 +812,9 @@ from .patch_playlists_by_playlist_id_items_by_item_id_response_default import (
 from .patch_playlists_by_playlist_id_response_default import (
     PatchPlaylistsByPlaylistIdResponseDefault,
 )
+from .patch_portals_by_portal_id_response_default import (
+    PatchPortalsByPortalIdResponseDefault,
+)
 from .patch_projects_by_project_id_response_default import (
     PatchProjectsByProjectIdResponseDefault,
 )
@@ -848,6 +876,21 @@ from .playlist_schema_status import PlaylistSchemaStatus
 from .playlist_status import PlaylistStatus
 from .playlists_query_params_schema import PlaylistsQueryParamsSchema
 from .playlists_schema import PlaylistsSchema
+from .portal_base_schema import PortalBaseSchema
+from .portal_base_schema_keyframes_type_0_item import PortalBaseSchemaKeyframesType0Item
+from .portal_base_schema_status import PortalBaseSchemaStatus
+from .portal_config import PortalConfig
+from .portal_config_schema import PortalConfigSchema
+from .portal_create_schema import PortalCreateSchema
+from .portal_create_schema_keyframes_type_0_item import (
+    PortalCreateSchemaKeyframesType0Item,
+)
+from .portal_create_schema_status import PortalCreateSchemaStatus
+from .portal_schema import PortalSchema
+from .portal_schema_keyframes_type_0_item import PortalSchemaKeyframesType0Item
+from .portal_schema_status import PortalSchemaStatus
+from .portals_query_params_schema import PortalsQueryParamsSchema
+from .portals_schema import PortalsSchema
 from .post_approvals_bulk_remove_response_default import (
     PostApprovalsBulkRemoveResponseDefault,
 )
@@ -1005,6 +1048,14 @@ from .post_playlists_by_playlist_id_reindex_response_default import (
     PostPlaylistsByPlaylistIdReindexResponseDefault,
 )
 from .post_playlists_response_default import PostPlaylistsResponseDefault
+from .post_portals_by_portal_id_logo_body import PostPortalsByPortalIdLogoBody
+from .post_portals_by_portal_id_logo_response_default import (
+    PostPortalsByPortalIdLogoResponseDefault,
+)
+from .post_portals_by_portal_id_reindex_response_default import (
+    PostPortalsByPortalIdReindexResponseDefault,
+)
+from .post_portals_response_default import PostPortalsResponseDefault
 from .post_projects_by_project_id_members_response_default import (
     PostProjectsByProjectIdMembersResponseDefault,
 )
@@ -1012,6 +1063,9 @@ from .post_projects_by_project_id_reindex_response_default import (
     PostProjectsByProjectIdReindexResponseDefault,
 )
 from .post_projects_response_default import PostProjectsResponseDefault
+from .post_publications_by_publication_id_cancel_response_default import (
+    PostPublicationsByPublicationIdCancelResponseDefault,
+)
 from .post_publications_jobs_response_default import PostPublicationsJobsResponseDefault
 from .post_reindex_bulk_response_default import PostReindexBulkResponseDefault
 from .post_segments_reindex_response_default import PostSegmentsReindexResponseDefault
@@ -1059,7 +1113,12 @@ from .project_schema import ProjectSchema
 from .project_schema_status import ProjectSchemaStatus
 from .projects_query_params_schema import ProjectsQueryParamsSchema
 from .projects_schema import ProjectsSchema
+from .publication_draft_schema import PublicationDraftSchema
+from .publication_draft_schema_metadata_overrides_type_0 import (
+    PublicationDraftSchemaMetadataOverridesType0,
+)
 from .publication_job_thumbnail_schema_base import PublicationJobThumbnailSchemaBase
+from .publication_template import PublicationTemplate
 from .publication_template_schema import PublicationTemplateSchema
 from .publication_templates_schema import PublicationTemplatesSchema
 from .publication_token_schema import PublicationTokenSchema
@@ -1128,6 +1187,9 @@ from .put_playlists_by_playlist_id_items_by_item_id_response_default import (
 from .put_playlists_by_playlist_id_response_default import (
     PutPlaylistsByPlaylistIdResponseDefault,
 )
+from .put_portals_by_portal_id_response_default import (
+    PutPortalsByPortalIdResponseDefault,
+)
 from .put_projects_by_project_id_response_default import (
     PutProjectsByProjectIdResponseDefault,
 )
@@ -1163,6 +1225,7 @@ from .reindex_inherited_collections_acl_schema import (
     ReindexInheritedCollectionsACLSchema,
 )
 from .reindex_playlist_schema import ReindexPlaylistSchema
+from .reindex_portal_schema import ReindexPortalSchema
 from .reindex_project_schema import ReindexProjectSchema
 from .reindex_segment_schema import ReindexSegmentSchema
 from .reindex_segments_schema import ReindexSegmentsSchema
@@ -1179,11 +1242,18 @@ from .relations_schema import RelationsSchema
 from .schedule_person_action_schema import SchedulePersonActionSchema
 from .schedule_sync_person_to_versions_schema import ScheduleSyncPersonToVersionsSchema
 from .segment import Segment
+from .segment_attribute_match import SegmentAttributeMatch
+from .segment_attribute_match_operator import SegmentAttributeMatchOperator
+from .segment_attribute_match_schema import SegmentAttributeMatchSchema
+from .segment_attribute_match_schema_operator import SegmentAttributeMatchSchemaOperator
 from .segment_base_schema import SegmentBaseSchema
 from .segment_base_schema_metadata_type_0 import SegmentBaseSchemaMetadataType0
 from .segment_base_schema_segment_type import SegmentBaseSchemaSegmentType
 from .segment_base_schema_status import SegmentBaseSchemaStatus
 from .segment_elastic_schema import SegmentElasticSchema
+from .segment_elastic_schema_attachments_type_0_item import (
+    SegmentElasticSchemaAttachmentsType0Item,
+)
 from .segment_elastic_schema_metadata_type_0 import SegmentElasticSchemaMetadataType0
 from .segment_elastic_schema_segment_type import SegmentElasticSchemaSegmentType
 from .segment_elastic_schema_status import SegmentElasticSchemaStatus
@@ -1197,6 +1267,10 @@ from .segment_segment_type import SegmentSegmentType
 from .segment_status import SegmentStatus
 from .segments_schema import SegmentsSchema
 from .segments_schema_facets_type_0 import SegmentsSchemaFacetsType0
+from .semantic_transcription import SemanticTranscription
+from .semantic_transcription_entity import SemanticTranscriptionEntity
+from .semantic_transcription_entity_schema import SemanticTranscriptionEntitySchema
+from .semantic_transcription_schema import SemanticTranscriptionSchema
 from .sequence_base_schema import SequenceBaseSchema
 from .sequence_create_schema import SequenceCreateSchema
 from .sequence_item_schema import SequenceItemSchema
@@ -1246,6 +1320,8 @@ from .share_users_schema import ShareUsersSchema
 from .shares_elastic_schema import SharesElasticSchema
 from .shares_elastic_schema_facets_type_0 import SharesElasticSchemaFacetsType0
 from .shares_schema import SharesSchema
+from .shot import Shot
+from .shot_schema import ShotSchema
 from .storage_content_info import StorageContentInfo
 from .storage_content_info_schema import StorageContentInfoSchema
 from .sync_session_create_schema import SyncSessionCreateSchema
@@ -1253,16 +1329,32 @@ from .sync_session_schema import SyncSessionSchema
 from .synchronize_collection_keyframes_schema import (
     SynchronizeCollectionKeyframesSchema,
 )
+from .theme import Theme
+from .theme_base import ThemeBase
+from .theme_colors import ThemeColors
+from .theme_colors_schema import ThemeColorsSchema
+from .theme_schema import ThemeSchema
+from .theme_schema_base import ThemeSchemaBase
+from .theme_typography import ThemeTypography
+from .theme_typography_schema import ThemeTypographySchema
 from .transcription_element_type import TranscriptionElementType
 from .transcription_element_type_schema import TranscriptionElementTypeSchema
+from .transcription_engine_info import TranscriptionEngineInfo
+from .transcription_engine_info_type import TranscriptionEngineInfoType
 from .transcription_type import TranscriptionType
 from .transcription_type_schema import TranscriptionTypeSchema
+from .understanding_tag import UnderstandingTag
+from .understanding_tag_schema import UnderstandingTagSchema
 from .upload_storage import UploadStorage
 from .upload_storage_method import UploadStorageMethod
 from .upload_storage_schema import UploadStorageSchema
 from .upload_storage_schema_method import UploadStorageSchemaMethod
 from .user import User
 from .user_schema import UserSchema
+from .video_source import VideoSource
+from .video_source_mode import VideoSourceMode
+from .video_source_schema import VideoSourceSchema
+from .video_source_schema_mode import VideoSourceSchemaMode
 
 __all__ = (
     "ApprovalBySchema",
@@ -1493,6 +1585,8 @@ __all__ = (
     "CreateCollectionContentOrderingSchema",
     "CreateCollectionFromSavedSearchResponseSchema",
     "CreateCollectionFromSavedSearchSchema",
+    "CreateCollectionFromSearchResponseSchema",
+    "CreateCollectionFromSearchSchema",
     "CreatePublicationJobSchema",
     "CreatePublicationJobSchemaMetadataOverridesType0",
     "CreatePublicationJobThumbnailKeyframe",
@@ -1548,6 +1642,8 @@ __all__ = (
     "DeleteFavouritesAllResponseDefault",
     "DeletePlaylistsByPlaylistIdItemsByItemIdResponseDefault",
     "DeletePlaylistsByPlaylistIdResponseDefault",
+    "DeletePortalsByPortalIdLogoResponseDefault",
+    "DeletePortalsByPortalIdResponseDefault",
     "DeleteProjectsByProjectIdMembersByMemberIdResponseDefault",
     "DeleteProjectsByProjectIdResponseDefault",
     "DeleteQueueAssetsQueryParamsSchema",
@@ -1561,6 +1657,8 @@ __all__ = (
     "DeleteSharesBulkAllResponseDefault",
     "DeleteSharesBulkResponseDefault",
     "DeleteSyncSessionsBySyncSessionIdResponseDefault",
+    "DestinationItemSchema",
+    "DestinationItemsSchema",
     "Drawing",
     "DrawingPoint",
     "DrawingPointSchema",
@@ -1656,10 +1754,15 @@ __all__ = (
     "GetPlaylistsByPlaylistIdItemsResponseDefault",
     "GetPlaylistsByPlaylistIdResponseDefault",
     "GetPlaylistsResponseDefault",
+    "GetPortalsByPortalIdResponseDefault",
+    "GetPortalsResponseDefault",
     "GetProjectsByProjectIdMembersByMemberIdResponseDefault",
     "GetProjectsByProjectIdMembersResponseDefault",
     "GetProjectsByProjectIdResponseDefault",
     "GetProjectsResponseDefault",
+    "GetPublicationsDestinationsAccountsResponseDefault",
+    "GetPublicationsDestinationsPlatformsResponseDefault",
+    "GetPublicationsDraftsByAssetIdResponseDefault",
     "GetPublicationsTemplatesResponseDefault",
     "GetPublicationsTokenResponseDefault",
     "GetSequencesBySequenceIdItemsResponseDefault",
@@ -1700,6 +1803,7 @@ __all__ = (
     "PatchCustomActionsByContextByActionIdResponseDefault",
     "PatchPlaylistsByPlaylistIdItemsByItemIdResponseDefault",
     "PatchPlaylistsByPlaylistIdResponseDefault",
+    "PatchPortalsByPortalIdResponseDefault",
     "PatchProjectsByProjectIdResponseDefault",
     "PatchSequencesBySequenceIdResponseDefault",
     "PatchSyncSessionsBySyncSessionIdResponseDefault",
@@ -1735,6 +1839,19 @@ __all__ = (
     "PlaylistsQueryParamsSchema",
     "PlaylistsSchema",
     "PlaylistStatus",
+    "PortalBaseSchema",
+    "PortalBaseSchemaKeyframesType0Item",
+    "PortalBaseSchemaStatus",
+    "PortalConfig",
+    "PortalConfigSchema",
+    "PortalCreateSchema",
+    "PortalCreateSchemaKeyframesType0Item",
+    "PortalCreateSchemaStatus",
+    "PortalSchema",
+    "PortalSchemaKeyframesType0Item",
+    "PortalSchemaStatus",
+    "PortalsQueryParamsSchema",
+    "PortalsSchema",
     "PostApprovalsBulkRemoveResponseDefault",
     "PostApprovalsBulkResponseDefault",
     "PostAssetsByAssetIdHistoryByHistoryEntityIdReindexBody",
@@ -1792,9 +1909,14 @@ __all__ = (
     "PostPlaylistsByPlaylistIdKeyframesResponseDefault",
     "PostPlaylistsByPlaylistIdReindexResponseDefault",
     "PostPlaylistsResponseDefault",
+    "PostPortalsByPortalIdLogoBody",
+    "PostPortalsByPortalIdLogoResponseDefault",
+    "PostPortalsByPortalIdReindexResponseDefault",
+    "PostPortalsResponseDefault",
     "PostProjectsByProjectIdMembersResponseDefault",
     "PostProjectsByProjectIdReindexResponseDefault",
     "PostProjectsResponseDefault",
+    "PostPublicationsByPublicationIdCancelResponseDefault",
     "PostPublicationsJobsResponseDefault",
     "PostReindexBulkResponseDefault",
     "PostSegmentsReindexResponseDefault",
@@ -1824,7 +1946,10 @@ __all__ = (
     "ProjectSchemaStatus",
     "ProjectsQueryParamsSchema",
     "ProjectsSchema",
+    "PublicationDraftSchema",
+    "PublicationDraftSchemaMetadataOverridesType0",
     "PublicationJobThumbnailSchemaBase",
+    "PublicationTemplate",
     "PublicationTemplateSchema",
     "PublicationTemplatesSchema",
     "PublicationTokenSchema",
@@ -1851,6 +1976,7 @@ __all__ = (
     "PutPlaylistsByPlaylistIdItemsByItemIdPositionResponseDefault",
     "PutPlaylistsByPlaylistIdItemsByItemIdResponseDefault",
     "PutPlaylistsByPlaylistIdResponseDefault",
+    "PutPortalsByPortalIdResponseDefault",
     "PutProjectsByProjectIdResponseDefault",
     "PutSequencesBySequenceIdItemsByItemIdPositionResponseDefault",
     "PutSequencesBySequenceIdResponseDefault",
@@ -1874,6 +2000,7 @@ __all__ = (
     "ReindexCollectionSchema",
     "ReindexInheritedCollectionsACLSchema",
     "ReindexPlaylistSchema",
+    "ReindexPortalSchema",
     "ReindexProjectSchema",
     "ReindexSegmentSchema",
     "ReindexSegmentsSchema",
@@ -1890,11 +2017,16 @@ __all__ = (
     "SchedulePersonActionSchema",
     "ScheduleSyncPersonToVersionsSchema",
     "Segment",
+    "SegmentAttributeMatch",
+    "SegmentAttributeMatchOperator",
+    "SegmentAttributeMatchSchema",
+    "SegmentAttributeMatchSchemaOperator",
     "SegmentBaseSchema",
     "SegmentBaseSchemaMetadataType0",
     "SegmentBaseSchemaSegmentType",
     "SegmentBaseSchemaStatus",
     "SegmentElasticSchema",
+    "SegmentElasticSchemaAttachmentsType0Item",
     "SegmentElasticSchemaMetadataType0",
     "SegmentElasticSchemaSegmentType",
     "SegmentElasticSchemaStatus",
@@ -1908,6 +2040,10 @@ __all__ = (
     "SegmentsSchema",
     "SegmentsSchemaFacetsType0",
     "SegmentStatus",
+    "SemanticTranscription",
+    "SemanticTranscriptionEntity",
+    "SemanticTranscriptionEntitySchema",
+    "SemanticTranscriptionSchema",
     "SequenceBaseSchema",
     "SequenceCreateSchema",
     "SequenceItemSchema",
@@ -1957,19 +2093,37 @@ __all__ = (
     "ShareUsersElastic",
     "ShareUsersElasticSchema",
     "ShareUsersSchema",
+    "Shot",
+    "ShotSchema",
     "StorageContentInfo",
     "StorageContentInfoSchema",
     "SynchronizeCollectionKeyframesSchema",
     "SyncSessionCreateSchema",
     "SyncSessionSchema",
+    "Theme",
+    "ThemeBase",
+    "ThemeColors",
+    "ThemeColorsSchema",
+    "ThemeSchema",
+    "ThemeSchemaBase",
+    "ThemeTypography",
+    "ThemeTypographySchema",
     "TranscriptionElementType",
     "TranscriptionElementTypeSchema",
+    "TranscriptionEngineInfo",
+    "TranscriptionEngineInfoType",
     "TranscriptionType",
     "TranscriptionTypeSchema",
+    "UnderstandingTag",
+    "UnderstandingTagSchema",
     "UploadStorage",
     "UploadStorageMethod",
     "UploadStorageSchema",
     "UploadStorageSchemaMethod",
     "User",
     "UserSchema",
+    "VideoSource",
+    "VideoSourceMode",
+    "VideoSourceSchema",
+    "VideoSourceSchemaMode",
 )

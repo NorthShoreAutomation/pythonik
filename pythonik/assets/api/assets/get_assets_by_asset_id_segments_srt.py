@@ -20,6 +20,7 @@ def _get_kwargs(
     version_id: str | Unset = UNSET,
     segment_type: str | Unset = UNSET,
     segment_color: str | Unset = UNSET,
+    status: str | Unset = UNSET,
     words_per_line: int | Unset = UNSET,
 ) -> dict[str, Any]:
 
@@ -36,6 +37,8 @@ def _get_kwargs(
     params["segment_type"] = segment_type
 
     params["segment_color"] = segment_color
+
+    params["status"] = status
 
     params["words_per_line"] = words_per_line
 
@@ -99,6 +102,7 @@ def sync_detailed(
     version_id: str | Unset = UNSET,
     segment_type: str | Unset = UNSET,
     segment_color: str | Unset = UNSET,
+    status: str | Unset = UNSET,
     words_per_line: int | Unset = UNSET,
 ) -> Response[Any | GetAssetsByAssetIdSegmentsSrtResponseDefault | str]:
     """List of segments as SRT file
@@ -115,6 +119,7 @@ def sync_detailed(
         version_id (str | Unset):
         segment_type (str | Unset):
         segment_color (str | Unset):
+        status (str | Unset):
         words_per_line (int | Unset):
 
     Raises:
@@ -133,6 +138,7 @@ def sync_detailed(
         version_id=version_id,
         segment_type=segment_type,
         segment_color=segment_color,
+        status=status,
         words_per_line=words_per_line,
     )
 
@@ -153,6 +159,7 @@ def sync(
     version_id: str | Unset = UNSET,
     segment_type: str | Unset = UNSET,
     segment_color: str | Unset = UNSET,
+    status: str | Unset = UNSET,
     words_per_line: int | Unset = UNSET,
 ) -> Any | GetAssetsByAssetIdSegmentsSrtResponseDefault | str | None:
     """List of segments as SRT file
@@ -169,6 +176,7 @@ def sync(
         version_id (str | Unset):
         segment_type (str | Unset):
         segment_color (str | Unset):
+        status (str | Unset):
         words_per_line (int | Unset):
 
     Raises:
@@ -188,6 +196,7 @@ def sync(
         version_id=version_id,
         segment_type=segment_type,
         segment_color=segment_color,
+        status=status,
         words_per_line=words_per_line,
     ).parsed
 
@@ -202,6 +211,7 @@ async def asyncio_detailed(
     version_id: str | Unset = UNSET,
     segment_type: str | Unset = UNSET,
     segment_color: str | Unset = UNSET,
+    status: str | Unset = UNSET,
     words_per_line: int | Unset = UNSET,
 ) -> Response[Any | GetAssetsByAssetIdSegmentsSrtResponseDefault | str]:
     """List of segments as SRT file
@@ -218,6 +228,7 @@ async def asyncio_detailed(
         version_id (str | Unset):
         segment_type (str | Unset):
         segment_color (str | Unset):
+        status (str | Unset):
         words_per_line (int | Unset):
 
     Raises:
@@ -236,6 +247,7 @@ async def asyncio_detailed(
         version_id=version_id,
         segment_type=segment_type,
         segment_color=segment_color,
+        status=status,
         words_per_line=words_per_line,
     )
 
@@ -254,6 +266,7 @@ async def asyncio(
     version_id: str | Unset = UNSET,
     segment_type: str | Unset = UNSET,
     segment_color: str | Unset = UNSET,
+    status: str | Unset = UNSET,
     words_per_line: int | Unset = UNSET,
 ) -> Any | GetAssetsByAssetIdSegmentsSrtResponseDefault | str | None:
     """List of segments as SRT file
@@ -270,6 +283,7 @@ async def asyncio(
         version_id (str | Unset):
         segment_type (str | Unset):
         segment_color (str | Unset):
+        status (str | Unset):
         words_per_line (int | Unset):
 
     Raises:
@@ -290,6 +304,7 @@ async def asyncio(
             version_id=version_id,
             segment_type=segment_type,
             segment_color=segment_color,
+            status=status,
             words_per_line=words_per_line,
         )
     ).parsed

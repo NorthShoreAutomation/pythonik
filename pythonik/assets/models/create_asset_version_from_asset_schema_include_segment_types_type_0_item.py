@@ -8,6 +8,8 @@ class CreateAssetVersionFromAssetSchemaIncludeSegmentTypesType0Item(str, Enum):
     PERSON = "PERSON"
     QC = "QC"
     SCENE = "SCENE"
+    SEMANTIC_TRANSCRIPTION = "SEMANTIC_TRANSCRIPTION"
+    SHOT = "SHOT"
     TAG = "TAG"
     TRANSCRIPTION = "TRANSCRIPTION"
 

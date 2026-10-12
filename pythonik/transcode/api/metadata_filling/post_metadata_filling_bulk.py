@@ -49,6 +49,14 @@ def _parse_response(
         response_403 = cast(Any, None)
         return response_403
 
+    if response.status_code == 404:
+        response_404 = cast(Any, None)
+        return response_404
+
+    if response.status_code == 502:
+        response_502 = cast(Any, None)
+        return response_502
+
     response_default = PostMetadataFillingBulkResponseDefault.from_dict(response.json())
 
     return response_default

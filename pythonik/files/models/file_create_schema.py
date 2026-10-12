@@ -17,6 +17,9 @@ if TYPE_CHECKING:
     from ..models.file_create_schema_upload_credentials_type_0 import (
         FileCreateSchemaUploadCredentialsType0,
     )
+    from ..models.file_create_schema_upload_headers_type_0 import (
+        FileCreateSchemaUploadHeadersType0,
+    )
 
 
 T = TypeVar("T", bound="FileCreateSchema")
@@ -50,6 +53,7 @@ class FileCreateSchema:
         template_engine (FileCreateSchemaTemplateEngine | None | Unset):
         upload_credentials (FileCreateSchemaUploadCredentialsType0 | None | Unset):
         upload_filename (None | str | Unset):
+        upload_headers (FileCreateSchemaUploadHeadersType0 | None | Unset):
         upload_method (None | str | Unset):
         upload_url (None | str | Unset):
         user_id (None | Unset | UUID):
@@ -80,6 +84,7 @@ class FileCreateSchema:
     template_engine: FileCreateSchemaTemplateEngine | None | Unset = UNSET
     upload_credentials: FileCreateSchemaUploadCredentialsType0 | None | Unset = UNSET
     upload_filename: None | str | Unset = UNSET
+    upload_headers: FileCreateSchemaUploadHeadersType0 | None | Unset = UNSET
     upload_method: None | str | Unset = UNSET
     upload_url: None | str | Unset = UNSET
     user_id: None | Unset | UUID = UNSET
@@ -89,6 +94,9 @@ class FileCreateSchema:
     def to_dict(self) -> dict[str, Any]:
         from ..models.file_create_schema_upload_credentials_type_0 import (
             FileCreateSchemaUploadCredentialsType0,
+        )
+        from ..models.file_create_schema_upload_headers_type_0 import (
+            FileCreateSchemaUploadHeadersType0,
         )
 
         directory_path = self.directory_path
@@ -251,6 +259,14 @@ class FileCreateSchema:
         else:
             upload_filename = self.upload_filename
 
+        upload_headers: dict[str, Any] | None | Unset
+        if isinstance(self.upload_headers, Unset):
+            upload_headers = UNSET
+        elif isinstance(self.upload_headers, FileCreateSchemaUploadHeadersType0):
+            upload_headers = self.upload_headers.to_dict()
+        else:
+            upload_headers = self.upload_headers
+
         upload_method: None | str | Unset
         if isinstance(self.upload_method, Unset):
             upload_method = UNSET
@@ -330,6 +346,8 @@ class FileCreateSchema:
             field_dict["upload_credentials"] = upload_credentials
         if upload_filename is not UNSET:
             field_dict["upload_filename"] = upload_filename
+        if upload_headers is not UNSET:
+            field_dict["upload_headers"] = upload_headers
         if upload_method is not UNSET:
             field_dict["upload_method"] = upload_method
         if upload_url is not UNSET:
@@ -345,6 +363,9 @@ class FileCreateSchema:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.file_create_schema_upload_credentials_type_0 import (
             FileCreateSchemaUploadCredentialsType0,
+        )
+        from ..models.file_create_schema_upload_headers_type_0 import (
+            FileCreateSchemaUploadHeadersType0,
         )
 
         d = dict(src_dict)
@@ -659,6 +680,27 @@ class FileCreateSchema:
 
         upload_filename = _parse_upload_filename(d.pop("upload_filename", UNSET))
 
+        def _parse_upload_headers(
+            data: object,
+        ) -> FileCreateSchemaUploadHeadersType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                upload_headers_type_0 = FileCreateSchemaUploadHeadersType0.from_dict(
+                    data
+                )
+
+                return upload_headers_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(FileCreateSchemaUploadHeadersType0 | None | Unset, data)
+
+        upload_headers = _parse_upload_headers(d.pop("upload_headers", UNSET))
+
         def _parse_upload_method(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -736,6 +778,7 @@ class FileCreateSchema:
             template_engine=template_engine,
             upload_credentials=upload_credentials,
             upload_filename=upload_filename,
+            upload_headers=upload_headers,
             upload_method=upload_method,
             upload_url=upload_url,
             user_id=user_id,

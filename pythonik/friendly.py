@@ -804,6 +804,22 @@ class Iconik:
             client=self._client("assets"), playlist_id=playlist_id, item_id=item_id
         )
 
+    def delete_portal(self, portal_id: str):
+        "Delete a particular portal by id (DELETE /v1/portals/{portal_id}/)"
+        from .assets.api.portals import delete_portals_by_portal_id as _endpoint
+
+        return _endpoint.sync_detailed(
+            client=self._client("assets"), portal_id=portal_id
+        )
+
+    def delete_portal_logo(self, portal_id: str):
+        "Delete the portal logo (DELETE /v1/portals/{portal_id}/logo/)"
+        from .assets.api.portals import delete_portals_by_portal_id_logo as _endpoint
+
+        return _endpoint.sync_detailed(
+            client=self._client("assets"), portal_id=portal_id
+        )
+
     def delete_project(self, project_id: str):
         "Delete a particular project by id (DELETE /v1/projects/{project_id}/)"
         from .assets.api.projects import delete_projects_by_project_id as _endpoint
@@ -1070,6 +1086,7 @@ class Iconik:
         version_id=UNSET,
         segment_type=UNSET,
         segment_color=UNSET,
+        status=UNSET,
     ):
         "List of segments as CSV file (GET /v1/assets/{asset_id}/segments/csv/)"
         from .assets.api.assets import get_assets_by_asset_id_segments_csv as _endpoint
@@ -1083,6 +1100,7 @@ class Iconik:
             version_id=version_id,
             segment_type=segment_type,
             segment_color=segment_color,
+            status=status,
         )
 
     def get_asset_segments_srt(
@@ -1095,6 +1113,7 @@ class Iconik:
         version_id=UNSET,
         segment_type=UNSET,
         segment_color=UNSET,
+        status=UNSET,
         words_per_line=UNSET,
     ):
         "List of segments as SRT file (GET /v1/assets/{asset_id}/segments/srt/)"
@@ -1109,6 +1128,7 @@ class Iconik:
             version_id=version_id,
             segment_type=segment_type,
             segment_color=segment_color,
+            status=status,
             words_per_line=words_per_line,
         )
 
@@ -1122,6 +1142,7 @@ class Iconik:
         version_id=UNSET,
         segment_type=UNSET,
         segment_color=UNSET,
+        status=UNSET,
     ):
         "List of segments as text file (GET /v1/assets/{asset_id}/segments/text/)"
         from .assets.api.assets import get_assets_by_asset_id_segments_text as _endpoint
@@ -1135,6 +1156,7 @@ class Iconik:
             version_id=version_id,
             segment_type=segment_type,
             segment_color=segment_color,
+            status=status,
         )
 
     def get_asset_segments_vtt(
@@ -1147,6 +1169,7 @@ class Iconik:
         version_id=UNSET,
         segment_type=UNSET,
         segment_color=UNSET,
+        status=UNSET,
         words_per_line=UNSET,
     ):
         "List of segments as WebVTT file (GET /v1/assets/{asset_id}/segments/vtt/)"
@@ -1161,6 +1184,7 @@ class Iconik:
             version_id=version_id,
             segment_type=segment_type,
             segment_color=segment_color,
+            status=status,
             words_per_line=words_per_line,
         )
 
@@ -1616,6 +1640,41 @@ class Iconik:
             page=page,
         )
 
+    def get_portals(
+        self,
+        *,
+        per_page=UNSET,
+        page=UNSET,
+        scroll=UNSET,
+        scroll_id=UNSET,
+        sort=UNSET,
+        status=UNSET,
+        ids=UNSET,
+        query=UNSET,
+    ):
+        "Get list of portals (GET /v1/portals/)"
+        from .assets.api.portals import get_portals as _endpoint
+
+        return _endpoint.sync_detailed(
+            client=self._client("assets"),
+            per_page=per_page,
+            page=page,
+            scroll=scroll,
+            scroll_id=scroll_id,
+            sort=sort,
+            status=status,
+            ids=ids,
+            query=query,
+        )
+
+    def get_portal(self, portal_id: str):
+        "Returns a particular portal by id (GET /v1/portals/{portal_id}/)"
+        from .assets.api.portals import get_portals_by_portal_id as _endpoint
+
+        return _endpoint.sync_detailed(
+            client=self._client("assets"), portal_id=portal_id
+        )
+
     def get_projects(
         self,
         *,
@@ -1666,6 +1725,30 @@ class Iconik:
         return _endpoint.sync_detailed(
             client=self._client("assets"), project_id=project_id, member_id=member_id
         )
+
+    def get_publications_destinations_accounts(self):
+        "Returns the destination accounts the caller is allowed to publish to (GET /v1/publications/destinations/accounts/)"
+        from .assets.api.publications import (
+            get_publications_destinations_accounts as _endpoint,
+        )
+
+        return _endpoint.sync_detailed(client=self._client("assets"))
+
+    def get_publications_destinations_platforms(self):
+        "Returns the distinct destination platforms the caller can publish to (GET /v1/publications/destinations/platforms/)"
+        from .assets.api.publications import (
+            get_publications_destinations_platforms as _endpoint,
+        )
+
+        return _endpoint.sync_detailed(client=self._client("assets"))
+
+    def get_publications_drafts_by_asset(self, asset_id: str):
+        "\u26a0\ufe0f Beta: Returns the iconik-native fields of a saved draft so the panel can be pre-filled (GET /v1/publications/drafts/{asset_id}/)"
+        from .assets.api.publications import (
+            get_publications_drafts_by_asset_id as _endpoint,
+        )
+
+        return _endpoint.sync_detailed(client=self._client("assets"), asset_id=asset_id)
 
     def get_publications_templates(self):
         "Returns publication templates that can be used for publishing (GET /v1/publications/templates/)"
@@ -1994,6 +2077,14 @@ class Iconik:
             playlist_id=playlist_id,
             item_id=item_id,
             body=body,
+        )
+
+    def patch_portal(self, portal_id: str, *, body):
+        "Update a portal (PATCH /v1/portals/{portal_id}/)"
+        from .assets.api.portals import patch_portals_by_portal_id as _endpoint
+
+        return _endpoint.sync_detailed(
+            client=self._client("assets"), portal_id=portal_id, body=body
         )
 
     def patch_project(self, project_id: str, *, body):
@@ -2608,6 +2699,28 @@ class Iconik:
             client=self._client("assets"), playlist_id=playlist_id, body=body
         )
 
+    def post_portals(self, *, body):
+        "Create a new portal (POST /v1/portals/)"
+        from .assets.api.portals import post_portals as _endpoint
+
+        return _endpoint.sync_detailed(client=self._client("assets"), body=body)
+
+    def post_portal_logo(self, portal_id: str, *, body):
+        "Upload a portal logo image (POST /v1/portals/{portal_id}/logo/)"
+        from .assets.api.portals import post_portals_by_portal_id_logo as _endpoint
+
+        return _endpoint.sync_detailed(
+            client=self._client("assets"), portal_id=portal_id, body=body
+        )
+
+    def post_portal_reindex(self, portal_id: str, *, body):
+        "Reindex the portal (POST /v1/portals/{portal_id}/reindex/)"
+        from .assets.api.portals import post_portals_by_portal_id_reindex as _endpoint
+
+        return _endpoint.sync_detailed(
+            client=self._client("assets"), portal_id=portal_id, body=body
+        )
+
     def post_projects(self, *, body):
         "Create a new project (POST /v1/projects/)"
         from .assets.api.projects import post_projects as _endpoint
@@ -2632,6 +2745,16 @@ class Iconik:
 
         return _endpoint.sync_detailed(
             client=self._client("assets"), project_id=project_id, body=body
+        )
+
+    def post_publication_cancel(self, publication_id: str):
+        "\u26a0\ufe0f Beta: Cancels the scheduled publication of a post asset (POST /v1/publications/{publication_id}/cancel/)"
+        from .assets.api.publications import (
+            post_publications_by_publication_id_cancel as _endpoint,
+        )
+
+        return _endpoint.sync_detailed(
+            client=self._client("assets"), publication_id=publication_id
         )
 
     def post_publications_jobs(self, *, body):
@@ -3006,6 +3129,14 @@ class Iconik:
             body=body,
         )
 
+    def put_portal(self, portal_id: str, *, body):
+        "Update a portal (PUT /v1/portals/{portal_id}/)"
+        from .assets.api.portals import put_portals_by_portal_id as _endpoint
+
+        return _endpoint.sync_detailed(
+            client=self._client("assets"), portal_id=portal_id, body=body
+        )
+
     def put_project(self, project_id: str, *, body):
         "Update project (PUT /v1/projects/{project_id}/)"
         from .assets.api.projects import put_projects_by_project_id as _endpoint
@@ -3175,6 +3306,12 @@ class Iconik:
         return _endpoint.sync_detailed(
             client=self._client("auth"), approved_instance_id=approved_instance_id
         )
+
+    def get_apps_oauth_scopes(self):
+        "List of OAuth scopes currently supported by the platform (GET /v1/apps/oauth_scopes/)"
+        from .auth.api.apps import get_apps_oauth_scopes as _endpoint
+
+        return _endpoint.sync_detailed(client=self._client("auth"))
 
     def get_auth_tokens_by_app(self, app_id: str, *, per_page=UNSET, last_id=UNSET):
         "List application tokens (GET /v1/auth/{app_id}/tokens/)"
@@ -3493,6 +3630,20 @@ class Iconik:
 
         return _endpoint.sync_detailed(client=self._client("auth"))
 
+    def post_auth_embed_token(self, *, body):
+        "Create a short lived, single use embed token for the logged in user (POST /v1/auth/embed/token/)"
+        from .auth.api.auth import post_auth_embed_token as _endpoint
+
+        return _endpoint.sync_detailed(client=self._client("auth"), body=body)
+
+    def post_auth_embed_token_exchange(self, *, body, format_=UNSET):
+        "Exchange an embed token for an iconik access token (POST /v1/auth/embed/token/exchange/)"
+        from .auth.api.auth import post_auth_embed_token_exchange as _endpoint
+
+        return _endpoint.sync_detailed(
+            client=self._client("auth", ()), body=body, format_=format_
+        )
+
     def post_auth_multidomain_login(self, *, body, temp_auth_token):
         "Login by using temp token (POST /v1/auth/multidomain/login/)"
         from .auth.api.auth import post_auth_multidomain_login as _endpoint
@@ -3618,11 +3769,16 @@ class Iconik:
             code_challenge_method=code_challenge_method,
         )
 
-    def post_oauth_token(self, *, body):
+    def post_oauth_token(self, *, body, expires_in=UNSET, authorization=UNSET):
         "Issue an OAuth token (POST /v1/oauth/token/)"
         from .auth.api.oauth import post_oauth_token as _endpoint
 
-        return _endpoint.sync_detailed(client=self._client("auth", ()), body=body)
+        return _endpoint.sync_detailed(
+            client=self._client("auth", ()),
+            body=body,
+            expires_in=expires_in,
+            authorization=authorization,
+        )
 
     def post_password_forgot(self, *, body):
         "Receives email address and sends email to this address with a link for resetting password. (POST /v1/password/forgot/)"
@@ -4038,6 +4194,36 @@ class Iconik:
             client=self._client("files"), asset_id=asset_id, proxy_id=proxy_id
         )
 
+    def delete_asset_segment_attachments(
+        self, asset_id: str, segment_id: str, *, reindex=UNSET
+    ):
+        "Delete all of a segment's attachments (DELETE /v1/assets/{asset_id}/segments/{segment_id}/attachments/)"
+        from .files.api.assets import (
+            delete_assets_by_asset_id_segments_by_segment_id_attachments as _endpoint,
+        )
+
+        return _endpoint.sync_detailed(
+            client=self._client("files"),
+            asset_id=asset_id,
+            segment_id=segment_id,
+            reindex=reindex,
+        )
+
+    def delete_asset_segment_attachment(
+        self, asset_id: str, segment_id: str, attachment_id: str
+    ):
+        "Delete a segment's attachment (DELETE /v1/assets/{asset_id}/segments/{segment_id}/attachments/{attachment_id}/)"
+        from .files.api.assets import (
+            delete_assets_by_asset_id_segments_by_segment_id_attachments_by_attachment_id as _endpoint,
+        )
+
+        return _endpoint.sync_detailed(
+            client=self._client("files"),
+            asset_id=asset_id,
+            segment_id=segment_id,
+            attachment_id=attachment_id,
+        )
+
     def delete_asset_subtitle(self, asset_id: str, subtitle_id: str):
         "Delete asset's subtitle (DELETE /v1/assets/{asset_id}/subtitles/{subtitle_id}/)"
         from .files.api.assets import (
@@ -4294,6 +4480,12 @@ class Iconik:
             storage_id=storage_id,
             remove_assets=remove_assets,
         )
+
+    def delete_logo(self, logo_id: str):
+        "Delete a particular logo by id, removing the stored image (DELETE /v1/logos/{logo_id}/)"
+        from .files.api.logos import delete_logos_by_logo_id as _endpoint
+
+        return _endpoint.sync_detailed(client=self._client("files"), logo_id=logo_id)
 
     def delete_playlist_keyframe(
         self, playlist_id: str, keyframe_id: str, *, regenerate_keyframes=UNSET
@@ -4966,6 +5158,54 @@ class Iconik:
             page=page,
         )
 
+    def get_asset_segment_attachments(
+        self,
+        asset_id: str,
+        segment_id: str,
+        *,
+        per_page=UNSET,
+        generate_signed_url=UNSET,
+        content_disposition=UNSET,
+        last_id=UNSET,
+    ):
+        "Get all attachments for a segment (GET /v1/assets/{asset_id}/segments/{segment_id}/attachments/)"
+        from .files.api.assets import (
+            get_assets_by_asset_id_segments_by_segment_id_attachments as _endpoint,
+        )
+
+        return _endpoint.sync_detailed(
+            client=self._client("files"),
+            asset_id=asset_id,
+            segment_id=segment_id,
+            per_page=per_page,
+            generate_signed_url=generate_signed_url,
+            content_disposition=content_disposition,
+            last_id=last_id,
+        )
+
+    def get_asset_segment_attachment(
+        self,
+        asset_id: str,
+        segment_id: str,
+        attachment_id: str,
+        *,
+        content_disposition=UNSET,
+        content_type=UNSET,
+    ):
+        "Get a segment's attachment (GET /v1/assets/{asset_id}/segments/{segment_id}/attachments/{attachment_id}/)"
+        from .files.api.assets import (
+            get_assets_by_asset_id_segments_by_segment_id_attachments_by_attachment_id as _endpoint,
+        )
+
+        return _endpoint.sync_detailed(
+            client=self._client("files"),
+            asset_id=asset_id,
+            segment_id=segment_id,
+            attachment_id=attachment_id,
+            content_disposition=content_disposition,
+            content_type=content_type,
+        )
+
     def get_asset_subtitles(self, asset_id: str, *, per_page=UNSET, last_id=UNSET):
         "Get all asset's subtitles (GET /v1/assets/{asset_id}/subtitles/)"
         from .files.api.assets import get_assets_by_asset_id_subtitles as _endpoint
@@ -5228,7 +5468,7 @@ class Iconik:
     def get_asset_watermark_matches(
         self, asset_id: str, *, proxy_id=UNSET, version_id=UNSET
     ):
-        "Get all ProxyContainerByUser records for an asset's proxies, (GET /v1/assets/{asset_id}/watermark-matches/)"
+        "Get all ProxyContainerByUser records for an asset's proxies, (GET /v1/assets/{asset_id}/watermark_matches/)"
         from .files.api.assets import (
             get_assets_by_asset_id_watermark_matches as _endpoint,
         )
@@ -5350,6 +5590,23 @@ class Iconik:
             per_page=per_page,
             last_id=last_id,
         )
+
+    def get_logos(self, *, per_page=UNSET, generate_signed_url=UNSET, last_id=UNSET):
+        "Get all saved logos for the domain (GET /v1/logos/)"
+        from .files.api.logos import get_logos as _endpoint
+
+        return _endpoint.sync_detailed(
+            client=self._client("files"),
+            per_page=per_page,
+            generate_signed_url=generate_signed_url,
+            last_id=last_id,
+        )
+
+    def get_logo(self, logo_id: str):
+        "Returns a particular logo by id (GET /v1/logos/{logo_id}/)"
+        from .files.api.logos import get_logos_by_logo_id as _endpoint
+
+        return _endpoint.sync_detailed(client=self._client("files"), logo_id=logo_id)
 
     def get_playlist_keyframes(
         self,
@@ -5947,6 +6204,22 @@ class Iconik:
             body=body,
         )
 
+    def patch_asset_segment_attachment(
+        self, asset_id: str, segment_id: str, attachment_id: str, *, body
+    ):
+        "Update attachment information (PATCH /v1/assets/{asset_id}/segments/{segment_id}/attachments/{attachment_id}/)"
+        from .files.api.assets import (
+            patch_assets_by_asset_id_segments_by_segment_id_attachments_by_attachment_id as _endpoint,
+        )
+
+        return _endpoint.sync_detailed(
+            client=self._client("files"),
+            asset_id=asset_id,
+            segment_id=segment_id,
+            attachment_id=attachment_id,
+            body=body,
+        )
+
     def patch_asset_subtitle(self, asset_id: str, subtitle_id: str, *, body):
         "Update subtitle information (PATCH /v1/assets/{asset_id}/subtitles/{subtitle_id}/)"
         from .files.api.assets import (
@@ -5993,6 +6266,14 @@ class Iconik:
             client=self._client("files"),
             export_location_id=export_location_id,
             body=body,
+        )
+
+    def patch_logo(self, logo_id: str, *, body):
+        "Rename a saved logo (PATCH /v1/logos/{logo_id}/)"
+        from .files.api.logos import patch_logos_by_logo_id as _endpoint
+
+        return _endpoint.sync_detailed(
+            client=self._client("files"), logo_id=logo_id, body=body
         )
 
     def patch_playlist_keyframe(self, playlist_id: str, keyframe_id: str, *, body):
@@ -6576,6 +6857,22 @@ class Iconik:
             client=self._client("files"), asset_id=asset_id, proxy_id=proxy_id
         )
 
+    def post_asset_segment_attachments(
+        self, asset_id: str, segment_id: str, *, body, use_google_resumable_upload=UNSET
+    ):
+        "Create an attachment and associate it with a segment (POST /v1/assets/{asset_id}/segments/{segment_id}/attachments/)"
+        from .files.api.assets import (
+            post_assets_by_asset_id_segments_by_segment_id_attachments as _endpoint,
+        )
+
+        return _endpoint.sync_detailed(
+            client=self._client("files"),
+            asset_id=asset_id,
+            segment_id=segment_id,
+            body=body,
+            use_google_resumable_upload=use_google_resumable_upload,
+        )
+
     def post_asset_subtitles(self, asset_id: str, *, body):
         "Create subtitle proxy and associate to asset (POST /v1/assets/{asset_id}/subtitles/)"
         from .files.api.assets import post_assets_by_asset_id_subtitles as _endpoint
@@ -6944,6 +7241,12 @@ class Iconik:
             body=body,
             allow_host_transfer=allow_host_transfer,
         )
+
+    def post_logos(self, *, body):
+        "Create a new saved logo (POST /v1/logos/)"
+        from .files.api.logos import post_logos as _endpoint
+
+        return _endpoint.sync_detailed(client=self._client("files"), body=body)
 
     def post_playlist_keyframes_files(self, playlist_id: str, *, body):
         "Create keyframe and associate to playlist (POST /v1/playlists/{playlist_id}/keyframes/)"
@@ -7379,6 +7682,22 @@ class Iconik:
             body=body,
         )
 
+    def put_asset_segment_attachment(
+        self, asset_id: str, segment_id: str, attachment_id: str, *, body
+    ):
+        "Update attachment information (PUT /v1/assets/{asset_id}/segments/{segment_id}/attachments/{attachment_id}/)"
+        from .files.api.assets import (
+            put_assets_by_asset_id_segments_by_segment_id_attachments_by_attachment_id as _endpoint,
+        )
+
+        return _endpoint.sync_detailed(
+            client=self._client("files"),
+            asset_id=asset_id,
+            segment_id=segment_id,
+            attachment_id=attachment_id,
+            body=body,
+        )
+
     def put_asset_subtitle(self, asset_id: str, subtitle_id: str, *, body):
         "Update subtitle information (PUT /v1/assets/{asset_id}/subtitles/{subtitle_id}/)"
         from .files.api.assets import (
@@ -7582,6 +7901,7 @@ class Iconik:
         per_page=UNSET,
         scroll=UNSET,
         scroll_id=UNSET,
+        search_after=UNSET,
         sort=UNSET,
         type_=UNSET,
         object_type=UNSET,
@@ -7609,6 +7929,7 @@ class Iconik:
             per_page=per_page,
             scroll=scroll,
             scroll_id=scroll_id,
+            search_after=search_after,
             sort=sort,
             type_=type_,
             object_type=object_type,
@@ -8773,6 +9094,16 @@ class Iconik:
 
         return _endpoint.sync_detailed(client=self._client("search"), body=body)
 
+    def delete_search_backends_by_backend_v2(self, backend_id: str):
+        "Delete a configured search backend (DELETE /v2/search_backends/{backend_id}/)"
+        from .search.api.search_backends import (
+            delete_search_backends_by_backend_id as _endpoint,
+        )
+
+        return _endpoint.sync_detailed(
+            client=self._client("search"), backend_id=backend_id
+        )
+
     def delete_search_history_by_search_history(self, search_history_id: str):
         "Delete a search from history by its id (DELETE /v1/search/history/{search_history_id}/)"
         from .search.api.search import (
@@ -8848,6 +9179,28 @@ class Iconik:
     def get_ping_v2(self):
         "Routing health check (GET /v2/ping/)"
         from .search.api.ping import get_ping as _endpoint
+
+        return _endpoint.sync_detailed(client=self._client("search"))
+
+    def get_search_backends_v2(self):
+        "List the configured search backends of the domain (GET /v2/search_backends/)"
+        from .search.api.search_backends import get_search_backends as _endpoint
+
+        return _endpoint.sync_detailed(client=self._client("search"))
+
+    def get_search_backends_by_backend_v2(self, backend_id: str):
+        "Get one configured search backend (GET /v2/search_backends/{backend_id}/)"
+        from .search.api.search_backends import (
+            get_search_backends_by_backend_id as _endpoint,
+        )
+
+        return _endpoint.sync_detailed(
+            client=self._client("search"), backend_id=backend_id
+        )
+
+    def get_search_backends_kinds_v2(self):
+        "List the installed search backend kinds and their options schemas (GET /v2/search_backends/kinds/)"
+        from .search.api.search_backends import get_search_backends_kinds as _endpoint
 
         return _endpoint.sync_detailed(client=self._client("search"))
 
@@ -9006,6 +9359,16 @@ class Iconik:
             body=body,
         )
 
+    def patch_search_backends_by_backend_v2(self, backend_id: str, *, body):
+        "Update a configured search backend (PATCH /v2/search_backends/{backend_id}/)"
+        from .search.api.search_backends import (
+            patch_search_backends_by_backend_id as _endpoint,
+        )
+
+        return _endpoint.sync_detailed(
+            client=self._client("search"), backend_id=backend_id, body=body
+        )
+
     def patch_search_saved_by_search(self, search_id: str, *, body):
         "Search and save this search (PATCH /v1/search/saved/{search_id}/)"
         from .search.api.search import patch_search_saved_by_search_id as _endpoint
@@ -9110,6 +9473,60 @@ class Iconik:
             include_users=include_users,
         )
 
+    def post_search_backends_v2(self, *, body):
+        "Configure a new search backend for the domain (POST /v2/search_backends/)"
+        from .search.api.search_backends import post_search_backends as _endpoint
+
+        return _endpoint.sync_detailed(client=self._client("search"), body=body)
+
+    def post_search_backends_test_by_backend_v2(self, backend_id: str):
+        "Test a configured search backend against its remote provider (POST /v2/search_backends/{backend_id}/test/)"
+        from .search.api.search_backends import (
+            post_search_backends_by_backend_id_test as _endpoint,
+        )
+
+        return _endpoint.sync_detailed(
+            client=self._client("search"), backend_id=backend_id
+        )
+
+    def post_search_content_info(self, *, body, format_name=UNSET, by_storage_id=UNSET):
+        "Get aggregated information about search results (POST /v1/search/content/info/)"
+        from .search.api.search import post_search_content_info as _endpoint
+
+        return _endpoint.sync_detailed(
+            client=self._client("search"),
+            body=body,
+            format_name=format_name,
+            by_storage_id=by_storage_id,
+        )
+
+    def post_search_convert_to_collection(self, *, body):
+        "Copies the results of a search to a collection (POST /v1/search/convert_to_collection/)"
+        from .search.api.search import post_search_convert_to_collection as _endpoint
+
+        return _endpoint.sync_detailed(client=self._client("search"), body=body)
+
+    def post_search_natural_v2(
+        self,
+        *,
+        body,
+        generate_signed_url=UNSET,
+        generate_signed_download_url=UNSET,
+        generate_signed_proxy_url=UNSET,
+        include_users=UNSET,
+    ):
+        "Natural language search (POST /v2/search/natural/)"
+        from .search.api.search import post_search_natural as _endpoint
+
+        return _endpoint.sync_detailed(
+            client=self._client("search"),
+            body=body,
+            generate_signed_url=generate_signed_url,
+            generate_signed_download_url=generate_signed_download_url,
+            generate_signed_proxy_url=generate_signed_proxy_url,
+            include_users=include_users,
+        )
+
     def post_search_saved(self, *, body):
         "Search, save and return result of this search (POST /v1/search/saved/)"
         from .search.api.search import post_search_saved as _endpoint
@@ -9211,6 +9628,16 @@ class Iconik:
             body=body,
         )
 
+    def put_search_backends_by_backend_v2(self, backend_id: str, *, body):
+        "Replace a configured search backend (PUT /v2/search_backends/{backend_id}/)"
+        from .search.api.search_backends import (
+            put_search_backends_by_backend_id as _endpoint,
+        )
+
+        return _endpoint.sync_detailed(
+            client=self._client("search"), backend_id=backend_id, body=body
+        )
+
     def put_search_saved_by_search(self, search_id: str, *, body):
         "Search and save this search (PUT /v1/search/saved/{search_id}/)"
         from .search.api.search import put_search_saved_by_search_id as _endpoint
@@ -9269,17 +9696,39 @@ class Iconik:
 
         return _endpoint.sync_detailed(client=self._client("settings"), team_id=team_id)
 
-    def delete_user_attributes(self, *, body):
-        "Remove attributes from user settings (DELETE /v1/user/attributes/)"
-        from .settings.api.user import delete_user_attributes as _endpoint
+    def delete_theme(self, theme_id: str):
+        "Delete a particular theme by id (DELETE /v1/themes/{theme_id}/)"
+        from .settings.api.themes import delete_themes_by_theme_id as _endpoint
 
-        return _endpoint.sync_detailed(client=self._client("settings"), body=body)
+        return _endpoint.sync_detailed(
+            client=self._client("settings"), theme_id=theme_id
+        )
 
     def delete_user_settings(self, user_id: str):
         "Delete user settings (DELETE /v1/user/{user_id}/)"
         from .settings.api.user import delete_user_by_user_id as _endpoint
 
         return _endpoint.sync_detailed(client=self._client("settings"), user_id=user_id)
+
+    def get_ai_consent_events(self, *, per_page=UNSET):
+        "Audit trail of the consent acceptances and revocations of the system domain (GET /v1/ai/consent_events/)"
+        from .settings.api.ai import get_ai_consent_events as _endpoint
+
+        return _endpoint.sync_detailed(
+            client=self._client("settings"), per_page=per_page
+        )
+
+    def get_ai_consents(self):
+        "Consent state of the current system domain, one entry per clause (GET /v1/ai/consents/)"
+        from .settings.api.ai import get_ai_consents as _endpoint
+
+        return _endpoint.sync_detailed(client=self._client("settings"))
+
+    def get_ai_documents(self):
+        "List the consent documents a customer may be asked to accept (GET /v1/ai/documents/)"
+        from .settings.api.ai import get_ai_documents as _endpoint
+
+        return _endpoint.sync_detailed(client=self._client("settings"))
 
     def get_cors_hosts(self):
         "List of CORS hosts (GET /v1/cors_hosts/)"
@@ -9355,6 +9804,20 @@ class Iconik:
 
         return _endpoint.sync_detailed(client=self._client("settings"), team_id=team_id)
 
+    def get_themes(self):
+        "Get list of themes (GET /v1/themes/)"
+        from .settings.api.themes import get_themes as _endpoint
+
+        return _endpoint.sync_detailed(client=self._client("settings"))
+
+    def get_theme(self, theme_id: str):
+        "Returns a particular theme by id (GET /v1/themes/{theme_id}/)"
+        from .settings.api.themes import get_themes_by_theme_id as _endpoint
+
+        return _endpoint.sync_detailed(
+            client=self._client("settings"), theme_id=theme_id
+        )
+
     def get_user_settings(self, user_id: str):
         "User settings (GET /v1/user/{user_id}/)"
         from .settings.api.user import get_user_by_user_id as _endpoint
@@ -9403,6 +9866,14 @@ class Iconik:
             client=self._client("settings"), team_id=team_id, body=body
         )
 
+    def patch_theme(self, theme_id: str, *, body):
+        "Update a theme (PATCH /v1/themes/{theme_id}/)"
+        from .settings.api.themes import patch_themes_by_theme_id as _endpoint
+
+        return _endpoint.sync_detailed(
+            client=self._client("settings"), theme_id=theme_id, body=body
+        )
+
     def patch_user_settings(self, user_id: str, *, body):
         "Change user settings (PATCH /v1/user/{user_id}/)"
         from .settings.api.user import patch_user_by_user_id as _endpoint
@@ -9411,9 +9882,33 @@ class Iconik:
             client=self._client("settings"), user_id=user_id, body=body
         )
 
+    def post_ai_consents(self, *, body):
+        "Accept a batch of consent documents (POST /v1/ai/consents/)"
+        from .settings.api.ai import post_ai_consents as _endpoint
+
+        return _endpoint.sync_detailed(client=self._client("settings"), body=body)
+
+    def post_ai_consents_decline(self, *, body):
+        "Refuse consent documents, so they cannot take effect by non-objection (POST /v1/ai/consents/decline/)"
+        from .settings.api.ai import post_ai_consents_decline as _endpoint
+
+        return _endpoint.sync_detailed(client=self._client("settings"), body=body)
+
+    def post_ai_consents_revoke(self, *, body):
+        "Withdraw the acceptance of consent documents (POST /v1/ai/consents/revoke/)"
+        from .settings.api.ai import post_ai_consents_revoke as _endpoint
+
+        return _endpoint.sync_detailed(client=self._client("settings"), body=body)
+
     def post_cors_hosts(self, *, body):
         "Create a new CORS host (POST /v1/cors_hosts/)"
         from .settings.api.cors_hosts import post_cors_hosts as _endpoint
+
+        return _endpoint.sync_detailed(client=self._client("settings"), body=body)
+
+    def post_themes(self, *, body):
+        "Create a new theme (POST /v1/themes/)"
+        from .settings.api.themes import post_themes as _endpoint
 
         return _endpoint.sync_detailed(client=self._client("settings"), body=body)
 
@@ -9457,6 +9952,14 @@ class Iconik:
 
         return _endpoint.sync_detailed(
             client=self._client("settings"), team_id=team_id, body=body
+        )
+
+    def put_theme(self, theme_id: str, *, body):
+        "Update a theme (PUT /v1/themes/{theme_id}/)"
+        from .settings.api.themes import put_themes_by_theme_id as _endpoint
+
+        return _endpoint.sync_detailed(
+            client=self._client("settings"), theme_id=theme_id, body=body
         )
 
     def put_user_settings(self, user_id: str, *, body):
@@ -10210,6 +10713,34 @@ class Iconik:
 
         return _endpoint.sync_detailed(
             client=self._client("transcode"), job_id=job_id, user_id=user_id
+        )
+
+    def post_metadata_filling_proposals_bulk_accept_by_parent_job(
+        self, parent_job_id: str, *, user_id
+    ):
+        "Accept every pending AI metadata-filling proposal under a bulk job (POST /v1/metadata_filling/proposals/{parent_job_id}/bulk/accept/)"
+        from .transcode.api.metadata_filling import (
+            post_metadata_filling_proposals_by_parent_job_id_bulk_accept as _endpoint,
+        )
+
+        return _endpoint.sync_detailed(
+            client=self._client("transcode"),
+            parent_job_id=parent_job_id,
+            user_id=user_id,
+        )
+
+    def post_metadata_filling_proposals_bulk_discard_by_parent_job(
+        self, parent_job_id: str, *, user_id
+    ):
+        "Discard every pending AI metadata-filling proposal under a bulk job (POST /v1/metadata_filling/proposals/{parent_job_id}/bulk/discard/)"
+        from .transcode.api.metadata_filling import (
+            post_metadata_filling_proposals_by_parent_job_id_bulk_discard as _endpoint,
+        )
+
+        return _endpoint.sync_detailed(
+            client=self._client("transcode"),
+            parent_job_id=parent_job_id,
+            user_id=user_id,
         )
 
     def post_transcode(self, *, body):

@@ -19,7 +19,8 @@ T = TypeVar("T", bound="SearchDocument")
 
 @_attrs_define
 class SearchDocument:
-    """
+    """A single search hit (ported from v1 ``SearchDocumentSchema``).
+
     Attributes:
         object_type (str):
         title (str):

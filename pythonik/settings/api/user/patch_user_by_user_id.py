@@ -50,6 +50,10 @@ def _parse_response(
         response_401 = cast(Any, None)
         return response_401
 
+    if response.status_code == 403:
+        response_403 = cast(Any, None)
+        return response_403
+
     response_default = PatchUserByUserIdResponseDefault.from_dict(response.json())
 
     return response_default

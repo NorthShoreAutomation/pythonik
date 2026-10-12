@@ -72,6 +72,25 @@ from .asset_link_proxy_schema import AssetLinkProxySchema
 from .asset_subclip_keyframes_schema import AssetSubclipKeyframesSchema
 from .asset_version_keyframes_schema import AssetVersionKeyframesSchema
 from .asset_versions_keyframes_schema import AssetVersionsKeyframesSchema
+from .attachment_base_schema import AttachmentBaseSchema
+from .attachment_base_schema_status import AttachmentBaseSchemaStatus
+from .attachment_create_schema import AttachmentCreateSchema
+from .attachment_create_schema_status import AttachmentCreateSchemaStatus
+from .attachment_create_schema_upload_credentials_type_0 import (
+    AttachmentCreateSchemaUploadCredentialsType0,
+)
+from .attachment_create_schema_upload_headers_type_0 import (
+    AttachmentCreateSchemaUploadHeadersType0,
+)
+from .attachment_schema import AttachmentSchema
+from .attachment_schema_status import AttachmentSchemaStatus
+from .attachment_schema_upload_credentials_type_0 import (
+    AttachmentSchemaUploadCredentialsType0,
+)
+from .attachment_schema_upload_headers_type_0 import AttachmentSchemaUploadHeadersType0
+from .attachment_update_schema import AttachmentUpdateSchema
+from .attachment_update_schema_status import AttachmentUpdateSchemaStatus
+from .attachments_schema import AttachmentsSchema
 from .azure_settings_schema import AzureSettingsSchema
 from .b2_settings_schema import B2SettingsSchema
 from .base_export_schema import BaseExportSchema
@@ -142,6 +161,9 @@ from .collection_keyframe_create_schema_type import CollectionKeyframeCreateSche
 from .collection_keyframe_create_schema_upload_credentials_type_0 import (
     CollectionKeyframeCreateSchemaUploadCredentialsType0,
 )
+from .collection_keyframe_create_schema_upload_headers_type_0 import (
+    CollectionKeyframeCreateSchemaUploadHeadersType0,
+)
 from .collection_keyframe_schema import CollectionKeyframeSchema
 from .collection_keyframe_schema_status import CollectionKeyframeSchemaStatus
 from .collection_keyframe_schema_type import CollectionKeyframeSchemaType
@@ -201,6 +223,12 @@ from .delete_assets_by_asset_id_proxies_by_proxy_id_public_response_default impo
 )
 from .delete_assets_by_asset_id_proxies_by_proxy_id_response_default import (
     DeleteAssetsByAssetIdProxiesByProxyIdResponseDefault,
+)
+from .delete_assets_by_asset_id_segments_by_segment_id_attachments_by_attachment_id_response_default import (
+    DeleteAssetsByAssetIdSegmentsBySegmentIdAttachmentsByAttachmentIdResponseDefault,
+)
+from .delete_assets_by_asset_id_segments_by_segment_id_attachments_response_default import (
+    DeleteAssetsByAssetIdSegmentsBySegmentIdAttachmentsResponseDefault,
 )
 from .delete_assets_by_asset_id_subtitles_by_subtitle_id_cc_response_default import (
     DeleteAssetsByAssetIdSubtitlesBySubtitleIdCcResponseDefault,
@@ -271,6 +299,7 @@ from .delete_files_by_file_id_deletions_from_by_storage_id_response_default impo
 from .delete_files_missing_storages_by_storage_id_response_default import (
     DeleteFilesMissingStoragesByStorageIdResponseDefault,
 )
+from .delete_logos_by_logo_id_response_default import DeleteLogosByLogoIdResponseDefault
 from .delete_playlists_by_playlist_id_keyframes_by_keyframe_id_response_default import (
     DeletePlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault,
 )
@@ -355,6 +384,7 @@ from .file_create_schema_type import FileCreateSchemaType
 from .file_create_schema_upload_credentials_type_0 import (
     FileCreateSchemaUploadCredentialsType0,
 )
+from .file_create_schema_upload_headers_type_0 import FileCreateSchemaUploadHeadersType0
 from .file_deletion_from_local_storage_schema import FileDeletionFromLocalStorageSchema
 from .file_deletions_schema import FileDeletionsSchema
 from .file_download_url_schema import FileDownloadURLSchema
@@ -369,6 +399,7 @@ from .file_schema_status import FileSchemaStatus
 from .file_schema_template_engine import FileSchemaTemplateEngine
 from .file_schema_type import FileSchemaType
 from .file_schema_upload_credentials_type_0 import FileSchemaUploadCredentialsType0
+from .file_schema_upload_headers_type_0 import FileSchemaUploadHeadersType0
 from .file_set_elastic_schema import FileSetElasticSchema
 from .file_set_elastic_schema_status import FileSetElasticSchemaStatus
 from .file_set_elastic_schema_type import FileSetElasticSchemaType
@@ -502,6 +533,12 @@ from .get_assets_by_asset_id_proxies_by_proxy_id_response_default import (
 from .get_assets_by_asset_id_proxies_response_default import (
     GetAssetsByAssetIdProxiesResponseDefault,
 )
+from .get_assets_by_asset_id_segments_by_segment_id_attachments_by_attachment_id_response_default import (
+    GetAssetsByAssetIdSegmentsBySegmentIdAttachmentsByAttachmentIdResponseDefault,
+)
+from .get_assets_by_asset_id_segments_by_segment_id_attachments_response_default import (
+    GetAssetsByAssetIdSegmentsBySegmentIdAttachmentsResponseDefault,
+)
 from .get_assets_by_asset_id_subtitles_by_language_cc_response_default import (
     GetAssetsByAssetIdSubtitlesByLanguageCcResponseDefault,
 )
@@ -572,6 +609,8 @@ from .get_file_sets_by_file_set_id_files_response_default import (
 from .get_files_checksum_by_checksum_response_default import (
     GetFilesChecksumByChecksumResponseDefault,
 )
+from .get_logos_by_logo_id_response_default import GetLogosByLogoIdResponseDefault
+from .get_logos_response_default import GetLogosResponseDefault
 from .get_playlists_by_playlist_id_keyframes_by_keyframe_id_response_default import (
     GetPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault,
 )
@@ -768,21 +807,35 @@ from .keyframe_create_schema_type import KeyframeCreateSchemaType
 from .keyframe_create_schema_upload_credentials_type_0 import (
     KeyframeCreateSchemaUploadCredentialsType0,
 )
+from .keyframe_create_schema_upload_headers_type_0 import (
+    KeyframeCreateSchemaUploadHeadersType0,
+)
 from .keyframe_schema import KeyframeSchema
 from .keyframe_schema_status import KeyframeSchemaStatus
 from .keyframe_schema_type import KeyframeSchemaType
 from .keyframe_schema_upload_credentials_type_0 import (
     KeyframeSchemaUploadCredentialsType0,
 )
+from .keyframe_schema_upload_headers_type_0 import KeyframeSchemaUploadHeadersType0
 from .keyframe_status import KeyframeStatus
 from .keyframe_type import KeyframeType
 from .keyframe_update_schema import KeyframeUpdateSchema
 from .keyframe_update_schema_status import KeyframeUpdateSchemaStatus
 from .keyframe_update_schema_type import KeyframeUpdateSchemaType
 from .keyframe_upload_credentials_type_0 import KeyframeUploadCredentialsType0
+from .keyframe_upload_headers_type_0 import KeyframeUploadHeadersType0
 from .keyframes_schema import KeyframesSchema
 from .libre_office_settings_schema import LibreOfficeSettingsSchema
 from .list_objects_schema import ListObjectsSchema
+from .logo_create_schema import LogoCreateSchema
+from .logo_create_schema_upload_credentials_type_0 import (
+    LogoCreateSchemaUploadCredentialsType0,
+)
+from .logo_create_schema_upload_headers_type_0 import LogoCreateSchemaUploadHeadersType0
+from .logo_schema import LogoSchema
+from .logo_schema_upload_credentials_type_0 import LogoSchemaUploadCredentialsType0
+from .logo_schema_upload_headers_type_0 import LogoSchemaUploadHeadersType0
+from .logos_schema import LogosSchema
 from .move_asset_resource_schema import MoveAssetResourceSchema
 from .multi_part_s3_url_part_schema import MultiPartS3UrlPartSchema
 from .multi_part_s3_url_parts_schema import MultiPartS3UrlPartsSchema
@@ -821,6 +874,9 @@ from .patch_assets_by_asset_id_proxies_by_proxy_id_containers_by_container_id_fi
 from .patch_assets_by_asset_id_proxies_by_proxy_id_response_default import (
     PatchAssetsByAssetIdProxiesByProxyIdResponseDefault,
 )
+from .patch_assets_by_asset_id_segments_by_segment_id_attachments_by_attachment_id_response_default import (
+    PatchAssetsByAssetIdSegmentsBySegmentIdAttachmentsByAttachmentIdResponseDefault,
+)
 from .patch_assets_by_asset_id_subtitles_by_subtitle_id_response_default import (
     PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault,
 )
@@ -833,6 +889,7 @@ from .patch_collections_by_collection_id_keyframes_by_keyframe_id_response_defau
 from .patch_export_locations_by_export_location_id_response_default import (
     PatchExportLocationsByExportLocationIdResponseDefault,
 )
+from .patch_logos_by_logo_id_response_default import PatchLogosByLogoIdResponseDefault
 from .patch_playlists_by_playlist_id_keyframes_by_keyframe_id_response_default import (
     PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault,
 )
@@ -856,6 +913,9 @@ from .playlist_keyframe_create_schema_status import PlaylistKeyframeCreateSchema
 from .playlist_keyframe_create_schema_type import PlaylistKeyframeCreateSchemaType
 from .playlist_keyframe_create_schema_upload_credentials_type_0 import (
     PlaylistKeyframeCreateSchemaUploadCredentialsType0,
+)
+from .playlist_keyframe_create_schema_upload_headers_type_0 import (
+    PlaylistKeyframeCreateSchemaUploadHeadersType0,
 )
 from .playlist_keyframe_schema import PlaylistKeyframeSchema
 from .playlist_keyframe_schema_status import PlaylistKeyframeSchemaStatus
@@ -986,6 +1046,9 @@ from .post_assets_by_asset_id_proxies_by_proxy_id_public_response_default import
 from .post_assets_by_asset_id_proxies_response_default import (
     PostAssetsByAssetIdProxiesResponseDefault,
 )
+from .post_assets_by_asset_id_segments_by_segment_id_attachments_response_default import (
+    PostAssetsByAssetIdSegmentsBySegmentIdAttachmentsResponseDefault,
+)
 from .post_assets_by_asset_id_subtitles_response_default import (
     PostAssetsByAssetIdSubtitlesResponseDefault,
 )
@@ -1078,6 +1141,7 @@ from .post_formats_by_format_name_archive_bulk_response_default import (
 from .post_formats_by_format_name_restore_bulk_response_default import (
     PostFormatsByFormatNameRestoreBulkResponseDefault,
 )
+from .post_logos_response_default import PostLogosResponseDefault
 from .post_playlists_by_playlist_id_keyframes_response_default import (
     PostPlaylistsByPlaylistIdKeyframesResponseDefault,
 )
@@ -1200,6 +1264,9 @@ from .proxy_create_schema_status import ProxyCreateSchemaStatus
 from .proxy_create_schema_upload_credentials_type_0 import (
     ProxyCreateSchemaUploadCredentialsType0,
 )
+from .proxy_create_schema_upload_headers_type_0 import (
+    ProxyCreateSchemaUploadHeadersType0,
+)
 from .proxy_download_url_schema import ProxyDownloadURLSchema
 from .proxy_file_schema import ProxyFileSchema
 from .proxy_file_schema_status import ProxyFileSchemaStatus
@@ -1210,10 +1277,12 @@ from .proxy_file_update_schema_status import ProxyFileUpdateSchemaStatus
 from .proxy_schema import ProxySchema
 from .proxy_schema_status import ProxySchemaStatus
 from .proxy_schema_upload_credentials_type_0 import ProxySchemaUploadCredentialsType0
+from .proxy_schema_upload_headers_type_0 import ProxySchemaUploadHeadersType0
 from .proxy_status import ProxyStatus
 from .proxy_update_schema import ProxyUpdateSchema
 from .proxy_update_schema_status import ProxyUpdateSchemaStatus
 from .proxy_upload_credentials_type_0 import ProxyUploadCredentialsType0
+from .proxy_upload_headers_type_0 import ProxyUploadHeadersType0
 from .put_analysis_profiles_by_profile_id_response_default import (
     PutAnalysisProfilesByProfileIdResponseDefault,
 )
@@ -1249,6 +1318,9 @@ from .put_assets_by_asset_id_proxies_by_proxy_id_containers_response_default imp
 )
 from .put_assets_by_asset_id_proxies_by_proxy_id_response_default import (
     PutAssetsByAssetIdProxiesByProxyIdResponseDefault,
+)
+from .put_assets_by_asset_id_segments_by_segment_id_attachments_by_attachment_id_response_default import (
+    PutAssetsByAssetIdSegmentsBySegmentIdAttachmentsByAttachmentIdResponseDefault,
 )
 from .put_assets_by_asset_id_subtitles_by_subtitle_id_response_default import (
     PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault,
@@ -1316,6 +1388,15 @@ from .restore_saved_search_to_storage_request_schema import (
     RestoreSavedSearchToStorageRequestSchema,
 )
 from .s3_settings_schema import S3SettingsSchema
+from .segment_attachments_copy_pair_schema import SegmentAttachmentsCopyPairSchema
+from .segment_attachments_copy_request_schema import SegmentAttachmentsCopyRequestSchema
+from .segment_attachments_copy_response_schema import (
+    SegmentAttachmentsCopyResponseSchema,
+)
+from .segment_attachments_move_request_schema import SegmentAttachmentsMoveRequestSchema
+from .segment_attachments_move_response_schema import (
+    SegmentAttachmentsMoveResponseSchema,
+)
 from .sequence_update_schema import SequenceUpdateSchema
 from .sequence_update_schema_status import SequenceUpdateSchemaStatus
 from .sequence_update_schema_template_engine import SequenceUpdateSchemaTemplateEngine
@@ -1380,6 +1461,9 @@ from .temporary_file_create_schema_template_engine import (
 from .temporary_file_create_schema_type import TemporaryFileCreateSchemaType
 from .temporary_file_create_schema_upload_credentials_type_0 import (
     TemporaryFileCreateSchemaUploadCredentialsType0,
+)
+from .temporary_file_create_schema_upload_headers_type_0 import (
+    TemporaryFileCreateSchemaUploadHeadersType0,
 )
 from .temporary_file_set_schema import TemporaryFileSetSchema
 from .temporary_file_set_schema_status import TemporaryFileSetSchemaStatus
@@ -1524,6 +1608,19 @@ __all__ = (
     "AssetSubclipKeyframesSchema",
     "AssetVersionKeyframesSchema",
     "AssetVersionsKeyframesSchema",
+    "AttachmentBaseSchema",
+    "AttachmentBaseSchemaStatus",
+    "AttachmentCreateSchema",
+    "AttachmentCreateSchemaStatus",
+    "AttachmentCreateSchemaUploadCredentialsType0",
+    "AttachmentCreateSchemaUploadHeadersType0",
+    "AttachmentSchema",
+    "AttachmentSchemaStatus",
+    "AttachmentSchemaUploadCredentialsType0",
+    "AttachmentSchemaUploadHeadersType0",
+    "AttachmentsSchema",
+    "AttachmentUpdateSchema",
+    "AttachmentUpdateSchemaStatus",
     "AzureSettingsSchema",
     "B2SettingsSchema",
     "BaseExportSchema",
@@ -1572,6 +1669,7 @@ __all__ = (
     "CollectionKeyframeCreateSchemaStatus",
     "CollectionKeyframeCreateSchemaType",
     "CollectionKeyframeCreateSchemaUploadCredentialsType0",
+    "CollectionKeyframeCreateSchemaUploadHeadersType0",
     "CollectionKeyframeSchema",
     "CollectionKeyframeSchemaStatus",
     "CollectionKeyframeSchemaType",
@@ -1600,6 +1698,8 @@ __all__ = (
     "DeleteAssetsByAssetIdKeyframesByKeyframeIdResponseDefault",
     "DeleteAssetsByAssetIdProxiesByProxyIdPublicResponseDefault",
     "DeleteAssetsByAssetIdProxiesByProxyIdResponseDefault",
+    "DeleteAssetsByAssetIdSegmentsBySegmentIdAttachmentsByAttachmentIdResponseDefault",
+    "DeleteAssetsByAssetIdSegmentsBySegmentIdAttachmentsResponseDefault",
     "DeleteAssetsByAssetIdSubtitlesBySubtitleIdCcResponseDefault",
     "DeleteAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault",
     "DeleteAssetsByAssetIdTemporaryFileSetsByFileSetIdResponseDefault",
@@ -1623,6 +1723,7 @@ __all__ = (
     "DeleteFileSetsByFileSetIdTransfersFromByStorageIdResponseDefault",
     "DeleteFileSetsByFileSetIdTransfersToByStorageIdResponseDefault",
     "DeleteFilesMissingStoragesByStorageIdResponseDefault",
+    "DeleteLogosByLogoIdResponseDefault",
     "DeletePlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault",
     "DeleteQueueFileSetsQueryParamsSchema",
     "DeleteQueueFormatsQueryParamsSchema",
@@ -1671,6 +1772,7 @@ __all__ = (
     "FileCreateSchemaTemplateEngine",
     "FileCreateSchemaType",
     "FileCreateSchemaUploadCredentialsType0",
+    "FileCreateSchemaUploadHeadersType0",
     "FileDeletionFromLocalStorageSchema",
     "FileDeletionsSchema",
     "FileDownloadURLSchema",
@@ -1685,6 +1787,7 @@ __all__ = (
     "FileSchemaTemplateEngine",
     "FileSchemaType",
     "FileSchemaUploadCredentialsType0",
+    "FileSchemaUploadHeadersType0",
     "FilesElasticSchema",
     "FilesElasticSchemaFacetsType0",
     "FileSetElasticSchema",
@@ -1756,6 +1859,8 @@ __all__ = (
     "GetAssetsByAssetIdProxiesByProxyIdMultipartUrlResponseDefault",
     "GetAssetsByAssetIdProxiesByProxyIdResponseDefault",
     "GetAssetsByAssetIdProxiesResponseDefault",
+    "GetAssetsByAssetIdSegmentsBySegmentIdAttachmentsByAttachmentIdResponseDefault",
+    "GetAssetsByAssetIdSegmentsBySegmentIdAttachmentsResponseDefault",
     "GetAssetsByAssetIdSubtitlesByLanguageCcResponseDefault",
     "GetAssetsByAssetIdSubtitlesByLanguageCcWebvttResponseDefault",
     "GetAssetsByAssetIdSubtitlesByLanguageWebvttResponseDefault",
@@ -1780,6 +1885,8 @@ __all__ = (
     "GetExportLocationsResponseDefault",
     "GetFilesChecksumByChecksumResponseDefault",
     "GetFileSetsByFileSetIdFilesResponseDefault",
+    "GetLogosByLogoIdResponseDefault",
+    "GetLogosResponseDefault",
     "GetPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault",
     "GetPlaylistsByPlaylistIdKeyframesResponseDefault",
     "GetSharesStoragesByStorageIdFilesResponseDefault",
@@ -1868,10 +1975,12 @@ __all__ = (
     "KeyframeCreateSchemaStatus",
     "KeyframeCreateSchemaType",
     "KeyframeCreateSchemaUploadCredentialsType0",
+    "KeyframeCreateSchemaUploadHeadersType0",
     "KeyframeSchema",
     "KeyframeSchemaStatus",
     "KeyframeSchemaType",
     "KeyframeSchemaUploadCredentialsType0",
+    "KeyframeSchemaUploadHeadersType0",
     "KeyframesSchema",
     "KeyframeStatus",
     "KeyframeType",
@@ -1879,8 +1988,16 @@ __all__ = (
     "KeyframeUpdateSchemaStatus",
     "KeyframeUpdateSchemaType",
     "KeyframeUploadCredentialsType0",
+    "KeyframeUploadHeadersType0",
     "LibreOfficeSettingsSchema",
     "ListObjectsSchema",
+    "LogoCreateSchema",
+    "LogoCreateSchemaUploadCredentialsType0",
+    "LogoCreateSchemaUploadHeadersType0",
+    "LogoSchema",
+    "LogoSchemaUploadCredentialsType0",
+    "LogoSchemaUploadHeadersType0",
+    "LogosSchema",
     "MoveAssetResourceSchema",
     "MultipartB2CancelUpload",
     "MultipartB2FinishUpload",
@@ -1903,10 +2020,12 @@ __all__ = (
     "PatchAssetsByAssetIdKeyframesByKeyframeIdResponseDefault",
     "PatchAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesByFileIdResponseDefault",
     "PatchAssetsByAssetIdProxiesByProxyIdResponseDefault",
+    "PatchAssetsByAssetIdSegmentsBySegmentIdAttachmentsByAttachmentIdResponseDefault",
     "PatchAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault",
     "PatchAssetsByAssetIdTemporaryFilesByFileIdResponseDefault",
     "PatchCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault",
     "PatchExportLocationsByExportLocationIdResponseDefault",
+    "PatchLogosByLogoIdResponseDefault",
     "PatchPlaylistsByPlaylistIdKeyframesByKeyframeIdResponseDefault",
     "PatchStorageGatewayClustersByClusterIdResponseDefault",
     "PatchStorageGatewaysByStorageGatewayIdResponseDefault",
@@ -1917,6 +2036,7 @@ __all__ = (
     "PlaylistKeyframeCreateSchemaStatus",
     "PlaylistKeyframeCreateSchemaType",
     "PlaylistKeyframeCreateSchemaUploadCredentialsType0",
+    "PlaylistKeyframeCreateSchemaUploadHeadersType0",
     "PlaylistKeyframeSchema",
     "PlaylistKeyframeSchemaStatus",
     "PlaylistKeyframeSchemaType",
@@ -1966,6 +2086,7 @@ __all__ = (
     "PostAssetsByAssetIdProxiesByProxyIdMultipartCleanupResponseDefault",
     "PostAssetsByAssetIdProxiesByProxyIdPublicResponseDefault",
     "PostAssetsByAssetIdProxiesResponseDefault",
+    "PostAssetsByAssetIdSegmentsBySegmentIdAttachmentsResponseDefault",
     "PostAssetsByAssetIdSubtitlesResponseDefault",
     "PostAssetsByAssetIdTemporaryFileSetsResponseDefault",
     "PostAssetsByAssetIdTemporaryFilesResponseDefault",
@@ -1998,6 +2119,7 @@ __all__ = (
     "PostFormatsByFormatIdStoragesByStorageIdResponseDefault",
     "PostFormatsByFormatNameArchiveBulkResponseDefault",
     "PostFormatsByFormatNameRestoreBulkResponseDefault",
+    "PostLogosResponseDefault",
     "PostPlaylistsByPlaylistIdKeyframesResponseDefault",
     "PostSavedSearchesBulkArchiveResponseDefault",
     "PostSavedSearchesBulkRestoreResponseDefault",
@@ -2052,6 +2174,7 @@ __all__ = (
     "ProxyCreateSchema",
     "ProxyCreateSchemaStatus",
     "ProxyCreateSchemaUploadCredentialsType0",
+    "ProxyCreateSchemaUploadHeadersType0",
     "ProxyDownloadURLSchema",
     "ProxyFileSchema",
     "ProxyFileSchemaStatus",
@@ -2062,10 +2185,12 @@ __all__ = (
     "ProxySchema",
     "ProxySchemaStatus",
     "ProxySchemaUploadCredentialsType0",
+    "ProxySchemaUploadHeadersType0",
     "ProxyStatus",
     "ProxyUpdateSchema",
     "ProxyUpdateSchemaStatus",
     "ProxyUploadCredentialsType0",
+    "ProxyUploadHeadersType0",
     "PutAnalysisProfilesByProfileIdResponseDefault",
     "PutAnalysisServiceAccountsByAnalysisServiceAccountIdResponseDefault",
     "PutAssetsByAssetIdFilesByFileIdResponseDefault",
@@ -2078,6 +2203,7 @@ __all__ = (
     "PutAssetsByAssetIdProxiesByProxyIdContainersByContainerIdFilesByFileIdResponseDefault",
     "PutAssetsByAssetIdProxiesByProxyIdContainersResponseDefault",
     "PutAssetsByAssetIdProxiesByProxyIdResponseDefault",
+    "PutAssetsByAssetIdSegmentsBySegmentIdAttachmentsByAttachmentIdResponseDefault",
     "PutAssetsByAssetIdSubtitlesBySubtitleIdResponseDefault",
     "PutAssetsByAssetIdTemporaryFilesByFileIdResponseDefault",
     "PutCollectionsByCollectionIdKeyframesByKeyframeIdResponseDefault",
@@ -2112,6 +2238,11 @@ __all__ = (
     "RestoreSavedSearchToStorageRequest",
     "RestoreSavedSearchToStorageRequestSchema",
     "S3SettingsSchema",
+    "SegmentAttachmentsCopyPairSchema",
+    "SegmentAttachmentsCopyRequestSchema",
+    "SegmentAttachmentsCopyResponseSchema",
+    "SegmentAttachmentsMoveRequestSchema",
+    "SegmentAttachmentsMoveResponseSchema",
     "SequenceUpdateSchema",
     "SequenceUpdateSchemaStatus",
     "SequenceUpdateSchemaTemplateEngine",
@@ -2171,6 +2302,7 @@ __all__ = (
     "TemporaryFileCreateSchemaTemplateEngine",
     "TemporaryFileCreateSchemaType",
     "TemporaryFileCreateSchemaUploadCredentialsType0",
+    "TemporaryFileCreateSchemaUploadHeadersType0",
     "TemporaryFileSetSchema",
     "TemporaryFileSetSchemaStatus",
     "TemporaryFileSetSchemaType",

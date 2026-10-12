@@ -86,7 +86,7 @@ def sync_detailed(
 ) -> Response[Any | GetOauthAuthorizeResponseDefault | OAuth2AuthorizeDescribeSchema]:
     """Validate the authorization request and return consent metadata
 
-     (client name, scopes, redirect_uri, state). No code is minted.
+     (client name, authorizing user, system domain, scopes, redirect_uri,<br/>state). No code is minted.
 
     Args:
         client_id (str):
@@ -132,7 +132,7 @@ def sync(
 ) -> Any | GetOauthAuthorizeResponseDefault | OAuth2AuthorizeDescribeSchema | None:
     """Validate the authorization request and return consent metadata
 
-     (client name, scopes, redirect_uri, state). No code is minted.
+     (client name, authorizing user, system domain, scopes, redirect_uri,<br/>state). No code is minted.
 
     Args:
         client_id (str):
@@ -173,7 +173,7 @@ async def asyncio_detailed(
 ) -> Response[Any | GetOauthAuthorizeResponseDefault | OAuth2AuthorizeDescribeSchema]:
     """Validate the authorization request and return consent metadata
 
-     (client name, scopes, redirect_uri, state). No code is minted.
+     (client name, authorizing user, system domain, scopes, redirect_uri,<br/>state). No code is minted.
 
     Args:
         client_id (str):
@@ -217,7 +217,7 @@ async def asyncio(
 ) -> Any | GetOauthAuthorizeResponseDefault | OAuth2AuthorizeDescribeSchema | None:
     """Validate the authorization request and return consent metadata
 
-     (client name, scopes, redirect_uri, state). No code is minted.
+     (client name, authorizing user, system domain, scopes, redirect_uri,<br/>state). No code is minted.
 
     Args:
         client_id (str):

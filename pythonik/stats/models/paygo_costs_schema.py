@@ -24,6 +24,7 @@ T = TypeVar("T", bound="PaygoCostsSchema")
 class PaygoCostsSchema:
     """
     Attributes:
+        ai_metadata_cost (float | None | Unset):
         analysis_cost (float | None | Unset):
         automation_cost (float | None | Unset):
         edge_transcoder_cost (float | None | Unset):
@@ -36,6 +37,7 @@ class PaygoCostsSchema:
         user_costs (None | PaygoCostsSchemaUserCostsType0 | Unset):
     """
 
+    ai_metadata_cost: float | None | Unset = UNSET
     analysis_cost: float | None | Unset = UNSET
     automation_cost: float | None | Unset = UNSET
     edge_transcoder_cost: float | None | Unset = UNSET
@@ -55,6 +57,12 @@ class PaygoCostsSchema:
         from ..models.paygo_costs_schema_user_costs_type_0 import (
             PaygoCostsSchemaUserCostsType0,
         )
+
+        ai_metadata_cost: float | None | Unset
+        if isinstance(self.ai_metadata_cost, Unset):
+            ai_metadata_cost = UNSET
+        else:
+            ai_metadata_cost = self.ai_metadata_cost
 
         analysis_cost: float | None | Unset
         if isinstance(self.analysis_cost, Unset):
@@ -123,6 +131,8 @@ class PaygoCostsSchema:
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
+        if ai_metadata_cost is not UNSET:
+            field_dict["ai_metadata_cost"] = ai_metadata_cost
         if analysis_cost is not UNSET:
             field_dict["analysis_cost"] = analysis_cost
         if automation_cost is not UNSET:
@@ -156,6 +166,15 @@ class PaygoCostsSchema:
         )
 
         d = dict(src_dict)
+
+        def _parse_ai_metadata_cost(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        ai_metadata_cost = _parse_ai_metadata_cost(d.pop("ai_metadata_cost", UNSET))
 
         def _parse_analysis_cost(data: object) -> float | None | Unset:
             if data is None:
@@ -276,6 +295,7 @@ class PaygoCostsSchema:
         user_costs = _parse_user_costs(d.pop("user_costs", UNSET))
 
         paygo_costs_schema = cls(
+            ai_metadata_cost=ai_metadata_cost,
             analysis_cost=analysis_cost,
             automation_cost=automation_cost,
             edge_transcoder_cost=edge_transcoder_cost,

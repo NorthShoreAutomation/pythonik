@@ -110,9 +110,10 @@ def sync_detailed(
     """Get aggregated information about collection
 
      <br/>The returned information includes count of assets and sub-collections,<br/>total size of all
-    assets (in bytes) and total duration of video and audio<br/>assets (in milliseconds).<br/>The
-    returned information includes count of assets and sub-collections,<br/>total size of all assets (in
-    bytes) and total duration of video and audio<br/>assets (in milliseconds).
+    assets (in bytes), total size of all asset proxies<br/>(in bytes) and total duration of video and
+    audio assets (in milliseconds).<br/>The returned information includes count of assets and sub-
+    collections,<br/>total size of all assets (in bytes), total size of all asset proxies<br/>(in bytes)
+    and total duration of video and audio assets (in milliseconds).
     Required roles:
      - can_read_collections
 
@@ -166,9 +167,10 @@ def sync(
     """Get aggregated information about collection
 
      <br/>The returned information includes count of assets and sub-collections,<br/>total size of all
-    assets (in bytes) and total duration of video and audio<br/>assets (in milliseconds).<br/>The
-    returned information includes count of assets and sub-collections,<br/>total size of all assets (in
-    bytes) and total duration of video and audio<br/>assets (in milliseconds).
+    assets (in bytes), total size of all asset proxies<br/>(in bytes) and total duration of video and
+    audio assets (in milliseconds).<br/>The returned information includes count of assets and sub-
+    collections,<br/>total size of all assets (in bytes), total size of all asset proxies<br/>(in bytes)
+    and total duration of video and audio assets (in milliseconds).
     Required roles:
      - can_read_collections
 
@@ -216,9 +218,10 @@ async def asyncio_detailed(
     """Get aggregated information about collection
 
      <br/>The returned information includes count of assets and sub-collections,<br/>total size of all
-    assets (in bytes) and total duration of video and audio<br/>assets (in milliseconds).<br/>The
-    returned information includes count of assets and sub-collections,<br/>total size of all assets (in
-    bytes) and total duration of video and audio<br/>assets (in milliseconds).
+    assets (in bytes), total size of all asset proxies<br/>(in bytes) and total duration of video and
+    audio assets (in milliseconds).<br/>The returned information includes count of assets and sub-
+    collections,<br/>total size of all assets (in bytes), total size of all asset proxies<br/>(in bytes)
+    and total duration of video and audio assets (in milliseconds).
     Required roles:
      - can_read_collections
 
@@ -270,9 +273,10 @@ async def asyncio(
     """Get aggregated information about collection
 
      <br/>The returned information includes count of assets and sub-collections,<br/>total size of all
-    assets (in bytes) and total duration of video and audio<br/>assets (in milliseconds).<br/>The
-    returned information includes count of assets and sub-collections,<br/>total size of all assets (in
-    bytes) and total duration of video and audio<br/>assets (in milliseconds).
+    assets (in bytes), total size of all asset proxies<br/>(in bytes) and total duration of video and
+    audio assets (in milliseconds).<br/>The returned information includes count of assets and sub-
+    collections,<br/>total size of all assets (in bytes), total size of all asset proxies<br/>(in bytes)
+    and total duration of video and audio assets (in milliseconds).
     Required roles:
      - can_read_collections
 

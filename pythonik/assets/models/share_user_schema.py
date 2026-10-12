@@ -18,6 +18,7 @@ class ShareUserSchema:
     Attributes:
         email (str):
         access_count (int | None | Unset):
+        download_count (int | None | Unset):
         first_name (None | str | Unset):
         id (None | str | Unset):
         internal_user_id (None | str | Unset):
@@ -34,6 +35,7 @@ class ShareUserSchema:
 
     email: str
     access_count: int | None | Unset = UNSET
+    download_count: int | None | Unset = UNSET
     first_name: None | str | Unset = UNSET
     id: None | str | Unset = UNSET
     internal_user_id: None | str | Unset = UNSET
@@ -56,6 +58,12 @@ class ShareUserSchema:
             access_count = UNSET
         else:
             access_count = self.access_count
+
+        download_count: int | None | Unset
+        if isinstance(self.download_count, Unset):
+            download_count = UNSET
+        else:
+            download_count = self.download_count
 
         first_name: None | str | Unset
         if isinstance(self.first_name, Unset):
@@ -140,6 +148,8 @@ class ShareUserSchema:
         )
         if access_count is not UNSET:
             field_dict["access_count"] = access_count
+        if download_count is not UNSET:
+            field_dict["download_count"] = download_count
         if first_name is not UNSET:
             field_dict["first_name"] = first_name
         if id is not UNSET:
@@ -180,6 +190,15 @@ class ShareUserSchema:
             return cast(int | None | Unset, data)
 
         access_count = _parse_access_count(d.pop("access_count", UNSET))
+
+        def _parse_download_count(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        download_count = _parse_download_count(d.pop("download_count", UNSET))
 
         def _parse_first_name(data: object) -> None | str | Unset:
             if data is None:
@@ -300,6 +319,7 @@ class ShareUserSchema:
         share_user_schema = cls(
             email=email,
             access_count=access_count,
+            download_count=download_count,
             first_name=first_name,
             id=id,
             internal_user_id=internal_user_id,

@@ -5,7 +5,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.get_ping_response_ping_v2_ping_get import GetPingResponsePingV2PingGet
+from ...models.ping_response import PingResponse
 from ...types import Response
 
 
@@ -21,9 +21,9 @@ def _get_kwargs() -> dict[str, Any]:
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> GetPingResponsePingV2PingGet | None:
+) -> PingResponse | None:
     if response.status_code == 200:
-        response_200 = GetPingResponsePingV2PingGet.from_dict(response.json())
+        response_200 = PingResponse.from_dict(response.json())
 
         return response_200
 
@@ -35,7 +35,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[GetPingResponsePingV2PingGet]:
+) -> Response[PingResponse]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -47,7 +47,7 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[GetPingResponsePingV2PingGet]:
+) -> Response[PingResponse]:
     """Routing health check
 
      Lightweight endpoint to verify gateway routing to search-v2.
@@ -57,7 +57,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[GetPingResponsePingV2PingGet]
+        Response[PingResponse]
     """
 
     kwargs = _get_kwargs()
@@ -72,7 +72,7 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-) -> GetPingResponsePingV2PingGet | None:
+) -> PingResponse | None:
     """Routing health check
 
      Lightweight endpoint to verify gateway routing to search-v2.
@@ -82,7 +82,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        GetPingResponsePingV2PingGet
+        PingResponse
     """
 
     return sync_detailed(
@@ -93,7 +93,7 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[GetPingResponsePingV2PingGet]:
+) -> Response[PingResponse]:
     """Routing health check
 
      Lightweight endpoint to verify gateway routing to search-v2.
@@ -103,7 +103,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[GetPingResponsePingV2PingGet]
+        Response[PingResponse]
     """
 
     kwargs = _get_kwargs()
@@ -116,7 +116,7 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-) -> GetPingResponsePingV2PingGet | None:
+) -> PingResponse | None:
     """Routing health check
 
      Lightweight endpoint to verify gateway routing to search-v2.
@@ -126,7 +126,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        GetPingResponsePingV2PingGet
+        PingResponse
     """
 
     return (

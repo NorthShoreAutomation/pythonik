@@ -71,6 +71,7 @@ class AssetPostCreate:
         original_segment_id (None | Unset | UUID):
         original_version_id (None | Unset | UUID):
         person_ids (list[UUID] | None | Unset):
+        publication_id (int | None | Unset):
         publication_status (AssetPostCreatePublicationStatus | None | Unset):
         site_name (None | str | Unset):
         status (AssetPostCreateStatus | None | Unset):
@@ -123,6 +124,7 @@ class AssetPostCreate:
     original_segment_id: None | Unset | UUID = UNSET
     original_version_id: None | Unset | UUID = UNSET
     person_ids: list[UUID] | None | Unset = UNSET
+    publication_id: int | None | Unset = UNSET
     publication_status: AssetPostCreatePublicationStatus | None | Unset = UNSET
     site_name: None | str | Unset = UNSET
     status: AssetPostCreateStatus | None | Unset = UNSET
@@ -434,6 +436,12 @@ class AssetPostCreate:
         else:
             person_ids = self.person_ids
 
+        publication_id: int | None | Unset
+        if isinstance(self.publication_id, Unset):
+            publication_id = UNSET
+        else:
+            publication_id = self.publication_id
+
         publication_status: None | str | Unset
         if isinstance(self.publication_status, Unset):
             publication_status = UNSET
@@ -589,6 +597,8 @@ class AssetPostCreate:
             field_dict["original_version_id"] = original_version_id
         if person_ids is not UNSET:
             field_dict["person_ids"] = person_ids
+        if publication_id is not UNSET:
+            field_dict["publication_id"] = publication_id
         if publication_status is not UNSET:
             field_dict["publication_status"] = publication_status
         if site_name is not UNSET:
@@ -1198,6 +1208,15 @@ class AssetPostCreate:
 
         person_ids = _parse_person_ids(d.pop("person_ids", UNSET))
 
+        def _parse_publication_id(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        publication_id = _parse_publication_id(d.pop("publication_id", UNSET))
+
         def _parse_publication_status(
             data: object,
         ) -> AssetPostCreatePublicationStatus | None | Unset:
@@ -1379,6 +1398,7 @@ class AssetPostCreate:
             original_segment_id=original_segment_id,
             original_version_id=original_version_id,
             person_ids=person_ids,
+            publication_id=publication_id,
             publication_status=publication_status,
             site_name=site_name,
             status=status,

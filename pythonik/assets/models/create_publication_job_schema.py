@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
@@ -17,6 +18,7 @@ if TYPE_CHECKING:
         CreatePublicationJobThumbnailKeyframe,
     )
     from ..models.create_publication_template import CreatePublicationTemplate
+    from ..models.video_source import VideoSource
 
 
 T = TypeVar("T", bound="CreatePublicationJobSchema")
@@ -29,10 +31,17 @@ class CreatePublicationJobSchema:
         asset_id (UUID):
         allow_transfer (bool | None | Unset):  Default: True.
         metadata_overrides (CreatePublicationJobSchemaMetadataOverridesType0 | None | Unset):
+        publish_at_time (datetime.datetime | None | Unset): Schedule publishing at this date/time instead of
+            immediately. Naive values are interpreted as UTC.
+        save_clip_as_draft (bool | None | Unset): Whether to immediately create a draft clip for this asset without
+            waiting for ingestion. The clip is created right away and appears in clip management like any other clip, while
+            the media is ingested in the background. This lets the asset be opened/edited before the media is available.
+            This is mutually exclusive with publishing the clip when done. Default: False.
         storage_id (None | Unset | UUID):
         template (CreatePublicationTemplate | None | Unset):
         thumbnail (CreatePublicationJobThumbnailKeyframe | None | Unset):
         title (None | str | Unset):
+        video_source (None | Unset | VideoSource):
     """
 
     asset_id: UUID
@@ -40,10 +49,13 @@ class CreatePublicationJobSchema:
     metadata_overrides: (
         CreatePublicationJobSchemaMetadataOverridesType0 | None | Unset
     ) = UNSET
+    publish_at_time: datetime.datetime | None | Unset = UNSET
+    save_clip_as_draft: bool | None | Unset = False
     storage_id: None | Unset | UUID = UNSET
     template: CreatePublicationTemplate | None | Unset = UNSET
     thumbnail: CreatePublicationJobThumbnailKeyframe | None | Unset = UNSET
     title: None | str | Unset = UNSET
+    video_source: None | Unset | VideoSource = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -54,6 +66,7 @@ class CreatePublicationJobSchema:
             CreatePublicationJobThumbnailKeyframe,
         )
         from ..models.create_publication_template import CreatePublicationTemplate
+        from ..models.video_source import VideoSource
 
         asset_id = str(self.asset_id)
 
@@ -72,6 +85,20 @@ class CreatePublicationJobSchema:
             metadata_overrides = self.metadata_overrides.to_dict()
         else:
             metadata_overrides = self.metadata_overrides
+
+        publish_at_time: None | str | Unset
+        if isinstance(self.publish_at_time, Unset):
+            publish_at_time = UNSET
+        elif isinstance(self.publish_at_time, datetime.datetime):
+            publish_at_time = self.publish_at_time.isoformat()
+        else:
+            publish_at_time = self.publish_at_time
+
+        save_clip_as_draft: bool | None | Unset
+        if isinstance(self.save_clip_as_draft, Unset):
+            save_clip_as_draft = UNSET
+        else:
+            save_clip_as_draft = self.save_clip_as_draft
 
         storage_id: None | str | Unset
         if isinstance(self.storage_id, Unset):
@@ -103,6 +130,14 @@ class CreatePublicationJobSchema:
         else:
             title = self.title
 
+        video_source: dict[str, Any] | None | Unset
+        if isinstance(self.video_source, Unset):
+            video_source = UNSET
+        elif isinstance(self.video_source, VideoSource):
+            video_source = self.video_source.to_dict()
+        else:
+            video_source = self.video_source
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -114,6 +149,10 @@ class CreatePublicationJobSchema:
             field_dict["allow_transfer"] = allow_transfer
         if metadata_overrides is not UNSET:
             field_dict["metadata_overrides"] = metadata_overrides
+        if publish_at_time is not UNSET:
+            field_dict["publish_at_time"] = publish_at_time
+        if save_clip_as_draft is not UNSET:
+            field_dict["save_clip_as_draft"] = save_clip_as_draft
         if storage_id is not UNSET:
             field_dict["storage_id"] = storage_id
         if template is not UNSET:
@@ -122,6 +161,8 @@ class CreatePublicationJobSchema:
             field_dict["thumbnail"] = thumbnail
         if title is not UNSET:
             field_dict["title"] = title
+        if video_source is not UNSET:
+            field_dict["video_source"] = video_source
 
         return field_dict
 
@@ -134,6 +175,7 @@ class CreatePublicationJobSchema:
             CreatePublicationJobThumbnailKeyframe,
         )
         from ..models.create_publication_template import CreatePublicationTemplate
+        from ..models.video_source import VideoSource
 
         d = dict(src_dict)
         asset_id = UUID(d.pop("asset_id"))
@@ -170,6 +212,34 @@ class CreatePublicationJobSchema:
 
         metadata_overrides = _parse_metadata_overrides(
             d.pop("metadata_overrides", UNSET)
+        )
+
+        def _parse_publish_at_time(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                publish_at_time_type_0 = datetime.datetime.fromisoformat(data)
+
+                return publish_at_time_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        publish_at_time = _parse_publish_at_time(d.pop("publish_at_time", UNSET))
+
+        def _parse_save_clip_as_draft(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        save_clip_as_draft = _parse_save_clip_as_draft(
+            d.pop("save_clip_as_draft", UNSET)
         )
 
         def _parse_storage_id(data: object) -> None | Unset | UUID:
@@ -234,14 +304,34 @@ class CreatePublicationJobSchema:
 
         title = _parse_title(d.pop("title", UNSET))
 
+        def _parse_video_source(data: object) -> None | Unset | VideoSource:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                video_source_type_1 = VideoSource.from_dict(data)
+
+                return video_source_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | VideoSource, data)
+
+        video_source = _parse_video_source(d.pop("video_source", UNSET))
+
         create_publication_job_schema = cls(
             asset_id=asset_id,
             allow_transfer=allow_transfer,
             metadata_overrides=metadata_overrides,
+            publish_at_time=publish_at_time,
+            save_clip_as_draft=save_clip_as_draft,
             storage_id=storage_id,
             template=template,
             thumbnail=thumbnail,
             title=title,
+            video_source=video_source,
         )
 
         create_publication_job_schema.additional_properties = d

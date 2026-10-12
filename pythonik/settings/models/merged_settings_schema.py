@@ -15,9 +15,13 @@ from ..models.merged_settings_schema_watermark import MergedSettingsSchemaWaterm
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
+    from ..models.ai_state_schema import AIStateSchema
     from ..models.allowed_ip_schema import AllowedIPSchema
     from ..models.dashboard_schema import DashboardSchema
     from ..models.default_share_options_type_schema import DefaultShareOptionsTypeSchema
+    from ..models.external_share_options_type_schema import (
+        ExternalShareOptionsTypeSchema,
+    )
     from ..models.facet_field_schema import FacetFieldSchema
     from ..models.jobs_dashboard_schema import JobsDashboardSchema
     from ..models.password_checks_type import PasswordChecksType
@@ -34,7 +38,9 @@ class MergedSettingsSchema:
     """
     Attributes:
         acl_template_id (None | Unset | UUID):
+        ai (AIStateSchema | None | Unset):
         allow_invites_by_link (bool | None | Unset):
+        allow_mobile_upload_without_required_metadata (bool | None | Unset):
         allow_play_original_during_transcoding (bool | None | Unset): Allow playing the original file while transcoding
             is in progress.
         allow_share_magic_link_creation (bool | None | Unset):
@@ -46,6 +52,7 @@ class MergedSettingsSchema:
         collections_get_parent_acls (bool | None | Unset):
         cors_hosts (list[str] | None | Unset):
         custom_terms (bool | None | Unset):
+        cuttingroom_url (None | str | Unset): URL to a CuttingRoom tenant. (e.g https://tenant.region.cuttingroom.com)
         dashboard (DashboardSchema | None | Unset):
         date_format (None | str | Unset):
         datetime_format (None | str | Unset):
@@ -61,13 +68,16 @@ class MergedSettingsSchema:
         drm (MergedSettingsSchemaDrm | None | Unset):
         drm_enforce (bool | None | Unset): Whether to require hardware DRM for playback when DRM is enabled Default:
             True.
+        enable_ai (bool | None | Unset): Master switch for AI features.
         enable_ai_metadata_filling (bool | None | Unset):
         enable_face_recognition (bool | None | Unset):
         enable_nltf (bool | None | Unset):
+        enable_portals (bool | None | Unset):
         enable_shield (bool | None | Unset):
         enforce_magic_link_allowlist (bool | None | Unset): When enabled, magic links can only be sent to allowlisted
             emails/domains
         external_share (bool | None | Unset):
+        external_share_options (ExternalShareOptionsTypeSchema | None | Unset):
         facet_fields (list[FacetFieldSchema] | None | Unset):
         features (list[str] | None | Unset):
         filters_default_metadata_view_id (None | Unset | UUID):
@@ -121,7 +131,9 @@ class MergedSettingsSchema:
     """
 
     acl_template_id: None | Unset | UUID = UNSET
+    ai: AIStateSchema | None | Unset = UNSET
     allow_invites_by_link: bool | None | Unset = UNSET
+    allow_mobile_upload_without_required_metadata: bool | None | Unset = UNSET
     allow_play_original_during_transcoding: bool | None | Unset = UNSET
     allow_share_magic_link_creation: bool | None | Unset = UNSET
     allowed_ips: list[AllowedIPSchema] | None | Unset = UNSET
@@ -132,6 +144,7 @@ class MergedSettingsSchema:
     collections_get_parent_acls: bool | None | Unset = UNSET
     cors_hosts: list[str] | None | Unset = UNSET
     custom_terms: bool | None | Unset = UNSET
+    cuttingroom_url: None | str | Unset = UNSET
     dashboard: DashboardSchema | None | Unset = UNSET
     date_format: None | str | Unset = UNSET
     datetime_format: None | str | Unset = UNSET
@@ -145,12 +158,15 @@ class MergedSettingsSchema:
     domain_has_preloaded_assets: bool | None | Unset = UNSET
     drm: MergedSettingsSchemaDrm | None | Unset = UNSET
     drm_enforce: bool | None | Unset = True
+    enable_ai: bool | None | Unset = UNSET
     enable_ai_metadata_filling: bool | None | Unset = UNSET
     enable_face_recognition: bool | None | Unset = UNSET
     enable_nltf: bool | None | Unset = UNSET
+    enable_portals: bool | None | Unset = UNSET
     enable_shield: bool | None | Unset = UNSET
     enforce_magic_link_allowlist: bool | None | Unset = UNSET
     external_share: bool | None | Unset = UNSET
+    external_share_options: ExternalShareOptionsTypeSchema | None | Unset = UNSET
     facet_fields: list[FacetFieldSchema] | None | Unset = UNSET
     features: list[str] | None | Unset = UNSET
     filters_default_metadata_view_id: None | Unset | UUID = UNSET
@@ -203,9 +219,13 @@ class MergedSettingsSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.ai_state_schema import AIStateSchema
         from ..models.dashboard_schema import DashboardSchema
         from ..models.default_share_options_type_schema import (
             DefaultShareOptionsTypeSchema,
+        )
+        from ..models.external_share_options_type_schema import (
+            ExternalShareOptionsTypeSchema,
         )
         from ..models.jobs_dashboard_schema import JobsDashboardSchema
         from ..models.password_checks_type import PasswordChecksType
@@ -220,11 +240,27 @@ class MergedSettingsSchema:
         else:
             acl_template_id = self.acl_template_id
 
+        ai: dict[str, Any] | None | Unset
+        if isinstance(self.ai, Unset):
+            ai = UNSET
+        elif isinstance(self.ai, AIStateSchema):
+            ai = self.ai.to_dict()
+        else:
+            ai = self.ai
+
         allow_invites_by_link: bool | None | Unset
         if isinstance(self.allow_invites_by_link, Unset):
             allow_invites_by_link = UNSET
         else:
             allow_invites_by_link = self.allow_invites_by_link
+
+        allow_mobile_upload_without_required_metadata: bool | None | Unset
+        if isinstance(self.allow_mobile_upload_without_required_metadata, Unset):
+            allow_mobile_upload_without_required_metadata = UNSET
+        else:
+            allow_mobile_upload_without_required_metadata = (
+                self.allow_mobile_upload_without_required_metadata
+            )
 
         allow_play_original_during_transcoding: bool | None | Unset
         if isinstance(self.allow_play_original_during_transcoding, Unset):
@@ -299,6 +335,12 @@ class MergedSettingsSchema:
             custom_terms = UNSET
         else:
             custom_terms = self.custom_terms
+
+        cuttingroom_url: None | str | Unset
+        if isinstance(self.cuttingroom_url, Unset):
+            cuttingroom_url = UNSET
+        else:
+            cuttingroom_url = self.cuttingroom_url
 
         dashboard: dict[str, Any] | None | Unset
         if isinstance(self.dashboard, Unset):
@@ -386,6 +428,12 @@ class MergedSettingsSchema:
         else:
             drm_enforce = self.drm_enforce
 
+        enable_ai: bool | None | Unset
+        if isinstance(self.enable_ai, Unset):
+            enable_ai = UNSET
+        else:
+            enable_ai = self.enable_ai
+
         enable_ai_metadata_filling: bool | None | Unset
         if isinstance(self.enable_ai_metadata_filling, Unset):
             enable_ai_metadata_filling = UNSET
@@ -404,6 +452,12 @@ class MergedSettingsSchema:
         else:
             enable_nltf = self.enable_nltf
 
+        enable_portals: bool | None | Unset
+        if isinstance(self.enable_portals, Unset):
+            enable_portals = UNSET
+        else:
+            enable_portals = self.enable_portals
+
         enable_shield: bool | None | Unset
         if isinstance(self.enable_shield, Unset):
             enable_shield = UNSET
@@ -421,6 +475,14 @@ class MergedSettingsSchema:
             external_share = UNSET
         else:
             external_share = self.external_share
+
+        external_share_options: dict[str, Any] | None | Unset
+        if isinstance(self.external_share_options, Unset):
+            external_share_options = UNSET
+        elif isinstance(self.external_share_options, ExternalShareOptionsTypeSchema):
+            external_share_options = self.external_share_options.to_dict()
+        else:
+            external_share_options = self.external_share_options
 
         facet_fields: list[dict[str, Any]] | None | Unset
         if isinstance(self.facet_fields, Unset):
@@ -786,8 +848,14 @@ class MergedSettingsSchema:
         field_dict.update({})
         if acl_template_id is not UNSET:
             field_dict["acl_template_id"] = acl_template_id
+        if ai is not UNSET:
+            field_dict["ai"] = ai
         if allow_invites_by_link is not UNSET:
             field_dict["allow_invites_by_link"] = allow_invites_by_link
+        if allow_mobile_upload_without_required_metadata is not UNSET:
+            field_dict["allow_mobile_upload_without_required_metadata"] = (
+                allow_mobile_upload_without_required_metadata
+            )
         if allow_play_original_during_transcoding is not UNSET:
             field_dict["allow_play_original_during_transcoding"] = (
                 allow_play_original_during_transcoding
@@ -814,6 +882,8 @@ class MergedSettingsSchema:
             field_dict["cors_hosts"] = cors_hosts
         if custom_terms is not UNSET:
             field_dict["custom_terms"] = custom_terms
+        if cuttingroom_url is not UNSET:
+            field_dict["cuttingroom_url"] = cuttingroom_url
         if dashboard is not UNSET:
             field_dict["dashboard"] = dashboard
         if date_format is not UNSET:
@@ -840,18 +910,24 @@ class MergedSettingsSchema:
             field_dict["drm"] = drm
         if drm_enforce is not UNSET:
             field_dict["drm_enforce"] = drm_enforce
+        if enable_ai is not UNSET:
+            field_dict["enable_ai"] = enable_ai
         if enable_ai_metadata_filling is not UNSET:
             field_dict["enable_ai_metadata_filling"] = enable_ai_metadata_filling
         if enable_face_recognition is not UNSET:
             field_dict["enable_face_recognition"] = enable_face_recognition
         if enable_nltf is not UNSET:
             field_dict["enable_nltf"] = enable_nltf
+        if enable_portals is not UNSET:
+            field_dict["enable_portals"] = enable_portals
         if enable_shield is not UNSET:
             field_dict["enable_shield"] = enable_shield
         if enforce_magic_link_allowlist is not UNSET:
             field_dict["enforce_magic_link_allowlist"] = enforce_magic_link_allowlist
         if external_share is not UNSET:
             field_dict["external_share"] = external_share
+        if external_share_options is not UNSET:
+            field_dict["external_share_options"] = external_share_options
         if facet_fields is not UNSET:
             field_dict["facet_fields"] = facet_fields
         if features is not UNSET:
@@ -971,10 +1047,14 @@ class MergedSettingsSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.ai_state_schema import AIStateSchema
         from ..models.allowed_ip_schema import AllowedIPSchema
         from ..models.dashboard_schema import DashboardSchema
         from ..models.default_share_options_type_schema import (
             DefaultShareOptionsTypeSchema,
+        )
+        from ..models.external_share_options_type_schema import (
+            ExternalShareOptionsTypeSchema,
         )
         from ..models.facet_field_schema import FacetFieldSchema
         from ..models.jobs_dashboard_schema import JobsDashboardSchema
@@ -1002,6 +1082,23 @@ class MergedSettingsSchema:
 
         acl_template_id = _parse_acl_template_id(d.pop("acl_template_id", UNSET))
 
+        def _parse_ai(data: object) -> AIStateSchema | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                ai_type_1 = AIStateSchema.from_dict(data)
+
+                return ai_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(AIStateSchema | None | Unset, data)
+
+        ai = _parse_ai(d.pop("ai", UNSET))
+
         def _parse_allow_invites_by_link(data: object) -> bool | None | Unset:
             if data is None:
                 return data
@@ -1011,6 +1108,21 @@ class MergedSettingsSchema:
 
         allow_invites_by_link = _parse_allow_invites_by_link(
             d.pop("allow_invites_by_link", UNSET)
+        )
+
+        def _parse_allow_mobile_upload_without_required_metadata(
+            data: object,
+        ) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        allow_mobile_upload_without_required_metadata = (
+            _parse_allow_mobile_upload_without_required_metadata(
+                d.pop("allow_mobile_upload_without_required_metadata", UNSET)
+            )
         )
 
         def _parse_allow_play_original_during_transcoding(
@@ -1147,6 +1259,15 @@ class MergedSettingsSchema:
             return cast(bool | None | Unset, data)
 
         custom_terms = _parse_custom_terms(d.pop("custom_terms", UNSET))
+
+        def _parse_cuttingroom_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        cuttingroom_url = _parse_cuttingroom_url(d.pop("cuttingroom_url", UNSET))
 
         def _parse_dashboard(data: object) -> DashboardSchema | None | Unset:
             if data is None:
@@ -1317,6 +1438,15 @@ class MergedSettingsSchema:
 
         drm_enforce = _parse_drm_enforce(d.pop("drm_enforce", UNSET))
 
+        def _parse_enable_ai(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        enable_ai = _parse_enable_ai(d.pop("enable_ai", UNSET))
+
         def _parse_enable_ai_metadata_filling(data: object) -> bool | None | Unset:
             if data is None:
                 return data
@@ -1348,6 +1478,15 @@ class MergedSettingsSchema:
 
         enable_nltf = _parse_enable_nltf(d.pop("enable_nltf", UNSET))
 
+        def _parse_enable_portals(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        enable_portals = _parse_enable_portals(d.pop("enable_portals", UNSET))
+
         def _parse_enable_shield(data: object) -> bool | None | Unset:
             if data is None:
                 return data
@@ -1376,6 +1515,29 @@ class MergedSettingsSchema:
             return cast(bool | None | Unset, data)
 
         external_share = _parse_external_share(d.pop("external_share", UNSET))
+
+        def _parse_external_share_options(
+            data: object,
+        ) -> ExternalShareOptionsTypeSchema | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                external_share_options_type_1 = (
+                    ExternalShareOptionsTypeSchema.from_dict(data)
+                )
+
+                return external_share_options_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(ExternalShareOptionsTypeSchema | None | Unset, data)
+
+        external_share_options = _parse_external_share_options(
+            d.pop("external_share_options", UNSET)
+        )
 
         def _parse_facet_fields(data: object) -> list[FacetFieldSchema] | None | Unset:
             if data is None:
@@ -2067,7 +2229,9 @@ class MergedSettingsSchema:
 
         merged_settings_schema = cls(
             acl_template_id=acl_template_id,
+            ai=ai,
             allow_invites_by_link=allow_invites_by_link,
+            allow_mobile_upload_without_required_metadata=allow_mobile_upload_without_required_metadata,
             allow_play_original_during_transcoding=allow_play_original_during_transcoding,
             allow_share_magic_link_creation=allow_share_magic_link_creation,
             allowed_ips=allowed_ips,
@@ -2078,6 +2242,7 @@ class MergedSettingsSchema:
             collections_get_parent_acls=collections_get_parent_acls,
             cors_hosts=cors_hosts,
             custom_terms=custom_terms,
+            cuttingroom_url=cuttingroom_url,
             dashboard=dashboard,
             date_format=date_format,
             datetime_format=datetime_format,
@@ -2091,12 +2256,15 @@ class MergedSettingsSchema:
             domain_has_preloaded_assets=domain_has_preloaded_assets,
             drm=drm,
             drm_enforce=drm_enforce,
+            enable_ai=enable_ai,
             enable_ai_metadata_filling=enable_ai_metadata_filling,
             enable_face_recognition=enable_face_recognition,
             enable_nltf=enable_nltf,
+            enable_portals=enable_portals,
             enable_shield=enable_shield,
             enforce_magic_link_allowlist=enforce_magic_link_allowlist,
             external_share=external_share,
+            external_share_options=external_share_options,
             facet_fields=facet_fields,
             features=features,
             filters_default_metadata_view_id=filters_default_metadata_view_id,

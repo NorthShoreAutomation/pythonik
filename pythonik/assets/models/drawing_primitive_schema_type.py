@@ -3,6 +3,7 @@ from enum import Enum
 
 class DrawingPrimitiveSchemaType(str, Enum):
     ARROW = "ARROW"
+    CROSS = "CROSS"
     ELLIPSE = "ELLIPSE"
     LINE = "LINE"
     PENCIL = "PENCIL"

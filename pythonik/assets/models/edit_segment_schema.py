@@ -18,6 +18,8 @@ if TYPE_CHECKING:
         EditSegmentSchemaMetadataType0,
     )
     from ..models.face_bounding_box import FaceBoundingBox
+    from ..models.semantic_transcription import SemanticTranscription
+    from ..models.shot import Shot
     from ..models.transcription_type import TranscriptionType
     from ..models.user import User
 
@@ -36,6 +38,7 @@ class EditSegmentSchema:
         drawing (DrawingSchema | None | Unset):
         external_id (None | str | Unset):
         face_bounding_boxes (list[FaceBoundingBox] | None | Unset):
+        has_attachments (bool | None | Unset):
         id (None | Unset | UUID):
         is_internal (bool | None | Unset): If set to true, the segment is only visible to internal iconik users
         keyframe_id (None | Unset | UUID):
@@ -49,8 +52,11 @@ class EditSegmentSchema:
         segment_color (None | str | Unset):
         segment_text (None | str | Unset):
         segment_track (None | str | Unset):
+        semantic_transcription (None | SemanticTranscription | Unset):
         share_id (None | Unset | UUID): ID of a share if the segment is created from a share
+        share_session_id (None | Unset | UUID):
         share_user_email (None | str | Unset):
+        shot (None | Shot | Unset):
         status (EditSegmentSchemaStatus | None | Unset):
         subclip_id (None | Unset | UUID):
         time_end_milliseconds (int | None | Unset):
@@ -73,6 +79,7 @@ class EditSegmentSchema:
     drawing: DrawingSchema | None | Unset = UNSET
     external_id: None | str | Unset = UNSET
     face_bounding_boxes: list[FaceBoundingBox] | None | Unset = UNSET
+    has_attachments: bool | None | Unset = UNSET
     id: None | Unset | UUID = UNSET
     is_internal: bool | None | Unset = UNSET
     keyframe_id: None | Unset | UUID = UNSET
@@ -86,8 +93,11 @@ class EditSegmentSchema:
     segment_color: None | str | Unset = UNSET
     segment_text: None | str | Unset = UNSET
     segment_track: None | str | Unset = UNSET
+    semantic_transcription: None | SemanticTranscription | Unset = UNSET
     share_id: None | Unset | UUID = UNSET
+    share_session_id: None | Unset | UUID = UNSET
     share_user_email: None | str | Unset = UNSET
+    shot: None | Shot | Unset = UNSET
     status: EditSegmentSchemaStatus | None | Unset = UNSET
     subclip_id: None | Unset | UUID = UNSET
     time_end_milliseconds: int | None | Unset = UNSET
@@ -108,6 +118,8 @@ class EditSegmentSchema:
         from ..models.edit_segment_schema_metadata_type_0 import (
             EditSegmentSchemaMetadataType0,
         )
+        from ..models.semantic_transcription import SemanticTranscription
+        from ..models.shot import Shot
         from ..models.transcription_type import TranscriptionType
         from ..models.user import User
 
@@ -164,6 +176,12 @@ class EditSegmentSchema:
 
         else:
             face_bounding_boxes = self.face_bounding_boxes
+
+        has_attachments: bool | None | Unset
+        if isinstance(self.has_attachments, Unset):
+            has_attachments = UNSET
+        else:
+            has_attachments = self.has_attachments
 
         id: None | str | Unset
         if isinstance(self.id, Unset):
@@ -257,6 +275,14 @@ class EditSegmentSchema:
         else:
             segment_track = self.segment_track
 
+        semantic_transcription: dict[str, Any] | None | Unset
+        if isinstance(self.semantic_transcription, Unset):
+            semantic_transcription = UNSET
+        elif isinstance(self.semantic_transcription, SemanticTranscription):
+            semantic_transcription = self.semantic_transcription.to_dict()
+        else:
+            semantic_transcription = self.semantic_transcription
+
         share_id: None | str | Unset
         if isinstance(self.share_id, Unset):
             share_id = UNSET
@@ -265,11 +291,27 @@ class EditSegmentSchema:
         else:
             share_id = self.share_id
 
+        share_session_id: None | str | Unset
+        if isinstance(self.share_session_id, Unset):
+            share_session_id = UNSET
+        elif isinstance(self.share_session_id, UUID):
+            share_session_id = str(self.share_session_id)
+        else:
+            share_session_id = self.share_session_id
+
         share_user_email: None | str | Unset
         if isinstance(self.share_user_email, Unset):
             share_user_email = UNSET
         else:
             share_user_email = self.share_user_email
+
+        shot: dict[str, Any] | None | Unset
+        if isinstance(self.shot, Unset):
+            shot = UNSET
+        elif isinstance(self.shot, Shot):
+            shot = self.shot.to_dict()
+        else:
+            shot = self.shot
 
         status: None | str | Unset
         if isinstance(self.status, Unset):
@@ -382,6 +424,8 @@ class EditSegmentSchema:
             field_dict["external_id"] = external_id
         if face_bounding_boxes is not UNSET:
             field_dict["face_bounding_boxes"] = face_bounding_boxes
+        if has_attachments is not UNSET:
+            field_dict["has_attachments"] = has_attachments
         if id is not UNSET:
             field_dict["id"] = id
         if is_internal is not UNSET:
@@ -408,10 +452,16 @@ class EditSegmentSchema:
             field_dict["segment_text"] = segment_text
         if segment_track is not UNSET:
             field_dict["segment_track"] = segment_track
+        if semantic_transcription is not UNSET:
+            field_dict["semantic_transcription"] = semantic_transcription
         if share_id is not UNSET:
             field_dict["share_id"] = share_id
+        if share_session_id is not UNSET:
+            field_dict["share_session_id"] = share_session_id
         if share_user_email is not UNSET:
             field_dict["share_user_email"] = share_user_email
+        if shot is not UNSET:
+            field_dict["shot"] = shot
         if status is not UNSET:
             field_dict["status"] = status
         if subclip_id is not UNSET:
@@ -448,6 +498,8 @@ class EditSegmentSchema:
             EditSegmentSchemaMetadataType0,
         )
         from ..models.face_bounding_box import FaceBoundingBox
+        from ..models.semantic_transcription import SemanticTranscription
+        from ..models.shot import Shot
         from ..models.transcription_type import TranscriptionType
         from ..models.user import User
 
@@ -558,6 +610,15 @@ class EditSegmentSchema:
         face_bounding_boxes = _parse_face_bounding_boxes(
             d.pop("face_bounding_boxes", UNSET)
         )
+
+        def _parse_has_attachments(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        has_attachments = _parse_has_attachments(d.pop("has_attachments", UNSET))
 
         def _parse_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -734,6 +795,27 @@ class EditSegmentSchema:
 
         segment_track = _parse_segment_track(d.pop("segment_track", UNSET))
 
+        def _parse_semantic_transcription(
+            data: object,
+        ) -> None | SemanticTranscription | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                semantic_transcription_type_1 = SemanticTranscription.from_dict(data)
+
+                return semantic_transcription_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | SemanticTranscription | Unset, data)
+
+        semantic_transcription = _parse_semantic_transcription(
+            d.pop("semantic_transcription", UNSET)
+        )
+
         def _parse_share_id(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
@@ -751,6 +833,23 @@ class EditSegmentSchema:
 
         share_id = _parse_share_id(d.pop("share_id", UNSET))
 
+        def _parse_share_session_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                share_session_id_type_0 = UUID(data)
+
+                return share_session_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        share_session_id = _parse_share_session_id(d.pop("share_session_id", UNSET))
+
         def _parse_share_user_email(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -759,6 +858,23 @@ class EditSegmentSchema:
             return cast(None | str | Unset, data)
 
         share_user_email = _parse_share_user_email(d.pop("share_user_email", UNSET))
+
+        def _parse_shot(data: object) -> None | Shot | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                shot_type_1 = Shot.from_dict(data)
+
+                return shot_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Shot | Unset, data)
+
+        shot = _parse_shot(d.pop("shot", UNSET))
 
         def _parse_status(data: object) -> EditSegmentSchemaStatus | None | Unset:
             if data is None:
@@ -945,6 +1061,7 @@ class EditSegmentSchema:
             drawing=drawing,
             external_id=external_id,
             face_bounding_boxes=face_bounding_boxes,
+            has_attachments=has_attachments,
             id=id,
             is_internal=is_internal,
             keyframe_id=keyframe_id,
@@ -958,8 +1075,11 @@ class EditSegmentSchema:
             segment_color=segment_color,
             segment_text=segment_text,
             segment_track=segment_track,
+            semantic_transcription=semantic_transcription,
             share_id=share_id,
+            share_session_id=share_session_id,
             share_user_email=share_user_email,
+            shot=shot,
             status=status,
             subclip_id=subclip_id,
             time_end_milliseconds=time_end_milliseconds,

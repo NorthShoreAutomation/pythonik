@@ -56,6 +56,7 @@ class PlaylistItemElasticSchema:
         approval (ApprovalSchema | None | Unset):
         archive_status (None | PlaylistItemElasticSchemaArchiveStatus | Unset):
         category (None | str | Unset):
+        clip_id (int | None | Unset): ID of the draft clip in the Wildmoka system that is linked to this asset.
         comments_count (int | None | Unset):
         created_by_user (None | Unset | UUID):
         created_by_user_info (None | Unset | User):
@@ -111,6 +112,7 @@ class PlaylistItemElasticSchema:
     approval: ApprovalSchema | None | Unset = UNSET
     archive_status: None | PlaylistItemElasticSchemaArchiveStatus | Unset = UNSET
     category: None | str | Unset = UNSET
+    clip_id: int | None | Unset = UNSET
     comments_count: int | None | Unset = UNSET
     created_by_user: None | Unset | UUID = UNSET
     created_by_user_info: None | Unset | User = UNSET
@@ -209,6 +211,12 @@ class PlaylistItemElasticSchema:
             category = UNSET
         else:
             category = self.category
+
+        clip_id: int | None | Unset
+        if isinstance(self.clip_id, Unset):
+            clip_id = UNSET
+        else:
+            clip_id = self.clip_id
 
         comments_count: int | None | Unset
         if isinstance(self.comments_count, Unset):
@@ -610,6 +618,8 @@ class PlaylistItemElasticSchema:
             field_dict["archive_status"] = archive_status
         if category is not UNSET:
             field_dict["category"] = category
+        if clip_id is not UNSET:
+            field_dict["clip_id"] = clip_id
         if comments_count is not UNSET:
             field_dict["comments_count"] = comments_count
         if created_by_user is not UNSET:
@@ -814,6 +824,15 @@ class PlaylistItemElasticSchema:
             return cast(None | str | Unset, data)
 
         category = _parse_category(d.pop("category", UNSET))
+
+        def _parse_clip_id(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        clip_id = _parse_clip_id(d.pop("clip_id", UNSET))
 
         def _parse_comments_count(data: object) -> int | None | Unset:
             if data is None:
@@ -1611,6 +1630,7 @@ class PlaylistItemElasticSchema:
             approval=approval,
             archive_status=archive_status,
             category=category,
+            clip_id=clip_id,
             comments_count=comments_count,
             created_by_user=created_by_user,
             created_by_user_info=created_by_user_info,

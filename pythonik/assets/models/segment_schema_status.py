@@ -3,6 +3,7 @@ from enum import Enum
 
 class SegmentSchemaStatus(str, Enum):
     ACTIVE = "ACTIVE"
+    AWAITED = "AWAITED"
     DELETED = "DELETED"
 
     def __str__(self) -> str:

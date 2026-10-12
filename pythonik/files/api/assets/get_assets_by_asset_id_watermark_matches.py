@@ -28,7 +28,7 @@ def _get_kwargs(
 
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": "/v1/assets/{asset_id}/watermark-matches/".format(
+        "url": "/v1/assets/{asset_id}/watermark_matches/".format(
             asset_id=quote(str(asset_id), safe=""),
         ),
         "params": params,

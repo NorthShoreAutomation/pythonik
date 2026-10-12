@@ -93,7 +93,7 @@ def sync_detailed(
 
 
     Required roles:
-     - can_read_storages
+     - can_write_storages
 
     Args:
         storage_id (str):
@@ -131,7 +131,7 @@ def sync(
 
 
     Required roles:
-     - can_read_storages
+     - can_write_storages
 
     Args:
         storage_id (str):
@@ -163,7 +163,7 @@ async def asyncio_detailed(
 
 
     Required roles:
-     - can_read_storages
+     - can_write_storages
 
     Args:
         storage_id (str):
@@ -199,7 +199,7 @@ async def asyncio(
 
 
     Required roles:
-     - can_read_storages
+     - can_write_storages
 
     Args:
         storage_id (str):

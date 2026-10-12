@@ -8,6 +8,9 @@ from .action_schema_base_parameters_type_0 import ActionSchemaBaseParametersType
 from .add_to_collection_action_parameters import AddToCollectionActionParameters
 from .add_to_collection_action_schema import AddToCollectionActionSchema
 from .add_to_collection_action_schema_type import AddToCollectionActionSchemaType
+from .ai_metadata_filling_action_parameters import AIMetadataFillingActionParameters
+from .ai_metadata_filling_action_schema import AIMetadataFillingActionSchema
+from .ai_metadata_filling_action_schema_type import AIMetadataFillingActionSchemaType
 from .analyze_action_parameters import AnalyzeActionParameters
 from .analyze_action_parameters_force_type import AnalyzeActionParametersForceType
 from .analyze_action_schema import AnalyzeActionSchema
@@ -318,6 +321,9 @@ __all__ = (
     "AddToCollectionActionParameters",
     "AddToCollectionActionSchema",
     "AddToCollectionActionSchemaType",
+    "AIMetadataFillingActionParameters",
+    "AIMetadataFillingActionSchema",
+    "AIMetadataFillingActionSchemaType",
     "AnalyzeActionParameters",
     "AnalyzeActionParametersForceType",
     "AnalyzeActionSchema",

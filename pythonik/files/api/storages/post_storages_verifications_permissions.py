@@ -98,7 +98,7 @@ def sync_detailed(
 
 
     Required roles:
-     - can_read_storages
+     - can_write_storages
 
     Args:
         body (StoragePermissionsSchema):
@@ -136,7 +136,7 @@ def sync(
 
 
     Required roles:
-     - can_read_storages
+     - can_write_storages
 
     Args:
         body (StoragePermissionsSchema):
@@ -168,7 +168,7 @@ async def asyncio_detailed(
 
 
     Required roles:
-     - can_read_storages
+     - can_write_storages
 
     Args:
         body (StoragePermissionsSchema):
@@ -204,7 +204,7 @@ async def asyncio(
 
 
     Required roles:
-     - can_read_storages
+     - can_write_storages
 
     Args:
         body (StoragePermissionsSchema):

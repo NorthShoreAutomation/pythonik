@@ -7,7 +7,6 @@ class AssetCreateSchemaType(str, Enum):
     LINK = "LINK"
     NLE_PROJECT = "NLE_PROJECT"
     PLACEHOLDER = "PLACEHOLDER"
-    POST = "POST"
     SEQUENCE = "SEQUENCE"
     SUBCLIP = "SUBCLIP"
 

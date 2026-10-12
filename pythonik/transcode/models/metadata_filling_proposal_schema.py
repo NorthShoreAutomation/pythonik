@@ -21,6 +21,7 @@ class MetadataFillingProposalSchema:
     """
     Attributes:
         asset_id (None | Unset | UUID):
+        bulk_review_in_progress (bool | None | Unset):
         date_created (datetime.datetime | None | Unset):
         errors (list[str] | None | Unset):
         field_names (list[str] | None | Unset):
@@ -35,6 +36,7 @@ class MetadataFillingProposalSchema:
     """
 
     asset_id: None | Unset | UUID = UNSET
+    bulk_review_in_progress: bool | None | Unset = UNSET
     date_created: datetime.datetime | None | Unset = UNSET
     errors: list[str] | None | Unset = UNSET
     field_names: list[str] | None | Unset = UNSET
@@ -56,6 +58,12 @@ class MetadataFillingProposalSchema:
             asset_id = str(self.asset_id)
         else:
             asset_id = self.asset_id
+
+        bulk_review_in_progress: bool | None | Unset
+        if isinstance(self.bulk_review_in_progress, Unset):
+            bulk_review_in_progress = UNSET
+        else:
+            bulk_review_in_progress = self.bulk_review_in_progress
 
         date_created: None | str | Unset
         if isinstance(self.date_created, Unset):
@@ -147,6 +155,8 @@ class MetadataFillingProposalSchema:
         field_dict.update({})
         if asset_id is not UNSET:
             field_dict["asset_id"] = asset_id
+        if bulk_review_in_progress is not UNSET:
+            field_dict["bulk_review_in_progress"] = bulk_review_in_progress
         if date_created is not UNSET:
             field_dict["date_created"] = date_created
         if errors is not UNSET:
@@ -192,6 +202,17 @@ class MetadataFillingProposalSchema:
             return cast(None | Unset | UUID, data)
 
         asset_id = _parse_asset_id(d.pop("asset_id", UNSET))
+
+        def _parse_bulk_review_in_progress(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        bulk_review_in_progress = _parse_bulk_review_in_progress(
+            d.pop("bulk_review_in_progress", UNSET)
+        )
 
         def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -369,6 +390,7 @@ class MetadataFillingProposalSchema:
 
         metadata_filling_proposal_schema = cls(
             asset_id=asset_id,
+            bulk_review_in_progress=bulk_review_in_progress,
             date_created=date_created,
             errors=errors,
             field_names=field_names,

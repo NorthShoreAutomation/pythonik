@@ -15,8 +15,12 @@ from ..models.system_setting_schema_watermark import SystemSettingSchemaWatermar
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
+    from ..models.ai_state_schema import AIStateSchema
     from ..models.allowed_ip_schema import AllowedIPSchema
     from ..models.default_share_options_type_schema import DefaultShareOptionsTypeSchema
+    from ..models.external_share_options_type_schema import (
+        ExternalShareOptionsTypeSchema,
+    )
     from ..models.facet_field_schema import FacetFieldSchema
     from ..models.jobs_dashboard_schema import JobsDashboardSchema
     from ..models.password_checks_type_schema import PasswordChecksTypeSchema
@@ -32,7 +36,9 @@ class SystemSettingSchema:
     """
     Attributes:
         acl_template_id (None | Unset | UUID):
+        ai (AIStateSchema | None | Unset):
         allow_invites_by_link (bool | None | Unset):
+        allow_mobile_upload_without_required_metadata (bool | None | Unset):
         allow_play_original_during_transcoding (bool | None | Unset): Allow playing the original file while transcoding
             is in progress.
         allow_share_magic_link_creation (bool | None | Unset):
@@ -42,6 +48,7 @@ class SystemSettingSchema:
         client_ip (None | str | Unset):
         collections_get_parent_acls (bool | None | Unset):
         cors_hosts (list[str] | None | Unset):
+        cuttingroom_url (None | str | Unset): URL to a CuttingRoom tenant. (e.g https://tenant.region.cuttingroom.com)
         date_format (None | str | Unset):
         datetime_format (None | str | Unset):
         default_app_token_ttl (int | None | Unset): Default time to live for app tokens in seconds.
@@ -54,13 +61,16 @@ class SystemSettingSchema:
         drm (None | SystemSettingSchemaDrm | Unset):
         drm_enforce (bool | None | Unset): Whether to require hardware DRM for playback when DRM is enabled Default:
             True.
+        enable_ai (bool | None | Unset): Master switch for AI features.
         enable_ai_metadata_filling (bool | None | Unset):
         enable_face_recognition (bool | None | Unset):
         enable_nltf (bool | None | Unset):
+        enable_portals (bool | None | Unset):
         enable_shield (bool | None | Unset):
         enforce_magic_link_allowlist (bool | None | Unset): When enabled, magic links can only be sent to allowlisted
             emails/domains
         external_share (bool | None | Unset):
+        external_share_options (ExternalShareOptionsTypeSchema | None | Unset):
         facet_fields (list[FacetFieldSchema] | None | Unset):
         filters_default_metadata_view_id (None | Unset | UUID):
         hide_favourites (bool | None | Unset):
@@ -107,7 +117,9 @@ class SystemSettingSchema:
     """
 
     acl_template_id: None | Unset | UUID = UNSET
+    ai: AIStateSchema | None | Unset = UNSET
     allow_invites_by_link: bool | None | Unset = UNSET
+    allow_mobile_upload_without_required_metadata: bool | None | Unset = UNSET
     allow_play_original_during_transcoding: bool | None | Unset = UNSET
     allow_share_magic_link_creation: bool | None | Unset = UNSET
     allowed_ips: list[AllowedIPSchema] | None | Unset = UNSET
@@ -116,6 +128,7 @@ class SystemSettingSchema:
     client_ip: None | str | Unset = UNSET
     collections_get_parent_acls: bool | None | Unset = UNSET
     cors_hosts: list[str] | None | Unset = UNSET
+    cuttingroom_url: None | str | Unset = UNSET
     date_format: None | str | Unset = UNSET
     datetime_format: None | str | Unset = UNSET
     default_app_token_ttl: int | None | Unset = UNSET
@@ -126,12 +139,15 @@ class SystemSettingSchema:
     delete_grace_period: int | None | Unset = UNSET
     drm: None | SystemSettingSchemaDrm | Unset = UNSET
     drm_enforce: bool | None | Unset = True
+    enable_ai: bool | None | Unset = UNSET
     enable_ai_metadata_filling: bool | None | Unset = UNSET
     enable_face_recognition: bool | None | Unset = UNSET
     enable_nltf: bool | None | Unset = UNSET
+    enable_portals: bool | None | Unset = UNSET
     enable_shield: bool | None | Unset = UNSET
     enforce_magic_link_allowlist: bool | None | Unset = UNSET
     external_share: bool | None | Unset = UNSET
+    external_share_options: ExternalShareOptionsTypeSchema | None | Unset = UNSET
     facet_fields: list[FacetFieldSchema] | None | Unset = UNSET
     filters_default_metadata_view_id: None | Unset | UUID = UNSET
     hide_favourites: bool | None | Unset = UNSET
@@ -177,8 +193,12 @@ class SystemSettingSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.ai_state_schema import AIStateSchema
         from ..models.default_share_options_type_schema import (
             DefaultShareOptionsTypeSchema,
+        )
+        from ..models.external_share_options_type_schema import (
+            ExternalShareOptionsTypeSchema,
         )
         from ..models.jobs_dashboard_schema import JobsDashboardSchema
         from ..models.password_checks_type_schema import PasswordChecksTypeSchema
@@ -192,11 +212,27 @@ class SystemSettingSchema:
         else:
             acl_template_id = self.acl_template_id
 
+        ai: dict[str, Any] | None | Unset
+        if isinstance(self.ai, Unset):
+            ai = UNSET
+        elif isinstance(self.ai, AIStateSchema):
+            ai = self.ai.to_dict()
+        else:
+            ai = self.ai
+
         allow_invites_by_link: bool | None | Unset
         if isinstance(self.allow_invites_by_link, Unset):
             allow_invites_by_link = UNSET
         else:
             allow_invites_by_link = self.allow_invites_by_link
+
+        allow_mobile_upload_without_required_metadata: bool | None | Unset
+        if isinstance(self.allow_mobile_upload_without_required_metadata, Unset):
+            allow_mobile_upload_without_required_metadata = UNSET
+        else:
+            allow_mobile_upload_without_required_metadata = (
+                self.allow_mobile_upload_without_required_metadata
+            )
 
         allow_play_original_during_transcoding: bool | None | Unset
         if isinstance(self.allow_play_original_during_transcoding, Unset):
@@ -259,6 +295,12 @@ class SystemSettingSchema:
 
         else:
             cors_hosts = self.cors_hosts
+
+        cuttingroom_url: None | str | Unset
+        if isinstance(self.cuttingroom_url, Unset):
+            cuttingroom_url = UNSET
+        else:
+            cuttingroom_url = self.cuttingroom_url
 
         date_format: None | str | Unset
         if isinstance(self.date_format, Unset):
@@ -326,6 +368,12 @@ class SystemSettingSchema:
         else:
             drm_enforce = self.drm_enforce
 
+        enable_ai: bool | None | Unset
+        if isinstance(self.enable_ai, Unset):
+            enable_ai = UNSET
+        else:
+            enable_ai = self.enable_ai
+
         enable_ai_metadata_filling: bool | None | Unset
         if isinstance(self.enable_ai_metadata_filling, Unset):
             enable_ai_metadata_filling = UNSET
@@ -344,6 +392,12 @@ class SystemSettingSchema:
         else:
             enable_nltf = self.enable_nltf
 
+        enable_portals: bool | None | Unset
+        if isinstance(self.enable_portals, Unset):
+            enable_portals = UNSET
+        else:
+            enable_portals = self.enable_portals
+
         enable_shield: bool | None | Unset
         if isinstance(self.enable_shield, Unset):
             enable_shield = UNSET
@@ -361,6 +415,14 @@ class SystemSettingSchema:
             external_share = UNSET
         else:
             external_share = self.external_share
+
+        external_share_options: dict[str, Any] | None | Unset
+        if isinstance(self.external_share_options, Unset):
+            external_share_options = UNSET
+        elif isinstance(self.external_share_options, ExternalShareOptionsTypeSchema):
+            external_share_options = self.external_share_options.to_dict()
+        else:
+            external_share_options = self.external_share_options
 
         facet_fields: list[dict[str, Any]] | None | Unset
         if isinstance(self.facet_fields, Unset):
@@ -675,8 +737,14 @@ class SystemSettingSchema:
         field_dict.update({})
         if acl_template_id is not UNSET:
             field_dict["acl_template_id"] = acl_template_id
+        if ai is not UNSET:
+            field_dict["ai"] = ai
         if allow_invites_by_link is not UNSET:
             field_dict["allow_invites_by_link"] = allow_invites_by_link
+        if allow_mobile_upload_without_required_metadata is not UNSET:
+            field_dict["allow_mobile_upload_without_required_metadata"] = (
+                allow_mobile_upload_without_required_metadata
+            )
         if allow_play_original_during_transcoding is not UNSET:
             field_dict["allow_play_original_during_transcoding"] = (
                 allow_play_original_during_transcoding
@@ -699,6 +767,8 @@ class SystemSettingSchema:
             field_dict["collections_get_parent_acls"] = collections_get_parent_acls
         if cors_hosts is not UNSET:
             field_dict["cors_hosts"] = cors_hosts
+        if cuttingroom_url is not UNSET:
+            field_dict["cuttingroom_url"] = cuttingroom_url
         if date_format is not UNSET:
             field_dict["date_format"] = date_format
         if datetime_format is not UNSET:
@@ -719,18 +789,24 @@ class SystemSettingSchema:
             field_dict["drm"] = drm
         if drm_enforce is not UNSET:
             field_dict["drm_enforce"] = drm_enforce
+        if enable_ai is not UNSET:
+            field_dict["enable_ai"] = enable_ai
         if enable_ai_metadata_filling is not UNSET:
             field_dict["enable_ai_metadata_filling"] = enable_ai_metadata_filling
         if enable_face_recognition is not UNSET:
             field_dict["enable_face_recognition"] = enable_face_recognition
         if enable_nltf is not UNSET:
             field_dict["enable_nltf"] = enable_nltf
+        if enable_portals is not UNSET:
+            field_dict["enable_portals"] = enable_portals
         if enable_shield is not UNSET:
             field_dict["enable_shield"] = enable_shield
         if enforce_magic_link_allowlist is not UNSET:
             field_dict["enforce_magic_link_allowlist"] = enforce_magic_link_allowlist
         if external_share is not UNSET:
             field_dict["external_share"] = external_share
+        if external_share_options is not UNSET:
+            field_dict["external_share_options"] = external_share_options
         if facet_fields is not UNSET:
             field_dict["facet_fields"] = facet_fields
         if filters_default_metadata_view_id is not UNSET:
@@ -834,9 +910,13 @@ class SystemSettingSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.ai_state_schema import AIStateSchema
         from ..models.allowed_ip_schema import AllowedIPSchema
         from ..models.default_share_options_type_schema import (
             DefaultShareOptionsTypeSchema,
+        )
+        from ..models.external_share_options_type_schema import (
+            ExternalShareOptionsTypeSchema,
         )
         from ..models.facet_field_schema import FacetFieldSchema
         from ..models.jobs_dashboard_schema import JobsDashboardSchema
@@ -863,6 +943,23 @@ class SystemSettingSchema:
 
         acl_template_id = _parse_acl_template_id(d.pop("acl_template_id", UNSET))
 
+        def _parse_ai(data: object) -> AIStateSchema | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                ai_type_1 = AIStateSchema.from_dict(data)
+
+                return ai_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(AIStateSchema | None | Unset, data)
+
+        ai = _parse_ai(d.pop("ai", UNSET))
+
         def _parse_allow_invites_by_link(data: object) -> bool | None | Unset:
             if data is None:
                 return data
@@ -872,6 +969,21 @@ class SystemSettingSchema:
 
         allow_invites_by_link = _parse_allow_invites_by_link(
             d.pop("allow_invites_by_link", UNSET)
+        )
+
+        def _parse_allow_mobile_upload_without_required_metadata(
+            data: object,
+        ) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        allow_mobile_upload_without_required_metadata = (
+            _parse_allow_mobile_upload_without_required_metadata(
+                d.pop("allow_mobile_upload_without_required_metadata", UNSET)
+            )
         )
 
         def _parse_allow_play_original_during_transcoding(
@@ -990,6 +1102,15 @@ class SystemSettingSchema:
             return cast(list[str] | None | Unset, data)
 
         cors_hosts = _parse_cors_hosts(d.pop("cors_hosts", UNSET))
+
+        def _parse_cuttingroom_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        cuttingroom_url = _parse_cuttingroom_url(d.pop("cuttingroom_url", UNSET))
 
         def _parse_date_format(data: object) -> None | str | Unset:
             if data is None:
@@ -1121,6 +1242,15 @@ class SystemSettingSchema:
 
         drm_enforce = _parse_drm_enforce(d.pop("drm_enforce", UNSET))
 
+        def _parse_enable_ai(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        enable_ai = _parse_enable_ai(d.pop("enable_ai", UNSET))
+
         def _parse_enable_ai_metadata_filling(data: object) -> bool | None | Unset:
             if data is None:
                 return data
@@ -1152,6 +1282,15 @@ class SystemSettingSchema:
 
         enable_nltf = _parse_enable_nltf(d.pop("enable_nltf", UNSET))
 
+        def _parse_enable_portals(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        enable_portals = _parse_enable_portals(d.pop("enable_portals", UNSET))
+
         def _parse_enable_shield(data: object) -> bool | None | Unset:
             if data is None:
                 return data
@@ -1180,6 +1319,29 @@ class SystemSettingSchema:
             return cast(bool | None | Unset, data)
 
         external_share = _parse_external_share(d.pop("external_share", UNSET))
+
+        def _parse_external_share_options(
+            data: object,
+        ) -> ExternalShareOptionsTypeSchema | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                external_share_options_type_1 = (
+                    ExternalShareOptionsTypeSchema.from_dict(data)
+                )
+
+                return external_share_options_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(ExternalShareOptionsTypeSchema | None | Unset, data)
+
+        external_share_options = _parse_external_share_options(
+            d.pop("external_share_options", UNSET)
+        )
 
         def _parse_facet_fields(data: object) -> list[FacetFieldSchema] | None | Unset:
             if data is None:
@@ -1778,7 +1940,9 @@ class SystemSettingSchema:
 
         system_setting_schema = cls(
             acl_template_id=acl_template_id,
+            ai=ai,
             allow_invites_by_link=allow_invites_by_link,
+            allow_mobile_upload_without_required_metadata=allow_mobile_upload_without_required_metadata,
             allow_play_original_during_transcoding=allow_play_original_during_transcoding,
             allow_share_magic_link_creation=allow_share_magic_link_creation,
             allowed_ips=allowed_ips,
@@ -1787,6 +1951,7 @@ class SystemSettingSchema:
             client_ip=client_ip,
             collections_get_parent_acls=collections_get_parent_acls,
             cors_hosts=cors_hosts,
+            cuttingroom_url=cuttingroom_url,
             date_format=date_format,
             datetime_format=datetime_format,
             default_app_token_ttl=default_app_token_ttl,
@@ -1797,12 +1962,15 @@ class SystemSettingSchema:
             delete_grace_period=delete_grace_period,
             drm=drm,
             drm_enforce=drm_enforce,
+            enable_ai=enable_ai,
             enable_ai_metadata_filling=enable_ai_metadata_filling,
             enable_face_recognition=enable_face_recognition,
             enable_nltf=enable_nltf,
+            enable_portals=enable_portals,
             enable_shield=enable_shield,
             enforce_magic_link_allowlist=enforce_magic_link_allowlist,
             external_share=external_share,
+            external_share_options=external_share_options,
             facet_fields=facet_fields,
             filters_default_metadata_view_id=filters_default_metadata_view_id,
             hide_favourites=hide_favourites,

@@ -38,6 +38,7 @@ from .bulk_saved_search_objects_transfer_schema import (
     BulkSavedSearchObjectsTransferSchema,
 )
 from .bulk_saved_search_reindex_schema import BulkSavedSearchReindexSchema
+from .connection_test_schema import ConnectionTestSchema
 from .criteria_filter import CriteriaFilter
 from .criteria_filter_schema import CriteriaFilterSchema
 from .criteria_range_filter import CriteriaRangeFilter
@@ -71,8 +72,15 @@ from .discovery_entity_schema import DiscoveryEntitySchema
 from .discovery_entity_schema_metadata_type_0 import DiscoveryEntitySchemaMetadataType0
 from .discovery_entity_schema_object_type import DiscoveryEntitySchemaObjectType
 from .discovery_view_settings_schema import DiscoveryViewSettingsSchema
+from .error_response import ErrorResponse
+from .error_response_errors_type_1 import ErrorResponseErrorsType1
+from .evidence import Evidence
+from .evidence_kind import EvidenceKind
 from .facet_filter import FacetFilter
 from .facet_filter_schema import FacetFilterSchema
+from .filter_disposition import FilterDisposition
+from .filter_modifier import FilterModifier
+from .filter_role import FilterRole
 from .get_discovery_default_entities_admin_response_default import (
     GetDiscoveryDefaultEntitiesAdminResponseDefault,
 )
@@ -82,7 +90,6 @@ from .get_discovery_default_entities_by_entity_id_response_default import (
 from .get_discovery_default_entities_response_default import (
     GetDiscoveryDefaultEntitiesResponseDefault,
 )
-from .get_ping_response_ping_v2_ping_get import GetPingResponsePingV2PingGet
 from .get_search_history_by_search_history_id_response_default import (
     GetSearchHistoryBySearchHistoryIdResponseDefault,
 )
@@ -106,16 +113,41 @@ from .get_search_saved_response_default import GetSearchSavedResponseDefault
 from .get_views_by_view_id_response_default import GetViewsByViewIdResponseDefault
 from .get_views_response_default import GetViewsResponseDefault
 from .http_validation_error import HTTPValidationError
+from .keyword_predicate import KeywordPredicate
+from .keyword_predicate_op import KeywordPredicateOp
+from .kind_descriptor_schema import KindDescriptorSchema
+from .kind_descriptor_schema_options_schema import KindDescriptorSchemaOptionsSchema
+from .kinds_list_schema import KindsListSchema
 from .list_objects_schema import ListObjectsSchema
+from .match_assessment import MatchAssessment
+from .match_assessment_basis import MatchAssessmentBasis
+from .match_assessment_quality import MatchAssessmentQuality
+from .modality import Modality
+from .multi_select_filter_group import MultiSelectFilterGroup
 from .multi_select_filter_group_schema import MultiSelectFilterGroupSchema
 from .multi_select_filter_group_schema_modifier import (
     MultiSelectFilterGroupSchemaModifier,
 )
+from .natural_search_document import NaturalSearchDocument
+from .natural_search_document_metadata_type_0 import NaturalSearchDocumentMetadataType0
+from .natural_search_image import NaturalSearchImage
+from .natural_search_image_similarity import NaturalSearchImageSimilarity
+from .natural_search_moment import NaturalSearchMoment
+from .natural_search_replay import NaturalSearchReplay
+from .natural_search_replay_order import NaturalSearchReplayOrder
+from .natural_search_replay_ranking_unit import NaturalSearchReplayRankingUnit
+from .natural_search_request import NaturalSearchRequest
+from .natural_search_request_result_unit import NaturalSearchRequestResultUnit
+from .natural_search_response import NaturalSearchResponse
+from .natural_search_response_assets_type_0 import NaturalSearchResponseAssetsType0
+from .natural_search_response_facets_type_0 import NaturalSearchResponseFacetsType0
+from .natural_search_response_match_quality import NaturalSearchResponseMatchQuality
+from .natural_search_segment import NaturalSearchSegment
 from .nltf_context import NltfContext
 from .nltf_context_schema import NltfContextSchema
 from .nltf_displayed_filters import NltfDisplayedFilters
-from .nltf_displayed_filters_facets import NltfDisplayedFiltersFacets
-from .nltf_displayed_filters_filters import NltfDisplayedFiltersFilters
+from .nltf_displayed_filters_facets_type_0 import NltfDisplayedFiltersFacetsType0
+from .nltf_displayed_filters_filters_type_0 import NltfDisplayedFiltersFiltersType0
 from .nltf_displayed_filters_schema import NltfDisplayedFiltersSchema
 from .nltf_displayed_filters_schema_facets_type_0 import (
     NltfDisplayedFiltersSchemaFacetsType0,
@@ -123,9 +155,11 @@ from .nltf_displayed_filters_schema_facets_type_0 import (
 from .nltf_displayed_filters_schema_filters_type_0 import (
     NltfDisplayedFiltersSchemaFiltersType0,
 )
+from .nltf_parse_metadata import NltfParseMetadata
 from .nltf_parse_metadata_schema import NltfParseMetadataSchema
 from .nltf_parse_request import NltfParseRequest
 from .nltf_parse_request_schema import NltfParseRequestSchema
+from .nltf_parse_response import NltfParseResponse
 from .nltf_parse_response_schema import NltfParseResponseSchema
 from .nltf_parse_result import NltfParseResult
 from .nltf_parse_result_facets_filters_type_0 import NltfParseResultFacetsFiltersType0
@@ -147,6 +181,7 @@ from .nltf_parse_result_schema_filter_type_0 import NltfParseResultSchemaFilterT
 from .nltf_parse_result_schema_query_mapping_type_0 import (
     NltfParseResultSchemaQueryMappingType0,
 )
+from .pagination_refusal import PaginationRefusal
 from .patch_discovery_default_entities_by_entity_id_response_default import (
     PatchDiscoveryDefaultEntitiesByEntityIdResponseDefault,
 )
@@ -159,11 +194,18 @@ from .patch_search_saved_by_search_id_response_default import (
 from .patch_search_saved_group_by_group_id_response_default import (
     PatchSearchSavedGroupByGroupIdResponseDefault,
 )
+from .ping_response import PingResponse
 from .post_discovery_default_entities_response_default import (
     PostDiscoveryDefaultEntitiesResponseDefault,
 )
 from .post_favorites_response_default import PostFavoritesResponseDefault
 from .post_nltf_parse_response_default import PostNltfParseResponseDefault
+from .post_search_content_info_response_default import (
+    PostSearchContentInfoResponseDefault,
+)
+from .post_search_convert_to_collection_response_default import (
+    PostSearchConvertToCollectionResponseDefault,
+)
 from .post_search_response_default import PostSearchResponseDefault
 from .post_search_saved_by_search_id_convert_to_collection_response_default import (
     PostSearchSavedBySearchIdConvertToCollectionResponseDefault,
@@ -192,6 +234,14 @@ from .post_search_saved_groups_by_group_id_reindex_response_default import (
 from .post_search_saved_response_default import PostSearchSavedResponseDefault
 from .post_search_suggest_response_default import PostSearchSuggestResponseDefault
 from .post_views_response_default import PostViewsResponseDefault
+from .public_lexical_predicate_input import PublicLexicalPredicateInput
+from .public_lexical_predicate_input_operator import PublicLexicalPredicateInputOperator
+from .public_lexical_predicate_output import PublicLexicalPredicateOutput
+from .public_lexical_predicate_output_operator import (
+    PublicLexicalPredicateOutputOperator,
+)
+from .public_semantic_predicate_input import PublicSemanticPredicateInput
+from .public_semantic_predicate_output import PublicSemanticPredicateOutput
 from .put_discovery_default_entities_by_entity_id_response_default import (
     PutDiscoveryDefaultEntitiesByEntityIdResponseDefault,
 )
@@ -206,8 +256,24 @@ from .put_search_saved_group_by_group_id_response_default import (
     PutSearchSavedGroupByGroupIdResponseDefault,
 )
 from .put_views_by_view_id_response_default import PutViewsByViewIdResponseDefault
+from .range_bound import RangeBound
+from .ranking_unit import RankingUnit
 from .reindex_saved_search_group_schema import ReindexSavedSearchGroupSchema
 from .reindex_saved_search_schema import ReindexSavedSearchSchema
+from .response_filter_input import ResponseFilterInput
+from .response_filter_input_value_labels_type_0 import (
+    ResponseFilterInputValueLabelsType0,
+)
+from .response_filter_output import ResponseFilterOutput
+from .response_filter_output_value_labels_type_0 import (
+    ResponseFilterOutputValueLabelsType0,
+)
+from .response_filters import ResponseFilters
+from .response_interpretation import ResponseInterpretation
+from .response_pagination import ResponsePagination
+from .response_scoring import ResponseScoring
+from .response_source import ResponseSource
+from .result_order import ResultOrder
 from .saved_search import SavedSearch
 from .saved_search_convert_collection_schema import SavedSearchConvertCollectionSchema
 from .saved_search_copy_from_template_schema import SavedSearchCopyFromTemplateSchema
@@ -229,6 +295,22 @@ from .saved_search_results_schema_facets_type_0 import (
 from .saved_search_schema import SavedSearchSchema
 from .saved_searches_schema import SavedSearchesSchema
 from .saved_searches_schema_facets_type_0 import SavedSearchesSchemaFacetsType0
+from .scoring_method import ScoringMethod
+from .scoring_method_params_type_0 import ScoringMethodParamsType0
+from .scoring_stage import ScoringStage
+from .search_backend_create_schema import SearchBackendCreateSchema
+from .search_backend_create_schema_options_type_0 import (
+    SearchBackendCreateSchemaOptionsType0,
+)
+from .search_backend_read_schema import SearchBackendReadSchema
+from .search_backend_read_schema_options_type_0 import (
+    SearchBackendReadSchemaOptionsType0,
+)
+from .search_backend_update_schema import SearchBackendUpdateSchema
+from .search_backend_update_schema_options_type_0 import (
+    SearchBackendUpdateSchemaOptionsType0,
+)
+from .search_backends_list_schema import SearchBackendsListSchema
 from .search_content_info_internal_schema import SearchContentInfoInternalSchema
 from .search_content_info_internal_schema_media_formats_type_0_item import (
     SearchContentInfoInternalSchemaMediaFormatsType0Item,
@@ -237,6 +319,10 @@ from .search_content_info_internal_schema_media_types_type_0_item import (
     SearchContentInfoInternalSchemaMediaTypesType0Item,
 )
 from .search_content_info_schema import SearchContentInfoSchema
+from .search_convert_collection_schema import SearchConvertCollectionSchema
+from .search_convert_collection_schema_doc_types_type_0_item import (
+    SearchConvertCollectionSchemaDocTypesType0Item,
+)
 from .search_criteria import SearchCriteria
 from .search_criteria_base_schema import SearchCriteriaBaseSchema
 from .search_criteria_base_schema_doc_types_type_0_item import (
@@ -264,6 +350,11 @@ from .search_document_input_schema_fields_item import (
 from .search_document_metadata_type_0 import SearchDocumentMetadataType0
 from .search_document_schema import SearchDocumentSchema
 from .search_document_schema_metadata_type_0 import SearchDocumentSchemaMetadataType0
+from .search_documents_response import SearchDocumentsResponse
+from .search_documents_response_facets_type_0 import SearchDocumentsResponseFacetsType0
+from .search_documents_response_search_criteria_document_type_0 import (
+    SearchDocumentsResponseSearchCriteriaDocumentType0,
+)
 from .search_documents_schema import SearchDocumentsSchema
 from .search_documents_schema_facets_type_0 import SearchDocumentsSchemaFacetsType0
 from .search_history import SearchHistory
@@ -277,11 +368,13 @@ from .search_query_params_schema_types_type_0_item import (
 )
 from .search_range_filter import SearchRangeFilter
 from .search_suggest_request import SearchSuggestRequest
+from .search_suggest_response_item import SearchSuggestResponseItem
 from .search_suggest_response_schema import SearchSuggestResponseSchema
 from .search_suggest_schema import SearchSuggestSchema
 from .search_suggest_schema_doc_types_type_0_item import (
     SearchSuggestSchemaDocTypesType0Item,
 )
+from .search_suggests_response import SearchSuggestsResponse
 from .search_suggests_response_schema import SearchSuggestsResponseSchema
 from .search_term import SearchTerm
 from .search_view_field_type_schema import SearchViewFieldTypeSchema
@@ -291,8 +384,10 @@ from .search_view_schema import SearchViewSchema
 from .search_views_id_schema import SearchViewsIDSchema
 from .search_views_schema import SearchViewsSchema
 from .sort_field import SortField
+from .source_state import SourceState
 from .storage_content_info import StorageContentInfo
 from .storage_content_info_schema import StorageContentInfoSchema
+from .tier import Tier
 from .validation_error import ValidationError
 
 __all__ = (
@@ -314,6 +409,7 @@ __all__ = (
     "BulkSavedSearchObjectsTranscribeSchema",
     "BulkSavedSearchObjectsTransferSchema",
     "BulkSavedSearchReindexSchema",
+    "ConnectionTestSchema",
     "CriteriaFilter",
     "CriteriaFilterSchema",
     "CriteriaRangeFilter",
@@ -337,12 +433,18 @@ __all__ = (
     "DiscoveryEntitySchemaMetadataType0",
     "DiscoveryEntitySchemaObjectType",
     "DiscoveryViewSettingsSchema",
+    "ErrorResponse",
+    "ErrorResponseErrorsType1",
+    "Evidence",
+    "EvidenceKind",
     "FacetFilter",
     "FacetFilterSchema",
+    "FilterDisposition",
+    "FilterModifier",
+    "FilterRole",
     "GetDiscoveryDefaultEntitiesAdminResponseDefault",
     "GetDiscoveryDefaultEntitiesByEntityIdResponseDefault",
     "GetDiscoveryDefaultEntitiesResponseDefault",
-    "GetPingResponsePingV2PingGet",
     "GetSearchHistoryBySearchHistoryIdResponseDefault",
     "GetSearchHistoryResponseDefault",
     "GetSearchSavedBySearchIdContentInfoResponseDefault",
@@ -354,20 +456,47 @@ __all__ = (
     "GetViewsByViewIdResponseDefault",
     "GetViewsResponseDefault",
     "HTTPValidationError",
+    "KeywordPredicate",
+    "KeywordPredicateOp",
+    "KindDescriptorSchema",
+    "KindDescriptorSchemaOptionsSchema",
+    "KindsListSchema",
     "ListObjectsSchema",
+    "MatchAssessment",
+    "MatchAssessmentBasis",
+    "MatchAssessmentQuality",
+    "Modality",
+    "MultiSelectFilterGroup",
     "MultiSelectFilterGroupSchema",
     "MultiSelectFilterGroupSchemaModifier",
+    "NaturalSearchDocument",
+    "NaturalSearchDocumentMetadataType0",
+    "NaturalSearchImage",
+    "NaturalSearchImageSimilarity",
+    "NaturalSearchMoment",
+    "NaturalSearchReplay",
+    "NaturalSearchReplayOrder",
+    "NaturalSearchReplayRankingUnit",
+    "NaturalSearchRequest",
+    "NaturalSearchRequestResultUnit",
+    "NaturalSearchResponse",
+    "NaturalSearchResponseAssetsType0",
+    "NaturalSearchResponseFacetsType0",
+    "NaturalSearchResponseMatchQuality",
+    "NaturalSearchSegment",
     "NltfContext",
     "NltfContextSchema",
     "NltfDisplayedFilters",
-    "NltfDisplayedFiltersFacets",
-    "NltfDisplayedFiltersFilters",
+    "NltfDisplayedFiltersFacetsType0",
+    "NltfDisplayedFiltersFiltersType0",
     "NltfDisplayedFiltersSchema",
     "NltfDisplayedFiltersSchemaFacetsType0",
     "NltfDisplayedFiltersSchemaFiltersType0",
+    "NltfParseMetadata",
     "NltfParseMetadataSchema",
     "NltfParseRequest",
     "NltfParseRequestSchema",
+    "NltfParseResponse",
     "NltfParseResponseSchema",
     "NltfParseResult",
     "NltfParseResultFacetsFiltersType0",
@@ -381,13 +510,17 @@ __all__ = (
     "NltfParseResultSchemaFilterOptionsType0",
     "NltfParseResultSchemaFilterType0",
     "NltfParseResultSchemaQueryMappingType0",
+    "PaginationRefusal",
     "PatchDiscoveryDefaultEntitiesByEntityIdResponseDefault",
     "PatchDiscoveryEntitiesByObjectTypeByObjectIdResponseDefault",
     "PatchSearchSavedBySearchIdResponseDefault",
     "PatchSearchSavedGroupByGroupIdResponseDefault",
+    "PingResponse",
     "PostDiscoveryDefaultEntitiesResponseDefault",
     "PostFavoritesResponseDefault",
     "PostNltfParseResponseDefault",
+    "PostSearchContentInfoResponseDefault",
+    "PostSearchConvertToCollectionResponseDefault",
     "PostSearchResponseDefault",
     "PostSearchSavedBySearchIdConvertToCollectionResponseDefault",
     "PostSearchSavedBySearchIdReindexResponse201",
@@ -400,14 +533,32 @@ __all__ = (
     "PostSearchSavedResponseDefault",
     "PostSearchSuggestResponseDefault",
     "PostViewsResponseDefault",
+    "PublicLexicalPredicateInput",
+    "PublicLexicalPredicateInputOperator",
+    "PublicLexicalPredicateOutput",
+    "PublicLexicalPredicateOutputOperator",
+    "PublicSemanticPredicateInput",
+    "PublicSemanticPredicateOutput",
     "PutDiscoveryDefaultEntitiesByEntityIdResponseDefault",
     "PutDiscoveryDefaultResponseDefault",
     "PutDiscoveryEntitiesByObjectTypeByObjectIdResponseDefault",
     "PutSearchSavedBySearchIdResponseDefault",
     "PutSearchSavedGroupByGroupIdResponseDefault",
     "PutViewsByViewIdResponseDefault",
+    "RangeBound",
+    "RankingUnit",
     "ReindexSavedSearchGroupSchema",
     "ReindexSavedSearchSchema",
+    "ResponseFilterInput",
+    "ResponseFilterInputValueLabelsType0",
+    "ResponseFilterOutput",
+    "ResponseFilterOutputValueLabelsType0",
+    "ResponseFilters",
+    "ResponseInterpretation",
+    "ResponsePagination",
+    "ResponseScoring",
+    "ResponseSource",
+    "ResultOrder",
     "SavedSearch",
     "SavedSearchConvertCollectionSchema",
     "SavedSearchCopyFromTemplateSchema",
@@ -423,10 +574,22 @@ __all__ = (
     "SavedSearchResultsSchema",
     "SavedSearchResultsSchemaFacetsType0",
     "SavedSearchSchema",
+    "ScoringMethod",
+    "ScoringMethodParamsType0",
+    "ScoringStage",
+    "SearchBackendCreateSchema",
+    "SearchBackendCreateSchemaOptionsType0",
+    "SearchBackendReadSchema",
+    "SearchBackendReadSchemaOptionsType0",
+    "SearchBackendsListSchema",
+    "SearchBackendUpdateSchema",
+    "SearchBackendUpdateSchemaOptionsType0",
     "SearchContentInfoInternalSchema",
     "SearchContentInfoInternalSchemaMediaFormatsType0Item",
     "SearchContentInfoInternalSchemaMediaTypesType0Item",
     "SearchContentInfoSchema",
+    "SearchConvertCollectionSchema",
+    "SearchConvertCollectionSchemaDocTypesType0Item",
     "SearchCriteria",
     "SearchCriteriaBaseSchema",
     "SearchCriteriaBaseSchemaDocTypesType0Item",
@@ -444,6 +607,9 @@ __all__ = (
     "SearchDocumentMetadataType0",
     "SearchDocumentSchema",
     "SearchDocumentSchemaMetadataType0",
+    "SearchDocumentsResponse",
+    "SearchDocumentsResponseFacetsType0",
+    "SearchDocumentsResponseSearchCriteriaDocumentType0",
     "SearchDocumentsSchema",
     "SearchDocumentsSchemaFacetsType0",
     "SearchHistory",
@@ -455,9 +621,11 @@ __all__ = (
     "SearchQueryParamsSchemaTypesType0Item",
     "SearchRangeFilter",
     "SearchSuggestRequest",
+    "SearchSuggestResponseItem",
     "SearchSuggestResponseSchema",
     "SearchSuggestSchema",
     "SearchSuggestSchemaDocTypesType0Item",
+    "SearchSuggestsResponse",
     "SearchSuggestsResponseSchema",
     "SearchTerm",
     "SearchViewFieldTypeSchema",
@@ -467,7 +635,9 @@ __all__ = (
     "SearchViewsIDSchema",
     "SearchViewsSchema",
     "SortField",
+    "SourceState",
     "StorageContentInfo",
     "StorageContentInfoSchema",
+    "Tier",
     "ValidationError",
 )

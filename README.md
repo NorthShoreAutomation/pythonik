@@ -4,7 +4,7 @@ A complete, generated Python SDK for the [iconik](https://app.iconik.io) media m
 
 - **15 services**, one subpackage each: `pythonik.acls`, `pythonik.assets`, `pythonik.auth`, `pythonik.automations`, `pythonik.files`, `pythonik.jobs`, `pythonik.metadata`, `pythonik.ml`, `pythonik.notifications`, `pythonik.search`, `pythonik.settings`, `pythonik.stats`, `pythonik.transcode`, `pythonik.users`, `pythonik.usersnotifications`
 - **Every operation in every service** — generated from iconik's published OpenAPI specs with [openapi-python-client](https://github.com/openapi-generators/openapi-python-client). Fully typed (attrs models, `py.typed`), sync and async for every endpoint (httpx).
-- **2.0 is a rewrite with a 1.x compatibility layer**: 1.x was hand-written and covered a subset of the API; 2.0 is generated and covers the complete API surface (953 endpoints). The full 1.x interface (`pythonik.client.PythonikClient`, `pythonik.specs.*`, `pythonik.models.*`) still ships and works unchanged — see [COMPAT.md](COMPAT.md) for the short list of deviations.
+- **2.0 is a rewrite with a 1.x compatibility layer**: 1.x was hand-written and covered a subset of the API; 2.0 is generated and covers the complete API surface (1002 endpoints). The full 1.x interface (`pythonik.client.PythonikClient`, `pythonik.specs.*`, `pythonik.models.*`) still ships and works unchanged — see [COMPAT.md](COMPAT.md) for the short list of deviations.
 
 ## Install
 
@@ -44,7 +44,7 @@ All subpackages share one client implementation (`pythonik._base`) — a `Client
 
 ## Friendly client
 
-`pythonik.friendly.Iconik` gives every operation a human name — the same 962 names the iconik CLI uses — with one client for all 15 services:
+`pythonik.friendly.Iconik` gives every operation a human name — the same 1011 names the iconik CLI uses — with one client for all 15 services:
 
 ```python
 from pythonik.friendly import Iconik
@@ -62,7 +62,7 @@ Requests time out after 60s by default; override with `Iconik(app_id, auth_token
 ik = Iconik(app_id, auth_token, base_url="https://iconik.example.com/API")
 ```
 
-The 33 operations iconik's specs mark unauthenticated — the login and SAML flows — send **no** auth headers, matching the spec; the one operation that declares only `App-ID` sends only that. `close()` (or using `Iconik` as a context manager) closes every client it built; calling a method afterwards raises `RuntimeError`.
+The 30 operations iconik's specs mark unauthenticated — the login and SAML flows — send **no** auth headers, matching the spec; the one operation that declares only `App-ID` sends only that. `close()` (or using `Iconik` as a context manager) closes every client it built; calling a method afterwards raises `RuntimeError`.
 
 One known gap: `post_auth_saml_idp` is unusable. Its spec declares two request content types (JSON and XML) and the generator collapses them into a union that can't be satisfied — it needs a spec fix, not an SDK workaround.
 

@@ -15,9 +15,14 @@ from ..types import UNSET, Unset
 if TYPE_CHECKING:
     from ..models.drawing_schema import DrawingSchema
     from ..models.face_bounding_box_schema import FaceBoundingBoxSchema
+    from ..models.segment_elastic_schema_attachments_type_0_item import (
+        SegmentElasticSchemaAttachmentsType0Item,
+    )
     from ..models.segment_elastic_schema_metadata_type_0 import (
         SegmentElasticSchemaMetadataType0,
     )
+    from ..models.semantic_transcription import SemanticTranscription
+    from ..models.shot import Shot
     from ..models.transcription_type import TranscriptionType
     from ..models.user import User
 
@@ -31,11 +36,13 @@ class SegmentElasticSchema:
     Attributes:
         segment_type (SegmentElasticSchemaSegmentType):
         asset_id (None | Unset | UUID):
+        attachments (list[SegmentElasticSchemaAttachmentsType0Item] | None | Unset):
         date_created (datetime.datetime | None | Unset):
         date_modified (datetime.datetime | None | Unset):
         drawing (DrawingSchema | None | Unset):
         external_id (None | str | Unset):
         face_bounding_boxes (list[FaceBoundingBoxSchema] | None | Unset):
+        has_attachments (bool | None | Unset):
         has_drawing (bool | None | Unset):
         id (None | Unset | UUID):
         is_internal (bool | None | Unset): If set to true, the segment is only visible to internal iconik users
@@ -50,8 +57,11 @@ class SegmentElasticSchema:
         segment_color (None | str | Unset):
         segment_text (None | str | Unset):
         segment_track (None | str | Unset):
+        semantic_transcription (None | SemanticTranscription | Unset):
         share_id (None | Unset | UUID): ID of a share if the segment is created from a share
+        share_session_id (None | Unset | UUID):
         share_user_email (None | str | Unset):
+        shot (None | Shot | Unset):
         status (None | SegmentElasticSchemaStatus | Unset):
         subclip_id (None | Unset | UUID):
         time_end_milliseconds (int | None | Unset):
@@ -69,11 +79,13 @@ class SegmentElasticSchema:
 
     segment_type: SegmentElasticSchemaSegmentType
     asset_id: None | Unset | UUID = UNSET
+    attachments: list[SegmentElasticSchemaAttachmentsType0Item] | None | Unset = UNSET
     date_created: datetime.datetime | None | Unset = UNSET
     date_modified: datetime.datetime | None | Unset = UNSET
     drawing: DrawingSchema | None | Unset = UNSET
     external_id: None | str | Unset = UNSET
     face_bounding_boxes: list[FaceBoundingBoxSchema] | None | Unset = UNSET
+    has_attachments: bool | None | Unset = UNSET
     has_drawing: bool | None | Unset = UNSET
     id: None | Unset | UUID = UNSET
     is_internal: bool | None | Unset = UNSET
@@ -88,8 +100,11 @@ class SegmentElasticSchema:
     segment_color: None | str | Unset = UNSET
     segment_text: None | str | Unset = UNSET
     segment_track: None | str | Unset = UNSET
+    semantic_transcription: None | SemanticTranscription | Unset = UNSET
     share_id: None | Unset | UUID = UNSET
+    share_session_id: None | Unset | UUID = UNSET
     share_user_email: None | str | Unset = UNSET
+    shot: None | Shot | Unset = UNSET
     status: None | SegmentElasticSchemaStatus | Unset = UNSET
     subclip_id: None | Unset | UUID = UNSET
     time_end_milliseconds: int | None | Unset = UNSET
@@ -110,6 +125,8 @@ class SegmentElasticSchema:
         from ..models.segment_elastic_schema_metadata_type_0 import (
             SegmentElasticSchemaMetadataType0,
         )
+        from ..models.semantic_transcription import SemanticTranscription
+        from ..models.shot import Shot
         from ..models.transcription_type import TranscriptionType
         from ..models.user import User
 
@@ -122,6 +139,18 @@ class SegmentElasticSchema:
             asset_id = str(self.asset_id)
         else:
             asset_id = self.asset_id
+
+        attachments: list[dict[str, Any]] | None | Unset
+        if isinstance(self.attachments, Unset):
+            attachments = UNSET
+        elif isinstance(self.attachments, list):
+            attachments = []
+            for attachments_type_0_item_data in self.attachments:
+                attachments_type_0_item = attachments_type_0_item_data.to_dict()
+                attachments.append(attachments_type_0_item)
+
+        else:
+            attachments = self.attachments
 
         date_created: None | str | Unset
         if isinstance(self.date_created, Unset):
@@ -166,6 +195,12 @@ class SegmentElasticSchema:
 
         else:
             face_bounding_boxes = self.face_bounding_boxes
+
+        has_attachments: bool | None | Unset
+        if isinstance(self.has_attachments, Unset):
+            has_attachments = UNSET
+        else:
+            has_attachments = self.has_attachments
 
         has_drawing: bool | None | Unset
         if isinstance(self.has_drawing, Unset):
@@ -265,6 +300,14 @@ class SegmentElasticSchema:
         else:
             segment_track = self.segment_track
 
+        semantic_transcription: dict[str, Any] | None | Unset
+        if isinstance(self.semantic_transcription, Unset):
+            semantic_transcription = UNSET
+        elif isinstance(self.semantic_transcription, SemanticTranscription):
+            semantic_transcription = self.semantic_transcription.to_dict()
+        else:
+            semantic_transcription = self.semantic_transcription
+
         share_id: None | str | Unset
         if isinstance(self.share_id, Unset):
             share_id = UNSET
@@ -273,11 +316,27 @@ class SegmentElasticSchema:
         else:
             share_id = self.share_id
 
+        share_session_id: None | str | Unset
+        if isinstance(self.share_session_id, Unset):
+            share_session_id = UNSET
+        elif isinstance(self.share_session_id, UUID):
+            share_session_id = str(self.share_session_id)
+        else:
+            share_session_id = self.share_session_id
+
         share_user_email: None | str | Unset
         if isinstance(self.share_user_email, Unset):
             share_user_email = UNSET
         else:
             share_user_email = self.share_user_email
+
+        shot: dict[str, Any] | None | Unset
+        if isinstance(self.shot, Unset):
+            shot = UNSET
+        elif isinstance(self.shot, Shot):
+            shot = self.shot.to_dict()
+        else:
+            shot = self.shot
 
         status: None | str | Unset
         if isinstance(self.status, Unset):
@@ -380,6 +439,8 @@ class SegmentElasticSchema:
         )
         if asset_id is not UNSET:
             field_dict["asset_id"] = asset_id
+        if attachments is not UNSET:
+            field_dict["attachments"] = attachments
         if date_created is not UNSET:
             field_dict["date_created"] = date_created
         if date_modified is not UNSET:
@@ -390,6 +451,8 @@ class SegmentElasticSchema:
             field_dict["external_id"] = external_id
         if face_bounding_boxes is not UNSET:
             field_dict["face_bounding_boxes"] = face_bounding_boxes
+        if has_attachments is not UNSET:
+            field_dict["has_attachments"] = has_attachments
         if has_drawing is not UNSET:
             field_dict["has_drawing"] = has_drawing
         if id is not UNSET:
@@ -418,10 +481,16 @@ class SegmentElasticSchema:
             field_dict["segment_text"] = segment_text
         if segment_track is not UNSET:
             field_dict["segment_track"] = segment_track
+        if semantic_transcription is not UNSET:
+            field_dict["semantic_transcription"] = semantic_transcription
         if share_id is not UNSET:
             field_dict["share_id"] = share_id
+        if share_session_id is not UNSET:
+            field_dict["share_session_id"] = share_session_id
         if share_user_email is not UNSET:
             field_dict["share_user_email"] = share_user_email
+        if shot is not UNSET:
+            field_dict["shot"] = shot
         if status is not UNSET:
             field_dict["status"] = status
         if subclip_id is not UNSET:
@@ -455,9 +524,14 @@ class SegmentElasticSchema:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.drawing_schema import DrawingSchema
         from ..models.face_bounding_box_schema import FaceBoundingBoxSchema
+        from ..models.segment_elastic_schema_attachments_type_0_item import (
+            SegmentElasticSchemaAttachmentsType0Item,
+        )
         from ..models.segment_elastic_schema_metadata_type_0 import (
             SegmentElasticSchemaMetadataType0,
         )
+        from ..models.semantic_transcription import SemanticTranscription
+        from ..models.shot import Shot
         from ..models.transcription_type import TranscriptionType
         from ..models.user import User
 
@@ -480,6 +554,36 @@ class SegmentElasticSchema:
             return cast(None | Unset | UUID, data)
 
         asset_id = _parse_asset_id(d.pop("asset_id", UNSET))
+
+        def _parse_attachments(
+            data: object,
+        ) -> list[SegmentElasticSchemaAttachmentsType0Item] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                attachments_type_0 = []
+                _attachments_type_0 = data
+                for attachments_type_0_item_data in _attachments_type_0:
+                    attachments_type_0_item = (
+                        SegmentElasticSchemaAttachmentsType0Item.from_dict(
+                            attachments_type_0_item_data
+                        )
+                    )
+
+                    attachments_type_0.append(attachments_type_0_item)
+
+                return attachments_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(
+                list[SegmentElasticSchemaAttachmentsType0Item] | None | Unset, data
+            )
+
+        attachments = _parse_attachments(d.pop("attachments", UNSET))
 
         def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -568,6 +672,15 @@ class SegmentElasticSchema:
         face_bounding_boxes = _parse_face_bounding_boxes(
             d.pop("face_bounding_boxes", UNSET)
         )
+
+        def _parse_has_attachments(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        has_attachments = _parse_has_attachments(d.pop("has_attachments", UNSET))
 
         def _parse_has_drawing(data: object) -> bool | None | Unset:
             if data is None:
@@ -753,6 +866,27 @@ class SegmentElasticSchema:
 
         segment_track = _parse_segment_track(d.pop("segment_track", UNSET))
 
+        def _parse_semantic_transcription(
+            data: object,
+        ) -> None | SemanticTranscription | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                semantic_transcription_type_1 = SemanticTranscription.from_dict(data)
+
+                return semantic_transcription_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | SemanticTranscription | Unset, data)
+
+        semantic_transcription = _parse_semantic_transcription(
+            d.pop("semantic_transcription", UNSET)
+        )
+
         def _parse_share_id(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
@@ -770,6 +904,23 @@ class SegmentElasticSchema:
 
         share_id = _parse_share_id(d.pop("share_id", UNSET))
 
+        def _parse_share_session_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                share_session_id_type_0 = UUID(data)
+
+                return share_session_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        share_session_id = _parse_share_session_id(d.pop("share_session_id", UNSET))
+
         def _parse_share_user_email(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -778,6 +929,23 @@ class SegmentElasticSchema:
             return cast(None | str | Unset, data)
 
         share_user_email = _parse_share_user_email(d.pop("share_user_email", UNSET))
+
+        def _parse_shot(data: object) -> None | Shot | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                shot_type_1 = Shot.from_dict(data)
+
+                return shot_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Shot | Unset, data)
+
+        shot = _parse_shot(d.pop("shot", UNSET))
 
         def _parse_status(data: object) -> None | SegmentElasticSchemaStatus | Unset:
             if data is None:
@@ -959,11 +1127,13 @@ class SegmentElasticSchema:
         segment_elastic_schema = cls(
             segment_type=segment_type,
             asset_id=asset_id,
+            attachments=attachments,
             date_created=date_created,
             date_modified=date_modified,
             drawing=drawing,
             external_id=external_id,
             face_bounding_boxes=face_bounding_boxes,
+            has_attachments=has_attachments,
             has_drawing=has_drawing,
             id=id,
             is_internal=is_internal,
@@ -978,8 +1148,11 @@ class SegmentElasticSchema:
             segment_color=segment_color,
             segment_text=segment_text,
             segment_track=segment_track,
+            semantic_transcription=semantic_transcription,
             share_id=share_id,
+            share_session_id=share_session_id,
             share_user_email=share_user_email,
+            shot=shot,
             status=status,
             subclip_id=subclip_id,
             time_end_milliseconds=time_end_milliseconds,

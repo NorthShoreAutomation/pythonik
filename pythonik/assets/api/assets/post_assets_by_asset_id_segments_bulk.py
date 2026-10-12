@@ -75,7 +75,15 @@ def sync_detailed(
 ) -> Response[Any | PostAssetsByAssetIdSegmentsBulkResponseDefault]:
     """Create multiple new segments for a single asset
 
-
+     <br/>On a subclip, time-based metadata segments (TAG, GENERIC, TRANSCRIPTION,
+    SHOT,<br/>SEMANTIC_TRANSCRIPTION) are created on the subclip's original asset, under the
+    version<br/>the subclip was cut from, as with a single create - and a `version_id` other than
+    that<br/>one or one of the subclip's own is rejected with 400. A batch that mixes those
+    with<br/>other segment types is rejected with 400.<br/>On a subclip, time-based metadata segments
+    (TAG, GENERIC, TRANSCRIPTION, SHOT,<br/>SEMANTIC_TRANSCRIPTION) are created on the subclip's
+    original asset, under the version<br/>the subclip was cut from, as with a single create - and a
+    `version_id` other than that<br/>one or one of the subclip's own is rejected with 400. A batch that
+    mixes those with<br/>other segment types is rejected with 400.
     Required roles:
      - can_create_segments
 
@@ -111,7 +119,15 @@ def sync(
 ) -> Any | PostAssetsByAssetIdSegmentsBulkResponseDefault | None:
     """Create multiple new segments for a single asset
 
-
+     <br/>On a subclip, time-based metadata segments (TAG, GENERIC, TRANSCRIPTION,
+    SHOT,<br/>SEMANTIC_TRANSCRIPTION) are created on the subclip's original asset, under the
+    version<br/>the subclip was cut from, as with a single create - and a `version_id` other than
+    that<br/>one or one of the subclip's own is rejected with 400. A batch that mixes those
+    with<br/>other segment types is rejected with 400.<br/>On a subclip, time-based metadata segments
+    (TAG, GENERIC, TRANSCRIPTION, SHOT,<br/>SEMANTIC_TRANSCRIPTION) are created on the subclip's
+    original asset, under the version<br/>the subclip was cut from, as with a single create - and a
+    `version_id` other than that<br/>one or one of the subclip's own is rejected with 400. A batch that
+    mixes those with<br/>other segment types is rejected with 400.
     Required roles:
      - can_create_segments
 
@@ -142,7 +158,15 @@ async def asyncio_detailed(
 ) -> Response[Any | PostAssetsByAssetIdSegmentsBulkResponseDefault]:
     """Create multiple new segments for a single asset
 
-
+     <br/>On a subclip, time-based metadata segments (TAG, GENERIC, TRANSCRIPTION,
+    SHOT,<br/>SEMANTIC_TRANSCRIPTION) are created on the subclip's original asset, under the
+    version<br/>the subclip was cut from, as with a single create - and a `version_id` other than
+    that<br/>one or one of the subclip's own is rejected with 400. A batch that mixes those
+    with<br/>other segment types is rejected with 400.<br/>On a subclip, time-based metadata segments
+    (TAG, GENERIC, TRANSCRIPTION, SHOT,<br/>SEMANTIC_TRANSCRIPTION) are created on the subclip's
+    original asset, under the version<br/>the subclip was cut from, as with a single create - and a
+    `version_id` other than that<br/>one or one of the subclip's own is rejected with 400. A batch that
+    mixes those with<br/>other segment types is rejected with 400.
     Required roles:
      - can_create_segments
 
@@ -176,7 +200,15 @@ async def asyncio(
 ) -> Any | PostAssetsByAssetIdSegmentsBulkResponseDefault | None:
     """Create multiple new segments for a single asset
 
-
+     <br/>On a subclip, time-based metadata segments (TAG, GENERIC, TRANSCRIPTION,
+    SHOT,<br/>SEMANTIC_TRANSCRIPTION) are created on the subclip's original asset, under the
+    version<br/>the subclip was cut from, as with a single create - and a `version_id` other than
+    that<br/>one or one of the subclip's own is rejected with 400. A batch that mixes those
+    with<br/>other segment types is rejected with 400.<br/>On a subclip, time-based metadata segments
+    (TAG, GENERIC, TRANSCRIPTION, SHOT,<br/>SEMANTIC_TRANSCRIPTION) are created on the subclip's
+    original asset, under the version<br/>the subclip was cut from, as with a single create - and a
+    `version_id` other than that<br/>one or one of the subclip's own is rejected with 400. A batch that
+    mixes those with<br/>other segment types is rejected with 400.
     Required roles:
      - can_create_segments
 

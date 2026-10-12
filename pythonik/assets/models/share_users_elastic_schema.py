@@ -18,12 +18,14 @@ class ShareUsersElasticSchema:
     """
     Attributes:
         access_count (int | None | Unset):
+        download_count (int | None | Unset):
         email (None | str | Unset):
         id (None | Unset | UUID):
         last_access_date (datetime.datetime | None | Unset):
     """
 
     access_count: int | None | Unset = UNSET
+    download_count: int | None | Unset = UNSET
     email: None | str | Unset = UNSET
     id: None | Unset | UUID = UNSET
     last_access_date: datetime.datetime | None | Unset = UNSET
@@ -35,6 +37,12 @@ class ShareUsersElasticSchema:
             access_count = UNSET
         else:
             access_count = self.access_count
+
+        download_count: int | None | Unset
+        if isinstance(self.download_count, Unset):
+            download_count = UNSET
+        else:
+            download_count = self.download_count
 
         email: None | str | Unset
         if isinstance(self.email, Unset):
@@ -63,6 +71,8 @@ class ShareUsersElasticSchema:
         field_dict.update({})
         if access_count is not UNSET:
             field_dict["access_count"] = access_count
+        if download_count is not UNSET:
+            field_dict["download_count"] = download_count
         if email is not UNSET:
             field_dict["email"] = email
         if id is not UNSET:
@@ -84,6 +94,15 @@ class ShareUsersElasticSchema:
             return cast(int | None | Unset, data)
 
         access_count = _parse_access_count(d.pop("access_count", UNSET))
+
+        def _parse_download_count(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        download_count = _parse_download_count(d.pop("download_count", UNSET))
 
         def _parse_email(data: object) -> None | str | Unset:
             if data is None:
@@ -130,6 +149,7 @@ class ShareUsersElasticSchema:
 
         share_users_elastic_schema = cls(
             access_count=access_count,
+            download_count=download_count,
             email=email,
             id=id,
             last_access_date=last_access_date,

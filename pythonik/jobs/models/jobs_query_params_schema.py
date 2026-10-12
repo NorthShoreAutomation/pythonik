@@ -20,6 +20,7 @@ class JobsQueryParamsSchema:
         per_page (int | None | Unset): The number of items for each page Default: 10.
         scroll (bool | None | Unset):
         scroll_id (None | Unset | UUID):
+        search_after (list[Any] | None | Unset):
         sort (None | str | Unset): A comma separated list of fieldnames with order (asc/desc)
     """
 
@@ -27,6 +28,7 @@ class JobsQueryParamsSchema:
     per_page: int | None | Unset = 10
     scroll: bool | None | Unset = UNSET
     scroll_id: None | Unset | UUID = UNSET
+    search_after: list[Any] | None | Unset = UNSET
     sort: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -57,6 +59,15 @@ class JobsQueryParamsSchema:
         else:
             scroll_id = self.scroll_id
 
+        search_after: list[Any] | None | Unset
+        if isinstance(self.search_after, Unset):
+            search_after = UNSET
+        elif isinstance(self.search_after, list):
+            search_after = self.search_after
+
+        else:
+            search_after = self.search_after
+
         sort: None | str | Unset
         if isinstance(self.sort, Unset):
             sort = UNSET
@@ -74,6 +85,8 @@ class JobsQueryParamsSchema:
             field_dict["scroll"] = scroll
         if scroll_id is not UNSET:
             field_dict["scroll_id"] = scroll_id
+        if search_after is not UNSET:
+            field_dict["search_after"] = search_after
         if sort is not UNSET:
             field_dict["sort"] = sort
 
@@ -127,6 +140,23 @@ class JobsQueryParamsSchema:
 
         scroll_id = _parse_scroll_id(d.pop("scroll_id", UNSET))
 
+        def _parse_search_after(data: object) -> list[Any] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                search_after_type_0 = cast(list[Any], data)
+
+                return search_after_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[Any] | None | Unset, data)
+
+        search_after = _parse_search_after(d.pop("search_after", UNSET))
+
         def _parse_sort(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -141,6 +171,7 @@ class JobsQueryParamsSchema:
             per_page=per_page,
             scroll=scroll,
             scroll_id=scroll_id,
+            search_after=search_after,
             sort=sort,
         )
 

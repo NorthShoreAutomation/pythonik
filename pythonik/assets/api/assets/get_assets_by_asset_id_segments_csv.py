@@ -20,6 +20,7 @@ def _get_kwargs(
     version_id: str | Unset = UNSET,
     segment_type: str | Unset = UNSET,
     segment_color: str | Unset = UNSET,
+    status: str | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -35,6 +36,8 @@ def _get_kwargs(
     params["segment_type"] = segment_type
 
     params["segment_color"] = segment_color
+
+    params["status"] = status
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
@@ -96,6 +99,7 @@ def sync_detailed(
     version_id: str | Unset = UNSET,
     segment_type: str | Unset = UNSET,
     segment_color: str | Unset = UNSET,
+    status: str | Unset = UNSET,
 ) -> Response[Any | GetAssetsByAssetIdSegmentsCsvResponseDefault | str]:
     """List of segments as CSV file
 
@@ -111,6 +115,7 @@ def sync_detailed(
         version_id (str | Unset):
         segment_type (str | Unset):
         segment_color (str | Unset):
+        status (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -128,6 +133,7 @@ def sync_detailed(
         version_id=version_id,
         segment_type=segment_type,
         segment_color=segment_color,
+        status=status,
     )
 
     response = client.get_httpx_client().request(
@@ -147,6 +153,7 @@ def sync(
     version_id: str | Unset = UNSET,
     segment_type: str | Unset = UNSET,
     segment_color: str | Unset = UNSET,
+    status: str | Unset = UNSET,
 ) -> Any | GetAssetsByAssetIdSegmentsCsvResponseDefault | str | None:
     """List of segments as CSV file
 
@@ -162,6 +169,7 @@ def sync(
         version_id (str | Unset):
         segment_type (str | Unset):
         segment_color (str | Unset):
+        status (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -180,6 +188,7 @@ def sync(
         version_id=version_id,
         segment_type=segment_type,
         segment_color=segment_color,
+        status=status,
     ).parsed
 
 
@@ -193,6 +202,7 @@ async def asyncio_detailed(
     version_id: str | Unset = UNSET,
     segment_type: str | Unset = UNSET,
     segment_color: str | Unset = UNSET,
+    status: str | Unset = UNSET,
 ) -> Response[Any | GetAssetsByAssetIdSegmentsCsvResponseDefault | str]:
     """List of segments as CSV file
 
@@ -208,6 +218,7 @@ async def asyncio_detailed(
         version_id (str | Unset):
         segment_type (str | Unset):
         segment_color (str | Unset):
+        status (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -225,6 +236,7 @@ async def asyncio_detailed(
         version_id=version_id,
         segment_type=segment_type,
         segment_color=segment_color,
+        status=status,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -242,6 +254,7 @@ async def asyncio(
     version_id: str | Unset = UNSET,
     segment_type: str | Unset = UNSET,
     segment_color: str | Unset = UNSET,
+    status: str | Unset = UNSET,
 ) -> Any | GetAssetsByAssetIdSegmentsCsvResponseDefault | str | None:
     """List of segments as CSV file
 
@@ -257,6 +270,7 @@ async def asyncio(
         version_id (str | Unset):
         segment_type (str | Unset):
         segment_color (str | Unset):
+        status (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -276,5 +290,6 @@ async def asyncio(
             version_id=version_id,
             segment_type=segment_type,
             segment_color=segment_color,
+            status=status,
         )
     ).parsed

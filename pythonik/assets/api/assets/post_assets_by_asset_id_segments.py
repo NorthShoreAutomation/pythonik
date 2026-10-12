@@ -80,7 +80,21 @@ def sync_detailed(
 ) -> Response[Any | PostAssetsByAssetIdSegmentsResponseDefault | SegmentSchema]:
     """Create a new segment
 
-
+     <br/>Comments are segments with `segment_type` set to `COMMENT`.<br/>A comment can be created
+    directly with status `AWAITED`. When `status` is not<br/>specified the segment is created with
+    status `ACTIVE`.<br/>An `AWAITED` comment is not posted yet: nobody is notified about it, and
+    segment<br/>listings leave it out unless they filter on `status`, until it is updated to
+    `ACTIVE`.<br/><br/>On a subclip, time-based metadata segments (TAG, GENERIC, TRANSCRIPTION,
+    SHOT,<br/>SEMANTIC_TRANSCRIPTION) are created on the subclip's original asset, under the<br/>version
+    the subclip was cut from. A `version_id`, if given, must be that version or<br/>one of the subclip's
+    own; any other is rejected with 400.<br/>Comments are segments with `segment_type` set to
+    `COMMENT`.<br/>A comment can be created directly with status `AWAITED`. When `status` is
+    not<br/>specified the segment is created with status `ACTIVE`.<br/>An `AWAITED` comment is not
+    posted yet: nobody is notified about it, and segment<br/>listings leave it out unless they filter on
+    `status`, until it is updated to `ACTIVE`.<br/><br/>On a subclip, time-based metadata segments (TAG,
+    GENERIC, TRANSCRIPTION, SHOT,<br/>SEMANTIC_TRANSCRIPTION) are created on the subclip's original
+    asset, under the<br/>version the subclip was cut from. A `version_id`, if given, must be that
+    version or<br/>one of the subclip's own; any other is rejected with 400.
     Required roles:
      - can_create_segments
 
@@ -119,7 +133,21 @@ def sync(
 ) -> Any | PostAssetsByAssetIdSegmentsResponseDefault | SegmentSchema | None:
     """Create a new segment
 
-
+     <br/>Comments are segments with `segment_type` set to `COMMENT`.<br/>A comment can be created
+    directly with status `AWAITED`. When `status` is not<br/>specified the segment is created with
+    status `ACTIVE`.<br/>An `AWAITED` comment is not posted yet: nobody is notified about it, and
+    segment<br/>listings leave it out unless they filter on `status`, until it is updated to
+    `ACTIVE`.<br/><br/>On a subclip, time-based metadata segments (TAG, GENERIC, TRANSCRIPTION,
+    SHOT,<br/>SEMANTIC_TRANSCRIPTION) are created on the subclip's original asset, under the<br/>version
+    the subclip was cut from. A `version_id`, if given, must be that version or<br/>one of the subclip's
+    own; any other is rejected with 400.<br/>Comments are segments with `segment_type` set to
+    `COMMENT`.<br/>A comment can be created directly with status `AWAITED`. When `status` is
+    not<br/>specified the segment is created with status `ACTIVE`.<br/>An `AWAITED` comment is not
+    posted yet: nobody is notified about it, and segment<br/>listings leave it out unless they filter on
+    `status`, until it is updated to `ACTIVE`.<br/><br/>On a subclip, time-based metadata segments (TAG,
+    GENERIC, TRANSCRIPTION, SHOT,<br/>SEMANTIC_TRANSCRIPTION) are created on the subclip's original
+    asset, under the<br/>version the subclip was cut from. A `version_id`, if given, must be that
+    version or<br/>one of the subclip's own; any other is rejected with 400.
     Required roles:
      - can_create_segments
 
@@ -153,7 +181,21 @@ async def asyncio_detailed(
 ) -> Response[Any | PostAssetsByAssetIdSegmentsResponseDefault | SegmentSchema]:
     """Create a new segment
 
-
+     <br/>Comments are segments with `segment_type` set to `COMMENT`.<br/>A comment can be created
+    directly with status `AWAITED`. When `status` is not<br/>specified the segment is created with
+    status `ACTIVE`.<br/>An `AWAITED` comment is not posted yet: nobody is notified about it, and
+    segment<br/>listings leave it out unless they filter on `status`, until it is updated to
+    `ACTIVE`.<br/><br/>On a subclip, time-based metadata segments (TAG, GENERIC, TRANSCRIPTION,
+    SHOT,<br/>SEMANTIC_TRANSCRIPTION) are created on the subclip's original asset, under the<br/>version
+    the subclip was cut from. A `version_id`, if given, must be that version or<br/>one of the subclip's
+    own; any other is rejected with 400.<br/>Comments are segments with `segment_type` set to
+    `COMMENT`.<br/>A comment can be created directly with status `AWAITED`. When `status` is
+    not<br/>specified the segment is created with status `ACTIVE`.<br/>An `AWAITED` comment is not
+    posted yet: nobody is notified about it, and segment<br/>listings leave it out unless they filter on
+    `status`, until it is updated to `ACTIVE`.<br/><br/>On a subclip, time-based metadata segments (TAG,
+    GENERIC, TRANSCRIPTION, SHOT,<br/>SEMANTIC_TRANSCRIPTION) are created on the subclip's original
+    asset, under the<br/>version the subclip was cut from. A `version_id`, if given, must be that
+    version or<br/>one of the subclip's own; any other is rejected with 400.
     Required roles:
      - can_create_segments
 
@@ -190,7 +232,21 @@ async def asyncio(
 ) -> Any | PostAssetsByAssetIdSegmentsResponseDefault | SegmentSchema | None:
     """Create a new segment
 
-
+     <br/>Comments are segments with `segment_type` set to `COMMENT`.<br/>A comment can be created
+    directly with status `AWAITED`. When `status` is not<br/>specified the segment is created with
+    status `ACTIVE`.<br/>An `AWAITED` comment is not posted yet: nobody is notified about it, and
+    segment<br/>listings leave it out unless they filter on `status`, until it is updated to
+    `ACTIVE`.<br/><br/>On a subclip, time-based metadata segments (TAG, GENERIC, TRANSCRIPTION,
+    SHOT,<br/>SEMANTIC_TRANSCRIPTION) are created on the subclip's original asset, under the<br/>version
+    the subclip was cut from. A `version_id`, if given, must be that version or<br/>one of the subclip's
+    own; any other is rejected with 400.<br/>Comments are segments with `segment_type` set to
+    `COMMENT`.<br/>A comment can be created directly with status `AWAITED`. When `status` is
+    not<br/>specified the segment is created with status `ACTIVE`.<br/>An `AWAITED` comment is not
+    posted yet: nobody is notified about it, and segment<br/>listings leave it out unless they filter on
+    `status`, until it is updated to `ACTIVE`.<br/><br/>On a subclip, time-based metadata segments (TAG,
+    GENERIC, TRANSCRIPTION, SHOT,<br/>SEMANTIC_TRANSCRIPTION) are created on the subclip's original
+    asset, under the<br/>version the subclip was cut from. A `version_id`, if given, must be that
+    version or<br/>one of the subclip's own; any other is rejected with 400.
     Required roles:
      - can_create_segments
 

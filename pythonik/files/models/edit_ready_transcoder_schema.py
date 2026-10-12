@@ -29,6 +29,7 @@ class EditReadyTranscoderSchema:
         edit_proxy_upload_storage_path (None | str | Unset):
         edit_proxy_width (int | None | Unset):
         editready_preset (None | str | Unset):
+        enable_multi_channel_audio (bool | None | Unset):
         exclude_patterns (list[str] | None | Unset):
         include_patterns (list[str] | None | Unset):
         local (bool | None | Unset):
@@ -49,6 +50,7 @@ class EditReadyTranscoderSchema:
     edit_proxy_upload_storage_path: None | str | Unset = UNSET
     edit_proxy_width: int | None | Unset = UNSET
     editready_preset: None | str | Unset = UNSET
+    enable_multi_channel_audio: bool | None | Unset = UNSET
     exclude_patterns: list[str] | None | Unset = UNSET
     include_patterns: list[str] | None | Unset = UNSET
     local: bool | None | Unset = UNSET
@@ -120,6 +122,12 @@ class EditReadyTranscoderSchema:
             editready_preset = UNSET
         else:
             editready_preset = self.editready_preset
+
+        enable_multi_channel_audio: bool | None | Unset
+        if isinstance(self.enable_multi_channel_audio, Unset):
+            enable_multi_channel_audio = UNSET
+        else:
+            enable_multi_channel_audio = self.enable_multi_channel_audio
 
         exclude_patterns: list[str] | None | Unset
         if isinstance(self.exclude_patterns, Unset):
@@ -200,6 +208,8 @@ class EditReadyTranscoderSchema:
             field_dict["edit_proxy_width"] = edit_proxy_width
         if editready_preset is not UNSET:
             field_dict["editready_preset"] = editready_preset
+        if enable_multi_channel_audio is not UNSET:
+            field_dict["enable_multi_channel_audio"] = enable_multi_channel_audio
         if exclude_patterns is not UNSET:
             field_dict["exclude_patterns"] = exclude_patterns
         if include_patterns is not UNSET:
@@ -322,6 +332,17 @@ class EditReadyTranscoderSchema:
 
         editready_preset = _parse_editready_preset(d.pop("editready_preset", UNSET))
 
+        def _parse_enable_multi_channel_audio(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        enable_multi_channel_audio = _parse_enable_multi_channel_audio(
+            d.pop("enable_multi_channel_audio", UNSET)
+        )
+
         def _parse_exclude_patterns(data: object) -> list[str] | None | Unset:
             if data is None:
                 return data
@@ -425,6 +446,7 @@ class EditReadyTranscoderSchema:
             edit_proxy_upload_storage_path=edit_proxy_upload_storage_path,
             edit_proxy_width=edit_proxy_width,
             editready_preset=editready_preset,
+            enable_multi_channel_audio=enable_multi_channel_audio,
             exclude_patterns=exclude_patterns,
             include_patterns=include_patterns,
             local=local,

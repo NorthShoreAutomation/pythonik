@@ -9,6 +9,7 @@ from attrs import field as _attrs_field
 
 from ..models.share_token_schema_drm import ShareTokenSchemaDrm
 from ..models.share_token_schema_watermark import ShareTokenSchemaWatermark
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="ShareTokenSchema")
 
@@ -31,6 +32,7 @@ class ShareTokenSchema:
         token (str):
         user_id (str):
         watermark (ShareTokenSchemaWatermark): Watermark information for the share token, if applicable
+        share_session_id (None | str | Unset):
     """
 
     app_id: str
@@ -47,6 +49,7 @@ class ShareTokenSchema:
     token: str
     user_id: str
     watermark: ShareTokenSchemaWatermark
+    share_session_id: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -78,6 +81,12 @@ class ShareTokenSchema:
 
         watermark = self.watermark.value
 
+        share_session_id: None | str | Unset
+        if isinstance(self.share_session_id, Unset):
+            share_session_id = UNSET
+        else:
+            share_session_id = self.share_session_id
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -98,6 +107,8 @@ class ShareTokenSchema:
                 "watermark": watermark,
             }
         )
+        if share_session_id is not UNSET:
+            field_dict["share_session_id"] = share_session_id
 
         return field_dict
 
@@ -132,6 +143,15 @@ class ShareTokenSchema:
 
         watermark = ShareTokenSchemaWatermark(d.pop("watermark"))
 
+        def _parse_share_session_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        share_session_id = _parse_share_session_id(d.pop("share_session_id", UNSET))
+
         share_token_schema = cls(
             app_id=app_id,
             drm=drm,
@@ -147,6 +167,7 @@ class ShareTokenSchema:
             token=token,
             user_id=user_id,
             watermark=watermark,
+            share_session_id=share_session_id,
         )
 
         share_token_schema.additional_properties = d

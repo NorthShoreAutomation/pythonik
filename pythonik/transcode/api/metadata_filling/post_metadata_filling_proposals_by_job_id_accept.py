@@ -53,6 +53,10 @@ def _parse_response(
         response_409 = cast(Any, None)
         return response_409
 
+    if response.status_code == 502:
+        response_502 = cast(Any, None)
+        return response_502
+
     response_default = (
         PostMetadataFillingProposalsByJobIdAcceptResponseDefault.from_dict(
             response.json()

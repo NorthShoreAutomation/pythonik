@@ -35,19 +35,24 @@ class LLMMetadataJobSchema:
         analyzed_before (bool | None | Unset):
         asset_id (None | str | Unset):
         asset_link (None | str | Unset):
+        auto_accept (bool | None | Unset):  Default: False.
+        automation_id (None | str | Unset):
         collection_id (None | str | Unset):
         create_transcription (bool | None | Unset):
         delete_old_transcriptions (bool | None | Unset):
         force_transcoder (None | str | Unset):
         google_cloud_video_intelligence (bool | None | Unset):
+        group_ids (list[str] | None | Unset):
         input_ (InputSchema | None | Unset):
+        is_admin (bool | None | Unset):  Default: False.
         job_id (None | str | Unset):
         job_steps (list[JobStepSchema] | None | Unset):
         language (None | str | Unset):
         media_info (None | str | Unset):
-        overwrite (bool | None | Unset):
+        overwrite (bool | None | Unset):  Default: True.
         parent_job_id (None | str | Unset):
         priority (int | None | Unset):
+        requested_at (float | None | Unset):
         speakers (int | None | Unset):
         thumbnail (list[ThumbnailJob] | None | Unset):
         transcode (list[TranscodeJob] | None | Unset):
@@ -63,19 +68,24 @@ class LLMMetadataJobSchema:
     analyzed_before: bool | None | Unset = UNSET
     asset_id: None | str | Unset = UNSET
     asset_link: None | str | Unset = UNSET
+    auto_accept: bool | None | Unset = False
+    automation_id: None | str | Unset = UNSET
     collection_id: None | str | Unset = UNSET
     create_transcription: bool | None | Unset = UNSET
     delete_old_transcriptions: bool | None | Unset = UNSET
     force_transcoder: None | str | Unset = UNSET
     google_cloud_video_intelligence: bool | None | Unset = UNSET
+    group_ids: list[str] | None | Unset = UNSET
     input_: InputSchema | None | Unset = UNSET
+    is_admin: bool | None | Unset = False
     job_id: None | str | Unset = UNSET
     job_steps: list[JobStepSchema] | None | Unset = UNSET
     language: None | str | Unset = UNSET
     media_info: None | str | Unset = UNSET
-    overwrite: bool | None | Unset = UNSET
+    overwrite: bool | None | Unset = True
     parent_job_id: None | str | Unset = UNSET
     priority: int | None | Unset = UNSET
+    requested_at: float | None | Unset = UNSET
     speakers: int | None | Unset = UNSET
     thumbnail: list[ThumbnailJob] | None | Unset = UNSET
     transcode: list[TranscodeJob] | None | Unset = UNSET
@@ -133,6 +143,18 @@ class LLMMetadataJobSchema:
         else:
             asset_link = self.asset_link
 
+        auto_accept: bool | None | Unset
+        if isinstance(self.auto_accept, Unset):
+            auto_accept = UNSET
+        else:
+            auto_accept = self.auto_accept
+
+        automation_id: None | str | Unset
+        if isinstance(self.automation_id, Unset):
+            automation_id = UNSET
+        else:
+            automation_id = self.automation_id
+
         collection_id: None | str | Unset
         if isinstance(self.collection_id, Unset):
             collection_id = UNSET
@@ -163,6 +185,15 @@ class LLMMetadataJobSchema:
         else:
             google_cloud_video_intelligence = self.google_cloud_video_intelligence
 
+        group_ids: list[str] | None | Unset
+        if isinstance(self.group_ids, Unset):
+            group_ids = UNSET
+        elif isinstance(self.group_ids, list):
+            group_ids = self.group_ids
+
+        else:
+            group_ids = self.group_ids
+
         input_: dict[str, Any] | None | Unset
         if isinstance(self.input_, Unset):
             input_ = UNSET
@@ -170,6 +201,12 @@ class LLMMetadataJobSchema:
             input_ = self.input_.to_dict()
         else:
             input_ = self.input_
+
+        is_admin: bool | None | Unset
+        if isinstance(self.is_admin, Unset):
+            is_admin = UNSET
+        else:
+            is_admin = self.is_admin
 
         job_id: None | str | Unset
         if isinstance(self.job_id, Unset):
@@ -218,6 +255,12 @@ class LLMMetadataJobSchema:
             priority = UNSET
         else:
             priority = self.priority
+
+        requested_at: float | None | Unset
+        if isinstance(self.requested_at, Unset):
+            requested_at = UNSET
+        else:
+            requested_at = self.requested_at
 
         speakers: int | None | Unset
         if isinstance(self.speakers, Unset):
@@ -291,6 +334,10 @@ class LLMMetadataJobSchema:
             field_dict["asset_id"] = asset_id
         if asset_link is not UNSET:
             field_dict["asset_link"] = asset_link
+        if auto_accept is not UNSET:
+            field_dict["auto_accept"] = auto_accept
+        if automation_id is not UNSET:
+            field_dict["automation_id"] = automation_id
         if collection_id is not UNSET:
             field_dict["collection_id"] = collection_id
         if create_transcription is not UNSET:
@@ -303,8 +350,12 @@ class LLMMetadataJobSchema:
             field_dict["google_cloud_video_intelligence"] = (
                 google_cloud_video_intelligence
             )
+        if group_ids is not UNSET:
+            field_dict["group_ids"] = group_ids
         if input_ is not UNSET:
             field_dict["input"] = input_
+        if is_admin is not UNSET:
+            field_dict["is_admin"] = is_admin
         if job_id is not UNSET:
             field_dict["job_id"] = job_id
         if job_steps is not UNSET:
@@ -319,6 +370,8 @@ class LLMMetadataJobSchema:
             field_dict["parent_job_id"] = parent_job_id
         if priority is not UNSET:
             field_dict["priority"] = priority
+        if requested_at is not UNSET:
+            field_dict["requested_at"] = requested_at
         if speakers is not UNSET:
             field_dict["speakers"] = speakers
         if thumbnail is not UNSET:
@@ -422,6 +475,24 @@ class LLMMetadataJobSchema:
 
         asset_link = _parse_asset_link(d.pop("asset_link", UNSET))
 
+        def _parse_auto_accept(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        auto_accept = _parse_auto_accept(d.pop("auto_accept", UNSET))
+
+        def _parse_automation_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        automation_id = _parse_automation_id(d.pop("automation_id", UNSET))
+
         def _parse_collection_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -473,6 +544,23 @@ class LLMMetadataJobSchema:
             d.pop("google_cloud_video_intelligence", UNSET)
         )
 
+        def _parse_group_ids(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                group_ids_type_0 = cast(list[str], data)
+
+                return group_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        group_ids = _parse_group_ids(d.pop("group_ids", UNSET))
+
         def _parse_input_(data: object) -> InputSchema | None | Unset:
             if data is None:
                 return data
@@ -489,6 +577,15 @@ class LLMMetadataJobSchema:
             return cast(InputSchema | None | Unset, data)
 
         input_ = _parse_input_(d.pop("input", UNSET))
+
+        def _parse_is_admin(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        is_admin = _parse_is_admin(d.pop("is_admin", UNSET))
 
         def _parse_job_id(data: object) -> None | str | Unset:
             if data is None:
@@ -567,6 +664,15 @@ class LLMMetadataJobSchema:
             return cast(int | None | Unset, data)
 
         priority = _parse_priority(d.pop("priority", UNSET))
+
+        def _parse_requested_at(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        requested_at = _parse_requested_at(d.pop("requested_at", UNSET))
 
         def _parse_speakers(data: object) -> int | None | Unset:
             if data is None:
@@ -667,12 +773,16 @@ class LLMMetadataJobSchema:
             analyzed_before=analyzed_before,
             asset_id=asset_id,
             asset_link=asset_link,
+            auto_accept=auto_accept,
+            automation_id=automation_id,
             collection_id=collection_id,
             create_transcription=create_transcription,
             delete_old_transcriptions=delete_old_transcriptions,
             force_transcoder=force_transcoder,
             google_cloud_video_intelligence=google_cloud_video_intelligence,
+            group_ids=group_ids,
             input_=input_,
+            is_admin=is_admin,
             job_id=job_id,
             job_steps=job_steps,
             language=language,
@@ -680,6 +790,7 @@ class LLMMetadataJobSchema:
             overwrite=overwrite,
             parent_job_id=parent_job_id,
             priority=priority,
+            requested_at=requested_at,
             speakers=speakers,
             thumbnail=thumbnail,
             transcode=transcode,

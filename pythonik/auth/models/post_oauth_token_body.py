@@ -16,29 +16,38 @@ T = TypeVar("T", bound="PostOauthTokenBody")
 class PostOauthTokenBody:
     """
     Attributes:
-        client_id (str): The OAuth2 client ID (application ID)
         grant_type (PostOauthTokenBodyGrantType): The OAuth2 grant type
-        client_secret (None | str | Unset): The OAuth2 client secret (required for client_credentials grant)
+        client_id (None | str | Unset): The OAuth2 client ID (application ID). Required unless the client authenticates
+            with HTTP Basic.
+        client_secret (None | str | Unset): The OAuth2 client secret (required for the client_credentials grant unless
+            sent as HTTP Basic credentials)
         code (None | str | Unset): The authorization code (required for authorization_code grant)
         code_verifier (None | str | Unset): The PKCE code verifier (required for authorization_code grant)
         redirect_uri (None | str | Unset): The redirect URI used in the authorization request (required for
             authorization_code grant)
-        scope (None | str | Unset): The requested scope (used for client_credentials grant)
+        refresh_token (None | str | Unset): The refresh token (required for refresh_token grant)
+        scope (None | str | Unset): The requested scope. Used by the client_credentials grant, and by the refresh_token
+            grant to request a subset of the scope already granted (a broader scope is rejected).
     """
 
-    client_id: str
     grant_type: PostOauthTokenBodyGrantType
+    client_id: None | str | Unset = UNSET
     client_secret: None | str | Unset = UNSET
     code: None | str | Unset = UNSET
     code_verifier: None | str | Unset = UNSET
     redirect_uri: None | str | Unset = UNSET
+    refresh_token: None | str | Unset = UNSET
     scope: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        client_id = self.client_id
-
         grant_type = self.grant_type.value
+
+        client_id: None | str | Unset
+        if isinstance(self.client_id, Unset):
+            client_id = UNSET
+        else:
+            client_id = self.client_id
 
         client_secret: None | str | Unset
         if isinstance(self.client_secret, Unset):
@@ -64,6 +73,12 @@ class PostOauthTokenBody:
         else:
             redirect_uri = self.redirect_uri
 
+        refresh_token: None | str | Unset
+        if isinstance(self.refresh_token, Unset):
+            refresh_token = UNSET
+        else:
+            refresh_token = self.refresh_token
+
         scope: None | str | Unset
         if isinstance(self.scope, Unset):
             scope = UNSET
@@ -74,10 +89,11 @@ class PostOauthTokenBody:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "client_id": client_id,
                 "grant_type": grant_type,
             }
         )
+        if client_id is not UNSET:
+            field_dict["client_id"] = client_id
         if client_secret is not UNSET:
             field_dict["client_secret"] = client_secret
         if code is not UNSET:
@@ -86,6 +102,8 @@ class PostOauthTokenBody:
             field_dict["code_verifier"] = code_verifier
         if redirect_uri is not UNSET:
             field_dict["redirect_uri"] = redirect_uri
+        if refresh_token is not UNSET:
+            field_dict["refresh_token"] = refresh_token
         if scope is not UNSET:
             field_dict["scope"] = scope
 
@@ -94,9 +112,16 @@ class PostOauthTokenBody:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        client_id = d.pop("client_id")
-
         grant_type = PostOauthTokenBodyGrantType(d.pop("grant_type"))
+
+        def _parse_client_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        client_id = _parse_client_id(d.pop("client_id", UNSET))
 
         def _parse_client_secret(data: object) -> None | str | Unset:
             if data is None:
@@ -134,6 +159,15 @@ class PostOauthTokenBody:
 
         redirect_uri = _parse_redirect_uri(d.pop("redirect_uri", UNSET))
 
+        def _parse_refresh_token(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        refresh_token = _parse_refresh_token(d.pop("refresh_token", UNSET))
+
         def _parse_scope(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -144,12 +178,13 @@ class PostOauthTokenBody:
         scope = _parse_scope(d.pop("scope", UNSET))
 
         post_oauth_token_body = cls(
-            client_id=client_id,
             grant_type=grant_type,
+            client_id=client_id,
             client_secret=client_secret,
             code=code,
             code_verifier=code_verifier,
             redirect_uri=redirect_uri,
+            refresh_token=refresh_token,
             scope=scope,
         )
 

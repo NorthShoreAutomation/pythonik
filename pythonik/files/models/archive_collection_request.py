@@ -26,7 +26,7 @@ class ArchiveCollectionRequest:
         delete_only_from_source_context (None | SourceContext | Unset):
         delete_original (bool | None | Unset):  Default: False.
         destination_directory_path (None | str | Unset):
-        formats (list[str] | None | Unset): List of format names to transfer. If not specified, all formats will be
+        formats (list[str] | None | Unset): List of format names to transfer. If not specified, ORIGINAL will be
             transferred.
         keep_collection_structure (bool | None | Unset): Whether to keep the collection structure when archiving
             collections. Default: False.

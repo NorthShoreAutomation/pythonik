@@ -7,18 +7,29 @@ from ...client import AuthenticatedClient, Client
 from ...models.post_oauth_token_body import PostOauthTokenBody
 from ...models.post_oauth_token_response_default import PostOauthTokenResponseDefault
 from ...models.token_schema import TokenSchema
-from ...types import Response
+from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     *,
     body: PostOauthTokenBody,
+    expires_in: int | Unset = UNSET,
+    authorization: str | Unset = UNSET,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
+    if not isinstance(authorization, Unset):
+        headers["Authorization"] = authorization
+
+    params: dict[str, Any] = {}
+
+    params["expires_in"] = expires_in
+
+    params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
     _kwargs: dict[str, Any] = {
         "method": "post",
         "url": "/v1/oauth/token/",
+        "params": params,
     }
 
     _kwargs["data"] = body.to_dict()
@@ -60,10 +71,14 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: PostOauthTokenBody,
+    expires_in: int | Unset = UNSET,
+    authorization: str | Unset = UNSET,
 ) -> Response[Any | PostOauthTokenResponseDefault | TokenSchema]:
     """Issue an OAuth token
 
     Args:
+        expires_in (int | Unset):
+        authorization (str | Unset):
         body (PostOauthTokenBody):
 
     Raises:
@@ -76,6 +91,8 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         body=body,
+        expires_in=expires_in,
+        authorization=authorization,
     )
 
     response = client.get_httpx_client().request(
@@ -89,10 +106,14 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: PostOauthTokenBody,
+    expires_in: int | Unset = UNSET,
+    authorization: str | Unset = UNSET,
 ) -> Any | PostOauthTokenResponseDefault | TokenSchema | None:
     """Issue an OAuth token
 
     Args:
+        expires_in (int | Unset):
+        authorization (str | Unset):
         body (PostOauthTokenBody):
 
     Raises:
@@ -106,6 +127,8 @@ def sync(
     return sync_detailed(
         client=client,
         body=body,
+        expires_in=expires_in,
+        authorization=authorization,
     ).parsed
 
 
@@ -113,10 +136,14 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: PostOauthTokenBody,
+    expires_in: int | Unset = UNSET,
+    authorization: str | Unset = UNSET,
 ) -> Response[Any | PostOauthTokenResponseDefault | TokenSchema]:
     """Issue an OAuth token
 
     Args:
+        expires_in (int | Unset):
+        authorization (str | Unset):
         body (PostOauthTokenBody):
 
     Raises:
@@ -129,6 +156,8 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         body=body,
+        expires_in=expires_in,
+        authorization=authorization,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -140,10 +169,14 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: PostOauthTokenBody,
+    expires_in: int | Unset = UNSET,
+    authorization: str | Unset = UNSET,
 ) -> Any | PostOauthTokenResponseDefault | TokenSchema | None:
     """Issue an OAuth token
 
     Args:
+        expires_in (int | Unset):
+        authorization (str | Unset):
         body (PostOauthTokenBody):
 
     Raises:
@@ -158,5 +191,7 @@ async def asyncio(
         await asyncio_detailed(
             client=client,
             body=body,
+            expires_in=expires_in,
+            authorization=authorization,
         )
     ).parsed

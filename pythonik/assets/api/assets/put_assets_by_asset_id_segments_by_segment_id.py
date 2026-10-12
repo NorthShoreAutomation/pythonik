@@ -97,7 +97,14 @@ def sync_detailed(
 ]:
     """Update segment
 
-
+     <br/>`status` can only be `AWAITED` for a segment that was created `AWAITED`: changing<br/>any other
+    segment to `AWAITED` is rejected with 400.<br/><br/>`has_attachments` is iconik_files' to set, when
+    a comment<br/>gets its first attachment (true) or loses its last one (false).<br/>iconik_files
+    reports its other attachment changes as a reindex of them.<br/>`status` can only be `AWAITED` for a
+    segment that was created `AWAITED`: changing<br/>any other segment to `AWAITED` is rejected with
+    400.<br/><br/>`has_attachments` is iconik_files' to set, when a comment<br/>gets its first
+    attachment (true) or loses its last one (false).<br/>iconik_files reports its other attachment
+    changes as a reindex of them.
     Required roles:
      - can_write_segments
 
@@ -139,7 +146,14 @@ def sync(
 ) -> Any | PutAssetsByAssetIdSegmentsBySegmentIdResponseDefault | SegmentSchema | None:
     """Update segment
 
-
+     <br/>`status` can only be `AWAITED` for a segment that was created `AWAITED`: changing<br/>any other
+    segment to `AWAITED` is rejected with 400.<br/><br/>`has_attachments` is iconik_files' to set, when
+    a comment<br/>gets its first attachment (true) or loses its last one (false).<br/>iconik_files
+    reports its other attachment changes as a reindex of them.<br/>`status` can only be `AWAITED` for a
+    segment that was created `AWAITED`: changing<br/>any other segment to `AWAITED` is rejected with
+    400.<br/><br/>`has_attachments` is iconik_files' to set, when a comment<br/>gets its first
+    attachment (true) or loses its last one (false).<br/>iconik_files reports its other attachment
+    changes as a reindex of them.
     Required roles:
      - can_write_segments
 
@@ -178,7 +192,14 @@ async def asyncio_detailed(
 ]:
     """Update segment
 
-
+     <br/>`status` can only be `AWAITED` for a segment that was created `AWAITED`: changing<br/>any other
+    segment to `AWAITED` is rejected with 400.<br/><br/>`has_attachments` is iconik_files' to set, when
+    a comment<br/>gets its first attachment (true) or loses its last one (false).<br/>iconik_files
+    reports its other attachment changes as a reindex of them.<br/>`status` can only be `AWAITED` for a
+    segment that was created `AWAITED`: changing<br/>any other segment to `AWAITED` is rejected with
+    400.<br/><br/>`has_attachments` is iconik_files' to set, when a comment<br/>gets its first
+    attachment (true) or loses its last one (false).<br/>iconik_files reports its other attachment
+    changes as a reindex of them.
     Required roles:
      - can_write_segments
 
@@ -218,7 +239,14 @@ async def asyncio(
 ) -> Any | PutAssetsByAssetIdSegmentsBySegmentIdResponseDefault | SegmentSchema | None:
     """Update segment
 
-
+     <br/>`status` can only be `AWAITED` for a segment that was created `AWAITED`: changing<br/>any other
+    segment to `AWAITED` is rejected with 400.<br/><br/>`has_attachments` is iconik_files' to set, when
+    a comment<br/>gets its first attachment (true) or loses its last one (false).<br/>iconik_files
+    reports its other attachment changes as a reindex of them.<br/>`status` can only be `AWAITED` for a
+    segment that was created `AWAITED`: changing<br/>any other segment to `AWAITED` is rejected with
+    400.<br/><br/>`has_attachments` is iconik_files' to set, when a comment<br/>gets its first
+    attachment (true) or loses its last one (false).<br/>iconik_files reports its other attachment
+    changes as a reindex of them.
     Required roles:
      - can_write_segments
 

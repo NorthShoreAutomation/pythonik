@@ -38,6 +38,7 @@ class SystemDomainFromTemplateSchema:
         date_created (datetime.datetime | None | Unset):
         date_modified (datetime.datetime | None | Unset):
         description (None | str | Unset):
+        disable_ai_features (bool | None | Unset): Opt the new domain out of every AI feature.
         id (None | Unset | UUID):
         status (None | SystemDomainFromTemplateSchemaStatus | Unset):
         type_ (None | SystemDomainFromTemplateSchemaType | Unset):
@@ -55,6 +56,7 @@ class SystemDomainFromTemplateSchema:
     date_created: datetime.datetime | None | Unset = UNSET
     date_modified: datetime.datetime | None | Unset = UNSET
     description: None | str | Unset = UNSET
+    disable_ai_features: bool | None | Unset = UNSET
     id: None | Unset | UUID = UNSET
     status: None | SystemDomainFromTemplateSchemaStatus | Unset = UNSET
     type_: None | SystemDomainFromTemplateSchemaType | Unset = UNSET
@@ -137,6 +139,12 @@ class SystemDomainFromTemplateSchema:
         else:
             description = self.description
 
+        disable_ai_features: bool | None | Unset
+        if isinstance(self.disable_ai_features, Unset):
+            disable_ai_features = UNSET
+        else:
+            disable_ai_features = self.disable_ai_features
+
         id: None | str | Unset
         if isinstance(self.id, Unset):
             id = UNSET
@@ -190,6 +198,8 @@ class SystemDomainFromTemplateSchema:
             field_dict["date_modified"] = date_modified
         if description is not UNSET:
             field_dict["description"] = description
+        if disable_ai_features is not UNSET:
+            field_dict["disable_ai_features"] = disable_ai_features
         if id is not UNSET:
             field_dict["id"] = id
         if status is not UNSET:
@@ -337,6 +347,17 @@ class SystemDomainFromTemplateSchema:
 
         description = _parse_description(d.pop("description", UNSET))
 
+        def _parse_disable_ai_features(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        disable_ai_features = _parse_disable_ai_features(
+            d.pop("disable_ai_features", UNSET)
+        )
+
         def _parse_id(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
@@ -405,6 +426,7 @@ class SystemDomainFromTemplateSchema:
             date_created=date_created,
             date_modified=date_modified,
             description=description,
+            disable_ai_features=disable_ai_features,
             id=id,
             status=status,
             type_=type_,

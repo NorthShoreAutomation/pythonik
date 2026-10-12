@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ..models.asset_transcription_properties_schema_speaker_labels_type_0 import (
         AssetTranscriptionPropertiesSchemaSpeakerLabelsType0,
     )
+    from ..models.transcription_engine_info import TranscriptionEngineInfo
 
 
 T = TypeVar("T", bound="AssetTranscriptionPropertiesSchema")
@@ -23,6 +24,7 @@ class AssetTranscriptionPropertiesSchema:
     """
     Attributes:
         asset_id (None | Unset | UUID):
+        engine_info (None | TranscriptionEngineInfo | Unset):
         id (None | Unset | UUID):
         language (None | str | Unset):
         speaker_labels (AssetTranscriptionPropertiesSchemaSpeakerLabelsType0 | None | Unset):
@@ -31,6 +33,7 @@ class AssetTranscriptionPropertiesSchema:
     """
 
     asset_id: None | Unset | UUID = UNSET
+    engine_info: None | TranscriptionEngineInfo | Unset = UNSET
     id: None | Unset | UUID = UNSET
     language: None | str | Unset = UNSET
     speaker_labels: (
@@ -44,6 +47,7 @@ class AssetTranscriptionPropertiesSchema:
         from ..models.asset_transcription_properties_schema_speaker_labels_type_0 import (
             AssetTranscriptionPropertiesSchemaSpeakerLabelsType0,
         )
+        from ..models.transcription_engine_info import TranscriptionEngineInfo
 
         asset_id: None | str | Unset
         if isinstance(self.asset_id, Unset):
@@ -52,6 +56,14 @@ class AssetTranscriptionPropertiesSchema:
             asset_id = str(self.asset_id)
         else:
             asset_id = self.asset_id
+
+        engine_info: dict[str, Any] | None | Unset
+        if isinstance(self.engine_info, Unset):
+            engine_info = UNSET
+        elif isinstance(self.engine_info, TranscriptionEngineInfo):
+            engine_info = self.engine_info.to_dict()
+        else:
+            engine_info = self.engine_info
 
         id: None | str | Unset
         if isinstance(self.id, Unset):
@@ -98,6 +110,8 @@ class AssetTranscriptionPropertiesSchema:
         field_dict.update({})
         if asset_id is not UNSET:
             field_dict["asset_id"] = asset_id
+        if engine_info is not UNSET:
+            field_dict["engine_info"] = engine_info
         if id is not UNSET:
             field_dict["id"] = id
         if language is not UNSET:
@@ -116,6 +130,7 @@ class AssetTranscriptionPropertiesSchema:
         from ..models.asset_transcription_properties_schema_speaker_labels_type_0 import (
             AssetTranscriptionPropertiesSchemaSpeakerLabelsType0,
         )
+        from ..models.transcription_engine_info import TranscriptionEngineInfo
 
         d = dict(src_dict)
 
@@ -135,6 +150,23 @@ class AssetTranscriptionPropertiesSchema:
             return cast(None | Unset | UUID, data)
 
         asset_id = _parse_asset_id(d.pop("asset_id", UNSET))
+
+        def _parse_engine_info(data: object) -> None | TranscriptionEngineInfo | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                engine_info_type_1 = TranscriptionEngineInfo.from_dict(data)
+
+                return engine_info_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | TranscriptionEngineInfo | Unset, data)
+
+        engine_info = _parse_engine_info(d.pop("engine_info", UNSET))
 
         def _parse_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -222,6 +254,7 @@ class AssetTranscriptionPropertiesSchema:
 
         asset_transcription_properties_schema = cls(
             asset_id=asset_id,
+            engine_info=engine_info,
             id=id,
             language=language,
             speaker_labels=speaker_labels,

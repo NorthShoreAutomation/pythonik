@@ -19,7 +19,7 @@ class RestoreSavedSearchToStorageRequestSchema:
         id (UUID): ID of the object to transfer.
         all_versions (bool | None | Unset):  Default: False.
         destination_directory_path (None | str | Unset):
-        formats (list[str] | None | Unset): List of format names to transfer. If not specified, all formats will be
+        formats (list[str] | None | Unset): List of format names to transfer. If not specified, ORIGINAL will be
             transferred.
         preferred_original_storage_id (None | Unset | UUID):
         restore_priority (Any | Unset): The restore tier to use when retrieving from cold storage one of LOW, MID, HIGH.

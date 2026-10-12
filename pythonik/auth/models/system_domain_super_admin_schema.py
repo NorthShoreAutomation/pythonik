@@ -45,12 +45,14 @@ class SystemDomainSuperAdminSchema:
         date_modified (datetime.datetime | None | Unset):
         deactivate_date (datetime.datetime | None | Unset):
         description (None | str | Unset):
+        disable_ai_features (bool | None | Unset):
         disable_billing_page (bool | None | Unset):
         disable_cc_purchase (bool | None | Unset):
         discount_percent (float | None | Unset):
         do_not_charge_edge_transcoder (bool | None | Unset):
         do_not_charge_remote_proxies (bool | None | Unset):
         do_not_charge_shield (bool | None | Unset):
+        do_not_trace_ai_usage (bool | None | Unset):
         features (list[str] | None | Unset):
         freeze_date (datetime.datetime | None | Unset):
         has_preloaded_assets (bool | None | Unset):
@@ -86,12 +88,14 @@ class SystemDomainSuperAdminSchema:
     date_modified: datetime.datetime | None | Unset = UNSET
     deactivate_date: datetime.datetime | None | Unset = UNSET
     description: None | str | Unset = UNSET
+    disable_ai_features: bool | None | Unset = UNSET
     disable_billing_page: bool | None | Unset = UNSET
     disable_cc_purchase: bool | None | Unset = UNSET
     discount_percent: float | None | Unset = UNSET
     do_not_charge_edge_transcoder: bool | None | Unset = UNSET
     do_not_charge_remote_proxies: bool | None | Unset = UNSET
     do_not_charge_shield: bool | None | Unset = UNSET
+    do_not_trace_ai_usage: bool | None | Unset = UNSET
     features: list[str] | None | Unset = UNSET
     freeze_date: datetime.datetime | None | Unset = UNSET
     has_preloaded_assets: bool | None | Unset = UNSET
@@ -196,6 +200,12 @@ class SystemDomainSuperAdminSchema:
         else:
             description = self.description
 
+        disable_ai_features: bool | None | Unset
+        if isinstance(self.disable_ai_features, Unset):
+            disable_ai_features = UNSET
+        else:
+            disable_ai_features = self.disable_ai_features
+
         disable_billing_page: bool | None | Unset
         if isinstance(self.disable_billing_page, Unset):
             disable_billing_page = UNSET
@@ -231,6 +241,12 @@ class SystemDomainSuperAdminSchema:
             do_not_charge_shield = UNSET
         else:
             do_not_charge_shield = self.do_not_charge_shield
+
+        do_not_trace_ai_usage: bool | None | Unset
+        if isinstance(self.do_not_trace_ai_usage, Unset):
+            do_not_trace_ai_usage = UNSET
+        else:
+            do_not_trace_ai_usage = self.do_not_trace_ai_usage
 
         features: list[str] | None | Unset
         if isinstance(self.features, Unset):
@@ -399,6 +415,8 @@ class SystemDomainSuperAdminSchema:
             field_dict["deactivate_date"] = deactivate_date
         if description is not UNSET:
             field_dict["description"] = description
+        if disable_ai_features is not UNSET:
+            field_dict["disable_ai_features"] = disable_ai_features
         if disable_billing_page is not UNSET:
             field_dict["disable_billing_page"] = disable_billing_page
         if disable_cc_purchase is not UNSET:
@@ -411,6 +429,8 @@ class SystemDomainSuperAdminSchema:
             field_dict["do_not_charge_remote_proxies"] = do_not_charge_remote_proxies
         if do_not_charge_shield is not UNSET:
             field_dict["do_not_charge_shield"] = do_not_charge_shield
+        if do_not_trace_ai_usage is not UNSET:
+            field_dict["do_not_trace_ai_usage"] = do_not_trace_ai_usage
         if features is not UNSET:
             field_dict["features"] = features
         if freeze_date is not UNSET:
@@ -613,6 +633,17 @@ class SystemDomainSuperAdminSchema:
 
         description = _parse_description(d.pop("description", UNSET))
 
+        def _parse_disable_ai_features(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        disable_ai_features = _parse_disable_ai_features(
+            d.pop("disable_ai_features", UNSET)
+        )
+
         def _parse_disable_billing_page(data: object) -> bool | None | Unset:
             if data is None:
                 return data
@@ -675,6 +706,17 @@ class SystemDomainSuperAdminSchema:
 
         do_not_charge_shield = _parse_do_not_charge_shield(
             d.pop("do_not_charge_shield", UNSET)
+        )
+
+        def _parse_do_not_trace_ai_usage(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        do_not_trace_ai_usage = _parse_do_not_trace_ai_usage(
+            d.pop("do_not_trace_ai_usage", UNSET)
         )
 
         def _parse_features(data: object) -> list[str] | None | Unset:
@@ -947,12 +989,14 @@ class SystemDomainSuperAdminSchema:
             date_modified=date_modified,
             deactivate_date=deactivate_date,
             description=description,
+            disable_ai_features=disable_ai_features,
             disable_billing_page=disable_billing_page,
             disable_cc_purchase=disable_cc_purchase,
             discount_percent=discount_percent,
             do_not_charge_edge_transcoder=do_not_charge_edge_transcoder,
             do_not_charge_remote_proxies=do_not_charge_remote_proxies,
             do_not_charge_shield=do_not_charge_shield,
+            do_not_trace_ai_usage=do_not_trace_ai_usage,
             features=features,
             freeze_date=freeze_date,
             has_preloaded_assets=has_preloaded_assets,

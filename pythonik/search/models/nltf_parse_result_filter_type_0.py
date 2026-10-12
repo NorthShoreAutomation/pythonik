@@ -7,8 +7,8 @@ from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 if TYPE_CHECKING:
-    from ..models.criteria_range_filter_schema import CriteriaRangeFilterSchema
-    from ..models.multi_select_filter_group_schema import MultiSelectFilterGroupSchema
+    from ..models.criteria_range_filter import CriteriaRangeFilter
+    from ..models.multi_select_filter_group import MultiSelectFilterGroup
 
 
 T = TypeVar("T", bound="NltfParseResultFilterType0")
@@ -19,15 +19,11 @@ class NltfParseResultFilterType0:
     """ """
 
     additional_properties: dict[
-        str,
-        CriteriaRangeFilterSchema
-        | list[MultiSelectFilterGroupSchema]
-        | list[str]
-        | str,
+        str, CriteriaRangeFilter | list[MultiSelectFilterGroup] | list[str] | str
     ] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.criteria_range_filter_schema import CriteriaRangeFilterSchema
+        from ..models.criteria_range_filter import CriteriaRangeFilter
 
         field_dict: dict[str, Any] = {}
         for prop_name, prop in self.additional_properties.items():
@@ -42,7 +38,7 @@ class NltfParseResultFilterType0:
                     )
                     field_dict[prop_name].append(additional_property_type_2_item)
 
-            elif isinstance(prop, CriteriaRangeFilterSchema):
+            elif isinstance(prop, CriteriaRangeFilter):
                 field_dict[prop_name] = prop.to_dict()
             else:
                 field_dict[prop_name] = prop
@@ -51,10 +47,8 @@ class NltfParseResultFilterType0:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.criteria_range_filter_schema import CriteriaRangeFilterSchema
-        from ..models.multi_select_filter_group_schema import (
-            MultiSelectFilterGroupSchema,
-        )
+        from ..models.criteria_range_filter import CriteriaRangeFilter
+        from ..models.multi_select_filter_group import MultiSelectFilterGroup
 
         d = dict(src_dict)
         nltf_parse_result_filter_type_0 = cls()
@@ -64,12 +58,7 @@ class NltfParseResultFilterType0:
 
             def _parse_additional_property(
                 data: object,
-            ) -> (
-                CriteriaRangeFilterSchema
-                | list[MultiSelectFilterGroupSchema]
-                | list[str]
-                | str
-            ):
+            ) -> CriteriaRangeFilter | list[MultiSelectFilterGroup] | list[str] | str:
                 try:
                     if not isinstance(data, list):
                         raise TypeError()
@@ -87,7 +76,7 @@ class NltfParseResultFilterType0:
                         additional_property_type_2_item_data
                     ) in _additional_property_type_2:
                         additional_property_type_2_item = (
-                            MultiSelectFilterGroupSchema.from_dict(
+                            MultiSelectFilterGroup.from_dict(
                                 additional_property_type_2_item_data
                             )
                         )
@@ -102,16 +91,14 @@ class NltfParseResultFilterType0:
                 try:
                     if not isinstance(data, dict):
                         raise TypeError()
-                    additional_property_type_3 = CriteriaRangeFilterSchema.from_dict(
-                        data
-                    )
+                    additional_property_type_3 = CriteriaRangeFilter.from_dict(data)
 
                     return additional_property_type_3
                 except (TypeError, ValueError, AttributeError, KeyError):
                     pass
                 return cast(
-                    CriteriaRangeFilterSchema
-                    | list[MultiSelectFilterGroupSchema]
+                    CriteriaRangeFilter
+                    | list[MultiSelectFilterGroup]
                     | list[str]
                     | str,
                     data,
@@ -130,18 +117,13 @@ class NltfParseResultFilterType0:
 
     def __getitem__(
         self, key: str
-    ) -> (
-        CriteriaRangeFilterSchema | list[MultiSelectFilterGroupSchema] | list[str] | str
-    ):
+    ) -> CriteriaRangeFilter | list[MultiSelectFilterGroup] | list[str] | str:
         return self.additional_properties[key]
 
     def __setitem__(
         self,
         key: str,
-        value: CriteriaRangeFilterSchema
-        | list[MultiSelectFilterGroupSchema]
-        | list[str]
-        | str,
+        value: CriteriaRangeFilter | list[MultiSelectFilterGroup] | list[str] | str,
     ) -> None:
         self.additional_properties[key] = value
 

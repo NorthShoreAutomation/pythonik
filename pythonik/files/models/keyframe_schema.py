@@ -16,6 +16,9 @@ if TYPE_CHECKING:
     from ..models.keyframe_schema_upload_credentials_type_0 import (
         KeyframeSchemaUploadCredentialsType0,
     )
+    from ..models.keyframe_schema_upload_headers_type_0 import (
+        KeyframeSchemaUploadHeadersType0,
+    )
     from ..models.resolution_type import ResolutionType
     from ..models.time_code_type import TimeCodeType
 
@@ -46,6 +49,7 @@ class KeyframeSchema:
         storage_method (None | str | Unset):
         time_code (None | TimeCodeType | Unset):
         upload_credentials (KeyframeSchemaUploadCredentialsType0 | None | Unset):
+        upload_headers (KeyframeSchemaUploadHeadersType0 | None | Unset):
         upload_method (None | str | Unset):
         upload_url (None | str | Unset):
         url (None | str | Unset):
@@ -71,6 +75,7 @@ class KeyframeSchema:
     storage_method: None | str | Unset = UNSET
     time_code: None | TimeCodeType | Unset = UNSET
     upload_credentials: KeyframeSchemaUploadCredentialsType0 | None | Unset = UNSET
+    upload_headers: KeyframeSchemaUploadHeadersType0 | None | Unset = UNSET
     upload_method: None | str | Unset = UNSET
     upload_url: None | str | Unset = UNSET
     url: None | str | Unset = UNSET
@@ -80,6 +85,9 @@ class KeyframeSchema:
     def to_dict(self) -> dict[str, Any]:
         from ..models.keyframe_schema_upload_credentials_type_0 import (
             KeyframeSchemaUploadCredentialsType0,
+        )
+        from ..models.keyframe_schema_upload_headers_type_0 import (
+            KeyframeSchemaUploadHeadersType0,
         )
         from ..models.resolution_type import ResolutionType
         from ..models.time_code_type import TimeCodeType
@@ -214,6 +222,14 @@ class KeyframeSchema:
         else:
             upload_credentials = self.upload_credentials
 
+        upload_headers: dict[str, Any] | None | Unset
+        if isinstance(self.upload_headers, Unset):
+            upload_headers = UNSET
+        elif isinstance(self.upload_headers, KeyframeSchemaUploadHeadersType0):
+            upload_headers = self.upload_headers.to_dict()
+        else:
+            upload_headers = self.upload_headers
+
         upload_method: None | str | Unset
         if isinstance(self.upload_method, Unset):
             upload_method = UNSET
@@ -283,6 +299,8 @@ class KeyframeSchema:
             field_dict["time_code"] = time_code
         if upload_credentials is not UNSET:
             field_dict["upload_credentials"] = upload_credentials
+        if upload_headers is not UNSET:
+            field_dict["upload_headers"] = upload_headers
         if upload_method is not UNSET:
             field_dict["upload_method"] = upload_method
         if upload_url is not UNSET:
@@ -298,6 +316,9 @@ class KeyframeSchema:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.keyframe_schema_upload_credentials_type_0 import (
             KeyframeSchemaUploadCredentialsType0,
+        )
+        from ..models.keyframe_schema_upload_headers_type_0 import (
+            KeyframeSchemaUploadHeadersType0,
         )
         from ..models.resolution_type import ResolutionType
         from ..models.time_code_type import TimeCodeType
@@ -555,6 +576,25 @@ class KeyframeSchema:
             d.pop("upload_credentials", UNSET)
         )
 
+        def _parse_upload_headers(
+            data: object,
+        ) -> KeyframeSchemaUploadHeadersType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                upload_headers_type_0 = KeyframeSchemaUploadHeadersType0.from_dict(data)
+
+                return upload_headers_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(KeyframeSchemaUploadHeadersType0 | None | Unset, data)
+
+        upload_headers = _parse_upload_headers(d.pop("upload_headers", UNSET))
+
         def _parse_upload_method(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -619,6 +659,7 @@ class KeyframeSchema:
             storage_method=storage_method,
             time_code=time_code,
             upload_credentials=upload_credentials,
+            upload_headers=upload_headers,
             upload_method=upload_method,
             upload_url=upload_url,
             url=url,

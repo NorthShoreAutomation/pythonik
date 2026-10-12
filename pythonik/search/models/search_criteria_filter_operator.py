@@ -3,6 +3,7 @@ from enum import Enum
 
 class SearchCriteriaFilterOperator(str, Enum):
     AND = "AND"
+    NESTED = "NESTED"
     NOT = "NOT"
     OR = "OR"
 

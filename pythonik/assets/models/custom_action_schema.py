@@ -30,6 +30,7 @@ class CustomActionSchema:
         title (str):
         url (str):
         app_id (None | Unset | UUID):
+        color (None | str | Unset):
         date_created (datetime.datetime | None | Unset):
         date_modified (datetime.datetime | None | Unset):
         disabled (bool | None | Unset):
@@ -49,6 +50,7 @@ class CustomActionSchema:
     title: str
     url: str
     app_id: None | Unset | UUID = UNSET
+    color: None | str | Unset = UNSET
     date_created: datetime.datetime | None | Unset = UNSET
     date_modified: datetime.datetime | None | Unset = UNSET
     disabled: bool | None | Unset = UNSET
@@ -82,6 +84,12 @@ class CustomActionSchema:
             app_id = str(self.app_id)
         else:
             app_id = self.app_id
+
+        color: None | str | Unset
+        if isinstance(self.color, Unset):
+            color = UNSET
+        else:
+            color = self.color
 
         date_created: None | str | Unset
         if isinstance(self.date_created, Unset):
@@ -192,6 +200,8 @@ class CustomActionSchema:
         )
         if app_id is not UNSET:
             field_dict["app_id"] = app_id
+        if color is not UNSET:
+            field_dict["color"] = color
         if date_created is not UNSET:
             field_dict["date_created"] = date_created
         if date_modified is not UNSET:
@@ -250,6 +260,15 @@ class CustomActionSchema:
             return cast(None | Unset | UUID, data)
 
         app_id = _parse_app_id(d.pop("app_id", UNSET))
+
+        def _parse_color(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        color = _parse_color(d.pop("color", UNSET))
 
         def _parse_date_created(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -457,6 +476,7 @@ class CustomActionSchema:
             title=title,
             url=url,
             app_id=app_id,
+            color=color,
             date_created=date_created,
             date_modified=date_modified,
             disabled=disabled,

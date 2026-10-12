@@ -87,6 +87,7 @@ def sync_detailed(
 
     Required roles:
      - can_search
+    - can_search_with_ai
 
     Args:
         body (NltfParseRequestSchema):
@@ -120,6 +121,7 @@ def sync(
 
     Required roles:
      - can_search
+    - can_search_with_ai
 
     Args:
         body (NltfParseRequestSchema):
@@ -148,6 +150,7 @@ async def asyncio_detailed(
 
     Required roles:
      - can_search
+    - can_search_with_ai
 
     Args:
         body (NltfParseRequestSchema):
@@ -179,6 +182,7 @@ async def asyncio(
 
     Required roles:
      - can_search
+    - can_search_with_ai
 
     Args:
         body (NltfParseRequestSchema):

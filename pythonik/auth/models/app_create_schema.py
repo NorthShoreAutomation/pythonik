@@ -20,6 +20,7 @@ class AppCreateSchema:
     """
     Attributes:
         name (str):
+        allowed_origins (list[str] | None | Unset):
         allowed_scopes (list[str] | None | Unset):
         client_secret (None | str | Unset):
         date_created (datetime.datetime | None | Unset):
@@ -35,6 +36,7 @@ class AppCreateSchema:
     """
 
     name: str
+    allowed_origins: list[str] | None | Unset = UNSET
     allowed_scopes: list[str] | None | Unset = UNSET
     client_secret: None | str | Unset = UNSET
     date_created: datetime.datetime | None | Unset = UNSET
@@ -51,6 +53,15 @@ class AppCreateSchema:
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
+
+        allowed_origins: list[str] | None | Unset
+        if isinstance(self.allowed_origins, Unset):
+            allowed_origins = UNSET
+        elif isinstance(self.allowed_origins, list):
+            allowed_origins = self.allowed_origins
+
+        else:
+            allowed_origins = self.allowed_origins
 
         allowed_scopes: list[str] | None | Unset
         if isinstance(self.allowed_scopes, Unset):
@@ -151,6 +162,8 @@ class AppCreateSchema:
                 "name": name,
             }
         )
+        if allowed_origins is not UNSET:
+            field_dict["allowed_origins"] = allowed_origins
         if allowed_scopes is not UNSET:
             field_dict["allowed_scopes"] = allowed_scopes
         if client_secret is not UNSET:
@@ -182,6 +195,23 @@ class AppCreateSchema:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         name = d.pop("name")
+
+        def _parse_allowed_origins(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                allowed_origins_type_0 = cast(list[str], data)
+
+                return allowed_origins_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        allowed_origins = _parse_allowed_origins(d.pop("allowed_origins", UNSET))
 
         def _parse_allowed_scopes(data: object) -> list[str] | None | Unset:
             if data is None:
@@ -367,6 +397,7 @@ class AppCreateSchema:
 
         app_create_schema = cls(
             name=name,
+            allowed_origins=allowed_origins,
             allowed_scopes=allowed_scopes,
             client_secret=client_secret,
             date_created=date_created,

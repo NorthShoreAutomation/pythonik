@@ -5,8 +5,10 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
+from ...models.error_response import ErrorResponse
 from ...models.http_validation_error import HTTPValidationError
 from ...models.search_suggest_request import SearchSuggestRequest
+from ...models.search_suggests_response import SearchSuggestsResponse
 from ...types import Response
 
 
@@ -31,10 +33,21 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Any | HTTPValidationError | None:
+) -> ErrorResponse | HTTPValidationError | SearchSuggestsResponse | None:
     if response.status_code == 200:
-        response_200 = response.json()
+        response_200 = SearchSuggestsResponse.from_dict(response.json())
+
         return response_200
+
+    if response.status_code == 400:
+        response_400 = ErrorResponse.from_dict(response.json())
+
+        return response_400
+
+    if response.status_code == 401:
+        response_401 = ErrorResponse.from_dict(response.json())
+
+        return response_401
 
     if response.status_code == 422:
         response_422 = HTTPValidationError.from_dict(response.json())
@@ -49,7 +62,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[Any | HTTPValidationError]:
+) -> Response[ErrorResponse | HTTPValidationError | SearchSuggestsResponse]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -62,7 +75,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: SearchSuggestRequest,
-) -> Response[Any | HTTPValidationError]:
+) -> Response[ErrorResponse | HTTPValidationError | SearchSuggestsResponse]:
     """Search suggestions
 
      Required roles:
@@ -76,7 +89,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | HTTPValidationError]
+        Response[ErrorResponse | HTTPValidationError | SearchSuggestsResponse]
     """
 
     kwargs = _get_kwargs(
@@ -94,7 +107,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: SearchSuggestRequest,
-) -> Any | HTTPValidationError | None:
+) -> ErrorResponse | HTTPValidationError | SearchSuggestsResponse | None:
     """Search suggestions
 
      Required roles:
@@ -108,7 +121,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | HTTPValidationError
+        ErrorResponse | HTTPValidationError | SearchSuggestsResponse
     """
 
     return sync_detailed(
@@ -121,7 +134,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: SearchSuggestRequest,
-) -> Response[Any | HTTPValidationError]:
+) -> Response[ErrorResponse | HTTPValidationError | SearchSuggestsResponse]:
     """Search suggestions
 
      Required roles:
@@ -135,7 +148,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | HTTPValidationError]
+        Response[ErrorResponse | HTTPValidationError | SearchSuggestsResponse]
     """
 
     kwargs = _get_kwargs(
@@ -151,7 +164,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: SearchSuggestRequest,
-) -> Any | HTTPValidationError | None:
+) -> ErrorResponse | HTTPValidationError | SearchSuggestsResponse | None:
     """Search suggestions
 
      Required roles:
@@ -165,7 +178,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | HTTPValidationError
+        ErrorResponse | HTTPValidationError | SearchSuggestsResponse
     """
 
     return (

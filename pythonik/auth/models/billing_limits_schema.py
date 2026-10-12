@@ -24,6 +24,7 @@ class BillingLimitsSchema:
         face_recognition_hours (int | None | Unset):
         face_recognition_images (int | None | Unset):
         image_recognition (int | None | Unset):
+        max_portals (int | None | Unset):
         max_storage_gateway_clusters (int | None | Unset):
         max_storage_gateway_nodes (int | None | Unset):
         multiregion_storage_gb (int | None | Unset):
@@ -45,6 +46,7 @@ class BillingLimitsSchema:
     face_recognition_hours: int | None | Unset = UNSET
     face_recognition_images: int | None | Unset = UNSET
     image_recognition: int | None | Unset = UNSET
+    max_portals: int | None | Unset = UNSET
     max_storage_gateway_clusters: int | None | Unset = UNSET
     max_storage_gateway_nodes: int | None | Unset = UNSET
     multiregion_storage_gb: int | None | Unset = UNSET
@@ -111,6 +113,12 @@ class BillingLimitsSchema:
             image_recognition = UNSET
         else:
             image_recognition = self.image_recognition
+
+        max_portals: int | None | Unset
+        if isinstance(self.max_portals, Unset):
+            max_portals = UNSET
+        else:
+            max_portals = self.max_portals
 
         max_storage_gateway_clusters: int | None | Unset
         if isinstance(self.max_storage_gateway_clusters, Unset):
@@ -193,6 +201,8 @@ class BillingLimitsSchema:
             field_dict["face_recognition_images"] = face_recognition_images
         if image_recognition is not UNSET:
             field_dict["image_recognition"] = image_recognition
+        if max_portals is not UNSET:
+            field_dict["max_portals"] = max_portals
         if max_storage_gateway_clusters is not UNSET:
             field_dict["max_storage_gateway_clusters"] = max_storage_gateway_clusters
         if max_storage_gateway_nodes is not UNSET:
@@ -307,6 +317,15 @@ class BillingLimitsSchema:
 
         image_recognition = _parse_image_recognition(d.pop("image_recognition", UNSET))
 
+        def _parse_max_portals(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        max_portals = _parse_max_portals(d.pop("max_portals", UNSET))
+
         def _parse_max_storage_gateway_clusters(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -419,6 +438,7 @@ class BillingLimitsSchema:
             face_recognition_hours=face_recognition_hours,
             face_recognition_images=face_recognition_images,
             image_recognition=image_recognition,
+            max_portals=max_portals,
             max_storage_gateway_clusters=max_storage_gateway_clusters,
             max_storage_gateway_nodes=max_storage_gateway_nodes,
             multiregion_storage_gb=multiregion_storage_gb,

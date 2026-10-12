@@ -27,12 +27,12 @@ T = TypeVar("T", bound="IconikStorageGatewayClusterReadSchema")
 class IconikStorageGatewayClusterReadSchema:
     """
     Attributes:
-        db_connection_uri (str): Database connection URI
         enabled (bool): Application toggle. If turned off ISG will enter idle state waiting to get enabled again.
         name (str):
         storage_ids (list[UUID]):
         date_created (datetime.datetime | None | Unset):
         date_modified (datetime.datetime | None | Unset):
+        db_connection_uri (None | str | Unset): Database connection URI
         description (None | str | Unset):
         id (None | Unset | UUID):
         leader_changed_at (datetime.datetime | None | Unset):
@@ -47,12 +47,12 @@ class IconikStorageGatewayClusterReadSchema:
             Default: 3600.
     """
 
-    db_connection_uri: str
     enabled: bool
     name: str
     storage_ids: list[UUID]
     date_created: datetime.datetime | None | Unset = UNSET
     date_modified: datetime.datetime | None | Unset = UNSET
+    db_connection_uri: None | str | Unset = UNSET
     description: None | str | Unset = UNSET
     id: None | Unset | UUID = UNSET
     leader_changed_at: datetime.datetime | None | Unset = UNSET
@@ -70,8 +70,6 @@ class IconikStorageGatewayClusterReadSchema:
         from ..models.isg_config_cluster_settings_schema import (
             ISGConfigClusterSettingsSchema,
         )
-
-        db_connection_uri = self.db_connection_uri
 
         enabled = self.enabled
 
@@ -97,6 +95,12 @@ class IconikStorageGatewayClusterReadSchema:
             date_modified = self.date_modified.isoformat()
         else:
             date_modified = self.date_modified
+
+        db_connection_uri: None | str | Unset
+        if isinstance(self.db_connection_uri, Unset):
+            db_connection_uri = UNSET
+        else:
+            db_connection_uri = self.db_connection_uri
 
         description: None | str | Unset
         if isinstance(self.description, Unset):
@@ -184,7 +188,6 @@ class IconikStorageGatewayClusterReadSchema:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "db_connection_uri": db_connection_uri,
                 "enabled": enabled,
                 "name": name,
                 "storage_ids": storage_ids,
@@ -194,6 +197,8 @@ class IconikStorageGatewayClusterReadSchema:
             field_dict["date_created"] = date_created
         if date_modified is not UNSET:
             field_dict["date_modified"] = date_modified
+        if db_connection_uri is not UNSET:
+            field_dict["db_connection_uri"] = db_connection_uri
         if description is not UNSET:
             field_dict["description"] = description
         if id is not UNSET:
@@ -227,8 +232,6 @@ class IconikStorageGatewayClusterReadSchema:
         )
 
         d = dict(src_dict)
-        db_connection_uri = d.pop("db_connection_uri")
-
         enabled = d.pop("enabled")
 
         name = d.pop("name")
@@ -273,6 +276,15 @@ class IconikStorageGatewayClusterReadSchema:
             return cast(datetime.datetime | None | Unset, data)
 
         date_modified = _parse_date_modified(d.pop("date_modified", UNSET))
+
+        def _parse_db_connection_uri(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        db_connection_uri = _parse_db_connection_uri(d.pop("db_connection_uri", UNSET))
 
         def _parse_description(data: object) -> None | str | Unset:
             if data is None:
@@ -443,12 +455,12 @@ class IconikStorageGatewayClusterReadSchema:
         )
 
         iconik_storage_gateway_cluster_read_schema = cls(
-            db_connection_uri=db_connection_uri,
             enabled=enabled,
             name=name,
             storage_ids=storage_ids,
             date_created=date_created,
             date_modified=date_modified,
+            db_connection_uri=db_connection_uri,
             description=description,
             id=id,
             leader_changed_at=leader_changed_at,

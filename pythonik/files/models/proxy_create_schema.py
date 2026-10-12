@@ -15,6 +15,9 @@ if TYPE_CHECKING:
     from ..models.proxy_create_schema_upload_credentials_type_0 import (
         ProxyCreateSchemaUploadCredentialsType0,
     )
+    from ..models.proxy_create_schema_upload_headers_type_0 import (
+        ProxyCreateSchemaUploadHeadersType0,
+    )
     from ..models.resolution_type import ResolutionType
 
 
@@ -51,6 +54,7 @@ class ProxyCreateSchema:
         storage_id (None | Unset | UUID):
         storage_method (None | str | Unset):
         upload_credentials (None | ProxyCreateSchemaUploadCredentialsType0 | Unset):
+        upload_headers (None | ProxyCreateSchemaUploadHeadersType0 | Unset):
         upload_method (None | str | Unset):
         upload_url (None | str | Unset):
         url (None | str | Unset):
@@ -83,6 +87,7 @@ class ProxyCreateSchema:
     storage_id: None | Unset | UUID = UNSET
     storage_method: None | str | Unset = UNSET
     upload_credentials: None | ProxyCreateSchemaUploadCredentialsType0 | Unset = UNSET
+    upload_headers: None | ProxyCreateSchemaUploadHeadersType0 | Unset = UNSET
     upload_method: None | str | Unset = UNSET
     upload_url: None | str | Unset = UNSET
     url: None | str | Unset = UNSET
@@ -92,6 +97,9 @@ class ProxyCreateSchema:
     def to_dict(self) -> dict[str, Any]:
         from ..models.proxy_create_schema_upload_credentials_type_0 import (
             ProxyCreateSchemaUploadCredentialsType0,
+        )
+        from ..models.proxy_create_schema_upload_headers_type_0 import (
+            ProxyCreateSchemaUploadHeadersType0,
         )
         from ..models.resolution_type import ResolutionType
 
@@ -271,6 +279,14 @@ class ProxyCreateSchema:
         else:
             upload_credentials = self.upload_credentials
 
+        upload_headers: dict[str, Any] | None | Unset
+        if isinstance(self.upload_headers, Unset):
+            upload_headers = UNSET
+        elif isinstance(self.upload_headers, ProxyCreateSchemaUploadHeadersType0):
+            upload_headers = self.upload_headers.to_dict()
+        else:
+            upload_headers = self.upload_headers
+
         upload_method: None | str | Unset
         if isinstance(self.upload_method, Unset):
             upload_method = UNSET
@@ -352,6 +368,8 @@ class ProxyCreateSchema:
             field_dict["storage_method"] = storage_method
         if upload_credentials is not UNSET:
             field_dict["upload_credentials"] = upload_credentials
+        if upload_headers is not UNSET:
+            field_dict["upload_headers"] = upload_headers
         if upload_method is not UNSET:
             field_dict["upload_method"] = upload_method
         if upload_url is not UNSET:
@@ -367,6 +385,9 @@ class ProxyCreateSchema:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.proxy_create_schema_upload_credentials_type_0 import (
             ProxyCreateSchemaUploadCredentialsType0,
+        )
+        from ..models.proxy_create_schema_upload_headers_type_0 import (
+            ProxyCreateSchemaUploadHeadersType0,
         )
         from ..models.resolution_type import ResolutionType
 
@@ -688,6 +709,27 @@ class ProxyCreateSchema:
             d.pop("upload_credentials", UNSET)
         )
 
+        def _parse_upload_headers(
+            data: object,
+        ) -> None | ProxyCreateSchemaUploadHeadersType0 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                upload_headers_type_0 = ProxyCreateSchemaUploadHeadersType0.from_dict(
+                    data
+                )
+
+                return upload_headers_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | ProxyCreateSchemaUploadHeadersType0 | Unset, data)
+
+        upload_headers = _parse_upload_headers(d.pop("upload_headers", UNSET))
+
         def _parse_upload_method(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -759,6 +801,7 @@ class ProxyCreateSchema:
             storage_id=storage_id,
             storage_method=storage_method,
             upload_credentials=upload_credentials,
+            upload_headers=upload_headers,
             upload_method=upload_method,
             upload_url=upload_url,
             url=url,

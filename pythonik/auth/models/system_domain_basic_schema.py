@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -14,6 +14,10 @@ from ..models.system_domain_basic_schema_billing_tier import (
 from ..models.system_domain_basic_schema_type import SystemDomainBasicSchemaType
 from ..types import UNSET, Unset
 
+if TYPE_CHECKING:
+    from ..models.basic_billing_limits_schema import BasicBillingLimitsSchema
+
+
 T = TypeVar("T", bound="SystemDomainBasicSchema")
 
 
@@ -22,6 +26,7 @@ class SystemDomainBasicSchema:
     """
     Attributes:
         name (str):
+        billing_limits (BasicBillingLimitsSchema | None | Unset):
         billing_tier (None | SystemDomainBasicSchemaBillingTier | Unset):
         country (None | str | Unset):
         date_created (datetime.datetime | None | Unset):
@@ -32,6 +37,7 @@ class SystemDomainBasicSchema:
     """
 
     name: str
+    billing_limits: BasicBillingLimitsSchema | None | Unset = UNSET
     billing_tier: None | SystemDomainBasicSchemaBillingTier | Unset = UNSET
     country: None | str | Unset = UNSET
     date_created: datetime.datetime | None | Unset = UNSET
@@ -42,7 +48,17 @@ class SystemDomainBasicSchema:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.basic_billing_limits_schema import BasicBillingLimitsSchema
+
         name = self.name
+
+        billing_limits: dict[str, Any] | None | Unset
+        if isinstance(self.billing_limits, Unset):
+            billing_limits = UNSET
+        elif isinstance(self.billing_limits, BasicBillingLimitsSchema):
+            billing_limits = self.billing_limits.to_dict()
+        else:
+            billing_limits = self.billing_limits
 
         billing_tier: None | str | Unset
         if isinstance(self.billing_tier, Unset):
@@ -104,6 +120,8 @@ class SystemDomainBasicSchema:
                 "name": name,
             }
         )
+        if billing_limits is not UNSET:
+            field_dict["billing_limits"] = billing_limits
         if billing_tier is not UNSET:
             field_dict["billing_tier"] = billing_tier
         if country is not UNSET:
@@ -123,8 +141,29 @@ class SystemDomainBasicSchema:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.basic_billing_limits_schema import BasicBillingLimitsSchema
+
         d = dict(src_dict)
         name = d.pop("name")
+
+        def _parse_billing_limits(
+            data: object,
+        ) -> BasicBillingLimitsSchema | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                billing_limits_type_1 = BasicBillingLimitsSchema.from_dict(data)
+
+                return billing_limits_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(BasicBillingLimitsSchema | None | Unset, data)
+
+        billing_limits = _parse_billing_limits(d.pop("billing_limits", UNSET))
 
         def _parse_billing_tier(
             data: object,
@@ -233,6 +272,7 @@ class SystemDomainBasicSchema:
 
         system_domain_basic_schema = cls(
             name=name,
+            billing_limits=billing_limits,
             billing_tier=billing_tier,
             country=country,
             date_created=date_created,

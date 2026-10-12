@@ -21,12 +21,14 @@ class FlicsTranscoderSchema:
         edit_proxy_local_storage_path (None | str | Unset):
         edit_proxy_upload_storage_id (None | str | Unset):
         edit_proxy_upload_storage_path (None | str | Unset):
+        enable_multi_channel_audio (bool | None | Unset):
         exclude_patterns (list[str] | None | Unset):
         host (None | str | Unset):
         image_template_id (None | str | Unset):
         include_patterns (list[str] | None | Unset):
         local (bool | None | Unset):
         max_concurrency (int | None | Unset):
+        mc_video_template_id (None | str | Unset):
         secret_key (None | str | Unset):
         storage_id_path_mapping (Any | Unset):
         storage_ids_mapping (Any | Unset):
@@ -39,12 +41,14 @@ class FlicsTranscoderSchema:
     edit_proxy_local_storage_path: None | str | Unset = UNSET
     edit_proxy_upload_storage_id: None | str | Unset = UNSET
     edit_proxy_upload_storage_path: None | str | Unset = UNSET
+    enable_multi_channel_audio: bool | None | Unset = UNSET
     exclude_patterns: list[str] | None | Unset = UNSET
     host: None | str | Unset = UNSET
     image_template_id: None | str | Unset = UNSET
     include_patterns: list[str] | None | Unset = UNSET
     local: bool | None | Unset = UNSET
     max_concurrency: int | None | Unset = UNSET
+    mc_video_template_id: None | str | Unset = UNSET
     secret_key: None | str | Unset = UNSET
     storage_id_path_mapping: Any | Unset = UNSET
     storage_ids_mapping: Any | Unset = UNSET
@@ -88,6 +92,12 @@ class FlicsTranscoderSchema:
         else:
             edit_proxy_upload_storage_path = self.edit_proxy_upload_storage_path
 
+        enable_multi_channel_audio: bool | None | Unset
+        if isinstance(self.enable_multi_channel_audio, Unset):
+            enable_multi_channel_audio = UNSET
+        else:
+            enable_multi_channel_audio = self.enable_multi_channel_audio
+
         exclude_patterns: list[str] | None | Unset
         if isinstance(self.exclude_patterns, Unset):
             exclude_patterns = UNSET
@@ -130,6 +140,12 @@ class FlicsTranscoderSchema:
         else:
             max_concurrency = self.max_concurrency
 
+        mc_video_template_id: None | str | Unset
+        if isinstance(self.mc_video_template_id, Unset):
+            mc_video_template_id = UNSET
+        else:
+            mc_video_template_id = self.mc_video_template_id
+
         secret_key: None | str | Unset
         if isinstance(self.secret_key, Unset):
             secret_key = UNSET
@@ -163,6 +179,8 @@ class FlicsTranscoderSchema:
             field_dict["edit_proxy_upload_storage_path"] = (
                 edit_proxy_upload_storage_path
             )
+        if enable_multi_channel_audio is not UNSET:
+            field_dict["enable_multi_channel_audio"] = enable_multi_channel_audio
         if exclude_patterns is not UNSET:
             field_dict["exclude_patterns"] = exclude_patterns
         if host is not UNSET:
@@ -175,6 +193,8 @@ class FlicsTranscoderSchema:
             field_dict["local"] = local
         if max_concurrency is not UNSET:
             field_dict["max_concurrency"] = max_concurrency
+        if mc_video_template_id is not UNSET:
+            field_dict["mc_video_template_id"] = mc_video_template_id
         if secret_key is not UNSET:
             field_dict["secret_key"] = secret_key
         if storage_id_path_mapping is not UNSET:
@@ -252,6 +272,17 @@ class FlicsTranscoderSchema:
             d.pop("edit_proxy_upload_storage_path", UNSET)
         )
 
+        def _parse_enable_multi_channel_audio(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        enable_multi_channel_audio = _parse_enable_multi_channel_audio(
+            d.pop("enable_multi_channel_audio", UNSET)
+        )
+
         def _parse_exclude_patterns(data: object) -> list[str] | None | Unset:
             if data is None:
                 return data
@@ -322,6 +353,17 @@ class FlicsTranscoderSchema:
 
         max_concurrency = _parse_max_concurrency(d.pop("max_concurrency", UNSET))
 
+        def _parse_mc_video_template_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        mc_video_template_id = _parse_mc_video_template_id(
+            d.pop("mc_video_template_id", UNSET)
+        )
+
         def _parse_secret_key(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -351,12 +393,14 @@ class FlicsTranscoderSchema:
             edit_proxy_local_storage_path=edit_proxy_local_storage_path,
             edit_proxy_upload_storage_id=edit_proxy_upload_storage_id,
             edit_proxy_upload_storage_path=edit_proxy_upload_storage_path,
+            enable_multi_channel_audio=enable_multi_channel_audio,
             exclude_patterns=exclude_patterns,
             host=host,
             image_template_id=image_template_id,
             include_patterns=include_patterns,
             local=local,
             max_concurrency=max_concurrency,
+            mc_video_template_id=mc_video_template_id,
             secret_key=secret_key,
             storage_id_path_mapping=storage_id_path_mapping,
             storage_ids_mapping=storage_ids_mapping,

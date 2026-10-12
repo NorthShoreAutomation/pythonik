@@ -40,7 +40,14 @@ class WildmokaProtectTranscode:
         segment_duration (int):
         update_file_status_callback_url (str):
         watermark (str):
+        watermark_bit_profile (int):
+        watermark_deep_fake (int):
         watermark_id (None | str):
+        watermark_pixel_density (int):
+        watermark_sp_height (int):
+        watermark_sp_width (int):
+        watermark_strength (int):
+        watermark_super_pixel_density (int):
         width (int):
     """
 
@@ -62,7 +69,14 @@ class WildmokaProtectTranscode:
     segment_duration: int
     update_file_status_callback_url: str
     watermark: str
+    watermark_bit_profile: int
+    watermark_deep_fake: int
     watermark_id: None | str
+    watermark_pixel_density: int
+    watermark_sp_height: int
+    watermark_sp_width: int
+    watermark_strength: int
+    watermark_super_pixel_density: int
     width: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -103,8 +117,22 @@ class WildmokaProtectTranscode:
 
         watermark = self.watermark
 
+        watermark_bit_profile = self.watermark_bit_profile
+
+        watermark_deep_fake = self.watermark_deep_fake
+
         watermark_id: None | str
         watermark_id = self.watermark_id
+
+        watermark_pixel_density = self.watermark_pixel_density
+
+        watermark_sp_height = self.watermark_sp_height
+
+        watermark_sp_width = self.watermark_sp_width
+
+        watermark_strength = self.watermark_strength
+
+        watermark_super_pixel_density = self.watermark_super_pixel_density
 
         width = self.width
 
@@ -130,7 +158,14 @@ class WildmokaProtectTranscode:
                 "segment_duration": segment_duration,
                 "update_file_status_callback_url": update_file_status_callback_url,
                 "watermark": watermark,
+                "watermark_bit_profile": watermark_bit_profile,
+                "watermark_deep_fake": watermark_deep_fake,
                 "watermark_id": watermark_id,
+                "watermark_pixel_density": watermark_pixel_density,
+                "watermark_sp_height": watermark_sp_height,
+                "watermark_sp_width": watermark_sp_width,
+                "watermark_strength": watermark_strength,
+                "watermark_super_pixel_density": watermark_super_pixel_density,
                 "width": width,
             }
         )
@@ -189,12 +224,26 @@ class WildmokaProtectTranscode:
 
         watermark = d.pop("watermark")
 
+        watermark_bit_profile = d.pop("watermark_bit_profile")
+
+        watermark_deep_fake = d.pop("watermark_deep_fake")
+
         def _parse_watermark_id(data: object) -> None | str:
             if data is None:
                 return data
             return cast(None | str, data)
 
         watermark_id = _parse_watermark_id(d.pop("watermark_id"))
+
+        watermark_pixel_density = d.pop("watermark_pixel_density")
+
+        watermark_sp_height = d.pop("watermark_sp_height")
+
+        watermark_sp_width = d.pop("watermark_sp_width")
+
+        watermark_strength = d.pop("watermark_strength")
+
+        watermark_super_pixel_density = d.pop("watermark_super_pixel_density")
 
         width = d.pop("width")
 
@@ -217,7 +266,14 @@ class WildmokaProtectTranscode:
             segment_duration=segment_duration,
             update_file_status_callback_url=update_file_status_callback_url,
             watermark=watermark,
+            watermark_bit_profile=watermark_bit_profile,
+            watermark_deep_fake=watermark_deep_fake,
             watermark_id=watermark_id,
+            watermark_pixel_density=watermark_pixel_density,
+            watermark_sp_height=watermark_sp_height,
+            watermark_sp_width=watermark_sp_width,
+            watermark_strength=watermark_strength,
+            watermark_super_pixel_density=watermark_super_pixel_density,
             width=width,
         )
 

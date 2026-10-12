@@ -23,6 +23,7 @@ class ListObjectsSchema:
         per_page (int | None | Unset):
         prev_url (None | str | Unset):
         scroll_id (None | str | Unset):
+        search_after (list[Any] | None | Unset):
         total (int | None | Unset):
     """
 
@@ -34,6 +35,7 @@ class ListObjectsSchema:
     per_page: int | None | Unset = UNSET
     prev_url: None | str | Unset = UNSET
     scroll_id: None | str | Unset = UNSET
+    search_after: list[Any] | None | Unset = UNSET
     total: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -86,6 +88,15 @@ class ListObjectsSchema:
         else:
             scroll_id = self.scroll_id
 
+        search_after: list[Any] | None | Unset
+        if isinstance(self.search_after, Unset):
+            search_after = UNSET
+        elif isinstance(self.search_after, list):
+            search_after = self.search_after
+
+        else:
+            search_after = self.search_after
+
         total: int | None | Unset
         if isinstance(self.total, Unset):
             total = UNSET
@@ -111,6 +122,8 @@ class ListObjectsSchema:
             field_dict["prev_url"] = prev_url
         if scroll_id is not UNSET:
             field_dict["scroll_id"] = scroll_id
+        if search_after is not UNSET:
+            field_dict["search_after"] = search_after
         if total is not UNSET:
             field_dict["total"] = total
 
@@ -192,6 +205,23 @@ class ListObjectsSchema:
 
         scroll_id = _parse_scroll_id(d.pop("scroll_id", UNSET))
 
+        def _parse_search_after(data: object) -> list[Any] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                search_after_type_0 = cast(list[Any], data)
+
+                return search_after_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[Any] | None | Unset, data)
+
+        search_after = _parse_search_after(d.pop("search_after", UNSET))
+
         def _parse_total(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -210,6 +240,7 @@ class ListObjectsSchema:
             per_page=per_page,
             prev_url=prev_url,
             scroll_id=scroll_id,
+            search_after=search_after,
             total=total,
         )
 

@@ -17,6 +17,7 @@ def _get_kwargs(
     per_page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
+    search_after: str | Unset = UNSET,
     sort: str | Unset = UNSET,
     type_: str | Unset = UNSET,
     object_type: str | Unset = UNSET,
@@ -47,6 +48,8 @@ def _get_kwargs(
     params["scroll"] = scroll
 
     params["scroll_id"] = scroll_id
+
+    params["search_after"] = search_after
 
     params["sort"] = sort
 
@@ -134,6 +137,7 @@ def sync_detailed(
     per_page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
+    search_after: str | Unset = UNSET,
     sort: str | Unset = UNSET,
     type_: str | Unset = UNSET,
     object_type: str | Unset = UNSET,
@@ -163,6 +167,7 @@ def sync_detailed(
         per_page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
+        search_after (str | Unset):
         sort (str | Unset):
         type_ (str | Unset):
         object_type (str | Unset):
@@ -194,6 +199,7 @@ def sync_detailed(
         per_page=per_page,
         scroll=scroll,
         scroll_id=scroll_id,
+        search_after=search_after,
         sort=sort,
         type_=type_,
         object_type=object_type,
@@ -227,6 +233,7 @@ def sync(
     per_page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
+    search_after: str | Unset = UNSET,
     sort: str | Unset = UNSET,
     type_: str | Unset = UNSET,
     object_type: str | Unset = UNSET,
@@ -256,6 +263,7 @@ def sync(
         per_page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
+        search_after (str | Unset):
         sort (str | Unset):
         type_ (str | Unset):
         object_type (str | Unset):
@@ -288,6 +296,7 @@ def sync(
         per_page=per_page,
         scroll=scroll,
         scroll_id=scroll_id,
+        search_after=search_after,
         sort=sort,
         type_=type_,
         object_type=object_type,
@@ -315,6 +324,7 @@ async def asyncio_detailed(
     per_page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
+    search_after: str | Unset = UNSET,
     sort: str | Unset = UNSET,
     type_: str | Unset = UNSET,
     object_type: str | Unset = UNSET,
@@ -344,6 +354,7 @@ async def asyncio_detailed(
         per_page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
+        search_after (str | Unset):
         sort (str | Unset):
         type_ (str | Unset):
         object_type (str | Unset):
@@ -375,6 +386,7 @@ async def asyncio_detailed(
         per_page=per_page,
         scroll=scroll,
         scroll_id=scroll_id,
+        search_after=search_after,
         sort=sort,
         type_=type_,
         object_type=object_type,
@@ -406,6 +418,7 @@ async def asyncio(
     per_page: int | Unset = UNSET,
     scroll: bool | Unset = UNSET,
     scroll_id: str | Unset = UNSET,
+    search_after: str | Unset = UNSET,
     sort: str | Unset = UNSET,
     type_: str | Unset = UNSET,
     object_type: str | Unset = UNSET,
@@ -435,6 +448,7 @@ async def asyncio(
         per_page (int | Unset):
         scroll (bool | Unset):
         scroll_id (str | Unset):
+        search_after (str | Unset):
         sort (str | Unset):
         type_ (str | Unset):
         object_type (str | Unset):
@@ -468,6 +482,7 @@ async def asyncio(
             per_page=per_page,
             scroll=scroll,
             scroll_id=scroll_id,
+            search_after=search_after,
             sort=sort,
             type_=type_,
             object_type=object_type,

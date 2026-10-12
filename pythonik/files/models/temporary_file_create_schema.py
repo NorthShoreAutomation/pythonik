@@ -19,6 +19,9 @@ if TYPE_CHECKING:
     from ..models.temporary_file_create_schema_upload_credentials_type_0 import (
         TemporaryFileCreateSchemaUploadCredentialsType0,
     )
+    from ..models.temporary_file_create_schema_upload_headers_type_0 import (
+        TemporaryFileCreateSchemaUploadHeadersType0,
+    )
 
 
 T = TypeVar("T", bound="TemporaryFileCreateSchema")
@@ -53,6 +56,7 @@ class TemporaryFileCreateSchema:
         template_engine (None | TemporaryFileCreateSchemaTemplateEngine | Unset):
         upload_credentials (None | TemporaryFileCreateSchemaUploadCredentialsType0 | Unset):
         upload_filename (None | str | Unset):
+        upload_headers (None | TemporaryFileCreateSchemaUploadHeadersType0 | Unset):
         upload_method (None | str | Unset):
         upload_url (None | str | Unset):
         user_id (None | Unset | UUID):
@@ -86,6 +90,7 @@ class TemporaryFileCreateSchema:
         None | TemporaryFileCreateSchemaUploadCredentialsType0 | Unset
     ) = UNSET
     upload_filename: None | str | Unset = UNSET
+    upload_headers: None | TemporaryFileCreateSchemaUploadHeadersType0 | Unset = UNSET
     upload_method: None | str | Unset = UNSET
     upload_url: None | str | Unset = UNSET
     user_id: None | Unset | UUID = UNSET
@@ -95,6 +100,9 @@ class TemporaryFileCreateSchema:
     def to_dict(self) -> dict[str, Any]:
         from ..models.temporary_file_create_schema_upload_credentials_type_0 import (
             TemporaryFileCreateSchemaUploadCredentialsType0,
+        )
+        from ..models.temporary_file_create_schema_upload_headers_type_0 import (
+            TemporaryFileCreateSchemaUploadHeadersType0,
         )
 
         directory_path = self.directory_path
@@ -263,6 +271,16 @@ class TemporaryFileCreateSchema:
         else:
             upload_filename = self.upload_filename
 
+        upload_headers: dict[str, Any] | None | Unset
+        if isinstance(self.upload_headers, Unset):
+            upload_headers = UNSET
+        elif isinstance(
+            self.upload_headers, TemporaryFileCreateSchemaUploadHeadersType0
+        ):
+            upload_headers = self.upload_headers.to_dict()
+        else:
+            upload_headers = self.upload_headers
+
         upload_method: None | str | Unset
         if isinstance(self.upload_method, Unset):
             upload_method = UNSET
@@ -344,6 +362,8 @@ class TemporaryFileCreateSchema:
             field_dict["upload_credentials"] = upload_credentials
         if upload_filename is not UNSET:
             field_dict["upload_filename"] = upload_filename
+        if upload_headers is not UNSET:
+            field_dict["upload_headers"] = upload_headers
         if upload_method is not UNSET:
             field_dict["upload_method"] = upload_method
         if upload_url is not UNSET:
@@ -359,6 +379,9 @@ class TemporaryFileCreateSchema:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.temporary_file_create_schema_upload_credentials_type_0 import (
             TemporaryFileCreateSchemaUploadCredentialsType0,
+        )
+        from ..models.temporary_file_create_schema_upload_headers_type_0 import (
+            TemporaryFileCreateSchemaUploadHeadersType0,
         )
 
         d = dict(src_dict)
@@ -686,6 +709,29 @@ class TemporaryFileCreateSchema:
 
         upload_filename = _parse_upload_filename(d.pop("upload_filename", UNSET))
 
+        def _parse_upload_headers(
+            data: object,
+        ) -> None | TemporaryFileCreateSchemaUploadHeadersType0 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                upload_headers_type_0 = (
+                    TemporaryFileCreateSchemaUploadHeadersType0.from_dict(data)
+                )
+
+                return upload_headers_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(
+                None | TemporaryFileCreateSchemaUploadHeadersType0 | Unset, data
+            )
+
+        upload_headers = _parse_upload_headers(d.pop("upload_headers", UNSET))
+
         def _parse_upload_method(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -764,6 +810,7 @@ class TemporaryFileCreateSchema:
             template_engine=template_engine,
             upload_credentials=upload_credentials,
             upload_filename=upload_filename,
+            upload_headers=upload_headers,
             upload_method=upload_method,
             upload_url=upload_url,
             user_id=user_id,

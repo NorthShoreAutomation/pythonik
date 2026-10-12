@@ -37,6 +37,7 @@ class ProxyUpdateSchema:
         is_multichannel (bool | None | Unset):
         is_public (bool | None | Unset):
         name (None | str | Unset):
+        proxy_container_id (None | Unset | UUID):
         resolution (None | ResolutionType | Unset):
         rotation (int | None | Unset):
         size (int | None | Unset):
@@ -62,6 +63,7 @@ class ProxyUpdateSchema:
     is_multichannel: bool | None | Unset = UNSET
     is_public: bool | None | Unset = UNSET
     name: None | str | Unset = UNSET
+    proxy_container_id: None | Unset | UUID = UNSET
     resolution: None | ResolutionType | Unset = UNSET
     rotation: int | None | Unset = UNSET
     size: int | None | Unset = UNSET
@@ -173,6 +175,14 @@ class ProxyUpdateSchema:
         else:
             name = self.name
 
+        proxy_container_id: None | str | Unset
+        if isinstance(self.proxy_container_id, Unset):
+            proxy_container_id = UNSET
+        elif isinstance(self.proxy_container_id, UUID):
+            proxy_container_id = str(self.proxy_container_id)
+        else:
+            proxy_container_id = self.proxy_container_id
+
         resolution: dict[str, Any] | None | Unset
         if isinstance(self.resolution, Unset):
             resolution = UNSET
@@ -262,6 +272,8 @@ class ProxyUpdateSchema:
             field_dict["is_public"] = is_public
         if name is not UNSET:
             field_dict["name"] = name
+        if proxy_container_id is not UNSET:
+            field_dict["proxy_container_id"] = proxy_container_id
         if resolution is not UNSET:
             field_dict["resolution"] = resolution
         if rotation is not UNSET:
@@ -454,6 +466,25 @@ class ProxyUpdateSchema:
 
         name = _parse_name(d.pop("name", UNSET))
 
+        def _parse_proxy_container_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                proxy_container_id_type_0 = UUID(data)
+
+                return proxy_container_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        proxy_container_id = _parse_proxy_container_id(
+            d.pop("proxy_container_id", UNSET)
+        )
+
         def _parse_resolution(data: object) -> None | ResolutionType | Unset:
             if data is None:
                 return data
@@ -574,6 +605,7 @@ class ProxyUpdateSchema:
             is_multichannel=is_multichannel,
             is_public=is_public,
             name=name,
+            proxy_container_id=proxy_container_id,
             resolution=resolution,
             rotation=rotation,
             size=size,

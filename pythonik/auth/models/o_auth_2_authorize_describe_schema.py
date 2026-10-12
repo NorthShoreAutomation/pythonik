@@ -10,6 +10,8 @@ from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.o_auth_2_authorize_client_schema import OAuth2AuthorizeClientSchema
+    from ..models.o_auth_2_authorize_system_domain import OAuth2AuthorizeSystemDomain
+    from ..models.o_auth_2_authorize_user import OAuth2AuthorizeUser
 
 
 T = TypeVar("T", bound="OAuth2AuthorizeDescribeSchema")
@@ -22,12 +24,16 @@ class OAuth2AuthorizeDescribeSchema:
         client (OAuth2AuthorizeClientSchema):
         redirect_uri (str):
         scopes (list[str]):
+        system_domain (OAuth2AuthorizeSystemDomain):
+        user (OAuth2AuthorizeUser):
         state (None | str | Unset):
     """
 
     client: OAuth2AuthorizeClientSchema
     redirect_uri: str
     scopes: list[str]
+    system_domain: OAuth2AuthorizeSystemDomain
+    user: OAuth2AuthorizeUser
     state: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -37,6 +43,10 @@ class OAuth2AuthorizeDescribeSchema:
         redirect_uri = self.redirect_uri
 
         scopes = self.scopes
+
+        system_domain = self.system_domain.to_dict()
+
+        user = self.user.to_dict()
 
         state: None | str | Unset
         if isinstance(self.state, Unset):
@@ -51,6 +61,8 @@ class OAuth2AuthorizeDescribeSchema:
                 "client": client,
                 "redirect_uri": redirect_uri,
                 "scopes": scopes,
+                "system_domain": system_domain,
+                "user": user,
             }
         )
         if state is not UNSET:
@@ -63,6 +75,10 @@ class OAuth2AuthorizeDescribeSchema:
         from ..models.o_auth_2_authorize_client_schema import (
             OAuth2AuthorizeClientSchema,
         )
+        from ..models.o_auth_2_authorize_system_domain import (
+            OAuth2AuthorizeSystemDomain,
+        )
+        from ..models.o_auth_2_authorize_user import OAuth2AuthorizeUser
 
         d = dict(src_dict)
         client = OAuth2AuthorizeClientSchema.from_dict(d.pop("client"))
@@ -70,6 +86,10 @@ class OAuth2AuthorizeDescribeSchema:
         redirect_uri = d.pop("redirect_uri")
 
         scopes = cast(list[str], d.pop("scopes"))
+
+        system_domain = OAuth2AuthorizeSystemDomain.from_dict(d.pop("system_domain"))
+
+        user = OAuth2AuthorizeUser.from_dict(d.pop("user"))
 
         def _parse_state(data: object) -> None | str | Unset:
             if data is None:
@@ -84,6 +104,8 @@ class OAuth2AuthorizeDescribeSchema:
             client=client,
             redirect_uri=redirect_uri,
             scopes=scopes,
+            system_domain=system_domain,
+            user=user,
             state=state,
         )
 

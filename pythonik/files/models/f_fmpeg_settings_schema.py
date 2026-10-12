@@ -37,6 +37,7 @@ class FFmpegSettingsSchema:
         overlay_url (None | str | Unset):
         priority (int | None | Unset):
         scaling_method (FFmpegSettingsSchemaScalingMethod | None | Unset):
+        use_next_generation_transcoder (bool | None | Unset):
         width (int | None | Unset):
     """
 
@@ -59,6 +60,7 @@ class FFmpegSettingsSchema:
     overlay_url: None | str | Unset = UNSET
     priority: int | None | Unset = UNSET
     scaling_method: FFmpegSettingsSchemaScalingMethod | None | Unset = UNSET
+    use_next_generation_transcoder: bool | None | Unset = UNSET
     width: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -185,6 +187,12 @@ class FFmpegSettingsSchema:
         else:
             scaling_method = self.scaling_method
 
+        use_next_generation_transcoder: bool | None | Unset
+        if isinstance(self.use_next_generation_transcoder, Unset):
+            use_next_generation_transcoder = UNSET
+        else:
+            use_next_generation_transcoder = self.use_next_generation_transcoder
+
         width: int | None | Unset
         if isinstance(self.width, Unset):
             width = UNSET
@@ -234,6 +242,10 @@ class FFmpegSettingsSchema:
             field_dict["priority"] = priority
         if scaling_method is not UNSET:
             field_dict["scaling_method"] = scaling_method
+        if use_next_generation_transcoder is not UNSET:
+            field_dict["use_next_generation_transcoder"] = (
+                use_next_generation_transcoder
+            )
         if width is not UNSET:
             field_dict["width"] = width
 
@@ -446,6 +458,17 @@ class FFmpegSettingsSchema:
 
         scaling_method = _parse_scaling_method(d.pop("scaling_method", UNSET))
 
+        def _parse_use_next_generation_transcoder(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        use_next_generation_transcoder = _parse_use_next_generation_transcoder(
+            d.pop("use_next_generation_transcoder", UNSET)
+        )
+
         def _parse_width(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -475,6 +498,7 @@ class FFmpegSettingsSchema:
             overlay_url=overlay_url,
             priority=priority,
             scaling_method=scaling_method,
+            use_next_generation_transcoder=use_next_generation_transcoder,
             width=width,
         )
 

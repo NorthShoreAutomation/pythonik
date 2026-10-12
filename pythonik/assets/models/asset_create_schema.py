@@ -32,6 +32,7 @@ class AssetCreateSchema:
         analyze_status (AssetCreateSchemaAnalyzeStatus | None | Unset):
         archive_status (AssetCreateSchemaArchiveStatus | None | Unset):
         category (None | str | Unset):
+        clip_id (int | None | Unset): ID of the draft clip in the Wildmoka system that is linked to this asset.
         collection_id (None | Unset | UUID):
         created_by_user (None | Unset | UUID):
         created_by_user_info (None | Unset | User):
@@ -72,6 +73,7 @@ class AssetCreateSchema:
     analyze_status: AssetCreateSchemaAnalyzeStatus | None | Unset = UNSET
     archive_status: AssetCreateSchemaArchiveStatus | None | Unset = UNSET
     category: None | str | Unset = UNSET
+    clip_id: int | None | Unset = UNSET
     collection_id: None | Unset | UUID = UNSET
     created_by_user: None | Unset | UUID = UNSET
     created_by_user_info: None | Unset | User = UNSET
@@ -136,6 +138,12 @@ class AssetCreateSchema:
             category = UNSET
         else:
             category = self.category
+
+        clip_id: int | None | Unset
+        if isinstance(self.clip_id, Unset):
+            clip_id = UNSET
+        else:
+            clip_id = self.clip_id
 
         collection_id: None | str | Unset
         if isinstance(self.collection_id, Unset):
@@ -416,6 +424,8 @@ class AssetCreateSchema:
             field_dict["archive_status"] = archive_status
         if category is not UNSET:
             field_dict["category"] = category
+        if clip_id is not UNSET:
+            field_dict["clip_id"] = clip_id
         if collection_id is not UNSET:
             field_dict["collection_id"] = collection_id
         if created_by_user is not UNSET:
@@ -540,6 +550,15 @@ class AssetCreateSchema:
             return cast(None | str | Unset, data)
 
         category = _parse_category(d.pop("category", UNSET))
+
+        def _parse_clip_id(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        clip_id = _parse_clip_id(d.pop("clip_id", UNSET))
 
         def _parse_collection_id(data: object) -> None | Unset | UUID:
             if data is None:
@@ -1088,6 +1107,7 @@ class AssetCreateSchema:
             analyze_status=analyze_status,
             archive_status=archive_status,
             category=category,
+            clip_id=clip_id,
             collection_id=collection_id,
             created_by_user=created_by_user,
             created_by_user_info=created_by_user_info,

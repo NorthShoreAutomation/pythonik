@@ -24,6 +24,7 @@ class CollectionContentInfoSchema:
         storage_info (list[StorageContentInfo] | None | Unset):
         title (None | str | Unset):
         total_duration_milliseconds (int | None | Unset):
+        total_proxy_size (int | None | Unset):
         total_size (int | None | Unset):
     """
 
@@ -32,6 +33,7 @@ class CollectionContentInfoSchema:
     storage_info: list[StorageContentInfo] | None | Unset = UNSET
     title: None | str | Unset = UNSET
     total_duration_milliseconds: int | None | Unset = UNSET
+    total_proxy_size: int | None | Unset = UNSET
     total_size: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -72,6 +74,12 @@ class CollectionContentInfoSchema:
         else:
             total_duration_milliseconds = self.total_duration_milliseconds
 
+        total_proxy_size: int | None | Unset
+        if isinstance(self.total_proxy_size, Unset):
+            total_proxy_size = UNSET
+        else:
+            total_proxy_size = self.total_proxy_size
+
         total_size: int | None | Unset
         if isinstance(self.total_size, Unset):
             total_size = UNSET
@@ -91,6 +99,8 @@ class CollectionContentInfoSchema:
             field_dict["title"] = title
         if total_duration_milliseconds is not UNSET:
             field_dict["total_duration_milliseconds"] = total_duration_milliseconds
+        if total_proxy_size is not UNSET:
+            field_dict["total_proxy_size"] = total_proxy_size
         if total_size is not UNSET:
             field_dict["total_size"] = total_size
 
@@ -166,6 +176,15 @@ class CollectionContentInfoSchema:
             d.pop("total_duration_milliseconds", UNSET)
         )
 
+        def _parse_total_proxy_size(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        total_proxy_size = _parse_total_proxy_size(d.pop("total_proxy_size", UNSET))
+
         def _parse_total_size(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -181,6 +200,7 @@ class CollectionContentInfoSchema:
             storage_info=storage_info,
             title=title,
             total_duration_milliseconds=total_duration_milliseconds,
+            total_proxy_size=total_proxy_size,
             total_size=total_size,
         )
 
